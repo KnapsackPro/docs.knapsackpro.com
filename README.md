@@ -8,3 +8,19 @@ http://docs.knapsackpro.com
 
     $ bundle install
     $ bundle exec jekyll serve --watch
+
+## Dependencies
+
+`npm i -g raml2html`
+
+https://github.com/kevinrenskers/raml2html
+
+## Generate API docs
+
+Raml files with docs are in `_api` directory.
+
+Run to compile them:
+
+    $ bundle exec rake api:generate_docs
+
+Compiled files are in `api` directory. Please commit them into repository.
