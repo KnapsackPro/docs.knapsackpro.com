@@ -7,7 +7,7 @@ categories: news
 
 If you want to help with this documentation you may want to take a look at the repository
 
-[https://github.com/KnapsackPro/docs.knapsackpro.com](https://github.com/KnapsackPro/docs.knapsackpro.com)
+[{{ site.github_repository }}]({{ site.github_repository }})
 
 {% highlight ruby %}
 def hello(name)
