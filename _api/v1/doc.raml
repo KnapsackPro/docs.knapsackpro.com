@@ -3,3 +3,22 @@
 title: Knapsack
 baseUri: http://api.knapsackpro.com/{version}
 version: v1
+
+/build_subsets:
+  post:
+    description: |
+      Endpoint expects partial test suite execution data for particular test build.
+
+      For instance send here data collected after execution half of test suite on the first CI node. Send here also data collected for the second half of the test suite executed on the second CI node.
+
+      We will merge the data automatically to have complete information about particular build.
+
+    queryParameters:
+      test_suite_token:
+        type: string
+        description: |
+          Token for the particular test suite. **Token must be kept private.**
+
+          For instance token for your RSpec test suite. If you have also test written in Cucumber then you will have separate token for Cucumber test suite.
+        example: 4ae170d5806c331bfab123ca1adaadb3
+        required: true
