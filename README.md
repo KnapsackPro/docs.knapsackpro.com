@@ -11,9 +11,16 @@ http://docs.knapsackpro.com
 
 ## Dependencies
 
-`npm i -g raml2html`
+* https://nodejs.org
 
-https://github.com/kevinrenskers/raml2html
+Run to install dependencies:
+
+    $ npm install
+
+We are using Raml, you can learn more here:
+
+* http://raml.org/
+* https://github.com/kevinrenskers/raml2html
 
 ## Generate API docs
 

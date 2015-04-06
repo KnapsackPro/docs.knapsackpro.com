@@ -1,0 +1,29 @@
+{
+  "name": "docs.knapsackpro.com",
+  "version": "1.0.0",
+  "description": "KnapsackPro.com Documentation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KnapsackPro/docs.knapsackpro.com.git"
+  },
+  "keywords": [
+    "knapsackpro",
+    "optimal",
+    "test",
+    "suite",
+    "parallelization"
+  ],
+  "author": "ArturT",
+  "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3",
+  "bugs": {
+    "url": "https://github.com/KnapsackPro/docs.knapsackpro.com/issues"
+  },
+  "homepage": "https://github.com/KnapsackPro/docs.knapsackpro.com",
+  "devDependencies": {
+    "raml2html": "^1.6.0"
+  }
+}
