@@ -56,13 +56,25 @@ version: v1
         type: string
         required: true
         example: |
-          {
-            "test/fast/a_test.rb": 0.2015,
-            "test/fast/b_test.rb": 0.04,
-            "test/slow/c_test.rb": 6.2120,
-            "test/slow/d_test.rb": 4.3703
-          }
+          [
+            {
+              "test_file_path": "test/fast/a_test.rb",
+              "time_execution": 0.2015
+            },
+            {
+              "test_file_path": "test/fast/b_test.rb",
+              "time_execution": 0.04
+            },
+            {
+              "test_file_path": "test/slow/c_test.rb",
+              "time_execution": 6.2120
+            },
+            {
+              "test_file_path": "test/slow/d_test.rb",
+              "time_execution": 4.3703
+            }
+          ]
         description: |
-          JSON object with key value where key is a path to test file and value is execution time for the test file.
+          JSON array with objects. Each object contains test file path and execution time for the test file.
 
-          Example contains only part of the test suite which was executed on the CI node with __node_index__.
+          Example contains only part of the test suite. The part of tests was executed on the CI node for specified __node_index__.
