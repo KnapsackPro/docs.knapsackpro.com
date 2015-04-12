@@ -4,6 +4,12 @@ Documentation for KnapsackPro.com
 
 http://docs.knapsackpro.com
 
+# How can I report a bug or improvement
+
+If you found a bug in our API or you have just an idea how to improve it then please create issue here:
+
+https://github.com/KnapsackPro/docs.knapsackpro.com/issues
+
 # Development
 
     $ bundle install
