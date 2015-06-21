@@ -78,3 +78,40 @@ version: v1
           JSON array with objects. Each object contains test file path and execution time for the test file.
 
           Example contains only part of the test suite. The part of tests was executed on the CI node for specified __node_index__.
+
+    responses:
+      201:
+        body:
+          application/json:
+            example: Response does not contain any data.
+      422:
+        body:
+          application/json:
+            example: |
+              // example 1
+              {
+                "errors": [
+                  {
+                    "branch": ["parameter is required"]
+                  }
+                ]
+              }
+
+              // example 2
+              {
+                "errors": [
+                  {
+                    "node_index": ["must be less than or equal to 1"],
+                    "test_files": [
+                      {
+                        "0": {
+                          "time_execution": ["is not a number"]
+                        },
+                        "1": {
+                          "path": ["is too short (minimum is 3 characters)"]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
