@@ -1,6 +1,6 @@
 namespace :api do
   task :generate_docs do
-    raml2html = 'node_modules/raml2html/lib/raml2html.js'
+    raml2html = 'node_modules/raml2html/bin/raml2html'
 
     raml_files = [
       {

@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/KnapsackPro/docs.knapsackpro.com",
   "devDependencies": {
-    "raml2html": "^1.6.0"
+    "raml2html": "^2.0.1"
   }
 }
