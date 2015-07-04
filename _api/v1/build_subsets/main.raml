@@ -8,32 +8,7 @@ post:
 
   body:
     application/json:
-      schema: |
-        {
-          "test_suite_token": "4ae170d5806c331bfab123ca1adaadb3",
-          "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
-          "branch": "master",
-          "node_total": "4",
-          "node_index": "0",
-          "test_files": [
-            {
-              "path": "test/fast/a_test.rb",
-              "time_execution": 0.2015
-            },
-            {
-              "path": "test/fast/b_test.rb",
-              "time_execution": 0.04
-            },
-            {
-              "path": "test/slow/c_test.rb",
-              "time_execution": 6.2120
-            },
-            {
-              "path": "test/slow/d_test.rb",
-              "time_execution": 4.3703
-            }
-          ]
-        }
+      schema: !include schema/post.json
 
   queryParameters:
     test_suite_token:
@@ -109,31 +84,4 @@ post:
     422:
       body:
         application/json:
-          example: |
-            // example 1
-            {
-              "errors": [
-                {
-                  "branch": ["parameter is required"]
-                }
-              ]
-            }
-
-            // example 2
-            {
-              "errors": [
-                {
-                  "node_index": ["must be less than or equal to 1"],
-                  "test_files": [
-                    {
-                      "0": {
-                        "time_execution": ["is not a number"]
-                      },
-                      "1": {
-                        "path": ["is too short (minimum is 3 characters)"]
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
+          example: !include schema/post_error_422.json

@@ -1,0 +1,25 @@
+{
+  "test_suite_token": "4ae170d5806c331bfab123ca1adaadb3",
+  "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
+  "branch": "master",
+  "node_total": "4",
+  "node_index": "0",
+  "test_files": [
+    {
+      "path": "test/fast/a_test.rb",
+      "time_execution": 0.2015
+    },
+    {
+      "path": "test/fast/b_test.rb",
+      "time_execution": 0.04
+    },
+    {
+      "path": "test/slow/c_test.rb",
+      "time_execution": 6.2120
+    },
+    {
+      "path": "test/slow/d_test.rb",
+      "time_execution": 4.3703
+    }
+  ]
+}
