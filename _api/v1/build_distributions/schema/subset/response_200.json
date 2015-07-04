@@ -1,0 +1,13 @@
+{
+  "node_index": 0,
+  "test_files": [
+    {
+      "path": "test/fast/b_test.rb",
+      "time_execution": null
+    },
+    {
+      "path": "test/slow/d_test.rb",
+      "time_execution": 3.14
+    }
+  ]
+}

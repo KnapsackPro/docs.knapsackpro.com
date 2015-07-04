@@ -1,0 +1,24 @@
+/subset:
+  post:
+    description: |
+      Endpoint expects list of all test files in your test suite.
+
+      In response you will get list of test files that should be run on node with particular __node_index__.
+
+    body:
+      application/json:
+        schema: !include schema/subset/post.json
+
+    queryParameters:
+      test_suite_token: !include ../params/test_suite_token.raml
+      commit_hash: !include ../params/commit_hash.raml
+      branch: !include ../params/branch.raml
+      node_total: !include ../params/node_total.raml
+      node_index: !include ../params/node_index.raml
+      test_files: !include ../params/test_files_with_path_only.raml
+
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include schema/subset/response_200.json
