@@ -1,0 +1,25 @@
+type: string
+required: true
+example: |
+  [
+    {
+      "path": "test/fast/a_test.rb",
+      "time_execution": 0.2015
+    },
+    {
+      "path": "test/fast/b_test.rb",
+      "time_execution": 0.04
+    },
+    {
+      "path": "test/slow/c_test.rb",
+      "time_execution": 6.2120
+    },
+    {
+      "path": "test/slow/d_test.rb",
+      "time_execution": 4.3703
+    }
+  ]
+description: |
+  JSON array with objects. Each object contains test file path and execution time for the test file.
+
+  Example contains only part of the test suite. The part of tests was executed on the CI node for specified __node_index__.
