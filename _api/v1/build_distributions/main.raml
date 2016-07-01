@@ -5,11 +5,14 @@
 
       In response you will get list of test files that should be run on node with particular __node_index__ value.
 
+      You will get also __build_distribution_id__ (seed) to compare if all your CI nodes are running based on the same test suite split.
+
     body:
       application/json:
         schema: !include schema/subset/post.json
 
     queryParameters:
+      fixed_test_suite_split: !include ../params/fixed_test_suite_split.raml
       test_suite_token: !include ../params/test_suite_token.raml
       commit_hash: !include ../params/commit_hash.raml
       branch: !include ../params/branch.raml
