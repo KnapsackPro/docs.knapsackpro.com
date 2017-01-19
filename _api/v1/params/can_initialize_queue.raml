@@ -4,6 +4,6 @@ example: |
   true
   false
 description: |
-  The first request from each CI nodes should set this field to true so the first coming request to Knapsack Pro API will initialize queue on the API side.
+  The first request from each CI nodes should set this field to `true` so the first coming request to Knapsack Pro API will initialize queue on the API side.
   
-  All next requests from each CI node should set this field to false so thanks to that when the queue will be empty on API side then the CI nodes will know that should finish work instead of initializing another queue.
+  All next requests from each CI node should set this field to `false` so thanks to that when the queue will be empty on API side then the CI nodes will know that should finish work instead of initializing another queue.
