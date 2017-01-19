@@ -1,0 +1,28 @@
+/queue:
+  post:
+    description: |
+      Endpoint expects a list of all test files in your test suite.
+
+      In response, you will get a list of test files that should be run on a node with particular __node_index__ value. The CI node can request this endpoint multiple times til it gets an empty list of test files which means the end of the queue.
+
+      You will get also __queue_name__ to compare if all your CI nodes are running against the same test suite queue created for particular CI build.
+
+    body:
+      application/json:
+        schema: !include schema/queue/post.json
+
+    queryParameters:
+      test_suite_token: !include ../params/test_suite_token.raml
+      can_initialize_queue: !include ../params/can_initialize_queue.raml
+      commit_hash: !include ../params/commit_hash.raml
+      branch: !include ../params/branch.raml
+      node_total: !include ../params/node_total.raml
+      node_index: !include ../params/node_index.raml
+      node_build_id: !include ../params/node_build_id.raml
+      test_files: !include ../params/test_files_with_path_only.raml
+
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include schema/queue/response_200.json
