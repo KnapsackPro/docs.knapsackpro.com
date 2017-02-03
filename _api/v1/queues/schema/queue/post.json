@@ -1,6 +1,7 @@
 {
   "test_suite_token": "4ae170d5806c331bfab123ca1adaadb3",
   "can_initialize_queue": true,
+  "fixed_queue_split": false,
   "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
   "branch": "master",
   "node_total": "4",
