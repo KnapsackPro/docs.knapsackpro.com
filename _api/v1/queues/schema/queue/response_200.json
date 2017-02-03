@@ -1,5 +1,6 @@
 {
   "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
+  "build_subset_id": null,
   "test_files": [
     {
       "path": "test/slow/d_test.rb",
