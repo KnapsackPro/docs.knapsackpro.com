@@ -7,6 +7,8 @@
 
       You will get also __queue_name__ to compare if all your CI nodes are running against the same test suite queue created for particular CI build.
 
+      In response you will see __build_subset_id__ when you have `fixed_queue_split=true` in request. When __build_subset_id__ has a value then the test suite split was done based on this old recorded build subset. In that case the __queue_name__ will be null.
+
     body:
       application/json:
         schema: !include schema/queue/post.json
