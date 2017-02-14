@@ -7,6 +7,8 @@
 
       You will get also __build_distribution_id__ (seed) to compare if all your CI nodes are running based on the same test suite split.
 
+    headers: !include ../headers/default.raml
+
     body:
       application/json:
         schema: !include schema/subset/post.json
