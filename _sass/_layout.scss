@@ -136,6 +136,11 @@
     width:         calc(45% - (#{$spacing-unit} / 2));
 }
 
+.footer-copy {
+  margin-top: 20px;
+  text-align: center;
+}
+
 @include media-query($on-laptop) {
     .footer-col-1,
     .footer-col-2 {
