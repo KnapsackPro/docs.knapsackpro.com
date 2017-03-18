@@ -92,12 +92,12 @@ a {
     color: $brand-color;
     text-decoration: none;
 
-    &:visited {
-        color: darken($brand-color, 15%);
-    }
+    //&:visited {
+        //color: darken($brand-color, 15%);
+    //}
 
     &:hover {
-        color: $text-color;
+        color: $text-color-hover;
         text-decoration: underline;
     }
 }
