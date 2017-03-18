@@ -1,8 +1,8 @@
 # Site settings
 title: KnapsackPro.com Documentation
 description: > # this means to ignore newlines until "baseurl:"
-  Documentation for API provided by KnapsackPro.com.
-  Optimal test suite parallelization. Speed up feedback from CI servers.
+  Documentation for Knapsack Pro API and tool.
+  Optimal test suite parallelization. Speed up tests on CI servers.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://docs.knapsackpro.com" # the base hostname & protocol for your site
 knapsack_pro_url: https://knapsackpro.com
