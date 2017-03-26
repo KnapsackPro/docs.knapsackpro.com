@@ -33,7 +33,7 @@ __Advanced methods of distributing tests across CI nodes:__
 
 In 2014 I started working on predetermine test suite split solution based on tests time execution. In 2015 I developed more advanced solution  called Regular Mode built into the [gem knapsack_pro](https://github.com/KnapsackPro/knapsack_pro-ruby) to track tests time execution across commits and branches.
 
-In late 2016 I created the early version of dynamic test suite split solution based on tests time execution and work queue. Early 2017 I started testing it on large projects with a few companies. It happens the largest projects were using the Buildkite.com CI provider. I'm going to show you why and how to run insanely fast test suite there.
+In late 2016 I created the early version of dynamic test suite split solution based on tests time execution and work queue. Early 2017 I started testing it on large projects with a few companies. It happens the largest projects were using the [Buildkite.com CI provider](https://buildkite.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite). I'm going to show you why and how to run insanely fast test suite there.
 
 # What is Buildkite.com
 
