@@ -6,9 +6,9 @@ author: "Artur Trzop"
 categories: news
 ---
 
-<img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/buildkite.jpg" style="width:250px;float:right;" />
-
 I like tests. You may like them too because thanks to them you are not afraid to change the code. Tests can help you catch errors earlier. I like tests, even more, when they are fast.
+
+<img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/buildkite.jpg" style="width:250px;float:right;" />
 
 In large projects tests tend to get bigger and bigger, your test suite starts taking dozens of minutes, then hours. We want to have feedback loop during development and testing short so with big test suites, we go for parallelism.
 
