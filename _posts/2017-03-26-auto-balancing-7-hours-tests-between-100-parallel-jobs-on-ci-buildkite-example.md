@@ -96,6 +96,6 @@ I tested this with a company who has a large test suite ~7 hours and the average
 
 # What else can I learn?
 
-* __An example repository of how to run Rails CI with [Knapsack Pro and test steps in parallel with Buildkite](https://github.com/KnapsackPro/buildkite-rails-parallel-example-with-knapsack_pro)__
+* __See an example repository of how to run Rails CI with [Knapsack Pro and test steps in parallel with Buildkite](https://github.com/KnapsackPro/buildkite-rails-parallel-example-with-knapsack_pro). Here is an example for [Docker, Knapsack Pro and Buildkite](https://github.com/KnapsackPro/buildkite-rails-docker-parallel-example-with-knapsack_pro).__
 * What is [optimal order of test commands](https://github.com/KnapsackPro/knapsack_pro-ruby#what-is-optimal-order-of-test-commands)?
 * Learn more about [Knapsack Pro parallelisation](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite)
