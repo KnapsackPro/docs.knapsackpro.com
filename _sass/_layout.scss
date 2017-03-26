@@ -240,3 +240,20 @@
         }
     }
 }
+
+.share-post-container {
+  overflow: hidden;
+
+  .share-post-left {
+    float: left;
+
+    .fb-share-button {
+      position: relative;
+      top: -6px;
+    }
+  }
+
+  .share-post-right {
+    float: right;
+  }
+}
