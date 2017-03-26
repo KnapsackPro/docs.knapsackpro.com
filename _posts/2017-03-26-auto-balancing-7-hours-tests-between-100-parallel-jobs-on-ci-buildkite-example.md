@@ -73,7 +73,7 @@ __Set step command:__
 * Environment Variables: `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=462c48d886ab38ddcdb81d379379e639`
 * Parallelism: `100`
 
-In environment variables, we set Knapsack Pro API key `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` per step command. You can [obtain API key here](knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite).
+In environment variables, we set Knapsack Pro API key `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` per step command. You can [obtain API key here](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite).
 
 When everything is filled you can save your pipeline and run your buildkite agents across your CI nodes.
 Push a new commit to your repository and allow it to pass. The first CI build run will record time execution of your tests and saves it to Knapsack Pro API.
@@ -86,6 +86,6 @@ I tested this with a company who has a large test suite ~7 hours and the average
 
 # What else can I learn?
 
-* An example repository of how to run Rails CI with [Knapsack Pro and test steps in parallel with Buildkite](https://github.com/buildkite/rails-parallel-example)
+* __An example repository of how to run Rails CI with [Knapsack Pro and test steps in parallel with Buildkite](https://github.com/KnapsackPro/buildkite-rails-parallel-example-with-knapsack_pro)__
 * What is [optimal order of test commands](https://github.com/KnapsackPro/knapsack_pro-ruby#what-is-optimal-order-of-test-commands)?
-* Learn more about [Knapsack Pro parallelisation](knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite)
+* Learn more about [Knapsack Pro parallelisation](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite)
