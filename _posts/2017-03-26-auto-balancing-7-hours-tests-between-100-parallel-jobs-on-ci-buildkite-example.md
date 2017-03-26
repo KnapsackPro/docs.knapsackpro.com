@@ -6,6 +6,8 @@ author: "Artur Trzop"
 categories: news
 ---
 
+<img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/buildkite.jpg" style="width:250px;float:right;" />
+
 I like tests. You may like them too because thanks to them you are not afraid to change the code. Tests can help you catch errors earlier. I like tests, even more, when they are fast.
 
 In large projects tests tend to get bigger and bigger, your test suite starts taking dozens of minutes, then hours. We want to have feedback loop during development and testing short so with big test suites, we go for parallelism.
@@ -23,19 +25,27 @@ __Advanced methods of distributing tests across CI nodes:__
 
 * Split tests based on time execution and running predetermine subset of tests per CI node.
 
+  <img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/regular_mode.jpg" style="width:150px;" />
+
   This way we should get similar time execution on each CI node. But there are cons of this approach. Sometimes tests took different time because of bad CI node performance or the nature of the test like testing external API or feature tests clicking on the website that could take random time.
 
 * Dynamic tests split is a way based on recorded tests time execution and work queue.
 
+  <img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/queue_mode.jpg" style="width:150px;"/>
+
   Each CI node gets subsets of the test suite from the work queue until the queue is empty. This way we have faster, more efficient tests distribution across CI nodes. There is no bottleneck when one of our CI nodes has worse performance. It will just do less work than others but in the end, we developers get feedback about test suite passing or not as soon as it is possible.
 
 # The story of knapsack
+
+<img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/knapsack.jpg" style="width:150px;float:right;" />
 
 In 2014 I started working on predetermine test suite split solution based on tests time execution. In 2015 I developed more advanced solution  called Regular Mode built into the [gem knapsack_pro](https://github.com/KnapsackPro/knapsack_pro-ruby) to track tests time execution across commits and branches.
 
 In late 2016 I created the early version of dynamic test suite split solution based on tests time execution and work queue. Early 2017 I started testing it on large projects with a few companies. It happens the largest projects were using the [Buildkite.com CI provider](https://buildkite.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite). I'm going to show you why and how to run insanely fast test suite there.
 
 # What is Buildkite.com
+
+<img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/buildkite.jpg" style="width:150px;float:left;margin-right:20px;" />
 
 Bulidkite gives you separation between CI web interface and the build infrastructure. Basically, you can run your tests on any machine with an installed buildkite agent. It can be cloud like AWS or your VPS or even your Mac or Windows. You can save a lot of time of booting your CI nodes with Buildkite because you can keep artifacts like installed gems, migrated DB etc on your machine unlike other CI provider do by uploading them to external store and booting CI node from scratch with every new run.
 
