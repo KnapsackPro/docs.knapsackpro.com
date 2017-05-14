@@ -5,7 +5,8 @@ permalink: /knapsack_pro-ruby/guide/
 ---
 <script src="/javascripts/knapsack_pro-ruby/guide.js?version=1"></script>
 
-The more detailed tips and configuration options you can find in the [README for the knapsack_pro gem](https://github.com/KnapsackPro/knapsack_pro-ruby).
+The more detailed tips and configuration options you can find in the [README for the knapsack_pro gem](https://github.com/KnapsackPro/knapsack_pro-ruby).<br>
+[Get API key to use the knapsack_pro gem](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide)
 
 ## Installation
 
