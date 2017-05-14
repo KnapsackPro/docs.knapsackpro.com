@@ -102,6 +102,7 @@
     margin-bottom: $spacing-unit / 2;
 }
 
+.none-list,
 .contact-list,
 .social-media-list {
     list-style: none;
@@ -256,4 +257,8 @@
   .share-post-right {
     float: right;
   }
+}
+
+.hidden {
+  display: none;
 }
