@@ -4,7 +4,7 @@ title: Integration
 permalink: /integration/
 ---
 
-<p>Here you can find documentation for Knapsack Pro tools for your programming language.
+<p>Here you can find documentation for Knapsack Pro tools for your programming language.</p>
 
 <table class="pure-table extra-margin-top-2x">
   <tr>
