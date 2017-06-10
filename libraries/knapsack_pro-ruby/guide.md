@@ -137,7 +137,7 @@ WebMock.disable_net_connect!(:allow => ['api.knapsackpro.com'])
 
 # add below when you use FakeWeb
 require 'fakeweb'
-FakeWeb.allow_net_connect = %r[^https?://api.knapsackpro.com]
+FakeWeb.allow_net_connect = %r[^https?://api\.knapsackpro\.com]
 {% endhighlight %}
 
 <p>
