@@ -615,4 +615,8 @@ bundle exec rake knapsack_pro:queue:rspec
   Full <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#table-of-contents" target="_blank">documentation</a>.
   If you have problems please check FAQ there.
   </p>
+
+  <p>
+  Feel free to ask questions if you need help. <a href="https://knapsackpro.com/contact" target="_blank">Contact us</a>.
+  </p>
 </div>
