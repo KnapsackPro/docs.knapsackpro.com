@@ -595,7 +595,19 @@ KNAPSACK_PRO_CI_NODE_INDEX - starts from 0, it's index of each CI node
   </p>
 
   <p>
-  Later you may want to <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode" target="_blank">learn about Queue Mode and how to enable it</a>.
+  Once you confirm the knapsack_pro Regular Mode works and your tests are green then you may want to <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode" target="_blank">learn about Queue Mode and how to enable it</a>.
+  </p>
+
+{% highlight ruby %}
+# Example command for Regular Mode
+bundle exec rake knapsack_pro:rspec
+
+# Example command for Queue Mode
+bundle exec rake knapsack_pro:queue:rspec
+{% endhighlight %}
+
+  <p>
+  I recommend to use first Regular Mode in order to record time execution data from your project. You could also use Queue Mode to do that but it will be much slower when you record your first build. Please ensure your tests are green in Regular Mode and there are no order dependet test failures before trying Queue Mode.
   </p>
 
   <p>
