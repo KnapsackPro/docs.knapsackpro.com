@@ -296,6 +296,11 @@ Here you can find article <a href="http://docs.knapsackpro.com/2017/auto-balanci
   <li><a href="https://github.com/KnapsackPro/buildkite-rails-parallel-example-with-knapsack_pro" target="_blank">Buildkite Rails Parallel Example with Knapsack Pro</a></li>
   <li><a href="https://github.com/KnapsackPro/buildkite-rails-docker-parallel-example-with-knapsack_pro" target="_blank">Buildkite Rails Docker Parallel Example with Knapsack Pro</a></li>
 </ul>
+
+<p>
+If you want to use Buildkite retry single agent feature to retry just failed tests on particular agent (CI node) then you should set <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank">KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true</a>.
+</p>
+
   </div>
 
   <div id="guide-provider-semaphoreci" class="hidden">
