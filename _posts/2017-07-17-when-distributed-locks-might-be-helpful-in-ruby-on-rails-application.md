@@ -8,6 +8,8 @@ categories: ruby rails locks
 
 During this year I noticed 2 similar concurrent problems with my Ruby on Rails application and I solved them with distributed locks. I'm going to show you how to detect if your application might have a concurrent problem and how to solve it.
 
+<img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/distributed_lock.jpg" style="width:250px;float:right;" />
+
 Let me start with a bit of context before we discuss the problem. I'm running small SaaS application [KnapsackPro.com](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=distributed-locks) and the application provides API for the gem [knapsack_pro](https://github.com/KnapsackPro/knapsack_pro-ruby). The whole point of the tool is to optimize time execution of your RSpec, Cucumber etc test suite by splitting tests across CI nodes running in parallel. 
 
 Imagine a scenario where you have 20 minutes long RSpec test suite and you would like to split it across 2 parallel CI nodes. In the perfect case, you should run half of RSpec tests on the first CI node and the second half on the second CI node. In result, your test suite would run only 10 minutes.
@@ -168,6 +170,8 @@ This way I was able to reproduce the problem in development and I had a script t
 
 ## How to deal with concurrent problem
 
+<img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/dining_philosophers_problem.jpg" style="width:250px;float:right;" />
+
 The first thing that came to my mind was that maybe I should write myself some sort of solution. The test file work queue is stored in Redis so I was wondering maybe I could do something on the Redis level to ensure the work queue is created only once. 
 
 I quickly realized that none of my ideas sound reasonable to solve the problem then I looked for options how people deal with the concurrent problem.
@@ -218,6 +222,8 @@ I also set lock timeout to 5 seconds because I assume in most cases creating the
 When I had the working fix then I validated if it actually solves the problem by using my script to do concurrent requests in ruby threads. Indeed it solved the problem!
 
 ## Concurrent problem you most likely have too
+
+<img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/ruby_on_rails.jpg" style="width:250px;float:right;" />
 
 A month ago or so I found another concurrent issue in my API and the problematic code looked like:
 
