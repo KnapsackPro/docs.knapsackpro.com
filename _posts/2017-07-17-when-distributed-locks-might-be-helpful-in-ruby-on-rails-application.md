@@ -6,7 +6,7 @@ author: "Artur Trzop"
 categories: ruby rails locks
 ---
 
-During this year I noticed 2 similar concurrent problems with my Ruby on Rails application and I solved them with distributed locks. I'm going to show you how to detect if your application might have a concurrent problem and how to solve it.
+During this year I noticed 2 similar concurrency problems with my Ruby on Rails application and I solved them with distributed locks. I'm going to show you how to detect if your application might have a concurrency problem and how to solve it.
 
 <img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/distributed_lock.jpg" style="width:250px;float:right;" />
 
@@ -14,15 +14,15 @@ Let me start with a bit of context before we discuss the problem. I'm running sm
 
 Imagine a scenario where you have 20 minutes long RSpec test suite and you would like to split it across 2 parallel CI nodes. In the perfect case, you should run half of RSpec tests on the first CI node and the second half on the second CI node. In result, your test suite would run only 10 minutes.
 
-## But where is the potential risk of the concurrent problem?
+## But where is the potential risk of the concurrency problem?
 
 On the Knapsack Pro API side, there is test file queue generated for your CI build. Each CI node periodically requests the Knapsack Pro API via knapsack_pro gem for test files that should be executed next. Thanks to that each CI node will finish tests at the same time.
 
 <img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/queue_mode.jpg" style="width:150px;"/>
 
-When both CI nodes start work at the same time to execute your test suite then the knapsack_pro gem does a request to Knapsack Pro API to get the first list of test files that should be executed on the particular CI node. The first request coming to the Knapsack Pro API is responsible for creating a test file work queue. 
+When both CI nodes start work at the same time to execute your test suite then the knapsack_pro gem does a request to Knapsack Pro API to get the list of test files that should be executed on the particular CI node. The first request coming to the Knapsack Pro API is responsible for creating a test file work queue. 
 
-Take a look how code responsible for creating the list looks like:
+Take a look how code responsible for creating the queue looks like:
 
 {% highlight ruby %}
 def test_files
@@ -66,7 +66,7 @@ after_fork do |server, worker|
 end
 {% endhighlight %}
 
-This is how my script looks like to run concurrent requests. As you can see I use RSpec here to do `expect` and ensure there is no problem with API. When the test files in the work queue are duplicated then the test fails and that means the concurrency problem exists and the test file work queue is created twice instead of just once.
+Below is my script to run concurrent requests. As you can see I use RSpec here to do `expect` and ensure there is no problem with API. When the test files in the work queue are duplicated then the test fails and that means the concurrency problem exists and the test file work queue is created twice instead of just once.
 
 {% highlight ruby %}
 #!/usr/bin/env ruby
@@ -168,13 +168,13 @@ end
 
 This way I was able to reproduce the problem in development and I had a script thanks to that I could verify if a future fix will be working.
 
-## How to deal with concurrent problem
+## How to deal with concurrency problem
 
 <img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/dining_philosophers_problem.jpg" style="width:250px;float:right;" />
 
 The first thing that came to my mind was that maybe I should write myself some sort of solution. The test file work queue is stored in Redis so I was wondering maybe I could do something on the Redis level to ensure the work queue is created only once. 
 
-I quickly realized that none of my ideas sound reasonable to solve the problem then I looked for options how people deal with the concurrent problem.
+I quickly realized that none of my ideas sound reasonable to solve the problem then I looked for options how people deal with the concurrency problem.
 
 Basically, the conclusion after my research was:
 
@@ -215,17 +215,17 @@ def test_files
 end
 {% endhighlight %}
 
-As you can see I define semaphore name based on CI build ID because in my business context the concurrent error happened only for the CI build so the ID of the build seems to be the perfect candidate to use it as a semaphore name.
+As you can see I define semaphore name based on CI build ID because in my business context the concurrency error happened only for the CI build so the ID of the build seems to be the perfect candidate to use it as a semaphore name.
 
 I also set lock timeout to 5 seconds because I assume in most cases creating the work queue takes milliseconds and if something goes wrong and suddenly it will take seconds then it would be better to expire lock and allow the app to fail rather than lock unicorn process forever. 
 
 When I had the working fix then I validated if it actually solves the problem by using my script to do concurrent requests in ruby threads. Indeed it solved the problem!
 
-## Concurrent problem you most likely have too
+## Concurrency problem you most likely have too
 
 <img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/ruby_on_rails.jpg" style="width:250px;float:right;" />
 
-A month ago or so I found another concurrent issue in my API and the problematic code looked like:
+A month ago or so I found another concurrency issue in my API and the problematic code looked like:
 
 {% highlight ruby %}
 def save
@@ -249,8 +249,8 @@ This may look familiar to you because it's similar to what Rails method `find_or
 
 * Be aware of trade-off. Do you care about efficiency or correctness?
 * Test your endpoints with concurrent requests to reproduce problem and to validate fix will work
-* Remember to use transactions when changing many records but don't forget DB transactions won't help with a concurrent problem due to the fact transaction works per DB connection.
-* If possible use unique index to ensure data consistency in DB. When concurrent problem will happen then at least DB will ensure data correctness.
+* Remember to use transactions when changing many records but don't forget DB transactions won't help with a concurrency problem due to the fact transaction works per DB connection.
+* If possible use unique index to ensure data consistency in DB. When concurrency problem will happen then at least DB will ensure data correctness.
 * Use tested distribution lock solutions
 
 I also recommend reading article: [Differences between transactions and locking](https://makandracards.com/makandra/31937-differences-between-transactions-and-locking).
