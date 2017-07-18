@@ -262,3 +262,18 @@
 .hidden {
   display: none;
 }
+
+.newsletter-container {
+  margin: 20px 0;
+  border: 10px solid $brand-color;
+  border-radius: 10px;
+
+  .indicates-required {
+    float: right;
+  }
+
+  .previous-campaigns {
+    float: right;
+    margin-right: 30px;
+  }
+}
