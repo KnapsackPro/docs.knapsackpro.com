@@ -25,9 +25,12 @@ $ bundle install
 {% endhighlight %}
 
 
-Add this lines at the bottom of `Rakefile` if your project has it:
+If you are not using Rails then add this line at the bottom of `Rakefile`:
 
 {% highlight ruby %}
+# Add this only if you are not using Rails.
+# If you use Rails then knapsack_pro rake tasks are already loaded
+# so there is no need to explicitly load them.
 KnapsackPro.load_tasks if defined?(KnapsackPro)
 {% endhighlight %}
 
