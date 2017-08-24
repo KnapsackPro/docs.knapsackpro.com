@@ -61,6 +61,7 @@ Please answer questions to get basic configuration of knapsack_pro gem for your 
     <li><label><input type="radio" name="ci-provider" value="buildkite"> https://buildkite.com</label></li>
     <li><label><input type="radio" name="ci-provider" value="semaphoreci"> https://semaphoreci.com</label></li>
     <li><label><input type="radio" name="ci-provider" value="snap-ci"> https://snap-ci.com</label></li>
+    <li><label><input type="radio" name="ci-provider" value="codeship"> http://codeship.com</label></li>
     <li><label><input type="radio" name="ci-provider" value="gitlab-ci"> Gitlab CI</label></li>
     <li><label><input type="radio" name="ci-provider" value="jenkins"> Jenkins</label></li>
     <li><label><input type="radio" name="ci-provider" value="other"> other</label></li>
@@ -364,45 +365,83 @@ Please remember to set up token like KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC as glob
 </p>
   </div>
 
-  <div id="guide-provider-gitlab-ci" class="hidden">
-  <h4>Step for Gitlab CI https://about.gitlab.com/features/gitlab-ci-cd/</h4>
+  <div id="guide-provider-codeship" class="hidden">
+  <h4>Step for http://codeship.com</h4>
 
-  <p>
-  Gitlab CI does not provide parallel jobs environment variables so you will have to define KNAPSACK_PRO_CI_NODE_TOTAL and KNAPSACK_PRO_CI_NODE_INDEX for each parallel job running as part of the same test stage. Below is relevant part of .gitlab-ci.yml configuration for 2 parallel jobs.
-  </p>
+<p>
+Codeship does not provide parallel jobs environment variables so you will have to define KNAPSACK_PRO_CI_NODE_TOTAL and KNAPSACK_PRO_CI_NODE_INDEX for each <a href="https://documentation.codeship.com/basic/builds-and-configuration/parallel-tests/#using-parallel-test-pipelines" target="_blank">parallel test pipeline</a>. Below is an example for 2 parallel test pipelines.
+</p>
+
+<p>Configure test pipelines (1/2 used)</p>
+
+{% highlight ruby %}
+# first CI node running in parallel
+
+# Cucumber tests in Knapsack Pro Regular Mode (deterministic test suite split)
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:cucumber
+
+# RSpec tests in Knapsack Pro Queue Mode (dynamic test suite split)
+# It will autobalance bulid because it is executed after Cucumber tests.
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:queue:rspec
+{% endhighlight %}
+
+<p>Configure test pipelines (2/2 used)</p>
+
+{% highlight ruby %}
+# second CI node running in parallel
+
+# Cucumber tests in Knapsack Pro Regular Mode (deterministic test suite split)
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:cucumber
+
+# RSpec tests in Knapsack Pro Queue Mode (dynamic test suite split)
+# It will autobalance bulid because it is executed after Cucumber tests.
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:queue:rspec
+{% endhighlight %}
+
+<p>
+Remember to add API tokens like KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER and KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC to <i>Environment</i> page of your project settings in Codeship.
+</p>
+</div>
+
+  <div id="guide-provider-gitlab-ci" class="hidden">
+<h4>Step for Gitlab CI https://about.gitlab.com/features/gitlab-ci-cd/</h4>
+
+<p>
+Gitlab CI does not provide parallel jobs environment variables so you will have to define KNAPSACK_PRO_CI_NODE_TOTAL and KNAPSACK_PRO_CI_NODE_INDEX for each parallel job running as part of the same test stage. Below is relevant part of .gitlab-ci.yml configuration for 2 parallel jobs.
+</p>
 
 {% highlight ruby %}
 # .gitlab-ci.yml
 stages:
-  - test
+- test
 
 variables:
-  KNAPSACK_PRO_CI_NODE_TOTAL: 2
+KNAPSACK_PRO_CI_NODE_TOTAL: 2
 
 # first CI node running in parallel
 test_ci_node_0:
-  stage: test
-  script:
-    - export KNAPSACK_PRO_CI_NODE_INDEX=0
-    # Cucumber tests in Knapsack Pro Regular Mode (deterministic test suite split)
-    - bundle exec rake knapsack_pro:cucumber
-    # RSpec tests in Knapsack Pro Queue Mode (dynamic test suite split)
-    # It will autobalance bulid because it is executed after Cucumber tests.
-    - bundle exec rake knapsack_pro:queue:rspec
+stage: test
+script:
+  - export KNAPSACK_PRO_CI_NODE_INDEX=0
+  # Cucumber tests in Knapsack Pro Regular Mode (deterministic test suite split)
+  - bundle exec rake knapsack_pro:cucumber
+  # RSpec tests in Knapsack Pro Queue Mode (dynamic test suite split)
+  # It will autobalance bulid because it is executed after Cucumber tests.
+  - bundle exec rake knapsack_pro:queue:rspec
 
 # second CI node running in parallel
 test_ci_node_1:
-  stage: test
-  script:
-    - export KNAPSACK_PRO_CI_NODE_INDEX=1
-    - bundle exec rake knapsack_pro:cucumber
-    - bundle exec rake knapsack_pro:queue:rspec
+stage: test
+script:
+  - export KNAPSACK_PRO_CI_NODE_INDEX=1
+  - bundle exec rake knapsack_pro:cucumber
+  - bundle exec rake knapsack_pro:queue:rspec
 {% endhighlight %}
 
 <p>
 Remember to add API tokens like KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER and KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC to <a href="https://gitlab.com/help/ci/variables/README.md#secret-variables" target="_blank">Secret Variables</a> in Gitlab CI Settings -> CI/CD Pipelines -> Secret Variables.
 </p>
-  </div>
+</div>
 
   <div id="guide-provider-jenkins" class="hidden">
   <h4>Step for Jenkins</h4>
