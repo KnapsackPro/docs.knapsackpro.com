@@ -43,6 +43,7 @@ Please answer questions to get basic configuration of knapsack_pro gem for your 
   <ul class="none-list">
     <li><label><input type="checkbox" id="test-runner-rspec" /> RSpec</label></li>
     <li><label><input type="checkbox" id="test-runner-minitest" /> Minitest</label></li>
+    <li><label><input type="checkbox" id="test-runner-test-unit" /> test-unit</label></li>
     <li><label><input type="checkbox" id="test-runner-cucumber" /> Cucumber</label></li>
     <li><label><input type="checkbox" id="test-runner-spinach" /> Spinach</label></li>
   </ul>
@@ -91,6 +92,20 @@ Add at the beginning of your test/test_helper.rb:
 {% highlight ruby %}
 require 'knapsack_pro'
 knapsack_pro_adapter = KnapsackPro::Adapters::MinitestAdapter.bind
+knapsack_pro_adapter.set_test_helper_path(__FILE__)
+{% endhighlight %}
+</div>
+
+<div id="guide-test-runner-test-unit" class="hidden">
+<h4>Step for test-unit</h4>
+
+<p>
+Add at the beginning of your test/test_helper.rb:
+</p>
+
+{% highlight ruby %}
+require 'knapsack_pro'
+knapsack_pro_adapter = KnapsackPro::Adapters::TestUnitAdapter.bind
 knapsack_pro_adapter.set_test_helper_path(__FILE__)
 {% endhighlight %}
 </div>
@@ -174,6 +189,7 @@ machine:
     # KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: rspec-token
     # KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER: cucumber-token
     # KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST: minitest-token
+    # KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT: test-unit-token
     # KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH: spinach-token
 test:
   override:
@@ -187,6 +203,10 @@ test:
 
     # Step for Minitest
     - bundle exec rake knapsack_pro:minitest:
+        parallel: true # Caution: there are 8 spaces indentation!
+
+    # Step for test-unit
+    - bundle exec rake knapsack_pro:test_unit:
         parallel: true # Caution: there are 8 spaces indentation!
 
     # Step for Spinach
@@ -238,6 +258,9 @@ script:
   # Step for Minitest
   - "bundle exec rake knapsack_pro:minitest"
 
+  # Step for test-unit
+  - "bundle exec rake knapsack_pro:test_unit"
+
   # Step for Spinach
   - "bundle exec rake knapsack_pro:spinach"
 
@@ -247,6 +270,7 @@ env:
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=rspec-token
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=cucumber-token
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=minitest-token
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT=test-unit-token
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=spinach-token
 
     - KNAPSACK_PRO_CI_NODE_TOTAL=2
@@ -260,8 +284,8 @@ Such configuration will generate matrix with 2 following ENV rows:
 </p>
 
 {% highlight ruby %}
-KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=rspec-token KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=cucumber-token KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=minitest-token KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=spinach-token
-KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=rspec-token KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=cucumber-token KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=minitest-token KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=spinach-token
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=rspec-token KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=cucumber-token KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=minitest-token KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT=test-unit-token KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=spinach-token
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=rspec-token KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=cucumber-token KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=minitest-token KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT=test-unit-token KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=spinach-token
 {% endhighlight %}
 
 <p>
@@ -285,6 +309,9 @@ bundle exec rake knapsack_pro:cucumber
 
 # Step for Minitest
 bundle exec rake knapsack_pro:minitest
+
+# Step for test-unit
+bundle exec rake knapsack_pro:test_unit
 
 # Step for Spinach
 bundle exec rake knapsack_pro:spinach
@@ -311,7 +338,7 @@ If you want to use Buildkite retry single agent feature to retry just failed tes
 <h4>Step for https://semaphoreci.com</h4>
 
 <p>
-Knapsack Pro supports semaphoreapp ENVs SEMAPHORE_THREAD_COUNT and SEMAPHORE_CURRENT_THREAD. The only thing you need to do is set up knapsack_pro rspec/cucumber/minitest command for as many threads as you need. Here is an example:
+Knapsack Pro supports semaphoreapp ENVs SEMAPHORE_THREAD_COUNT and SEMAPHORE_CURRENT_THREAD. The only thing you need to do is set up knapsack_pro rspec/cucumber/minitest/test_unit command for as many threads as you need. Here is an example:
 </p>
 
 {% highlight ruby %}
@@ -322,6 +349,8 @@ bundle exec rake knapsack_pro:rspec
 bundle exec rake knapsack_pro:cucumber
 ## Step for Minitest
 bundle exec rake knapsack_pro:minitest
+## Step for test-unit
+bundle exec rake knapsack_pro:test_unit
 ## Step for Spinach
 bundle exec rake knapsack_pro:spinach
 
@@ -332,6 +361,8 @@ bundle exec rake knapsack_pro:rspec
 bundle exec rake knapsack_pro:cucumber
 ## Step for Minitest
 bundle exec rake knapsack_pro:minitest
+## Step for test-unit
+bundle exec rake knapsack_pro:test_unit
 ## Step for Spinach
 bundle exec rake knapsack_pro:spinach
 {% endhighlight %}
@@ -355,6 +386,9 @@ bundle exec rake knapsack_pro:cucumber
 
 # Step for Minitest
 bundle exec rake knapsack_pro:minitest
+
+# Step for test-unit
+bundle exec rake knapsack_pro:test_unit
 
 # Step for Spinach
 bundle exec rake knapsack_pro:spinach
@@ -587,6 +621,18 @@ $ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake kna
 
 # Command for second CI node
 $ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:minitest
+{% endhighlight %}
+
+<p>
+Step for test-unit
+</p>
+
+{% highlight ruby %}
+# Command for first CI node
+$ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:test_unit
+
+# Command for second CI node
+$ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:test_unit
 {% endhighlight %}
 
 <p>

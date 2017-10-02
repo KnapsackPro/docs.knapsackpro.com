@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var testRunners = $("#test-runner-rspec, #test-runner-cucumber, #test-runner-minitest, #test-runner-spinach, #vcr-webmock-fakeweb");
+  var testRunners = $("#test-runner-rspec, #test-runner-cucumber, #test-runner-minitest, #test-runner-test-unit, #test-runner-spinach, #vcr-webmock-fakeweb");
 
   testRunners.change(function() {
     id = $(this).attr('id');
