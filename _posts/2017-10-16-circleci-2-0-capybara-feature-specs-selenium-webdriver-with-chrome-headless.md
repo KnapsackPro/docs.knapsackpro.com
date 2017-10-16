@@ -4,6 +4,7 @@ title:  "CircleCI 2.0 Capybara feature specs - Selenium webdriver with Chrome he
 date:   2017-10-16 21:00:00 +0200
 author: "Artur Trzop"
 categories: ruby rails "Circle CI 2.0" capybara "Chrome headless"
+og_image: "/images/blog/posts/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless/circle.png"
 ---
 
 I’ve been using Capybara-WebKit for a long time but while switching from CircleCI 1.0 to CircleCI 2.0 I had some problems to use it on the CI.

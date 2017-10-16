@@ -4,6 +4,7 @@ title:  "Auto balancing 7 hours tests between 100 parallel jobs on CI - Buildkit
 date:   2017-03-26 13:20:00 +0200
 author: "Artur Trzop"
 categories: news
+og_image: "/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/buildkite.jpg"
 ---
 
 I like tests. You may like them too because thanks to them you are not afraid to change the code. Tests can help you catch errors earlier. I like tests, even more, when they are fast.

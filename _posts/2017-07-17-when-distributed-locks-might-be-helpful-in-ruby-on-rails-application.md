@@ -4,6 +4,7 @@ title:  "When distributed locks might be helpful in Ruby on Rails application"
 date:   2017-07-17 07:00:00 +0200
 author: "Artur Trzop"
 categories: ruby rails locks
+og_image: "/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/distributed_lock.jpg"
 ---
 
 During this year I noticed 2 similar concurrency problems with my Ruby on Rails application and I solved them with distributed locks. I'm going to show you how to detect if your application might have a concurrency problem and how to solve it.
