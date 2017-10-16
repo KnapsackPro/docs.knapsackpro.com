@@ -8,6 +8,7 @@
 
   {% if page.og_image %}
   <meta property="og:image" content="{{ page.og_image | prepend: site.url }}">
+  <meta name="twitter:image:src" content="{{ page.og_image | prepend: site.url }}">
   {% endif %}
 
   <link rel="shortcut icon" href="/images/favicon.ico" />
