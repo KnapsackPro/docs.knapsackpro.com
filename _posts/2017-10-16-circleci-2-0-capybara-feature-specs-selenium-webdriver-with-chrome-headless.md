@@ -27,6 +27,7 @@ end
 
 and run `bundle install`.
 
+If you already had the gems in your `Gemfile` then ensure you have latest version with `bundle update capybara selenium-webdriver`.
 
 If you want to make sure Capybara feature specs will work on your development machine:
 
@@ -59,7 +60,7 @@ RSpec.configure do |config|
     Capybara.current_driver = :selenium_chrome if example.metadata[:selenium_chrome]
   end
 
-  config.after(:each) do |example|
+  config.after(:each) do
     Capybara.use_default_driver
   end
 end
