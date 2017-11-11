@@ -63,6 +63,7 @@ Please answer questions to get basic configuration of knapsack_pro gem for your 
     <li><label><input type="radio" name="ci-provider" value="semaphoreci"> https://semaphoreci.com</label></li>
     <li><label><input type="radio" name="ci-provider" value="snap-ci"> https://snap-ci.com</label></li>
     <li><label><input type="radio" name="ci-provider" value="codeship"> http://codeship.com</label></li>
+    <li><label><input type="radio" name="ci-provider" value="heroku-ci"> Heroku CI</label></li>
     <li><label><input type="radio" name="ci-provider" value="gitlab-ci"> Gitlab CI</label></li>
     <li><label><input type="radio" name="ci-provider" value="jenkins"> Jenkins</label></li>
     <li><label><input type="radio" name="ci-provider" value="other"> other</label></li>
@@ -435,6 +436,57 @@ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knaps
 <p>
 Remember to add API tokens like KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER and KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC to <i>Environment</i> page of your project settings in Codeship.
 </p>
+</div>
+
+<div id="guide-provider-heroku-ci" class="hidden">
+<h4>Step for Heroku CI</h4>
+
+<p>
+You can parallelize your tests on Heroku CI by configuring <i>app.json</i>.
+</p>
+
+<p>
+You can set how many parallel dynos with tests you want to run with <i>quantity</i> value.
+Use <i>test</i> key to run knapsack_pro gem.
+</p>
+
+<p>
+You need to specify also the environment variable with API token for Knapsack Pro.
+For any sensitive environment variables (like Knapsack Pro API token) that you do not want in your <i>app.json</i> manifest, you can add them to your pipeline's Heroku CI settings.
+</p>
+
+<p>
+Note the <a href="https://devcenter.heroku.com/articles/heroku-ci-parallel-test-runs" target="_blank">Heroku CI Parallel Test Runs</a> are in Beta and you may need to ask Heroku support to enabled it for your project.
+</p>
+
+{% highlight ruby %}
+# app.json
+{
+  "environments": {
+    "test": {
+      "formation": {
+        "test": {
+          "quantity": 2
+        }
+      },
+      "addons": [
+        "heroku-postgresql"
+      ],
+      "scripts": {
+        "test": "bundle exec rake knapsack_pro:rspec"
+      },
+      "env": {
+        "KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC": "rspec-token"
+      }
+    }
+  }
+}
+{% endhighlight %}
+
+<p>
+You can learn more about <a href="https://devcenter.heroku.com/articles/heroku-ci" target="_blank">Heroku CI</a>.
+</p>
+
 </div>
 
   <div id="guide-provider-gitlab-ci" class="hidden">
