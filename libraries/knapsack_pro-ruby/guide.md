@@ -436,6 +436,10 @@ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knaps
 <p>
 Remember to add API tokens like KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER and KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC to <i>Environment</i> page of your project settings in Codeship.
 </p>
+
+<p>
+If you want to use Codeship retry single CI node feature to retry just failed tests on particular CI node then you should set <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank">KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true</a>.
+</p>
 </div>
 
 <div id="guide-provider-heroku-ci" class="hidden">
