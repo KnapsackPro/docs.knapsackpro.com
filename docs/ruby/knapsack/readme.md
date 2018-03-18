@@ -57,13 +57,40 @@ The knapsack gem supports:
 
 ### Features in knapsack vs knapsack_pro
 
-| Feature | knapsack gem | knapsack_pro gem
-| --- | :---: | :---:
-| Queue mode designed for optimal dynamic test suite split | ✘ | ✔
-| Test suite split based on tests time execution | ✔ | ✔
-| Automated tests time execution recording | ✘ | ✔
-| Test suite split based on most up to date tests time execution data | ✘ | ✔
-| [Show all features](https://knapsackpro.com/features?utm_source=github&utm_medium=readme&utm_campaign=knapsack_gem&utm_content=show_all_features) | |
+<table class="pure-table extra-margin-top-2x">
+  <tr>
+    <th>Feature</th>
+    <th>knapsack&nbsp;gem</th>
+    <th>knapsack_pro&nbsp;gem</th>
+  </tr>
+  <tr>
+    <td>Queue mode designed for optimal dynamic test suite split</td>
+    <td>✘</td>
+    <td>✔</td>
+  </tr>
+  <tr>
+    <td>Test suite split based on tests time execution</td>
+    <td>✔</td>
+    <td>✔</td>
+  </tr>
+  <tr>
+    <td>Automated tests time execution recording</td>
+    <td>✘</td>
+    <td>✔</td>
+  </tr>
+  <tr>
+    <td>Test suite split based on most up to date tests time execution data</td>
+    <td>✘</td>
+    <td>✔</td>
+  </tr>
+  <tr>
+    <td><a href="https://knapsackpro.com/features?utm_source=github&utm_medium=readme&utm_campaign=knapsack_gem&utm_content=show_all_features">Show all features</a></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
+<br>
 
 How knapsack_pro makes my life easier as opposed to regular knapsack gem?
 
