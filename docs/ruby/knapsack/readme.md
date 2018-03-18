@@ -11,11 +11,11 @@ permalink: /ruby/knapsack
     </svg>
   </span>
   knapsack gem on GitHub
-</a>
-
-[Knapsack, The K is silent](http://www.youtube.com/watch?v=-Ae590hensE)
+</a> / <a href="https://github.com/KnapsackPro/docs.knapsackpro.com/blob/gh-pages/docs/ruby/knapsack/readme.md">this readme source code on GitHub</a>
 
 # ![Knapsack logo](/images/docs/ruby/knapsack/knapsack-logo-@2.png)
+
+[Knapsack, The K is silent](http://www.youtube.com/watch?v=-Ae590hensE)
 
 [![Gem Version](https://badge.fury.io/rb/knapsack.svg)][gem_version]
 [![Build Status](https://travis-ci.org/ArturT/knapsack.svg?branch=master)][travis]
