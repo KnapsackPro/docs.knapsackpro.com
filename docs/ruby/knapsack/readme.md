@@ -169,7 +169,7 @@ How knapsack_pro makes my life easier as opposed to regular knapsack gem?
 
 ## Update gem
 
-Please check [changelog](CHANGELOG.md) before update gem. Knapsack follows [semantic versioning](http://semver.org).
+Please check [changelog](https://github.com/ArturT/knapsack/blob/master/CHANGELOG.md) before update gem. Knapsack follows [semantic versioning](http://semver.org).
 
 ## Installation
 
