@@ -74,7 +74,7 @@ Please answer questions to get basic configuration of knapsack_pro gem for your 
 <h4>Step for RSpec</h4>
 
 <p>
-Add at the beginning of your spec/spec_helper.rb:
+Add at the beginning of your spec/rails_helper.rb or spec/spec_helper.rb:
 </p>
 
 {% highlight ruby %}
