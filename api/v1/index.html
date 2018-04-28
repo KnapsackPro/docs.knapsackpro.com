@@ -140,7 +140,7 @@
       .list-group-item:hover {
         background-color: #f5f5f5;
       }
-    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Knapsack Pro API documentation <small>version v1</small></h1><p>http://api.knapsackpro.com/v1</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="build_subsets" class="panel-title">/build_subsets</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_build_subsets"><span class="parent"></span>/build_subsets</a> <span class="methods"><a href="#build_subsets_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_build_subsets" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#build_subsets_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Endpoint expects partial test suite execution data for particular test build.</p><p>For instance send here data collected after execution half of test suite on the first CI node. Send here also data collected for the second half of the test suite executed on the second CI node.</p><p>We will merge the data automatically to have complete information about the particular build.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="build_subsets_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/build_subsets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Endpoint expects partial test suite execution data for particular test build.</p><p>For instance send here data collected after execution half of test suite on the first CI node. Send here also data collected for the second half of the test suite executed on the second CI node.</p><p>We will merge the data automatically to have complete information about the particular build.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#build_subsets_post_request" data-toggle="tab">Request</a></li><li><a href="#build_subsets_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="build_subsets_post_request"><h3>Headers</h3><ul><li><strong>KNAPSACK-PRO-CLIENT-NAME</strong>: <em>(string)</em><p>It is a name of library you use to connect with API.</p><p><strong>Example</strong>:</p><pre>knapsack_pro-ruby</pre></li><li><strong>KNAPSACK-PRO-CLIENT-VERSION</strong>: <em>(string)</em><p>It is a version of library you use to connect with API.</p><p><strong>Example</strong>:</p><pre>1.0.0</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>test_suite_token</strong>: <em>required (string)</em><p>Token for the particular test suite. <strong>Token must be kept private.</strong></p><p>For instance token for your RSpec test suite. If you have also test written in Cucumber then you will have separate token for Cucumber test suite.</p><p><strong>Example</strong>:</p><pre>4ae170d5806c331bfab123ca1adaadb3</pre></li><li><strong>commit_hash</strong>: <em>required (string)</em><p>The most recent hash commit in your project.</p><p>You are running tests on the codebase with latest commit pointed to the <strong>commit_hash</strong>.</p><p><strong>Example</strong>:</p><pre>6e3396177d9f8ca87e2b93b4b0a25babd09d574d</pre></li><li><strong>branch</strong>: <em>required (string)</em><p>You are running tests on this branch.</p><p><strong>Example</strong>:</p><pre>master</pre></li><li><strong>node_total</strong>: <em>required (integer)</em><p>Total number of CI nodes you have.</p><p>For instance if you want to parallelize your test suite across 4 servers then <strong>node_total</strong> is 4.</p><p><strong>Example</strong>:</p><pre><code>4</code></pre></li><li><strong>node_index</strong>: <em>required (integer)</em><p>Index of current CI node where part of the test suite where executed.</p><p><strong>node_index</strong> starts from 0 so in case when <strong>node_total</strong> is 4 then max <strong>node_index</strong> is 3.</p></li><li><strong>test_files</strong>: <em>required (string)</em><p>JSON array with objects. Each object contains test file path and execution time for the test file.</p><p>Example contains only part of the test suite. The part of tests was executed on the CI node for specified <strong>node_index</strong>.</p><p><strong>Example</strong>:</p><pre>[
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Knapsack Pro API documentation <small>version v1</small></h1><p>https://api.knapsackpro.com/v1</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="build_subsets" class="panel-title">/build_subsets</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_build_subsets"><span class="parent"></span>/build_subsets</a> <span class="methods"><a href="#build_subsets_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_build_subsets" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#build_subsets_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Endpoint expects partial test suite execution data for particular test build.</p><p>For instance send here data collected after execution half of test suite on the first CI node. Send here also data collected for the second half of the test suite executed on the second CI node.</p><p>We will merge the data automatically to have complete information about the particular build.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="build_subsets_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/build_subsets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Endpoint expects partial test suite execution data for particular test build.</p><p>For instance send here data collected after execution half of test suite on the first CI node. Send here also data collected for the second half of the test suite executed on the second CI node.</p><p>We will merge the data automatically to have complete information about the particular build.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#build_subsets_post_request" data-toggle="tab">Request</a></li><li><a href="#build_subsets_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="build_subsets_post_request"><h3>Headers</h3><ul><li><strong>KNAPSACK-PRO-CLIENT-NAME</strong>: <em>(string)</em><p>It is a name of library you use to connect with API.</p><p><strong>Example</strong>:</p><pre>knapsack_pro-ruby</pre></li><li><strong>KNAPSACK-PRO-CLIENT-VERSION</strong>: <em>(string)</em><p>It is a version of library you use to connect with API.</p><p><strong>Example</strong>:</p><pre>1.0.0</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>test_suite_token</strong>: <em>required (string)</em><p>Token for the particular test suite. <strong>Token must be kept private.</strong></p><p>For instance token for your RSpec test suite. If you have also test written in Cucumber then you will have separate token for Cucumber test suite.</p><p><strong>Example</strong>:</p><pre>4ae170d5806c331bfab123ca1adaadb3</pre></li><li><strong>commit_hash</strong>: <em>required (string)</em><p>The most recent hash commit in your project.</p><p>You are running tests on the codebase with latest commit pointed to the <strong>commit_hash</strong>.</p><p><strong>Example</strong>:</p><pre>6e3396177d9f8ca87e2b93b4b0a25babd09d574d</pre></li><li><strong>branch</strong>: <em>required (string)</em><p>You are running tests on this branch.</p><p><strong>Example</strong>:</p><pre>master</pre></li><li><strong>node_total</strong>: <em>required (integer)</em><p>Total number of CI nodes you have.</p><p>For instance if you want to parallelize your test suite across 4 servers then <strong>node_total</strong> is 4.</p><p><strong>Example</strong>:</p><pre><code>4</code></pre></li><li><strong>node_index</strong>: <em>required (integer)</em><p>Index of current CI node where part of the test suite where executed.</p><p><strong>node_index</strong> starts from 0 so in case when <strong>node_total</strong> is 4 then max <strong>node_index</strong> is 3.</p></li><li><strong>test_files</strong>: <em>required (string)</em><p>JSON array with objects. Each object contains test file path and execution time for the test file.</p><p>Example contains only part of the test suite. The part of tests was executed on the CI node for specified <strong>node_index</strong>.</p><p><strong>Example</strong>:</p><pre>[
   {
     "path": "test/fast/a_test.rb",
     "time_execution": 0.2015
@@ -318,4 +318,109 @@ false (default)
     }
   ]
 }
-</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#build_subsets">/build_subsets</a></li><li><a href="#build_distributions">/build_distributions</a></li><li><a href="#queues">/queues</a></li></ul></div></div></div></div></body></html>
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="builds" class="panel-title">/builds</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_builds"><span class="parent"></span>/builds</a> <span class="methods"><a href="#builds_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_builds" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#builds_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get list of all CI builds you have run.</p><p>CI build means unique combination of <strong>commit_hash</strong>, <strong>branch</strong>, <strong>node_total</strong>.</p><p>You can use <strong>id</strong> of the build to fetch detailed info about tests recorded for that CI build by doing request to <strong>/v1/builds/:id</strong> endpoint.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="builds_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/builds</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get list of all CI builds you have run.</p><p>CI build means unique combination of <strong>commit_hash</strong>, <strong>branch</strong>, <strong>node_total</strong>.</p><p>You can use <strong>id</strong> of the build to fetch detailed info about tests recorded for that CI build by doing request to <strong>/v1/builds/:id</strong> endpoint.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#builds_get_request" data-toggle="tab">Request</a></li><li><a href="#builds_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="builds_get_request"><h3>Headers</h3><ul><li><strong>KNAPSACK-PRO-TEST-SUITE-TOKEN</strong>: <em>required (string)</em><p>Test suite token for your project. You can get it in user dashboard.</p><p><strong>Example</strong>:</p><pre>e5311882cbba506223ee8036fa68dc13</pre></li></ul></div><div class="tab-pane" id="builds_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[
+  {
+    "id": "651efcce-cc5f-4cfc-b8fa-f49b4e5fb4af",
+    "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
+    "branch": "master",
+    "node_total": 3,
+    "created_at": "2018-04-21T10:57:42.439Z",
+    "updated_at": "2018-04-21T10:57:54.989Z"
+  },
+  {
+    "id": "ba2190af-1bb1-4e3a-8ce1-37303549a4c3",
+    "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
+    "branch": "master",
+    "node_total": 2,
+    "created_at": "2018-04-02T10:00:44.741Z",
+    "updated_at": "2018-04-02T10:00:44.763Z"
+  }
+]
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_builds__id"><span class="parent">/builds</span>/:id</a> <span class="methods"><a href="#builds__id_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_builds__id" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#builds__id_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get detailed info about CI build with all build subsets containing the test files recorded timing for that CI build.</p><p>Note the CI build means unique combination of <strong>commit_hash</strong>, <strong>branch</strong>, <strong>node_total</strong>. If you will run your tests multiple times for that combination then you will get multiple recorded build subset records with test files timing for particular CI node indexes.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="builds__id_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/builds</span>/:id</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get detailed info about CI build with all build subsets containing the test files recorded timing for that CI build.</p><p>Note the CI build means unique combination of <strong>commit_hash</strong>, <strong>branch</strong>, <strong>node_total</strong>. If you will run your tests multiple times for that combination then you will get multiple recorded build subset records with test files timing for particular CI node indexes.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#builds__id_get_request" data-toggle="tab">Request</a></li><li><a href="#builds__id_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="builds__id_get_request"><h3>Headers</h3><ul><li><strong>KNAPSACK-PRO-TEST-SUITE-TOKEN</strong>: <em>required (string)</em><p>Test suite token for your project. You can get it in user dashboard.</p><p><strong>Example</strong>:</p><pre>e5311882cbba506223ee8036fa68dc13</pre></li></ul></div><div class="tab-pane" id="builds__id_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "id": "ba2190af-1bb1-4e3a-8ce1-37303549a4c3",
+  "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
+  "branch": "master",
+  "node_total": 2,
+  "created_at": "2018-04-02T10:00:44.741Z",
+  "updated_at": "2018-04-02T10:00:44.763Z",
+  "build_subsets": [
+    {
+      "id": "b9f09921-939d-43a6-ae5d-7c95866b4dec",
+      "node_index": 0,
+      "created_at": "2018-04-21T11:18:34.539Z",
+      "updated_at": "2018-04-21T11:18:34.539Z",
+      "test_files": [
+        {
+          "path": "spec/a_spec.rb",
+          "time_execution": 0.0008809566497802734
+        },
+        {
+          "path": "spec/b_spec.rb",
+          "time_execution": 0.019934892654418945
+        }
+      ]
+    },
+    {
+      "id": "2fa57fa8-0ff3-4af8-980f-5788c5ab6d21",
+      "node_index": 0,
+      "created_at": "2018-04-21T11:18:23.750Z",
+      "updated_at": "2018-04-21T11:18:23.750Z",
+      "test_files": [
+        {
+          "path": "spec/a_spec.rb",
+          "time_execution": 0.011754035949707031
+        },
+        {
+          "path": "spec/b_spec.rb",
+          "time_execution": 0.22170114517211914
+        }
+      ]
+    },
+    {
+      "id": "f7a0bdda-54d6-48b2-965a-4b1a4153043d",
+      "node_index": 1,
+      "created_at": "2018-04-21T11:18:39.506Z",
+      "updated_at": "2018-04-21T11:18:39.506Z",
+      "test_files": [
+        {
+          "path": "spec/c_spec.rb",
+          "time_execution": 0.013020992279052734
+        },
+        {
+          "path": "spec/d_spec.rb",
+          "time_execution": 0.0174105167388916
+        },
+        {
+          "path": "spec/e_spec.rb",
+          "time_execution": 0.23191308975219727
+        }
+      ]
+    },
+    {
+      "id": "cd424b01-9dfc-4b6d-be5f-e8acbea6c6f3",
+      "node_index": 1,
+      "created_at": "2018-04-21T11:18:29.156Z",
+      "updated_at": "2018-04-21T11:18:29.156Z",
+      "test_files": [
+        {
+          "path": "spec/c_spec.rb",
+          "time_execution": 0.011027812957763672
+        },
+        {
+          "path": "spec/d_spec.rb",
+          "time_execution": 0.019047812957763879
+        },
+        {
+          "path": "spec/e_spec.rb",
+          "time_execution": 0.038027712957363670
+        }
+      ]
+    }
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "errors": [
+    "Could not find Build"
+  ]
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#build_subsets">/build_subsets</a></li><li><a href="#build_distributions">/build_distributions</a></li><li><a href="#queues">/queues</a></li><li><a href="#builds">/builds</a></li></ul></div></div></div></div></body></html>

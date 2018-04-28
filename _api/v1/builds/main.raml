@@ -1,0 +1,35 @@
+get:
+  description: |
+    Get list of all CI builds you have run.
+
+    CI build means unique combination of __commit_hash__, __branch__, __node_total__.
+
+    You can use __id__ of the build to fetch detailed info about tests recorded for that CI build by doing request to __/v1/builds/:id__ endpoint.
+
+  headers: !include ../headers/test_suite_token.raml
+
+  responses:
+    200:
+      body:
+        application/json:
+          example: !include schema/index/response_200.json
+
+/:id:
+  get:
+    description: |
+      Get detailed info about CI build with all build subsets containing the test files recorded timing for that CI build.
+
+      Note the CI build means unique combination of __commit_hash__, __branch__, __node_total__.
+      If you will run your tests multiple times for that combination then you will get multiple recorded build subset records with test files timing for particular CI node indexes.
+
+    headers: !include ../headers/test_suite_token.raml
+
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include schema/show/response_200.json
+      404:
+        body:
+          application/json:
+            example: !include schema/show/error_404.json

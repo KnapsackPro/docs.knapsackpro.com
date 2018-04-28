@@ -1,0 +1,82 @@
+{
+  "id": "ba2190af-1bb1-4e3a-8ce1-37303549a4c3",
+  "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
+  "branch": "master",
+  "node_total": 2,
+  "created_at": "2018-04-02T10:00:44.741Z",
+  "updated_at": "2018-04-02T10:00:44.763Z",
+  "build_subsets": [
+    {
+      "id": "b9f09921-939d-43a6-ae5d-7c95866b4dec",
+      "node_index": 0,
+      "created_at": "2018-04-21T11:18:34.539Z",
+      "updated_at": "2018-04-21T11:18:34.539Z",
+      "test_files": [
+        {
+          "path": "spec/a_spec.rb",
+          "time_execution": 0.0008809566497802734
+        },
+        {
+          "path": "spec/b_spec.rb",
+          "time_execution": 0.019934892654418945
+        }
+      ]
+    },
+    {
+      "id": "2fa57fa8-0ff3-4af8-980f-5788c5ab6d21",
+      "node_index": 0,
+      "created_at": "2018-04-21T11:18:23.750Z",
+      "updated_at": "2018-04-21T11:18:23.750Z",
+      "test_files": [
+        {
+          "path": "spec/a_spec.rb",
+          "time_execution": 0.011754035949707031
+        },
+        {
+          "path": "spec/b_spec.rb",
+          "time_execution": 0.22170114517211914
+        }
+      ]
+    },
+    {
+      "id": "f7a0bdda-54d6-48b2-965a-4b1a4153043d",
+      "node_index": 1,
+      "created_at": "2018-04-21T11:18:39.506Z",
+      "updated_at": "2018-04-21T11:18:39.506Z",
+      "test_files": [
+        {
+          "path": "spec/c_spec.rb",
+          "time_execution": 0.013020992279052734
+        },
+        {
+          "path": "spec/d_spec.rb",
+          "time_execution": 0.0174105167388916
+        },
+        {
+          "path": "spec/e_spec.rb",
+          "time_execution": 0.23191308975219727
+        }
+      ]
+    },
+    {
+      "id": "cd424b01-9dfc-4b6d-be5f-e8acbea6c6f3",
+      "node_index": 1,
+      "created_at": "2018-04-21T11:18:29.156Z",
+      "updated_at": "2018-04-21T11:18:29.156Z",
+      "test_files": [
+        {
+          "path": "spec/c_spec.rb",
+          "time_execution": 0.011027812957763672
+        },
+        {
+          "path": "spec/d_spec.rb",
+          "time_execution": 0.019047812957763879
+        },
+        {
+          "path": "spec/e_spec.rb",
+          "time_execution": 0.038027712957363670
+        }
+      ]
+    }
+  ]
+}
