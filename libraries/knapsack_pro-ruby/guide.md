@@ -234,6 +234,13 @@ Here is another example for CircleCI 2.0 platform.
     # export word is important here!
     export RAILS_ENV=test
     bundle exec rake "knapsack_pro:queue:rspec[--format documentation]"
+
+- run:
+  name: Minitest via knapsack_pro Queue Mode
+  command: |
+    # export word is important here!
+    export RAILS_ENV=test
+    bundle exec rake "knapsack_pro:queue:minitest[--verbose]"
 {% endhighlight %}
 
 <p>
@@ -752,12 +759,20 @@ KNAPSACK_PRO_CI_NODE_INDEX - starts from 0, it's index of each CI node
   Once you confirm the knapsack_pro Regular Mode works and your tests are green then you may want to <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode" target="_blank">learn about Queue Mode and how to enable it</a>.
   </p>
 
+  <p>
+  <b>Please ensure you have explicitly set <code class="highlighter-rouge">RAILS_ENV=test</code> on your CI nodes. You can add it to your CI environment variables configuration. It is needed for Queue Mode to run correctly.</b>
+  </p>
+
 {% highlight ruby %}
-# Example command for Regular Mode
+
+# Example command for Regular Mode in RSpec
 bundle exec rake knapsack_pro:rspec
 
-# Example command for Queue Mode
+# Example command for Queue Mode in RSpec
 bundle exec rake knapsack_pro:queue:rspec
+
+# Example command for Queue Mode in Minitest
+bundle exec rake knapsack_pro:queue:minitest
 {% endhighlight %}
 
   <p>
