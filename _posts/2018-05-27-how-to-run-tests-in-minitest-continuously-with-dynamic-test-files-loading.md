@@ -4,9 +4,12 @@ title:  "How to run tests in Minitest continuously with dynamic test files loadi
 date:   2018-05-27 12:00:00 +0200
 author: "Artur Trzop"
 categories: Minitest "test suite" "queue"
+og_image: "/images/blog/posts/how-to-run-tests-in-minitest-continuously-with-dynamic-test-files-loading/minitest_continuously.png"
 ---
 
 Recently I've been looking into the source code of Minitest to find out if I can run some tests and then dynamically run another set of tests once the previous run is done. This would allow me to provide dynamically a list of tests to execute on my parallel CI nodes to run CI builds faster.
+
+<img src="/images/blog/posts/how-to-run-tests-in-minitest-continuously-with-dynamic-test-files-loading/minitest_continuously.png" style="width:250px;float:right;" />
 
 Something similar exists in RSpec thanks to `RSpec::Core::Runner` feature that allows running specs multiple times with different runner options in the same process.
 
