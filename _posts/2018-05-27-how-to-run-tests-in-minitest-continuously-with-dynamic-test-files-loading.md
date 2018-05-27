@@ -11,7 +11,7 @@ Recently I've been looking into the source code of Minitest to find out if I can
 
 <img src="/images/blog/posts/how-to-run-tests-in-minitest-continuously-with-dynamic-test-files-loading/minitest_continuously.png" style="width:250px;float:right;" />
 
-Something similar exists in RSpec thanks to `RSpec::Core::Runner` feature that allows running specs multiple times with different runner options in the same process.
+Something similar exists in RSpec thanks to `RSpec::Core::Runner` feature that allows [running specs multiple times with different runner options in the same process](https://relishapp.com/rspec/rspec-core/docs/running-specs-multiple-times-with-different-runner-options-in-the-same-process).
 
 In RSpec flow looks like:
 
