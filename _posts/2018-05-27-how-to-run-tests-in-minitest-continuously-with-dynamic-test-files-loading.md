@@ -75,9 +75,10 @@ require './test/models/article_test.rb'
 # if all tests pass we want to exit process with 0 exit code
 final_exit_code = 0
 
-# run tests loaded into memory 
+# run tests loaded into memory
 args  = ['--verbose']
-# we need to duplicate the args because the run method will change the Array object. We will reuse args later.
+# We need to duplicate the args because the run method will change the Array object.
+# We will reuse args later.
 tests_passed? = Minitest.run(args.dup)
 
 # now the tests will be executed
@@ -101,7 +102,8 @@ final_exit_code = 1 unless tests_passed?
 
 # once the tests files finished run then we can exit process with proper exit code
 # 0 - when all tests are green
-# 1 - when at least one test failed. Exit code 1 tells our CI provider that process running tests failed.
+# 1 - when at least one test failed. Exit code 1 tells our CI provider
+#     that process running tests failed.
 exit(final_exit_code)
 {% endhighlight %}
 
