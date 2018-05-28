@@ -156,3 +156,5 @@ As you can see in the response you have two records for `node_index=0` and two f
 You can see [summary of `GET https://api.knapsackpro.com/v1/builds/:id` endpoint here](/api/v1/#builds__id_get).
 
 Hope this helps you to do whatever you like to do with your data. We keep data for last 90 days. If you need the data for a longer period please store them on your side. :)
+
+Manuel, one of our users did great job creating [ruby script to fetch data from Knapsack Pro API and calculate popular slow tests across multipel CI builds](https://gist.github.com/manuelpuyol/9e1502cba67fa22c8b5e92b7382bab5a).
