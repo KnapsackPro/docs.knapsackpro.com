@@ -809,6 +809,10 @@ bundle exec rake knapsack_pro:queue:minitest
   </p>
 
   <p>
+  <strong>Note for Queue Mode</strong> if you use CI provider that allows you to just retry a single CI node (for instance Travis CI when tests failed only on one of parallel CI nodes) or when you use CI nodes on servers that can be killed during runtime (for instance you use Buildkite CI provider with Amazon Spot Instances that can be preempted during CI run) then in Queue Mode you need to set flag <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank"><b>KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true</b></a> in order to handle those CI providers correctly.
+  </p>
+
+  <p>
   You can learn more about custom configuration and other <a href="https://knapsackpro.com/features" target="_blank">features</a>.<br>
   Full <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#table-of-contents" target="_blank">documentation</a>.
   If you have problems please check FAQ there.
