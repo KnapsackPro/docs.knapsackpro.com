@@ -65,6 +65,7 @@ Please answer questions to get basic configuration of knapsack_pro gem for your 
     <li><label><input type="radio" name="ci-provider" value="codeship"> http://codeship.com</label></li>
     <li><label><input type="radio" name="ci-provider" value="heroku-ci"> Heroku CI</label></li>
     <li><label><input type="radio" name="ci-provider" value="gitlab-ci"> Gitlab CI</label></li>
+    <li><label><input type="radio" name="ci-provider" value="cirrus-ci"> https://cirrus-ci.org</label></li>
     <li><label><input type="radio" name="ci-provider" value="jenkins"> Jenkins</label></li>
     <li><label><input type="radio" name="ci-provider" value="other"> other</label></li>
   </ul>
@@ -537,6 +538,34 @@ script:
 
 <p>
 Remember to add API tokens like KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER and KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC to <a href="https://gitlab.com/help/ci/variables/README.md#secret-variables" target="_blank">Secret Variables</a> in Gitlab CI Settings -> CI/CD Pipelines -> Secret Variables.
+</p>
+</div>
+
+
+<div id="guide-provider-cirrus-ci" class="hidden">
+<p>
+Knapsack Pro supports cirrus-ci.org ENVs CI_NODE_TOTAL and CI_NODE_INDEX. The only thing you need to do is to configure number of parallel CI nodes for your project. Next thing is to set one of below commands to be executed on each parallel CI node:
+</p>
+
+{% highlight ruby %}
+# Step for RSpec
+bundle exec rake knapsack_pro:rspec
+
+# Step for Cucumber
+bundle exec rake knapsack_pro:cucumber
+
+# Step for Minitest
+bundle exec rake knapsack_pro:minitest
+
+# Step for test-unit
+bundle exec rake knapsack_pro:test_unit
+
+# Step for Spinach
+bundle exec rake knapsack_pro:spinach
+{% endhighlight %}
+
+<p>
+Please remember to set up token like KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC as global environment.
 </p>
 </div>
 
