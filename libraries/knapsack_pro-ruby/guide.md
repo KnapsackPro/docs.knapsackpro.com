@@ -567,6 +567,10 @@ bundle exec rake knapsack_pro:spinach
 <p>
 Please remember to set up token like KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC as global environment.
 </p>
+
+<p>
+Here is example for <a href="https://cirrus-ci.org/examples/#ruby" target="_blank">.cirrus.yml configuration file</a>.
+</p>
 </div>
 
   <div id="guide-provider-jenkins" class="hidden">
