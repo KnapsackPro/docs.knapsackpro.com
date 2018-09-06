@@ -510,7 +510,7 @@ You can learn more about <a href="https://devcenter.heroku.com/articles/heroku-c
 <a href="https://www.solanolabs.com" target="_blank">Solano CI</a> does not provide parallel jobs environment variables so you will have to define <i>KNAPSACK_PRO_CI_NODE_TOTAL</i> and <i>KNAPSACK_PRO_CI_NODE_INDEX</i> for each parallel job running as part of the same CI build.
 </p>
 
-{% highlight ruby %}
+{% highlight plain %}
 # Step for RSpec for first CI node
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:rspec
 # Step for RSpec for second CI node
