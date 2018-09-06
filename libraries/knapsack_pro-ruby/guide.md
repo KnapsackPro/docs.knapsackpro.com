@@ -64,6 +64,7 @@ Please answer questions to get basic configuration of knapsack_pro gem for your 
     <li><label><input type="radio" name="ci-provider" value="snap-ci"> https://snap-ci.com</label></li>
     <li><label><input type="radio" name="ci-provider" value="codeship"> http://codeship.com</label></li>
     <li><label><input type="radio" name="ci-provider" value="heroku-ci"> Heroku CI</label></li>
+    <li><label><input type="radio" name="ci-provider" value="solano-ci"> Solano CI</label></li>
     <li><label><input type="radio" name="ci-provider" value="gitlab-ci"> Gitlab CI</label></li>
     <li><label><input type="radio" name="ci-provider" value="cirrus-ci"> https://cirrus-ci.org</label></li>
     <li><label><input type="radio" name="ci-provider" value="jenkins"> Jenkins</label></li>
@@ -499,6 +500,45 @@ Note the <a href="https://devcenter.heroku.com/articles/heroku-ci-parallel-test-
 You can learn more about <a href="https://devcenter.heroku.com/articles/heroku-ci" target="_blank">Heroku CI</a>.
 </p>
 
+</div>
+
+<div id="guide-provider-solano-ci" class="hidden">
+<h4>Step for Solano CI</h4>
+
+<p>
+<a href="https://www.solanolabs.com" target="_blank">Solano CI</a> does not provide parallel jobs environment variables so you will have to define <i>KNAPSACK_PRO_CI_NODE_TOTAL</i> and <i>KNAPSACK_PRO_CI_NODE_INDEX</i> for each parallel job running as part of the same CI build.
+</p>
+
+{% highlight ruby %}
+# Step for RSpec for first CI node
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:rspec
+# Step for RSpec for second CI node
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:rspec
+
+# Step for Cucumber for first CI node
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:cucumber
+# Step for Cucumber for second CI node
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:cucumber
+
+# Step for Minitest for first CI node
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:minitest
+# Step for Minitest for second CI node
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:minitest
+
+# Step for test-unit for first CI node
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:test_unit
+# Step for test-unit for second CI node
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:test_unit
+
+# Step for Spinach for first CI node
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:spinach
+# Step for Spinach for second CI node
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:spinach
+{% endhighlight %}
+
+<p>
+Please remember to set up API token like <i>KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC</i> as global environment.
+</p>
 </div>
 
   <div id="guide-provider-gitlab-ci" class="hidden">
