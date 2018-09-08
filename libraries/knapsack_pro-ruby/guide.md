@@ -255,7 +255,7 @@ Please remember to add additional containers for your project in CircleCI settin
 <h4>Step for https://travis-ci.org</h4>
 
 <p>
-You can parallelize your builds across virtual machines with <a href="http://docs.travis-ci.com/user/speeding-up-the-build/#Parallelizing-your-builds-across-virtual-machines" target="_blank">travis matrix feature</a>. Edit .travis.yml
+You can parallelize your builds across virtual machines with <a href="http://docs.travis-ci.com/user/speeding-up-the-build/#parallelizing-your-builds-across-virtual-machines" target="_blank">travis matrix feature</a>. Edit .travis.yml
 </p>
 
 {% highlight ruby %}
@@ -300,7 +300,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 KNAPSACK_PRO_TEST_SUIT
 {% endhighlight %}
 
 <p>
-More info about global and matrix ENV configuration in <a href="https://docs.travis-ci.com/user/customizing-the-build/#Build-Matrix" target="_blank">travis docs</a>.
+More info about global and matrix ENV configuration in <a href="https://docs.travis-ci.com/user/customizing-the-build/#build-matrix" target="_blank">travis docs</a>.
 </p>
   </div>
 
