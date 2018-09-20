@@ -286,7 +286,7 @@ $ KNAPSACK_GENERATE_REPORT=true bundle exec rake test
 # If you use Rails 5 then run this instead:
 $ KNAPSACK_GENERATE_REPORT=true bundle exec rake knapsack:minitest
 
-# If you use Rails 5.1's SystemTest, run both regular and system tests
+# If you use Rails 5.1's SystemTest, run both unit and system tests
 $ KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system
 
 # Step for Spinach
@@ -446,7 +446,7 @@ test:
 
     # Step for Minitest
     - KNAPSACK_GENERATE_REPORT=true bundle exec rake test
-    - KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 with system tests
+    - KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 runs unit and system tests
 
     # Step for Spinach
     - KNAPSACK_GENERATE_REPORT=true bundle exec spinach
@@ -474,7 +474,7 @@ test:
     # export word is important here!
     export KNAPSACK_GENERATE_REPORT=true
     bundle exec rake test
-    # For Rails 5.1 with system tests
+    # For Rails 5.1 runs unit and system tests
     bundle exec rake test test:system
 
 - run:
@@ -549,7 +549,7 @@ script:
 
   # Step for Minitest
   - "KNAPSACK_GENERATE_REPORT=true bundle exec rake test"
-  - "KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system" # For Rails 5.1 with system tests
+  - "KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system" # For Rails 5.1 runs unit and system tests
 
   # Step for Spinach
   - "KNAPSACK_GENERATE_REPORT=true bundle exec spinach"
@@ -630,7 +630,7 @@ KNAPSACK_GENERATE_REPORT=true bundle exec cucumber features
 
 # Step for Minitest
 KNAPSACK_GENERATE_REPORT=true bundle exec rake test
-KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 with system tests
+KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 runs unit and system tests
 
 # Step for Spinach
 KNAPSACK_GENERATE_REPORT=true bundle exec spinach
@@ -681,7 +681,7 @@ KNAPSACK_GENERATE_REPORT=true bundle exec cucumber features
 
 # Step for Minitest
 KNAPSACK_GENERATE_REPORT=true bundle exec rake test
-KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 with system tests
+KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 runs unit and system tests
 
 # Step for Spinach
 KNAPSACK_GENERATE_REPORT=true bundle exec spinach
@@ -722,7 +722,7 @@ KNAPSACK_GENERATE_REPORT=true bundle exec cucumber features
 
 # Step for Minitest
 KNAPSACK_GENERATE_REPORT=true bundle exec rake test
-KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 with system tests
+KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 runs unit and system tests
 
 # Step for Spinach
 KNAPSACK_GENERATE_REPORT=true bundle exec spinach
