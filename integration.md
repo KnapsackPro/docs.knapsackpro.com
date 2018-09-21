@@ -11,12 +11,14 @@ permalink: /integration/
     <th>Programming Language</th>
     <th>Supported test runners</th>
     <th>Knapsack Pro Library README</th>
+    <th>FAQ</th>
     <th>Installation guide</th>
   </tr>
   <tr>
     <td>Ruby</td>
     <td>RSpec, Cucumber, Minitest, test-unit, Spinach, Turnip</td>
     <td><a href="https://github.com/KnapsackPro/knapsack_pro-ruby">knapsack_pro gem</a></td>
+    <td><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#faq">FAQ</a></td>
     <td><a href="/knapsack_pro-ruby/guide/"><b>Guide - start here</b></a></td>
   </tr>
 </table>
