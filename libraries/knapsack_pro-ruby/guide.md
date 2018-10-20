@@ -881,7 +881,7 @@ KNAPSACK_PRO_CI_NODE_INDEX - starts from 0, it's index of each CI node
 # Example command for Regular Mode in RSpec
 bundle exec rake knapsack_pro:rspec
 
-# Example command for Queue Mode in RSpec
+# Example command for Queue Mode in RSpec >= 3.x
 bundle exec rake knapsack_pro:queue:rspec
 
 # Example command for Queue Mode in Minitest
