@@ -112,7 +112,6 @@ How knapsack_pro makes my life easier as opposed to regular knapsack gem?
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Update gem](#update-gem)
 - [Installation](#installation)
