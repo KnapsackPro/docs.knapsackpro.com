@@ -707,6 +707,60 @@ bundle exec rake knapsack:minitest
 bundle exec rake knapsack:spinach
 {% endhighlight %}
 
+### Info for GitLab CI users
+
+If you are using GitLab CI >= 11.5 you can omit `CI_NODE_TOTAL` and `CI_NODE_INDEX`. Knapsack will use `CIRCLE_NODE_TOTAL` and `CIRCLE_NODE_INDEX` provided by GitLab CI.
+
+#### Step 1
+
+For the first time run all tests on a single CI node with enabled report generator.
+
+{% highlight yaml %}
+test:
+  script: KNAPSACK_GENERATE_REPORT=true bundle exec rspec spec
+{% endhighlight %}
+
+Here are other commands you could use instead of RSpec.
+
+{% highlight shell %}
+# Step for Cucumber
+KNAPSACK_GENERATE_REPORT=true bundle exec cucumber features
+
+# Step for Minitest
+KNAPSACK_GENERATE_REPORT=true bundle exec rake test
+KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 runs unit and system tests
+
+# Step for Spinach
+KNAPSACK_GENERATE_REPORT=true bundle exec spinach
+{% endhighlight %}
+
+After tests pass on your GitLab CI you should copy knapsack json report which is rendered at the end of rspec/cucumber/minitest results. Save it into your repository as `knapsack_rspec_report.json`, `knapsack_cucumber_report.json`, `knapsack_minitest_report.json` or `knapsack_spinach_report.json` file and commit.
+
+#### Step 2
+
+Now you should update test command and enable parallel. Please remember to set proper parallel value for your project.
+
+Here you can find info [how to configure the parallel CI nodes](https://docs.gitlab.com/ee/ci/yaml/#parallel).
+
+{% highlight yaml %}
+test:
+  script: bundle exec rake knapsack:rspec
+  parallel: 2
+{% endhighlight %}
+
+Here are other commands you could use instead of knapsack for RSpec.
+
+{% highlight shell %}
+# Step for Cucumber
+bundle exec rake knapsack:cucumber
+
+# Step for Minitest
+bundle exec rake knapsack:minitest
+
+# Step for Spinach
+bundle exec rake knapsack:spinach
+{% endhighlight %}
+
 ### Info for snap-ci.com users
 
 #### Step 1
