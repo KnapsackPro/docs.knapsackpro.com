@@ -66,7 +66,7 @@ Please answer questions to get basic configuration of knapsack_pro gem for your 
     <li><label><input type="radio" name="ci-provider" value="heroku-ci"> Heroku CI</label></li>
     <li><label><input type="radio" name="ci-provider" value="solano-ci"> Solano CI</label></li>
     <li><label><input type="radio" name="ci-provider" value="appveyor"> AppVeyor</label></li>
-    <li><label><input type="radio" name="ci-provider" value="gitlab-ci"> Gitlab CI</label></li>
+    <li><label><input type="radio" name="ci-provider" value="gitlab-ci"> GitLab CI</label></li>
     <li><label><input type="radio" name="ci-provider" value="cirrus-ci"> https://cirrus-ci.org</label></li>
     <li><label><input type="radio" name="ci-provider" value="jenkins"> Jenkins</label></li>
     <li><label><input type="radio" name="ci-provider" value="other"> other</label></li>
@@ -582,43 +582,71 @@ Please remember to set up API token like <i>KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC<
 </div>
 
   <div id="guide-provider-gitlab-ci" class="hidden">
-<h4>Step for Gitlab CI https://about.gitlab.com/features/gitlab-ci-cd/</h4>
+<h4>Step for GitLab CI https://about.gitlab.com/features/gitlab-ci-cd/</h4>
 
 <p>
-Gitlab CI does not provide parallel jobs environment variables so you will have to define KNAPSACK_PRO_CI_NODE_TOTAL and KNAPSACK_PRO_CI_NODE_INDEX for each parallel job running as part of the same test stage. Below is relevant part of .gitlab-ci.yml configuration for 2 parallel jobs.
+Remember to add API tokens like KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER and KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC to <a href="https://gitlab.com/help/ci/variables/README.md#secret-variables" target="_blank">Secret Variables</a> in GitLab CI Settings -> CI/CD Pipelines -> Secret Variables.
+</p>
+
+<h5>GitLab CI >= 11.5</h5>
+
+{% highlight ruby %}
+test:
+  parallel: 2
+
+  # Knapsack Pro Regular Mode (deterministic test suite split)
+  script: bundle exec rake knapsack_pro:rspec
+
+  # Other commands you could use:
+
+  # Knapsack Pro Regular Mode (deterministic test suite split)
+  # bundle exec rake knapsack_pro:cucumber
+  # bundle exec rake knapsack_pro:minitest
+  # bundle exec rake knapsack_pro:test_unit
+  # bundle exec rake knapsack_pro:spinach
+
+  # Knapsack Pro Queue Mode (dynamic test suite split)
+  # bundle exec rake knapsack_pro:queue:rspec
+  # bundle exec rake knapsack_pro:queue:minitest
+{% endhighlight %}
+
+<p>
+Here you can find info <a href="https://docs.gitlab.com/ee/ci/yaml/#parallel" target="_blank">how to configure the GitLab parallel CI nodes</a>.
+</p>
+
+<h5>GitLab CI &lt; 11.5 (old GitLab CI)</h5>
+
+<p>
+GitLab CI does not provide parallel jobs environment variables so you will have to define KNAPSACK_PRO_CI_NODE_TOTAL and KNAPSACK_PRO_CI_NODE_INDEX for each parallel job running as part of the same test stage. Below is relevant part of .gitlab-ci.yml configuration for 2 parallel jobs.
 </p>
 
 {% highlight ruby %}
 # .gitlab-ci.yml
 stages:
-- test
+  - test
 
 variables:
-KNAPSACK_PRO_CI_NODE_TOTAL: 2
+  KNAPSACK_PRO_CI_NODE_TOTAL: 2
 
 # first CI node running in parallel
 test_ci_node_0:
-stage: test
-script:
-  - export KNAPSACK_PRO_CI_NODE_INDEX=0
-  # Cucumber tests in Knapsack Pro Regular Mode (deterministic test suite split)
-  - bundle exec rake knapsack_pro:cucumber
-  # RSpec tests in Knapsack Pro Queue Mode (dynamic test suite split)
-  # It will autobalance bulid because it is executed after Cucumber tests.
-  - bundle exec rake knapsack_pro:queue:rspec
+  stage: test
+  script:
+    - export KNAPSACK_PRO_CI_NODE_INDEX=0
+    # Cucumber tests in Knapsack Pro Regular Mode (deterministic test suite split)
+    - bundle exec rake knapsack_pro:cucumber
+    # RSpec tests in Knapsack Pro Queue Mode (dynamic test suite split)
+    # It will autobalance bulid because it is executed after Cucumber tests.
+    - bundle exec rake knapsack_pro:queue:rspec
 
 # second CI node running in parallel
 test_ci_node_1:
-stage: test
-script:
-  - export KNAPSACK_PRO_CI_NODE_INDEX=1
-  - bundle exec rake knapsack_pro:cucumber
-  - bundle exec rake knapsack_pro:queue:rspec
+  stage: test
+  script:
+    - export KNAPSACK_PRO_CI_NODE_INDEX=1
+    - bundle exec rake knapsack_pro:cucumber
+    - bundle exec rake knapsack_pro:queue:rspec
 {% endhighlight %}
-
-<p>
-Remember to add API tokens like KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER and KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC to <a href="https://gitlab.com/help/ci/variables/README.md#secret-variables" target="_blank">Secret Variables</a> in Gitlab CI Settings -> CI/CD Pipelines -> Secret Variables.
-</p>
 </div>
 
 
