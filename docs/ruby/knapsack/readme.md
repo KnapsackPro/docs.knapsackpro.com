@@ -485,7 +485,7 @@ test:
     bundle exec rspec spinach
 {% endhighlight %}
 
-After tests pass on your CircleCI machine your should copy knapsack json report which is rendered at the end of rspec/cucumber/minitest results. Save it into your repository as `knapsack_rspec_report.json`, `knapsack_cucumber_report.json`, `knapsack_minitest_report.json` or `knapsack_spinach_report.json` file and commit.
+After tests pass on your CircleCI machine you should copy knapsack json report which is rendered at the end of rspec/cucumber/minitest results. Save it into your repository as `knapsack_rspec_report.json`, `knapsack_cucumber_report.json`, `knapsack_minitest_report.json` or `knapsack_spinach_report.json` file and commit.
 
 #### Step 2
 
@@ -555,7 +555,7 @@ script:
   - "KNAPSACK_GENERATE_REPORT=true bundle exec spinach"
 {% endhighlight %}
 
-After tests pass your should copy knapsack json report which is rendered at the end of rspec/cucumber/minitest results. Save it into your repository as `knapsack_rspec_report.json`, `knapsack_cucumber_report.json`, `knapsack_minitest_report.json` or `knapsack_spinach_report.json` file and commit.
+After tests pass you should copy knapsack json report which is rendered at the end of rspec/cucumber/minitest results. Save it into your repository as `knapsack_rspec_report.json`, `knapsack_cucumber_report.json`, `knapsack_minitest_report.json` or `knapsack_spinach_report.json` file and commit.
 
 #### Step 2
 
@@ -636,7 +636,7 @@ KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 
 KNAPSACK_GENERATE_REPORT=true bundle exec spinach
 {% endhighlight %}
 
-After tests pass your should copy knapsack json report which is rendered at the end of rspec/cucumber/test results. Save it into your repository as `knapsack_rspec_report.json`, `knapsack_cucumber_report.json`, `knapsack_minitest_report.json` or `knapsack_spinach_report.json` file and commit.
+After tests pass you should copy knapsack json report which is rendered at the end of rspec/cucumber/test results. Save it into your repository as `knapsack_rspec_report.json`, `knapsack_cucumber_report.json`, `knapsack_minitest_report.json` or `knapsack_spinach_report.json` file and commit.
 
 #### Step 2
 
@@ -687,7 +687,7 @@ KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 
 KNAPSACK_GENERATE_REPORT=true bundle exec spinach
 {% endhighlight %}
 
-After tests pass your should copy knapsack json report which is rendered at the end of rspec/cucumber/minitest results. Save it into your repository as `knapsack_rspec_report.json`, `knapsack_cucumber_report.json`, `knapsack_minitest_report.json` or `knapsack_spinach_report.json` file and commit.
+After tests pass you should copy knapsack json report which is rendered at the end of rspec/cucumber/minitest results. Save it into your repository as `knapsack_rspec_report.json`, `knapsack_cucumber_report.json`, `knapsack_minitest_report.json` or `knapsack_spinach_report.json` file and commit.
 
 #### Step 2
 
@@ -728,7 +728,7 @@ KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 
 KNAPSACK_GENERATE_REPORT=true bundle exec spinach
 {% endhighlight %}
 
-After tests pass your should copy knapsack json report which is rendered at the end of rspec/cucumber/minitest results. Save it into your repository as `knapsack_rspec_report.json`, `knapsack_cucumber_report.json`, `knapsack_minitest_report.json` or `knapsack_spinach_report.json` file and commit.
+After tests pass you should copy knapsack json report which is rendered at the end of rspec/cucumber/minitest results. Save it into your repository as `knapsack_rspec_report.json`, `knapsack_cucumber_report.json`, `knapsack_minitest_report.json` or `knapsack_spinach_report.json` file and commit.
 
 #### Step 2
 
