@@ -10,14 +10,18 @@ layout: default
 
   <ul class="post-list">
     {% for post in site.posts %}
-      <li>
+      <li style="clear:both;">
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
 
-        <p>{{ post.excerpt }}</p>
+        {% if post.og_image %}
+          <img src="{{ post.og_image }}" style="width:100px;margin-right:15px;float:left;" />
+        {% endif %}
+
+        {{ post.excerpt }}
 
         <p class="text-right"><a href="{{ post.url | prepend: site.baseurl }}">continue reading →</a></p>
       </li>
