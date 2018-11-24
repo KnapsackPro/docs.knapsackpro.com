@@ -29,7 +29,7 @@ Some of CI providers allows you to use a big amount of parallel CI nodes to spee
 
 I've been working on the parallelization problem for last few years. With help and feedback from many people, we came up with a solution that helps us speed up our test suite thanks to allocating tests across parallel CI nodes in a dynamic way.
 
-Basically, [Knapsack Pro](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes) orchestrate the parallelization of your test suite. On Knapsack Pro API you have Queue of test files in descending order of test file run duration. Your parallel CI nodes connect with the Queue and fetch set of test files to run them on CI node. The Knapsack Pro API is taking care of allocating the tests in proper order and to remembering the time execution of your test files so we could leverage that in future CI build runs.
+Basically, [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes) orchestrate the parallelization of your test suite. On Knapsack Pro API you have Queue of test files in descending order of test file run duration. Your parallel CI nodes connect with the Queue and fetch set of test files to run them on CI node. The Knapsack Pro API is taking care of allocating the tests in proper order and to remembering the time execution of your test files so we could leverage that in future CI build runs.
 
 Knapsack Pro API can also remember tests assigned to each parallel CI node. When you lost one of parallel CI node during runtime due AWS or Google preempting your machine then you can just retry the killed CI node and run only those tests that were lost. The other parallel CI nodes would consume more tests from Queue before you retry killed CI node so you won't waste additional time on running tests that were not lost.
 
@@ -37,7 +37,7 @@ Knapsack Pro API can also remember tests assigned to each parallel CI node. When
 
 To start running your tests faster you can add to your project the <i>@knapsack-pro/cypress</i> package. It works with many CI providers out of the box. Here you can find [detailed readme](https://github.com/KnapsackPro/knapsack-pro-cypress#installation).
 
-Basically, we will run a single command on all parallel CI nodes and [Knapsack Pro](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes) will take care of running your tests fast.
+Basically, we will run a single command on all parallel CI nodes and [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes) will take care of running your tests fast.
 
 {% highlight shell %}
 $(npm bin)/knapsack-pro-cypress
