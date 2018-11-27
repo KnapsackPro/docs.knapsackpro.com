@@ -711,7 +711,7 @@ bundle exec rake knapsack:spinach
 
 ### Info for GitLab CI users
 
-If you are using GitLab CI >= 11.5 you can omit `CI_NODE_TOTAL` and `CI_NODE_INDEX`. Knapsack will use `CIRCLE_NODE_TOTAL` and `CIRCLE_NODE_INDEX` provided by GitLab CI.
+If you are using GitLab 11.5 or later you can omit `CI_NODE_TOTAL` and `CI_NODE_INDEX`. Knapsack will use `CI_NODE_TOTAL` and `CI_NODE_INDEX` provided by GitLab if you use the [`parallel`](https://docs.gitlab.com/ee/ci/yaml/#parallel) option in GitLab CI.
 
 #### Step 1
 
