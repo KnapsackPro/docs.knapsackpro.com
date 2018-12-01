@@ -17,9 +17,9 @@ Heroku charges you for seconds spent in runtime for each dyno. It means instead 
 
 If you or your company has already created a team in Heroku then you can use Heroku CI and run tests for your project there.
 
-In Heroku, you can open your team and particular pipeline for one of your projects. You will find there a Tests tab where you can enable Heroku CI.
+In Heroku, you can open your team and particular pipeline for one of your projects. You will find there a <i>Tests</i> tab where you can enable Heroku CI.
 
-You will also need an app.json file in a repository of your project. The file contains information about what's needed to run the project on Heroku. We will add to the app.json file additional configuration need for Heroku CI.
+You will also need an <i>app.json</i> file in a repository of your project. The file contains information about what's needed to run the project on Heroku. We will add to the <i>app.json</i> file additional configuration need for Heroku CI.
 
 In order to use Heroku CI parallel test runs, we need to have it enabled. You will have to ask Heroku support to activate it for your project. This feature allows to run up to 32 parallel dynos for your CI build.
 
@@ -31,7 +31,7 @@ Below I will show you examples how to split tests on Heroku CI for Ruby and Java
 
 ## How to run parallel dynos for test suite in Ruby on Rails project
 
-We can split Ruby tests written in RSpec, Minitest or other tests runners across parallel dynos in a dynamic way where all dynos will finish work at similar time so we will get results about our test suite being green or red as soon as possible. To do it we will use [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-parallel-dynos-on-heroku-ci-to-complete-tests-faster) tool with its [Queue Mode for dynamic test suite split](https://youtu.be/hUEB1XDKEFY). With quantity key, we can set how many parallel dynos we want to use to run our scripts test command.
+We can split Ruby tests written in RSpec, Minitest or other tests runners across parallel dynos in a dynamic way where all dynos will finish work at similar time so we will get results about our test suite being green or red as soon as possible. To do it we will use [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-parallel-dynos-on-heroku-ci-to-complete-tests-faster) tool with its [Queue Mode for dynamic test suite split](https://youtu.be/hUEB1XDKEFY). With <i>quantity</i> key, we can set how many parallel dynos we want to use to run our <i>scripts test</i> command.
 
 {% highlight json %}
 {
@@ -56,7 +56,7 @@ We can split Ruby tests written in RSpec, Minitest or other tests runners across
 }
 {% endhighlight %}
 
-We also can change dyno size for our CI build. If you run complex tests that need more CPU or memory you could add size parameter to app.json to define dyno type.
+We also can change dyno size for our CI build. If you run complex tests that need more CPU or memory you could add <i>size</i> parameter to <i>app.json</i> to define [dyno type](https://devcenter.heroku.com/articles/dyno-types).
 
 {% highlight json %}
 {
@@ -78,7 +78,7 @@ End-to-end tests (E2E) often takes a lot of time because clicking through multip
 
 We can use [@knapsack-pro/cypress](https://github.com/KnapsackPro/knapsack-pro-cypress) project for that. It uses [Knapsack Pro Queue Mode](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-parallel-dynos-on-heroku-ci-to-complete-tests-faster).
 
-Here is a config for your app.json
+Here is a config for your <i>app.json</i>
 
 {% highlight json %}
 {
