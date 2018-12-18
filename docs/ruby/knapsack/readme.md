@@ -285,10 +285,10 @@ $ KNAPSACK_GENERATE_REPORT=true bundle exec cucumber features
 # Step for Minitest
 $ KNAPSACK_GENERATE_REPORT=true bundle exec rake test
 
-# If you use Rails 5 then run this instead:
-$ KNAPSACK_GENERATE_REPORT=true bundle exec rake knapsack:minitest
+# If you use Rails 5.0.x then run this instead:
+$ KNAPSACK_GENERATE_REPORT=true bundle exec rake test
 
-# If you use Rails 5.1's SystemTest, run both unit and system tests
+# If you use Rails >= 5.1's SystemTest, run both unit and system tests
 $ KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system
 
 # Step for Spinach
