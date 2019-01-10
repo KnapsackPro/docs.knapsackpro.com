@@ -28,4 +28,11 @@ permalink: /integration/
     <td><a href="https://github.com/KnapsackPro/knapsack-pro-cypress#faq">FAQ</a></td>
     <td><a href="https://github.com/KnapsackPro/knapsack-pro-cypress#installation"><b>Guide - start here</b></a></td>
   </tr>
+  <tr>
+    <td>JavaScript</td>
+    <td>Jest</td>
+    <td><a href="https://github.com/KnapsackPro/knapsack-pro-jest">@knapsack-pro/jest</a></td>
+    <td><a href="https://github.com/KnapsackPro/knapsack-pro-jest#faq">FAQ</a></td>
+    <td><a href="https://github.com/KnapsackPro/knapsack-pro-jest#installation"><b>Guide - start here</b></a></td>
+  </tr>
 </table>
