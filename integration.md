@@ -40,3 +40,9 @@ permalink: /integration/
     <td><a href="https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/CHANGELOG.md#change-log">Change log</a></td>
   </tr>
 </table>
+
+<br>
+
+<p>
+Do you use other programming language or test runner? <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7Z6k__VczmRMmXykjA5i2MVEA3nEJ90gbiIeCRjecWhPOig/viewform?hl=en" rel="nofollow">Let us know</a>.
+</p>
