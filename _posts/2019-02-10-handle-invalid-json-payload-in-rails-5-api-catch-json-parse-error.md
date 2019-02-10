@@ -11,7 +11,7 @@ We could render nice message instead of the error. For instance if you have publ
 
 We can catch `ActionDispatch::Http::Parameters::ParseError` in `ApplicationController`. If you want to just catch this exception only for your API endpoints exposed by Rails then put the below code in proper API base controller.
 
-{% highlight yaml %}
+{% highlight ruby %}
 module API
   class BaseController < ActionController::Base
     # TODO remove this when a new version of Rails > 5.2.2 will be released
