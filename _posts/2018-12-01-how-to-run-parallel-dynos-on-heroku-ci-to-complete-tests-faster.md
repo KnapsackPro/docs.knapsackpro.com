@@ -3,7 +3,7 @@ layout: post
 title:  "How to run parallel dynos on Heroku CI to complete tests faster"
 date:   2018-12-01 20:00:00 +0100
 author: "Artur Trzop"
-categories: Heroku CI parallel test parallelisation Ruby RSpec Minitest Javascript Cypress
+categories: blog Heroku CI parallel test parallelisation Ruby RSpec Minitest Javascript Cypress
 og_image: "/images/blog/posts/how-to-run-parallel-dynos-on-heroku-ci-to-complete-tests-faster/heroku.jpg"
 ---
 

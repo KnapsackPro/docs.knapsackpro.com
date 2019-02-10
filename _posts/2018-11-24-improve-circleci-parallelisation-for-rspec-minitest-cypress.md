@@ -3,7 +3,7 @@ layout: post
 title:  "Improve CircleCI parallelisation for RSpec, Minitest, Cypress"
 date:   2018-11-24 12:00:00 +0100
 author: "Artur Trzop"
-categories: CircleCI parallelisation RSpec Minitest Cypress Ruby Javascript
+categories: blog CircleCI parallelisation RSpec Minitest Cypress Ruby Javascript
 og_image: "/images/blog/posts/improve-circleci-parallelisation-for-rspec-minitest-cypress/balanced-tests.jpg"
 ---
 

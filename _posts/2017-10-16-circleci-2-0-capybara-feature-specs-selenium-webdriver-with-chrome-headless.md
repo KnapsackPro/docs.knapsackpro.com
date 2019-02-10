@@ -3,7 +3,7 @@ layout: post
 title:  "CircleCI 2.0 Capybara feature specs - Selenium webdriver with Chrome headless"
 date:   2017-10-16 21:00:00 +0200
 author: "Artur Trzop"
-categories: ruby rails "Circle CI 2.0" capybara "Chrome headless"
+categories: blog ruby rails "Circle CI 2.0" capybara "Chrome headless"
 og_image: "/images/blog/posts/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless/circle.png"
 ---
 

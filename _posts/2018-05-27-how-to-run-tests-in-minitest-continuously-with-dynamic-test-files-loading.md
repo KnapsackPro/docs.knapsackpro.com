@@ -3,7 +3,7 @@ layout: post
 title:  "How to run tests in Minitest continuously with dynamic test files loading"
 date:   2018-05-27 12:00:00 +0200
 author: "Artur Trzop"
-categories: Minitest "test suite" "queue"
+categories: blog Minitest "test suite" "queue"
 og_image: "/images/blog/posts/how-to-run-tests-in-minitest-continuously-with-dynamic-test-files-loading/minitest_continuously.png"
 ---
 

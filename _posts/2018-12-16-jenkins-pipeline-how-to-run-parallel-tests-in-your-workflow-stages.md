@@ -3,7 +3,7 @@ layout: post
 title:  "Jenkins Pipeline how to run parallel tests in your workflow stages"
 date:   2018-12-16 17:00:00 +0100
 author: "Artur Trzop"
-categories: Jenkins Pipeline CI parallelisation RSpec Ruby Javascript Cypress
+categories: blog Jenkins Pipeline CI parallelisation RSpec Ruby Javascript Cypress
 og_image: "/images/blog/posts/jenkins-pipeline-how-to-run-parallel-tests-in-your-workflow-stages/jenkins.jpg"
 ---
 

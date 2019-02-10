@@ -3,7 +3,7 @@ layout: post
 title:  "How to run CodeShip Parallel Test Pipelines efficiently - optimal CI parallelization"
 date:   2018-12-08 20:00:00 +0100
 author: "Artur Trzop"
-categories: CodeShip parallel pipelines CI parallelisation RSpec Ruby Javascript Cypress
+categories: blog CodeShip parallel pipelines CI parallelisation RSpec Ruby Javascript Cypress
 og_image: "/images/blog/posts/how-to-run-codeship-parallel-test-pipelines-efficiently-optimal-ci-parallelization/codeship.jpg"
 ---
 

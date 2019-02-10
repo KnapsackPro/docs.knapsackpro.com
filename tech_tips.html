@@ -1,21 +1,23 @@
 ---
 layout: default
+title: Tech tips
+permalink: /tech_tips/
 ---
 
 <div class="home">
 
-  <h1 class="post-title">Blog about testing & tech articles</h1>
+  <h1 class="post-title">Tech tips</h1>
 
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
   <p>
-  <i class="fas fa-file-alt"></i> <b>Blog articles</b> |
-  <a href="{{ "/tech_tips/" | prepend: site.baseurl }}"><i class="fas fa-lightbulb"></i> <b>Tech tips</b></a>
+  <a href="{{ "/" | prepend: site.baseurl }}"><i class="fas fa-file-alt"></i> <b>Blog articles</b></a> |
+  <i class="fas fa-lightbulb"></i> <b>Tech tips</b>
   </p>
 
   <ul class="post-list">
     {% for post in site.posts %}
-      {% if post.categories contains "blog" %}
+      {% if post.categories contains "techtips" %}
         <li style="clear:both;">
           <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 

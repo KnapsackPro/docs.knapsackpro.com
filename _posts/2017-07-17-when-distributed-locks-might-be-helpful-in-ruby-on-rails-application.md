@@ -3,7 +3,7 @@ layout: post
 title:  "When distributed locks might be helpful in Ruby on Rails application"
 date:   2017-07-17 07:00:00 +0200
 author: "Artur Trzop"
-categories: ruby rails locks
+categories: blog ruby rails locks
 og_image: "/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/distributed_lock.jpg"
 ---
 
