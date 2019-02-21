@@ -20,8 +20,8 @@ end
 
 And then execute:
 
-{% highlight ruby %}
-$ bundle install
+{% highlight bash %}
+bundle install
 {% endhighlight %}
 
 
@@ -184,7 +184,7 @@ end
 Here is an example for test configuration in your circleci.yml file.
 </p>
 
-{% highlight ruby %}
+{% highlight yaml %}
 # CircleCI 1.0
 
 machine:
@@ -222,7 +222,7 @@ test:
 Here is another example for CircleCI 2.0 platform.
 </p>
 
-{% highlight ruby %}
+{% highlight yaml %}
 # CircleCI 2.0
 
 # some tests that are not balanced and executed only on first CI node
@@ -258,7 +258,7 @@ Please remember to add additional containers for your project in CircleCI settin
 You can parallelize your builds across virtual machines with <a href="http://docs.travis-ci.com/user/speeding-up-the-build/#parallelizing-your-builds-across-virtual-machines" target="_blank">travis matrix feature</a>. Edit .travis.yml
 </p>
 
-{% highlight ruby %}
+{% highlight yaml %}
 script:
   # Step for RSpec
   - "bundle exec rake knapsack_pro:rspec"
@@ -294,7 +294,7 @@ env:
 Such configuration will generate matrix with 2 following ENV rows:
 </p>
 
-{% highlight ruby %}
+{% highlight bash %}
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=rspec-token KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=cucumber-token KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=minitest-token KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT=test-unit-token KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=spinach-token
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=rspec-token KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=cucumber-token KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=minitest-token KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT=test-unit-token KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=spinach-token
 {% endhighlight %}
@@ -311,7 +311,7 @@ More info about global and matrix ENV configuration in <a href="https://docs.tra
 Knapsack Pro supports buildkite ENVs BUILDKITE_PARALLEL_JOB_COUNT and BUILDKITE_PARALLEL_JOB. The only thing you need to do is to configure the parallelism parameter in your build step and run the appropiate command in your build:
 </p>
 
-{% highlight ruby %}
+{% highlight bash %}
 # Step for RSpec
 bundle exec rake knapsack_pro:rspec
 
@@ -352,7 +352,7 @@ If you want to use Buildkite retry single agent feature to retry just failed tes
 Knapsack Pro supports semaphoreapp ENVs SEMAPHORE_THREAD_COUNT and SEMAPHORE_CURRENT_THREAD. The only thing you need to do is set up knapsack_pro rspec/cucumber/minitest/test_unit command for as many threads as you need. Here is an example:
 </p>
 
-{% highlight ruby %}
+{% highlight bash %}
 # Thread 1
 ## Step for RSpec
 bundle exec rake knapsack_pro:rspec
@@ -388,7 +388,7 @@ bundle exec rake knapsack_pro:spinach
 
 <p>Knapsack Pro supports snap-ci.com ENVs SNAP_WORKER_TOTAL and SNAP_WORKER_INDEX. The only thing you need to do is to configure number of workers for your project in configuration settings in order to enable parallelism. Next thing is to set below commands to be executed in your stage:</p>
 
-{% highlight ruby %}
+{% highlight bash %}
 # Step for RSpec
 bundle exec rake knapsack_pro:rspec
 
@@ -419,7 +419,7 @@ Codeship does not provide parallel jobs environment variables so you will have t
 
 <p>Configure test pipelines (1/2 used)</p>
 
-{% highlight ruby %}
+{% highlight bash %}
 # first CI node running in parallel
 
 # Cucumber tests in Knapsack Pro Regular Mode (deterministic test suite split)
@@ -432,7 +432,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knaps
 
 <p>Configure test pipelines (2/2 used)</p>
 
-{% highlight ruby %}
+{% highlight bash %}
 # second CI node running in parallel
 
 # Cucumber tests in Knapsack Pro Regular Mode (deterministic test suite split)
@@ -473,7 +473,7 @@ For any sensitive environment variables (like Knapsack Pro API token) that you d
 Note the <a href="https://devcenter.heroku.com/articles/heroku-ci-parallel-test-runs" target="_blank">Heroku CI Parallel Test Runs</a> are in Beta and you may need to ask Heroku support to enabled it for your project.
 </p>
 
-{% highlight ruby %}
+{% highlight json %}
 # app.json
 {
   "environments": {
@@ -510,7 +510,7 @@ You can learn more about <a href="https://devcenter.heroku.com/articles/heroku-c
 <a href="https://www.solanolabs.com" target="_blank">Solano CI</a> does not provide parallel jobs environment variables so you will have to define <i>KNAPSACK_PRO_CI_NODE_TOTAL</i> and <i>KNAPSACK_PRO_CI_NODE_INDEX</i> for each parallel job running as part of the same CI build.
 </p>
 
-{% highlight plain %}
+{% highlight bash %}
 # Step for RSpec for first CI node
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:rspec
 # Step for RSpec for second CI node
@@ -549,7 +549,7 @@ Please remember to set up API token like <i>KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC<
 <a href="https://www.appveyor.com" target="_blank">AppVeyor</a> does not provide parallel jobs environment variables so you will have to define <i>KNAPSACK_PRO_CI_NODE_TOTAL</i> and <i>KNAPSACK_PRO_CI_NODE_INDEX</i> for each parallel job running as part of the same CI build.
 </p>
 
-{% highlight plain %}
+{% highlight bash %}
 # Step for RSpec for first CI node
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:rspec
 # Step for RSpec for second CI node
@@ -590,7 +590,7 @@ Remember to add API tokens like KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER and KNAPS
 
 <h5>GitLab CI >= 11.5</h5>
 
-{% highlight ruby %}
+{% highlight yaml %}
 test:
   parallel: 2
 
@@ -620,7 +620,7 @@ Here you can find info <a href="https://docs.gitlab.com/ee/ci/yaml/#parallel" ta
 GitLab CI does not provide parallel jobs environment variables so you will have to define KNAPSACK_PRO_CI_NODE_TOTAL and KNAPSACK_PRO_CI_NODE_INDEX for each parallel job running as part of the same test stage. Below is relevant part of .gitlab-ci.yml configuration for 2 parallel jobs.
 </p>
 
-{% highlight ruby %}
+{% highlight yaml %}
 # .gitlab-ci.yml
 stages:
   - test
@@ -655,7 +655,7 @@ test_ci_node_1:
 Knapsack Pro supports cirrus-ci.org ENVs CI_NODE_TOTAL and CI_NODE_INDEX. The only thing you need to do is to configure number of parallel CI nodes for your project. Next thing is to set one of below commands to be executed on each parallel CI node:
 </p>
 
-{% highlight ruby %}
+{% highlight bash %}
 # Step for RSpec
 bundle exec rake knapsack_pro:rspec
 
@@ -693,7 +693,7 @@ Here is example for <a href="https://cirrus-ci.org/examples/#ruby" target="_blan
   Here is example Jenkinsfile working with Jenkins Pipeline.
   </p>
 
-{% highlight ruby %}
+{% highlight groovy %}
 timeout(time: 60, unit: 'MINUTES') {
   node() {
     stage('Checkout') {
@@ -765,7 +765,7 @@ If you are going to relay on rspec to autobalance build when cucumber tests were
   Git installed on the CI server will be used to determine branch name and current commit hash.
   </p>
 
-{% highlight ruby %}
+{% highlight bash %}
 KNAPSACK_PRO_REPOSITORY_ADAPTER=git
 {% endhighlight %}
 
@@ -773,7 +773,7 @@ KNAPSACK_PRO_REPOSITORY_ADAPTER=git
   Path to the project repository on CI server, for instance:
   </p>
 
-{% highlight ruby %}
+{% highlight bash %}
 KNAPSACK_PRO_PROJECT_DIR=/home/ubuntu/my-app-repository
 {% endhighlight %}
 
@@ -787,7 +787,7 @@ You can <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#when-you-set-g
 You must set different API token on your CI server for each test suite you have:
 </p>
 
-{% highlight ruby %}
+{% highlight bash %}
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC
 {% endhighlight %}
 
@@ -807,67 +807,67 @@ Let's assume you have 2 CI nodes. Here are commands you need to run for each CI 
 Step for rspec
 </p>
 
-{% highlight ruby %}
+{% highlight bash %}
 # Command for first CI node
-$ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:rspec
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:rspec
 
 # Command for second CI node
-$ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:rspec
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:rspec
 {% endhighlight %}
 
 <p>
 Step for minitest
 </p>
 
-{% highlight ruby %}
+{% highlight bash %}
 # Command for first CI node
-$ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:minitest
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:minitest
 
 # Command for second CI node
-$ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:minitest
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:minitest
 {% endhighlight %}
 
 <p>
 Step for test-unit
 </p>
 
-{% highlight ruby %}
+{% highlight bash %}
 # Command for first CI node
-$ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:test_unit
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:test_unit
 
 # Command for second CI node
-$ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:test_unit
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:test_unit
 {% endhighlight %}
 
 <p>
 Step for cucumber
 </p>
 
-{% highlight ruby %}
+{% highlight bash %}
 # Command for first CI node
-$ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:cucumber
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:cucumber
 
 # Command for second CI node
-$ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:cucumber
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:cucumber
 {% endhighlight %}
 
 <p>
 Step for spinach
 </p>
 
-{% highlight ruby %}
+{% highlight bash %}
 # Command for first CI node
-$ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:spinach
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:spinach
 
 # Command for second CI node
-$ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:spinach
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:spinach
 {% endhighlight %}
 
 <p>
 If you have more CI nodes then update accordingly:
 </p>
 
-{% highlight ruby %}
+{% highlight plain %}
 KNAPSACK_PRO_CI_NODE_TOTAL - total number of your CI nodes
 KNAPSACK_PRO_CI_NODE_INDEX - starts from 0, it's index of each CI node
 {% endhighlight %}
@@ -904,8 +904,7 @@ KNAPSACK_PRO_CI_NODE_INDEX - starts from 0, it's index of each CI node
   <b>Please ensure you have explicitly set <code class="highlighter-rouge">RAILS_ENV=test</code> on your CI nodes. You can add it to your CI environment variables configuration. It is needed for Queue Mode to run correctly.</b>
   </p>
 
-{% highlight ruby %}
-
+{% highlight bash %}
 # Example command for Regular Mode in RSpec
 bundle exec rake knapsack_pro:rspec
 
