@@ -3,7 +3,7 @@ layout: post
 title:  "Example article"
 date:   2099-01-31 12:00:00 +0100
 author: "Artur Trzop"
-categories: blog techtips
+categories: hidethispost
 og_image: "/images/blog/posts/example-article/image.jpg"
 ---
 
@@ -25,7 +25,6 @@ categories: blog techtips <-- here you need to set blog or techtips category
                               to show blog post on homepage in proper category.
                               You can also add some fake categories like Ruby JavaScript etc
 og_image: "/images/blog/posts/example-article/image.jpg"
-published: false <--- remove this line
 ---
 {% endhighlight %}
 
