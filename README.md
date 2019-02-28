@@ -30,7 +30,7 @@ You can copy example blog post file and read it content to find out how to creat
 See [_posts/2099-01-31-example-article.md](https://raw.githubusercontent.com/KnapsackPro/docs.knapsackpro.com/gh-pages/_posts/2099-01-31-example-article.md)
 
 Please create a new blog post with pull request to this repository.
-Your blog post will be under [MIT license](LICENSE).
+Your blog post will be under [GNU Affero General Public License v3.0](LICENSE).
 
 # Development of blog
 
