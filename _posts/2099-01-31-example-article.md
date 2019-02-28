@@ -16,7 +16,6 @@ _posts/2099-01-31-example-article.md
 You should update the info about article at the beginning of the blog post file.
 
 {% highlight plain %}
----
 layout: post
 title:  "Example article"
 date:   2099-01-31 12:00:00 +0100 <-- put here date of publishing the article
@@ -25,7 +24,6 @@ categories: blog techtips <-- here you need to set blog or techtips category
                               to show blog post on homepage in proper category.
                               You can also add some fake categories like Ruby JavaScript etc
 og_image: "/images/blog/posts/example-article/image.jpg"
----
 {% endhighlight %}
 
 In order to see the blog post you need to run Jekyll with future flag:
