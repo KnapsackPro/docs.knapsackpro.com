@@ -3,8 +3,9 @@ layout: post
 title:  "Example article"
 date:   2099-01-31 12:00:00 +0100
 author: "Artur Trzop"
-categories: hidethispost
+categories: blog techtips
 og_image: "/images/blog/posts/example-article/image.jpg"
+published: false
 ---
 
 This is example blog post. If you need to create a new blog post you can copy this file and change the file name to reflect the date of publishing the article and keep blog post title in the name of the blog post file:
@@ -24,6 +25,7 @@ categories: blog techtips <-- here you need to set blog or techtips category
                               to show blog post on homepage in proper category.
                               You can also add some fake categories like Ruby JavaScript etc
 og_image: "/images/blog/posts/example-article/image.jpg"
+published: false <--- remove this line
 {% endhighlight %}
 
 In order to see the blog post you need to run Jekyll with future flag:
