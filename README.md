@@ -10,11 +10,27 @@ If you found a bug in our API or you have just an idea how to improve it then pl
 
 https://github.com/KnapsackPro/docs.knapsackpro.com/issues
 
-# How to publish a new blog post
+# How to publish a new guest blog post
+
+## What can I write about?
+
+We welcome any blog post in 2 categories:
+
+* Category: [blog](https://docs.knapsackpro.com/)
+  * anything about testing software or CI tips for Ruby, JavaScript, Python, PHP or any other programming language
+  * any technical article about popular web or mobile frameworks
+  * anything else in your mind? [Get in touch](https://knapsackpro.com/contact) and let's talk about your idea.
+* Category: [techtips](https://docs.knapsackpro.com/tech_tips/)
+  * this can be super short blog post like a few sentences and block of code that solves some problem or error you found and might be helpful for others.
+
+## How to publish guest blog post?
 
 You can copy example blog post file and read it content to find out how to create a new guest post on our blog.
 
 See [_posts/2099-01-31-example-article.md](https://raw.githubusercontent.com/KnapsackPro/docs.knapsackpro.com/gh-pages/_posts/2099-01-31-example-article.md)
+
+Please create a new blog post with pull request to this repository.
+Your blog post will be under [MIT license](LICENSE).
 
 # Development of blog
 
