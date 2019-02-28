@@ -2,7 +2,7 @@
 
 Documentation for KnapsackPro.com
 
-http://docs.knapsackpro.com
+https://docs.knapsackpro.com
 
 # How can I report a bug or improvement
 
@@ -10,10 +10,23 @@ If you found a bug in our API or you have just an idea how to improve it then pl
 
 https://github.com/KnapsackPro/docs.knapsackpro.com/issues
 
-# Development
+# How to publish a new blog post
+
+You can copy example blog post file and read it content to find out how to create a new guest post on our blog.
+
+See [_posts/2099-01-31-example-article.md](_posts/2099-01-31-example-article.md)
+
+# Development of blog
 
     $ bundle install
-    $ bundle exec jekyll serve --watch
+
+Show post with future publish date.
+
+    $ bundle exec jekyll serve --watch --future
+
+Now you can preview blog at [http://localhost:4000/](http://localhost:4000/2099/example-article)
+
+# Development of Knapsack Pro API docs
 
 ## Dependencies
 
