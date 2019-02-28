@@ -14,7 +14,7 @@ https://github.com/KnapsackPro/docs.knapsackpro.com/issues
 
 You can copy example blog post file and read it content to find out how to create a new guest post on our blog.
 
-See [_posts/2099-01-31-example-article.md](_posts/2099-01-31-example-article.md)
+See [_posts/2099-01-31-example-article.md](https://raw.githubusercontent.com/KnapsackPro/docs.knapsackpro.com/gh-pages/_posts/2099-01-31-example-article.md)
 
 # Development of blog
 
