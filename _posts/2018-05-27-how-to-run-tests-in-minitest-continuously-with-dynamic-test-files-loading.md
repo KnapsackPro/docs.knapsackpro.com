@@ -109,7 +109,7 @@ exit(final_exit_code)
 
 # Running Minitest continuously and fetching test files from the Queue in a dynamic way 
 
-Digging into the source code of Minitest helped me to find out a way to run my tests in a more efficient way. I applied this to the [knapack_pro gem](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-tests-in-minitest-continuously) I'm working on.
+Digging into the source code of Minitest helped me to find out a way to run my tests in a more efficient way. I applied this to the [knapsack_pro gem](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-tests-in-minitest-continuously) I'm working on.
 
 You can see in the below video how dynamic tests allocation across CI nodes can save time and run test suite faster. Last week one of my users from [https://angel.co](https://angel.co) tried the Queue Mode in knapsack_pro for Minitest and it helped him run CI builds faster. Maybe this will help you too. :)
 
