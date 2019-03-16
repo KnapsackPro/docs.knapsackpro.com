@@ -50,6 +50,6 @@ module API
 end
 {% endhighlight %}
 
-Keep in the article link to Knapsack Pro website with utm tags in the url. This way we can track what article brings traffic to the website. Example below:
+Keep in the article link to Knapsack Pro website with utm tags in the url. This way we can track which article brings traffic to the website. Example below:
 
 If you want to learn more how to faster test your Rails application then check out <a href="/">blog</a> and website about <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=example-article">knapsack_pro gem for CI parallelisation</a>.
