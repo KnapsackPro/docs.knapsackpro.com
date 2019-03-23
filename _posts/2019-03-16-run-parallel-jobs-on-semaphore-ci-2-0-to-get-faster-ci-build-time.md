@@ -29,7 +29,7 @@ Here you can find Semaphore CI 2.0 config for projects using:
 
 ### Ruby on Rails config for Semaphore 2.0
 
-`knapack_pro` gem supports environment variables provided by Semaphore CI 2.0 to run your tests. You will have to define a few things in `.semaphore/semaphore.yml` config file.
+`knapsack_pro` gem supports environment variables provided by Semaphore CI 2.0 to run your tests. You will have to define a few things in `.semaphore/semaphore.yml` config file.
 
 - You need to set `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`. If you don't want to commit secrets in yml file then you can <a href="https://docs.semaphoreci.com/article/66-environment-variables-and-secrets" target="_blank" rel="nofollow">follow this guide</a>.
 - You need to create as many jobs with unique names (Node 0 - Knapsack Pro, Node 1 - Knapsack Pro etc) as many parallel jobs you want to run. If your test suite is long you should use more parallel jobs.

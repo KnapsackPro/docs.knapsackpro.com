@@ -351,7 +351,7 @@ If you want to use Buildkite retry single agent feature to retry just failed tes
 <h5>Semaphore 2.0</h5>
 
 <p>
-knapack_pro gem supports environment variables provided by Semaphore CI 2.0 to run your tests. You will have to define a few things in <i>.semaphore/semaphore.yml</i> config file.
+knapsack_pro gem supports environment variables provided by Semaphore CI 2.0 to run your tests. You will have to define a few things in <i>.semaphore/semaphore.yml</i> config file.
 </p>
 
 <ul>
