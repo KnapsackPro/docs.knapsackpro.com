@@ -11,7 +11,7 @@ Semaphore CI 2.0 allows configuring your CI build task with parallel jobs. This 
 
 <img src="/images/blog/posts/run-parallel-jobs-on-semaphore-ci-2-0-to-get-faster-ci-build-time/semaphore-ci-logo.png" style="width:300px;margin-left: 15px;float:right;" />
 
-With <a href="https://semaphoreci.com" target="_blank" rel="nofollow">Semaphore CI 2.0</a> you don't pay for a reserved amount of containers that can be run in parallel as in some other CI providers. Instead, they count the amount of work time spent on the running containes. This creates an incentive to run more parallel jobs to execute our tests fast and still keep bill at a similar level as if we would just run all tests in single container waisting our own time.
+With <a href="https://semaphoreci.com" target="_blank" rel="nofollow">Semaphore CI 2.0</a> you don't pay for a reserved amount of containers that can be run in parallel as in some other CI providers. Instead, they count the amount of work time spent on running containers. This creates an incentive to run more parallel jobs to execute our tests fast and still keep bill at a similar level as if we would just run all tests in single container waisting our own time.
 
 ## Let's save time with parallel jobs
 
