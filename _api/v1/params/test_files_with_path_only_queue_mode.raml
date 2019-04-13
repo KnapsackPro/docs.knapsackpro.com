@@ -1,0 +1,25 @@
+type: string
+required: true
+example: |
+  [
+    {
+      "path": "test/fast/a_test.rb"
+    },
+    {
+      "path": "test/fast/b_test.rb"
+    },
+    {
+      "path": "test/slow/c_test.rb"
+    },
+    {
+      "path": "test/slow/d_test.rb"
+    }
+  ]
+description: |
+  JSON array with objects. Each object contains test file path.
+
+  Example contains all test files existing in the test suite.
+
+  When `can_initialize_queue=true` then `test_files` field is required in order to initialize Queue on API side.
+
+  When `can_initialize_queue=false` then `test_files` field is not needed. Do not set it in body to save data transfer and make request faster.
