@@ -55,6 +55,20 @@ The knapsack gem supports:
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/pkdLzKlnlQg/0.jpg)](https://knapsackpro.com/?utm_source=github&utm_medium=readme&utm_campaign=knapsack_gem&utm_content=video#x-play-how-it-works-video)
 
+To better understand it you can check examples for one of popular CI providers like:
+
+* __CircleCI__ - [Improve CircleCI parallelisation for RSpec, Minitest, Cypress](/2018/improve-circleci-parallelisation-for-rspec-minitest-cypress)
+* __Heroku CI__ - [How to run parallel dynos on Heroku CI to complete tests faster](/2018/how-to-run-parallel-dynos-on-heroku-ci-to-complete-tests-faster)
+* __Buildkite__ - [Auto balancing 7 hours tests between 100 parallel agents](/2017/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example)
+* __Jenkins__ - [Jenkins Pipeline how to run parallel tests in your workflow stages](/2018/jenkins-pipeline-how-to-run-parallel-tests-in-your-workflow-stages)
+* __CodeShip__ - [How to run CodeShip Parallel Test Pipelines efficiently - optimal CI parallelization](/2018/how-to-run-codeship-parallel-test-pipelines-efficiently-optimal-ci-parallelization)
+* __Semaphore CI__ - [Run parallel jobs on Semaphore CI 2.0 to get faster CI build time](/2019/run-parallel-jobs-on-semaphore-ci-2-0-to-get-faster-ci-build-time)
+* __Travis CI__ - [How to run Travis CI parallel jobs with build matrix feature fast](/2018/how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast)
+
+JavaScript examples for test runners:
+
+* __Cypress, Jest__ - [Run javascript E2E tests faster with Cypress on parallel CI nodes](/2018/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes)
+
 ### Features in knapsack vs knapsack_pro
 
 <table class="pure-table extra-margin-top-2x">
