@@ -98,7 +98,7 @@ JavaScript examples for test runners:
     <td>✔</td>
   </tr>
   <tr>
-    <td><a href="https://knapsackpro.com/features?utm_source=github&utm_medium=readme&utm_campaign=knapsack_gem&utm_content=show_all_features">Show all features</a></td>
+    <td><a href="https://knapsackpro.com/features/ruby_knapsack_pro_vs_knapsack?utm_source=github&utm_medium=readme&utm_campaign=knapsack_gem&utm_content=show_all_features">Show all features</a></td>
     <td></td>
     <td></td>
   </tr>
