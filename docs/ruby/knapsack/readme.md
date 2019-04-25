@@ -165,6 +165,7 @@ How knapsack_pro makes my life easier as opposed to regular knapsack gem?
     - [Step 2](#step-2-4)
   - [Info for Jenkins](#info-for-jenkins)
 - [FAQ](#faq)
+  - [How Knapsack Pro makes my life easier as opposed to knapsack free gem?](#how-knapsack-pro-makes-my-life-easier-as-opposed-to-knapsack-free-gem)
   - [What time offset warning means?](#what-time-offset-warning-means)
   - [How to generate knapsack report?](#how-to-generate-knapsack-report)
   - [What does "leftover specs" mean?](#what-does-leftover-specs-mean)
@@ -830,6 +831,13 @@ You may want to read article [Knapsack with Jenkins Pipeline](http://blog.knapik
 More tips can be found in the [issue](https://github.com/ArturT/knapsack/issues/42).
 
 ## FAQ
+
+### How Knapsack Pro makes my life easier as opposed to knapsack free gem?
+
+* [Knapsack Pro](https://knapsackpro.com?utm_source=github&utm_medium=readme&utm_campaign=knapsack_gem&utm_content=knapsack_pro_opposed_to_knapsack) version has Queue Mode designed for optimal test suite split thanks to dynamic tests allocation. [Learn more](https://www.youtube.com/watch?v=hUEB1XDKEFY)
+* Knapsack Pro version tracks all you branches so when your test code changes the Knapsack Pro tries to provide you optimal test suite split.
+* With Knapsack Pro version the setup and the ongoing work is easier because you don't have to manually generate knapsack json report with test files time execution for each test suite like RSpec, Cucumber etc.
+* When your test codebase changes over time you need to manually generate a new knapsack json report in free gem version which is extra overhead and waste of developer time.
 
 ### What time offset warning means?
 
