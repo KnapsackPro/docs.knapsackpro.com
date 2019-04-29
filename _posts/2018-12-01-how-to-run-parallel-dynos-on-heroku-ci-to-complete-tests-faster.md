@@ -19,7 +19,7 @@ If you or your company has already created a team in Heroku then you can use Her
 
 In Heroku, you can open your team and particular pipeline for one of your projects. You will find there a <i>Tests</i> tab where you can enable Heroku CI.
 
-You will also need an <i>app.json</i> file in a repository of your project. The file contains information about what's needed to run the project on Heroku. We will add to the <i>app.json</i> file additional configuration need for Heroku CI.
+You will also need an <i>app.json</i> file in a repository of your project. The file contains information about what's needed to run the project on Heroku. We will add to the <i>app.json</i> file additional configuration needed for Heroku CI.
 
 In order to use Heroku CI parallel test runs, we need to have it enabled. You will have to ask Heroku support to activate it for your project. This feature allows to run up to 32 parallel dynos for your CI build.
 
