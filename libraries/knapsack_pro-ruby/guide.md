@@ -1019,11 +1019,17 @@ bundle exec rake knapsack_pro:queue:minitest
 {% endhighlight %}
 
   <p>
-  I recommend to use first Regular Mode in order to record time execution data from your project. You could also use Queue Mode to do that but it will be much slower when you record your first build. Please ensure your tests are green in Regular Mode and there are no order dependet test failures before trying Queue Mode.
+  I recommend using Regular Mode first in order to record time execution data for your project. You could also use Queue Mode to do that but it will be much slower when you record your first build. Please ensure your tests are green in Regular Mode and there are no order dependent test failures before trying Queue Mode.
   </p>
 
   <p>
   <strong>Note for Queue Mode</strong> if you use CI provider that allows you to just retry a single CI node (for instance Travis CI when tests failed only on one of parallel CI nodes) or when you use CI nodes on servers that can be killed during runtime (for instance you use Buildkite CI provider with Amazon EC2 Spot Instances/Google Cloud Preemptible that can be preempted during CI run) then in Queue Mode you need to set flag <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank"><b>KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true</b></a> in order to handle those CI providers correctly.
+  </p>
+
+  <p>
+  <strong>Common problems for Queue Mode</strong> If you notice any test failures for RSpec when using knapsack_pro Queue Mode then it means your test suite needs to be adjusted to work with underlying RSpec::Core::Runner that is used by knapsack_pro Queue Mode. Please see this <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#why-when-i-use-queue-mode-for-rspec-then-my-tests-fail" target="_blank">FAQ and common Queue Mode problems</a>.<br>
+  <br>
+  If your problem is different please <a href="https://knapsackpro.com/contact" target="_blank">contact us</a>. We saw many projects and each test suite has different edge cases that sometimes make RSpec fail.
   </p>
 
   <p>
