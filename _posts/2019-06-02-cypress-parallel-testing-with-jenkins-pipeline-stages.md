@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/cypress-parallel-testing-with-jenkins-pipeline-sta
 
 In this tutorial for JavaScript end to end testing, you will learn about Cypress test runner for UI automation testing and how to use it with Jenkins CI server. Cypress helps with frontend automation testing using headless browser or just regular browser. E2E tests often take a long time to run and for bigger projects, those type of tests can take dozens of minutes or even hours. To save developers time you want to load balancing Cypress tests across Jenkins parallel pipeline stages.  Thanks to that you can run your 1-hour test suite in a few minutes.
 
-<img src="/images/blog/posts/cypress-parallel-testing-with-jenkins-pipeline-stages/cypress-jenkins.jpeg" style="width:300px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/cypress-parallel-testing-with-jenkins-pipeline-stages/cypress-jenkins.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Cypress Jenkins" />
 
 ## How to speed up Cypress tests
 
