@@ -3,7 +3,7 @@ layout: post
 title:  "Cypress parallel testing with Jenkins Pipeline stages"
 date:   2019-06-02 12:00:00 +0200
 author: "Artur Trzop"
-categories: blog
+categories: blog Cypress JavaScript E2E testing Jenkins Pipeline stages
 og_image: "/images/blog/posts/cypress-parallel-testing-with-jenkins-pipeline-stages/cypress-jenkins.jpeg"
 ---
 
