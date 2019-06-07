@@ -244,6 +244,13 @@ Here is another example for CircleCI 2.0 platform.
     # export word is important here!
     export RAILS_ENV=test
     bundle exec rake "knapsack_pro:queue:minitest[--verbose]"
+
+- run:
+  name: Cucumber via knapsack_pro Queue Mode
+  command: |
+    # export word is important here!
+    export RAILS_ENV=test
+    bundle exec rake knapsack_pro:queue:cucumber
 {% endhighlight %}
 
 <p>
@@ -528,6 +535,9 @@ Codeship does not provide parallel jobs environment variables so you will have t
 # Cucumber tests in Knapsack Pro Regular Mode (deterministic test suite split)
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:cucumber
 
+# or use Cucumber tests in Knapsack Pro Queue Mode (dynamic test suite split)
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:queue:cucumber
+
 # RSpec tests in Knapsack Pro Queue Mode (dynamic test suite split)
 # It will autobalance bulid because it is executed after Cucumber tests.
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:queue:rspec
@@ -540,6 +550,9 @@ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knaps
 
 # Cucumber tests in Knapsack Pro Regular Mode (deterministic test suite split)
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:cucumber
+
+# or use Cucumber tests in Knapsack Pro Queue Mode (dynamic test suite split)
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:queue:cucumber
 
 # RSpec tests in Knapsack Pro Queue Mode (dynamic test suite split)
 # It will autobalance bulid because it is executed after Cucumber tests.
@@ -711,6 +724,7 @@ test:
   # Knapsack Pro Queue Mode (dynamic test suite split)
   # bundle exec rake knapsack_pro:queue:rspec
   # bundle exec rake knapsack_pro:queue:minitest
+  # bundle exec rake knapsack_pro:queue:cucumber
 {% endhighlight %}
 
 <p>
@@ -738,8 +752,10 @@ test_ci_node_0:
     - export KNAPSACK_PRO_CI_NODE_INDEX=0
     # Cucumber tests in Knapsack Pro Regular Mode (deterministic test suite split)
     - bundle exec rake knapsack_pro:cucumber
+    # or use Cucumber tests in Knapsack Pro Queue Mode (dynamic test suite split)
+    - bundle exec rake knapsack_pro:queue:cucumber
     # RSpec tests in Knapsack Pro Queue Mode (dynamic test suite split)
-    # It will autobalance bulid because it is executed after Cucumber tests.
+    # It will autobalance bulid because it is executed after Cucumber tests in Regular Mode.
     - bundle exec rake knapsack_pro:queue:rspec
 
 # second CI node running in parallel
@@ -748,6 +764,7 @@ test_ci_node_1:
   script:
     - export KNAPSACK_PRO_CI_NODE_INDEX=1
     - bundle exec rake knapsack_pro:cucumber
+    - bundle exec rake knapsack_pro:queue:cucumber
     - bundle exec rake knapsack_pro:queue:rspec
 {% endhighlight %}
 </div>
@@ -1016,6 +1033,9 @@ bundle exec rake knapsack_pro:queue:rspec
 
 # Example command for Queue Mode in Minitest
 bundle exec rake knapsack_pro:queue:minitest
+
+# Example command for Queue Mode in Cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 {% endhighlight %}
 
   <p>
@@ -1033,9 +1053,12 @@ bundle exec rake knapsack_pro:queue:minitest
   </p>
 
   <p>
-  You can learn more about custom configuration and other <a href="https://knapsackpro.com/features" target="_blank">features</a>.<br>
-  Full <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#table-of-contents" target="_blank">documentation</a>.
-  If you have problems please check FAQ there.
+  You can learn more about custom configuration and other <a href="https://knapsackpro.com/features" target="_blank">features</a> in <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#table-of-contents" target="_blank">documentation</a>.
+  If you have problems please check <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#faq" target="_blank">FAQ</a> there.
+  </p>
+
+  <p>
+  Common thing people look for is to use <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-junit-formatter" target="_blank">junit formatter</a> with RSpec or Cucumber or how to use <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-codeclimate-with-knapsack_pro" target="_blank">CodeClimate</a> or <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-simplecov-in-queue-mode" target="_blank">SimpleCov</a> with knapsack_pro gem.
   </p>
 
   <p>
