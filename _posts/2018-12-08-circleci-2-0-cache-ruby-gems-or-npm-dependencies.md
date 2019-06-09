@@ -3,7 +3,7 @@ layout: post
 title:  "CircleCI 2.0 cache Ruby gems or npm dependencies"
 date:   2018-12-08 13:00:00 +0100
 author: "Artur Trzop"
-categories: blog CircleCI cache ruby gems npm dependencies packages
+categories: techtips CircleCI cache ruby gems npm dependencies packages
 og_image: "/images/blog/posts/circleci-2-0-cache-ruby-gems-or-npm-dependencies/cache.jpg"
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title:  "How to run tests faster on Heroku CI with parallel dynos"
 date:   2019-05-25 17:00:00 +0100
 author: "Artur Trzop"
-categories: blog
+categories: continuous_integration
 og_image: "/images/blog/posts/how-to-run-tests-faster-on-heroku-ci-with-parallel-dynos/heroku.jpg"
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title:  "Run javascript E2E tests faster with Cypress on parallel CI nodes"
 date:   2018-11-17 19:00:00 +0100
 author: "Artur Trzop"
-categories: blog cypress javascript parallelisation CI
+categories: continuous_integration cypress javascript parallelisation CI
 og_image: "/images/blog/posts/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes/cypress-logo.jpg"
 ---
 

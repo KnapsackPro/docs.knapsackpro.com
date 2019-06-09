@@ -3,7 +3,7 @@ layout: post
 title:  "Run parallel jobs on Semaphore CI 2.0 to get faster CI build time"
 date:   2019-03-16 15:00:00 +0100
 author: "Artur Trzop"
-categories: blog semaphore Ruby Rails JavaScript Node
+categories: continuous_integration semaphore Ruby Rails JavaScript Node
 og_image: "/images/blog/posts/run-parallel-jobs-on-semaphore-ci-2-0-to-get-faster-ci-build-time/semaphore-ci-logo.png"
 ---
 

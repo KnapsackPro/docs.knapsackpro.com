@@ -3,7 +3,7 @@ layout: post
 title:  "How to run Travis CI parallel jobs with build matrix feature fast"
 date:   2018-11-30 19:00:00 +0100
 author: "Artur Trzop"
-categories: blog Travis CI parallelisation Ruby RSpec Minitest Javascript Cypress
+categories: continuous_integration Travis CI parallelisation Ruby RSpec Minitest Javascript Cypress
 og_image: "/images/blog/posts/how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast/travis-ci.jpg"
 ---
 

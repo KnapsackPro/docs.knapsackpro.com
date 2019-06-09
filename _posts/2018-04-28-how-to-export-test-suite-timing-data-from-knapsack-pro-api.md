@@ -3,7 +3,7 @@ layout: post
 title:  "How to export test suite timing data from Knapsack Pro API"
 date:   2018-04-28 17:00:00 +0200
 author: "Artur Trzop"
-categories: blog techtips API "test suite" "export data"
+categories: techtips API "test suite" "export data"
 ---
 
 [Knapsack Pro](https://knapsackpro.com) tracks your CI builds and how long each test files took to run on one of parallel CI nodes. Thanks to that Knapsack Pro can prepare the optimal test suite split for your future test suite runs on your CI provider.

@@ -3,7 +3,7 @@ layout: post
 title:  "Split RSpec tests with Jenkins Parallel Pipeline to run specs faster"
 date:   2019-06-01 13:00:00 +0200
 author: "Artur Trzop"
-categories: blog Jenkins Pipeline Stages CI parallelisation RSpec Ruby Rails
+categories: continuous_integration Jenkins Pipeline Stages CI parallelisation RSpec Ruby Rails
 og_image: "/images/blog/posts/split-rspec-tests-with-jenkins-parallel-pipeline-to-run-specs-faster/rspec_jenkins.jpeg"
 ---
 

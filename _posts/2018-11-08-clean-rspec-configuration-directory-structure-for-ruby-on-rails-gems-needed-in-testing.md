@@ -3,7 +3,7 @@ layout: post
 title:  "Clean RSpec configuration directory structure for Ruby on Rails gems needed in testing"
 date:   2018-11-08 12:00:00 +0100
 author: "Artur Trzop"
-categories: blog rspec ruby rails testing gems
+categories: techtips rspec ruby rails testing gems
 og_image: "/images/blog/posts/clean-rspec-configuration-directory-structure-for-ruby-on-rails-gems-needed-in-testing/rspec.jpg"
 ---
 

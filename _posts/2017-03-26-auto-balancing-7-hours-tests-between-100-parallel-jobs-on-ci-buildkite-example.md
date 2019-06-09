@@ -3,7 +3,7 @@ layout: post
 title:  "Auto balancing 7 hours tests between 100 parallel jobs on CI - Buildkite example"
 date:   2017-03-26 13:20:00 +0200
 author: "Artur Trzop"
-categories: blog
+categories: continuous_integration
 og_image: "/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/buildkite.jpg"
 ---
 
