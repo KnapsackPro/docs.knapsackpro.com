@@ -14,7 +14,7 @@ https://github.com/KnapsackPro/docs.knapsackpro.com/issues
 
 ## What can I write about?
 
-We welcome any blog post in 2 categories:
+We welcome any blog post in categories:
 
 * Category: [blog](https://docs.knapsackpro.com/)
   * anything about testing software or CI tips for Ruby, JavaScript, Python, PHP or any other programming language
@@ -22,6 +22,9 @@ We welcome any blog post in 2 categories:
   * anything else in your mind? [Get in touch](https://knapsackpro.com/contact) and let's talk about your idea.
 * Category: [techtips](https://docs.knapsackpro.com/tech_tips/)
   * this can be super short blog post like a few sentences and block of code that solves some problem or error you found and might be helpful for others.
+  * tips how to do something useful on CI server
+* Category: [continuous_integration](https://docs.knapsackpro.com/continuous_integration/)
+  * articles about integration with various CI servers and Knapsack Pro
 
 ## How to publish guest blog post?
 
