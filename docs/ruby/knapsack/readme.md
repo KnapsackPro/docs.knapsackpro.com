@@ -724,6 +724,25 @@ bundle exec rake knapsack:minitest
 bundle exec rake knapsack:spinach
 {% endhighlight %}
 
+<p>
+When using the docker-compose plugin on Buildkite, you have to tell it which environment variables to pass to the docker container:
+</p>
+
+{% highlight yaml %}
+steps:
+  - label: "Test"
+    parallelism: 2
+    plugins:
+      - docker-compose#3.0.3:
+        run: app
+        # use here proper knapsack command for your test runner
+        command: bundle exec rake knapsack:rspec
+        config: docker-compose.test.yml
+        env:
+          - BUILDKITE_PARALLEL_JOB_COUNT
+          - BUILDKITE_PARALLEL_JOB
+{% endhighlight %}
+
 ### Info for GitLab CI users
 
 If you are using GitLab 11.5 or later you can omit `CI_NODE_TOTAL` and `CI_NODE_INDEX`. Knapsack will use `CI_NODE_TOTAL` and `CI_NODE_INDEX` provided by GitLab if you use the [`parallel`](https://docs.gitlab.com/ee/ci/yaml/#parallel) option in GitLab CI.

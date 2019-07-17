@@ -350,6 +350,29 @@ Here you can find article <a href="http://docs.knapsackpro.com/2017/auto-balanci
 If you want to use Buildkite retry single agent feature to retry just failed tests on particular agent (CI node) then you should set <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank">KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true</a>.
 </p>
 
+<p>
+When using the docker-compose plugin on Buildkite, you have to tell it which environment variables to pass to the docker container. Thanks to it knapsack_pro can detect info about CI build like commit, branch name, amount of parallel nodes.
+</p>
+
+{% highlight yaml %}
+steps:
+  - label: "Test"
+    parallelism: 2
+    plugins:
+      - docker-compose#3.0.3:
+        run: app
+        # use here proper knapsack_pro command for your test runner
+        command: bundle exec rake knapsack_pro:queue:rspec
+        config: docker-compose.test.yml
+        env:
+          - BUILDKITE_PARALLEL_JOB_COUNT
+          - BUILDKITE_PARALLEL_JOB
+          - BUILDKITE_BUILD_NUMBER
+          - BUILDKITE_COMMIT
+          - BUILDKITE_BRANCH
+          - BUILDKITE_BUILD_CHECKOUT_PATH
+{% endhighlight %}
+
   </div>
 
   <div id="guide-provider-semaphoreci" class="hidden">
