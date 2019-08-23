@@ -154,6 +154,8 @@ How knapsack_pro makes my life easier as opposed to regular knapsack gem?
   - [Info for semaphoreapp.com users](#info-for-semaphoreappcom-users)
     - [Step 1](#step-1-2)
     - [Step 2](#step-2-2)
+      - [Semaphore 2.0](#semaphore-20)
+      - [Semaphore 1.0](#semaphore-10)
   - [Info for buildkite.com users](#info-for-buildkitecom-users)
     - [Step 1](#step-1-3)
     - [Step 2](#step-2-3)
