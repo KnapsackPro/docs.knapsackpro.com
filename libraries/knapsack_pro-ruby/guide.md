@@ -471,21 +471,21 @@ blocks:
       - name: Run tests with Knapsack Pro
         parallelism: 2
         commands:
-          # Step for RSpec in Queue Mode
-          - bundle exec rake knapsack_pro:queue:rspec
-          # Step for Cucumber in Queue Mode
-          - bundle exec rake knapsack_pro:queue:cucumber
+        # Step for RSpec in Queue Mode
+        - bundle exec rake knapsack_pro:queue:rspec
+        # Step for Cucumber in Queue Mode
+        - bundle exec rake knapsack_pro:queue:cucumber
 
-          # Step for RSpec in Regular Mode
-          - bundle exec rake knapsack_pro:rspec
-          # Step for Cucumber in Regular Mode
-          - bundle exec rake knapsack_pro:cucumber
-          # Step for Minitest in Regular Mode
-          - bundle exec rake knapsack_pro:minitest
-          # Step for test-unit in Regular Mode
-          - bundle exec rake knapsack_pro:test_unit
-          # Step for Spinach in Regular Mode
-          - bundle exec rake knapsack_pro:spinach
+        # Step for RSpec in Regular Mode
+        - bundle exec rake knapsack_pro:rspec
+        # Step for Cucumber in Regular Mode
+        - bundle exec rake knapsack_pro:cucumber
+        # Step for Minitest in Regular Mode
+        - bundle exec rake knapsack_pro:minitest
+        # Step for test-unit in Regular Mode
+        - bundle exec rake knapsack_pro:test_unit
+        # Step for Spinach in Regular Mode
+        - bundle exec rake knapsack_pro:spinach
 {% endhighlight %}
 
 <h5>Semaphore 1.0</h5>
