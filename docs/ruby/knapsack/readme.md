@@ -657,6 +657,100 @@ After tests pass you should copy knapsack json report which is rendered at the e
 
 #### Step 2
 
+##### Semaphore 2.0
+
+knapsack gem supports environment variables provided by Semaphore CI 2.0 to run your tests. You will have to define a few things in `.semaphore/semaphore.yml` config file.
+
+{% highlight yaml %}
+# .semaphore/semaphore.yml
+# Use the latest stable version of Semaphore 2.0 YML syntax:
+version: v1.0
+
+# Name your pipeline. In case you connect multiple pipelines with promotions,
+# the name will help you differentiate between, for example, a CI build phase
+# and delivery phases.
+name: Demo Rails 5 app
+
+# An agent defines the environment in which your code runs.
+# It is a combination of one of available machine types and operating
+# system images.
+# See https://docs.semaphoreci.com/article/20-machine-types
+# and https://docs.semaphoreci.com/article/32-ubuntu-1804-image
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+# Blocks are the heart of a pipeline and are executed sequentially.
+# Each block has a task that defines one or more jobs. Jobs define the
+# commands to execute.
+# See https://docs.semaphoreci.com/article/62-concepts
+blocks:
+  - name: Setup
+    task:
+      env_vars:
+        - name: RAILS_ENV
+          value: test
+      jobs:
+        - name: bundle
+          commands:
+          # Checkout code from Git repository. This step is mandatory if the
+          # job is to work with your code.
+          # Optionally you may use --use-cache flag to avoid roundtrip to
+          # remote repository.
+          # See https://docs.semaphoreci.com/article/54-toolbox-reference#libcheckout
+          - checkout
+          # Restore dependencies from cache.
+          # Read about caching: https://docs.semaphoreci.com/article/54-toolbox-reference#cache
+          - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-master-
+          # Set Ruby version:
+          - sem-version ruby 2.6.1
+          - bundle install --jobs=4 --retry=3 --path vendor/bundle
+          # Store the latest version of dependencies in cache,
+          # to be used in next blocks and future workflows:
+          - cache store gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock) vendor/bundle
+
+  - name: RSpec tests
+    task:
+      env_vars:
+        - name: RAILS_ENV
+          value: test
+        - name: PGHOST
+          value: 127.0.0.1
+        - name: PGUSER
+          value: postgres
+      # This block runs two jobs in parallel and they both share common
+      # setup steps. We can group them in a prologue.
+      # See https://docs.semaphoreci.com/article/50-pipeline-yaml#prologue
+      prologue:
+        commands:
+          - checkout
+          - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-master-
+          # Start Postgres database service.
+          # See https://docs.semaphoreci.com/article/54-toolbox-reference#sem-service
+          - sem-service start postgres
+          - sem-version ruby 2.6.1
+          - bundle install --jobs=4 --retry=3 --path vendor/bundle
+          - bundle exec rake db:setup
+
+      jobs:
+      - name: Run tests with Knapsack
+        parallelism: 2
+        commands:
+          # Step for RSpec
+          - bundle exec rake knapsack:rspec
+          # Step for Cucumber
+          - bundle exec rake knapsack:cucumber
+          # Step for Minitest
+          - bundle exec rake knapsack:minitest
+          # Step for Spinach
+          - bundle exec rake knapsack:spinach
+{% endhighlight %}
+
+You may also find useful article about spliting tests in a dynamic way with knapsack_pro Queue Mode: [run parallel jobs on Semaphore CI 2.0 to get faster CI build time](/2019/run-parallel-jobs-on-semaphore-ci-2-0-to-get-faster-ci-build-time).
+
+##### Semaphore 1.0
+
 Knapsack supports semaphoreapp ENVs `SEMAPHORE_THREAD_COUNT` and `SEMAPHORE_CURRENT_THREAD`. The only thing you need to do is set up knapsack rspec/cucumber/minitest command for as many threads as you need. Here is an example:
 
 {% highlight shell %}
