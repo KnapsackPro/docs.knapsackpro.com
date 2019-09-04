@@ -1096,4 +1096,26 @@ bundle exec rake knapsack_pro:queue:cucumber
   <p>
   Feel free to ask questions if you need help. <a href="https://knapsackpro.com/contact" target="_blank">Contact us</a>.
   </p>
+
+  <h4>Most asked questions from FAQ</h4>
+
+  <p>
+  The most common problems can be found in <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#faq" target="_blank">FAQ</a> but here are listed the top questions developers ask for.
+  </p>
+
+  <p>
+    <ul>
+      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#why-when-i-use-queue-mode-for-rspec-then-my-tests-fail" target="_blank">Why when I use Queue Mode for RSpec then my tests fail?</a> - When you use RSpec please use Knapsack Pro Regular Mode first before you try Queue Mode as it is suggested in this installation guide.</li>
+      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank">How to retry only single CI node with failed tests for Queue Mode?</a> - If your CI provider allows retrying a single CI node from list of parallel nodes instead of running a whole CI build then you should set KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true to allow Knapsack Pro remember what tests where executed on particular CI node. Thanks to that when you retry failed CI node then the same set of tests will be executed there.</li>
+      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#why-knapsack_pro-hangs--freezes--is-stale-ie-for-codeship-in-queue-mode" target="_blank">Why my CI tests output freezes?</a></li>
+      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-junit-formatter" target="_blank">How to use JUnit formatter with Knapsack Pro?</a></li>
+      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-simplecov-in-queue-mode" target="_blank">How to use simplecov in Queue Mode?</a></li>
+      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-codeclimate-with-knapsack_pro" target="_blank">How to use CodeClimate with knapsack_pro ruby gem?</a></li>
+      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#test-file-names-encryption" target="_blank">How to encrypt test files names for Ruby tests?</a></li>
+      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#questions-around-data-usage-and-security" target="_blank">Questions around data usage and security</a> - Knapsack Pro does not have access to your project source code. It collects only branch names, git commit hashes and test file paths with its recorded execution time.</li>
+      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-can-i-run-tests-from-multiple-directories" target="_blank">How to run tests based on pattern</a> - you must set KNAPSACK_PRO_TEST_FILE_PATTERN instead of passing --pattern to RSpec</li>
+      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-run-a-specific-list-of-test-files-or-only-some-tests-from-test-file" target="_blank">How to run a specific list of test files or only some tests from test file?</a></li>
+      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-exclude-tests-from-running-them" target="_blank">How to exclude tests from running them?</a></li>
+    </ul>
+  </p>
 </div>
