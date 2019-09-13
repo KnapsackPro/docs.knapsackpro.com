@@ -69,6 +69,7 @@ Please answer questions to get basic configuration of knapsack_pro gem for your 
     <li><label><input type="radio" name="ci-provider" value="gitlab-ci"> GitLab CI</label></li>
     <li><label><input type="radio" name="ci-provider" value="cirrus-ci"> https://cirrus-ci.org</label></li>
     <li><label><input type="radio" name="ci-provider" value="jenkins"> Jenkins</label></li>
+    <li><label><input type="radio" name="ci-provider" value="github-actions"> GitHub Actions</label></li>
     <li><label><input type="radio" name="ci-provider" value="other"> other</label></li>
   </ul>
 </p>
@@ -905,6 +906,26 @@ Above example shows how to run cucumber tests in regular mode and later the rspe
 If you are going to relay on rspec to autobalance build when cucumber tests were not perfectly distributed you should be aware about <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#why-my-tests-are-executed-twice-in-queue-mode-why-ci-node-runs-whole-test-suite-again" target="_blank">possible edge case if your rspec test suite is very short</a>.
 </p>
   </div>
+
+<div id="guide-provider-github-actions" class="hidden">
+  <h4>Step for GitHub Actions</h4>
+
+  <p>
+  knapsack_pro gem supports environment variables provided by GitHub Actions to run your tests. You will have to define a few things in <i>.github/workflows/main.yaml</i> config file.
+  </p>
+
+  <ul>
+    <li>You need to set API token like <i>KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC</i> in GitHub settings -> Secrets for your repository. <a href="https://help.github.com/en/articles/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables" target="_blank" rel="nofollow">Creating and using secrets in GitHub Actions</a>.</li>
+    <li>You should create as many parallel jobs as you need with <a href="https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix" target="_blank" rel="nofollow"><i>matrix</i> property</a>. If your test suite is slow you should use more parallel jobs. See comment in below config.</li>
+  </ul>
+
+  <p>
+  Below you can find full GitHub Actions config for Ruby on Rails project.
+  </p>
+
+  <script src="https://gist.github.com/ArturT/a35284f34c2dc0b61a0ad2b4dd4bacae.js"></script>
+
+</div>
 
   <div id="guide-provider-other" class="hidden">
   <h4>Step for other CI provider</h4>
