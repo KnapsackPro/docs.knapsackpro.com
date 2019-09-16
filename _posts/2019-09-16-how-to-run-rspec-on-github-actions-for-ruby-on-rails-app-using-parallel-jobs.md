@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to run RSpec on GitHub Actions for Ruby on Rails app using parallel jobs"
-date:   2019-09-16 20:00:00 +0100
+date:   2019-09-16 21:00:00 +0100
 author: "Artur Trzop"
 categories: continuous_integration github
 og_image: "/images/blog/posts/how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs/github-octopus.jpeg"
