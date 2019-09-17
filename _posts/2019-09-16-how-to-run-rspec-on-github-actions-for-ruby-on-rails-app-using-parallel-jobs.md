@@ -41,7 +41,9 @@ services:
     options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 {% endhighlight %}
 
-To be able to install `pg` ruby gem from project `Gemfile` you will need `libpq-dev` library in Ubuntu system hence the step to install it. Then we can install our Ruby gems.
+To be able to install `pg` ruby gem from project `Gemfile` you will need `libpq-dev` library in Ubuntu system hence the step to install it.
+`libpq` is a set of library functions that allow client programs to pass queries to the PostgreSQL backend server and to receive the results of these queries. We need it to compile `pg` gem.
+Next step will be installing our Ruby gems.
 
 {% highlight yaml %}
 # required to compile pg ruby gem
