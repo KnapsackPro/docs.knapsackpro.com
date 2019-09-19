@@ -79,6 +79,7 @@ In our case, you split tests across 2 parallel jobs so you need to set 2 as `mat
 {% highlight yaml %}
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
 strategy:
+  fail-fast: false
   matrix:
     # Set N number of parallel jobs you want to run tests on.
     # Use higher number if you have slow tests to split them on more parallel jobs.
