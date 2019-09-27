@@ -40,4 +40,3 @@ You can learn more about Knapsack Pro in the [installation guide](/integration/)
 ## Summary
 
 If you would like to learn more about GitHub Actions check our previous article about [testing Rails app with PostgreSQL on GitHub Actions](/2019/how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs). There is also a video showing it in action.
-
