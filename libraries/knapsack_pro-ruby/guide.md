@@ -201,7 +201,7 @@ end
 <h4>Step for https://circleci.com</h4>
 
 <p>
-Here is an example for test configuration in your circleci.yml file.
+Here is an example for test configuration in your circleci.yml file for CircleCI 1.0.
 </p>
 
 {% highlight yaml %}
@@ -239,42 +239,60 @@ test:
 {% endhighlight %}
 
 <p>
+Please remember to add additional containers for your project in CircleCI settings.
+</p>
+
+<p>
 Here is another example for CircleCI 2.0 platform.
 </p>
 
 {% highlight yaml %}
 # CircleCI 2.0
+# .circleci/config.yml
+version: 2
+jobs:
+  build:
+    parallelism: 2
+    steps:
+      - checkout
 
-# some tests that are not balanced and executed only on first CI node
-- run: case $CIRCLE_NODE_INDEX in 0) npm test ;; esac
+      # ... other config
 
-# auto-balancing CI build time execution to be flat and optimal (as fast as possible).
-# Queue Mode does dynamic tests allocation so the previous not balanced run command won't
-# create a bottleneck on the CI node
-- run:
-  name: RSpec via knapsack_pro Queue Mode
-  command: |
-    # export word is important here!
-    export RAILS_ENV=test
-    bundle exec rake "knapsack_pro:queue:rspec[--format documentation]"
+      # some tests that are not balanced and executed only on first CI node
+      - run: case $CIRCLE_NODE_INDEX in 0) npm test ;; esac
 
-- run:
-  name: Minitest via knapsack_pro Queue Mode
-  command: |
-    # export word is important here!
-    export RAILS_ENV=test
-    bundle exec rake "knapsack_pro:queue:minitest[--verbose]"
+      # auto-balancing CI build time execution to be flat and optimal (as fast as possible).
+      # Queue Mode does dynamic tests allocation so the previous not balanced run command won't
+      # create a bottleneck on the CI node
+      - run:
+        name: RSpec via knapsack_pro Queue Mode
+        command: |
+          # export word is important here!
+          export RAILS_ENV=test
+          bundle exec rake "knapsack_pro:queue:rspec[--format documentation]"
 
-- run:
-  name: Cucumber via knapsack_pro Queue Mode
-  command: |
-    # export word is important here!
-    export RAILS_ENV=test
-    bundle exec rake knapsack_pro:queue:cucumber
+      - run:
+        name: Minitest via knapsack_pro Queue Mode
+        command: |
+          # export word is important here!
+          export RAILS_ENV=test
+          bundle exec rake "knapsack_pro:queue:minitest[--verbose]"
+
+      - run:
+        name: Cucumber via knapsack_pro Queue Mode
+        command: |
+          # export word is important here!
+          export RAILS_ENV=test
+          bundle exec rake knapsack_pro:queue:cucumber
 {% endhighlight %}
 
 <p>
-Please remember to add additional containers for your project in CircleCI settings.
+Adjust amount of parallel containers with <code class="highlighter-rouge">parallelism</code> attribute.<br>
+Full example for <a href="/2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless" target="_blank">Rails project config on CircleCI 2.0</a> can be found the article.
+</p>
+
+<p>
+If you use knapsack_pro Queue Mode with CircleCI you may want to collect metadata like <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#circleci-and-knapsack_pro-queue-mode" target="_blank">junit xml report about your RSpec</a> test suite with junit formatter. Thanks to that you will see failed tests in nice CircleCI web UI. It's also possible to <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-junit-formatter-with-knapsack_pro-regular-mode" target="_blank">configure junit formatter for knapsack_pro Regular Mode</a>.
 </p>
   </div>
 
