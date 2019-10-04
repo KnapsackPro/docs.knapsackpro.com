@@ -201,48 +201,6 @@ end
 <h4>Step for https://circleci.com</h4>
 
 <p>
-Here is an example for test configuration in your circleci.yml file for CircleCI 1.0.
-</p>
-
-{% highlight yaml %}
-# CircleCI 1.0
-
-machine:
-  environment:
-    # Tokens should be set in CircleCI settings to avoid expose tokens in build logs
-    # KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: rspec-token
-    # KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER: cucumber-token
-    # KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST: minitest-token
-    # KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT: test-unit-token
-    # KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH: spinach-token
-test:
-  override:
-    # Step for RSpec
-    - bundle exec rake knapsack_pro:rspec:
-        parallel: true # Caution: there are 8 spaces indentation!
-
-    # Step for Cucumber
-    - bundle exec rake knapsack_pro:cucumber:
-        parallel: true # Caution: there are 8 spaces indentation!
-
-    # Step for Minitest
-    - bundle exec rake knapsack_pro:minitest:
-        parallel: true # Caution: there are 8 spaces indentation!
-
-    # Step for test-unit
-    - bundle exec rake knapsack_pro:test_unit:
-        parallel: true # Caution: there are 8 spaces indentation!
-
-    # Step for Spinach
-    - bundle exec rake knapsack_pro:spinach:
-        parallel: true # Caution: there are 8 spaces indentation!
-{% endhighlight %}
-
-<p>
-Please remember to add additional containers for your project in CircleCI settings.
-</p>
-
-<p>
 Here is another example for CircleCI 2.0 platform.
 </p>
 
@@ -293,6 +251,48 @@ Full example for <a href="/2017/circleci-2-0-capybara-feature-specs-selenium-web
 
 <p>
 If you use knapsack_pro Queue Mode with CircleCI you may want to collect metadata like <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#circleci-and-knapsack_pro-queue-mode" target="_blank">junit xml report about your RSpec</a> test suite with junit formatter. Thanks to that you will see failed tests in nice CircleCI web UI. It's also possible to <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-junit-formatter-with-knapsack_pro-regular-mode" target="_blank">configure junit formatter for knapsack_pro Regular Mode</a>.
+</p>
+
+<p>
+<b>Legacy:</b> Here is an example for test configuration in your circleci.yml file for CircleCI 1.0.
+</p>
+
+{% highlight yaml %}
+# CircleCI 1.0
+
+machine:
+  environment:
+    # Tokens should be set in CircleCI settings to avoid expose tokens in build logs
+    # KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: rspec-token
+    # KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER: cucumber-token
+    # KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST: minitest-token
+    # KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT: test-unit-token
+    # KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH: spinach-token
+test:
+  override:
+    # Step for RSpec
+    - bundle exec rake knapsack_pro:rspec:
+        parallel: true # Caution: there are 8 spaces indentation!
+
+    # Step for Cucumber
+    - bundle exec rake knapsack_pro:cucumber:
+        parallel: true # Caution: there are 8 spaces indentation!
+
+    # Step for Minitest
+    - bundle exec rake knapsack_pro:minitest:
+        parallel: true # Caution: there are 8 spaces indentation!
+
+    # Step for test-unit
+    - bundle exec rake knapsack_pro:test_unit:
+        parallel: true # Caution: there are 8 spaces indentation!
+
+    # Step for Spinach
+    - bundle exec rake knapsack_pro:spinach:
+        parallel: true # Caution: there are 8 spaces indentation!
+{% endhighlight %}
+
+<p>
+Please remember to add additional containers for your project in CircleCI settings.
 </p>
   </div>
 
