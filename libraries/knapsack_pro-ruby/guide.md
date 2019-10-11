@@ -70,6 +70,7 @@ Please answer questions to get basic configuration of knapsack_pro gem for your 
     <li><label><input type="radio" name="ci-provider" value="cirrus-ci"> https://cirrus-ci.org</label></li>
     <li><label><input type="radio" name="ci-provider" value="jenkins"> Jenkins</label></li>
     <li><label><input type="radio" name="ci-provider" value="github-actions"> GitHub Actions</label></li>
+    <li><label><input type="radio" name="ci-provider" value="codefresh"> Codefresh.io</label></li>
     <li><label><input type="radio" name="ci-provider" value="other"> other</label></li>
   </ul>
 </p>
@@ -962,6 +963,143 @@ If you are going to relay on rspec to autobalance build when cucumber tests were
 
   <script src="https://gist.github.com/ArturT/a35284f34c2dc0b61a0ad2b4dd4bacae.js"></script>
 
+</div>
+
+
+<div id="guide-provider-codefresh" class="hidden">
+  <h4>Step for Codefresh.io</h4>
+
+  <p>
+  knapsack_pro gem supports environment variables provided by Codefresh.io to run your tests. You will have to define a few things in <code class="highlighter-rouge">.codefresh/codefresh.yml</code> config file.
+  </p>
+
+  <ul>
+    <li>
+      You need to set an API token like <code class="highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC</code> in Codefresh dashboard, see left menu Pipelines -> settings (cog icon next to the pipeline) -> Variables tab (see a vertical menu on the right side). Add there new API token depending on the test runner you use:
+      <ul>
+        <li><code class="highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC</code></li>
+        <li><code class="highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER</code></li>
+        <li><code class="highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST</code></li>
+        <li><code class="highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TEST_UNIT</code></li>
+        <li><code class="highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH</code></li>
+      </ul>
+    </li>
+    <li>Set where Codefresh YAML file can be found. In Codefresh dashboard, see left menu Pipelines -> settings (cog icon next to pipeline) -> Workflow tab (horizontal menu on the top) -> Path to YAML (set there <code class="highlighter-rouge">./.codefresh/codefresh.yml</code>).</li>
+    <li>Set how many parallel jobs (parallel CI nodes) you want to run with <code class="highlighter-rouge">KNAPSACK_PRO_CI_NODE_TOTAL</code> environment variable in <code class="highlighter-rouge">.codefresh/codefresh.yml</code> file.</li>
+    <li>Ensure in the <code class="highlighter-rouge">matrix</code> section you listed all <code class="highlighter-rouge">KNAPSACK_PRO_CI_NODE_INDEX</code> environment variables with a value from <code class="highlighter-rouge">0</code> to <code class="highlighter-rouge">KNAPSACK_PRO_CI_NODE_TOTAL-1</code>. Codefresh will generate a matrix of parallel jobs where each job has a different value for <code class="highlighter-rouge">KNAPSACK_PRO_CI_NODE_INDEX</code>. Thanks to that Knapsack Pro knows what tests should be run on each parallel job.</li>
+  </ul>
+
+  <p>
+  Below you can find Codefresh YAML config and <code class="highlighter-rouge">Test.Dockerfile</code> used by Codefresh to run Ruby on Rails project with PostgreSQL inside of Docker container.
+  </p>
+
+{% highlight yaml %}
+# .codefresh/codefresh.yml
+version: "1.0"
+
+stages:
+  - "clone"
+  - "build"
+  - "tests"
+
+steps:
+  main_clone:
+    type: "git-clone"
+    description: "Cloning main repository..."
+    repo: "${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}"
+    revision: "${{CF_BRANCH}}"
+    stage: "clone"
+  BuildTestDockerImage:
+    title: Building Test Docker image
+    type: build
+    arguments:
+      image_name: '${{CF_ACCOUNT}}/${{CF_REPO_NAME}}-test'
+      tag: '${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}'
+      dockerfile: Test.Dockerfile
+    stage: "build"
+
+  run_tests:
+    stage: "tests"
+    image: '${{BuildTestDockerImage}}'
+    working_directory: /src
+    fail_fast: false
+    environment:
+      - RAILS_ENV=test
+      # set how many parallel jobs you want to run
+      - KNAPSACK_PRO_CI_NODE_TOTAL=2
+      - PGHOST=postgres
+      - PGUSER=rails-app-with-knapsack_pro
+      - PGPASSWORD=password
+    services:
+      composition:
+        postgres:
+          image: postgres:latest
+          environment:
+            - POSTGRES_DB=rails-app-with-knapsack_pro_test
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_USER=rails-app-with-knapsack_pro
+          ports:
+            - 5432
+    matrix:
+      environment:
+        # please ensure you have here listed N-1 indexes
+        # where N is KNAPSACK_PRO_CI_NODE_TOTAL
+        - KNAPSACK_PRO_CI_NODE_INDEX=0
+        - KNAPSACK_PRO_CI_NODE_INDEX=1
+    commands:
+      - bin/rails db:prepare
+
+      # run tests in Knapsack Pro Regular Mode
+      - bundle exec rake knapsack_pro:rspec
+      - bundle exec rake knapsack_pro:cucumber
+      - bundle exec rake knapsack_pro:minitest
+      - bundle exec rake knapsack_pro:test_unit
+      - bundle exec rake knapsack_pro:spinach
+
+      # you can use Knapsack Pro in Queue Mode once recorded first CI build with Regular Mode
+      - bundle exec rake knapsack_pro:queue:rspec
+      - bundle exec rake knapsack_pro:queue:cucumber
+      - bundle exec rake knapsack_pro:queue:minitest
+{% endhighlight %}
+
+  <p>
+  Add <code class="highlighter-rouge">Test.Dockerfile</code> to your project repository.
+  </p>
+
+{% highlight dockerfile %}
+# Test.Dockerfile
+FROM ruby:2.6.5-alpine3.10
+
+# Prepare Docker image for Nokogiri
+RUN apk add --update \
+  build-base \
+  libxml2-dev \
+  libxslt-dev \
+  jq \
+  nodejs \
+  npm \
+  postgresql-dev \
+  python3-dev \
+  sqlite-dev \
+  git \
+  && rm -rf /var/cache/apk/*
+
+# Install AWS CLI
+RUN pip3 install awscli
+
+# Use libxml2, libxslt a packages from alpine for building nokogiri
+RUN bundle config build.nokogiri --use-system-libraries
+
+# Install Codefresh CLI
+RUN wget https://github.com/codefresh-io/cli/releases/download/v0.31.1/codefresh-v0.31.1-alpine-x64.tar.gz
+RUN tar -xf codefresh-v0.31.1-alpine-x64.tar.gz -C /usr/local/bin/
+
+COPY . /src
+
+WORKDIR /src
+
+RUN bundle install
+{% endhighlight %}
 </div>
 
   <div id="guide-provider-other" class="hidden">
