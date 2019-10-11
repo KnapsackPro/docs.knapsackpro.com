@@ -1237,7 +1237,7 @@ KNAPSACK_PRO_CI_NODE_INDEX - starts from 0, it's index of each CI node
   </p>
 
   <p>
-  Go to <a href="https://knapsackpro.com/dashboard" target="_blank">user dashboard</a> and click build metrics link next to your API token. Click show link on recent build and ensure the time execution data were recorded for all your CI nodes. You should see info that build subsets were collected.
+  Go to <a href="https://knapsackpro.com/dashboard" target="_blank">user dashboard</a> and click <b>Build metrics</b> link next to your API token. Click <b>Show</b> link on recent build and ensure the time execution data were recorded for all your CI nodes. You should see info that build subsets were collected.
   </p>
 
   <p>
