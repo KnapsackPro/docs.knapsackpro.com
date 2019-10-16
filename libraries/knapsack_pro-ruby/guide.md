@@ -635,7 +635,7 @@ Remember to add API tokens like KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER and KNAPS
 </p>
 
 <p>
-If you want to use Codeship retry single CI node feature to retry just failed tests on particular CI node then you should set <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank">KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true</a>.
+CodeShip uses the same build number if you restart a build. Because of that you need to set <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank">KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true</a> in order to be able to restart CI build in Queue Mode.
 </p>
 </div>
 
