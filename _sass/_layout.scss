@@ -281,3 +281,38 @@
 .rss-subscribe {
   float: right;
 }
+
+.author-container {
+  margin: 2rem 0 0;
+  width: 100%;
+}
+
+.author-img {
+  display: inline-block;
+  float: left;
+  width: 4.5rem;
+}
+
+.author-info {
+  float: left;
+  width: calc(100% - 5.5rem);
+  margin-left: 2rem;
+  padding: 0 0 0 1rem;
+  border-left: 4px solid $grey-color-light;
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
+.twitter-color {
+  color: #4694DA;
+}
+
+.youtube-color {
+  color: #EA3223;
+}
+
+.linkedin-color {
+  color: #3072AD;
+}
