@@ -56,6 +56,8 @@ You also need to add an API token for the Cypress test suite. You can get the AP
 - Set how many parallel jobs (parallel CI nodes) you want to run with `KNAPSACK_PRO_CI_NODE_TOTAL` environment variable in `.codefresh/codefresh.yml` file.
 - Ensure in the `matrix` section you listed all `KNAPSACK_PRO_CI_NODE_INDEX` environment variables with a value from `0` to `KNAPSACK_PRO_CI_NODE_TOTAL-1`. Codefresh will generate a matrix of parallel jobs where each job has a different value for `KNAPSACK_PRO_CI_NODE_INDEX`. Thanks to that Knapsack Pro knows what tests should be run on each parallel job.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3OTu6a-WGgo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## How dynamic test suite split works in Queue Mode
 
 You can learn how dynamic test suite split with <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=how-to-run-cypress-parallel-tests-on-codefresh-ci-server">Knapsack Pro</a> Queue Mode works in the below video. There are examples of a few edge cases that Queue Mode helps with.
