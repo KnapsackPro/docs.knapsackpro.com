@@ -1,18 +1,29 @@
-[
-  {
-    "id": "651efcce-cc5f-4cfc-b8fa-f49b4e5fb4af",
-    "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
-    "branch": "master",
-    "node_total": 3,
-    "created_at": "2018-04-21T10:57:42.439Z",
-    "updated_at": "2018-04-21T10:57:54.989Z"
-  },
-  {
-    "id": "ba2190af-1bb1-4e3a-8ce1-37303549a4c3",
-    "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
-    "branch": "master",
-    "node_total": 2,
-    "created_at": "2018-04-02T10:00:44.741Z",
-    "updated_at": "2018-04-02T10:00:44.763Z"
-  }
-]
+{
+    "meta": {
+        "records_per_page": 100,
+        "total_pages": 1,
+        "prev_page": null,
+        "current_page": 1,
+        "next_page": null,
+        "is_first_page": true,
+        "is_last_page": true,
+        "is_page_out_of_range": false
+    },
+    "links": {
+        "first": "https://api.knapsackpro.com/v1/builds?branch=master&commit_hash=d1acb81ac1bead703eb6de64d1af24104d5d4b2c&node_total=2&page=1",
+        "prev": "https://api.knapsackpro.com/v1/builds?branch=master&commit_hash=d1acb81ac1bead703eb6de64d1af24104d5d4b2c&node_total=2",
+        "self": "https://api.knapsackpro.com/v1/builds?branch=master&commit_hash=d1acb81ac1bead703eb6de64d1af24104d5d4b2c&node_total=2&page=1",
+        "next": "https://api.knapsackpro.com/v1/builds?branch=master&commit_hash=d1acb81ac1bead703eb6de64d1af24104d5d4b2c&node_total=2",
+        "last": "https://api.knapsackpro.com/v1/builds?branch=master&commit_hash=d1acb81ac1bead703eb6de64d1af24104d5d4b2c&node_total=2&page=1"
+    },
+    "data": [
+        {
+            "id": "07c0fca5-9a6c-4313-b176-25dad6139057",
+            "commit_hash": "d1acb81ac1bead703eb6de64d1af24104d5d4b2c",
+            "branch": "master",
+            "node_total": 2,
+            "created_at": "2019-09-18T17:54:54.430Z",
+            "updated_at": "2019-09-18T18:02:16.149Z"
+        }
+    ]
+}

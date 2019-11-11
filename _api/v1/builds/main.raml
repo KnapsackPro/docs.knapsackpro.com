@@ -1,12 +1,30 @@
 get:
   description: |
-    Get list of all CI builds you have run.
+    Get list of all CI builds you have run. Array of CI builds is inside of __data__ key.
+
+    There are also available pagination urls in __links__ key so you can easily get CI builds for next page.
+    Key __meta__ contains basic info about current CI builds page.
+
+    ---
+
+    You can provide optional query params to filter list of CI builds by __commit_hash__, __branch__, __node_total__.
+
+    Example 1: /v1/builds?page=1&branch=master&node_total=2
+
+    Example 2: /v1/builds?page=1&commit_hash=d1acb81ac1bead703eb6de64d1af24104d5d4b2c
+
+    ---
 
     CI build means unique combination of __commit_hash__, __branch__, __node_total__.
 
     You can use __id__ of the build to fetch detailed info about tests recorded for that CI build by doing request to __/v1/builds/:id__ endpoint.
 
   headers: !include ../headers/test_suite_token.raml
+
+  queryParameters:
+    commit_hash: !include ../params/filters/commit_hash.raml
+    branch: !include ../params/filters/branch.raml
+    node_total: !include ../params/filters/node_total.raml
 
   responses:
     200:
