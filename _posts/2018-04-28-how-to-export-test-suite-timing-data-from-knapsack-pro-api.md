@@ -24,24 +24,43 @@ curl -X GET \
 You will get a response from API with the list of CI builds.
 
 {% highlight plain %}
-[
-  {
-    "id": "651efcce-cc5f-4cfc-b8fa-f49b4e5fb4af",
-    "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
-    "branch": "master",
-    "node_total": 3,
-    "created_at": "2018-04-21T10:57:42.439Z",
-    "updated_at": "2018-04-21T10:57:54.989Z"
-  },
-  {
-    "id": "ba2190af-1bb1-4e3a-8ce1-37303549a4c3",
-    "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
-    "branch": "master",
-    "node_total": 2,
-    "created_at": "2018-04-02T10:00:44.741Z",
-    "updated_at": "2018-04-02T10:00:44.763Z"
-  }
-]
+{
+    "meta": {
+        "records_per_page": 100,
+        "total_pages": 1,
+        "prev_page": null,
+        "current_page": 1,
+        "next_page": null,
+        "is_first_page": true,
+        "is_last_page": true,
+        "is_page_out_of_range": false
+    },
+    "links": {
+        "first": "https://api.knapsackpro.com/v1/builds?page=1",
+        "prev": null,
+        "self": "https://api.knapsackpro.com/v1/builds?page=1",
+        "next": null,
+        "last": "https://api.knapsackpro.com/v1/builds?page=1"
+    },
+    "data": [
+        {
+          "id": "651efcce-cc5f-4cfc-b8fa-f49b4e5fb4af",
+          "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
+          "branch": "master",
+          "node_total": 3,
+          "created_at": "2018-04-21T10:57:42.439Z",
+          "updated_at": "2018-04-21T10:57:54.989Z"
+        },
+        {
+          "id": "ba2190af-1bb1-4e3a-8ce1-37303549a4c3",
+          "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
+          "branch": "master",
+          "node_total": 2,
+          "created_at": "2018-04-02T10:00:44.741Z",
+          "updated_at": "2018-04-02T10:00:44.763Z"
+        }
+    ]
+}
 {% endhighlight %}
 
 Note the CI build from Knapsack Pro API perspective means a unique combination of `commit_hash`, `branch`, `node_total`. Even when you run multiple CI builds in your CI provider for the same combination of fields there will be only single CI build on Knapsack Pro API side.
@@ -49,6 +68,17 @@ Note the CI build from Knapsack Pro API perspective means a unique combination o
 You can use `id` of the build to fetch detailed info about tests recorded for that CI build by doing request to `https://api.knapsackpro.com/v1/builds/:id` endpoint. You will learn about it in next section.
 
 You can see [summary of `GET https://api.knapsackpro.com/v1/builds` endpoint here](/api/v1/#builds_get).
+
+### Filtering CI build list
+
+You can use optional query params like `commit_hash`, `branch`, `node_total` to filter list of CI builds. See example:
+
+{% highlight plain %}
+curl -X GET \
+  https://api.knapsackpro.com/v1/builds?page=1&branch=master&node_total=2&commit_hash=d1acb81ac1bead703eb6de64d1af24104d5d4b2c \
+  -H 'cache-control: no-cache' \
+  -H 'KNAPSACK-PRO-TEST-SUITE-TOKEN: e5311882cbba506223ee8036fa68dc13'
+{% endhighlight %}
 
 ## How to get the timing of test files for CI build
 
@@ -157,4 +187,4 @@ You can see [summary of `GET https://api.knapsackpro.com/v1/builds/:id` endpoint
 
 Hope this helps you to do whatever you like to do with your data. We keep data for last 90 days. If you need the data for a longer period please store them on your side. :)
 
-Manuel, one of our users did great job creating [ruby script to fetch data from Knapsack Pro API and calculate popular slow tests across multipel CI builds](https://gist.github.com/manuelpuyol/9e1502cba67fa22c8b5e92b7382bab5a).
+Manuel, one of our users did great job creating [ruby script to fetch data from Knapsack Pro API and calculate popular slow tests across multiple CI builds](https://gist.github.com/manuelpuyol/9e1502cba67fa22c8b5e92b7382bab5a). Note the script is based on old version of [`/v1/builds`](/api/v1/#builds_get) API and needs to be adjusted to work with pagination.
