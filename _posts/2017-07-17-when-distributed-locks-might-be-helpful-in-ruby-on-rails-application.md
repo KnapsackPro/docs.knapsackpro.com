@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on
 
 During this year I noticed 2 similar concurrency problems with my Ruby on Rails application and I solved them with distributed locks. I'm going to show you how to detect if your application might have a concurrency problem and how to solve it.
 
-<img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/distributed_lock.jpg" style="width:250px;float:right;" />
+<img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/distributed_lock.jpg" style="width:250px;float:right;" alt="Distributed lock" />
 
 Let me start with a bit of context before we discuss the problem. I'm running small SaaS application [KnapsackPro.com](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=distributed-locks) and the application provides API for the gem [knapsack_pro](https://github.com/KnapsackPro/knapsack_pro-ruby). The whole point of the tool is to optimize time execution of your RSpec, Cucumber etc test suite by splitting tests across CI nodes running in parallel. 
 
@@ -19,7 +19,7 @@ Imagine a scenario where you have 20 minutes long RSpec test suite and you would
 
 On the Knapsack Pro API side, there is test file queue generated for your CI build. Each CI node periodically requests the Knapsack Pro API via knapsack_pro gem for test files that should be executed next. Thanks to that each CI node will finish tests at the same time.
 
-<img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/queue_mode.jpg" style="width:150px;"/>
+<img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/queue_mode.jpg" style="width:150px;" alt="Knapsack Pro Regular Mode API"/>
 
 When both CI nodes start work at the same time to execute your test suite then the knapsack_pro gem does a request to Knapsack Pro API to get the list of test files that should be executed on the particular CI node. The first request coming to the Knapsack Pro API is responsible for creating a test file work queue. 
 
@@ -171,7 +171,7 @@ This way I was able to reproduce the problem in development and I had a script t
 
 ## How to deal with concurrency problem
 
-<img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/dining_philosophers_problem.jpg" style="width:250px;float:right;" />
+<img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/dining_philosophers_problem.jpg" style="width:250px;float:right;" alt="concurrency problem table" />
 
 The first thing that came to my mind was that maybe I should write myself some sort of solution. The test file work queue is stored in Redis so I was wondering maybe I could do something on the Redis level to ensure the work queue is created only once. 
 
@@ -224,7 +224,7 @@ When I had the working fix then I validated if it actually solves the problem by
 
 ## Concurrency problem you most likely have too
 
-<img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/ruby_on_rails.jpg" style="width:250px;float:right;" />
+<img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/ruby_on_rails.jpg" style="width:250px;float:right;" alt="RoR - Ruby on Rails" />
 
 A month ago or so I found another concurrency issue in my API and the problematic code looked like:
 
