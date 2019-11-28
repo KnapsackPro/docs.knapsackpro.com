@@ -109,6 +109,14 @@
     margin-left: 0;
 }
 
+@include media-query($on-palm) {
+  .social-media-list {
+    li {
+      height: 48px;
+    }
+  }
+}
+
 .footer-col-wrapper {
     font-size: 15px;
     color: $grey-color;
