@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/run-javascript-e2e-tests-faster-with-cypress-on-pa
 
 Cypress test runner is a great alternative to Selenium in end-to-end testing space. When it comes to E2E tests they tend to grow with time and running them is slow and becomes time waisting or just coffee break for developers. ;)
 
-<img src="/images/blog/posts/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes/cypress-logo.jpg" style="width:450px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes/cypress-logo.jpg" style="width:450px;margin-left: 15px;float:right;" alt="Cypress.io" />
 
 To save the time and give quick feedback to developers about CI builds passing or not we could run tests across parallel CI nodes. Many CI providers allow you to set up how many parallel machines can be run within your CI build.
 
