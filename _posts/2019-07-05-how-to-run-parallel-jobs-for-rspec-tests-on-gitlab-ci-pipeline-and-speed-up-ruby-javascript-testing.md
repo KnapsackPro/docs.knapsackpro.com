@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/how-to-run-parallel-jobs-for-rspec-tests-on-gitlab
 
 GitLab CI allows you to run tests much faster thanks to CI parallelisation feature. You can run parallel jobs across multiple GitLab Runners. In order to do it, you will learn how to split tests in a dynamic way across parallel tasks to ensure there is no bottleneck in GitLab Pipeline. Thanks to that CI build can be run as fast as possible so your <strong>Ruby & JS tests can be finely fast</strong>.
 
-<img src="/images/blog/posts/how-to-run-parallel-jobs-for-rspec-tests-on-gitlab-ci-pipeline-and-speed-up-ruby-javascript-testing/gitlab.jpeg" style="width:300px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/how-to-run-parallel-jobs-for-rspec-tests-on-gitlab-ci-pipeline-and-speed-up-ruby-javascript-testing/gitlab.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="GitLab logo" />
 
 ## GitLab CI parallelisation
 
