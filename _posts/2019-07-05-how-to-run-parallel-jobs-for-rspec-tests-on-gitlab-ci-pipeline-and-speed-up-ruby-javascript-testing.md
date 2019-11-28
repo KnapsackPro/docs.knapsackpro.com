@@ -23,7 +23,7 @@ A solution to optimal tests distribution across parallel jobs (parallel CI nodes
 
 To [split tests in a dynamic way for Ruby & JavaScript tests you can use Queue Mode in Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-parallel-jobs-for-rspec-tests-on-gitlab-ci-pipeline-and-speed-up-ruby-javascript-testing). Below I will explain how Queue Mode works and what problems it solves.
 
-<iframe width="853" height="480" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style="width: 100%; max-width: 853; height: 480px" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## GitLab YAML config for parallel testing
 
@@ -64,7 +64,7 @@ rspec:
 
 Note you can run dozens of parallel jobs by changing `parallel` option and thanks to that run the very long test suite in a few minutes instead of waiting hour.
 
-<iframe width="853" height="480" src="https://www.youtube.com/embed/Td0IKEYn4Zk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style="width: 100%; max-width: 853; height: 480px" src="https://www.youtube.com/embed/Td0IKEYn4Zk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Summary
 
