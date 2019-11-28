@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/clean-rspec-configuration-directory-structure-for-
 
 When your Ruby on Rails project is getting bigger your test suite as well. You need to test more of your business logic and sometimes you will use other gems that can help you with that. Most of the time you may need something like `database_cleaner`, `capybara` for feature tests or `rspec-sidekiq` to test your workers.
 
-<img src="/images/blog/posts/clean-rspec-configuration-directory-structure-for-ruby-on-rails-gems-needed-in-testing/rspec.jpg" style="width:250px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/clean-rspec-configuration-directory-structure-for-ruby-on-rails-gems-needed-in-testing/rspec.jpg" style="width:250px;margin-left: 15px;float:right;" alt="RSpec, Ruby" />
 
 Adding new gems needed for testing often requires changes in RSpec configuration. You add a new line of config here and there in the `spec_helper.rb` or `rails_helper.rb` file and suddenly you have huge and hard to understand config file for RSpec.
 
