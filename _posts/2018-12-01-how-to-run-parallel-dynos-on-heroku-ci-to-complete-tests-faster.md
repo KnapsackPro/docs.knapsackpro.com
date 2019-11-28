@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/how-to-run-parallel-dynos-on-heroku-ci-to-complete
 
 Heroku provides a CI solution out of the box for teams. They can run tests in dyno instance for your project. What's more interesting you can run parallel dynos as part of your CI build. This allows you to split tests on parallel dynos to complete CI build faster and save time.
 
-<img src="/images/blog/posts/how-to-run-parallel-dynos-on-heroku-ci-to-complete-tests-faster/heroku.jpg" style="width:450px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/how-to-run-parallel-dynos-on-heroku-ci-to-complete-tests-faster/heroku.jpg" style="width:450px;margin-left: 15px;float:right;" alt="Heroku" />
 
 Heroku charges you for seconds spent in runtime for each dyno. It means instead of running your slow test suite on a single dyno you could split it across multiple dynos and pay more or less the same and significantly reduce the CI build time for your project.
 

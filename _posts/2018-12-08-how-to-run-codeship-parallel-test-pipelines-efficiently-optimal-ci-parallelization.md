@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/how-to-run-codeship-parallel-test-pipelines-effici
 
 When you use CodeShip as your CI server you can significantly increase the speed of your CI builds with Parallel Test Pipelines. Pipelines allow you to run multiple commands at the same time, for instance, you can split test suite across a few pipelines and complete the CI build much faster.
 
-<img src="/images/blog/posts/how-to-run-codeship-parallel-test-pipelines-efficiently-optimal-ci-parallelization/codeship.jpg" style="width:300px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/how-to-run-codeship-parallel-test-pipelines-efficiently-optimal-ci-parallelization/codeship.jpg" style="width:300px;margin-left: 15px;float:right;" alt="CodeShip" />
 
 ## How to run parallel commands on CodeShip
 

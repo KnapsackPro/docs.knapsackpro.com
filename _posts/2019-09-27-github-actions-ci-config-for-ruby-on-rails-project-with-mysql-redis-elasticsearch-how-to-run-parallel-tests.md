@@ -11,7 +11,7 @@ You will learn how to configure Ruby on Rails project on GitHub Actions. This sp
 
 If you happen to use PostgreSQL you can check our previous article about [Rails app configuration with Postgres on GitHub Actions](/2019/how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs).
 
-<img src="/images/blog/posts/github-actions-ci-config-for-ruby-on-rails-project-with-mysql-redis-elasticsearch-how-to-run-parallel-tests/github-mysql-redis-elasticsearch.png" style="width:500px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/github-actions-ci-config-for-ruby-on-rails-project-with-mysql-redis-elasticsearch-how-to-run-parallel-tests/github-mysql-redis-elasticsearch.png" style="width:500px;margin-left: 15px;float:right;" alt="GitHub, Redis, MySQL, Elasticsearch" />
 
 ## GitHub Actions configuration for Rails
 

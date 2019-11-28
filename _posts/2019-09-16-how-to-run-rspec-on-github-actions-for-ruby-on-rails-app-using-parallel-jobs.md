@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/how-to-run-rspec-on-github-actions-for-ruby-on-rai
 
 GitHub introduced their own CI server solution called GitHub Actions. You will learn how to set up your Ruby on Rails application on GitHub Actions with YAML config file. To run your RSpec test suite faster you will configure parallel jobs with matrix strategy on GitHub Actions.
 
-<img src="/images/blog/posts/how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs/github-octopus.jpeg" style="width:300px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs/github-octopus.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="GitHub, cat, octopus" />
 
 ## Automate your workflow on GitHub Actions
 

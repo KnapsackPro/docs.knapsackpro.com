@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/codeclimate-and-circleci-2-0-parallel-builds-confi
 
 How to merge CodeClimate reports for your RSpec test suite executed with parallel builds on CircleCI 2.0? You will learn how to run RSpec parallel tests for your for Ruby on Rails project using CircleCI and how to send test coverage merged from parallel jobs into CodeClimate. We will cover config examples for:
 
-<img src="/images/blog/posts/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter/codeclimate.jpg" style="width:300px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter/codeclimate.jpg" style="width:300px;margin-left: 15px;float:right;" alt="CodeClimate" />
 
 * How to use SimpleCov needed by CodeClimate Test Reporter to prepare RSpec test coverage summary on each parallel job and then how to merge it so you will be able to send it to CodeClimate dashboard.
 

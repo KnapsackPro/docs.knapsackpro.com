@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/how-to-use-codefresh-ci-parallel-steps-to-run-rspe
 
 Codefresh.io seems to be a very nice CI solution to work with if you are a Ruby developer. I've tested one of my projects on Codefresh to see how it allows running fast tests. Codefresh has a matrix feature that lets you run parallel steps for the CI build. In this article, you will see how to leverage Codefresh matrix configuration and Knapsack Pro client library for testing in parallel your Ruby on Rails project with RSpec test suite.
 
-<img src="/images/blog/posts/how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project/codefresh.png" style="width:500px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project/codefresh.png" style="width:500px;margin-left: 15px;float:right;" alt="Codefresh" />
 
 ## Configure Rails project on Codefresh.io
 

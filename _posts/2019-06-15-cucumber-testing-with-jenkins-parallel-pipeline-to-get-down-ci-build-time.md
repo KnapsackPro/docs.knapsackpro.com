@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/cucumber-testing-with-jenkins-parallel-pipeline-to
 
 Cucumber is a popular automation testing tool for Behaviour-Driven Development (BDD) but when you use it for some time in your work project then the amount of automated tests adds up and you can spend dozens of minutes to run your Cucumber test suite. Sometimes complex projects can have a few hours of execution time for the Cucumber tests. To save time and speed up your Cucumber builds on CI (Continuous Integration) you can use CI parallelization. In this article, you will see how to do it for Jenkins using Jenkins parallel pipeline.
 
-<img src="/images/blog/posts/cucumber-testing-with-jenkins-parallel-pipeline-to-get-down-ci-build-time/cucumber_jenkins.jpeg" style="width:300px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/cucumber-testing-with-jenkins-parallel-pipeline-to-get-down-ci-build-time/cucumber_jenkins.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Cucumber, Jenkins" />
 
 ## How to split Cucumber tests in parallel
 

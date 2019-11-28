@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/run-parallel-jobs-on-semaphore-ci-2-0-to-get-faste
 
 If you run tests on parallel jobs (using CI parallelisation) you need to merge CodeClimate reports from each parallel job (CI node) into a unified report.
 
-<img src="/images/blog/posts/run-parallel-jobs-on-semaphore-ci-2-0-to-get-faster-ci-build-time/semaphore-ci-logo.png" style="width:300px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/run-parallel-jobs-on-semaphore-ci-2-0-to-get-faster-ci-build-time/semaphore-ci-logo.png" style="width:300px;margin-left: 15px;float:right;" alt="Semaphore CI" />
 
 An additional problem may happen that some of your parallel jobs (one of your parallel CI node) may not have reported CodeClimate result when tests were never executed on that CI node.
 

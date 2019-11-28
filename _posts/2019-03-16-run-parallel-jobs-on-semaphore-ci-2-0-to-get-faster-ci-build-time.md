@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/run-parallel-jobs-on-semaphore-ci-2-0-to-get-faste
 
 Semaphore CI 2.0 allows configuring your CI build task with parallel jobs. This way you can run simultaneously a few different commands that do not depend on each other. But we could also use parallel jobs to split your test suite across a few jobs and this way save time. I will show you how to speed up your CI build for Ruby or JavaScript project (Rails / Node project).
 
-<img src="/images/blog/posts/run-parallel-jobs-on-semaphore-ci-2-0-to-get-faster-ci-build-time/semaphore-ci-logo.png" style="width:300px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/run-parallel-jobs-on-semaphore-ci-2-0-to-get-faster-ci-build-time/semaphore-ci-logo.png" style="width:300px;margin-left: 15px;float:right;" alt="Semaphore CI" />
 
 With <a href="https://semaphoreci.com" target="_blank" rel="nofollow">Semaphore CI 2.0</a> you don't pay for a reserved amount of containers that can be run in parallel as in some other CI providers. Instead, they count the amount of work time spent on running containers. This creates an incentive to run more parallel jobs to execute our tests fast and still keep bill at a similar level as if we would just run all tests in single container waisting our own time.
 

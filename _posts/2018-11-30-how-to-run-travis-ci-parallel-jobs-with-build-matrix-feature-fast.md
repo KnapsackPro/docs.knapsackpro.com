@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/how-to-run-travis-ci-parallel-jobs-with-build-matr
 
 Travis CI allows you to run multiple jobs as part of the same CI build. They even allow for up to 200 parallel jobs for open source projects (the same for private repositories). You can leverage that using Travis build matrix feature to run your project way faster by splitting tests into many smaller jobs that will run a subset of your test suite.
 
-<img src="/images/blog/posts/how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast/travis-ci.jpg" style="width:450px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast/travis-ci.jpg" style="width:450px;margin-left: 15px;float:right;" alt="Travis CI" />
 
 ## How build matrix feature works?
 

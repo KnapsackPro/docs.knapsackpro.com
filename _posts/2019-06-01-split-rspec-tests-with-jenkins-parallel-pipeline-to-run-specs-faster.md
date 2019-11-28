@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/split-rspec-tests-with-jenkins-parallel-pipeline-t
 
 Jenkins CI server has a declarative pipeline that allows you to set Jenkins parallel stages. You can use the stages to run them at the same time (parallel run) to execute your RSpec test suite in a few smaller faster chunks instead of one long test suite run. 
 
-<img src="/images/blog/posts/split-rspec-tests-with-jenkins-parallel-pipeline-to-run-specs-faster/rspec_jenkins.jpeg" style="width:300px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/split-rspec-tests-with-jenkins-parallel-pipeline-to-run-specs-faster/rspec_jenkins.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="RSpec, Jenkins, Ruby" />
 
 ## Running stages in parallel with Jenkins workflow pipeline
 

@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/how-to-run-cypress-parallel-tests-on-codefresh-ci-
 
 When you work with end to end tests in Cypress you may notice they quickly get time-consuming for running the whole test suite. The more complex the project the more test cases you may end up with and this can take a long time to run - dozens of minutes or even hours.
 
-<img src="/images/blog/posts/how-to-run-cypress-parallel-tests-on-codefresh-ci-server/cypress-codefresh.jpeg" style="width:200px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/how-to-run-cypress-parallel-tests-on-codefresh-ci-server/cypress-codefresh.jpeg" style="width:200px;margin-left: 15px;float:right;" alt="Cypress, Codefresh" />
 
 One way of executing faster tests in Cypress is to use CI parallelism which is essentially running a few chunks of test suite spread across parallel jobs on CI server. In this article, you will learn how to <b>configure Codefresh.io server with matrix feature to run parallel steps for your Cypress tests</b> and this way save time on faster CI builds.
 

@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/circleci-2-0-cache-ruby-gems-or-npm-dependencies/c
 
 CircleCI 2.0 allows us to cache specific files or folders. We can use that to cache ruby gems installed with bundler and restore them when we will run another CI build. This way new CI build could run faster by using cached files from the previous build. This article shows you how to cache npm dependencies as well.
 
-<img src="/images/blog/posts/circleci-2-0-cache-ruby-gems-or-npm-dependencies/cache.jpg" style="width:450px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/circleci-2-0-cache-ruby-gems-or-npm-dependencies/cache.jpg" style="width:450px;margin-left: 15px;float:right;" alt="cache" />
 
 ## Cache ruby gems
 
