@@ -34,6 +34,7 @@ See [_posts/2099-01-31-example-article.md](https://raw.githubusercontent.com/Kna
 
 You can create thumbnail image for blog post with [Memopad app](https://www.tayasui.com/memopad/) which is free on iOS.
 Then you need to compress image with [TinyJPG](https://tinyjpg.com).
+Please ensure `img` tag in blog post has `alt` attribute.
 
 Please create a new blog post with pull request to this repository.
 Your blog post will be under [GNU Affero General Public License v3.0](LICENSE).
