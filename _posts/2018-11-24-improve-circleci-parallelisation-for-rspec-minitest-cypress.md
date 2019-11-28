@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/improve-circleci-parallelisation-for-rspec-minites
 
 Maybe you use CircleCI parallelisation to run your test suite across multiple CI nodes but you noticed that some CI nodes take more time to complete tests than the others.
 
-<img src="/images/blog/posts/improve-circleci-parallelisation-for-rspec-minitest-cypress/balanced-tests.jpg" style="width:450px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/improve-circleci-parallelisation-for-rspec-minitest-cypress/balanced-tests.jpg" style="width:450px;margin-left: 15px;float:right;" alt="parallel testing" />
 
 This can happen when your tests have random time. Often E2E (end-to-end) tests have a more random time of execution because the browser has to wait for some elements to be loaded on the website or maybe your app is depended on external API and processing requests have different duration. Other reason can be a delay with starting one of your parallel CI nodes.
 
@@ -17,7 +17,7 @@ This can happen when your tests have random time. Often E2E (end-to-end) tests h
 
 Here is an example of running tests with default CircleCI parallelisation. As you can see the whole CI build finished work in 29 minutes 37 seconds. Tests were executed on 15 parallel CI nodes and some of them run tests for 14 minutes and the slowest one for almost 30 minutes.
 
-<img src="/images/blog/posts/improve-circleci-parallelisation-for-rspec-minitest-cypress/circleci-before-knapsack_pro.png" style="width:100%;" />
+<img src="/images/blog/posts/improve-circleci-parallelisation-for-rspec-minitest-cypress/circleci-before-knapsack_pro.png" style="width:100%;" alt="parallel tests CircleCI without knapsack" />
 
 If we could auto-balance the split of test suite across CI nodes in a way that all CI nodes do work in similar time then we could get shorter CI build.
 
@@ -27,7 +27,7 @@ We can split tests in a dynamic way across CI nodes using [Knapsack Pro](https:/
 
 Here is graph after adding [Knapsack Pro Queue Mode](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=improve-circleci-parallelisation-for-rspec-minitest-cypress). Knapsack Pro Queue Mode keeps your tests auto-balanced across CI nodes in order to allow all CI nodes finish work in similar time. As you can see CI build took 22 minutes 50 seconds instead of almost 30 minutes. It means <b>we saved 7 minutes per each CI build</b>.
 
-<img src="/images/blog/posts/improve-circleci-parallelisation-for-rspec-minitest-cypress/circleci-after-knapsack_pro.png" style="width:100%;" />
+<img src="/images/blog/posts/improve-circleci-parallelisation-for-rspec-minitest-cypress/circleci-after-knapsack_pro.png" style="width:100%;" alt="parallel tests CircleCI with Knapsack Pro" />
 
 When your team runs 20 CI builds per day you could save 2 hours 20 minutes every day. It's <b>over 46 hours saved during a month</b>.
 
