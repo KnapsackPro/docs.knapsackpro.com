@@ -11,7 +11,7 @@ I’ve been using Capybara-WebKit for a long time but while switching from Circl
 
 This triggered to try Chrome Headless with Selenium Webdriver.  I will show you how to configure Circle CI 2.0 and your Ruby on Rails project to use capybara/selenium/chrome headless together.
 
-<img src="/images/blog/posts/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless/circle.png" style="width:250px;margin-left: 15px;float:right;" />
+<img src="/images/blog/posts/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless/circle.png" style="width:250px;margin-left: 15px;float:right;" alt="CircleCI" />
 
 ## Add capybara and selenium-webdriver
 
