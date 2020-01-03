@@ -20,7 +20,7 @@ permalink: /integration/
     <td>RSpec, Cucumber, Minitest, test-unit, Spinach, Turnip</td>
     <td><a href="/knapsack_pro-ruby/guide/"><b>Install</b></a></td>
     <td><a href="https://github.com/KnapsackPro/knapsack_pro-ruby">knapsack_pro gem</a></td>
-    <td><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#faq">FAQ</a></td>
+    <td><a href="https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_ruby">FAQ</a></td>
     <td><a href="https://github.com/KnapsackPro/knapsack_pro-ruby/blob/master/CHANGELOG.md#change-log">Change log</a></td>
   </tr>
   <tr>
@@ -28,7 +28,7 @@ permalink: /integration/
     <td>Cypress.io</td>
     <td><a href="https://github.com/KnapsackPro/knapsack-pro-cypress#installation"><b>Install</b></a></td>
     <td><a href="https://github.com/KnapsackPro/knapsack-pro-cypress">@knapsack-pro/cypress</a></td>
-    <td><a href="https://github.com/KnapsackPro/knapsack-pro-cypress#faq">FAQ</a></td>
+    <td><a href="https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_cypress">FAQ</a></td>
     <td><a href="https://github.com/KnapsackPro/knapsack-pro-cypress/blob/master/CHANGELOG.md#change-log">Change log</a></td>
   </tr>
   <tr>
@@ -36,7 +36,7 @@ permalink: /integration/
     <td>Jest</td>
     <td><a href="https://github.com/KnapsackPro/knapsack-pro-jest#installation"><b>Install</b></a></td>
     <td><a href="https://github.com/KnapsackPro/knapsack-pro-jest">@knapsack-pro/jest</a></td>
-    <td><a href="https://github.com/KnapsackPro/knapsack-pro-jest#faq">FAQ</a></td>
+    <td><a href="https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_jest">FAQ</a></td>
     <td><a href="https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/CHANGELOG.md#change-log">Change log</a></td>
   </tr>
 </table>
