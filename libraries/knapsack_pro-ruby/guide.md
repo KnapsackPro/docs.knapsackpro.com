@@ -251,7 +251,7 @@ Full example for <a href="/2017/circleci-2-0-capybara-feature-specs-selenium-web
 </p>
 
 <p>
-If you use knapsack_pro Queue Mode with CircleCI you may want to collect metadata like <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#circleci-and-knapsack_pro-queue-mode" target="_blank">junit xml report about your RSpec</a> test suite with junit formatter. Thanks to that you will see failed tests in nice CircleCI web UI. It's also possible to <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-junit-formatter-with-knapsack_pro-regular-mode" target="_blank">configure junit formatter for knapsack_pro Regular Mode</a>.
+If you use knapsack_pro Queue Mode with CircleCI you may want to collect metadata like <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#circleci-and-knapsack_pro-queue-mode" target="_blank">junit xml report about your RSpec</a> test suite with junit formatter. Thanks to that you will see failed tests in nice CircleCI web UI. It's also possible to <a href="https://knapsackpro.com/faq/question/how-to-use-junit-formatter" target="_blank">configure junit formatter for knapsack_pro Regular Mode</a>.
 </p>
 
 <p>
@@ -941,7 +941,7 @@ Here is <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#set-api-key-to
 
 <p>
 Above example shows how to run cucumber tests in regular mode and later the rspec tests in queue mode to autobalance build.<br>
-If you are going to relay on rspec to autobalance build when cucumber tests were not perfectly distributed you should be aware about <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#why-my-tests-are-executed-twice-in-queue-mode-why-ci-node-runs-whole-test-suite-again" target="_blank">possible edge case if your rspec test suite is very short</a>.
+If you are going to relay on rspec to autobalance build when cucumber tests were not perfectly distributed you should be aware about <a href="https://knapsackpro.com/faq/question/why-my-tests-are-executed-twice-in-queue-mode-why-ci-node-runs-whole-test-suite-again" target="_blank">possible edge case if your rspec test suite is very short</a>.
 </p>
   </div>
 
@@ -1173,18 +1173,18 @@ bundle exec rake knapsack_pro:queue:cucumber
   </p>
 
   <p>
-  <strong>Common problems for Queue Mode</strong> If you notice any test failures for RSpec when using knapsack_pro Queue Mode then it means your test suite needs to be adjusted to work with underlying RSpec::Core::Runner that is used by knapsack_pro Queue Mode. Please see this <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#why-when-i-use-queue-mode-for-rspec-then-my-tests-fail" target="_blank">FAQ and common Queue Mode problems</a>.<br>
+  <strong>Common problems for Queue Mode</strong> If you notice any test failures for RSpec when using knapsack_pro Queue Mode then it means your test suite needs to be adjusted to work with underlying RSpec::Core::Runner that is used by knapsack_pro Queue Mode. Please see this <a href="https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-my-tests-fail" target="_blank">FAQ and common Queue Mode problems</a>.<br>
   <br>
   If your problem is different please <a href="https://knapsackpro.com/contact" target="_blank">contact us</a>. We saw many projects and each test suite has different edge cases that sometimes make RSpec fail.
   </p>
 
   <p>
   You can learn more about custom configuration and other <a href="https://knapsackpro.com/features" target="_blank">features</a> in <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#table-of-contents" target="_blank">documentation</a>.
-  If you have problems please check <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#faq" target="_blank">FAQ</a> there.
+  If you have problems please check <a href="https://knapsackpro.com/faq" target="_blank">FAQ</a> there.
   </p>
 
   <p>
-  Common thing people look for is to use <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-junit-formatter" target="_blank">junit formatter</a> with RSpec or Cucumber or how to use <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-codeclimate-with-knapsack_pro" target="_blank">CodeClimate</a> or <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-simplecov-in-queue-mode" target="_blank">SimpleCov</a> with knapsack_pro gem.
+  Common thing people look for is to use <a href="https://knapsackpro.com/faq/question/how-to-use-junit-formatter" target="_blank">junit formatter</a> with RSpec or Cucumber or how to use <a href="https://knapsackpro.com/faq/question/how-to-use-codeclimate-with-knapsack_pro" target="_blank">CodeClimate</a> or <a href="https://knapsackpro.com/faq/question/how-to-use-simplecov-in-queue-mode" target="_blank">SimpleCov</a> with knapsack_pro gem.
   </p>
 
   <p>
@@ -1194,22 +1194,22 @@ bundle exec rake knapsack_pro:queue:cucumber
   <h4>Most asked questions from FAQ</h4>
 
   <p>
-  The most common problems can be found in <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#faq" target="_blank">FAQ</a> but here are listed the top questions developers ask for.
+  The most common problems can be found in <a href="https://knapsackpro.com/faq" target="_blank">FAQ</a> but here are listed the top questions developers ask for.
   </p>
 
   <p>
     <ul>
-      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#why-when-i-use-queue-mode-for-rspec-then-my-tests-fail" target="_blank">Why when I use Queue Mode for RSpec then my tests fail?</a> - When you use RSpec please use Knapsack Pro Regular Mode first before you try Queue Mode as it is suggested in this installation guide.</li>
+      <li><a href="https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-my-tests-fail" target="_blank">Why when I use Queue Mode for RSpec then my tests fail?</a> - When you use RSpec please use Knapsack Pro Regular Mode first before you try Queue Mode as it is suggested in this installation guide.</li>
       <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank">How to retry only single CI node with failed tests for Queue Mode?</a> - If your CI provider allows retrying a single CI node from list of parallel nodes instead of running a whole CI build then you should set KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true to allow Knapsack Pro remember what tests where executed on particular CI node. Thanks to that when you retry failed CI node then the same set of tests will be executed there.</li>
-      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#why-knapsack_pro-hangs--freezes--is-stale-ie-for-codeship-in-queue-mode" target="_blank">Why my CI tests output freezes?</a></li>
-      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-junit-formatter" target="_blank">How to use JUnit formatter with Knapsack Pro?</a></li>
-      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-simplecov-in-queue-mode" target="_blank">How to use simplecov in Queue Mode?</a></li>
-      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-codeclimate-with-knapsack_pro" target="_blank">How to use CodeClimate with knapsack_pro ruby gem?</a></li>
+      <li><a href="https://knapsackpro.com/faq/question/why-knapsack_pro-hangs--freezes--is-stale-ie-for-codeship-in-queue-mode" target="_blank">Why my CI tests output freezes?</a></li>
+      <li><a href="https://knapsackpro.com/faq/question/how-to-use-junit-formatter" target="_blank">How to use JUnit formatter with Knapsack Pro?</a></li>
+      <li><a href="https://knapsackpro.com/faq/question/how-to-use-simplecov-in-queue-mode" target="_blank">How to use simplecov in Queue Mode?</a></li>
+      <li><a href="https://knapsackpro.com/faq/question/how-to-use-codeclimate-with-knapsack_pro" target="_blank">How to use CodeClimate with knapsack_pro ruby gem?</a></li>
       <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#test-file-names-encryption" target="_blank">How to encrypt test files names for Ruby tests?</a></li>
-      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#questions-around-data-usage-and-security" target="_blank">Questions around data usage and security</a> - Knapsack Pro does not have access to your project source code. It collects only branch names, git commit hashes and test file paths with its recorded execution time.</li>
-      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-can-i-run-tests-from-multiple-directories" target="_blank">How to run tests based on pattern</a> - you must set KNAPSACK_PRO_TEST_FILE_PATTERN instead of passing --pattern to RSpec</li>
-      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-run-a-specific-list-of-test-files-or-only-some-tests-from-test-file" target="_blank">How to run a specific list of test files or only some tests from test file?</a></li>
-      <li><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-exclude-tests-from-running-them" target="_blank">How to exclude tests from running them?</a></li>
+      <li><a href="https://knapsackpro.com/faq/question/what-data-is-sent-to-your-servers" target="_blank">Questions around data usage and security</a> - Knapsack Pro does not have access to your project source code. It collects only branch names, git commit hashes and test file paths with its recorded execution time.</li>
+      <li><a href="https://knapsackpro.com/faq/question/how-can-i-run-tests-from-multiple-directories" target="_blank">How to run tests based on pattern</a> - you must set KNAPSACK_PRO_TEST_FILE_PATTERN instead of passing --pattern to RSpec</li>
+      <li><a href="https://knapsackpro.com/faq/question/how-to-run-a-specific-list-of-test-files-or-only-some-tests-from-test-file" target="_blank">How to run a specific list of test files or only some tests from test file?</a></li>
+      <li><a href="https://knapsackpro.com/faq/question/how-to-exclude-tests-from-running-them" target="_blank">How to exclude tests from running them?</a></li>
     </ul>
   </p>
 </div>
