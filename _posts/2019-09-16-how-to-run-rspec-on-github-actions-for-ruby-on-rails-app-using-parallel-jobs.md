@@ -60,6 +60,7 @@ Next step will be installing our Ruby gems.
     RAILS_ENV: test
   run: |
     gem install bundler
+    bundle config path vendor/bundle
     bundle install --jobs 4 --retry 3
     bin/rails db:setup
 {% endhighlight %}
