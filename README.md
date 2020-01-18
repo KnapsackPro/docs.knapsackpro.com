@@ -28,7 +28,7 @@ We welcome any blog post in categories:
 
 ## How to publish guest blog post?
 
-You can copy example blog post file and read it content to find out how to create a new guest post on our blog.
+Create a new branch and pull reqeust for your blog post. You can copy example blog post file and read it content to find out how to create a new guest post on our blog.
 
 See [_posts/2099-01-31-example-article.md](https://raw.githubusercontent.com/KnapsackPro/docs.knapsackpro.com/gh-pages/_posts/2099-01-31-example-article.md)
 
