@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "URI.escape is obsolete. Percent-encoding your query string"
-date:   2020-01-20 09:00:00 +0100
+date:   2020-01-19 13:00:00 +0100
 author: "Shadi Rezek"
 categories: techtips ruby
 og_image: "/images/blog/posts/uri-escape-is-obsolete-percent-encoding-your-query-string/encoded_space.jpeg"
