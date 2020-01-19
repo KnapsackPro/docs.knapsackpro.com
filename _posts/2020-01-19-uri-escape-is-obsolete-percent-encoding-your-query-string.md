@@ -100,4 +100,4 @@ query_data.to_query("search")
 
 I hope that short article cleared up any confusion you might have had about encoding your strings for use in URI. Please let us know in the comments if you use any other ways of dealing with percent-encoding in your Ruby/Rails projects!
 
-And if your project is struggling with long CI builds, check out [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=uri-escape-is-obsolete-percent-encoding-your-query-string), which can help you solve that problem.
+And if your project is struggling with slow CI builds, check out [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=uri-escape-is-obsolete-percent-encoding-your-query-string), which can help you solve that problem.
