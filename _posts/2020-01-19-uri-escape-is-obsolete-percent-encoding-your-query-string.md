@@ -30,7 +30,7 @@ The trouble with a concept of "escaping the URI" is that URI consists of many co
 
 ## How to fix it?
 
-Since I haven't found an existing solution that would, when given a whole-URI string, interpret distinct components and apply different escaping rules in a desired way on its own, my advice is to encode different components separately. The most common (and most sensitive) use-case is probably encoding of the query string in the `query` component, so I'll focus on this case. And Ruby's `URI` module itself provides two handy methods that will help as achieve just that!
+Since I haven't found an existing solution that would, when given a whole-URI string, interpret distinct components and apply different escaping rules in a desired way on its own, my advice is to encode different components separately. The most common (and most sensitive) use-case is probably encoding of the query string in the `query` component, so I'll focus on this case. And Ruby's `URI` module itself provides two handy methods that will help us achieve just that!
 
 ## Percent-encoding your query string
 
