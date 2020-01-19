@@ -4,10 +4,12 @@ title:  "URI.escape is obsolete. Percent-encoding your query string"
 date:   2020-01-20 09:00:00 +0100
 author: "Shadi Rezek"
 categories: techtips ruby
-published: true
+og_image: "/images/blog/posts/uri-escape-is-obsolete-percent-encoding-your-query-string/encoded_space.jpeg"
 ---
 
 Have you encountered one of those warnings in your Ruby 2.7.0 project?
+
+<img src="/images/blog/posts/uri-escape-is-obsolete-percent-encoding-your-query-string/encoded_space.jpeg" style="width:200px;margin-left: 15px;float:right;" alt="url encoded space" />
 
 {% highlight plain %}
 warning: URI.escape is obsolete
