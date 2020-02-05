@@ -382,6 +382,9 @@ $ KNAPSACK_REPORT_PATH="knapsack_custom_report.json" CI_NODE_TOTAL=2 CI_NODE_IND
 
 `CI_NODE_INDEX` - index of current CI node starts from 0. Second CI node should have `CI_NODE_INDEX=1`.
 
+Note some CI providers like GitLab CI have the same name of environment variable like `CI_NODE_INDEX` which starts from 1 instead of 0.
+Knapsack gem will automatically pick it up and change from 1 to 0 to make knapsack work.
+
 ### Passing arguments to rake task
 
 #### Passing arguments to rspec
