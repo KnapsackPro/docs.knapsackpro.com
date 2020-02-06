@@ -242,6 +242,11 @@ jobs:
         command: |
           # export word is important here!
           export RAILS_ENV=test
+          # If you use spring gem and spring-commands-cucumber gem to start Cucumber tests faster please set
+          # export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bundle exec spring
+          # or you can use spring binstub
+          # export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bin/spring
+          # Thanks to that Cucumber will start tests faster for each batch of tests fetched from Knapsack Pro Queue API
           bundle exec rake knapsack_pro:queue:cucumber
 {% endhighlight %}
 
@@ -513,6 +518,11 @@ blocks:
         # Step for RSpec in Queue Mode
         - bundle exec rake knapsack_pro:queue:rspec
         # Step for Cucumber in Queue Mode
+        # If you use spring gem and spring-commands-cucumber gem to start Cucumber tests faster please set
+        # export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bundle exec spring
+        # or you can use spring binstub
+        # export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bin/spring
+        # Thanks to that Cucumber will start tests faster for each batch of tests fetched from Knapsack Pro Queue API
         - bundle exec rake knapsack_pro:queue:cucumber
 
         # Step for RSpec in Regular Mode
@@ -607,6 +617,11 @@ Codeship does not provide parallel jobs environment variables so you will have t
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:cucumber
 
 # or use Cucumber tests in Knapsack Pro Queue Mode (dynamic test suite split)
+# If you use spring gem and spring-commands-cucumber gem to start Cucumber tests faster please set
+# export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bundle exec spring
+# or you can use spring binstub
+# export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bin/spring
+# Thanks to that Cucumber will start tests faster for each batch of tests fetched from Knapsack Pro Queue API
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knapsack_pro:queue:cucumber
 
 # RSpec tests in Knapsack Pro Queue Mode (dynamic test suite split)
@@ -623,6 +638,11 @@ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knaps
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:cucumber
 
 # or use Cucumber tests in Knapsack Pro Queue Mode (dynamic test suite split)
+# If you use spring gem and spring-commands-cucumber gem to start Cucumber tests faster please set
+# export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bundle exec spring
+# or you can use spring binstub
+# export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bin/spring
+# Thanks to that Cucumber will start tests faster for each batch of tests fetched from Knapsack Pro Queue API
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:queue:cucumber
 
 # RSpec tests in Knapsack Pro Queue Mode (dynamic test suite split)
@@ -795,6 +815,12 @@ test:
   # Knapsack Pro Queue Mode (dynamic test suite split)
   # bundle exec rake knapsack_pro:queue:rspec
   # bundle exec rake knapsack_pro:queue:minitest
+
+  # If you use spring gem and spring-commands-cucumber gem to start Cucumber tests faster please set
+  # export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bundle exec spring
+  # or you can use spring binstub
+  # export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bin/spring
+  # Thanks to that Cucumber will start tests faster for each batch of tests fetched from Knapsack Pro Queue API
   # bundle exec rake knapsack_pro:queue:cucumber
 {% endhighlight %}
 
@@ -823,8 +849,15 @@ test_ci_node_0:
     - export KNAPSACK_PRO_CI_NODE_INDEX=0
     # Cucumber tests in Knapsack Pro Regular Mode (deterministic test suite split)
     - bundle exec rake knapsack_pro:cucumber
+
     # or use Cucumber tests in Knapsack Pro Queue Mode (dynamic test suite split)
+    # If you use spring gem and spring-commands-cucumber gem to start Cucumber tests faster please set
+    # export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bundle exec spring
+    # or you can use spring binstub
+    # export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bin/spring
+    # Thanks to that Cucumber will start tests faster for each batch of tests fetched from Knapsack Pro Queue API
     - bundle exec rake knapsack_pro:queue:cucumber
+
     # RSpec tests in Knapsack Pro Queue Mode (dynamic test suite split)
     # It will autobalance bulid because it is executed after Cucumber tests in Regular Mode.
     - bundle exec rake knapsack_pro:queue:rspec
@@ -835,7 +868,14 @@ test_ci_node_1:
   script:
     - export KNAPSACK_PRO_CI_NODE_INDEX=1
     - bundle exec rake knapsack_pro:cucumber
+
+    # If you use spring gem and spring-commands-cucumber gem to start Cucumber tests faster please set
+    # export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bundle exec spring
+    # or you can use spring binstub
+    # export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bin/spring
+    # Thanks to that Cucumber will start tests faster for each batch of tests fetched from Knapsack Pro Queue API
     - bundle exec rake knapsack_pro:queue:cucumber
+
     - bundle exec rake knapsack_pro:queue:rspec
 {% endhighlight %}
 </div>
@@ -1161,6 +1201,11 @@ bundle exec rake knapsack_pro:queue:rspec
 bundle exec rake knapsack_pro:queue:minitest
 
 # Example command for Queue Mode in Cucumber
+# If you use spring gem and spring-commands-cucumber gem to start Cucumber tests faster please set
+# export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bundle exec spring
+# or you can use spring binstub
+# export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bin/spring
+# Thanks to that Cucumber will start tests faster for each batch of tests fetched from Knapsack Pro Queue API
 bundle exec rake knapsack_pro:queue:cucumber
 {% endhighlight %}
 
