@@ -175,7 +175,8 @@ RSpec.configure do |config|
 
   # run retry only on features
   config.around :each, :js do |ex|
-    ex.run_with_retry retry: 3
+    # retry test 3 times on CI but do not retry when testing locally
+    ex.run_with_retry retry: (ENV['CI'] ? 3 : 1)
   end
 
   # callback to be run between retries
