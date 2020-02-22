@@ -73,9 +73,9 @@ A build matrix provides different configurations for the virtual environment to 
 
 In case of running parallel tests, you want to run the Rails application on the same Ruby version and Ubuntu system. But you want to split RSpec test suite into 2 sets so half of the tests go to a first parallel job and the second half to another job.
 
-To split tests you can use Ruby gem [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs) that will split tests across parallel GitHub jobs in a dynamic way. Thanks to that each parallel job will be consuming a set of tests fetched from Knapsack Pro API Queue to ensure each parallel job finishes work at a similar time. This allows for evenly distributed tests and no bottleneck in parallel jobs (no slow job). Your CI build will be as fast as possible.
+To split tests you can use Ruby gem [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs) that will split tests across parallel GitHub jobs in a dynamic way. Thanks to that each parallel job will be consuming a set of tests fetched from Knapsack Pro API Queue to ensure each parallel job finishes work at a similar time. This allows for evenly distributed tests and no bottleneck in parallel jobs (no slow job). Your CI build will be as fast as possible.
 
-In our case, you split tests across 2 parallel jobs so you need to set 2 as `matrix.ci_node_total`. Then each parallel job should have assigned index to `matrix.ci_node_index` starting from 0. The first parallel job gets index 0 and the second job gets index 1. This allows [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs) to know what tests should be executed on a particular job.
+In our case, you split tests across 2 parallel jobs so you need to set 2 as `matrix.ci_node_total`. Then each parallel job should have assigned index to `matrix.ci_node_index` starting from 0. The first parallel job gets index 0 and the second job gets index 1. This allows [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs) to know what tests should be executed on a particular job.
 
 {% highlight yaml %}
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
@@ -92,7 +92,7 @@ strategy:
     ci_node_index: [0, 1]
 {% endhighlight %}
 
-You need to specify also API token for [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs), for RSpec it will be `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`.
+You need to specify also API token for [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs), for RSpec it will be `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`.
 
 Then you can run tests with Knapsack Pro in Queue Mode for RSpec:
 

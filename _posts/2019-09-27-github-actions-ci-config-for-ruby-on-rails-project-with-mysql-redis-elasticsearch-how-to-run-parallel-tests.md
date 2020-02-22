@@ -19,7 +19,7 @@ In your repository, you need to create file `.github/workflows/main.yaml` Thanks
 
 In this case, <b>Rails</b> application has <b>MySQL</b>, <b>Redis</b>, and <b>Elasticsearch</b> databases. You need to set up services with docker container to run each. In the below config, there is also a step for health check the MySQL and Elasticsearch to ensure both are up and running before you can start running tests.
 
-The tests are executed across parallel jobs thanks to matrix feature in GitHub Actions and the [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=github-actions-ci-config-for-ruby-on-rails-project-with-mysql-redis-elasticsearch-how-to-run-parallel-tests) ruby gem that will auto-balance tests distribution across jobs. Auto balancing tests using Knapsack Pro Queue Mode will ensure each parallel job finish work at a similar time. Thanks to that there is no bottleneck (no slow job with too many tests to run) and you can enjoy fast CI build time because you get optimal tests split across parallel tasks.
+The tests are executed across parallel jobs thanks to matrix feature in GitHub Actions and the [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=github-actions-ci-config-for-ruby-on-rails-project-with-mysql-redis-elasticsearch-how-to-run-parallel-tests) ruby gem that will auto-balance tests distribution across jobs. Auto balancing tests using Knapsack Pro Queue Mode will ensure each parallel job finish work at a similar time. Thanks to that there is no bottleneck (no slow job with too many tests to run) and you can enjoy fast CI build time because you get optimal tests split across parallel tasks.
 
 <script src="https://gist.github.com/ArturT/b3679cfe7c2d3d8625d54fb5a8966874.js"></script>
 
@@ -31,7 +31,7 @@ In this video, you will learn how dynamic test suite spilt across parallel jobs 
 
 ## How Knapsack Pro Regular Mode works
 
-[Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=github-actions-ci-config-for-ruby-on-rails-project-with-mysql-redis-elasticsearch-how-to-run-parallel-tests) has also a deterministic way of splitting tests. Tests are split only once before running tests. This is the most simple way that you will try for the first time to record your CI build before you switch to Queue Mode.
+[Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=github-actions-ci-config-for-ruby-on-rails-project-with-mysql-redis-elasticsearch-how-to-run-parallel-tests) has also a deterministic way of splitting tests. Tests are split only once before running tests. This is the most simple way that you will try for the first time to record your CI build before you switch to Queue Mode.
 
 You can learn more about Knapsack Pro in the [installation guide](/integration/).
 

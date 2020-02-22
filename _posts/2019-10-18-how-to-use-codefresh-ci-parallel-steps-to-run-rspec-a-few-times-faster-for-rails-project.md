@@ -21,10 +21,10 @@ Let's start with creating `.codefresh/codefresh.yml` file and `Test.Dockerfile` 
 
 <script src="https://gist.github.com/ArturT/722bccf19bfdce3e5d2dbbc2cb89834a.js"></script>
 
-As you can see I use <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project">knapsack_pro ruby gem</a> as a command to run my RSpec tests. It will know what set of tests should be executed on a particular parallel step based on `KNAPSACK_PRO_CI_NODE_INDEX` value. The node index is generated based on the list of `KNAPSACK_PRO_CI_NODE_INDEX`
+As you can see I use <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project">knapsack_pro ruby gem</a> as a command to run my RSpec tests. It will know what set of tests should be executed on a particular parallel step based on `KNAPSACK_PRO_CI_NODE_INDEX` value. The node index is generated based on the list of `KNAPSACK_PRO_CI_NODE_INDEX`
 variables defined for the matrix.
 
-<a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project">Knapsack Pro</a> will automatically split tests across parallel jobs (steps) to ensure each step takes a similar time. It's possible thanks to Knapsack Pro Queue Mode which does dynamic test suite split across parallel steps. You can learn more about technical details on how Queue Mode works from the video at the end of this article but let's check now how Codefresh works in action. You can see my CI builds in Codefresh web dashboard on the below video.
+<a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project">Knapsack Pro</a> will automatically split tests across parallel jobs (steps) to ensure each step takes a similar time. It's possible thanks to Knapsack Pro Queue Mode which does dynamic test suite split across parallel steps. You can learn more about technical details on how Queue Mode works from the video at the end of this article but let's check now how Codefresh works in action. You can see my CI builds in Codefresh web dashboard on the below video.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6yaE63RGZ0M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -46,6 +46,6 @@ In this video, I explained technical details for a dynamic test suite split and 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-There are more test runners in Ruby like Cucumber, Minitest, etc that are supported by <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project">Knapsack Pro</a>. Even JavaScript tools like Cypress.io or Jest can be launched with Knapsack Pro wrapper ([see installation guide](/integration/)).
+There are more test runners in Ruby like Cucumber, Minitest, etc that are supported by <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project">Knapsack Pro</a>. Even JavaScript tools like Cypress.io or Jest can be launched with Knapsack Pro wrapper ([see installation guide](/integration/)).
 
 I hope you find this tutorial useful and you can benefit from faster CI builds for your Rails project thanks to running parallel steps on Codefresh.io

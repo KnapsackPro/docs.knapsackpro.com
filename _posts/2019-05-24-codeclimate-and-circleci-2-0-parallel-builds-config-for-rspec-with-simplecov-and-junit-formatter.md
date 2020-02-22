@@ -15,7 +15,7 @@ How to merge CodeClimate reports for your RSpec test suite executed with paralle
 
 * How to use JUnit formatter for RSpec running on parallel jobs. Thanks to JUnit formatter you can see nice tests results in CircleCI UI view. For instance, when your tests fail then CircleCI will show you failing tests at the top of your CI build steps.
 
-* How to <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter">split your RSpec tests across parallel jobs using Knapsack Pro Queue Mode</a>. At the end of the article, you will see a video explaining how Queue Mode in knapsack_pro ruby gem dynamically distributes specs across parallel jobs to ensure each job takes a similar amount of time to ensure CI build is as fast as possible (to get you optimal CI build time).
+* How to <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter">split your RSpec tests across parallel jobs using Knapsack Pro Queue Mode</a>. At the end of the article, you will see a video explaining how Queue Mode in knapsack_pro ruby gem dynamically distributes specs across parallel jobs to ensure each job takes a similar amount of time to ensure CI build is as fast as possible (to get you optimal CI build time).
 
 ## CodeClimate and parallel builds on CircleCI 2.0
 
@@ -207,7 +207,7 @@ This example is based on [FAQ](https://github.com/KnapsackPro/knapsack_pro-ruby#
 
 ## Summary and Queue Mode to do dynamic test suite split
 
-CI builds can be much faster thanks to leveraging parallel jobs on Circle CI 2.0 and CI parallelisation on any CI provider (<a href="/">see more parallelisation examples for your CI providers</a>). You can check <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter">Knapsack Pro tool for CI parallelisation</a> and learn more about Queue Mode and what problems it solves in below video.
+CI builds can be much faster thanks to leveraging parallel jobs on Circle CI 2.0 and CI parallelisation on any CI provider (<a href="/">see more parallelisation examples for your CI providers</a>). You can check <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter">Knapsack Pro tool for CI parallelisation</a> and learn more about Queue Mode and what problems it solves in below video.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

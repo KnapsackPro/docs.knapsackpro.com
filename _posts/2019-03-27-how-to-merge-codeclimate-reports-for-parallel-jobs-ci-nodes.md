@@ -13,7 +13,7 @@ If you run tests on parallel jobs (using CI parallelisation) you need to merge C
 
 An additional problem may happen that some of your parallel jobs (one of your parallel CI node) may not have reported CodeClimate result when tests were never executed on that CI node.
 
-It could happen when you run tests with dynamic tests allocation across parallel jobs using <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=how-to-merge-codeclimate-reports-for-parallel-jobs-ci-nodes">Knapsack Pro Queue Mode</a>. For instance if once of CI node started running tests after other CI nodes already executed the whole test suite distributed for particular CI build then the node has no CodeClimate report.
+It could happen when you run tests with dynamic tests allocation across parallel jobs using <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-merge-codeclimate-reports-for-parallel-jobs-ci-nodes">Knapsack Pro Queue Mode</a>. For instance if once of CI node started running tests after other CI nodes already executed the whole test suite distributed for particular CI build then the node has no CodeClimate report.
 
 Here is a list of steps we need to follow to ensure we can correctly prepare a final report for CodeClimate.
 
@@ -121,6 +121,6 @@ blocks:
 
 ## Summary and Queue Mode for dynamic test suite split
 
-CI builds can be much faster thanks to leveraging parallel jobs on Semaphore CI 2.0 and CI parallelisation on any CI provider (<a href="/">see more parallelisation examples for your CI providers</a>). You can check <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=how-to-merge-codeclimate-reports-for-parallel-jobs-ci-nodes">Knapsack Pro tool for CI parallelisation</a> and learn more about Queue Mode and what problems it solves in below video.
+CI builds can be much faster thanks to leveraging parallel jobs on Semaphore CI 2.0 and CI parallelisation on any CI provider (<a href="/">see more parallelisation examples for your CI providers</a>). You can check <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-merge-codeclimate-reports-for-parallel-jobs-ci-nodes">Knapsack Pro tool for CI parallelisation</a> and learn more about Queue Mode and what problems it solves in below video.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

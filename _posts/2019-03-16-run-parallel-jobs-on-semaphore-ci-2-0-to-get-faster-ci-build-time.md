@@ -17,7 +17,7 @@ With <a href="https://semaphoreci.com" target="_blank" rel="nofollow">Semaphore 
 
 In order to run parallel jobs with our tests in an optimal way we need to ensure each job will finish work at a similar time. This way there will be no bottleneck like job executing too many tests or too slow tests. The slow job could affect and made our whole CI build slower. Especially end to end tests (E2E) can be very slow and their time execution can vary. 
 
-You can split tests across parallel jobs in a dynamic way to ensure all jobs complete work at a similar time using the <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=run-parallel-jobs-on-semaphore-ci-2-0-to-get-faster-ci-build-time">Knapsack Pro Queue Mode</a>. You can learn more about what else problems can be solved with Queue Mode in the video at the very end of this article but right now let's jump to the Semaphore CI 2.0 demo example and the config examples we could use.
+You can split tests across parallel jobs in a dynamic way to ensure all jobs complete work at a similar time using the <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-parallel-jobs-on-semaphore-ci-2-0-to-get-faster-ci-build-time">Knapsack Pro Queue Mode</a>. You can learn more about what else problems can be solved with Queue Mode in the video at the very end of this article but right now let's jump to the Semaphore CI 2.0 demo example and the config examples we could use.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-oKCIYSk6yg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -191,6 +191,6 @@ blocks:
 
 ## The Queue Mode and summary
 
-As you can see your CI builds can be much faster thanks to leveraging parallel jobs on Semaphore CI 2.0. You can check <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog&utm_campaign=run-parallel-jobs-on-semaphore-ci-2-0-to-get-faster-ci-build-time">Knapsack Pro tool for CI parallelisation</a> and learn more about Queue Mode and what problems it solves in below video.
+As you can see your CI builds can be much faster thanks to leveraging parallel jobs on Semaphore CI 2.0. You can check <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-parallel-jobs-on-semaphore-ci-2-0-to-get-faster-ci-build-time">Knapsack Pro tool for CI parallelisation</a> and learn more about Queue Mode and what problems it solves in below video.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
