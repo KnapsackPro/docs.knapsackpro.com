@@ -705,6 +705,10 @@ Note the <a href="https://devcenter.heroku.com/articles/heroku-ci-parallel-test-
 {% endhighlight %}
 
 <p>
+If you would like to <a href="https://knapsackpro.com/faq/question/how-to-run-multiple-test-suite-commands-in-heroku-ci" target="_blank">run multiple Knapsack Pro commands for different test runners on Heroku CI</a> please follow tips.
+</p>
+
+<p>
 You can learn more about <a href="https://devcenter.heroku.com/articles/heroku-ci" target="_blank">Heroku CI</a>.
 </p>
 
