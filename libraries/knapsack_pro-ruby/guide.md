@@ -1222,6 +1222,10 @@ bundle exec rake knapsack_pro:queue:cucumber
   </p>
 
   <p>
+  <strong>Important step for CI providers that allow to retry only single failed CI node (like Buildkite)</strong>: See <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#required-ci-configuration-if-you-use-retry-single-failed-ci-node-feature-on-your-ci-server-when-knapsack_pro_fixed_queue_splittrue-in-queue-mode-or-knapsack_pro_fixed_test_suite_splittrue-in-regular-mode" target="_blank">required CI configuration if you use retry single failed CI node feature on your CI server</a> when KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true (in Queue Mode) or KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT=true (in Regular Mode).
+  </p>
+
+  <p>
   <strong>Common problems for Queue Mode</strong> If you notice any test failures for RSpec when using knapsack_pro Queue Mode then it means your test suite needs to be adjusted to work with underlying RSpec::Core::Runner that is used by knapsack_pro Queue Mode. Please see this <a href="https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-my-tests-fail" target="_blank">FAQ and common Queue Mode problems</a>.<br>
   <br>
   If your problem is different please <a href="https://knapsackpro.com/contact" target="_blank">contact us</a>. We saw many projects and each test suite has different edge cases that sometimes make RSpec fail.
