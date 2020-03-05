@@ -37,6 +37,7 @@ Note that we wrote `"html": false` and `"json": true`. Since we're running tests
 Now we can configure our Github Actions workflow. The first job will run our Cypress tests with Knapsack Pro:
 
 {% highlight yml %}
+{% raw %}
   test_e2e:
     ...
     strategy:
@@ -54,6 +55,7 @@ Now we can configure our Github Actions workflow. The first job will run our Cyp
           echo ::set-env name=KNAPSACK_PRO_TEST_FILE_PATTERN::"cypress/integration/**/*.spec.{js,ts}"
           echo ::set-env name=KNAPSACK_PRO_CI_NODE_TOTAL::${{ matrix.ci_node_total }}
           echo ::set-env name=KNAPSACK_PRO_CI_NODE_INDEX::${{ matrix.ci_node_index }}
+{% endraw %}
 {% endhighlight %}
 
 In this case, I am using 4 parallel CI nodes, but you should modify this accordingly if you're using more or less. We will use the `$KNAPSACK_PRO_CI_NODE_INDEX` environment variable later, as this tells us the index of the currently running parallel node. Since I'm using 4 machines, this will be a number from 0 - 3.
@@ -61,6 +63,7 @@ In this case, I am using 4 parallel CI nodes, but you should modify this accordi
 Now we can run `knapsack-pro-cypress` as usual:
 
 {% highlight yml %}
+{% raw %}
       - name: Run E2E tests
         run: knapsack-pro-cypress
       - name: Upload E2E test reports
@@ -69,6 +72,7 @@ Now we can run `knapsack-pro-cypress` as usual:
         with:
           name: test-reports-${{ env.KNAPSACK_PRO_CI_NODE_INDEX }}
           path: mochawesome-report
+{% endraw %}
 {% endhighlight %}
 
 Running the tests will create the `mochawesome-report` directory, containing all our individual test reports. To pass these along to the next job, which will take care of merging them, we use Github's `upload-artifact` action. Note that we provide the condition `if: always()`, to ensure that test reports will always be uploaded, even if some of our tests failed.
