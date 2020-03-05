@@ -37,6 +37,7 @@ build/
 # jekyll files
 _site
 .sass-cache
+.jekyll-cache
 
 # nodejs
 /node_modules
