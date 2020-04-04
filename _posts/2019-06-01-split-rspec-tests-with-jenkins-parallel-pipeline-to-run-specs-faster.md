@@ -7,13 +7,13 @@ categories: continuous_integration Jenkins Pipeline Stages CI parallelisation RS
 og_image: "/images/blog/posts/split-rspec-tests-with-jenkins-parallel-pipeline-to-run-specs-faster/rspec_jenkins.jpeg"
 ---
 
-Jenkins CI server has a declarative pipeline that allows you to set Jenkins parallel stages. You can use the stages to run them at the same time (parallel run) to execute your RSpec test suite in a few smaller faster chunks instead of one long test suite run. 
+[Jenkins CI server](https://knapsackpro.com/ci_servers/jenkins?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=split-rspec-tests-with-jenkins-parallel-pipeline-to-run-specs-faster) has a declarative pipeline that allows you to set Jenkins parallel stages. You can use the stages to run them at the same time (parallel run) to execute your RSpec test suite in a few smaller faster chunks instead of one long test suite run.
 
 <img src="/images/blog/posts/split-rspec-tests-with-jenkins-parallel-pipeline-to-run-specs-faster/rspec_jenkins.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="RSpec, Jenkins, Ruby" />
 
 ## Running stages in parallel with Jenkins workflow pipeline
 
-You will use Jenkinsfile and pipeline syntax to get parallel execution of tasks. RSpec tests need to be split in equal time across stages and to do that you need to ensure the time of each RSpec spec file won't compound on one of the stages because that could lead to bottleneck - a stage that takes more time to run tests than other stages. 
+You will use Jenkinsfile and pipeline syntax to get parallel execution of tasks. RSpec tests need to be split in equal time across stages and to do that you need to ensure the time of each RSpec spec file won't compound on one of the stages because that could lead to bottleneck - a stage that takes more time to run tests than other stages.
 
 To split RSpec tests evenly you can use [knapsack_pro gem](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=split-rspec-tests-with-jenkins-parallel-pipeline-to-run-specs-faster) with its Queue Mode that will dynamically split specs on parallel Jenkins stages to ensure each stage takes similar amount of time. You can learn more from below video about [knapsack_pro Queue Mode](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=split-rspec-tests-with-jenkins-parallel-pipeline-to-run-specs-faster) and what kind of edge cases it solves when you split tests on CI server.
 
@@ -21,7 +21,7 @@ To split RSpec tests evenly you can use [knapsack_pro gem](https://knapsackpro.c
 
 ## Stages in Declarative Jenkins Pipeline
 
-Pipeline as Code in Jenkins is a very popular way to define your configuration. Here is example for running RSpec tests with [knapsack_pro ruby gem](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=split-rspec-tests-with-jenkins-parallel-pipeline-to-run-specs-faster) to ensure your Ruby on Rails tests are split in optimal way across parallel stages.
+Pipeline as Code in [Jenkins](https://knapsackpro.com/ci_servers/jenkins?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=split-rspec-tests-with-jenkins-parallel-pipeline-to-run-specs-faster) is a very popular way to define your configuration. Here is example for running RSpec tests with [knapsack_pro ruby gem](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=split-rspec-tests-with-jenkins-parallel-pipeline-to-run-specs-faster) to ensure your Ruby on Rails tests are split in optimal way across parallel stages.
 
 {% highlight plain %}
 timeout(time: 60, unit: 'MINUTES') {

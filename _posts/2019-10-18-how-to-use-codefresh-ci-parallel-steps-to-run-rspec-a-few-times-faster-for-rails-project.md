@@ -15,7 +15,7 @@ Codefresh.io seems to be a very nice CI solution to work with if you are a Ruby 
 
 In order to run CI builds for Rails project on Codefresh you need YAML configuration file and Docker image that will be used as your base Docker container running your tests.
 
-We also need DB on the CI server. In my Ruby on Rails project, I use PostgreSQL so I have to configure Codefresh service to run Postgres. 
+We also need DB on the CI server. In my Ruby on Rails project, I use PostgreSQL so I have to configure Codefresh service to run Postgres.
 
 Let's start with creating `.codefresh/codefresh.yml` file and `Test.Dockerfile` that you need to add to your repository.
 
@@ -48,4 +48,4 @@ In this video, I explained technical details for a dynamic test suite split and 
 
 There are more test runners in Ruby like Cucumber, Minitest, etc that are supported by <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project">Knapsack Pro</a>. Even JavaScript tools like Cypress.io or Jest can be launched with Knapsack Pro wrapper ([see installation guide](/integration/)).
 
-I hope you find this tutorial useful and you can benefit from faster CI builds for your Rails project thanks to running parallel steps on Codefresh.io
+I hope you find this tutorial useful and you can benefit from [faster CI builds](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project) for your Rails project thanks to running parallel steps on Codefresh.io

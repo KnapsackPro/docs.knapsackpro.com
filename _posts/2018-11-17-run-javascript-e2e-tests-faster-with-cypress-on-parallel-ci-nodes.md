@@ -7,11 +7,11 @@ categories: continuous_integration cypress javascript parallelisation CI
 og_image: "/images/blog/posts/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes/cypress-logo.jpg"
 ---
 
-Cypress test runner is a great alternative to Selenium in end-to-end testing space. When it comes to E2E tests they tend to grow with time and running them is slow and becomes time waisting or just coffee break for developers. ;)
+Cypress test runner is a great alternative to Selenium in end-to-end testing space. When it comes to E2E tests they tend to grow with time and running them is slow and becomes time wasting or just coffee break for developers. ;)
 
 <img src="/images/blog/posts/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes/cypress-logo.jpg" style="width:450px;margin-left: 15px;float:right;" alt="Cypress.io" />
 
-To save the time and give quick feedback to developers about CI builds passing or not we could run tests across parallel CI nodes. Many CI providers allow you to set up how many parallel machines can be run within your CI build.
+To save the time and give quick feedback to developers about CI builds passing or not we could run tests across parallel CI nodes. Many [CI providers](https://knapsackpro.com/ci_servers/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes) allow you to set up how many parallel machines can be run within your CI build.
 
 ## Problem with splitting tests on parallel machines
 
@@ -23,11 +23,11 @@ The test suite is a living animal, there are constant changes in it, new tests a
 
 Even CI provider can cause an additional problem. Sometimes boot time of your parallel CI nodes can vary. One CI node starts work later than the others or maybe it's stuck in the queue due running some other CI build in your organization account.
 
-Some of CI providers allows you to use a big amount of parallel CI nodes to speed up your tests by leveraging your own server infrastructure like AWS with very cheap preeemted resources - Amazon EC2 Spot Instances (in case of Google, you have Google Cloud Preemptible VMs). The downside of this is when the AWS or Google wants to take away from your the server during the running your tests. Suddenly you lose one of your parallel CI nodes and you have to retry it and it becomes your bottleneck.
+Some of [CI solutions](https://knapsackpro.com/ci_servers/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes) allows you to use a big amount of parallel CI nodes to speed up your tests by leveraging your own server infrastructure like AWS with very cheap preeemted resources - Amazon EC2 Spot Instances (in case of Google, you have Google Cloud Preemptible VMs). The downside of this is when the AWS or Google wants to take away from your the server during the running your tests. Suddenly you lose one of your parallel CI nodes and you have to retry it and it becomes your bottleneck.
 
 ## How to allocate tests in a dynamic way across parallel CI nodes to save time?
 
-I've been working on the parallelization problem for last few years. With help and feedback from many people, we came up with a solution that helps us speed up our test suite thanks to allocating tests across parallel CI nodes in a dynamic way.
+I've been working on the parallelization problem for last few years. With help and feedback from many people, we came up with a solution that helps us speed up our test suite thanks to [allocating tests across parallel CI nodes in a dynamic way](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes).
 
 Basically, [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes) orchestrate the parallelization of your test suite. On Knapsack Pro API you have Queue of test files in descending order of test file run duration. Your parallel CI nodes connect with the Queue and fetch set of test files to run them on CI node. The Knapsack Pro API is taking care of allocating the tests in proper order and to remembering the time execution of your test files so we could leverage that in future CI build runs.
 

@@ -80,4 +80,4 @@ If you would like to better understand how dynamic test suite split works and wh
 
 ## Summary
 
-Running tests in parallel is a fast way to lower time of your CI build. To make it more efficient we can split test suite in an optimal way across CI nodes with [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-codeship-parallel-test-pipelines-efficiently-optimal-ci-parallelization) to keep CI nodes auto balanced and run CI build as fast as possible.
+Running tests in parallel is a fast way to [lower time of your CI build](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-codeship-parallel-test-pipelines-efficiently-optimal-ci-parallelization). To make it more efficient we can split test suite in an optimal way across CI nodes with [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-codeship-parallel-test-pipelines-efficiently-optimal-ci-parallelization) to keep CI nodes auto balanced and run CI build as fast as possible.

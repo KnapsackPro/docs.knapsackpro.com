@@ -7,13 +7,13 @@ categories: techtips CircleCI CodeClimate simplecov Ruby Rails
 og_image: "/images/blog/posts/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter/codeclimate.jpg"
 ---
 
-How to merge CodeClimate reports for your RSpec test suite executed with parallel builds on CircleCI 2.0? You will learn how to run RSpec parallel tests for your for Ruby on Rails project using CircleCI and how to send test coverage merged from parallel jobs into CodeClimate. We will cover config examples for:
+How to merge CodeClimate reports for your RSpec test suite executed with parallel builds on CircleCI 2.0? You will learn how to run RSpec parallel tests for your for Ruby on Rails project using [CircleCI](https://knapsackpro.com/ci_servers/circle-ci?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter) and how to send test coverage merged from parallel jobs into CodeClimate. We will cover config examples for:
 
 <img src="/images/blog/posts/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter/codeclimate.jpg" style="width:300px;margin-left: 15px;float:right;" alt="CodeClimate" />
 
 * How to use SimpleCov needed by CodeClimate Test Reporter to prepare RSpec test coverage summary on each parallel job and then how to merge it so you will be able to send it to CodeClimate dashboard.
 
-* How to use JUnit formatter for RSpec running on parallel jobs. Thanks to JUnit formatter you can see nice tests results in CircleCI UI view. For instance, when your tests fail then CircleCI will show you failing tests at the top of your CI build steps.
+* How to use JUnit formatter for RSpec running on parallel jobs. Thanks to JUnit formatter you can see nice tests results in CircleCI UI view. For instance, when your tests fail then [CircleCI](https://knapsackpro.com/ci_servers/circle-ci?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter) will show you failing tests at the top of your CI build steps.
 
 * How to <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter">split your RSpec tests across parallel jobs using Knapsack Pro Queue Mode</a>. At the end of the article, you will see a video explaining how Queue Mode in knapsack_pro ruby gem dynamically distributes specs across parallel jobs to ensure each job takes a similar amount of time to ensure CI build is as fast as possible (to get you optimal CI build time).
 
@@ -109,12 +109,12 @@ jobs:
           paths:
             - codeclimate.*.json
 
-      # store test reports created with junit formatter in order to allow CircleCI 
+      # store test reports created with junit formatter in order to allow CircleCI
       # show info about executed tests in UI on top of CI build steps
       - store_test_results:
           path: tmp/test-reports
 
-      # store test reports created with junit formatter in order to allow CircleCI 
+      # store test reports created with junit formatter in order to allow CircleCI
       # let you browse recorded xml files in Artifacts tab
       - store_artifacts:
           path: tmp/test-reports
@@ -203,7 +203,7 @@ KnapsackPro::Hooks::Queue.after_subset_queue do |queue_id, subset_queue_id|
 end
 {% endhighlight %}
 
-This example is based on [FAQ](https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-junit-formatter).
+This example is based on [Knapsack Pro FAQ](https://knapsackpro.com/faq/question/how-to-use-junit-formatter).
 
 ## Summary and Queue Mode to do dynamic test suite split
 

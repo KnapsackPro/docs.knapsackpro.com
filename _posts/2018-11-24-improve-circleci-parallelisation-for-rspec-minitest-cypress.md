@@ -7,7 +7,7 @@ categories: continuous_integration CircleCI parallelisation RSpec Minitest Cypre
 og_image: "/images/blog/posts/improve-circleci-parallelisation-for-rspec-minitest-cypress/balanced-tests.jpg"
 ---
 
-Maybe you use CircleCI parallelisation to run your test suite across multiple CI nodes but you noticed that some CI nodes take more time to complete tests than the others.
+Maybe you use [CircleCI](https://knapsackpro.com/ci_servers/circle-ci?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=improve-circleci-parallelisation-for-rspec-minitest-cypress) parallelisation to run your test suite across multiple CI nodes but you noticed that some CI nodes take more time to complete tests than the others.
 
 <img src="/images/blog/posts/improve-circleci-parallelisation-for-rspec-minitest-cypress/balanced-tests.jpg" style="width:450px;margin-left: 15px;float:right;" alt="parallel testing" />
 
@@ -23,7 +23,7 @@ If we could auto-balance the split of test suite across CI nodes in a way that a
 
 ## Dynamic test suite split
 
-We can split tests in a dynamic way across CI nodes using [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=improve-circleci-parallelisation-for-rspec-minitest-cypress). For instance, we can split tests for RSpec or Minitest in Ruby. If you run E2E tests with Cypress test runner then you can split Javascript tests as well.
+We can [split tests in a dynamic way](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=improve-circleci-parallelisation-for-rspec-minitest-cypress) across CI nodes using [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=improve-circleci-parallelisation-for-rspec-minitest-cypress). For instance, we can split tests for RSpec or Minitest in Ruby. If you run E2E tests with Cypress test runner then you can split Javascript tests as well.
 
 Here is graph after adding [Knapsack Pro Queue Mode](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=improve-circleci-parallelisation-for-rspec-minitest-cypress). Knapsack Pro Queue Mode keeps your tests auto-balanced across CI nodes in order to allow all CI nodes finish work in similar time. As you can see CI build took 22 minutes 50 seconds instead of almost 30 minutes. It means <b>we saved 7 minutes per each CI build</b>.
 

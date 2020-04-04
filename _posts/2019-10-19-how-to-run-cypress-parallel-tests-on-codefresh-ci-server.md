@@ -64,5 +64,5 @@ You can learn how dynamic test suite split with <a href="https://knapsackpro.com
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-I hope you find this article helpful. You can also check [other articles](/integration/). For instance, I wrote an article about [Codefresh and Ruby on Rails project setup](/2019/how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project) with a video showing how it works.
+I hope you find this article helpful. You can also check [other articles](/integration/). For instance, I wrote an article about [Codefresh and Ruby on Rails project setup](/2019/how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project) with a video showing how it works. Additionally, if you are considering using Cypress in your project, check out our [comparison of Cypress.io with other solutions](https://knapsackpro.com/testing_frameworks/alternatives_to/cypress-io?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-cypress-parallel-tests-on-codefresh-ci-server).
 

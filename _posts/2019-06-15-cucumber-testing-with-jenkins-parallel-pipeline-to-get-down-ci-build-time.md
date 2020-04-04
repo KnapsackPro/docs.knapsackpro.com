@@ -7,13 +7,13 @@ categories: continuous_integration
 og_image: "/images/blog/posts/cucumber-testing-with-jenkins-parallel-pipeline-to-get-down-ci-build-time/cucumber_jenkins.jpeg"
 ---
 
-Cucumber is a popular automation testing tool for Behaviour-Driven Development (BDD) but when you use it for some time in your work project then the amount of automated tests adds up and you can spend dozens of minutes to run your Cucumber test suite. Sometimes complex projects can have a few hours of execution time for the Cucumber tests. To save time and speed up your Cucumber builds on CI (Continuous Integration) you can use CI parallelization. In this article, you will see how to do it for Jenkins using Jenkins parallel pipeline.
+Cucumber is a popular automation testing tool for Behaviour-Driven Development (BDD) but when you use it for some time in your work project then the amount of automated tests adds up and you can spend dozens of minutes to run your Cucumber test suite. Sometimes complex projects can have a few hours of execution time for the Cucumber tests. To save time and speed up your Cucumber builds on CI (Continuous Integration) you can use CI parallelization. In this article, you will see how to do it for [Jenkins](https://knapsackpro.com/ci_servers/jenkins?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=cucumber-testing-with-jenkins-parallel-pipeline-to-get-down-ci-build-time) using Jenkins parallel pipeline.
 
 <img src="/images/blog/posts/cucumber-testing-with-jenkins-parallel-pipeline-to-get-down-ci-build-time/cucumber_jenkins.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Cucumber, Jenkins" />
 
 ## How to split Cucumber tests in parallel
 
-Jenkins allows you to configure pipeline as code and use Jenkins pipeline stages to define tasks that will be executed in parallel (at the same time).
+[Jenkins](https://knapsackpro.com/ci_servers/jenkins?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=cucumber-testing-with-jenkins-parallel-pipeline-to-get-down-ci-build-time) allows you to configure pipeline as code and use Jenkins pipeline stages to define tasks that will be executed in parallel (at the same time).
 
 In this example, you will use continuous integration tools like cucumber ruby gem and [knapsack_pro gem to split tests across parallel Jenkins stages](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=cucumber-testing-with-jenkins-parallel-pipeline-to-get-down-ci-build-time).
 
@@ -77,4 +77,4 @@ timeout(time: 60, unit: 'MINUTES') {
 
 ## Summary
 
-Testing big projects is a consuming task. Automation testing with Cucumber can help with that. Your CI server like Jenkins can help even more when you can leverage parallel test execution with Jenkins stages and by doing optimal test suite split with [Knapsack Pro Queue Mode](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=cucumber-testing-with-jenkins-parallel-pipeline-to-get-down-ci-build-time). The Queue Mode is working also for other [Ruby or JavaScript test runners](/integration/).
+Testing big projects is a consuming task. Automation testing with Cucumber can help with that. Your CI server like [Jenkins](https://knapsackpro.com/ci_servers/jenkins?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=cucumber-testing-with-jenkins-parallel-pipeline-to-get-down-ci-build-time) can help even more when you can leverage parallel test execution with Jenkins stages and by doing optimal test suite split with [Knapsack Pro Queue Mode](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=cucumber-testing-with-jenkins-parallel-pipeline-to-get-down-ci-build-time). The Queue Mode is working also for other [Ruby or JavaScript test runners](/integration/).

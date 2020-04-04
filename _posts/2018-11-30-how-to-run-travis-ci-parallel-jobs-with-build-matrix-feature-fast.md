@@ -7,7 +7,7 @@ categories: continuous_integration Travis CI parallelisation Ruby RSpec Minitest
 og_image: "/images/blog/posts/how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast/travis-ci.jpg"
 ---
 
-Travis CI allows you to run multiple jobs as part of the same CI build. They even allow for up to 200 parallel jobs for open source projects (the same for private repositories). You can leverage that using Travis build matrix feature to run your project way faster by splitting tests into many smaller jobs that will run a subset of your test suite.
+Travis CI allows you to run multiple jobs as part of the same CI build. They even allow for up to 200 parallel jobs for open source projects (the same for private repositories). You can leverage that using [Travis](https://knapsackpro.com/ci_servers/travis-ci?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast) build matrix feature to run your project way faster by splitting tests into many smaller jobs that will run a subset of your test suite.
 
 <img src="/images/blog/posts/how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast/travis-ci.jpg" style="width:450px;margin-left: 15px;float:right;" alt="Travis CI" />
 
@@ -72,7 +72,7 @@ env:
     - KNAPSACK_PRO_CI_NODE_INDEX=1
 {% endhighlight %}
 
-By doing test suite split in a dynamic way across Travis parallel jobs we save more time and keep our CI build fast. I also call parallel jobs as CI nodes because they are part of a single CI build. Here on the video, I describe a few more problems that can be solved with dynamic test suite split.
+By doing test suite split in a dynamic way across [Travis](https://knapsackpro.com/ci_servers/travis-ci?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast) parallel jobs we save more time and keep our CI build fast. I also call parallel jobs as CI nodes because they are part of a single CI build. Here on the video, I describe a few more problems that can be solved with dynamic test suite split.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -85,4 +85,4 @@ If you would like to see how [Knapsack Pro helps split tests across parallel job
 
 ## Summary
 
-If you would like to learn more about testing with [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast) you can check other articles on our [blog](/) like [testing with Cypress test runner](/2018/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes).
+If you would like to learn more about testing with [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast) you can check other articles on our [blog](/) like [testing with Cypress test runner](/2018/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes). And in case you are contemplating using Travis CI, then this [comparison of Travis CI with other solutions](https://knapsackpro.com/ci_comparisons?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast#travis-ci) can be helpful for you.
