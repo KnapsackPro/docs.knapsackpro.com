@@ -121,6 +121,6 @@ blocks:
 
 ## Summary and Queue Mode for dynamic test suite split
 
-CI builds can be much faster thanks to leveraging parallel jobs on Semaphore CI 2.0 and CI parallelisation on any CI provider (<a href="/">see more parallelisation examples for your CI providers</a>). You can check <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-merge-codeclimate-reports-for-parallel-jobs-ci-nodes">Knapsack Pro tool for CI parallelisation</a> and learn more about Queue Mode and what problems it solves in below video.
+CI builds can be much faster thanks to leveraging parallel jobs on Semaphore CI 2.0 and CI parallelisation on any CI provider (<a href="/continuous_integration/">see more parallelisation examples for your CI providers</a>). You can check <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-merge-codeclimate-reports-for-parallel-jobs-ci-nodes">Knapsack Pro tool for CI parallelisation</a> and learn more about Queue Mode and what problems it solves in below video.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

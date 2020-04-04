@@ -7,7 +7,7 @@ categories: continuous_integration
 og_image: "/images/blog/posts/how-to-run-parallel-jobs-for-rspec-tests-on-gitlab-ci-pipeline-and-speed-up-ruby-javascript-testing/gitlab.jpeg"
 ---
 
-GitLab CI allows you to run tests much faster thanks to CI parallelisation feature. You can run parallel jobs across multiple GitLab Runners. In order to do it, you will learn how to split tests in a dynamic way across parallel tasks to ensure there is no bottleneck in GitLab Pipeline. Thanks to that CI build can be run as fast as possible so your <strong>Ruby & JS tests can be finely fast</strong>.
+[GitLab CI](https://knapsackpro.com/ci_servers/gitlab-ci?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-parallel-jobs-for-rspec-tests-on-gitlab-ci-pipeline-and-speed-up-ruby-javascript-testing) allows you to run tests much faster thanks to CI parallelisation feature. You can run parallel jobs across multiple GitLab Runners. In order to do it, you will learn how to split tests in a dynamic way across parallel tasks to ensure there is no bottleneck in GitLab Pipeline. Thanks to that CI build can be run as fast as possible so your <strong>Ruby & JS tests can be finely fast</strong>.
 
 <img src="/images/blog/posts/how-to-run-parallel-jobs-for-rspec-tests-on-gitlab-ci-pipeline-and-speed-up-ruby-javascript-testing/gitlab.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="GitLab logo" />
 
@@ -15,7 +15,7 @@ GitLab CI allows you to run tests much faster thanks to CI parallelisation featu
 
 The common problem, when you want to run tests in parallel to complete your 1-hour test suite in a few minutes instead of waiting hours, is to find a way how to split tests on parallel jobs. Some of your Ruby or JavaScript tests can take milliseconds and some even a few minutes per test file (for instance when using Capybara in RSpec features testing). Problem with slow tests also occurs in E2E (end to end testing) when using [Cypress test runner as browser testing](/2019/cypress-parallel-testing-with-jenkins-pipeline-stages) can take quite a long time to execute.
 
-If you add more parallel GitLab Runners you also may notice that some runners can start work later or not all jobs can be started at the same time (for instance when you run GitLab Runners on your own infrastructure and other CI builds occupies some of the runners). 
+If you add more parallel GitLab Runners you also may notice that some runners can start work later or not all jobs can be started at the same time (for instance when you run GitLab Runners on your own infrastructure and other CI builds occupies some of the runners).
 
 ## Dynamic test suite split to eliminate CI build bottlenecks
 
@@ -68,4 +68,4 @@ Note you can run dozens of parallel jobs by changing `parallel` option and thank
 
 ## Summary
 
-GitLab with its CI/CD tool allows to run fast CI builds thanks to parallelisation of your tests. By using [Knapsack Pro Queue Mode](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-parallel-jobs-for-rspec-tests-on-gitlab-ci-pipeline-and-speed-up-ruby-javascript-testing) you can ensure your tests are split across parallel jobs in an optimal way so your team gets test results as fast as possible.
+[GitLab](https://knapsackpro.com/ci_servers/gitlab-ci?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-parallel-jobs-for-rspec-tests-on-gitlab-ci-pipeline-and-speed-up-ruby-javascript-testing) with its CI/CD tool allows to run fast CI builds thanks to parallelisation of your tests. By using [Knapsack Pro Queue Mode](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-parallel-jobs-for-rspec-tests-on-gitlab-ci-pipeline-and-speed-up-ruby-javascript-testing) you can ensure your tests are split across parallel jobs in an optimal way so your team gets test results as fast as possible.

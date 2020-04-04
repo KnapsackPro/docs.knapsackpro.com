@@ -51,7 +51,7 @@ jobs:
 
 If you would like to see a full example of [CircleCI 2.0 config file for Ruby on Rails project](/2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless) check this article.
 
-## Cache npm dependencies 
+## Cache npm dependencies
 
 The flow for caching npm packages is similar. Here you can see an example.
 
@@ -83,4 +83,4 @@ jobs:
 
 ## Summary
 
-Caching available for CircleCI 2.0 can be very helpful and helps us cut down the time of CI build. There are also more options to speed up our CI build. One of it is [CI parallelization for CircleCI 2.0](/2018/improve-circleci-parallelisation-for-rspec-minitest-cypress), you can learn more in the article or check demo on [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=circleci-2-0-cache-ruby-gems-or-npm-dependencies).
+Caching available for CircleCI 2.0 can be very helpful and helps us [cut down the time of CI build](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=circleci-2-0-cache-ruby-gems-or-npm-dependencies). There are also more options to speed up our CI build. One of it is [CI parallelization for CircleCI 2.0](/2018/improve-circleci-parallelisation-for-rspec-minitest-cypress), you can learn more in the article or check demo on [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=circleci-2-0-cache-ruby-gems-or-npm-dependencies).

@@ -7,15 +7,15 @@ categories: continuous_integration github
 og_image: "/images/blog/posts/how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs/github-octopus.jpeg"
 ---
 
-GitHub introduced their own CI server solution called GitHub Actions. You will learn how to set up your Ruby on Rails application on GitHub Actions with YAML config file. To run your RSpec test suite faster you will configure parallel jobs with matrix strategy on GitHub Actions.
+GitHub introduced their own CI server solution called [GitHub Actions](https://knapsackpro.com/ci_servers/github-actions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs). You will learn how to set up your Ruby on Rails application on GitHub Actions with YAML config file. To run your RSpec test suite faster you will configure parallel jobs with matrix strategy on GitHub Actions.
 
 <img src="/images/blog/posts/how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs/github-octopus.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="GitHub, cat, octopus" />
 
 ## Automate your workflow on GitHub Actions
 
-GitHub Actions makes it easy to automate all your software workflows with world-class CI/CD. Building, testing, and deploying your code right from GitHub became available with simple YAML configuration.
+[GitHub Actions](https://knapsackpro.com/ci_servers/github-actions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs) makes it easy to automate all your software workflows with world-class CI/CD. Building, testing, and deploying your code right from GitHub became available with simple YAML configuration.
 
-You can even create a few YAML config files to run a different set of rules on your CI like scheduling daily CI builds. But let's focus strictly on how to get running tests for Rails app on GitHub Actions.
+You can even create a few YAML config files to run a different set of rules on your CI like scheduling daily CI builds. But let's focus strictly on how to get running tests for Rails app on [GitHub Actions](https://knapsackpro.com/ci_servers/github-actions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs).
 
 ## Setup Ruby on Rails on GitHub Actions with YAML config
 
@@ -115,5 +115,7 @@ I also recorded video showing how it all works and how CI builds with parallel j
 If you would like to better understand how Queue Mode works in Knapsack Pro and what else problems it solves you will find a few useful information in below video.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Also check out another article describing the [parallelisation setup for GitHub Actions for Rails with MySQL, Redis and Elasticsearch](/2019/github-actions-ci-config-for-ruby-on-rails-project-with-mysql-redis-elasticsearch-how-to-run-parallel-tests). By the way, if you are currently considering moving to GitHub Actions, definitely check out our [Comparison of GitHub Actions to other CI solutions](https://knapsackpro.com/ci_comparisons?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs#github-actions).
 
 I hope you find this helpful.

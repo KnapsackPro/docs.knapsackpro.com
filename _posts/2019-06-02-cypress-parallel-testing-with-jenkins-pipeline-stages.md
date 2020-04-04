@@ -7,7 +7,7 @@ categories: continuous_integration Cypress JavaScript E2E testing Jenkins Pipeli
 og_image: "/images/blog/posts/cypress-parallel-testing-with-jenkins-pipeline-stages/cypress-jenkins.jpeg"
 ---
 
-In this tutorial for JavaScript end to end testing, you will learn about Cypress test runner for UI automation testing and how to use it with Jenkins CI server. Cypress helps with frontend automation testing using headless browser or just regular browser. E2E tests often take a long time to run and for bigger projects, those type of tests can take dozens of minutes or even hours. To save developers time you want to load balancing Cypress tests across Jenkins parallel pipeline stages.  Thanks to that you can run your 1-hour test suite in a few minutes.
+In this tutorial for JavaScript end to end testing, you will learn about Cypress test runner for UI automation testing and how to use it with [Jenkins CI server](https://knapsackpro.com/ci_servers/jenkins?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=cypress-parallel-testing-with-jenkins-pipeline-stages). Cypress helps with frontend automation testing using headless browser or just regular browser. E2E tests often take a long time to run and for bigger projects, those type of tests can take dozens of minutes or even hours. To save developers time you want to load balancing Cypress tests across Jenkins parallel pipeline stages.  Thanks to that you can run your 1-hour test suite in a few minutes.
 
 <img src="/images/blog/posts/cypress-parallel-testing-with-jenkins-pipeline-stages/cypress-jenkins.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Cypress Jenkins" />
 
@@ -19,7 +19,7 @@ Cypress is a Javascript End to End testing framework that has built in paralleli
 
 ## Run Cypress tests in parallel with Jenkins Pipeline
 
-You may want to run Cypress concurrent tests but for that, we will use declarative Jenkins Pipeline with defined Jenkins stages. This allows us to run Cypress parallel tests. 
+You may want to run Cypress concurrent tests but for that, we will use declarative Jenkins Pipeline with defined [Jenkins](https://knapsackpro.com/ci_servers/jenkins?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=cypress-parallel-testing-with-jenkins-pipeline-stages) stages. This allows us to run Cypress parallel tests.
 
 Let's look at this Jenkins Pipeline as a code to understand Cypress Jenkins integration:
 

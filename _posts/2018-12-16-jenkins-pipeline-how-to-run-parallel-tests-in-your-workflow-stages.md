@@ -25,7 +25,7 @@ Here you can learn more how dynamic test suite allocation works and with what el
 
 ## Jenkinsfile for parallel pipeline
 
-In this example, I will show you how to split your Ruby and JavaScript tests across parallel Jenkins stages.
+In this example, I will show you how to split your Ruby and JavaScript tests across parallel [Jenkins](https://knapsackpro.com/ci_servers/jenkins?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=jenkins-pipeline-how-to-run-parallel-tests-in-your-workflow-stages) stages.
 
 This is Ruby example how to split Cucumber and RSpec test suite. Other test runners like Minitest, Test::Unit etc are available as well at [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=jenkins-pipeline-how-to-run-parallel-tests-in-your-workflow-stages):
 
@@ -128,4 +128,4 @@ timeout(time: 60, unit: 'MINUTES') {
 
 ## Summary
 
-Jenkins Pipeline gets you a continuous delivery (CD) pipeline which is an automated expression of your process for getting software from version control right through to your users. It's important to save the time of your engineering team by running CI build fast. One way of doing it is [test suite parallelisation that can be done in an optimal way with Knapsack Pro for Ruby and JavaScript tests](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=jenkins-pipeline-how-to-run-parallel-tests-in-your-workflow-stages).
+[Jenkins](https://knapsackpro.com/ci_servers/jenkins?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=jenkins-pipeline-how-to-run-parallel-tests-in-your-workflow-stages) Pipeline gets you a continuous delivery (CD) pipeline which is an automated expression of your process for getting software from version control right through to your users. It's important to save the time of your engineering team by running CI build fast. One way of doing it is [test suite parallelisation that can be done in an optimal way with Knapsack Pro for Ruby and JavaScript tests](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=jenkins-pipeline-how-to-run-parallel-tests-in-your-workflow-stages).
