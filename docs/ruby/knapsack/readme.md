@@ -623,7 +623,7 @@ env:
     - RAILS_ENV=test
     - MY_GLOBAL_VAR=123
     - CI_NODE_TOTAL=2
-  matrix:
+  jobs:
     - CI_NODE_INDEX=0
     - CI_NODE_INDEX=1
 {% endhighlight %}
