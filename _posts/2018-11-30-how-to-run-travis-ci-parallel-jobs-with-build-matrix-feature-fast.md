@@ -49,7 +49,7 @@ env:
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=spinach-token
 
     - KNAPSACK_PRO_CI_NODE_TOTAL=2
-  matrix:
+  jobs:
     - KNAPSACK_PRO_CI_NODE_INDEX=0
     - KNAPSACK_PRO_CI_NODE_INDEX=1
 {% endhighlight %}
@@ -67,7 +67,7 @@ env:
     # allows to be able to retry failed tests on one of parallel job (CI node)
     - KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true
 
-  matrix:
+  jobs:
     - KNAPSACK_PRO_CI_NODE_INDEX=0
     - KNAPSACK_PRO_CI_NODE_INDEX=1
 {% endhighlight %}
