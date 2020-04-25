@@ -7,7 +7,7 @@ categories: continuous_integration Travis CI parallelisation Ruby RSpec Minitest
 og_image: "/images/blog/posts/how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast/travis-ci.jpg"
 ---
 
-Travis CI allows you to run multiple jobs as part of the same CI build. They even allow for up to 200 parallel jobs for open source projects (the same for private repositories). You can leverage that using [Travis](https://knapsackpro.com/ci_servers/travis-ci?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast) build matrix feature to run your project way faster by splitting tests into many smaller jobs that will run a subset of your test suite.
+Travis CI allows you to run multiple concurrent jobs as part of the same CI build. They even allow for up to 200 parallel jobs for open source projects (the same for private repositories). You can leverage that using [Travis](https://knapsackpro.com/ci_servers/travis-ci?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast) build matrix feature to run your project way faster by splitting tests into many smaller jobs that will run a subset of your test suite.
 
 <img src="/images/blog/posts/how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast/travis-ci.jpg" style="width:450px;margin-left: 15px;float:right;" alt="Travis CI" />
 
@@ -17,7 +17,7 @@ Travis CI allows you to run multiple jobs as part of the same CI build. They eve
 
 ## Split tests across parallel jobs
 
-We could use build matrix feature to split tests by adding to your project [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast) that will split your <b>Ruby</b> or <b>Javascript</b> tests automatically across parallel jobs in a way that all parallel jobs would run subset of test suite and finish work in similar time so you would get the result of your test suite passing or not as fast as possible without waiting for the slowest job.
+We could use build matrix feature to split tests by adding to your project [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast) that will split your <b>Ruby</b> or <b>Javascript</b> tests automatically across parallel jobs in a way that all concurrent jobs would run subset of test suite and finish work in similar time so you would get the result of your test suite passing or not as fast as possible without waiting for the slowest job.
 
 How to run Ruby tests on parallel jobs with [knapsack_pro](https://github.com/KnapsackPro/knapsack_pro-ruby) ruby gem:
 
@@ -54,7 +54,7 @@ env:
     - KNAPSACK_PRO_CI_NODE_INDEX=1
 {% endhighlight %}
 
-How to run Cypress tests in JavaScript on parallel jobs with [@knapsack-pro/cypress](https://github.com/KnapsackPro/knapsack-pro-cypress):
+How to run Cypress tests in JavaScript on concurrent jobs with [@knapsack-pro/cypress](https://github.com/KnapsackPro/knapsack-pro-cypress):
 
 {% highlight yaml %}
 # .travis.yml
@@ -85,4 +85,6 @@ If you would like to see how [Knapsack Pro helps split tests across parallel job
 
 ## Summary
 
-If you would like to learn more about testing with [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast) you can check other articles on our [blog](/) like [testing with Cypress test runner](/2018/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes). And in case you are contemplating using Travis CI, then this [comparison of Travis CI with other solutions](https://knapsackpro.com/ci_comparisons?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast#travis-ci) can be helpful for you.
+If you would like to learn more about testing with [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast) you can check other articles on our [blog](/) like [testing with Cypress test runner](/2018/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes).
+
+<i>In case you are contemplating using Travis CI, then this [comparison of Travis CI with other solutions](https://knapsackpro.com/ci_comparisons?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast#travis-ci) can be helpful to you. The [comparison of Travis to Github Actions](https://knapsackpro.com/ci_comparisons/travis-ci/vs/github-actions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast) garners the most interest. Other popular pages include [Travis vs AppVeyor](https://knapsackpro.com/ci_comparisons/travis-ci/vs/appveyor?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast) and [Travis vs Bitbucket Pipelines](https://knapsackpro.com/ci_comparisons/travis-ci/vs/bitbucket-pipelines?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-travis-ci-parallel-jobs-with-build-matrix-feature-fast).</i>
