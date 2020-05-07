@@ -32,7 +32,11 @@
     description: |
       This endpoint returns a list of test files recorded for CI build that closely matches given params like __commit_hash__, __branch__, __node_total__.
 
-      You can use the list of test files to determine what test files are slow and could be split by test cases. You need to verify if those test files still exist on your disk. If test files include paths to test cases then you need to merge them on your client-side to determine what test files are slow.
+      If test files include paths to test cases then you need to merge them on your client-side to determine what test files are slow.
+
+      You need to verify if the test files still exist on your disk before running tests.
+
+      You can use the list of test files to determine what test files are slow and could be split by test cases.
 
       knapsack_pro gem uses this API endpoint to [split slow test files by test cases](https://github.com/KnapsackPro/knapsack_pro-ruby#split-test-files-by-test-cases).
 
