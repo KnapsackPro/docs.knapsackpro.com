@@ -1166,7 +1166,7 @@ KNAPSACK_PRO_CI_NODE_INDEX - starts from 0, it's index of each CI node
 
 <div id="guide-final-step" class="hidden">
   <h4>
-  Final step
+  Verify all works in Regular Mode which does static split of tests (step 1 out of 3)
   </h4>
 
   <p>
@@ -1185,6 +1185,8 @@ KNAPSACK_PRO_CI_NODE_INDEX - starts from 0, it's index of each CI node
   <p>
   <strong>Your second test suite run on CI will be parallelized with optimal test suite split if first run was recorded correctly.</strong>
   </p>
+
+  <h4>How to split tests in a dynamic way to auto-balance tests timing across CI nodes in Queue Mode (step 2 out of 3)</h4>
 
   <p>
   Once you confirm the knapsack_pro Regular Mode works and your tests are green then you may want to <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode" target="_blank">learn about Queue Mode and how to enable it</a>.
@@ -1243,6 +1245,17 @@ bundle exec rake knapsack_pro:queue:cucumber
   <p>
   Feel free to ask questions if you need help. <a href="https://knapsackpro.com/contact" target="_blank">Contact us</a>.
   </p>
+
+  <h4>How to split slow test files across parallel CI nodes (step 3 out of 3)</h4>
+
+  <p>
+  If your test suite has very slow test files then the <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#split-test-files-by-test-cases" target="_blank">slow test file can be auto split on parallel CI nodes with knapsack_pro gem</a>. It works in Regular Mode and Queue Mode.
+  </p>
+
+{% highlight bash %}
+# enable RSpec slow test files split by test examples
+KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
+{% endhighlight %}
 
   <h4>Most asked questions from FAQ</h4>
 
