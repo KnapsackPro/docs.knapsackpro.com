@@ -1257,6 +1257,16 @@ bundle exec rake knapsack_pro:queue:cucumber
 KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
 {% endhighlight %}
 
+  <p>
+  If too much debug logs from knapsack_pro gem will be annoying for you then you can change the log level to:
+  </p>
+
+{% highlight bash %}
+KNAPSACK_PRO_LOG_LEVEL=info
+{% endhighlight %}
+
+  <p>Read more about <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-can-i-change-log-level" target="_blank">log levels in knapsack_pro gem</a>.</p>
+
   <h4>Most asked questions from FAQ</h4>
 
   <p>
