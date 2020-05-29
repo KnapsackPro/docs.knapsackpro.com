@@ -79,6 +79,8 @@ See how dynamic test suite split works in Queue Mode for Knapsack Pro.
 
 <script src="https://gist.github.com/ArturT/580df4fd7852e67379e9b263228e1994.js"></script>
 
+If you use RSpec and you have very slow test files you can auto split them. Knapsack Pro [detects slow RSpec test files to split it by test examples on parallel jobs](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it).
+
 ## Conclusions
 
 [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation) supports Ruby and several test runners in JavaScript such as Jest and Cypress, but there are plans to add support for more test runners and programming languages. I would love to hear [what you use to test applications and which CI servers](https://docs.google.com/forms/d/e/1FAIpQLSe7Z6k__VczmRMmXykjA5i2MVEA3nEJ90gbiIeCRjecWhPOig/viewform?hl=en). In case you are considering changing your CI provider, check out our [list of CI servers features](https://knapsackpro.com/ci_servers/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation). You can contact me on [LinkedIn](https://www.linkedin.com/in/arturtrzop/), and you can find more information about the described solution at [KnapsackPro.com](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation). I hope this article was useful to you. :)
