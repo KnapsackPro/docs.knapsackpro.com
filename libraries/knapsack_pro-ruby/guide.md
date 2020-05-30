@@ -311,19 +311,28 @@ You can parallelize your builds across virtual machines with <a href="http://doc
 
 {% highlight yaml %}
 script:
-  # Step for RSpec
+  # Step for RSpec in Regular Mode
   - "bundle exec rake knapsack_pro:rspec"
 
-  # Step for Cucumber
+  # Step for RSpec in Queue Mode
+  - "bundle exec rake knapsack_pro:queue:rspec"
+
+  # Step for Cucumber in Regular Mode
   - "bundle exec rake knapsack_pro:cucumber"
 
-  # Step for Minitest
+  # Step for Cucumber in Queue Mode
+  - "bundle exec rake knapsack_pro:queue:cucumber"
+
+  # Step for Minitest in Regular Mode
   - "bundle exec rake knapsack_pro:minitest"
 
-  # Step for test-unit
+  # Step for Minitest in Queue Mode
+  - "bundle exec rake knapsack_pro:queue:minitest"
+
+  # Step for test-unit in Regular Mode
   - "bundle exec rake knapsack_pro:test_unit"
 
-  # Step for Spinach
+  # Step for Spinach in Regular Mode
   - "bundle exec rake knapsack_pro:spinach"
 
 env:
@@ -334,6 +343,10 @@ env:
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=minitest-token
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT=test-unit-token
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=spinach-token
+
+    # if you use Knapsack Pro Queue Mode you must set below env variable
+    # to be able to retry single failed parallel job from Travis UI
+    - KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true
 
     - KNAPSACK_PRO_CI_NODE_TOTAL=2
   jobs:
