@@ -35,6 +35,8 @@ In below video I show what else problems can be solved with dynamic test suite s
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/gJdLQb83hho" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+If you use RSpec then you can even [auto split slow RSpec test files by test examples on parallel jobs](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it) thanks to knapsack_pro gem. It means your single slow spec file can run in parallel!
+
 You can also read more about it at [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=improve-circleci-parallelisation-for-rspec-minitest-cypress) and see support for more test runners there.
 
 ## Other tips
