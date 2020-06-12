@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to run slow RSpec files on Github Actions with parallel jobs by doing an auto split of the spec file by test examples"
-date:   2020-06-13 12:00:00 +0100
+date:   2020-06-15 08:00:00 +0200
 author: "Knapsack Pro"
 categories: techtips continuous_integration
 og_image: "/images/blog/posts/example-article/image.jpg"
