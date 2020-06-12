@@ -4,10 +4,12 @@ title:  "How to run slow RSpec files on Github Actions with parallel jobs by doi
 date:   2020-06-15 08:00:00 +0200
 author: "Knapsack Pro"
 categories: techtips continuous_integration
-og_image: "/images/blog/posts/example-article/image.jpg"
+og_image: "/images/blog/posts/how-to-run-slow-rspec-files-on-github-actions-with-parallel-jobs-by-doing-an-auto-split-of-the-spec-file-by-test-examples/cut-spec-file.jpeg"
 ---
 
 Splitting your CI build jobs between multiple machines running in parallel is a great way to make the process fast, which results in more time for building features. Github Actions allows running parallel jobs easily. In a previous article, we explained how you can use Knapsack Pro to [split your RSpec test files efficiently between parallel jobs on GitHub Actions](/2019/how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs). Today we'd like to show how to address the problem of slow test files negatively impacting the whole build times.
+
+<img src="/images/blog/posts/how-to-run-slow-rspec-files-on-github-actions-with-parallel-jobs-by-doing-an-auto-split-of-the-spec-file-by-test-examples/cut-spec-file.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="GitHub, Actions, RSpec, spec file, test file, cut, scissors" />
 
 ## Consider the split
 
