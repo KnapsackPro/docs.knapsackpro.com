@@ -116,7 +116,7 @@ If you would like to better understand how Queue Mode works in Knapsack Pro and 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Also check out another article describing the [parallelisation setup for GitHub Actions for Rails with MySQL, Redis and Elasticsearch](/2019/github-actions-ci-config-for-ruby-on-rails-project-with-mysql-redis-elasticsearch-how-to-run-parallel-tests).
+Also check out another article describing the [parallelisation setup for GitHub Actions for Rails with MySQL, Redis and Elasticsearch](/2019/github-actions-ci-config-for-ruby-on-rails-project-with-mysql-redis-elasticsearch-how-to-run-parallel-tests) or learn [how to auto split slow RSpec test files by test examples](/2020/how-to-run-slow-rspec-files-on-github-actions-with-parallel-jobs-by-doing-an-auto-split-of-the-spec-file-by-test-examples).
 
 I hope you find this helpful.
 
