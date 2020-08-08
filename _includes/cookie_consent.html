@@ -25,14 +25,18 @@
       document.getElementById('js-cookies-message').style.display = 'block';
     };
 
-    document.getElementById('js-cookies-close').addEventListener("click",function() {
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
       var date = new Date();
       date.setMonth(date.getMonth() + 12);
       var dateString = date.toUTCString();
 
       document.cookie = cookieName + "=true;expires=" + dateString
-      document.getElementById('js-cookies-message').style.display = 'none';
-      location.reload();
+
+      window.ga('send', 'event', 'Cookie consent', 'Cookie consent - I agree', 'Alert');
     });
   });
 </script>
