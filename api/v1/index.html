@@ -182,7 +182,16 @@
     }
   ]
 }
-</code></pre></div><div class="tab-pane" id="build_subsets_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>Response does not contain any data.</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>// example 1
+</code></pre></div><div class="tab-pane" id="build_subsets_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>// when successfully created BuildSubset record on API side
+// and Knapsack Pro client is up to date
+Response does not contain any data.
+
+// when successfully created BuildSubset record on API side
+// and Knapsack Pro client is outdated
+{
+  "message": "Please update client knapsack_pro-ruby/rspec 2.3.0 version to 2.4.0. See CHANGELOG: https://github.com/KnapsackPro/knapsack_pro-ruby/blob/master/CHANGELOG.md#change-log"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>// example 1
 {
   "errors": [
     {
