@@ -4,8 +4,9 @@ title: Knapsack Pro API
 permalink: /api/
 ---
 
-<p>
-You can learn more how Knapsack Pro API works:
+## How API works
+
+You can learn how Knapsack Pro API works from the below videos or reading the article showing [the difference between Regular Mode and Queue Mode](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation).
 
 <ul>
   <li>
@@ -19,14 +20,21 @@ You can learn more how Knapsack Pro API works:
   Docs: <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode">How knapsack_pro gem works in Queue Mode</a>.
   </li>
 </ul>
-</p>
+
+## API documentation
 
 <p>
-Here you can find API documentation for Regular Mode and Queue Mode. The API documentation might be useful if you want to build <a href="/integration/">client tool</a> to directly integrate with Knapsack Pro API.
+Here you can find API documentation for Regular Mode and Queue Mode. The API documentation might be useful if you want to build <a href="/integration/">a client library</a> to directly integrate with Knapsack Pro API.
 </p>
 
 <h1><a href="/api/v1/">Preview API v1 documentation</a></h1>
 
+## How to build native integration with API
+
+* [How to build native integration with Knapsack Pro API to run tests in parallel for any test runner (testing framework)](/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework)
+
+## How to export data from API
+
 <p>
-You may also find useful article with examples how to <a href="/2018/how-to-export-test-suite-timing-data-from-knapsack-pro-api">extract timing data for recorded CI builds</a> using API.
+You may also find a useful article with examples of how to <a href="/2018/how-to-export-test-suite-timing-data-from-knapsack-pro-api">extract timing data for recorded CI builds</a> using API.
 </p>
