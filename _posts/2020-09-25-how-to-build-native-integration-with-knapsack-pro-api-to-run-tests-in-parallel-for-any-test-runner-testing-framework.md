@@ -4,12 +4,14 @@ title: "How to build native integration with Knapsack Pro API to run tests in pa
 date: 2020-09-25 00:00:00 +0200
 author: "Artur Trzop"
 categories: techtips continuous_integration
-og_image: "/images/blog/posts/example-article/image.jpg"
+og_image: "/images/blog/posts/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework/api.jpeg"
 ---
 
 Do you know that Knapsack Pro API can work with any test runner in any programming language?
 
 If your test runner is not listed here as one of [the supported test runners out of the box in Knapsack Pro](/integration/), then you can use `@knapsack-pro/core` npm package to directly integrate with Knapsack Pro API and build your test runner integration with Knapsack Pro API.
+
+<img src="/images/blog/posts/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework/api.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Knapsack Pro API" />
 
 We have users who did that, for instance, for the TestCafe test runner.
 
