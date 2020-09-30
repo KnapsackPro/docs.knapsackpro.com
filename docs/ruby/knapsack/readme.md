@@ -1047,9 +1047,9 @@ The reason might be:
 * another reason might be an empty spec file with no test cases
 * or you run in RSpec only subset of tests using tags like `--tag type:my-custom-tag` then if you recorded json report for such a tag then only tagged specs will be in json report and all other specs will be named as "leftover specs"
 
-If you have a lot of leftover specs then you can [generate knapsack report again](#how-to-generate-knapsack-report) to improve you test distribution across CI nodes.
-
 If leftover specs will be distributed across CI nodes then it will happen based on file name instead of the test file execution time which is missing for them.
+
+If you have a lot of leftover specs then you can [generate knapsack report again](#how-to-generate-knapsack-report) to improve you test distribution across CI nodes.
 
 ### Why some of test files are still in "leftover specs" after I generate a new report?
 
