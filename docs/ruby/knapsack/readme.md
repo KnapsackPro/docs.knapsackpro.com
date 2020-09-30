@@ -166,6 +166,7 @@ How knapsack_pro makes my life easier as opposed to regular knapsack gem?
     - [Step 1](#step-1-4)
     - [Step 2](#step-2-4)
   - [Info for Jenkins](#info-for-jenkins)
+  - [Info for BitBucket Pipelines](#info-for-bitbucket-pipelines)
 - [FAQ](#faq)
   - [How Knapsack Pro makes my life easier as opposed to knapsack free gem?](#how-knapsack-pro-makes-my-life-easier-as-opposed-to-knapsack-free-gem)
   - [What time offset warning means?](#what-time-offset-warning-means)
@@ -947,6 +948,47 @@ Here is an example [`Jenkinsfile`](https://github.com/mknapik/jenkins-pipeline-k
 You may want to read article [Knapsack with Jenkins Pipeline](http://blog.knapik.me/knapsack-with-jenkins-pipeline/) from Michał Knapik.
 
 More tips can be found in the [issue](https://github.com/ArturT/knapsack/issues/42).
+
+### Info for BitBucket Pipelines
+
+#### Step 1
+
+For the first time run all tests at once with enabled report generator. Run the following commands locally:
+
+{% highlight shell %}
+# Step for RSpec
+KNAPSACK_GENERATE_REPORT=true bundle exec rspec spec
+
+# Step for Cucumber
+KNAPSACK_GENERATE_REPORT=true bundle exec cucumber features
+
+# Step for Minitest
+KNAPSACK_GENERATE_REPORT=true bundle exec rake test
+KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 runs unit and system tests
+
+# Step for Spinach
+KNAPSACK_GENERATE_REPORT=true bundle exec spinach
+{% endhighlight %}
+
+After tests pass you should copy knapsack json report which is rendered at the end of rspec/cucumber/minitest results. Save it into your repository as `knapsack_rspec_report.json`, `knapsack_cucumber_report.json`, `knapsack_minitest_report.json` or `knapsack_spinach_report.json` file and commit.
+
+#### Step 2
+
+Knapsack supports BitBucket Pipelines ENVs `BITBUCKET_PARALLEL_STEP_COUNT` and `BITBUCKET_PARALLEL_STEP`. The only thing you need to do is to configure the parallelism parameter in your build step and run the appropiate command in your build
+
+{% highlight shell %}
+# Step for RSpec
+bundle exec rake knapsack:rspec
+
+# Step for Cucumber
+bundle exec rake knapsack:cucumber
+
+# Step for Minitest
+bundle exec rake knapsack:minitest
+
+# Step for Spinach
+bundle exec rake knapsack:spinach
+{% endhighlight %}
 
 ## FAQ
 
