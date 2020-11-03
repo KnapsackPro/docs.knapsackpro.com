@@ -4,7 +4,7 @@ title:  "How to merge SimpleCov results with parallel Rails specs on Semaphore C
 date:   2020-11-03 00:00:00 +0200
 author: "Jesal Gadhia"
 categories: techtips continuous_integration
-og_image: "/images/blog/posts/example-article/image.jpg"
+og_image: "/images/blog/posts/how-to-merge-simplecov-results-with-parallel-rails-specs/logo.png"
 published: true
 ---
 
