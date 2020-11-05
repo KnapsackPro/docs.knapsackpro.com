@@ -113,6 +113,8 @@ docker-compose -f docker-compose.semaphore.yml --no-ansi run \
   ci bash -c "bin/rake ci:setup db:create db:structure:load knapsack_pro:queue:rspec['--no-color --format progress --format RspecJunitFormatter --out tmp/rspec-junit/rspec.xml']"
 {% endhighlight %}
 
+If you want you can also learn [how to use RspecJunitFormatter with KnapsackPro Queue Mode](https://knapsackpro.com/faq/question/how-to-use-junit-formatter).
+
 This is the bash file which is responsible for uploading the SimpleCov results from each machine. It compresses the coverage directory and uploads it to Semaphore.
 
 `.semaphore/helpers/upload_test_artifacts.sh`:
