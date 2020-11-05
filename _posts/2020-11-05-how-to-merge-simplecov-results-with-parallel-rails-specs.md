@@ -185,4 +185,4 @@ Finally here's what your Semaphore workflow artifacts will look like. It will ha
 
 This approach can also be easily ported over to other CI providers by simply changing the `artifact push` and `artifact pull` commands to S3 or another CI specific artifact upload command.
 
-I hope this article was useful to you. Let me know if you have any questions or feedback. If you liked this post, please share it on social media and <a href="https://twitter.com/jesalg">follow me on Twitter!</a>
+I hope this article was useful to you. Let me know if you have any questions or feedback. If you liked this post, please share it on social media and <a href="https://twitter.com/jesalg" rel="nofollow noopener" target="_blank">follow me on Twitter!</a>
