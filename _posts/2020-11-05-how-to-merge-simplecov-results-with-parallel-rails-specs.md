@@ -166,7 +166,7 @@ namespace :coverage do
 end
 {% endhighlight %}
 
-`.resultset.json`
+`.resultset.json`:
 
 {% highlight json %}
 {
