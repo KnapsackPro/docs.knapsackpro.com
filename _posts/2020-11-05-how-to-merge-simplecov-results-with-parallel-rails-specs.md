@@ -46,7 +46,7 @@ Also note, `before_queue` hook for KnapsackPro. This is the important piece, it 
   end
 {% endhighlight %}
 
-So now when SimpleCov a creates a `.resutset.json` it will have a specific key depending on which CI node it was run in like the example below. This will be useful down the line when it comes to combining the results.
+So now when SimpleCov creates a `.resutset.json` it will have a specific key depending on which CI node it was run in like the example below. This will be useful down the line when it comes to combining the results.
 
 {% highlight json %}
 {
