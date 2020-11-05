@@ -24,26 +24,26 @@ Also note, [`before_queue` hook for Knapsack Pro](https://knapsackpro.com/faq/qu
 `.simplecov`:
 
 {% highlight ruby %}
-  SimpleCov.start do
-    add_filter %r{^/config/}
-    add_filter %r{^/db/}
-    add_filter %r{^/spec/}
+SimpleCov.start do
+  add_filter %r{^/config/}
+  add_filter %r{^/db/}
+  add_filter %r{^/spec/}
 
-    add_group 'Admin', 'app/admin'
-    add_group 'Controllers', 'app/controllers'
-    add_group 'Helpers', 'app/helpers'
-    add_group 'Jobs', 'app/jobs'
-    add_group 'Libraries', 'lib/'
-    add_group 'Mailers', 'app/mailers'
-    add_group 'Models', 'app/models'
-    add_group 'Policies', 'app/policies'
-    add_group 'Serializers', 'app/serializers'
-  end
-  Rails.application.eager_load!
+  add_group 'Admin', 'app/admin'
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Helpers', 'app/helpers'
+  add_group 'Jobs', 'app/jobs'
+  add_group 'Libraries', 'lib/'
+  add_group 'Mailers', 'app/mailers'
+  add_group 'Models', 'app/models'
+  add_group 'Policies', 'app/policies'
+  add_group 'Serializers', 'app/serializers'
+end
+Rails.application.eager_load!
 
-  KnapsackPro::Hooks::Queue.before_queue do
-    SimpleCov.command_name("rspec_ci_node_#{KnapsackPro::Config::Env.ci_node_index}")
-  end
+KnapsackPro::Hooks::Queue.before_queue do
+  SimpleCov.command_name("rspec_ci_node_#{KnapsackPro::Config::Env.ci_node_index}")
+end
 {% endhighlight %}
 
 So now when SimpleCov creates a `.resultset.json` it will have a specific key depending on which CI node it was run in like the example below. This will be useful down the line when it comes to combining the results.
