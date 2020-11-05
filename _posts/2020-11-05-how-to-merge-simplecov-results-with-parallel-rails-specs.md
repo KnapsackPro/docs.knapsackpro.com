@@ -99,7 +99,7 @@ Below is the relevant portions of the Semaphore CI configuration. It runs the Ra
       - name: docker-hub
 {% endhighlight %}
 
-Below is the bash file which executes the Rails tests on each parallel machine. It sets up the Rails environment and then runs KnapsackPro in queue mode.
+Below is the bash file which executes the Rails tests on each parallel machine. It sets up the Rails environment and then runs KnapsackPro in Queue Mode.
 
 `.semaphore/helpers/rails_tests.sh`:
 
