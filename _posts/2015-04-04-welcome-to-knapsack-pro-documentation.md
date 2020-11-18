@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Welcome to KnapsackPro.com Documentation!"
+categories: news
 date:   2015-04-04 21:20:21
 ---
 

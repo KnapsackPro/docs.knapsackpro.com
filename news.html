@@ -1,25 +1,25 @@
 ---
 layout: default
-title: Continuous Integration articles
-permalink: /continuous_integration/
+title: News
+permalink: /news/
 ---
 
 <div class="home">
 
-  <h1 class="post-title">Continuous Integration</h1>
+  <h1 class="post-title">News</h1>
 
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
   <p>
   <a href="{{ "/" | prepend: site.baseurl }}"><i class="fas fa-file-alt"></i> <b>Blog articles</b></a> |
-  <i class="fas fa-cube"></i> <b>Continuous Integration</b> |
+  <a href="{{ "/continuous_integration/" | prepend: site.baseurl }}"><i class="fas fa-cube"></i> <b>Continuous Integration</b></a> |
   <a href="{{ "/tech_tips/" | prepend: site.baseurl }}"><i class="fas fa-lightbulb"></i> <b>Tech tips</b></a> |
-  <a href="{{ "/news/" | prepend: site.baseurl }}"><i class="fas fa-lightbulb"></i> <b>News</b></a>
+  <i class="fas fa-lightbulb"></i> <b>News</b>
   </p>
 
   <ul class="post-list">
     {% for post in site.posts %}
-      {% if post.categories contains "continuous_integration" %}
+      {% if post.categories contains "news" %}
         <li style="clear:both;">
           <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
