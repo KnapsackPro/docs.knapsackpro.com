@@ -122,7 +122,7 @@ How knapsack_pro makes my life easier as opposed to regular knapsack gem?
 
 ### Requirements
 
-`>= Ruby 1.9.3`
+`>= Ruby 2.1.0`
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
