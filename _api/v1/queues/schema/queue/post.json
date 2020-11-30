@@ -1,5 +1,27 @@
+// 1st type of request to Queue API should set params:
+// can_initialize_queue: true AND attempt_connect_to_queue: true
+// Note there is no test_files parameter in the payload to make the request fast and keep the payload small.
 {
   "can_initialize_queue": true,
+  "attempt_connect_to_queue": true,
+  "fixed_queue_split": false,
+  "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
+  "branch": "master",
+  "node_total": "4",
+  "node_index": "0",
+  "node_build_id": "1234"
+}
+
+// 2nd type of request to Queue API should happen only if the API response for 1st type of request has:
+// "code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
+// then it means an attempt to connect to the queue failed because the queue does not exist on the API side yet.
+// You must initialize a new queue with the below request, it should set params.
+// can_initialize_queue: true AND attempt_connect_to_queue: false
+// Note there is test_files parameter in the payload to initialize a queue based on the list of test_files from your disk.
+// This request can be slow if you provide a large number of test files (~1000+). That is why we did 1st request to try to connect to the existing queue first because one of the parallel CI nodes could already initialize it.
+{
+  "can_initialize_queue": true,
+  "attempt_connect_to_queue": false,
   "fixed_queue_split": false,
   "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
   "branch": "master",
@@ -20,4 +42,20 @@
       "path": "test/slow/d_test.rb"
     }
   ]
+}
+
+// 3rd type of request to Queue API should happen only if 1st or 2nd type of request returned a list of test_files.
+// With the below request you can continue fetching test files from the queue to run them with your test runner.
+// Request payload should have params:
+// can_initialize_queue: false AND attempt_connect_to_queue: false
+// Note there is no test_files parameter in the payload to make the request fast and keep the payload small.
+{
+  "can_initialize_queue": false,
+  "attempt_connect_to_queue": false,
+  "fixed_queue_split": false,
+  "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
+  "branch": "master",
+  "node_total": "4",
+  "node_index": "0",
+  "node_build_id": "1234"
 }
