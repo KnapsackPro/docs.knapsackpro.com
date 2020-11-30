@@ -18,8 +18,8 @@ example: |
 description: |
   JSON array with objects. Each object contains test file path.
 
-  Example contains all test files existing in the test suite.
+  Example contains all test files existing in the test suite that you want to run in your CI build.
 
-  When `can_initialize_queue=true` then `test_files` field is required in order to initialize Queue on API side.
+  When `can_initialize_queue=true` AND `attempt_connect_to_queue=false` then `test_files` field is required in order to initialize a queue on the API side.
 
-  When `can_initialize_queue=false` then `test_files` field is not needed. Do not set it in body to save data transfer and make request faster.
+  Otherwise the `test_files` field is not needed. Do not set it in the body to save data transfer and make request faster.

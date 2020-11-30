@@ -1,3 +1,13 @@
+// 1st type of response to the 1st type of request (when can_initialize_queue: true AND attempt_connect_to_queue: true)
+// It can happen only when the queue does not exist on the API side or cannot be read from the cache on the API side
+{
+  "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
+  "message": "A queue with a list of test files does not exist on the API side yet. Knapsack Pro client library should automatically make a new request to try to initialize the queue. The request must have attributes like can_initialize_queue=true, attempt_connect_to_queue=false, and test_files (must contain test files existing on the disk that you want to run), etc.",
+  "code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
+}
+
+// 2nd type of response can happen for all types of request
+// It returns a list of test files that should be run with your test runner
 {
   "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
   "build_subset_id": null,
