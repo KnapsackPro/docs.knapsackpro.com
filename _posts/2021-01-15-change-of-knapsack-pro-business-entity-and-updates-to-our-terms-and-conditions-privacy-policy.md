@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Change of Knapsack Pro business entity, and updates to our Terms and Conditions & Privacy Policy"
-date:   2020-12-01 12:00:00 +0100
+date:   2021-01-15 08:00:00 +0100
 author: "Artur Trzop"
 categories: news
 ---
@@ -22,11 +22,11 @@ Craven House 40-44 Uxbridge Road, London, England, W5 2BS
 <br>
 Company number 12680577
 
-If you have a paid plan you will be receiving invoices from Knapsack Technologies Ltd beginning January 1st, 2021.
+If you have a paid plan you will be receiving invoices from Knapsack Technologies Ltd beginning February 1st, 2021.
 
 We at KnapsackPro.com are making several updates to make our Terms and Conditions, Privacy Policy simpler, and more transparent.
 
-The updates will be effective for existing users as of January 1st, 2021. We encourage you to review them in full.
+The updates will be effective for existing users as of February 1st, 2021. We encourage you to review them in full.
 
 Below are some highlights:
 
