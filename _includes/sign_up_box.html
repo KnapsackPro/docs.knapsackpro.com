@@ -1,0 +1,8 @@
+<iframe id="x-knapsack-pro-sign-up-widget" style="width: 100%; height: 180px; margin: 10px 0; display: block; border-width: 0;" scrolling="no"></iframe>
+<script>
+// for development
+var knapsackProSignUpBoxWidgetURL = "http://knapsackpro.test:3000/widgets/sign_up/widget"
+// for production
+// var knapsackProSignUpBoxWidgetURL = "https://knapsackpro.com/widgets/sign_up/widget"
+document.getElementById("x-knapsack-pro-sign-up-widget").src = knapsackProSignUpBoxWidgetURL + "?rendered_on_page=" + encodeURIComponent(window.location.href);
+</script>
