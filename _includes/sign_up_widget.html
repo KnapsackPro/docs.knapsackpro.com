@@ -4,5 +4,7 @@
 var knapsackProSignUpBoxWidgetURL = "http://knapsackpro.test:3000/widgets/sign_up/widget"
 // for production
 // var knapsackProSignUpBoxWidgetURL = "https://knapsackpro.com/widgets/sign_up/widget"
+
+// rendered_on_page query param is just for Google Analytics tracking what URL renders our widget most often
 document.getElementById("x-knapsack-pro-sign-up-widget").src = knapsackProSignUpBoxWidgetURL + "?rendered_on_page=" + encodeURIComponent(window.location.href);
 </script>
