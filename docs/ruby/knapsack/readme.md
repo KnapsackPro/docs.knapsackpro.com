@@ -3,6 +3,7 @@ layout: docs
 title: Knapsack gem README
 permalink: /ruby/knapsack
 ---
+{% include knapsack_gem_utm_cookies.html %}
 
 <a href="https://github.com/ArturT/knapsack">
   <span class="icon  icon--github">
