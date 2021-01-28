@@ -72,3 +72,5 @@ permalink: /integration/
 <p>
 Do you use other programming language or test runner? <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7Z6k__VczmRMmXykjA5i2MVEA3nEJ90gbiIeCRjecWhPOig/viewform?hl=en" rel="nofollow">Let us know</a>.
 </p>
+
+{% include sign_up_widget.html %}

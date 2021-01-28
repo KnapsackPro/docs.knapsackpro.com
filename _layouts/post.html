@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% include utm_cookies.html %}
+{% include blog_post_utm_cookies.html %}
 
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
@@ -19,6 +19,8 @@ layout: default
   <div class="post-content" itemprop="articleBody">
     {{ content }}
   </div>
+
+  {% include sign_up_widget.html %}
 
   {% include share_post.html %}
 

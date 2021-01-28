@@ -3,6 +3,7 @@ layout: docs
 title: Knapsack gem README
 permalink: /ruby/knapsack
 ---
+{% include knapsack_gem_utm_cookies.html %}
 
 <a href="https://github.com/ArturT/knapsack">
   <span class="icon  icon--github">
@@ -104,7 +105,7 @@ JavaScript examples for test runners:
   </tr>
 </table>
 
-<br>
+{% include sign_up_widget.html %}
 
 How knapsack_pro makes my life easier as opposed to regular knapsack gem?
 
