@@ -33,7 +33,7 @@ Below you can see an example of the optimal distribution of tests, where each pa
 
 <img src="/images/blog/posts/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation/optimal-tests-split.png" style="width:100%;" alt="optimal tests split on CI server, CI parallelism" />
 
-## Static split of tests in a deterministic way
+## Static split of tests in a deterministic way - Regular Mode
 
 One way to determine how to divide tests between parallel machines on a CI server so that each server completes tests at a similar time is to use the measured runtime of the files in the test suite. This was the first approach I implemented in Knapsack Ruby gem.
 
@@ -59,7 +59,7 @@ If not all CI nodes start at the same time or the boot time of certain steps in 
 
 All parallel CI nodes must stop working at a similar time to avoid a bottleneck, that is, overloading the machine with tests.
 
-## Dynamic tests split
+## Dynamic tests split - Queue Mode
 
 The solution to the above problem is to dynamically divide tests between parallel machines within one CI build. This is a problem I have been working on in recent years, creating the [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation) library and the Queue Mode for Ruby and JavaScript with support for several popular test runners like Jest or Cypress.
 
