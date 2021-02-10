@@ -8,11 +8,10 @@ $(document).ready(function() {
   date.setMonth(date.getMonth() + 6);
   var dateString = date.toUTCString();
   var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
-  var utmCampaignString = document.location.pathname.substring(6);
 
   document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
   document.cookie = "u_medium=readme;" + cookieAttributesString;
-  document.cookie = "u_campaign=knapsack_gem_readme" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_campaign=knapsack_gem_readme" + ";" + cookieAttributesString;
   document.cookie = "u_content=knapsack_gem_readme_pageview;" + cookieAttributesString;
 });
 </script>
