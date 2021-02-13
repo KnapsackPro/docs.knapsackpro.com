@@ -78,4 +78,6 @@ Knapsack Pro Core client should understand a few environment variables. See exam
 
   * To learn more about this flag you can also see [examples in knapsack_pro ruby gem related to the `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node).
 
+* `KNAPSACK_PRO_CI_NODE_TOTAL` - it determines how many parallel CI nodes you use. Knapsack Pro client should try to determine the number of parallel CI nodes you use during CI build run based on known CI providers environment variables first. Only if it's not possible then it should use `KNAPSACK_PRO_CI_NODE_TOTAL` value. If the `KNAPSACK_PRO_CI_NODE_TOTAL` value is not defined then an error should be raised.
 
+* `KNAPSACK_PRO_CI_NODE_INDEX` - it is the index of the parallel CI node (parallel job). It should start from `0` to `KNAPSACK_PRO_CI_NODE_TOTAL - 1`. If you use 2 parallel CI nodes in total then indexes should be `0` and `1`. Knapsack Pro client should read CI provider environment variables first to determine CI node index. If it's not possible then `KNAPSACK_PRO_CI_NODE_INDEX` value should be used. When `KNAPSACK_PRO_CI_NODE_INDEX` has no value then an error should be raised.
