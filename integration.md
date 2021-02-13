@@ -65,6 +65,14 @@ permalink: /integration/
     <td><a href="https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_cypress#knapsack_pro_core_js">FAQ - see section: General questions for Knapsack Pro Core JavaScript integration</a></td>
     <td><a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/CHANGELOG.md">Change log</a></td>
   </tr>
+  <tr>
+    <td>Any programming language</td>
+    <td>Any test runner</td>
+    <td><a href="/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language"><b>How to build Knapsack Pro API client from scratch in any programming language</b></a></td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
 </table>
 
 <br>
