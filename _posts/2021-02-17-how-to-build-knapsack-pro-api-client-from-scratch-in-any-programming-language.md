@@ -61,3 +61,21 @@ The core functionality of the Knapsack Pro client is in the Core package (i.e. `
 ### Environment variables integration
 
 Knapsack Pro Core client should understand a few environment variables. See example for [`@knapsack-pro/core` environment variables](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts).
+
+* `KNAPSACK_PRO_LOG_LEVEL` - it determines how much debugging info should be produced by the Knapsack Pro client to the output during the runtime of tests. The default is `info`. If you set the `debug` value then the Knapsack Pro client should show in the output a payload of requests and responses from the Knapsack Pro API.
+
+* `KNAPSACK_PRO_ENDPOINT` - it's the URL of the Knapsack Pro API. The default value is `https://api.knapsackpro.com` which is production API. For testing purposes, we internally use staging API `https://api-staging.knapsackpro.com`. I recommend using production API and your API token from the user dashboard.
+
+* `KNAPSACK_PRO_TEST_SUITE_TOKEN` - it's an API token that you can use to connect with Knapsack Pro API. If the value is not defined then an error should be raised.
+
+* `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` - it's a flag to control the behavior of Queue Mode. The default value is `false.`. 
+
+  * If the value is `true` then the API will cache the way how test files were split between parallel CI nodes. So when you retry the CI build the tests won't be dynamically split. Instead, they will be split in the same order as it happened during the very first run (which was a dynamic tests split).
+
+  * Do you want to use "retry single failed parallel CI node" feature for your CI? For instance, some of CI providers like Travis CI, Buildkite or Codeship allows you to retry only one of failed parallel CI node instead of retrying the whole CI build with all parallel CI nodes. If you want to be able to retry only a single failed parallel CI node then you need to tell Knapsack Pro API to remember the way how test files were allocated across parallel CI nodes by adding to your CI environment variables `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`.
+
+  * The default is `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false` which means when you want to retry the whole failed CI build then a new dynamic test suite split will happen across all retried parallel CI nodes thanks to Knapsack Pro Queue Mode. Some people may prefer to retry the whole failed CI build with test files allocated across parallel CI nodes in the same order as it happened for the failed CI build - in such case you should set `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`.
+
+  * To learn more about this flag you can also see [examples in knapsack_pro ruby gem related to the `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node).
+
+
