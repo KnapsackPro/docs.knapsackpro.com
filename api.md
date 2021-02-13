@@ -31,7 +31,8 @@ Here you can find API documentation for Regular Mode and Queue Mode. The API doc
 
 ## How to build native integration with API
 
-* [How to build native integration with Knapsack Pro API to run tests in parallel for any test runner (testing framework)](/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework)
+* __JavaScript__: [How to build native integration with Knapsack Pro API to run tests in parallel for any test runner (testing framework)](/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework)
+* __Any programming language__: [How to build Knapsack Pro API client from scratch in any programming language](/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language)
 
 ## How to export data from API
 
