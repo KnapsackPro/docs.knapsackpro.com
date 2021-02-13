@@ -38,7 +38,7 @@ As you may know, JavaScript has many testing frameworks like Jest, Cypress, etc.
 Before you start building your own Knapsack Pro client in your programming language I highly recommend reading the article where we covered [how `@knapsack-pro/core` and `@knapsack-pro/jest` works](/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework).
 Those are thin NPM packages and the source code is simple to understand. You could get inspired on how to organize code and what's need internally to build a Knapsack Pro client from scratch.
 
-## How to build Knapsack Pro client 
+## How to build Knapsack Pro client
 
 You will see how to build a Knapsack Pro client from scratch based on the  JavaScript example. Knapsack Pro client is built as 2 packages:
 
@@ -46,10 +46,12 @@ You will see how to build a Knapsack Pro client from scratch based on the  JavaS
   * business logic on how to connect with the Knapsack Pro API. It knows what are common errors returned from the Knapsack Pro API. It knows what to do when API returns a specific response code.
   * how to read environment variables specific to Knapsack Pro client like API token, log level, API endpoint URL, etc.
   * CI providers environment variables integration - Knapsack Pro Core library can read environment variables for popular CI providers. Thanks to that it can automatically detect git commit hash, branch name, number of parallel CI nodes, etc.
-  * Logger - it can log useful tips for the output or warnings
-  * Fallback Mode - it knows how to run tests in parallel when there is a network issue and the connection with Knapsack Pro API is not working. 
+  * Logger - it can log useful tips for the output or warnings.
+  * Fallback Mode - it knows how to run tests in parallel when there is a network issue and the connection with Knapsack Pro API is not working.
 
 * __Knapsack Pro Test Runner__ - (i.e. [`@knapsack-pro/jest`](https://github.com/KnapsackPro/knapsack-pro-jest)) is responsible for:
   * integration of Knapsack Pro Core with your test runner (testing framework) like Jest, etc.
   * it knows how to run tests for a given test runner, how to record time execution, and report it back to Knapsack Pro Core so the recorded test files can be saved on the Knapsack Pro API side.
   * how to read environment variables specific for test runner, for instance how to detect a list of test files on the disk.
+
+
