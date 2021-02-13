@@ -90,3 +90,7 @@ Knapsack Pro Core client should understand a few environment variables. See exam
 * `KNAPSACK_PRO_COMMIT_HASH` - it's a commit hash. Knapsack Pro client should in the first place try to find commit hash value from popular CI providers environment variables. If nothing is found then use `KNAPSACK_PRO_COMMIT_HASH` value defined by the user. If the user did not define it then run system command `git rev-parse HEAD` to determine the commit hash. If `git` is not installed then raise an error.
 
 * `KNAPSACK_PRO_BRANCH` - it's a branch name. Knapsack Pro client should in the first place try to find the branch name value from popular CI providers environment variables. If nothing is found then use `KNAPSACK_PRO_BRANCH` value defined by the user. If the user did not define it then run system command `git rev-parse --abbrev-ref HEAD` to determine the branch name. If `git` is not installed then raise an error.
+
+* CI providers environment variables integration - Knapsack Pro client should try to read environment variables for popular CI providers. Thanks to that user have to do less work to set up the Knapsack Pro client with his project.
+  * A [list of supported CI providers](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/config/ci-env.config.ts) can be found here.
+  * An example CI providers [environment variables for each CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers) can be found here.
