@@ -54,4 +54,10 @@ You will see how to build a Knapsack Pro client from scratch based on the  JavaS
   * it knows how to run tests for a given test runner, how to record time execution, and report it back to Knapsack Pro Core so the recorded test files can be saved on the Knapsack Pro API side.
   * how to read environment variables specific for test runner, for instance how to detect a list of test files on the disk.
 
+## Knapsack Pro Core
 
+The core functionality of the Knapsack Pro client is in the Core package (i.e. `@knapsack-pro/core`). We will review a few core elements and describe how they work.
+
+### Environment variables integration
+
+Knapsack Pro Core client should understand a few environment variables. See example for [`@knapsack-pro/core` environment variables](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts).
