@@ -4,6 +4,14 @@ title: Knapsack Pro API
 permalink: /api/
 ---
 
+## API documentation
+
+<p>
+Here you can find API documentation for Regular Mode and Queue Mode. The API documentation might be useful if you want to build <a href="/integration/">a client library</a> to directly integrate with Knapsack Pro API.
+</p>
+
+<h1><a href="/api/v1/">Preview API v1 documentation</a></h1>
+
 ## How API works
 
 You can learn how Knapsack Pro API works from the below videos or reading the article showing [the difference between Regular Mode and Queue Mode](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation).
@@ -20,14 +28,6 @@ You can learn how Knapsack Pro API works from the below videos or reading the ar
   Docs: <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode">How knapsack_pro gem works in Queue Mode</a>.
   </li>
 </ul>
-
-## API documentation
-
-<p>
-Here you can find API documentation for Regular Mode and Queue Mode. The API documentation might be useful if you want to build <a href="/integration/">a client library</a> to directly integrate with Knapsack Pro API.
-</p>
-
-<h1><a href="/api/v1/">Preview API v1 documentation</a></h1>
 
 ## How to build native integration with API
 
