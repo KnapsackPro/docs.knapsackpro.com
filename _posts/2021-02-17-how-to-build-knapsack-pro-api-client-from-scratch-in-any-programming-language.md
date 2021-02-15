@@ -165,7 +165,7 @@ The first CI node sends the below request. Its purpose is to attempt to connect 
 }
 {% endhighlight %}
 
-The above request was the very first request sent to the API and on the API side the Queue does not exists yet. It means the API response returns an error informing us about the Queue not existing.
+The above request was the very first request sent to the API and on the API side the Queue does not exist yet. It means the API response returns an error informing us about the Queue not existing.
 
 {% highlight json %}
 // 1st type of response to the 1st type of request (when can_initialize_queue: true AND attempt_connect_to_queue: true)
