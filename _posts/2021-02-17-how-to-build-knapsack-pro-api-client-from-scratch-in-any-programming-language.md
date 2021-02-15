@@ -291,6 +291,12 @@ It's good to create a well-documentented README for your packages. You can get i
 * [`@knapsack-pro/core` readme](https://github.com/KnapsackPro/knapsack-pro-core-js#knapsack-procore)
 * [`@knapsack-pro/jest` readme](https://github.com/KnapsackPro/knapsack-pro-jest#knapsack-projest)
 
+## Extras - Regular Mode integration
+
+If you would like to build the Knapsack Pro client that uses Regular Mode instead of Queue Mode you need to [replace the step with using Queue Mode](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L89) and just use [Regular Mode API](/api/v1/#build_distributions_subset_post) instead. It's much simpler than Queue API.
+
+In Regular Mode, you need to send a list of existing test files on the disk to the API. The API returns a set of test files to run. Once you execute the tests you need to [create a build subset](/api/v1/#build_subsets_post) record in the API.
+
 ## Summary
 
 We covered how to build Knapsack Pro client integration from scratch based on the example of the existing JavaScript/TypeScript client built from 2 NPM packages `@knapsack-pro/core` and `@knapsack-pro/jest`.
