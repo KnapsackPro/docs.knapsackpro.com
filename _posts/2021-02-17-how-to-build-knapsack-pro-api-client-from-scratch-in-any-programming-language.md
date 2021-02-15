@@ -138,3 +138,129 @@ Knapsack Pro Core should have implemented [business logic on how to do requests 
 Knapsack Pro Core should have business logic on how to do requests to Knapsack Pro API for Queue Mode. The [Queue Mode API endpoint](/api/v1/#queues_queue_post) is described here.
 
 Please read the API documentation. Especially an example of [the request body](/api/v1/#queues_queue_post). There are 3 types of requests to ensure we can connect with the Queue on the API side in a fast way by sending a request payload as small as possible.
+
+I'll describe below an example covering all 3 types of request payloads.
+There are different types of payloads because the Knapsack Pro client runs at the same time on parallel CI nodes and we don't know which one will be connected with the Knapsack Pro API faster. We need to deal with the parallel request problem. For instance, the very first request to Knapsack Pro Queue API should initialize a new Queue with the test files on the API side. But we don't know which parallel CI nodes will connect to the API first. There is mutex protection on the API side to detect the very first request but we also need to take care of things on the Knapsack Pro Core side.
+
+Let's start with a simple example. You have 2 parallel CI nodes. The first CI node has node index `0`. The second parallel CI node has index `1`. Note the convention is to start index number from `0` to `N-1` (`N` is a total number of parallel CI nodes).
+
+Let's assume only the first parallel CI node (CI node index `0`) sends requests to the Knapsack Pro API because the CI machine for the first CI node started work earlier than the second CI node.
+
+The first CI node sends the below request. Its purpose is to attempt to connect to the existing Queue on the API side.
+
+{% highlight json %}
+// 1st type of request to Queue API should set params:
+// can_initialize_queue: true AND attempt_connect_to_queue: true
+// Note there is no test_files parameter in the payload to make the request fast and keep the payload small.
+{
+  "can_initialize_queue": true,
+  "attempt_connect_to_queue": true,
+  "fixed_queue_split": false,
+  "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
+  "branch": "master",
+  "node_total": "2",
+  "node_index": "0",
+  "node_build_id": "1234"
+}
+{% endhighlight %}
+
+The above request was the very first request sent to the API and on the API side the Queue does not exists yet. It means the API response returns an error informing us about the Queue not existing.
+
+{% highlight json %}
+// 1st type of response to the 1st type of request (when can_initialize_queue: true AND attempt_connect_to_queue: true)
+// It can happen only when the queue does not exist on the API side or cannot be read from the cache on the API side
+{
+  "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
+  "message": "A queue with a list of test files does not exist on the API side yet. Knapsack Pro client library should automatically make a new request to try to initialize the queue. The request must have attributes like can_initialize_queue=true, attempt_connect_to_queue=false, and test_files (must contain test files existing on the disk that you want to run), etc.",
+  "code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
+}
+{% endhighlight %}
+
+You need to make a second request with a list of test files existing on the disk to try to initialize the Queue with them.
+
+{% highlight json %}
+// 2nd type of request to Queue API should happen only if the API response for 1st type of request has:
+// "code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
+// then it means an attempt to connect to the queue failed because the queue does not exist on the API side yet.
+// You must initialize a new queue with the below request, it should set params.
+// can_initialize_queue: true AND attempt_connect_to_queue: false
+// Note there is test_files parameter in the payload to initialize a queue based on the list of test_files from your disk.
+// This request can be slow if you provide a large number of test files (~1000+). That is why we did 1st request to try to connect to the existing queue first because one of the parallel CI nodes could already initialize it.
+{
+  "can_initialize_queue": true,
+  "attempt_connect_to_queue": false,
+  "fixed_queue_split": false,
+  "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
+  "branch": "master",
+  "node_total": "2",
+  "node_index": "0",
+  "node_build_id": "1234",
+  "test_files": [
+    {
+      "path": "test/fast/a_test.rb"
+    },
+    {
+      "path": "test/fast/b_test.rb"
+    },
+    {
+      "path": "test/slow/c_test.rb"
+    },
+    {
+      "path": "test/slow/d_test.rb"
+    }
+  ]
+}
+{% endhighlight %}
+
+API should return a set of test files assigned to the first CI node (CI node index `0`). You should run the test files with your test runner now (using the Knapsack Pro Test Runner client - we will describe it later).
+
+{% highlight json %}
+// 2nd type of response can happen for all types of request
+// It returns a list of test files that should be run with your test runner
+{
+  "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
+  "build_subset_id": null,
+  "test_files": [
+    {
+      "path": "test/slow/d_test.rb",
+      "time_execution": 3.14
+    },
+    {
+      "path": "test/fast/b_test.rb",
+      "time_execution": null
+    }
+  ]
+}
+{% endhighlight %}
+
+After you executed the test files you should ask the API for another set of test files as long as the API response will have no more test files.
+
+{% highlight json %}
+// 3rd type of request to Queue API should happen only if 1st or 2nd type of request returned a list of test_files.
+// With the below request you can continue fetching test files from the queue to run them with your test runner.
+// Request payload should have params:
+// can_initialize_queue: false AND attempt_connect_to_queue: false
+// Note there is no test_files parameter in the payload to make the request fast and keep the payload small.
+{
+  "can_initialize_queue": false,
+  "attempt_connect_to_queue": false,
+  "fixed_queue_split": false,
+  "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
+  "branch": "master",
+  "node_total": "2",
+  "node_index": "0",
+  "node_build_id": "1234"
+}
+{% endhighlight %}
+
+When the API response has no test files it means the Queue was consumed and all test files were executed.
+
+{% highlight json %}
+{
+  "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
+  "build_subset_id": null,
+  "test_files": []
+}
+{% endhighlight %}
+
+After test files were run and their execution time was recorded you can send the test files timing data to the Knapsack Pro API. You need to [create a build subset record](/api/v1/#build_subsets_post) on the API side. You will learn more about it in the next section.
