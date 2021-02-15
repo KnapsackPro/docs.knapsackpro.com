@@ -268,3 +268,14 @@ After test files were run and their execution time was recorded you can send the
 You can see the [source code responsible for making requests to Knapsack Pro API](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts) for Queue Mode and for a request to create a build subset.
 
 Please also see how Knapsack Pro Core (`@knapsack-pro/core`) uses [service for the API](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts) to [run tests, record tests execution time, and save recorded test files time for a given CI node as a build subset](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts) in the API.
+
+### Knapsack Pro Test Runner integration
+
+In this section, you will learn what's need to be covered in the Knapsack Pro Test Runner source code (i.e. `@knapsack-pro/jest`).
+
+You need to [recognize environment variables](https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/src/env-config.ts):
+
+* `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` the value of it should override the `KNAPSACK_PRO_TEST_SUITE_TOKEN` so Knapsack Pro Core (i.e. `@knapsack-pro/core`) can use the API token during requests.
+* `KNAPSACK_PRO_TEST_FILE_PATTERN` there should be a defined default test file pattern that can be used to detect test files on the disk in a directory specific to your test runner. We use a `glob` function to detect test files on the disk.
+* There should be a [test file finder service](https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/src/test-files-finder.ts) that can recognize the pattern and find the list of test files on the disk. We use this list of test files to send them in request to the API so the API server can split those test files into parallel CI nodes.
+* `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` is an exclude pattern. If a user wants to ignore some of the test files she can provide a pattern for it.
