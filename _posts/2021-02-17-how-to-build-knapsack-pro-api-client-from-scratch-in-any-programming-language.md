@@ -283,3 +283,9 @@ You need to [recognize environment variables](https://github.com/KnapsackPro/kna
 Knapsack Pro Test Runner library (i.e. `@knapsack-pro/jest`) should have their [name and version and it should be passed to Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L29,L31) (i.e. `@knapsack-pro/core`) when you will use [core functionality](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts) to connect with the API (for instance to run tests in Queue Mode).
 
 Please note Knapsack Pro Test Runner should [track recorded test files time execution in seconds](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L68,L76) and pass it back to Knapsack Pro Core. It should also pass info whether [tests are green or red](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L82) (failing). Thanks to that Knapsack Pro Core will [set proper process exit status](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L124). When at least 1 test fails then the process exit status should be `1` so the CI provider will mark your CI build as a failed one.
+
+## Summary
+
+We covered how to build Knapsack Pro client integration from scratch based on the example of the existing JavaScript/TypeScript client built from 2 NPM packages `@knapsack-pro/core` and `@knapsack-pro/jest`.
+
+I hope you find it useful. I recommend digging into the source code of the above packages. They are thin and should be simple to understand. You can replicate their behavior to build your integration with Knapsack Pro API.
