@@ -7,9 +7,9 @@ categories: continuous_integration techtips rspec
 og_image: "/images/blog/posts/fix-intermittently-failing-ci-builds-flaky-tests-rspec/flaky_tests.jpeg"
 ---
 
-<img src="/images/blog/posts/fix-intermittently-failing-ci-builds-flaky-tests-rspec/flaky_tests.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Knapsack Pro API" />
-
 Randomly failing CI builds can be frustrating. One run is green, another is red (with no changes in the code!). Disheartening. Let's see what can be done with this.
+
+<img src="/images/blog/posts/fix-intermittently-failing-ci-builds-flaky-tests-rspec/flaky_tests.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Knapsack Pro API" />
 
 ## Random failures
 
