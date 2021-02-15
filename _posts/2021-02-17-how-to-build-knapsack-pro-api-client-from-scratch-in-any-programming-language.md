@@ -284,6 +284,17 @@ Knapsack Pro Test Runner library (i.e. `@knapsack-pro/jest`) should have their [
 
 Please note Knapsack Pro Test Runner should [track recorded test files time execution in seconds](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L68,L76) and pass it back to Knapsack Pro Core. It should also pass info whether [tests are green or red](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L82) (failing). Thanks to that Knapsack Pro Core will [set proper process exit status](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L124). When at least 1 test fails then the process exit status should be `1` so the CI provider will mark your CI build as a failed one.
 
+## Testing your Knapsack Pro client
+
+For testing your Knapsack Pro client I recommend creating a new project with tests in your testing framework (test runner). Here is an [example project with Jest tests](https://github.com/KnapsackPro/jest-example-test-suite#jest-example-test-suite-and-knapsackprocom).
+
+You can create a [bin script that runs tests](https://github.com/KnapsackPro/jest-example-test-suite/blob/master/bin/knapsack_pro_jest) for a given CI node index using the Knapsack Pro client.
+
+For instance use:
+
+* `bin/knapsack_pro_jest 0 2` - run tests on CI node index `0`. The total number of CI nodes is `2`.
+* `bin/knapsack_pro_jest 1 2` - run tests on CI node index `1`.
+
 ## README
 
 It's good to create a well-documentented README for your packages. You can get inspired by checking documentation for:
