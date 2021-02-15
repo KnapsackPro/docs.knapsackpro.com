@@ -106,3 +106,13 @@ In Queue Mode the Fallback Mode guarantees each of the test files is run at leas
 
 Here you can see the source code of [Fallback Test Distributor](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/fallback-test-distributor.ts).
 
+### Logger
+
+Knapsack Pro Core should have a logger with a default `info` log level. A user should be able to control log level with the environment variable `KNAPSACK_PRO_LOG_LEVEL`. You use the logger to produce useful tips to the output during tests runtime:
+
+* info when Fallback Mode was started
+* when log level is `debug` then show request payload
+* when log level is `debug` then show response body
+
+Here is an example [service for the logger](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-logger.ts).
+
