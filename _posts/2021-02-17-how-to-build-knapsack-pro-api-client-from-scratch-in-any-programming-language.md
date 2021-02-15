@@ -284,6 +284,13 @@ Knapsack Pro Test Runner library (i.e. `@knapsack-pro/jest`) should have their [
 
 Please note Knapsack Pro Test Runner should [track recorded test files time execution in seconds](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L68,L76) and pass it back to Knapsack Pro Core. It should also pass info whether [tests are green or red](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L82) (failing). Thanks to that Knapsack Pro Core will [set proper process exit status](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L124). When at least 1 test fails then the process exit status should be `1` so the CI provider will mark your CI build as a failed one.
 
+## README
+
+It's good to create a well-documentented README for your packages. You can get inspired by checking documentation for:
+
+* [`@knapsack-pro/core` readme](https://github.com/KnapsackPro/knapsack-pro-core-js#knapsack-procore)
+* [`@knapsack-pro/jest` readme](https://github.com/KnapsackPro/knapsack-pro-jest#knapsack-projest)
+
 ## Summary
 
 We covered how to build Knapsack Pro client integration from scratch based on the example of the existing JavaScript/TypeScript client built from 2 NPM packages `@knapsack-pro/core` and `@knapsack-pro/jest`.
