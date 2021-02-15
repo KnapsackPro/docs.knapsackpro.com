@@ -94,3 +94,15 @@ Knapsack Pro Core client should understand a few environment variables. See exam
 * CI providers environment variables integration - Knapsack Pro client should try to read environment variables for popular CI providers. Thanks to that user have to do less work to set up the Knapsack Pro client with his project.
   * A [list of supported CI providers](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/config/ci-env.config.ts) can be found here.
   * An example CI providers [environment variables for each CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers) can be found here.
+
+### Fallback Mode
+
+Knapsack Pro Core should have implemented business logic for running tests in Fallback Mode. When Knapsack Pro API is not reachable because of downtime then tests should be run in Fallback Mode without the need to use the API.
+
+How Fallback Mode works? The service responsible for Fallback Mode should take a list of test files and the number of total parallel CI nodes. You can sort the test files and divide them by the total parallel CI nodes number.
+
+It's also possible that during tests runtime in Queue Mode the connection with Knapsack Pro API will be lost. This could mean that some of the test files were already executed based on the set of test files fetched from Queue API and then the connection was lost. In such a case Fallback Mode should exclude test files that were already executed.
+In Queue Mode the Fallback Mode guarantees each of the test files is run at least once across parallel CI nodes to make sure we never skip a test file.
+
+Here you can see the source code of [Fallback Test Distributor](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/fallback-test-distributor.ts).
+
