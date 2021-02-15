@@ -118,6 +118,6 @@ Here is an example [service for the logger](https://github.com/KnapsackPro/knaps
 
 ### Knapsack Pro API integration
 
-Knapsack Pro Core should have implemented business logic on how to do requests to Knapsack Pro API. There are a few basic elements you need to cover:
+Knapsack Pro Core should have implemented [business logic on how to do requests to Knapsack Pro API](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts). There are a few basic elements you need to cover:
 
 * Send headers with the client name and client version in each request to the Knapsack Pro API. You should add `KNAPSACK-PRO-CLIENT-NAME` and `KNAPSACK-PRO-CLIENT-VERSION` headers in each request. Note the Knapsack Pro Core (i.e. `@knapsack-pro/core`) is just a core library so it means the actual client name and version should be defined in the Knapsack Pro Test Runner client (i.e. `@knapsack-pro/jest`) and provided as an [argument to the Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L30,L31) so when the Core client sends requests to the Knapsack Pro API it will use proper client name and version. Please use [semantic versioning](https://semver.org/).
