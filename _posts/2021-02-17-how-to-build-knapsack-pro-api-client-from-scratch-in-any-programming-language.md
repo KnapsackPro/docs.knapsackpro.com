@@ -269,7 +269,7 @@ You can see the [source code responsible for making requests to Knapsack Pro API
 
 Please also see how Knapsack Pro Core (`@knapsack-pro/core`) uses [service for the API](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts) to [run tests, record tests execution time, and save recorded test files time for a given CI node as a build subset](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts) in the API.
 
-### Knapsack Pro Test Runner integration
+## Knapsack Pro Test Runner integration
 
 In this section, you will learn what's need to be covered in the Knapsack Pro Test Runner source code (i.e. `@knapsack-pro/jest`).
 
