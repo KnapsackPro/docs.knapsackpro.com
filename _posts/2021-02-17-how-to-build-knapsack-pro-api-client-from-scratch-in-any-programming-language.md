@@ -266,3 +266,5 @@ When the API response has no test files it means the Queue was consumed and all 
 After test files were run and their execution time was recorded you can send the test files timing data to the Knapsack Pro API. You need to [create a build subset record](/api/v1/#build_subsets_post) on the API side.
 
 You can see the [source code responsible for making requests to Knapsack Pro API](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts) for Queue Mode and for a request to create a build subset.
+
+Please also see how Knapsack Pro Core (`@knapsack-pro/core`) uses [service for the API](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts) to [run tests, record tests execution time, and save recorded time as a build subset](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts) in the API.
