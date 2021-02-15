@@ -132,3 +132,7 @@ Knapsack Pro Core should have implemented [business logic on how to do requests 
 * When the Knapsack Pro API returns different response status than listed above. For instance when you get `500` status then you should repeat the request 3 times. If the 3rd response still will be non `2xx` status then you should [run test files in Fallback Mode](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L83,L110).
 
 * Ensure you set max request [timeout to `15` seconds](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L80). When Knapsack Pro API won't send a response within 15 seconds then it's better to cancel the request and [wait some time before repeating the request](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L188,L199). You can wait 8 seconds, and increase by another 8 seconds each consequent request that must be repeated (i.e. wait for 8s, then 16s, then 24s).
+
+#### Knapsack Pro API - Queue Mode
+
+Knapsack Pro Core should have business logic on how to do requests to Knapsack Pro API for Queue Mode. The [Queue Mode API endpoint](/api/v1/#queues_queue_post) is described here.
