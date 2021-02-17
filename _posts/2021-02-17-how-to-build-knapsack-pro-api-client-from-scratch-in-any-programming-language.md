@@ -143,7 +143,7 @@ Knapsack Pro Core should have implemented [business logic for making requests to
 
 #### Knapsack Pro API - Queue Mode
 
-Knapsack Pro Core should have business logic on how to do requests to Knapsack Pro API for Queue Mode. Here is described the [Queue Mode API endpoint](/api/v1/#queues_queue_post).
+Knapsack Pro Core should contain logic for making requests to Knapsack Pro API for Queue Mode. Here is described the [Queue Mode API endpoint](/api/v1/#queues_queue_post).
 
 Please read the API documentation. Especially an example of [the request body](/api/v1/#queues_queue_post). There are 3 types of requests to ensure we can connect with the Queue on the API side in a fast way by sending a request payload as small as possible.
 
