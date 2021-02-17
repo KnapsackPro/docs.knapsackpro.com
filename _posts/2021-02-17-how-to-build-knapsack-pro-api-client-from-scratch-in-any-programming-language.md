@@ -44,7 +44,7 @@ You will see how to build a Knapsack Pro client from scratch based on the  JavaS
 
 * __Knapsack Pro Core__ - (i.e. [`@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js)) which is responsible for:
   * connecting with the Knapsack Pro API. It can respond to, and handle common response types and errors coming from the API.
-  * how to read environment variables specific to Knapsack Pro client like API token, log level, API endpoint URL, etc.
+  * reading environment variables specific to Knapsack Pro client like API token, log level, API endpoint URL, etc.
   * CI providers environment variables integration - Knapsack Pro Core library can read environment variables for popular CI providers. Thanks to that it can automatically detect git commit hash, branch name, number of parallel CI nodes, etc.
   * Logger - it can log useful tips for the output or warnings.
   * Fallback Mode - it knows how to run tests in parallel when there is a network issue and the connection with Knapsack Pro API is not working.
