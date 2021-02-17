@@ -7,7 +7,7 @@ categories: techtips continuous_integration
 og_image: "/images/blog/posts/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language/api.jpeg"
 ---
 
-You will learn how to integrate with Knapsack Pro API to run parallel tests in any programming language for any testing framework. We will cover what's needed to build from scratch Knapsack Pro client similar to our existing clients like `knapsack_pro` Ruby gem, `@knapsack-pro/jest` for Jest in JavaScript, or `@knapsack-pro/cypress` for Cypress test runner (also in JavaScript).
+You will learn how to integrate with Knapsack Pro API to run parallel tests in any programming language for any testing framework. You will see what's needed to build from scratch Knapsack Pro API client similar to our existing clients like `knapsack_pro` Ruby gem, `@knapsack-pro/jest` for Jest in JavaScript, or `@knapsack-pro/cypress` for Cypress test runner (also in JavaScript).
 
 <img src="/images/blog/posts/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language/api.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="API, integration, knapsack, knapsack problem, knapsack pro" />
 
