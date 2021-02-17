@@ -56,7 +56,7 @@ You will see how to build a Knapsack Pro client from scratch based on the  JavaS
 
 ## Knapsack Pro Core
 
-The core functionality of the Knapsack Pro client is in the Core package (`@knapsack-pro/core`). We will review a few core elements and describe how they work.
+The core functionality of the Knapsack Pro client is in the Core package (`@knapsack-pro/core`). We will review a few main elements and describe how they work.
 
 ### Environment variables integration
 
