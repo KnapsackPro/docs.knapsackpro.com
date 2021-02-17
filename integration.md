@@ -68,7 +68,7 @@ permalink: /integration/
   <tr>
     <td>Any programming language</td>
     <td>Any test runner</td>
-    <td><a href="/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language"><b>How to build Knapsack Pro API client from scratch in any programming language</b></a></td>
+    <td><a href="/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language"><b>How to build a custom Knapsack Pro API client from scratch in any programming language</b></a></td>
     <td>-</td>
     <td>-</td>
     <td>-</td>

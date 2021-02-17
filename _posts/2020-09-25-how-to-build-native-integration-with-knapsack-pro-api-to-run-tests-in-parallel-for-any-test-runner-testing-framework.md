@@ -72,4 +72,4 @@ I hope this article was useful to you. Let us know if you have any questions or 
 
 ### Related articles
 
-* [How to build Knapsack Pro API client from scratch in any programming language](/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language)
+* [How to build a custom Knapsack Pro API client from scratch in any programming language](/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language)
