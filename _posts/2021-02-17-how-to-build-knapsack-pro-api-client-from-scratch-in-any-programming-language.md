@@ -15,7 +15,7 @@ Here you can find the [list of existing Knapsack Pro clients](/integration/) to 
 
 ## Introduction - learn basics
 
-First, you need to understand what [Knapsack Pro](http://knapsackpro.com) does and how it splits test files in parallel CI nodes to get your CI build fast.
+First, you need to understand what [Knapsack Pro](http://knapsackpro.com) does and how it splits test files in parallel CI nodes to run your CI build fast.
 
 Learn [what is Regular Mode and Queue Mode](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation) in Knapsack Pro and how they work.
 
