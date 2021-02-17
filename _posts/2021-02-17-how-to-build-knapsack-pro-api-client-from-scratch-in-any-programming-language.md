@@ -27,7 +27,7 @@ Please see below the dictionary of terms we will use in this article:
 
 * __Test runner (testing framework)__ - each programming language has its own testing framework. For instance, in Ruby programming language there are test runners like RSpec, Cucumber, Minitest. In JavaScript, you can find Jest, Puppeteer, Karma, Jasmine, Cypress, TestCafe, etc. In Python, there are pytest, unittest. 
 
-* __Knapsack Pro Regular Mode__ - it's a static split of tests in a deterministic way between parallel CI nodes. Basically, before starting tests we know upfront what set of test files should be run on each parallel CI node.
+* __Knapsack Pro Regular Mode__ - it's a static split of tests between parallel CI nodes (performed deterministically). Basically, before starting tests we know up front what set of test files should be run on each parallel CI node.
 
 * __Knapsack Pro Queue Mode__ - it's a dynamic way of splitting tests between parallel CI nodes. In this case, each parallel CI node asks Knapsack Pro API for a set of tests and runs it. Once completed it asks for another set of tests. It's repeated until all tests are executed and the Knapsack Pro API has no more test files in the Queue. Please read the article about the [difference between Regular Mode and Queue Mode](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation) to learn about it in detail and see some pictures showing the difference.
 
