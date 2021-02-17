@@ -15,13 +15,13 @@ Here you can find the [list of existing Knapsack Pro clients](/integration/) to 
 
 ## Introduction - learn basics
 
-First, you need to understand what [Knapsack Pro](http://knapsackpro.com) does and how it splits test files in parallel CI nodes to run your CI build fast.
+First, you need to understand what [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language) does and how it splits test files in parallel CI nodes to run your CI build fast.
 
 Learn [what is Regular Mode and Queue Mode](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation) in Knapsack Pro and how they work.
 
 Please see below the dictionary of terms we will use in this article:
 
-* __Knapsack Pro API__ - it's an API responsible for deciding how to split test files between parallel CI nodes. You will send recorded time execution of your test files to the API to see results in the [Knapsack Pro user dashboard](https://knapsackpro.com/dashboard). Knapsack Pro API will use the data to better predict how to split your test files in future CI build runs. Here is the [documentation for all API endpoints](/api/).
+* __Knapsack Pro API__ - it's an API responsible for deciding how to split test files between parallel CI nodes. You will send recorded time execution of your test files to the API to see results in the [Knapsack Pro user dashboard](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language). Knapsack Pro API will use the data to better predict how to split your test files in future CI build runs. Here is the [documentation for all API endpoints](/api/).
 
 * __Knapsack Pro client__ - is a library that you install in your project. It has business logic responsible for connecting with Knapsack Pro API. The client knows how to read environment variables for various CI providers to automatically detect git commit hash, branch name, number of total parallel CI nodes, and CI node index. Knapsack Pro client connects with the Knapsack Pro API to fetch a list of test files to run a proper set of tests on a given parallel CI node. Knapsack Pro client also knows how to integrate with a test runner in a given programming language. For instance, the Knapsack Pro client in Ruby programming language is a `knapsack_pro` ruby gem. It knows how to run tests for test runners like RSpec, Cucumber, Minitest, etc. Simply speaking Knapsack Pro client is a wrapper around test runner (testing framework) in a given programing language. A [list of existing Knapsack Pro clients](/integration/) is here.
 
