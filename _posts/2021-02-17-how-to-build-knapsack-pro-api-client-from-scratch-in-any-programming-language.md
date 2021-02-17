@@ -135,7 +135,7 @@ Knapsack Pro Core should have implemented [business logic for making requests to
     * When response status is `400` then it means request params error.
     * When response status is `422` then it means validation error.
     * When the response status is `403` then a free trial period ended.
-  * For all above `4xx` response statuses you should show the error body response to the output and stop running tests. Ensure [process has exit code `1`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L77) so thanks to that CI provider will know the CI build failed.
+  * For all above `4xx` response statuses you should show the error body response to the output and stop running tests. Ensure that the [process has exit code `1`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L77) - thanks to that CI provider will know the CI build failed.
 
 * When the Knapsack Pro API returns different response status than listed above. For instance when you get `500` status then you should repeat the request 3 times. If the 3rd response still will be non `2xx` status then you should [run test files in Fallback Mode](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L83,L110).
 
