@@ -43,7 +43,7 @@ Those are lightweight NPM packages and the source code is easy to understand. Yo
 You will see how to build a Knapsack Pro client from scratch based on the  JavaScript example. Knapsack Pro client is built as 2 packages:
 
 * __Knapsack Pro Core__ - (i.e. [`@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js)) which is responsible for:
-  * business logic on how to connect with the Knapsack Pro API. It knows what are common errors returned from the Knapsack Pro API. It knows what to do when API returns a specific response code.
+  * connecting with the Knapsack Pro API. It can respond to, and handle common response types and errors coming from the API.
   * how to read environment variables specific to Knapsack Pro client like API token, log level, API endpoint URL, etc.
   * CI providers environment variables integration - Knapsack Pro Core library can read environment variables for popular CI providers. Thanks to that it can automatically detect git commit hash, branch name, number of parallel CI nodes, etc.
   * Logger - it can log useful tips for the output or warnings.
