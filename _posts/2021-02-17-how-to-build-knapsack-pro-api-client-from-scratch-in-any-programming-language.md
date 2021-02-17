@@ -51,8 +51,8 @@ You will see how to build a Knapsack Pro client from scratch based on the  JavaS
 
 * __Knapsack Pro Test Runner__ - (i.e. [`@knapsack-pro/jest`](https://github.com/KnapsackPro/knapsack-pro-jest)) is responsible for:
   * integration of Knapsack Pro Core with your test runner (testing framework) like Jest, etc.
-  * it knows how to run tests for a given test runner, how to record time execution, and report it back to Knapsack Pro Core so the recorded test files can be saved on the Knapsack Pro API side.
-  * how to read environment variables specific for test runner, for instance how to detect a list of test files on the disk.
+  * knowing how to run tests for a given test runner, how to record time execution, and report it back to Knapsack Pro Core so the recorded test files can be saved on the Knapsack Pro API side.
+  * reading environment variables specific for the test runner, for instance how to detect a list of Jest test files residing on the disk.
 
 ## Knapsack Pro Core
 
