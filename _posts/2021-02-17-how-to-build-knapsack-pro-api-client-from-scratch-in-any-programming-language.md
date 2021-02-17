@@ -23,7 +23,7 @@ Please see below the dictionary of terms we will use in this article:
 
 * __Knapsack Pro API__ - it's an API responsible for deciding how to split test files between parallel CI nodes. You will send recorded time execution of your test files to the API to see results in the [Knapsack Pro user dashboard](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language). Knapsack Pro API will use the data to better predict how to split your test files in future CI build runs. Here is the [documentation for all API endpoints](/api/).
 
-* __Knapsack Pro client__ - is a library that you install in your project. It has business logic responsible for connecting with Knapsack Pro API. The client knows how to read environment variables for various CI providers to automatically detect git commit hash, branch name, number of total parallel CI nodes, and CI node index. Knapsack Pro client connects with the Knapsack Pro API to fetch a list of test files to run a proper set of tests on a given parallel CI node. Knapsack Pro client also knows how to integrate with a test runner in a given programming language. For instance, the Knapsack Pro client in Ruby programming language is a `knapsack_pro` ruby gem. It knows how to run tests for test runners like RSpec, Cucumber, Minitest, etc. Simply speaking Knapsack Pro client is a wrapper around test runner (testing framework) in a given programing language. A [list of existing Knapsack Pro clients](/integration/) is here.
+* __Knapsack Pro client__ - is a library that you install in your project. It has business logic responsible for connecting with Knapsack Pro API. The client knows how to read environment variables for various CI providers to automatically detect git commit hash, branch name, number of total parallel CI nodes, and CI node index. Knapsack Pro client connects with the Knapsack Pro API to fetch a list of test files to run a proper set of tests on a given parallel CI node. Knapsack Pro client also knows how to integrate with a test runner in a given programming language. For instance, the Knapsack Pro client in Ruby programming language is a `knapsack_pro` ruby gem. It knows how to run tests for test runners like RSpec, Cucumber, Minitest, etc. Simply speaking Knapsack Pro client is a wrapper around test runner (testing framework) in a given programing language. Here is a [list of existing Knapsack Pro clients](/integration/).
 
 * __Test runner (testing framework)__ - each programming language has its own testing framework. For instance, in Ruby programming language there are test runners like RSpec, Cucumber, Minitest. In JavaScript, you can find Jest, Puppeteer, Karma, Jasmine, Cypress, TestCafe, etc. In Python, there are pytest, unittest. 
 
@@ -93,8 +93,8 @@ Knapsack Pro Core client should understand a few environment variables. See exam
 * `KNAPSACK_PRO_BRANCH` - it's a branch name. Knapsack Pro client should in the first place try to find the branch name value from popular CI providers environment variables. If nothing is found then use `KNAPSACK_PRO_BRANCH` value defined by the user. If the user did not define it then run system command `git rev-parse --abbrev-ref HEAD` to determine the branch name. If `git` is not installed then raise an error.
 
 * CI providers environment variables integration - Knapsack Pro client should try to read environment variables for popular CI providers. Thanks to that user have to do less work to set up the Knapsack Pro client with his project.
-  * A [list of supported CI providers](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/config/ci-env.config.ts) can be found here.
-  * An example CI providers [environment variables for each CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers) can be found here.
+  * Here can be found a [list of supported CI providers](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/config/ci-env.config.ts).
+  * Here is a list of [environment variables for each CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers).
 
 ### Fallback Mode
 
@@ -136,7 +136,7 @@ Knapsack Pro Core should have implemented [business logic on how to do requests 
 
 #### Knapsack Pro API - Queue Mode
 
-Knapsack Pro Core should have business logic on how to do requests to Knapsack Pro API for Queue Mode. The [Queue Mode API endpoint](/api/v1/#queues_queue_post) is described here.
+Knapsack Pro Core should have business logic on how to do requests to Knapsack Pro API for Queue Mode. Here is described the [Queue Mode API endpoint](/api/v1/#queues_queue_post).
 
 Please read the API documentation. Especially an example of [the request body](/api/v1/#queues_queue_post). There are 3 types of requests to ensure we can connect with the Queue on the API side in a fast way by sending a request payload as small as possible.
 
