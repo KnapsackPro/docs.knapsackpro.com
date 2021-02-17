@@ -71,7 +71,7 @@ Users can define those environment variables in their CI server settings to cont
 
 * `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` - it's a flag to control the behavior of Queue Mode. The default value is `false`.
 
-  * If the value is `true` then the API will cache the way how test files were split between parallel CI nodes. So when you retry the CI build the tests won't be dynamically split. Instead, they will be split in the same order as it happened during the very first run (which was a dynamic tests split).
+  * If the value is `true` then the API will cache the way test files were split between parallel CI nodes. So when you retry the CI build the tests won't be dynamically split. Instead, they will be split in the same order as it happened during the very first run (which was a dynamic tests split).
 
   * Do you want to use "retry single failed parallel CI node" feature for your CI? For instance, some of CI providers like Travis CI, Buildkite or Codeship allows you to retry only one of failed parallel CI node instead of retrying the whole CI build with all parallel CI nodes. If you want to be able to retry only a single failed parallel CI node then you need to tell Knapsack Pro API to remember the way how test files were allocated across parallel CI nodes by adding to your CI environment variables `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`.
 
