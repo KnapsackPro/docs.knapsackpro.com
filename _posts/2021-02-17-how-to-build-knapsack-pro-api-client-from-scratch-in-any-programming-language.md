@@ -128,7 +128,7 @@ Here is an example [service for the logger](https://github.com/KnapsackPro/knaps
 
 Knapsack Pro Core should have implemented [business logic for making requests to Knapsack Pro API](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts). There are a few basic elements you need to cover:
 
-* Send headers with the client name and client version in each request to the Knapsack Pro API. You should add `KNAPSACK-PRO-CLIENT-NAME` and `KNAPSACK-PRO-CLIENT-VERSION` [headers in each request](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L81,L84). Note the Knapsack Pro Core (`@knapsack-pro/core`) is just a core library so it means the actual client name and version should be defined in the Knapsack Pro Test Runner client (`@knapsack-pro/jest`) and provided as an [argument to the Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L30,L31) so when the Core client sends requests to the Knapsack Pro API it will use proper client name and version. Please use [semantic versioning](https://semver.org/).
+* Send headers with the client name and client version in each request to the Knapsack Pro API. You should add `KNAPSACK-PRO-CLIENT-NAME` and `KNAPSACK-PRO-CLIENT-VERSION` [headers in each request](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L81,L84). Note that the Knapsack Pro Core (`@knapsack-pro/core`) is just a core library so it means the actual client name and version should be defined in the Knapsack Pro Test Runner client (`@knapsack-pro/jest`) and provided as an [argument to the Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L30,L31) so when the Core client sends requests to the Knapsack Pro API it will use proper client name and version. Please use [semantic versioning](https://semver.org/).
 
 * When a request to the Knapsack Pro API fails then it should be repeated 3 times.
   * There are exceptions when a [response status indicates a failure](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L68,L70) and then the request should never be repeated:
@@ -150,7 +150,7 @@ Please read the API documentation. Especially an example of [the request body](/
 I'll describe below an example covering all 3 types of request payloads.
 There are different types of payloads because the Knapsack Pro client runs at the same time on parallel CI nodes and we don't know which one will be connected with the Knapsack Pro API faster. We need to deal with the parallel request problem. For instance, the very first request to Knapsack Pro Queue API should initialize a new Queue with the test files on the API side. But we don't know which parallel CI nodes will connect to the API first. There is mutex protection on the API side to detect the very first request but we also need to take care of things on the Knapsack Pro Core side.
 
-Let's start with a simple example. You have 2 parallel CI nodes. The first CI node has node index `0`. The second parallel CI node has index `1`. Note the convention is to start index number from `0` to `N-1` (`N` is a total number of parallel CI nodes).
+Let's start with a simple example. You have 2 parallel CI nodes. The first CI node has node index `0`. The second parallel CI node has index `1`. Note that the convention is to start index number from `0` to `N-1` (`N` is a total number of parallel CI nodes).
 
 Let's assume only the first parallel CI node (CI node index `0`) sends requests to the Knapsack Pro API because the CI machine for the first CI node started work earlier than the second CI node.
 
@@ -159,7 +159,7 @@ The first CI node sends the below request. Its purpose is to attempt to connect 
 {% highlight json %}
 // 1st type of request to Queue API should set params:
 // can_initialize_queue: true AND attempt_connect_to_queue: true
-// Note there is no test_files parameter in the payload to make the request fast and keep the payload small.
+// Note that there is no test_files parameter in the payload to make the request fast and keep the payload small.
 {
   "can_initialize_queue": true,
   "attempt_connect_to_queue": true,
@@ -192,7 +192,7 @@ You need to make a second request with a list of test files existing on the disk
 // then it means an attempt to connect to the queue failed because the queue does not exist on the API side yet.
 // You must initialize a new queue with the below request, it should set params.
 // can_initialize_queue: true AND attempt_connect_to_queue: false
-// Note there is test_files parameter in the payload to initialize a queue based on the list of test_files from your disk.
+// Note that there is test_files parameter in the payload to initialize a queue based on the list of test_files from your disk.
 // This request can be slow if you provide a large number of test files (~1000+). That is why we did 1st request to try to connect to the existing queue first because one of the parallel CI nodes could already initialize it.
 {
   "can_initialize_queue": true,
@@ -290,7 +290,7 @@ You need to [recognize environment variables](https://github.com/KnapsackPro/kna
 
 Knapsack Pro Test Runner library (e.g. `@knapsack-pro/jest`) should have their [name and version and it should be passed to Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L29,L31) (`@knapsack-pro/core`) when you will use [core functionality](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts) to connect with the API (for instance to run tests in Queue Mode).
 
-Please note Knapsack Pro Test Runner should [track recorded test files time execution in seconds](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L68,L76) and pass it back to Knapsack Pro Core. It should also pass info whether [tests are green or red](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L82) (failing). Thanks to that Knapsack Pro Core will [set proper process exit status](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L124). When at least 1 test fails then the process exit status should be `1` so the CI provider will mark your CI build as a failed one.
+Please note that Knapsack Pro Test Runner should [track recorded test files time execution in seconds](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L68,L76) and pass it back to Knapsack Pro Core. It should also pass info whether [tests are green or red](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L82) (failing). Thanks to that Knapsack Pro Core will [set proper process exit status](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L124). When at least 1 test fails then the process exit status should be `1` so the CI provider will mark your CI build as a failed one.
 
 ## Testing your Knapsack Pro client
 
