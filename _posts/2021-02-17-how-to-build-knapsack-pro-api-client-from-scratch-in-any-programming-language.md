@@ -152,7 +152,7 @@ There are different types of payloads because the Knapsack Pro client runs at th
 
 Let's start with a simple example. You have 2 parallel CI nodes. The first CI node has node index `0`. The second parallel CI node has index `1`. Note that the convention is to start index number from `0` to `N-1` (`N` is a total number of parallel CI nodes).
 
-Let's assume only the first parallel CI node (CI node index `0`) sends requests to the Knapsack Pro API because the CI machine for the first CI node started work earlier than the second CI node.
+Let's assume that only the first parallel CI node (CI node index `0`) sends requests to the Knapsack Pro API because the CI machine for the first CI node started work earlier than the second CI node.
 
 The first CI node sends the below request. Its purpose is to attempt to connect to the existing Queue on the API side.
 
