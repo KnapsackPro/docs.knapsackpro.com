@@ -56,7 +56,7 @@ You will see how to build a Knapsack Pro client from scratch based on the  JavaS
 
 ## Knapsack Pro Core
 
-The core functionality of the Knapsack Pro client is in the Core package (i.e. `@knapsack-pro/core`). We will review a few core elements and describe how they work.
+The core functionality of the Knapsack Pro client is in the Core package (`@knapsack-pro/core`). We will review a few core elements and describe how they work.
 
 ### Environment variables integration
 
@@ -121,7 +121,7 @@ Here is an example [service for the logger](https://github.com/KnapsackPro/knaps
 
 Knapsack Pro Core should have implemented [business logic on how to do requests to Knapsack Pro API](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts). There are a few basic elements you need to cover:
 
-* Send headers with the client name and client version in each request to the Knapsack Pro API. You should add `KNAPSACK-PRO-CLIENT-NAME` and `KNAPSACK-PRO-CLIENT-VERSION` [headers in each request](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L81,L84). Note the Knapsack Pro Core (i.e. `@knapsack-pro/core`) is just a core library so it means the actual client name and version should be defined in the Knapsack Pro Test Runner client (i.e. `@knapsack-pro/jest`) and provided as an [argument to the Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L30,L31) so when the Core client sends requests to the Knapsack Pro API it will use proper client name and version. Please use [semantic versioning](https://semver.org/).
+* Send headers with the client name and client version in each request to the Knapsack Pro API. You should add `KNAPSACK-PRO-CLIENT-NAME` and `KNAPSACK-PRO-CLIENT-VERSION` [headers in each request](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L81,L84). Note the Knapsack Pro Core (`@knapsack-pro/core`) is just a core library so it means the actual client name and version should be defined in the Knapsack Pro Test Runner client (`@knapsack-pro/jest`) and provided as an [argument to the Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L30,L31) so when the Core client sends requests to the Knapsack Pro API it will use proper client name and version. Please use [semantic versioning](https://semver.org/).
 
 * When a request to the Knapsack Pro API fails then it should be repeated 3 times.
   * There are exceptions when a [response status indicates a failure](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L68,L70) and then the request should never be repeated:
@@ -132,7 +132,7 @@ Knapsack Pro Core should have implemented [business logic on how to do requests 
 
 * When the Knapsack Pro API returns different response status than listed above. For instance when you get `500` status then you should repeat the request 3 times. If the 3rd response still will be non `2xx` status then you should [run test files in Fallback Mode](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L83,L110).
 
-* Ensure you set max request [timeout to `15` seconds](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L80). When Knapsack Pro API won't send a response within 15 seconds then it's better to cancel the request and [wait some time before repeating the request](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L188,L199). You can wait 8 seconds, and increase by another 8 seconds each consequent request that must be repeated (i.e. wait for 8s, then 16s, then 24s).
+* Ensure you set max request [timeout to `15` seconds](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L80). When Knapsack Pro API won't send a response within 15 seconds then it's better to cancel the request and [wait some time before repeating the request](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L188,L199). You can wait 8 seconds, and increase by another 8 seconds each consequent request that must be repeated (e.g. wait for 8s, then 16s, then 24s).
 
 #### Knapsack Pro API - Queue Mode
 
@@ -272,16 +272,16 @@ Please also see how Knapsack Pro Core (`@knapsack-pro/core`) uses [service for t
 
 ## Knapsack Pro Test Runner integration
 
-In this section, you will learn what's need to be covered in the Knapsack Pro Test Runner source code (i.e. `@knapsack-pro/jest`).
+In this section, you will learn what's need to be covered in the Knapsack Pro Test Runner source code (e.g. `@knapsack-pro/jest`).
 
 You need to [recognize environment variables](https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/src/env-config.ts):
 
-* `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` the value of it should override the `KNAPSACK_PRO_TEST_SUITE_TOKEN` so Knapsack Pro Core (i.e. `@knapsack-pro/core`) can use the API token during requests.
+* `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` the value of it should override the `KNAPSACK_PRO_TEST_SUITE_TOKEN` so Knapsack Pro Core (`@knapsack-pro/core`) can use the API token during requests.
 * `KNAPSACK_PRO_TEST_FILE_PATTERN` there should be a defined default test file pattern that can be used to detect test files on the disk in a directory specific to your test runner. We use a `glob` function to detect test files on the disk.
 * There should be a [test file finder service](https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/src/test-files-finder.ts) that can recognize the pattern and find the list of test files on the disk. We use this list of test files to send them in request to the API so the API server can split those test files into parallel CI nodes.
 * `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` is an exclude pattern. If a user wants to ignore some of the test files she can provide a pattern for it.
 
-Knapsack Pro Test Runner library (i.e. `@knapsack-pro/jest`) should have their [name and version and it should be passed to Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L29,L31) (i.e. `@knapsack-pro/core`) when you will use [core functionality](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts) to connect with the API (for instance to run tests in Queue Mode).
+Knapsack Pro Test Runner library (e.g. `@knapsack-pro/jest`) should have their [name and version and it should be passed to Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L29,L31) (`@knapsack-pro/core`) when you will use [core functionality](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts) to connect with the API (for instance to run tests in Queue Mode).
 
 Please note Knapsack Pro Test Runner should [track recorded test files time execution in seconds](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L68,L76) and pass it back to Knapsack Pro Core. It should also pass info whether [tests are green or red](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L82) (failing). Thanks to that Knapsack Pro Core will [set proper process exit status](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L124). When at least 1 test fails then the process exit status should be `1` so the CI provider will mark your CI build as a failed one.
 
