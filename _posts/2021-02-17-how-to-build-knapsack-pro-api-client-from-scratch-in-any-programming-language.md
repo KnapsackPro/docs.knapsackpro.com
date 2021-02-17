@@ -61,6 +61,7 @@ The core functionality of the Knapsack Pro client is in the Core package (`@knap
 ### Environment variables integration
 
 Knapsack Pro Core client should understand a few environment variables. See example for [`@knapsack-pro/core` environment variables](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/config/knapsack-pro-env.config.ts).
+Users can define those environment variables in their CI server settings to control the behavior of the Knapsack Pro client.
 
 * `KNAPSACK_PRO_LOG_LEVEL` - it determines how much debugging info should be produced by the Knapsack Pro client to the output during the runtime of tests. The default is `info`. If you set the `debug` value then the Knapsack Pro client should show in the output a payload of requests and responses from the Knapsack Pro API.
 
