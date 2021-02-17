@@ -69,7 +69,7 @@ Users can define those environment variables in their CI server settings to cont
 
 * `KNAPSACK_PRO_TEST_SUITE_TOKEN` - it's an API token that you can use to connect with Knapsack Pro API. If the value is not defined then an error should be raised.
 
-* `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` - it's a flag to control the behavior of Queue Mode. The default value is `false.`. 
+* `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` - it's a flag to control the behavior of Queue Mode. The default value is `false`.
 
   * If the value is `true` then the API will cache the way how test files were split between parallel CI nodes. So when you retry the CI build the tests won't be dynamically split. Instead, they will be split in the same order as it happened during the very first run (which was a dynamic tests split).
 
