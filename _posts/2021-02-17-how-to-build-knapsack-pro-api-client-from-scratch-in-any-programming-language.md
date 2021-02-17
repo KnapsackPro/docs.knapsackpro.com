@@ -65,7 +65,7 @@ Users can define those environment variables in their CI server settings to cont
 
 * `KNAPSACK_PRO_LOG_LEVEL` - it determines how much debugging info should be produced by the Knapsack Pro client to the output during the runtime of tests. The default is `info`. If you set the `debug` value then the Knapsack Pro client should show in the output a payload of requests and responses from the Knapsack Pro API.
 
-* `KNAPSACK_PRO_ENDPOINT` - it's the URL of the Knapsack Pro API. The default value is `https://api.knapsackpro.com` which is production API. For testing purposes, we internally use staging API `https://api-staging.knapsackpro.com`. I recommend using production API and your API token from the user dashboard.
+* `KNAPSACK_PRO_ENDPOINT` - it's the URL of the Knapsack Pro API. The default value is `https://api.knapsackpro.com` which is production API. You can use our production API and your API token from the user dashboard for testing purposes.
 
 * `KNAPSACK_PRO_TEST_SUITE_TOKEN` - it's an API token that you can use to connect with Knapsack Pro API. If the value is not defined then an error should be raised.
 
