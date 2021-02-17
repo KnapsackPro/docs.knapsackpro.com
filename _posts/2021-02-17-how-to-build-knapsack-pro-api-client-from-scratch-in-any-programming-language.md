@@ -11,7 +11,7 @@ You will learn how to integrate with Knapsack Pro API to run parallel tests in a
 
 <img src="/images/blog/posts/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language/api.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="API, integration, knapsack, knapsack problem, knapsack pro" />
 
-Tip: You can find the [list of existing Knapsack Pro clients](/integration/) here to run your tests in parallel for programming languages like Ruby, JavaScript, and their testing frameworks.
+You can find the [list of existing Knapsack Pro clients](/integration/) here to run your tests in parallel for programming languages like Ruby, JavaScript, and their testing frameworks.
 
 ## Introduction - learn basics
 
