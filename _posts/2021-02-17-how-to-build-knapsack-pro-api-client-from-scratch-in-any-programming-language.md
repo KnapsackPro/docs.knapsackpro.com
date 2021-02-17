@@ -36,7 +36,7 @@ Now you know a few useful terms. Before we start learning how to build a Knapsac
 As you probably know, there are many testing frameworks written in JavaScript, e.g. Jest, Cypress, etc. For the Jest testing framework we created another package [`@knapsack-pro/jest`](https://github.com/KnapsackPro/knapsack-pro-jest) for the Jest testing framework that uses `@knapsack-pro/core`. The `@knapsack-pro/jest` NPM package contains business logic responsible for integration with the Jest library so you could run Jest tests in parallel using Knapsack Pro API.
 
 Before you start building your own Knapsack Pro client in your programming language I highly recommend reading the article where we covered [how `@knapsack-pro/core` and `@knapsack-pro/jest` work](/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework).
-Those are thin NPM packages and the source code is simple to understand. You could get inspired on how to organize code and what's need internally to build a Knapsack Pro client from scratch.
+Those are lightweight NPM packages and the source code is easy to understand. You can get some ideas about code organization and technical requirements for building a Knapsack Pro client from scratch.
 
 ## How to build Knapsack Pro client
 
@@ -313,4 +313,4 @@ In Regular Mode, you need to send a list of existing test files on the disk to t
 
 We covered how to build Knapsack Pro client integration from scratch based on the example of the existing JavaScript/TypeScript client built from 2 NPM packages `@knapsack-pro/core` and `@knapsack-pro/jest`.
 
-I hope you find it useful. I recommend digging into the source code of the above packages. They are thin and should be simple to understand. You can replicate their behavior to build your integration with Knapsack Pro API.
+I hope you find it useful. I recommend digging into the source code of the above packages. They are lightweight and should be easy to understand. You can replicate their behavior to build your integration with Knapsack Pro API.
