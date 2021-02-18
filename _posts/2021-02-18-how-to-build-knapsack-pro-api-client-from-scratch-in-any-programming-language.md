@@ -300,10 +300,10 @@ In this section, you will learn what's need to be covered in the Knapsack Pro Te
 
 You need to [recognize environment variables](https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/src/env-config.ts):
 
-* `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` the value of it should override the `KNAPSACK_PRO_TEST_SUITE_TOKEN` so Knapsack Pro Core (`@knapsack-pro/core`) can use the API token during requests.
-* `KNAPSACK_PRO_TEST_FILE_PATTERN` there should be a defined default test file pattern that can be used to detect test files on the disk in a directory specific to your test runner. We use a `glob` function to detect test files on the disk.
+* `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` - the value of it should override the `KNAPSACK_PRO_TEST_SUITE_TOKEN` so that Knapsack Pro Core (`@knapsack-pro/core`) can use the API token during requests.
+* `KNAPSACK_PRO_TEST_FILE_PATTERN` - there should be a defined default test file pattern that can be used to detect test files on the disk in a directory specific to your test runner. We use a `glob` function to detect test files on the disk.
 * There should be a [test file finder service](https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/src/test-files-finder.ts) that can recognize the pattern and find the list of test files on the disk. We use this list of test files to send them in request to the API so the API server can split those test files into parallel CI nodes.
-* `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` is an exclude pattern. If a user wants to ignore some of the test files she can provide a pattern for it.
+* `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` - is an exclude pattern. If a user wants to ignore some of the test files she can provide a pattern for it.
 
 Knapsack Pro Test Runner library (e.g. `@knapsack-pro/jest`) should have their [name and version and it should be passed to Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L29,L31) (`@knapsack-pro/core`) when you will use [core functionality](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts) to connect with the API (for instance to run tests in Queue Mode).
 
