@@ -14,7 +14,7 @@
 
 // 2nd type of request to Queue API should happen only if the API response for 1st type of request has:
 // "code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
-// then it means an attempt to connect to the queue failed because the queue does not exist on the API side yet.
+// it means an attempt to connect to the queue failed because the queue does not exist on the API side yet.
 // You must initialize a new queue with the below request, it should set params.
 // can_initialize_queue: true AND attempt_connect_to_queue: false
 // Note that there is test_files parameter in the payload to initialize a queue based on the list of test_files from your disk.
