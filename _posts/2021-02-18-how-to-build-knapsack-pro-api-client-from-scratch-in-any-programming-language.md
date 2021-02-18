@@ -351,4 +351,4 @@ In Regular Mode, you need to send a list of existing test files on the disk to t
 
 We covered how to build Knapsack Pro client integration from scratch based on the example of the existing JavaScript/TypeScript client built from 2 NPM packages `@knapsack-pro/core` and `@knapsack-pro/jest`.
 
-I hope you find it useful. I recommend digging into the source code of the above packages. They are lightweight and should be easy to understand. You can replicate their behavior to build your integration with Knapsack Pro API.
+I hope you find it useful. I recommend digging into the source code of the above packages. They are lightweight and should be easy to understand. You can replicate their behavior to build your integration with Knapsack Pro API for your favorite programming language and your test runner (testing framework).
