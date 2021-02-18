@@ -344,6 +344,9 @@ If you would like to build the Knapsack Pro client that uses Regular Mode instea
 
 In Regular Mode, you need to send a list of existing test files on the disk to the API. The API returns a set of test files to run. Once you execute the tests you need to [create a build subset](/api/v1/#build_subsets_post) record in the API.
 
+* `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT` - Regular Mode has a flag to control whether tests split should be cached on the API side. It's `true` by default. Learn more about it from [knapsack_pro ruby gem documentation](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_test_suite_split-test-suite-split-based-on-seed).
+  * Value of `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT` should be sent as attribute `fixed_test_suite_split` in [request to the API](http://localhost:4000/api/v1/#build_distributions_subset_post).
+
 ## Summary
 
 We covered how to build Knapsack Pro client integration from scratch based on the example of the existing JavaScript/TypeScript client built from 2 NPM packages `@knapsack-pro/core` and `@knapsack-pro/jest`.
