@@ -104,7 +104,11 @@ Users can define those environment variables in their CI server settings to cont
   * If no value is detected then a `git rev-parse HEAD` command should be run to determine the commit hash.
   * If `git` is not installed then raise an error. Please see the [source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L108,L145).
 
-* `KNAPSACK_PRO_BRANCH` - it's a branch name. Knapsack Pro client should in the first place try to find the branch name value from popular CI providers environment variables. If nothing is found then use `KNAPSACK_PRO_BRANCH` value defined by the user. If the user did not define it then run system command `git rev-parse --abbrev-ref HEAD` to determine the branch name. If `git` is not installed then raise an error.
+* `KNAPSACK_PRO_BRANCH` - it's a branch name.
+  * If `KNAPSACK_PRO_BRANCH` has a value then it should be used.
+  * If `KNAPSACK_PRO_BRANCH` has no value then Knapsack Pro client should read CI provider environment variables to determine a branch name.
+  * If no value is detected then a `git rev-parse --abbrev-ref HEAD` command should be run to determine the branch name.
+  * If `git` is not installed then raise an error. Please see the [source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L147,L184).
 
 * CI providers environment variables integration - Knapsack Pro client should try to read environment variables for popular CI providers. Thanks to that user have to do less work to set up the Knapsack Pro client with his project.
   * Here can be found a [list of supported CI providers](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/config/ci-env.config.ts).
