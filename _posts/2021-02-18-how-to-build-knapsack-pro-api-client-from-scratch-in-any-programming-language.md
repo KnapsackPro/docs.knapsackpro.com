@@ -98,7 +98,11 @@ Users can define those environment variables in their CI server settings to cont
       * Why this set of values matter? From the Knapsack Pro API perspective, a unique CI build is a set of test files that belongs to a git commit hash, branch name and it is split across a certain number of parallel CI nodes. When the user will run a few CI builds at the same time for the same git commit, branch name and on the same number of parallel CI nodes then we need a way to distinguish CI builds from each other. That's why CI build ID is useful and recommended to be pass in request to Knapsack Pro API.
   * It might be easier to understand this logic, just [check the source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L78).
 
-* `KNAPSACK_PRO_COMMIT_HASH` - it's a commit hash. Knapsack Pro client should in the first place try to find commit hash value from popular CI providers environment variables. If nothing is found then use `KNAPSACK_PRO_COMMIT_HASH` value defined by the user. If the user did not define it then run system command `git rev-parse HEAD` to determine the commit hash. If `git` is not installed then raise an error.
+* `KNAPSACK_PRO_COMMIT_HASH` - it's a commit hash.
+  * If `KNAPSACK_PRO_COMMIT_HASH` has a value then it should be used.
+  * If `KNAPSACK_PRO_COMMIT_HASH` has no value then Knapsack Pro client should read CI provider environment variables to determine git commit hash.
+  * If no value is detected then a `git rev-parse HEAD` command should be run to determine the commit hash.
+  * If `git` is not installed then raise an error. Please see the [source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L108,L145).
 
 * `KNAPSACK_PRO_BRANCH` - it's a branch name. Knapsack Pro client should in the first place try to find the branch name value from popular CI providers environment variables. If nothing is found then use `KNAPSACK_PRO_BRANCH` value defined by the user. If the user did not define it then run system command `git rev-parse --abbrev-ref HEAD` to determine the branch name. If `git` is not installed then raise an error.
 
