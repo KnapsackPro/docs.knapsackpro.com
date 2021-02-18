@@ -156,10 +156,13 @@ Let's assume that only the first parallel CI node (CI node index `0`) sends requ
 
 The first CI node sends the below request. Its purpose is to attempt to connect to the existing Queue on the API side.
 
-{% highlight json %}
+{% highlight plain %}
 // 1st type of request to Queue API should set params:
 // can_initialize_queue: true AND attempt_connect_to_queue: true
 // Note that there is no test_files parameter in the payload to make the request fast and keep the payload small.
+{% endhighlight %}
+
+{% highlight json %}
 {
   "can_initialize_queue": true,
   "attempt_connect_to_queue": true,
@@ -174,9 +177,12 @@ The first CI node sends the below request. Its purpose is to attempt to connect 
 
 The above request was the very first request sent to the API and on the API side the Queue does not exist yet. It means the API response returns an error informing us about the Queue not existing.
 
-{% highlight json %}
+{% highlight plain %}
 // 1st type of response to the 1st type of request (when can_initialize_queue: true AND attempt_connect_to_queue: true)
 // It can happen only when the queue does not exist on the API side or cannot be read from the cache on the API side
+{% endhighlight %}
+
+{% highlight json %}
 {
   "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
   "message": "A queue with a list of test files does not exist on the API side yet. Knapsack Pro client library should automatically make a new request to try to initialize the queue. The request must have attributes like can_initialize_queue=true, attempt_connect_to_queue=false, and test_files (must contain test files existing on the disk that you want to run), etc.",
@@ -186,7 +192,7 @@ The above request was the very first request sent to the API and on the API side
 
 You need to make a second request with a list of test files existing on the disk to try to initialize the Queue with them.
 
-{% highlight json %}
+{% highlight plain %}
 // 2nd type of request to Queue API should happen only if the API response for 1st type of request has:
 // "code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
 // then it means an attempt to connect to the queue failed because the queue does not exist on the API side yet.
@@ -194,6 +200,9 @@ You need to make a second request with a list of test files existing on the disk
 // can_initialize_queue: true AND attempt_connect_to_queue: false
 // Note that there is test_files parameter in the payload to initialize a queue based on the list of test_files from your disk.
 // This request can be slow if you provide a large number of test files (~1000+). That is why we did 1st request to try to connect to the existing queue first because one of the parallel CI nodes could already initialize it.
+{% endhighlight %}
+
+{% highlight json %}
 {
   "can_initialize_queue": true,
   "attempt_connect_to_queue": false,
@@ -222,9 +231,12 @@ You need to make a second request with a list of test files existing on the disk
 
 API should return a set of test files assigned to the first CI node (CI node index `0`). You should run the test files with your test runner now (using the Knapsack Pro Test Runner client - we will describe it later).
 
-{% highlight json %}
+{% highlight plain %}
 // 2nd type of response can happen for all types of request
 // It returns a list of test files that should be run with your test runner
+{% endhighlight %}
+
+{% highlight json %}
 {
   "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
   "build_subset_id": null,
@@ -243,12 +255,15 @@ API should return a set of test files assigned to the first CI node (CI node ind
 
 After you executed the test files you should ask the API for another set of test files as long as the API response will have no more test files.
 
-{% highlight json %}
+{% highlight plain %}
 // 3rd type of request to Queue API should happen only if 1st or 2nd type of request returned a list of test_files.
 // With the below request you can continue fetching test files from the queue to run them with your test runner.
 // Request payload should have params:
 // can_initialize_queue: false AND attempt_connect_to_queue: false
 // Note there is no test_files parameter in the payload to make the request fast and keep the payload small.
+{% endhighlight %}
+
+{% highlight json %}
 {
   "can_initialize_queue": false,
   "attempt_connect_to_queue": false,
