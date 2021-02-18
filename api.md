@@ -4,6 +4,14 @@ title: Knapsack Pro API
 permalink: /api/
 ---
 
+## API documentation
+
+<p>
+Here you can find API documentation for Regular Mode and Queue Mode. The API documentation might be useful if you want to build <a href="/integration/">a client library</a> to directly integrate with Knapsack Pro API.
+</p>
+
+<h1><a href="/api/v1/">Preview API v1 documentation</a></h1>
+
 ## How API works
 
 You can learn how Knapsack Pro API works from the below videos or reading the article showing [the difference between Regular Mode and Queue Mode](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation).
@@ -21,17 +29,10 @@ You can learn how Knapsack Pro API works from the below videos or reading the ar
   </li>
 </ul>
 
-## API documentation
-
-<p>
-Here you can find API documentation for Regular Mode and Queue Mode. The API documentation might be useful if you want to build <a href="/integration/">a client library</a> to directly integrate with Knapsack Pro API.
-</p>
-
-<h1><a href="/api/v1/">Preview API v1 documentation</a></h1>
-
 ## How to build native integration with API
 
-* [How to build native integration with Knapsack Pro API to run tests in parallel for any test runner (testing framework)](/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework)
+* __JavaScript__: [How to build native integration with Knapsack Pro API to run tests in parallel for any test runner (testing framework)](/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework)
+* __Any programming language__: [How to build a custom Knapsack Pro API client from scratch in any programming language](/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language)
 
 ## How to export data from API
 
