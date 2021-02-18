@@ -132,7 +132,7 @@ Knapsack Pro Core should have implemented [business logic for making requests to
 
 * When a request to the Knapsack Pro API fails then it should be repeated 3 times.
   * There are exceptions when a [response status indicates a failure](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L68,L70) - in these cases the request should never be repeated:
-    * When response status is `400` then it means request params error.
+    * When response status is `400` then it means request attributes error.
     * When response status is `422` then it means validation error.
     * When the response status is `403` then a free trial period ended.
   * For all above `4xx` response statuses you should show the error body response to the output and stop running tests. Ensure that the [process has exit code `1`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L77) - thanks to that CI provider will know the CI build failed.
@@ -157,7 +157,7 @@ Let's assume that only the first parallel CI node (CI node index `0`) sends requ
 The first CI node sends the below request. Its purpose is to attempt to connect to the existing Queue on the API side.
 
 {% highlight plain %}
-// 1st type of request to Queue API should set params:
+// 1st type of request to Queue API should set attributes:
 // can_initialize_queue: true AND attempt_connect_to_queue: true
 // Note that there is no test_files parameter in the payload to make the request fast and keep the payload small.
 {% endhighlight %}
@@ -260,9 +260,9 @@ After you executed the test files you should ask the API for another set of test
 {% highlight plain %}
 // 3rd type of request to Queue API should happen only if 1st or 2nd type of request returned a list of test_files.
 // With the below request you can continue fetching test files from the queue to run them with your test runner.
-// Request payload should have params:
+// Request payload should have attributes:
 // can_initialize_queue: false AND attempt_connect_to_queue: false
-// Note there is no test_files parameter in the payload to make the request fast and keep the payload small.
+// Note there is no test_files attribute in the payload to make the request fast and keep the payload small.
 {% endhighlight %}
 
 {% highlight json %}
