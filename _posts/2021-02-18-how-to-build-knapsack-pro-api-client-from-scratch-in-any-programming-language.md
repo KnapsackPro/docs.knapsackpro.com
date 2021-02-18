@@ -255,7 +255,7 @@ API should return a set of test files assigned to the first CI node (CI node ind
 }
 {% endhighlight %}
 
-After you execute the test files, you should ask the API for another set of test files as long as the API response will have no more test files.
+After you execute the test files, you should ask the API for another set of test files until the API response contains an empty list of test files. This signifies that the whole Queue has been consumed.
 
 {% highlight plain %}
 // 3rd type of request to Queue API should happen only if 1st or 2nd type of request returned a list of test_files.
