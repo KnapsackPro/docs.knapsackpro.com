@@ -15,10 +15,12 @@
 // 2nd type of request to Queue API should happen only if the API response for 1st type of request has:
 // "code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
 // it means an attempt to connect to the queue failed because the queue does not exist on the API side yet.
-// You must initialize a new queue with the below request, it should set params.
+// You must initialize a new queue with the below request.
+// It should set attributes:
 // can_initialize_queue: true AND attempt_connect_to_queue: false
-// Note that there is test_files parameter in the payload to initialize a queue based on the list of test_files from your disk.
-// This request can be slow if you provide a large number of test files (~1000+). That is why we did 1st request to try to connect to the existing queue first because one of the parallel CI nodes could already initialize it.
+// Note that there is a test_files attribute in the payload to initialize a queue based on the list of test_files from your disk.
+// This request can be slow if you provide a large number of test files (~1000+).
+// That is why we did 1st request to try to connect to the existing queue first (as one of the other parallel CI nodes could have already initialized it).
 {
   "can_initialize_queue": true,
   "attempt_connect_to_queue": false,
