@@ -292,7 +292,7 @@ After test files have been run and their execution time has been recorded you ca
 
 You can consult the [source code of `@knapsack-pro/core` responsible for making requests to Knapsack Pro API](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts) for Queue Mode and for a request to create a build subset.
 
-Please also see how Knapsack Pro Core (`@knapsack-pro/core`) uses [service for the API](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts) to [run tests, record tests execution time, and save recorded test files time for a given CI node as a build subset](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts) in the API.
+Please also see how Knapsack Pro Core (`@knapsack-pro/core`) uses a [service for the API](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts) to [run tests, record tests execution time, and save recorded test files time for a given CI node as a build subset](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts) in the API.
 
 ## Knapsack Pro Test Runner integration
 
