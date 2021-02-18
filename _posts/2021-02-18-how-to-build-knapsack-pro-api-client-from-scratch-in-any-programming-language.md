@@ -190,7 +190,7 @@ The above request was the very first request sent to the API and on the API side
 }
 {% endhighlight %}
 
-You need to make a second request with a list of test files existing on the disk to try to initialize the Queue with them.
+You need to make a second request. This time, it should contain a list of test files residing on the disk. These will be used to create the Queue.
 
 {% highlight plain %}
 // 2nd type of request to Queue API should happen only if the API response for 1st type of request has:
