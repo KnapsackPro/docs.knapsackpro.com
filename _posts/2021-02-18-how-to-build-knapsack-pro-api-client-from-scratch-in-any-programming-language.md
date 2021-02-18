@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to build Knapsack Pro API client from scratch in any programming language"
-date:   2021-02-17 08:00:00 +0100
+date:   2021-02-18 08:00:00 +0100
 author: "Artur Trzop"
 categories: techtips continuous_integration
 og_image: "/images/blog/posts/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language/api.jpeg"
