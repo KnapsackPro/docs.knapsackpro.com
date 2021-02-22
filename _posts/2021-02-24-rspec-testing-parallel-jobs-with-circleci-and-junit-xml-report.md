@@ -44,7 +44,7 @@ The important step for CircleCI is to copy the XML report to `$CIRCLE_TEST_REPOR
 {% highlight ruby %}
 # spec_helper.rb or rails_helper.rb
 
-# TODO This must be the same path as value for rspec --out argument
+# This must be the same path as value for rspec --out argument
 # Note the path should not contain sign ~, for instance path ~/project/tmp/rspec.xml may not work.
 # Please use full path instead.
 TMP_RSPEC_XML_REPORT = 'tmp/rspec.xml'
