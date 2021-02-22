@@ -49,7 +49,7 @@ The important step for CircleCI is to copy the XML report to `$CIRCLE_TEST_REPOR
 # Please use full path instead.
 TMP_RSPEC_XML_REPORT = 'tmp/rspec.xml'
 # move results to FINAL_RSPEC_XML_REPORT
-# so the results won't accumulate with duplicated xml tags in TMP_RSPEC_XML_REPORT
+# so that the results won't accumulate with duplicated xml tags in TMP_RSPEC_XML_REPORT
 FINAL_RSPEC_XML_REPORT = 'tmp/rspec_final_results.xml'
 
 KnapsackPro::Hooks::Queue.after_subset_queue do |queue_id, subset_queue_id|
