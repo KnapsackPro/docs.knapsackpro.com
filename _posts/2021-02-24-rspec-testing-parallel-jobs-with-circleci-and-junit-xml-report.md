@@ -7,7 +7,7 @@ categories: techtips continuous_integration
 og_image: "/images/blog/posts/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report/rspec_circleci.jpeg"
 ---
 
-You will learn how to run RSpec tests for your Ruby on Rails project on CircleCI with parallel jobs to cut down the time of your CI build. Moreover, you will learn how to configure JUnit formatter to generate an XML report for your tests to show failing RSpec test examples nicely in CircleCI web UI. Finally, you will see how to automatically detect slow spec files and divide their test examples between parallel jobs to eliminate the bottleneck job that's taking too much time to run tests.
+You will learn how to run RSpec tests for your Ruby on Rails project on CircleCI with parallel jobs to shorten the running time of your CI build. Moreover, you will learn how to configure JUnit formatter to generate an XML report for your tests to show failing RSpec test examples nicely in CircleCI web UI. Finally, you will see how to automatically detect slow spec files and divide their test examples between parallel jobs to eliminate the bottleneck job that's taking too much time to run tests.
 
 <img src="/images/blog/posts/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report/rspec_circleci.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="RSpec, CircleCI, Ruby, gem" />
 
