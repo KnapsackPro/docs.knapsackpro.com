@@ -20,7 +20,7 @@ Here are the key elements you need:
 <img src="/images/blog/posts/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report/circleci_web_ui_failed_test.png" alt="CircleCI web UI, failure, RSpec, test, test case" />
 
 * [knapsack_pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report) - it's a Ruby gem for running tests on parallel CI jobs to ensure all jobs finish work at a similar time to save you as much time as possible and eliminate bottlenecks.
-  * It uses [Queue Mode to dynamically split test files between parallel jobs](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation).
+  * It uses the [Queue Mode to dynamically split test files between parallel jobs](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation).
   * Knapsack Pro can also [detect your slow RSpec test files and divide them between parallel jobs by test examples](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report). You don't have to manually split your big spec file into smaller files if you want to split work between parallel container on CircleCI :)
 
 Just add the above gems to your `Gemfile`.
