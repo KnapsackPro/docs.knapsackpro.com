@@ -15,7 +15,7 @@ You will learn how to run RSpec tests for your Ruby on Rails project on CircleCI
 
 Here are the key elements you need:
 
-* [rspec_junit_formatter](https://github.com/sj26/rspec_junit_formatter) - it's a ruby gem that generates an XML report for executed tests with information about test failures. This report can be automatically read by CircleCI to present it in CircleCI web UI. No more browsing thought long RSpec output - just look at highlighted failing specs in `TESTS` tab :)
+* [rspec_junit_formatter](https://github.com/sj26/rspec_junit_formatter) - it's a ruby gem that generates an XML report for executed tests with information about test failures. This report can be automatically read by CircleCI to present it in CircleCI web UI. No more browsing through long RSpec output - just look at highlighted failing specs in `TESTS` tab :)
 
 <img src="/images/blog/posts/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report/circleci_web_ui_failed_test.png" alt="CircleCI web UI, failure, RSpec, test, test case" />
 
