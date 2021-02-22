@@ -59,7 +59,7 @@ KnapsackPro::Hooks::Queue.after_subset_queue do |queue_id, subset_queue_id|
 end
 {% endhighlight %}
 
-You need the above workaround to move the XML report from one place to another to avoid corruption of your XML file. When Knapsack Pro in Queue Mode runs your tests then it fetches a set of test files from Knapsack Pro Queue API and runs it and generates the XML report. After that, another set of test files is fetched from Queue API and the XML report is updated on the disk. If the report already exists on the disk it can get corrupted due to overriding the same file. That's why you need to move the file to a different location after each set of tests from Queue API is executed.
+You need the above logic in place to move the XML report from one place to another to avoid corruption of your XML file. When Knapsack Pro in Queue Mode runs your tests then it fetches a set of test files from Knapsack Pro Queue API and runs it and generates the XML report. After that, another set of test files is fetched from Queue API and the XML report is updated on the disk. If the report already exists on the disk it can get corrupted due to overriding the same file. That's why you need to move the file to a different location after each set of tests from Queue API is executed.
 
 ## CircleCI YML configuration for RSpec
 
