@@ -66,6 +66,7 @@ You need the above logic in place to move the XML report from one place to anoth
 Here is the complete CircleCI YML config file for RSpec, Knapsack Pro and JUnit formatter.
 
 {% highlight yml %}
+{% raw %}
 # Ruby CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
@@ -140,6 +141,7 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+{% endraw %}
 {% endhighlight %}
 
 ## Summary
