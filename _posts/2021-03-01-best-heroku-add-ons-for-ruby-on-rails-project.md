@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/hero
 
 After working for over 8 years with Heroku and Ruby on Rails projects I have my own favorite set of Heroku add-ons that work great with Rails apps. You are about to learn about the add-ons that come in handy in your daily Ruby developer life.
 
-<img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/heroku.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="RSpec, CircleCI, Ruby, gem" />
+<img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/heroku.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Heroku, Heroku Marketplace, Heroku add-on, add-on, add-ons, Ruby, RoR, Rails, Ruby on Rails" />
 
 ## Heroku add-ons
 
