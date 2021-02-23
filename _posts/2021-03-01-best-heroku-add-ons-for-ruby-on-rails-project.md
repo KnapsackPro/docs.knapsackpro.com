@@ -83,3 +83,11 @@ Of course, you could use heroku logs command to browser log but it has limitatio
 Logentries has a 5GB and 7 days retention period in a free plan. This is enough for small Rails apps.
 
 A nice feature I like in Logentries is an option to save the query and later on quickly browse logs by it. You can also display charts based on logs. Maybe you want to see how often a particular worker in Sidekiq has been called? You could visualize it.
+
+### Redis Cloud
+
+If you use Redis in your Ruby on Rails app then [Redis Cloud](https://elements.heroku.com/addons/rediscloud) is your add-on that you should choose from Heroku Marketplace. It has a free plan and paid plans are more affordable than other add-ons have.
+
+Redis Cloud add-on does automatic backups of your data and offers a nice web UI to preview the live Redis usage and historical usage of your database instance.
+
+I like to use Redis Cloud + sidekiq gem in my Rails app. Also, Redis is useful if you need to cache some data quickly in the memory and expire it after some time.
