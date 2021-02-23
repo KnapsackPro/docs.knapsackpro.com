@@ -122,6 +122,8 @@ Here are a few of my favorite add-ons that will help you save money and time in 
 
 [AutoIdle](https://elements.heroku.com/addons/autoidle) lets you save money by automatically putting your staging and review apps to sleep on Heroku. I use it to turn off my web and worker dyno for the staging app when there is no traffic to the app. No more paying for Heroku resources during the night and weekends. ;)
 
+<img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/autoidle.png" alt="AutoIdle, Heroku" />
+
 ### Rails Autoscale
 
 [Rails Autoscale](https://elements.heroku.com/addons/rails-autoscale) is a powerful add-on that will help you save money on Heroku. It will measure requests queue time and based on that add or remove dynos for your web processes. If you have higher traffic during the day it will add more dynos. During the night when the traffic is low, it will remove dynos.
