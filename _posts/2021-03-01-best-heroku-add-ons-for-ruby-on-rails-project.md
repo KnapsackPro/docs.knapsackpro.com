@@ -128,6 +128,8 @@ Here are a few of my favorite add-ons that will help you save money and time in 
 
 [Rails Autoscale](https://elements.heroku.com/addons/rails-autoscale) is a powerful add-on that will help you save money on Heroku. It will measure requests queue time and based on that add or remove dynos for your web processes. If you have higher traffic during the day it will add more dynos. During the night when the traffic is low, it will remove dynos.
 
+<img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/rails_autoscale_graph.png" alt="Rails Autoscale, Heroku, request queue" />
+
 Rails Autoscale can also track your worker queue, for instance, if you have a lot of jobs scheduled in Sidekiq then Rails Autoscale will add more worker dynos to process your job queue faster. It can even shut down worker dyno when there are no jobs to be processed which can save you even more money.
 
 ### Knapsack Pro
