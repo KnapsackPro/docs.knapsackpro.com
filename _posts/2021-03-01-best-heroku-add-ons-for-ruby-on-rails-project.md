@@ -92,6 +92,20 @@ Redis Cloud add-on does automatic backups of your data and offers a nice web UI 
 
 I like to use Redis Cloud + sidekiq gem in my Rails app. Also, Redis is useful if you need to cache some data quickly in the memory and expire it after some time.
 
+{% highlight ruby %}
+redis_connection = Redis.new(
+  # use REDISCLOUD_URL when app is running on Heroku,
+  # or fallback to local Redis (useful for development)
+  url: ENV.fetch('REDISCLOUD_URL', 'redis://localhost:6379/0'),
+  # tune network timeouts to be a little more lenient when you are seeing occasional timeout
+  # errors for Heroku Redis Cloud addon
+  # https://github.com/mperham/sidekiq/wiki/Using-Redis#life-in-the-cloud
+  timeout: 5
+)
+
+redis_connection.setex('my-key-name', 1.hour, 'this value will expire in 1 hour')
+{% endhighlight %}
+
 ### Twilio SendGrid
 
 [SendGrid](https://elements.heroku.com/addons/sendgrid) is a free add-on that allows you to start sending emails from your Ruby on Rails. You can even connect your domain to it so your users get emails from your domain.
