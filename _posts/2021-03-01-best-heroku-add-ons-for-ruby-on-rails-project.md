@@ -40,3 +40,36 @@ end
 [New Relic](https://elements.heroku.com/addons/newrelic) add-on does application performance monitoring. It's one of my favorite add-ons. It allows to track each process like puma/unicorn/sidekiq per dyno and its performance. You can see what Rails controller actions take the most time. You can see your API endpoints with the highest throughput and those which are time-consuming. New Relic helped me many times to debug bottlenecks in my app and thanks to that I was able to make [Knapsack Pro API](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=best-heroku-add-ons-for-ruby-on-rails-project) with an average 50ms response time. Who said the Rails app has to be slow? :)
 
 <img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/new_relic_api_response_time.png" alt="New Relic, response time, Rails, Ruby, API" />
+
+### Rollbar
+
+[Rollbar](https://elements.heroku.com/addons/rollbar) allows for exception tracking in your Ruby code and also in JS code on the front end side. It has a generous free plan with a 5000 exception limit per month.
+
+You can easily ignore some common Rails exceptions to stay within the free plan limit.
+
+{% highlight ruby %}
+# config/initializers/rollbar.rb
+Rollbar.configure do |config|
+  config.access_token = ENV['ROLLBAR_ACCESS_TOKEN']
+
+  if Rails.env.test? || Rails.env.development?
+    config.enabled = false
+  end
+
+  # Add exception class names to the exception_level_filters hash to
+  # change the level that exception is reported at. Note that if an exception
+  # has already been reported and logged the level will need to be changed
+  # via the rollbar interface.
+  # Valid levels: 'critical', 'error', 'warning', 'info', 'debug', 'ignore'
+  # 'ignore' will cause the exception to not be reported at all.
+  config.exception_level_filters.merge!('ActionController::RoutingError' => 'ignore')
+  config.exception_level_filters.merge!('ActionController::InvalidAuthenticityToken' => 'ignore')
+  config.exception_level_filters.merge!('ActionController::BadRequest' => 'ignore')
+  config.exception_level_filters.merge!('ActiveRecord::RecordNotFound' => 'ignore')
+  config.exception_level_filters.merge!('Rack::Timeout::RequestTimeoutException' => 'ignore')
+  config.exception_level_filters.merge!('Rack::QueryParser::InvalidParameterError' => 'ignore')
+  config.exception_level_filters.merge!('ActionDispatch::Http::MimeNegotiation::InvalidType' => 'ignore')
+
+  config.environment = ENV['ROLLBAR_ENV'].presence || Rails.env
+end
+{% endhighlight %}
