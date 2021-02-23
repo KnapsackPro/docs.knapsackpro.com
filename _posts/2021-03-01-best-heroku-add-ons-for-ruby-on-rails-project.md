@@ -90,6 +90,8 @@ If you use Redis in your Ruby on Rails app then [Redis Cloud](https://elements.h
 
 Redis Cloud add-on does automatic backups of your data and offers a nice web UI to preview the live Redis usage and historical usage of your database instance.
 
+<img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/redis_cloud_graphs.png" alt="Redis Cloud, Redis" />
+
 I like to use Redis Cloud + sidekiq gem in my Rails app. Also, Redis is useful if you need to cache some data quickly in the memory and expire it after some time.
 
 {% highlight ruby %}
