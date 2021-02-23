@@ -17,7 +17,7 @@ Here it is, a list of my favorite Heroku add-ons and why I choose them for my Ru
 
 ### Heroku Scheduler
 
-Heroku Scheduler can run scheduled tasks every 10 minutes, every hour, or every day. I use it to run my scheduled rake tasks. For instance every day I run a rake task that will send a summary of users who signed up in the last 24 hours to my mailbox.
+[Heroku Scheduler](https://elements.heroku.com/addons/scheduler) can run scheduled tasks every 10 minutes, every hour, or every day. I use it to run my scheduled rake tasks. For instance every day I run a rake task that will send a summary of users who signed up in the last 24 hours to my mailbox.
 
 Heroku Scheduler add-on is free. The only limitation is that it has fewer options than the cron in the Unix system. If you need to run a rake task every Monday then you need to set up a rake task as a daily task in Heroku Scheduler and do a check of the day in the rake task itself to skip it when needed.
 
