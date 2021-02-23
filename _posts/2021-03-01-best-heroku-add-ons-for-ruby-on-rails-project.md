@@ -105,3 +105,13 @@ Here are a few of my favorite add-ons that will help you save money and time in 
 ### AutoIdle
 
 [AutoIdle](https://elements.heroku.com/addons/autoidle) lets you save money by automatically putting your staging and review apps to sleep on Heroku. I use it to turn off my web and worker dyno for the staging app when there is no traffic to the app. No more paying for Heroku resources during the night and weekends. ;)
+
+### Rails Autoscale
+
+[Rails Autoscale](https://elements.heroku.com/addons/rails-autoscale) is a powerful add-on that will help you save money on Heroku. It will measure requests queue time and based on that add or remove dynos for your web processes. If you have higher traffic during the day it will add more dynos. During the night when the traffic is low, it will remove dynos.
+
+Rails Autoscale can also track your worker queue, for instance, if you have a lot of jobs scheduled in Sidekiq then Rails Autoscale will add more worker dynos to process your job queue faster. It can even shut down worker dyno when there are no jobs to be processed which can save you even more money.
+
+### Knapsack Pro
+
+[Knapsack Pro](https://elements.heroku.com/addons/knapsack-pro) is a Heroku add-on and ruby gem that can run your Rails tests in RSpec, Cucumber, Minitest, etc, and automatically split the tests between parallel machines on any CI server. It works with Heroku CI, CircleCI, Buildkite, Travis CI, etc. It will help you save time by doing [a dynamic split of tests with Queue Mode](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation) to ensure all parallel jobs finish work at a similar time. This way you run CI build in optimal time and save the most time. I've been working on this add-on and I'd love to hear your feedback if you give it a try.
