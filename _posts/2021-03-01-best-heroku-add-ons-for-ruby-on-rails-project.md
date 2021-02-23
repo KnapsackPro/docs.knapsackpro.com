@@ -97,3 +97,11 @@ I like to use Redis Cloud + sidekiq gem in my Rails app. Also, Redis is useful i
 [SendGrid](https://elements.heroku.com/addons/sendgrid) is a free add-on that allows you to start sending emails from your Ruby on Rails. You can even connect your domain to it so your users get emails from your domain.
 
 There are free 12,000 emails per month in the free plan.
+
+## Heroku Add-on to save you time & money
+
+Here are a few of my favorite add-ons that will help you save money and time in your project.
+
+### AutoIdle
+
+[AutoIdle](https://elements.heroku.com/addons/autoidle) lets you save money by automatically putting your staging and review apps to sleep on Heroku. I use it to turn off my web and worker dyno for the staging app when there is no traffic to the app. No more paying for Heroku resources during the night and weekends. ;)
