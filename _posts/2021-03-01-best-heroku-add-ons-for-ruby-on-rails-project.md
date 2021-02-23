@@ -73,3 +73,13 @@ Rollbar.configure do |config|
   config.environment = ENV['ROLLBAR_ENV'].presence || Rails.env
 end
 {% endhighlight %}
+
+### Logentries
+
+[Logentries](https://elements.heroku.com/addons/logentries) - collects your logs from Heroku standard output so that you can browse them later on. If you need to find info about an issue that happened a few days ago in your logs then Logentries might be helpful.
+
+Of course, you could use heroku logs command to browser log but it has limitations, and you can't go that much in past logs or easily filter logs as in Logentries.
+
+Logentries has a 5GB and 7 days retention period in a free plan. This is enough for small Rails apps.
+
+A nice feature I like in Logentries is an option to save the query and later on quickly browse logs by it. You can also display charts based on logs. Maybe you want to see how often a particular worker in Sidekiq has been called? You could visualize it.
