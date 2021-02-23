@@ -91,3 +91,9 @@ If you use Redis in your Ruby on Rails app then [Redis Cloud](https://elements.h
 Redis Cloud add-on does automatic backups of your data and offers a nice web UI to preview the live Redis usage and historical usage of your database instance.
 
 I like to use Redis Cloud + sidekiq gem in my Rails app. Also, Redis is useful if you need to cache some data quickly in the memory and expire it after some time.
+
+### Twilio SendGrid
+
+[SendGrid](https://elements.heroku.com/addons/sendgrid) is a free add-on that allows you to start sending emails from your Ruby on Rails. You can even connect your domain to it so your users get emails from your domain.
+
+There are free 12,000 emails per month in the free plan.
