@@ -86,7 +86,7 @@ A nice feature I like in Logentries is an option to save the query and later on 
 
 ### Redis Cloud
 
-If you use Redis in your Ruby on Rails app then [Redis Cloud](https://elements.heroku.com/addons/rediscloud) is your add-on that you should choose from Heroku Marketplace. It has a free plan and paid plans are more affordable than other add-ons have.
+If you use Redis in your Ruby on Rails app then [Redis Cloud](https://elements.heroku.com/addons/rediscloud) is your add-on. It has a free plan and paid plans are more affordable than other add-ons have.
 
 Redis Cloud add-on does automatic backups of your data and offers a nice web UI to preview the live Redis usage and historical usage of your database instance.
 
