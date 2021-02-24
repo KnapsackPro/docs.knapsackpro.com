@@ -130,7 +130,7 @@ Here are a few of my favorite add-ons that will help you save money and time in 
 
 <img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/rails_autoscale_graph.png" alt="Rails Autoscale, Heroku, request queue" />
 
-Rails Autoscale can also track your worker queue, for instance, if you have a lot of jobs scheduled in Sidekiq then Rails Autoscale will add more worker dynos to process your job queue faster. It can even shut down worker dyno when there are no jobs to be processed which can save you even more money.
+Rails Autoscale can also track your worker queue. For instance, if you have a lot of jobs scheduled in Sidekiq then Rails Autoscale will add more worker dynos to process your job queue faster. It can even shut down worker dyno when there are no jobs to be processed which can save you even more money.
 
 ### Knapsack Pro
 
