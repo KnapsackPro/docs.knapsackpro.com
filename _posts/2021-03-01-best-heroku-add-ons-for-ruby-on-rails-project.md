@@ -134,7 +134,7 @@ Rails Autoscale can also track your worker queue. For instance, if you have a lo
 
 ### Knapsack Pro
 
-[Knapsack Pro](https://elements.heroku.com/addons/knapsack-pro) is a Heroku add-on and ruby gem that can run your Rails tests in RSpec, Cucumber, Minitest, etc, and automatically split the tests between parallel machines on any CI server. It works with Heroku CI, CircleCI, Buildkite, Travis CI, etc. It will help you save time by doing [a dynamic split of tests with Queue Mode](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation) to ensure all parallel jobs finish work at a similar time. This way you run CI build in optimal time and save the most time.
+[Knapsack Pro](https://elements.heroku.com/addons/knapsack-pro) is a Heroku add-on and ruby gem that can run your Rails tests in RSpec, Cucumber, Minitest, etc, and automatically split the tests between parallel machines on any CI server. It works with Heroku CI, CircleCI, Buildkite, Travis CI, etc. It will help you save time by doing [a dynamic split of tests with Queue Mode](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation) to ensure all parallel jobs finish work at a similar time. This way you optimize your CI build runs and save the most time.
 
 Below you can see an example of the optimal distribution of tests, where each parallel CI machine performs tests for 10 minutes, thanks to which the entire CI build lasts only 10 minutes instead of 40 if you would run tests on a single CI server only.
 
