@@ -37,7 +37,7 @@ end
 
 ### New Relic APM
 
-[New Relic](https://elements.heroku.com/addons/newrelic) add-on does application performance monitoring. It's one of my favorite add-ons. It allows to track each process like puma/unicorn/sidekiq per dyno and its performance. You can see what Rails controller actions take the most time. You can see your API endpoints with the highest throughput and those which are time-consuming. New Relic helped me many times to debug bottlenecks in my app and thanks to that I was able to make [Knapsack Pro API](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=best-heroku-add-ons-for-ruby-on-rails-project) with an average 50ms response time. Who said the Rails app has to be slow? :)
+[New Relic](https://elements.heroku.com/addons/newrelic) add-on does application performance monitoring. It's one of my favorite add-ons. It allows to track each process like puma/unicorn/sidekiq per dyno and its performance. You can see which Rails controller actions take the most time. You can see your API endpoints with the highest throughput and those which are time-consuming. New Relic helped me many times to debug bottlenecks in my app and thanks to that I was able to make [Knapsack Pro API](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=best-heroku-add-ons-for-ruby-on-rails-project) with an average 50ms response time. Who said the Rails app has to be slow? :)
 
 <img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/new_relic_api_response_time.png" alt="New Relic, response time, Rails, Ruby, API" />
 
