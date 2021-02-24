@@ -13,7 +13,7 @@ After working for over 8 years with Heroku and Ruby on Rails projects I have my 
 
 ## Heroku add-ons
 
-Here it is, a list of my favorite Heroku add-ons and why I choose them for my Ruby on Rails projects hosted on Heroku.
+Here it is, a list of my favorite Heroku add-ons from Heroku Marketplace and why I choose them for my Ruby on Rails projects hosted on Heroku.
 
 ### Heroku Scheduler
 
