@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Best Heroku add-ons for Ruby on Rails project"
-date:   2021-03-01 08:00:00 +0100
+date:   2021-02-25 08:00:00 +0100
 author: "Artur Trzop"
 categories: techtips
 og_image: "/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/heroku_addons.jpeg"
