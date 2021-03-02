@@ -54,7 +54,7 @@ When the runtime of our build pipeline had reached 20 minutes on average for eac
 }
 </style>
 
-# What is our setup?
+## What is our setup?
 
 Our team is working on [Kiwi.com](https://www.kiwi.com/), which is a travel company selling tickets for flights, trains, buses and any other kinds of transportation. More specifically, the team is responsible for the Help Center, where users can go to find articles and chat with support before, during and after their trips.
 
@@ -67,7 +67,7 @@ We use [GitLab](https://about.gitlab.com/) for code reviews and version control 
 We use [Cypress](https://www.cypress.io/) for end-to-end and integration testing with separate tests for both types of deployment.
 
 
-# What problem are we trying to solve?
+## What problem are we trying to solve?
 
 We want our pipelines and tests to run faster but not spend too much time nor money on doing it, so running each test on its own server is probably not the best way to go, not to mention the overhead of starting up the runners and checking out the source code.
 
@@ -76,7 +76,7 @@ If our pipelines are slow, developers could forget that they had something runni
 If our pipelines are fast, then we have to wait less while they are running, after applying some of the changes suggested during code reviews and to get hotfixes out to production if necessary.
 
 
-# Manual splitting of Cypress tests
+## Manual splitting of Cypress tests
 
 After seeing that running tests in series takes extremely long, we tried to split some areas up and run them on separate Cypress runners and this worked for a while. But, as the tests’ size grew asymmetrically, we had to shift around which suites should run together continuously.
 
@@ -115,7 +115,7 @@ After seeing that running tests in series takes extremely long, we tried to spli
   </article>
 </section>
 
-# What is Knapsack Pro?
+## What is Knapsack Pro?
 
 Knapsack Pro is a tool that helps split up test suites in a dynamic way across parallel CI runners to ensure that each runner finishes work simultaneously.
 
@@ -126,7 +126,7 @@ It comes with a dashboard to see the distribution of test subsets for each paral
 The founder of Knapsack Pro, [Artur Trzop](https://github.com/ArturT) has been helping us proactively, sometimes noticing and notifying us that something went wrong with our pipeline even before we did. Whenever we had an issue, we could just write to him and we would figure out a solution together.
 
 
-# Plugging in Knapsack Pro
+## Plugging in Knapsack Pro
 
 To try out Knapsack Pro, all we did was [follow the docs](https://github.com/KnapsackPro/knapsack-pro-cypress#installation) and afterward merge all separate Cypress jobs into one and set up some [reporterOptions](https://docs.cypress.io/guides/tooling/reporters.html#Reporter-Options) in Cypress to ensure that we’ll collect all of the test results as JUnit reports from all the parallel runs.
 
@@ -263,12 +263,12 @@ It is still not perfectly balanced but with this granularity, we can utilize fou
 </p>
 
 
-# What else can we do?
+## What else can we do?
 
 15 minutes still feels long, pipeline runtimes around 10 minutes are a good goal to reach but we have more optimization to do around build times and Docker compilation times, which are out of scope for this article. If you’re interested in reading more about how to do that, I can recommend the article [Docker for JavaScript Devs: How to Containerize Node.js Apps Efficiently](https://www.robincussol.com/docker-for-js-devs-how-to-containerise-nodejs-apps-efficiently/) for more details.
 
 
-# Results
+## Results
 
 The switch to Knapsack Pro took less than a day. Most of the work afterward was to split up tasks and optimize other parts of GitLab CI. The whole process took two weeks for a single developer.
 
