@@ -41,3 +41,6 @@ _site
 
 # nodejs
 /node_modules
+
+# macOS
+.DS_Store
