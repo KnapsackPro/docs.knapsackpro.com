@@ -4,10 +4,12 @@ title:  "Cucumber BDD testing using Github Actions parallel jobs to run tests qu
 date:   2021-03-05 08:00:00 +0100
 author: "Artur Trzop"
 categories: continuous_integration
-og_image: "/images/blog/posts/cucumber-bdd-testing-using-github-actions-parallel-jobs-to-run-tests-quicker/image.jpg"
+og_image: "/images/blog/posts/cucumber-bdd-testing-using-github-actions-parallel-jobs-to-run-tests-quicker/cucumber-octocat-github.jpeg"
 ---
 
 Cucumber tool employees Behavior-Driven Development (BDD) for testing your application. This type of test is often time-consuming when running in the browser. You will learn how to run Cucumber tests on Github Actions using parallel jobs to execute the test suite much faster.
+
+<img src="/images/blog/posts/cucumber-bdd-testing-using-github-actions-parallel-jobs-to-run-tests-quicker/cucumber-octocat-github.jpeg" style="width:200px;margin-left: 15px;float:right;" alt="cucumber, github, octocat" />
 
 ## Github Actions matrix strategy
 
