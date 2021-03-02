@@ -27,7 +27,7 @@ What you would like to achieve is to run parallel jobs in a way that they always
 
 ## Dynamically split Cucumber tests using Queue Mode
 
-To get optimal CI build execution time you need to ensure the work between parallel jobs is split in such a way to avoid bottleneck slow job.
+To get optimal CI build execution time you need to ensure the work between parallel jobs is split in such a way as to avoid bottleneck slow job.
 To achieve that you can split Cucumber test files in a dynamic way between the parallel jobs using [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=cucumber-bdd-testing-using-github-actions-parallel-jobs-to-run-tests-quicker) Queue Mode and `knapsack_pro` ruby gem.
 
 Knapsack Pro API will take care of coordinating how tests are divided between parallel jobs. On the API side, there is a Queue with a list of your test files and each parallel job on Github Actions is running Cucumber tests via the `knapsack_pro` Ruby gem. The `knapsack_pro` gem asks Queue API for a set of test files to run and after it gets executed then the gem asks for another set of test files until the Queue is consumed. This ensures the all parallel jobs finish running tests at a very similar time so that you can avoid bottleneck jobs.
