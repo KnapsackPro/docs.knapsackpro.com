@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Faster pipelines with Knapsack Pro by parallelizing Cypress tests on GitLab CI"
-date:   2021-03-03 16:20:00 +0100
+date:   2021-03-02 16:20:00 +0100
 author: "Daniel Spitzer"
 categories: continuous_integration
 og_image: "/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/logo.png"
