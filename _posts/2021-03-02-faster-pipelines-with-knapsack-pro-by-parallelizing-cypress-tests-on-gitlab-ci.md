@@ -7,7 +7,7 @@ categories: continuous_integration
 og_image: "/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/logo.png"
 ---
 
-When the runtime of our build pipeline had reached 20 minutes on average for each commit on each Merge Request, we knew we needed a solution to speed things up. We wanted to optimize everything we could within the pipeline, a way of doing this was to parallelize our tests with Knapsack Pro to speed up our Cypress integration tests which would save us a sizable amount of time.
+When the runtime of our build pipeline had reached 20 minutes on average for each commit on each Merge Request, we knew we needed a solution to speed things up. We wanted to optimize everything we could within the pipeline, a way of doing this was to parallelize our tests with [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci) to speed up our Cypress integration tests which would save us a sizable amount of time.
 
 <a target="_blank" rel="noopener" href="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/logo.png" >
   <img src="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/logo.png" class="img-large" alt="Knapsack Pro, Gitlab, and Cypress logos flying around in a speed frenzy" />
@@ -117,7 +117,7 @@ After seeing that running tests in series takes extremely long, we tried to spli
 
 ## What is Knapsack Pro?
 
-Knapsack Pro is a tool that helps split up test suites in a dynamic way across parallel CI runners to ensure that each runner finishes work simultaneously.
+[Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci) is a tool that helps split up test suites in a dynamic way across parallel CI runners to ensure that each runner finishes work simultaneously.
 
 Its name comes from the “[knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)”, a problem in combinatorial optimization, to figure out how to take things (test suites) with certain attributes (number of tests, time it took on average to run, etc) and determine how best to divide them to get the most value (all CI nodes are running tests from boot until shutdown and they all finish at the same time).
 
@@ -128,7 +128,7 @@ The founder of Knapsack Pro, [Artur Trzop](https://github.com/ArturT) has been h
 
 ## Plugging in Knapsack Pro
 
-To try out Knapsack Pro, all we did was [follow the docs](https://github.com/KnapsackPro/knapsack-pro-cypress#installation) and afterward merge all separate Cypress jobs into one and set up some [reporterOptions](https://docs.cypress.io/guides/tooling/reporters.html#Reporter-Options) in Cypress to ensure that we’ll collect all of the test results as JUnit reports from all the parallel runs.
+To try out [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci), all we did was [follow the docs](https://github.com/KnapsackPro/knapsack-pro-cypress#installation) and afterward merge all separate Cypress jobs into one and set up some [reporterOptions](https://docs.cypress.io/guides/tooling/reporters.html#Reporter-Options) in Cypress to ensure that we’ll collect all of the test results as JUnit reports from all the parallel runs.
 
 Here’s a short example of our **full-page** test jobs before the conversion:
 
@@ -270,7 +270,7 @@ It is still not perfectly balanced but with this granularity, we can utilize fou
 
 ## Results
 
-The switch to Knapsack Pro took less than a day. Most of the work afterward was to split up tasks and optimize other parts of GitLab CI. The whole process took two weeks for a single developer.
+The switch to [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci) took less than a day. Most of the work afterward was to split up tasks and optimize other parts of GitLab CI. The whole process took two weeks for a single developer.
 
 By splitting up the test suites into smaller, equal sized chunks, running tests parallelized on four CI runners (for each of our target builds) and some other general pipeline fixes (better caching between jobs/steps, only running parts of the pipeline for actual changes), we’ve managed to decrease our pipeline runtime of ~20 minutes to ~15 minutes.
 
