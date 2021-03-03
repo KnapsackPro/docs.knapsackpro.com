@@ -1081,7 +1081,7 @@ KNAPSACK_PRO_PROJECT_DIR=/home/ubuntu/my-app-repository
 {% endhighlight %}
 
 <p>
-You can <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#when-you-set-global-variable-knapsack_pro_repository_adaptergit-required-when-ci-provider-is-not-supported" target="_blank">learn more about those variables here</a>.
+You can <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#repository-adapter-how-to-set-up-3-of-3" target="_blank">learn more about those variables here</a> and see what to do when you don't use git.
 </p>
 
 <h4>Set API token</h4>
