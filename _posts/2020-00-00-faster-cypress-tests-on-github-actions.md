@@ -6,10 +6,20 @@ author: "Artur Trzop"
 categories: continuous_integration cypress javascript parallelisation CI github actions
 og_image: "/images/blog/posts/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes/cypress-logo.jpg"
 ---
+
+Getting cypress, github actions, and Knapsack Pro queue mode working together is easy. In my app, GoodProblems, we use a React + Rails + Webpacker stack with cypress so that's what I'll show here but the same principles go for pretty much any stack.
  
 ## ci.yml
 
+### Initial setup
+
+- `timeout-minutes: 20`
+
 ### yarn
+
+- First step is installing yarn
+- Setting `CYPRESS_INSTALL_BINARY: 0` causes cypress to skip installing the binary until later (`yarn cypress install`)
+- Frozen lockfile prevents writing to yarn.lock and (?) raises an error if it tries
 
 ```
  yarn:
@@ -31,10 +41,23 @@ og_image: "/images/blog/posts/run-javascript-e2e-tests-faster-with-cypress-on-pa
         CYPRESS_INSTALL_BINARY: 0
 ```
 
-### assets 
-
-
 ### cypress
+
+- strategy fail fast
+- nodes: ` ci_node_index: [0, 1, 2, 3, 4]`
+- `    - run: npx cypress -v > .cypress-version` writes cypress version which is hashed laster as a cache key
+- Now install cypress binary `yarn cypress install`
+-  yarn wait-on 'http-get://localhost:3000/graphql' -t 30000
+- Env vars:
+```
+KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS }}
+KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
+KNAPSACK_PRO_TEST_FILE_PATTERN: "{cypress/**/*,app/javascript/**/*.component}.spec.{js,ts,tsx}"
+```
+- Running `run: yarn knapsack-pro-cypress`
+- Artifacts...
 
 ```
 cypress:
@@ -137,17 +160,4 @@ cypress:
       with:
         name: cypress-logs
         path: cypress/logs
-```
-
-### cancel
-
-```
-cancel:
-    name: 'Cancel Previous Runs'
-    runs-on: ubuntu-20.04
-    timeout-minutes: 3
-    steps:
-    - uses: styfle/cancel-workflow-action@0.8.0
-      with:
-        workflow_id: 3553203
 ```
