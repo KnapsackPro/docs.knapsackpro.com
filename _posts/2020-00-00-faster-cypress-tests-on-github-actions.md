@@ -7,7 +7,7 @@ categories: continuous_integration cypress javascript parallelisation CI github 
 og_image: "/images/blog/posts/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes/cypress-logo.jpg"
 ---
 
-Cypress is an amazing tool for end to end testing Rails applications, but large test suites can quickly take upwards of 20 minutes to run. Large RSpec suites can also take a long time. That's where Knapsack Pro comes in. Knapsack Pro Queue mode to intelligently split your test suite into jobs that can be run in parallel, reducing run time to only a few minutes. In this article we'll show how to implement Knapsack Pro Queue Mode to speed up both Cypress & RSpec test suites in a Ruby on Rails app on Github Actions
+Cypress is an amazing tool for end to end testing Rails applications, but large test suites can quickly take upwards of 20 minutes to run. That's where Knapsack Pro comes in. Knapsack Pro Queue mode to intelligently split your test suite into jobs that can be run in parallel, reducing run time to only a few minutes. In this article we'll show how to implement Knapsack Pro Queue Mode to speed up both Cypress & RSpec test suites in a Ruby on Rails app on Github Actions
 
 ## Set up Knapsack Pro API Keys
 
