@@ -7,12 +7,67 @@ categories: continuous_integration cypress javascript parallelisation CI github 
 og_image: "/images/blog/posts/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes/cypress-logo.jpg"
 ---
 
-Cypress is an amazing tool for end to end testing Rails applications, but large test suites can quickly take upwards of 20 minutes to run. Large RSpec suites can also take a long time. That's where Knapsack Pro comes in. Knapsack Pro Queue mode to intelligently split your test suite into jobs that can be run in parallel, reducing run time to only a few minutes. In this article we'll show how to implement Knapsack Pro Queue Mode to speed up both Cypress & RSpec test suites in a Ruby on Rails app. 
+Cypress is an amazing tool for end to end testing Rails applications, but large test suites can quickly take upwards of 20 minutes to run. Large RSpec suites can also take a long time. That's where Knapsack Pro comes in. Knapsack Pro Queue mode to intelligently split your test suite into jobs that can be run in parallel, reducing run time to only a few minutes. In this article we'll show how to implement Knapsack Pro Queue Mode to speed up both Cypress & RSpec test suites in a Ruby on Rails app on Github Actions
 
-Here's an example setup file for a Rails App running webpacker, rspec, and cypress on GitHub Actions which shows the addition of Knapsack Pro
+## Set up Knapsack Pro API Keys
+
+First step is to go into your Knapsack [dashboard](https://knapsackpro.com/dashboard) and grab your API keys for both RSpec and Cypress. Once you have those, go to your Github Repo's settings, for example:
+
+<img width="1404" alt="image" src="https://user-images.githubusercontent.com/64985/111044967-80297880-8400-11eb-92b6-8a1e8aa2701e.png">
+
+## Set up ci.yml
+
+Once you've added your `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` and `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS` secrets, the next step is setting up your `.github/workflows/ci.yml`.
+
+### Existing ci.yml
+
+For those that already have a `.github/workflows/ci.yml` setup, here's all that you should need to change to get Knapsack Pro queue mode working for both Cypress and Rspec.
+
+```diff
++      strategy:
++        fail-fast: false
++        matrix:
++          # Set N number of parallel jobs you want to run tests on.
++          # Use higher number if you have slow tests to split them on more parallel jobs.
++          # Remember to update ci_node_index below to 0..N-1
++          ci_node_total: [2]
++          # set N-1 indexes for parallel jobs
++          # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
++          ci_node_index: [0, 1]
+      - name: Run Rspec Tests
++      env:
++        KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
++        KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
++        KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
++        KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
++    run: bin/rake knapsack_pro:queue:rspec
+-    run: bin/rspec spec
+```
+
+```diff
++      strategy:
++        fail-fast: false
++        matrix:
++          ci_node_total: [5]
++          # set N-1 indexes for parallel jobs
++          # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
++          ci_node_index: [0, 1, 2, 3, 4]
+      - name: Run cypress tests
++        env:
++          KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS }}
++          KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
++          KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
++          KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
++          KNAPSACK_PRO_TEST_FILE_PATTERN: '{cypress/**/*,app/javascript/**/*.component}.spec.{js,ts,tsx}'
++        run: yarn knapsack-pro-cypress
+-        run: yarn cypress run
+```
+
+### New ci.yml
+
+For those starting from scratch, here's a full example `.github/workflows/main.yaml` for a Rails app with Cypress + Rspec.
 
 ```
-# .github/workflows/ci.yml
 name: ci
 on: [push]
 jobs:
@@ -63,14 +118,14 @@ jobs:
           bundler-cache: true
       - name: Build DB
         run: bin/rails db:schema:load
-+    env:
-+      KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
-+      KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-+      KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
-+      KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
-+    run: bin/rake knapsack_pro:queue:rspec
--      - name: Run Rspec Tests
--        run: bin/rspec spec
+      - name: Run Rspec Tests
+        env:
+          PGPORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
+          KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+          KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
+          KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
+        run: bin/rake knapsack_pro:queue:rspec
   cypress:
     timeout-minutes: 20  # Adjust as needed, just here to prevent accidentally using up all your minutes from a silly infinite loop of some kind
     env:
@@ -108,7 +163,13 @@ jobs:
           node-version: '12'
       - run: yarn wait-on 'http-get://localhost:3000' -t 30000
       - name: Run tests
-        run: yarn cypress run
+        env:
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS }}
+          KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+          KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+          KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
+          KNAPSACK_PRO_TEST_FILE_PATTERN: '{cypress/**/*,app/javascript/**/*.component}.spec.{js,ts,tsx}'
+        run: yarn knapsack-pro-cypress
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
