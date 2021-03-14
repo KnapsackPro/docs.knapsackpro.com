@@ -28,16 +28,20 @@ We welcome any blog post in categories:
 
 ## How to publish guest blog post?
 
-Create a new branch and pull reqeust for your blog post. You can copy example blog post file and read it content to find out how to create a new guest post on our blog.
+* Fork this repository and create a new branch for your blog post.
 
-See [_posts/2099-01-31-example-article.md](https://raw.githubusercontent.com/KnapsackPro/docs.knapsackpro.com/gh-pages/_posts/2099-01-31-example-article.md)
+* You can copy example blog post file and read its content to find out how to create a new guest post on our blog.
+  See [_posts/2099-01-31-example-article.md](https://raw.githubusercontent.com/KnapsackPro/docs.knapsackpro.com/gh-pages/_posts/2099-01-31-example-article.md)
 
-You can create thumbnail image for blog post with [Memopad app](https://www.tayasui.com/memopad/) which is free on iOS.
-Then you need to compress image with [TinyJPG](https://tinyjpg.com).
-Please ensure `img` tag in blog post has `alt` attribute.
+* You can create thumbnail image for blog post with [Memopad app](https://www.tayasui.com/memopad/) which is free on iOS.
+  Then you need to compress image with [TinyJPG](https://tinyjpg.com).
+  Please ensure `img` tag in blog post has `alt` attribute.
 
-Please create a new blog post with pull request to this repository.
-Your blog post will be under [GNU Affero General Public License v3.0](LICENSE).
+* Please create a new blog post as a pull request to this repository.
+  You can modify an existing pull request to [let repository maintainers make commits to your branch](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/allowing-changes-to-a-pull-request-branch-created-from-a-fork).
+  Thanks to that we can make tweaks to your article and help with publication of it at the right time. :)
+
+* Your blog post will be under [GNU Affero General Public License v3.0](LICENSE).
 
 # Development of blog
 
