@@ -73,3 +73,5 @@ steps:
   - command: "bundle exec rake knapsack_pro:queue:rspec"
     parallelism: 2
 {% endhighlight %}
+
+Please note you should hide your credentials like the Knapsack Pro API token and don't commit it into your repository. You can see [Buildkite secrets documentation](https://buildkite.com/docs/pipelines/secrets).
