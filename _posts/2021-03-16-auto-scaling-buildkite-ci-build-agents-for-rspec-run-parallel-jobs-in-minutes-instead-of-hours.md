@@ -52,3 +52,24 @@ Our ultimate goal is to ensure all machines finish work at a similar time becaus
 You can see an example of running a small RSpec test suite across 2 parallel Buildkite agents for the Ruby on Rails project.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2Pp9icUJVIg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## A simple example of CI Buildkite config parallelism
+
+Here is a very simple example of Buildkite config to run 2 parallel jobs as you can see on the screenshot.
+
+<img src="/images/blog/posts/auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours/buildkite-parallel-rspec.png" alt="Buildkite parallel RSpec agents" />
+
+{% highlight yml %}
+# .buildkite/pipeline.yml
+env:
+  # You should hide you secrets like API token
+  # Please follow https://buildkite.com/docs/pipelines/secrets
+  KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: "204abb31f698a6686120a40efeff31e5"
+  # allow to run the same set of test files on job retry
+  # https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node
+  KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
+
+steps:
+  - command: "bundle exec rake knapsack_pro:queue:rspec"
+    parallelism: 2
+{% endhighlight %}
