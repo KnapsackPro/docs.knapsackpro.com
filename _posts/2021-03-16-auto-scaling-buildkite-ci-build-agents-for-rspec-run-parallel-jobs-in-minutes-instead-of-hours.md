@@ -75,3 +75,20 @@ steps:
 {% endhighlight %}
 
 Please note you should hide your credentials like the Knapsack Pro API token and don't commit it into your repository. You can see [Buildkite secrets documentation](https://buildkite.com/docs/pipelines/secrets).
+
+## An advanced Buildkite config with Elastic CI Stack for AWS
+
+When you want to run your big RSpec project on dozen or even hundreds of parallel machines you need powerful resources.  In such a case, you can follow the [Buildkite tutorial about AWS setup](https://buildkite.com/docs/tutorials/elastic-ci-stack-aws). The Elastic CI Stack for AWS gives you a private, autoscaling Buildkite Agent cluster in your own AWS account.
+
+### AWS Spot Instances can save you money
+
+AWS offers Spot Instances. These machines are cheap but they can be withdrawn by AWS at any time. This means that you can run cheap machines for your CI but from time to time the AWS may kill one of your parallel machines. Such a scenario can be handled by the Knapsack Pro. It remembers the set of test files allocated to the AWS machine that was running the tests. When the machine is going to be withdrawn and later on retried by the Buildkite retry feature then the proper test files will be executed as you would expect.
+
+### Buildkite retry feature
+
+Buildkite config allows for [automatic retry of your job](https://buildkite.com/docs/pipelines/command-step#automatic-retry-attributes). This can be helpful when you use AWS Spot Instances.
+When AWS shuts down your machine during test runtime due to withdrawal then Buildkite can automatically run a new job on a new machine.
+
+Another use case for the automatic retry is when you have [flaky Ruby tests](/2021/fix-intermittently-failing-ci-builds-flaky-tests-rspec) that sometimes pass green or fail red. You can use Buildkite to retry the failing job then.
+
+My recommendation is to use [rspec-retry gem](https://knapsackpro.com/faq/question/how-to-retry-failed-tests-flaky-tests) first and after that relay on the [Buildkite retry feature](https://buildkite.com/docs/pipelines/command-step#automatic-retry-attributes). RSpec-retry gem will retry only failing test cases instead of all test files assigned to the parallel machine.
