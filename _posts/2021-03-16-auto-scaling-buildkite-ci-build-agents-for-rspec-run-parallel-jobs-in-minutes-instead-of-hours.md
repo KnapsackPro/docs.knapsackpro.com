@@ -30,3 +30,25 @@ This allows running the whole RSpec test suite for only 5 minutes 20 seconds!
 The above graph comes from the Knapsack Pro [user dashboard](https://knapsackpro.com/dashboard). 151 parallel jobs are a lot of machines. It would take the whole screen to show you 151 bars. You can see the last few bars only on the graph. The bars are showing how the RSpec test files were split between parallel machines.
 
 You can see that each parallel machine finishes work at a similar time. The right side of the bar is ending close to each other. This is the important part. You want to ensure the RSpec work is distributed evenly between parallel jobs. This way you can avoid bottleneck - a slow job running too many test files. I'll show you how to do it.
+
+## How to distribute test files between parallel jobs using Queue Mode in Knapsack Pro to utilize CI machines optimally
+
+To run CI build as fast as possible we need to utilize our available resources as much as we can. This means the work of running RSpec tests should be split between parallel machines evenly.
+
+The bigger the test suite, the longer it takes to run it and more edge cases can happen when you split running tests among many machines in the network. There are edge cases like:
+
+* some of the test files take longer than others to run (for instance E2E test files)
+* some of the test cases fail and run quicker, some don't and run longer. This affects the overall time spent by the CI machine on running your tests.
+* some of the test cases take longer because they must connect with network/external API etc - this adds uncertainty to their execution time
+* some of the parallel machines spend more time on boot time 
+  * loading Ruby gems from cache takes longer
+  * or simply the CI provider has not started your job yet
+  * or maybe you have not enough available machines in the pool of available agents
+
+There can be many reasons that disrupt how the work is spread between parallel nodes.
+
+Our ultimate goal is to ensure all machines finish work at a similar time because this means every machine got no more no less work to their available capabilities. This means, if a machine started work very late it will run only a small part of the tests. If another machine started work very soon it will run more tests. This will even out the ending time between parallel machines. All this is possible thanks to Queue Mode in knapsack_pro Ruby gem, it will take care of running tests in parallel for you. [Queue Mode splits test files dynamically between parallel jobs to ensure the jobs completes at the same time](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation).
+
+You can see an example of running a small RSpec test suite across 2 parallel Buildkite agents for the Ruby on Rails project.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2Pp9icUJVIg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
