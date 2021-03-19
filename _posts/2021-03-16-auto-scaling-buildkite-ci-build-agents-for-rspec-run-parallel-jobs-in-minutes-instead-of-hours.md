@@ -105,7 +105,7 @@ There is a solution for that! You can use Knapsack Pro with [RSpec split by exam
 
 <img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/buildkite.jpg" style="width:250px;float:right;" alt="Buildkite" />
 
-As you can see, Buildkite is a powerful CI with cloud infrastructures like AWS and an optimal split of test files using Knapsack Pro.
+As you can see a combination of a few elements like Buildkite CI with cloud infrastructure solutions like AWS and an optimal split of test files using Knapsack Pro can improve significantly the work of your team.
 With [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours) you can achieve great results and super fast CI builds. Feel free to [try it](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours) and join other happy Buildkite users.
 
 ### Related articles
