@@ -97,7 +97,7 @@ The second option you can try is to rely on the [Buildkite retry feature](https:
 
 ## How to automatically split large slow RSpec test files by test examples (test cases) between parallel Buildkite agents
 
-Slow RSpec test files are often related to E2E tests, the browser tests like capybara feature specs. They can run for a few or dozens of minutes sometimes. They could become a bottleneck if the parallel job has to run a single test file for 10 minutes while other parallel jobs complete a few smaller test files in 5 minutes.
+Slow RSpec test files are often related to E2E tests, the browser tests like capybara feature specs. They can run for a few or sometimes even dozens of minutes. They could become a bottleneck if the parallel job has to run a single test file for 10 minutes while other parallel jobs complete a few smaller test files in 5 minutes.
 
 There is a solution for that! You can use Knapsack Pro with [RSpec split by examples feature](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it) that will automatically detect slow RSpec test files in your project and split them between parallel Buildkite agents by test examples (test cases).
 
