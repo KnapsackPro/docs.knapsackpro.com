@@ -35,7 +35,7 @@ You can see that each parallel machine finishes work at a similar time. The righ
 
 To run CI build as fast as possible we need to utilize our available resources as much as we can. This means the work of running RSpec tests should be split between parallel machines evenly.
 
-The bigger the test suite, the longer it takes to run it and more edge cases can happen when you split running tests among many machines in the network. There are edge cases like:
+The bigger the test suite, the longer it takes to run it and more edge cases can happen when you split running tests among many machines in the network. Some of the possible edge cases:
 
 * some of the test files take longer than others to run (for instance E2E test files)
 * some of the test cases fail and run quicker, some don't and run longer. This affects the overall time spent by the CI machine on running your tests.
