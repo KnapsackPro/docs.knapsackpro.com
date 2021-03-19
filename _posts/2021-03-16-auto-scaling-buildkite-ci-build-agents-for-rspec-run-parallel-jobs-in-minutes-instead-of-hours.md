@@ -83,7 +83,7 @@ When you want to run your big RSpec project on dozen or even hundreds of paralle
 
 ### AWS Spot Instances can save you money
 
-AWS offers Spot Instances. These machines are cheap but they can be withdrawn by AWS at any time. This means that you can run cheap machines for your CI but from time to time the AWS may kill one of your parallel machines. Such a scenario can be handled by the [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours). It remembers the set of test files allocated to the AWS machine that was running the tests. When the machine is going to be withdrawn and later on retried by the Buildkite retry feature then the proper test files will be executed as you would expect.
+AWS offers Spot Instances. These machines are cheap but they can be withdrawn by AWS at any time. This means that you can run cheap machines for your CI but from time to time the AWS may kill one of your parallel machines. Such a scenario can be handled by the [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours). It remembers the set of test files allocated to the AWS machine that was running the tests. When the machine is withdrawn and later on retried by the Buildkite retry feature then the proper test files will be executed as you would expect.
 
 ### Buildkite retry feature
 
