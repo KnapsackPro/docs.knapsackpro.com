@@ -27,7 +27,7 @@ This allows running the whole RSpec test suite in just 5 minutes 20 seconds!
 
 <img src="/images/blog/posts/auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours/151-parallel-nodes.png" alt="parallel machines, parallel jobs, Buildkite, Knapsack Pro, tests, RSpec" />
 
-The above graph comes from the Knapsack Pro [user dashboard](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours). 151 parallel jobs are a lot of machines. It would take the whole screen to show you 151 bars. You can see the last few bars only on the graph. The bars are showing how the RSpec test files were split between parallel machines.
+The above graph comes from the Knapsack Pro [user dashboard](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours). 151 parallel jobs are a lot of machines. It would take the whole screen to show you 151 bars. You can only see the last few bars on the graph. The bars are showing how the RSpec test files were split between parallel machines.
 
 You can see that each parallel machine finishes work at a similar time. The right side of the bar is ending close to each other. This is the important part. You want to ensure the RSpec work is distributed evenly between parallel jobs. This way you can avoid bottleneck - a slow job running too many test files. I'll show you how to do it.
 
