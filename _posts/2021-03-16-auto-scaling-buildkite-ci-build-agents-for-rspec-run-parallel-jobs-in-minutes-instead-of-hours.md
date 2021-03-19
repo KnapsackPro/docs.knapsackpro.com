@@ -48,7 +48,7 @@ The bigger the test suite, the longer it takes to run it and more edge cases can
 
 Multiple things can disrupt the spread of work between parallel nodes.
 
-Our ultimate goal is to ensure all machines finish work at a similar time because this means every machine got no more no less work to their available capabilities. This means, if a machine started work very late it will run only a small part of the tests. If another machine started work very early it will run more tests. This will even out the ending time between parallel machines. All this is possible thanks to Queue Mode in knapsack_pro Ruby gem, it will take care of running tests in parallel for you. [Queue Mode splits test files dynamically between parallel jobs to ensure the jobs completes at the same time](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation).
+Our ultimate goal is to ensure all machines finish work at a similar time because this means every machine received a workload that was suitable to its available capabilities. This means, if a machine started work very late it will run only a small part of the tests. If another machine started work very early it will run more tests. This will even out the ending time between parallel machines. All this is possible thanks to Queue Mode in knapsack_pro Ruby gem, it will take care of running tests in parallel for you. [Queue Mode splits test files dynamically between parallel jobs to ensure the jobs completes at the same time](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation).
 
 You can see an example of running a small RSpec test suite across 2 parallel Buildkite agents for the Ruby on Rails project.
 
