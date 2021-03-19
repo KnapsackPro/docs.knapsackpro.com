@@ -15,7 +15,7 @@ If your RSpec test suite runs for hours, you could shorten that to just minutes 
 * How to distribute test files between parallel jobs using Queue Mode in [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours) to utilize CI machines optimally.
 * A simple example of CI Buildkite parallelism config.
 * An advanced example of Buildkite config with Elastic CI Stack for AWS.
-* Why to use AWS Spot Instances
+* Why you might want to use AWS Spot Instances
 * How to automatically split large slow RSpec test files by test examples (test cases) between parallel Buildkite agents
 
 ## A real RSpec test suite taking 13 hours and executed in only 5 minutes
