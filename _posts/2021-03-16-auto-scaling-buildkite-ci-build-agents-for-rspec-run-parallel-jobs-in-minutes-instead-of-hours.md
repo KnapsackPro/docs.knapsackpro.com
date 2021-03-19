@@ -75,7 +75,7 @@ steps:
     parallelism: 2
 {% endhighlight %}
 
-Please note that you should hide your credentials like the Knapsack Pro API token and not commit it into your repository. You can see [Buildkite secrets documentation](https://buildkite.com/docs/pipelines/secrets).
+Please note that you should hide your credentials like the Knapsack Pro API token and not commit it into your repository. You can refer to the [Buildkite secrets documentation](https://buildkite.com/docs/pipelines/secrets).
 
 ## An advanced Buildkite config with Elastic CI Stack for AWS
 
