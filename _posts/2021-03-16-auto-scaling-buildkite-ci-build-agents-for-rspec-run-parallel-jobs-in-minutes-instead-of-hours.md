@@ -20,7 +20,7 @@ If your RSpec test suite runs for hours, you could shorten that to just minutes 
 
 ## A real RSpec test suite taking 13 hours and executed in only 5 minutes
 
-I'd like to show you the real project results of running parallel tests for RSpec. There is a huge Ruby on Rails project and its RSpec tests run time is 13 hours and 32 minutes. It's super slow. You can imagine creating a git commit and waiting 13 hours to find out the next day that your code breaks something else in the project. You can't work like that!
+I'd like to show you the results from a real project for running RSpec parallel tests. The project we are looking at here is huge and its RSpec tests run time is 13 hours and 32 minutes. It's super slow. You can imagine creating a git commit and waiting 13 hours to find out the next day that your code breaks something else in the project. You can't work like that!
 
 The solution for this is to run tests in parallel on many CI machines using Buildkite agents. Each CI machine has installed the Buildkite agent that will run a chunk of the RSpec test suite. Below you can see an example of running ~13 hours test suite across 151 parallel Buildkite agents.
 This allows running the whole RSpec test suite for only 5 minutes 20 seconds!
