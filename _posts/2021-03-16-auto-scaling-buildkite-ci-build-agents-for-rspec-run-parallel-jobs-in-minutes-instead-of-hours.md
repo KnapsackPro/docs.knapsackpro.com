@@ -13,7 +13,7 @@ If your RSpec test suite runs for hours, you could shorten that to just minutes 
 
 * A real RSpec test suite taking 13 hours and 32 minutes executed in only 5 minutes 20 seconds by using 151 parallel Buildkite agents with [knapsack_pro Ruby gem](/knapsack_pro-ruby/guide/).
 * How to distribute test files between parallel jobs using Queue Mode in [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours) to utilize CI machines optimally.
-* A simple example of CI Buildkite config parallelism.
+* A simple example of CI Buildkite parallelism config.
 * An advanced example of Buildkite config with Elastic CI Stack for AWS.
 * Why to use AWS Spot Instances
 * How to automatically split large slow RSpec test files by test examples (test cases) between parallel Buildkite agents
@@ -54,7 +54,7 @@ You can see an example of running a small RSpec test suite across 2 parallel Bui
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2Pp9icUJVIg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## A simple example of CI Buildkite config parallelism
+## A simple example of CI Buildkite parallelism config
 
 Here is a very simple example of Buildkite config to run 2 parallel jobs as you can see on the screenshot.
 
