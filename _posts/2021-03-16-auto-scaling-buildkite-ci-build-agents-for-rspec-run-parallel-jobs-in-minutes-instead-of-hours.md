@@ -7,7 +7,7 @@ categories: continuous_integration
 og_image: "/images/blog/posts/auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours/buildkite-rspec.jpeg"
 ---
 
-If your RSpec test suite runs for hours then you could execute all your tests just in minutes with parallel jobs using Buildkite agents. You will learn how to run parallel tests in optimal CI build time for your Ruby on Rails project. I will show you also a few useful things for Buildkite CI like:
+If your RSpec test suite runs for hours, you could shorten that to just minutes with parallel jobs using Buildkite agents. You will learn how to run parallel tests in optimal CI build time for your Ruby on Rails project. I will also show you a few useful things for Buildkite CI like:
 
 <img src="/images/blog/posts/auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours/buildkite-rspec.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Buildkite, CI, RSpec, testing, Ruby" />
 
