@@ -92,7 +92,7 @@ When AWS shuts down your machine during test runtime due to withdrawal then Buil
 
 Another use case for the automatic retry is when you have [flaky Ruby tests](/2021/fix-intermittently-failing-ci-builds-flaky-tests-rspec) that sometimes pass green or fail red. You can use Buildkite to retry the failing job in such a case.
 
-My recommendation is to use [rspec-retry gem](https://knapsackpro.com/faq/question/how-to-retry-failed-tests-flaky-tests) first and after that relay on the [Buildkite retry feature](https://buildkite.com/docs/pipelines/command-step#automatic-retry-attributes). RSpec-retry gem will retry only failing test cases instead of all test files assigned to the parallel machine.
+My recommendation is to use [rspec-retry gem](https://knapsackpro.com/faq/question/how-to-retry-failed-tests-flaky-tests) first and after that rely on the [Buildkite retry feature](https://buildkite.com/docs/pipelines/command-step#automatic-retry-attributes). RSpec-retry gem will retry only failing test cases instead of all test files assigned to the parallel machine.
 
 ## How to automatically split large slow RSpec test files by test examples (test cases) between parallel Buildkite agents
 
