@@ -46,7 +46,9 @@ Notice a few things here:
   The `#===` is probably worthy of a separate article. But for now, we can just recall that it's implemented in classes as sort of a "lighter" (meaning: less strict) equality method (also called "case" equality due to its usage in case statements). We can illustrate the difference between regular and "case" equality with an example:
 
 {% highlight ruby %}
+# the two objects are obviously not the same
 (1..2) == 2 #=> false
+# 2 falls within the range of 1..2
 (1..2) === 2 #=> true
 {% endhighlight %}
 
@@ -97,6 +99,8 @@ Array.instance_methods.grep(/gr/)
 (The `Regexp#===` works with symbols just as it does with strings)
 
 ### #grep with a Range
+
+`Range#===` checks the inclusion of Numeric values in the given range. This means that we can pass a range to grep to quickly filter values falling within the range.
 
 {% highlight ruby %}
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -174,5 +178,4 @@ As you can see, the `#grep` method is pretty powerful! If you haven't already, a
 
 Are you using the `#grep` method in your project? Please share in the comments below!
 
-{% highlight ruby %}
-{% endhighlight %}
+And if your Ruby project suffers from slow build times, consider using [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=understanding-and-using-rubys-grep-method) to improve the productivity and delivery times of your team!
