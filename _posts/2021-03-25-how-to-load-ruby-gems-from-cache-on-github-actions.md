@@ -7,7 +7,7 @@ categories: techtips continuous_integration
 og_image: "/images/blog/posts/how-to-load-ruby-gems-from-cache-on-github-actions/cache.jpeg"
 ---
 
-How to start CI build faster by loading Ruby gems from cache on Github Actions? You can run your tests for a Ruby on Rails project quicker if you manage to set up all dependencies in a short amount of time. Caching can be helpful with that. Ruby gems needed for your project can be cached by Github Actions and thanks to that they can be loaded much faster when you run a new CI build.
+How to start CI build faster by loading Ruby gems from cache on Github Actions? You can start running your tests for a Ruby on Rails project quicker if you manage to set up all dependencies in a short amount of time. Caching can be helpful with that. Ruby gems needed for your project can be cached by Github Actions and thanks to that they can be loaded much faster when you run a new CI build.
 
 <img src="/images/blog/posts/how-to-load-ruby-gems-from-cache-on-github-actions/cache.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Buildkite, CI, RSpec, testing, Ruby" />
 
