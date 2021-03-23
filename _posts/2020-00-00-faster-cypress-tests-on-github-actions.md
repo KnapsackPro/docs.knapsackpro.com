@@ -7,21 +7,23 @@ categories: continuous_integration cypress javascript parallelisation CI github 
 og_image: "/images/blog/posts/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes/cypress-logo.jpg"
 ---
 
-Cypress is an amazing tool for end to end testing Rails applications, but large test suites can quickly take upwards of 20 minutes to run. That's where Knapsack Pro comes in. Knapsack Pro Queue mode to intelligently split your test suite into jobs that can be run in parallel, reducing run time to only a few minutes. In this article we'll show how to implement Knapsack Pro Queue Mode to speed up both Cypress & RSpec test suites in a Ruby on Rails app on Github Actions
+Cypress is an amazing tool for end to end testing Rails applications, but large test suites can quickly take upwards of 20 minutes to run. That's where Knapsack Pro comes in. Knapsack Pro Queue mode to intelligently split your test suite into jobs that can be run in parallel, reducing run time to only a few minutes. In this article we'll show how to quickly implement Knapsack Pro Queue Mode to speed up both Cypress & RSpec test suites in a Ruby on Rails app on Github Actions
 
 ## Set up Knapsack Pro API Keys
 
-First step is to go into your Knapsack [dashboard](https://knapsackpro.com/dashboard) and grab your API keys for both RSpec and Cypress. Once you have those, go to your Github Repo's settings, for example:
+First step is to go to your Knapsack [dashboard](https://knapsackpro.com/dashboard) and grab your API keys for both RSpec and Cypress. Once you have those, go to your Github Repo's settings, for example:
 
 <img width="1404" alt="image" src="https://user-images.githubusercontent.com/64985/111044967-80297880-8400-11eb-92b6-8a1e8aa2701e.png">
 
-## Set up ci.yml
+## Set up a new GitHub Actions config file (.github/workflows/ci.yml)
 
-Once you've added your `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` and `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS` secrets, the next step is setting up your `.github/workflows/ci.yml`.
+Once you've created your  added your `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` and `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS` secrets, the next step is setting up your GitHub Actions configuration file to use the Knapsack Runner in place of the normal commands to run RSpec and Cypress.
 
-### Existing ci.yml
+### Adding to existing GitHub Actions config
 
 For those that already have a `.github/workflows/ci.yml` setup, here's all that you should need to change to get Knapsack Pro queue mode working for both Cypress and Rspec.
+
+Change your Rspec run command to use Knapsack
 
 ```diff
 +      strategy:
@@ -40,9 +42,11 @@ For those that already have a `.github/workflows/ci.yml` setup, here's all that 
 +        KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
 +        KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
 +        KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
-+    run: bin/rake knapsack_pro:queue:rspec
++    run: bin/rake knapsack_pro:queue:rspec  # Run RSpec using Knapsack Pro Queue Mode
 -    run: bin/rspec spec
 ```
+
+Change your cypress run command to use Knapsack as well
 
 ```diff
 +      strategy:
@@ -63,9 +67,9 @@ For those that already have a `.github/workflows/ci.yml` setup, here's all that 
 -        run: yarn cypress run
 ```
 
-### New ci.yml
+### New Github Actions config file
 
-For those starting from scratch, here's a full example `.github/workflows/main.yaml` for a Rails app with Cypress + Rspec.
+For those starting from scratch, here's a full example `.github/workflows/ci.yaml` for a Rails app with Cypress + Rspec with Knapsack tokens for RSpec and Cypress already added.
 
 ```
 name: ci
@@ -110,7 +114,6 @@ jobs:
       RAILS_ENV: test
     runs-on: ubuntu-latest
     needs: [bundle]
-        # options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
@@ -125,7 +128,7 @@ jobs:
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
           KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
-        run: bin/rake knapsack_pro:queue:rspec
+        run: bin/rake knapsack_pro:queue:rspec # Run RSpec using Knapsack Pro Queue Mode
   cypress:
     timeout-minutes: 20  # Adjust as needed, just here to prevent accidentally using up all your minutes from a silly infinite loop of some kind
     env:
@@ -169,7 +172,9 @@ jobs:
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
           KNAPSACK_PRO_TEST_FILE_PATTERN: '{cypress/**/*,app/javascript/**/*.component}.spec.{js,ts,tsx}'
-        run: yarn knapsack-pro-cypress
+        run: yarn knapsack-pro-cypress  # Run Cypress using Knapsack Pro Queue Mode
+        
+      # Save screenshots and videos of failed tests and make them available as Github build artifacts
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
@@ -187,4 +192,5 @@ jobs:
           path: cypress/logs
 ```
 
-The complete example Rails app can be found [here](https://github.com/goodproblems/knapsack-example-rails-app)
+The complete example Rails app can be found [here](https://github.com/goodproblems/knapsack-example-rails-app).
+
