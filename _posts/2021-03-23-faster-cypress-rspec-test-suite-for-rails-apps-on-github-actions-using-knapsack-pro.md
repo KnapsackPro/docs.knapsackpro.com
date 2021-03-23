@@ -11,7 +11,7 @@ Cypress is an amazing tool for end to end testing Rails applications, but large 
 
 ## Set up Knapsack Pro API Keys
 
-First step is to go to your Knapsack [dashboard](https://knapsackpro.com/dashboard) and grab your API keys for both RSpec and Cypress. Once you have those, go to your Github Repo's settings, for example:
+First step is to go to your Knapsack [dashboard](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro) and grab your API keys for both RSpec and Cypress. Once you have those, go to your Github Repo's settings, for example:
 
 <img width="1404" alt="image" src="https://user-images.githubusercontent.com/64985/111044967-80297880-8400-11eb-92b6-8a1e8aa2701e.png">
 
