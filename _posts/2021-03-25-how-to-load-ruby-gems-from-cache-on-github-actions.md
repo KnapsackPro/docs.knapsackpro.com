@@ -50,8 +50,8 @@ jobs:
 {% endhighlight %}
 
 * You need to specify a directory path that will be cached. It's `vendor/bundle` in our case.
-* You also generate a unique cache key based on the OS version and `Gemfile.lock` file. Thanks to that when you install a new gem and `Gemfile.lock` changes then a new cache key will be generated.
-* Then you need to configure the bundler to install all your Ruby gems to the directory `vendor/bundle`.
+* You also generate a unique cache `key` based on the OS version and `Gemfile.lock` file. Thanks to that when you change the operating system version or you install a new gem and `Gemfile.lock` changes then a new `key` value will be generated.
+* You need to configure the bundler to install all your Ruby gems to the directory `vendor/bundle`.
 * You can use bundler options:
   * `--jobs 4` - install gems using parallel workers. This allows faster gems installation.
   * `--retry 3` - makes 3 attempts to connect to Rubygems if there is a network issue (for instance temporary downtime of Rubygems.org)
@@ -94,7 +94,7 @@ As you can see using `ruby/setup-ruby` for managing the Ruby version and gems ca
 
 You can read in [`ruby/setup-ruby` documentation](https://github.com/ruby/setup-ruby#caching-bundle-install-automatically):
 
-"It is also possible to cache gems manually, but this is not recommended because it is verbose and very difficult to do correctly. There are many concerns which means using actions/cache is never enough for caching gems (e.g., incomplete cache key, cleaning old gems when restoring from another key, correctly hashing the lockfile if not checked in, OS versions, ABI compatibility for ruby-head, etc). So, please use `bundler-cache: true` instead..."
+"It is also possible to cache gems manually, but this is not recommended because it is verbose and very difficult to do correctly. There are many concerns which means using `actions/cache` is never enough for caching gems (e.g., incomplete cache key, cleaning old gems when restoring from another key, correctly hashing the lockfile if not checked in, OS versions, ABI compatibility for ruby-head, etc). So, please use `bundler-cache: true` instead..."
 
 ## Summary
 
