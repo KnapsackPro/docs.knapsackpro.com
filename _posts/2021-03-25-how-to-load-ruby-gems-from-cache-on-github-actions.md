@@ -18,7 +18,7 @@ You will learn how to configure Github Actions using:
 
 ## actions/cache - just cache dependencies
 
-[Actions/cache](https://github.com/actions/cache) is a popular solution that can be used to save data into the cache and restore it during the next CI build. It's often used for Ruby on Rails projects that also use actions/setup-ruby for managing the Ruby version on Github Actions.
+[Actions/cache](https://github.com/actions/cache) is a popular solution that can be used to save data into the cache and restore it during the next CI build. It's often used for Ruby on Rails projects that also use `actions/setup-ruby` for managing the Ruby version on Github Actions.
 
 Let's look at the Github Actions caching config example using actions/cache.
 
@@ -65,7 +65,7 @@ If you would like to see the full YAML config for the Github Actions and Rails p
 
 ## ruby/setup-ruby - install Ruby and cache gems
 
-In the previous chapter, we mentioned the actions/setup-ruby is often used with Ruby on Rails projects. The actions/setup-ruby has been deprecated so it's recommended to use ruby/setup-ruby action nowadays. It already has caching feature that you could use. Let's see how.
+In the previous chapter, we mentioned the `actions/setup-ruby` is often used with Ruby on Rails projects. The `actions/setup-ruby` has been deprecated so it's recommended to use `ruby/setup-ruby` action nowadays. It already has caching feature that you could use. Let's see how.
 
 
 
