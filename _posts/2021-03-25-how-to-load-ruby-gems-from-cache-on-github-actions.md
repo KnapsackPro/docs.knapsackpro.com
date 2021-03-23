@@ -20,7 +20,7 @@ You will learn how to configure Github Actions using:
 
 [Actions/cache](https://github.com/actions/cache) is a popular solution that can be used to save data into the cache and restore it during the next CI build. It's often used for Ruby on Rails projects that also use `actions/setup-ruby` for managing the Ruby version on Github Actions.
 
-Let's look at the Github Actions caching config example using actions/cache.
+Let's look at the Github Actions caching config example using `actions/cache`.
 
 {% highlight yml %}
 {% raw %}
