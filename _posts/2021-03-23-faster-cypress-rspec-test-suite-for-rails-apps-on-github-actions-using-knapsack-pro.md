@@ -17,7 +17,7 @@ First step is to go to your Knapsack [dashboard](https://knapsackpro.com/dashboa
 
 ## Set up your GitHub Actions config file
 
-Once you've created your  added your `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` and `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS` secrets, the next step is setting up your GitHub Actions configuration file to use the Knapsack Runner in place of the normal commands to run RSpec and Cypress.
+Once you've added your `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` and `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS` secrets, the next step is setting up your GitHub Actions configuration file to use the Knapsack Runner in place of the normal commands to run RSpec and Cypress.
 
 ### Existing GitHub Actions config
 
