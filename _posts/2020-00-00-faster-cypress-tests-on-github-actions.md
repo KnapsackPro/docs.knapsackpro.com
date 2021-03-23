@@ -15,15 +15,15 @@ First step is to go to your Knapsack [dashboard](https://knapsackpro.com/dashboa
 
 <img width="1404" alt="image" src="https://user-images.githubusercontent.com/64985/111044967-80297880-8400-11eb-92b6-8a1e8aa2701e.png">
 
-## Set up a new GitHub Actions config file (.github/workflows/ci.yml)
+## Set up your GitHub Actions config file
 
 Once you've created your  added your `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` and `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS` secrets, the next step is setting up your GitHub Actions configuration file to use the Knapsack Runner in place of the normal commands to run RSpec and Cypress.
 
-### Adding to existing GitHub Actions config
+### Existing GitHub Actions config
 
-For those that already have a `.github/workflows/ci.yml` setup, here's all that you should need to change to get Knapsack Pro queue mode working for both Cypress and Rspec.
+For those that already have a GH actions config file setup (e.g. `.github/workflows/ci.yml`), here's all that you should need to change to get Knapsack Pro queue mode working for both Cypress and Rspec.
 
-Change your Rspec run command to use Knapsack
+Change your Rspec run command to use Knapsack:
 
 ```diff
 +      strategy:
@@ -46,7 +46,7 @@ Change your Rspec run command to use Knapsack
 -    run: bin/rspec spec
 ```
 
-Change your cypress run command to use Knapsack as well
+Change your cypress run command to use Knapsack as well:
 
 ```diff
 +      strategy:
@@ -192,5 +192,29 @@ jobs:
           path: cypress/logs
 ```
 
-The complete example Rails app can be found [here](https://github.com/goodproblems/knapsack-example-rails-app).
+## Add Knapsack gem and npm package
+
+Add the Knapsack Pro gem to your Gemfile:
+
+```
+group :development, :test do
+  #...
+  gem 'knapsack_pro'
+end
+```
+
+Add the Knapsack Pro npm package with `yarn add --dev @knapsack-pro/cypress`
+
+## Run your tests
+
+Once you've added your Knapsack secrets, setup Github Actions config file, and added the Knapsack gem and npm package, trigger a test run. You should see multiple jobs for both RSpec and Cypress like so: 
+
+[Image here]
+
+Now check your [Knapsack Dashboard](https://knapsackpro.com/dashboard) for the results 🚀
+
+[Image here]
+
+
+The complete example Rails app can be found [here](https://github.com/goodproblems/knapsack-example-rails-app). Happy testing!
 
