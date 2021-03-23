@@ -71,7 +71,8 @@ Change your cypress run command to use Knapsack as well:
 
 For those starting from scratch, here's a full example `.github/workflows/ci.yaml` for a Rails app with Cypress + Rspec with Knapsack tokens for RSpec and Cypress already added.
 
-```
+{% highlight yml %}
+{% raw %}
 name: ci
 on: [push]
 jobs:
@@ -204,7 +205,8 @@ jobs:
         with:
           name: cypress-logs
           path: cypress/logs
-```
+{% endraw %}
+{% endhighlight %}
 
 ## Add Knapsack gem and npm package
 
