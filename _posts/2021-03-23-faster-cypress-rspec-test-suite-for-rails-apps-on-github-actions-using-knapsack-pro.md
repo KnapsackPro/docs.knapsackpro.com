@@ -25,7 +25,8 @@ For those that already have a GH actions config file setup (e.g. `.github/workfl
 
 Change your RSpec run command to use Knapsack:
 
-```diff
+{% highlight diff %}
+{% raw %}
 +      strategy:
 +        fail-fast: false
 +        matrix:
@@ -44,11 +45,13 @@ Change your RSpec run command to use Knapsack:
 +        KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
 +    run: bin/rake knapsack_pro:queue:rspec  # Run RSpec using Knapsack Pro Queue Mode
 -    run: bin/rspec spec
-```
+{% endraw %}
+{% endhighlight %}
 
 Change your cypress run command to use Knapsack as well:
 
-```diff
+{% highlight diff %}
+{% raw %}
 +      strategy:
 +        fail-fast: false
 +        matrix:
@@ -65,7 +68,8 @@ Change your cypress run command to use Knapsack as well:
 +          KNAPSACK_PRO_TEST_FILE_PATTERN: '{cypress/**/*,app/javascript/**/*.component}.spec.{js,ts,tsx}'
 +        run: yarn knapsack-pro-cypress
 -        run: yarn cypress run
-```
+{% endraw %}
+{% endhighlight %}
 
 ### New Github Actions config file
 
