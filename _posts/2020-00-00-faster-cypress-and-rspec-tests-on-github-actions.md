@@ -223,12 +223,8 @@ Add the Knapsack Pro npm package with `yarn add --dev @knapsack-pro/cypress`
 
 Once you've added your Knapsack secrets, setup Github Actions config file, and added the Knapsack gem and npm package, trigger a test run. You should see multiple jobs for both RSpec and Cypress like so: 
 
-[Image here]
+<img width="345" alt="Screen Shot 2021-03-23 at 10 13 30 AM" src="https://user-images.githubusercontent.com/64985/112190195-017fc880-8bc2-11eb-85ea-00fa3469be43.png">
 
 Now check your [Knapsack Dashboard](https://knapsackpro.com/dashboard) for the results 🚀
 
-[Image here]
-
-
 The complete example Rails app can be found [here](https://github.com/goodproblems/knapsack-example-rails-app). Happy testing!
-
