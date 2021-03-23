@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Faster Cypress + Rspec test suite for Rails apps on GitHub Actions using Knapsack Pro"
+title:  "Faster Cypress + RSpec test suite for Rails apps on GitHub Actions using Knapsack Pro"
 date:   2021-03-23 19:00:00 +0100
 author: "Matt Vague"
 categories: continuous_integration cypress javascript parallelisation CI github actions
@@ -21,9 +21,9 @@ Once you've created your  added your `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` and `
 
 ### Existing GitHub Actions config
 
-For those that already have a GH actions config file setup (e.g. `.github/workflows/ci.yml`), here's all that you should need to change to get Knapsack Pro queue mode working for both Cypress and Rspec.
+For those that already have a GH actions config file setup (e.g. `.github/workflows/ci.yml`), here's all that you should need to change to get Knapsack Pro queue mode working for both Cypress and RSpec.
 
-Change your Rspec run command to use Knapsack:
+Change your RSpec run command to use Knapsack:
 
 ```diff
 +      strategy:
@@ -36,7 +36,7 @@ Change your Rspec run command to use Knapsack:
 +          # set N-1 indexes for parallel jobs
 +          # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
 +          ci_node_index: [0, 1]
-      - name: Run Rspec Tests
+      - name: Run RSpec Tests
 +      env:
 +        KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
 +        KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
@@ -69,7 +69,7 @@ Change your cypress run command to use Knapsack as well:
 
 ### New Github Actions config file
 
-For those starting from scratch, here's a full example `.github/workflows/ci.yaml` for a Rails app with Cypress + Rspec with Knapsack tokens for RSpec and Cypress already added.
+For those starting from scratch, here's a full example `.github/workflows/ci.yaml` for a Rails app with Cypress + RSpec with Knapsack tokens for RSpec and Cypress already added.
 
 {% highlight yml %}
 {% raw %}
@@ -132,7 +132,7 @@ jobs:
           bundler-cache: true
       - name: Build DB
         run: bin/rails db:schema:load
-      - name: Run Rspec Tests
+      - name: Run RSpec Tests
         env:
           PGPORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
           KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
