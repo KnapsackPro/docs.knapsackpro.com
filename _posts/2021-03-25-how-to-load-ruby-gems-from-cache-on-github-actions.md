@@ -26,9 +26,7 @@ Let's look at the Github Actions caching config example using actions/cache.
 {% raw %}
 # .github/workflows/main.yml
 name: Main
-
-on: [push]
-
+on: [push, pull_request]
 jobs:
   test:
     # ...
@@ -67,5 +65,31 @@ If you would like to see the full YAML config for the Github Actions and Rails p
 
 In the previous chapter, we mentioned the `actions/setup-ruby` is often used with Ruby on Rails projects. The `actions/setup-ruby` has been deprecated so it's recommended to use `ruby/setup-ruby` action nowadays. It already has caching feature that you could use. Let's see how.
 
+{% highlight yml %}
+{% raw %}
+# .github/workflows/main.yml
+name: Main
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
 
+    - uses: ruby/setup-ruby@v1
+      with:
+        # Not needed with a .ruby-version file
+        ruby-version: 2.7
+        # runs 'bundle install' and caches installed gems automatically
+        bundler-cache: true
 
+    # run RSpec tests
+    - run: bundle exec rspec
+{% endraw %}
+{% endhighlight %}
+
+As you can see using `ruby/setup-ruby` for managing the Ruby version and gems caching is much simpler. You just add an option `bundler-cache: true` and that's it.
+
+You can read in [`ruby/setup-ruby` documentation](https://github.com/ruby/setup-ruby#caching-bundle-install-automatically):
+
+"It is also possible to cache gems manually, but this is not recommended because it is verbose and very difficult to do correctly. There are many concerns which means using actions/cache is never enough for caching gems (e.g., incomplete cache key, cleaning old gems when restoring from another key, correctly hashing the lockfile if not checked in, OS versions, ABI compatibility for ruby-head, etc). So, please use `bundler-cache: true` instead..."
