@@ -214,7 +214,7 @@ jobs:
 {% endraw %}
 {% endhighlight %}
 
-## Add Knapsack gem and npm package
+## Add Knapsack Pro gem and npm package
 
 Add the Knapsack Pro gem to your `Gemfile`:
 
