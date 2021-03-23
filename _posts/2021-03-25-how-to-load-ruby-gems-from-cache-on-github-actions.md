@@ -8,3 +8,4 @@ og_image: "/images/blog/posts/how-to-load-ruby-gems-from-cache-on-github-actions
 ---
 
 
+<img src="/images/blog/posts/how-to-load-ruby-gems-from-cache-on-github-actions/cache.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Buildkite, CI, RSpec, testing, Ruby" />
