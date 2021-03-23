@@ -93,3 +93,7 @@ As you can see using `ruby/setup-ruby` for managing the Ruby version and gems ca
 You can read in [`ruby/setup-ruby` documentation](https://github.com/ruby/setup-ruby#caching-bundle-install-automatically):
 
 "It is also possible to cache gems manually, but this is not recommended because it is verbose and very difficult to do correctly. There are many concerns which means using actions/cache is never enough for caching gems (e.g., incomplete cache key, cleaning old gems when restoring from another key, correctly hashing the lockfile if not checked in, OS versions, ABI compatibility for ruby-head, etc). So, please use `bundler-cache: true` instead..."
+
+## Summary
+
+You saw 2 ways of caching Ruby gems on Github Actions. There are also other ways to make your CI build faster like running tests in parallel. You can learn more about [test parallelisation here](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation) or simply check the [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-load-ruby-gems-from-cache-on-github-actions) homepage.
