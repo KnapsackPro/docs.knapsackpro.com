@@ -210,14 +210,14 @@ jobs:
 
 ## Add Knapsack gem and npm package
 
-Add the Knapsack Pro gem to your Gemfile:
+Add the Knapsack Pro gem to your `Gemfile`:
 
-```
+{% highlight ruby %}
 group :development, :test do
   #...
   gem 'knapsack_pro'
 end
-```
+{% endhighlight %}
 
 Add the Knapsack Pro npm package with `yarn add --dev @knapsack-pro/cypress`
 
