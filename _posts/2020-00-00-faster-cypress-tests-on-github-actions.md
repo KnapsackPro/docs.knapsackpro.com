@@ -77,7 +77,7 @@ on: [push]
 jobs:
   # OPTIONAL: Cancel any previous CI runs to save your GH Actions minutes
   cancel:
-    name: 'Cancel Previous Runs'
+    name: "Cancel Previous Runs"
     runs-on: ubuntu-20.04
     timeout-minutes: 3
     steps:
@@ -90,10 +90,10 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '12'
+          node-version: "12"
       - uses: actions/cache@v2
         with:
-          path: '**/node_modules'
+          path: "**/node_modules"
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
@@ -114,6 +114,16 @@ jobs:
       RAILS_ENV: test
     runs-on: ubuntu-latest
     needs: [bundle]
+    strategy:
+      fail-fast: false
+      matrix:
+        # Set N number of parallel jobs you want to run tests on.
+        # Use higher number if you have slow tests to split them on more parallel jobs.
+        # Remember to update ci_node_index below to 0..N-1
+        ci_node_total: [2]
+        # set N-1 indexes for parallel jobs
+        # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
+        ci_node_index: [0, 1]
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
@@ -130,23 +140,28 @@ jobs:
           KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
         run: bin/rake knapsack_pro:queue:rspec # Run RSpec using Knapsack Pro Queue Mode
   cypress:
-    timeout-minutes: 20  # Adjust as needed, just here to prevent accidentally using up all your minutes from a silly infinite loop of some kind
+    timeout-minutes: 20 # Adjust as needed, just here to prevent accidentally using up all your minutes from a silly infinite loop of some kind
     env:
       RAILS_ENV: test
       RACK_ENV: test
       GITHUB_TOKEN: ${{ github.token }}
-      CYPRESS_CI: true
-      TS_NODE_PROJECT: 0
     runs-on: ubuntu-latest
     needs: [bundle, yarn]
+    strategy:
+      fail-fast: false
+      matrix:
+        ci_node_total: [5]
+        # set N-1 indexes for parallel jobs
+        # When you run 5 parallel jobs then first job will have index 0, the second job will have index 1 etc
+        ci_node_index: [0, 1, 2, 3, 4]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '12'
+          node-version: "12"
       - uses: actions/cache@v2
         with:
-          path: '**/node_modules'
+          path: "**/node_modules"
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
       - uses: ruby/setup-ruby@v1
         with:
@@ -163,7 +178,7 @@ jobs:
       - run: yarn cypress install
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '12'
+          node-version: "12"
       - run: yarn wait-on 'http-get://localhost:3000' -t 30000
       - name: Run tests
         env:
@@ -171,9 +186,8 @@ jobs:
           KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
-          KNAPSACK_PRO_TEST_FILE_PATTERN: '{cypress/**/*,app/javascript/**/*.component}.spec.{js,ts,tsx}'
-        run: yarn knapsack-pro-cypress  # Run Cypress using Knapsack Pro Queue Mode
-        
+          KNAPSACK_PRO_TEST_FILE_PATTERN: "{cypress/**/*,app/javascript/**/*.component}.spec.{js,ts,tsx}"
+        run: yarn knapsack-pro-cypress # Run Cypress using Knapsack Pro Queue Mode
       # Save screenshots and videos of failed tests and make them available as Github build artifacts
       - uses: actions/upload-artifact@v2
         if: failure()
