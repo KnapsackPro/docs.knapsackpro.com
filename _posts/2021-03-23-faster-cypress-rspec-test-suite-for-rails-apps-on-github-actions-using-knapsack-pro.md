@@ -7,7 +7,7 @@ categories: continuous_integration cypress javascript parallelisation CI github 
 og_image: "TODO"
 ---
 
-Cypress is an amazing tool for end to end testing Rails applications, but large test suites can quickly take upwards of 20 minutes to run. That's where Knapsack Pro comes in. Knapsack Pro Queue mode to intelligently split your test suite into jobs that can be run in parallel, reducing run time to only a few minutes. In this article we'll show how to quickly implement Knapsack Pro Queue Mode to speed up both Cypress & RSpec test suites in a Ruby on Rails app on Github Actions
+Cypress is an amazing tool for end to end testing Rails applications, but large test suites can quickly take upwards of 20 minutes to run. That's where Knapsack Pro comes in. Knapsack Pro [Queue Mode to intelligently split your test suite into jobs that can be run in parallel](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation), reducing run time to only a few minutes. In this article we'll show how to quickly implement Knapsack Pro Queue Mode to speed up both Cypress & RSpec test suites in a Ruby on Rails app on Github Actions
 
 ## Set up Knapsack Pro API Keys
 
@@ -21,7 +21,7 @@ Once you've added your `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` and `KNAPSACK_PRO_T
 
 ### Existing GitHub Actions config
 
-For those that already have a GH actions config file setup (e.g. `.github/workflows/ci.yml`), here's all that you should need to change to get Knapsack Pro queue mode working for both Cypress and RSpec.
+For those that already have a GH actions config file setup (e.g. `.github/workflows/ci.yml`), here's all that you should need to change to get Knapsack Pro Queue Mode working for both Cypress and RSpec.
 
 Change your RSpec run command to use Knapsack:
 
