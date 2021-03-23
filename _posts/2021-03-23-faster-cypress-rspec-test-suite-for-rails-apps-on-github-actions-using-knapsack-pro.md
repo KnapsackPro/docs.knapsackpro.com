@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Faster Cypress + Rspec test suite for Rails apps on GitHub Actions using Knapsack Pro"
-date:   2021-23-21 19:00:00 +0100
+date:   2021-03-23 19:00:00 +0100
 author: "Matt Vague"
 categories: continuous_integration cypress javascript parallelisation CI github actions
 og_image: "TODO"
