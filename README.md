@@ -41,7 +41,7 @@ We welcome any blog post in categories:
   You can modify an existing pull request to [let repository maintainers make commits to your branch](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/allowing-changes-to-a-pull-request-branch-created-from-a-fork).
   Thanks to that we can make tweaks to your article and help with publication of it at the right time. :)
 
-* Your blog post will be under [GNU Affero General Public License v3.0](LICENSE).
+* Your blog post will be under [MIT license](LICENSE).
 
 # Development of blog
 
