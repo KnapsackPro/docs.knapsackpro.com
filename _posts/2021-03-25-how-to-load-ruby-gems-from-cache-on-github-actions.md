@@ -65,7 +65,7 @@ If you would like to see the full YAML config for the Github Actions and Rails p
 
 ## ruby/setup-ruby - install Ruby and cache gems
 
-In the previous chapter, we mentioned the `actions/setup-ruby` is often used with Ruby on Rails projects. The `actions/setup-ruby` has been deprecated so it's recommended to use `ruby/setup-ruby` action nowadays. It already has caching feature that you could use. Let's see how.
+In the previous section, we mentioned the `actions/setup-ruby` is often used with Ruby on Rails projects. The `actions/setup-ruby` has been deprecated so it's recommended to use `ruby/setup-ruby` action nowadays. It already has caching feature that you could use. Let's see how.
 
 {% highlight yml %}
 {% raw %}
