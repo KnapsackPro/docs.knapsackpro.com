@@ -118,4 +118,4 @@ jobs:
 
 ## Summary
 
-As you can see the slow Minitest test suite doesn't need be an issue for you. QA, Testers, or Automation Engineers can benefit from improving the CI build speed and allowing their software developers team to deliver products faster. You can learn more at [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-minitest-on-github-actions-with-parallel-jobs-using-build-matrix).
+As you can see the slow Minitest test suite doesn't need be an issue for you. QA, Testers, or Automation Engineers could benefit from improving the CI build speed and allowing their software developers team to deliver products faster. You can learn more at [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-minitest-on-github-actions-with-parallel-jobs-using-build-matrix).
