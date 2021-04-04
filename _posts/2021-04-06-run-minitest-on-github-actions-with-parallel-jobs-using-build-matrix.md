@@ -11,7 +11,7 @@ How to run Ruby on Rails tests in Minitest on Github Actions? What to do if test
 
 <img src="/images/blog/posts/run-minitest-on-github-actions-with-parallel-jobs-using-build-matrix/github-minitest.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Minitest, Ruby, Github, Github Actions" />
 
-If your Minitest tests are taking dozen minutes and you would like to save some time for your Ruby engineering team then you could use tests parallelization on your CI server.
+If your Minitest tests are taking dozens of minutes and you would like to save some time for your Ruby engineering team then you could use tests parallelization on your CI server.
 
 To run tests as fast as possible you need to split them into equal buckets (into parallel jobs). But how to do it? Some of the test files can be super fast to execute, other Minitest files can take minutes if they run system tests (E2E tests).
 
