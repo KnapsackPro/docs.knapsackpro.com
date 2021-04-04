@@ -19,7 +19,7 @@ There is also an aspect of preparing the test environment for each parallel job.
 
 <img src="/images/blog/posts/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation/not-optimal-tests-split.png" style="width:100%;" alt="not optimal tests split on CI server, CI parallelism" />
 
-In a perfect scenario you would like to cover all those problems and no matter what still be able to split Minitest work in parallel jobs in a way that ensures the tests on each parallel job completes at a similar time. This guarantees no bottlenecks. The perfect tests split is on the below graph.
+In a perfect scenario you would like to cover all these problems and no matter what still be able to split Minitest work in parallel jobs in a way that ensures the tests on each parallel job completes at a similar time. This guarantees no bottlenecks. The perfect tests split is on the below graph.
 
 <img src="/images/blog/posts/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation/optimal-tests-split.png" style="width:100%;" alt="optimal tests split on CI server, CI parallelism" />
 
