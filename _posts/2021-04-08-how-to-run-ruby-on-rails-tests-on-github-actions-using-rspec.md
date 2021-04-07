@@ -4,10 +4,12 @@ title:  "How to run Ruby on Rails tests on Github Actions using RSpec"
 date:   2021-04-08 08:00:00 +0200
 author: "Artur Trzop"
 categories: continuous_integration
-og_image: "/images/blog/posts/how-to-run-ruby-on-rails-tests-on-github-actions-using-rspec/github-actions-ror.jpeg"
+og_image: "/images/blog/posts/how-to-run-ruby-on-rails-tests-on-github-actions-using-rspec/github-ror.jpeg"
 ---
 
 Are you thinking about migrating a Ruby on Rails project CI pipeline to Github Actions? You will learn how to configure the Rails app to run RSpec tests using Github Actions.
+
+<img src="/images/blog/posts/how-to-run-ruby-on-rails-tests-on-github-actions-using-rspec/github-ror.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Github, Github Actions, RoR, Ruby on Rails, Ruby" />
 
 This article covers a few things for Github Actions YAML config:
 
