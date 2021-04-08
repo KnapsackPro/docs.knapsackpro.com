@@ -158,7 +158,7 @@ jobs:
       GEMFILE_RUBY_VERSION: 2.7.2
       PGHOST: localhost
       PGUSER: postgres
-      # Rails verifies Time Zone in DB is the same as time zone of the Rails app
+      # Rails verifies the time zone in DB is the same as the time zone of the Rails app
       TZ: "Europe/Warsaw"
 
     steps:
