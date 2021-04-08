@@ -79,9 +79,9 @@ services:
 
 ### How to use Github Actions build matrix to run tests with parallel jobs
 
-You can use the [build matrix](https://docs.github.com/en/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix) in Github Actions to run multiple jobs at the same time. The parallel jobs allow you to run your tests within a few jobs.
+You can use the [build matrix](https://docs.github.com/en/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix) in Github Actions to run multiple jobs at the same time.
 
-You will need to split test files between those jobs. For that, you can use Knapsack Pro with [Queue Mode to distribute tests evenly between the jobs](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation). This way you can ensure the proper amount of tests is executed on each job and there is no too much work assigned to any of the jobs. Simply speaking this way you can make sure the CI build is as fast as possible - it has optimal execution time.
+You will need to split test files between those parallel jobs. For that, you can use Knapsack Pro with [Queue Mode to distribute tests evenly between the jobs](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation). This way you can ensure the proper amount of tests is executed on each job and there is no too much work assigned to any of the jobs. Simply speaking this way you can make sure the CI build is as fast as possible - it has optimal execution time.
 
 {% highlight yml %}
 {% raw %}
