@@ -16,7 +16,7 @@ This article covers a few things for Github Actions YAML config:
 * how to use `ruby/setup-ruby` action to install Ruby gems with bundler and automatically cache gems. This way you can load Ruby gems for your project from the cache and run CI build fast.
 * how to use Postgres on Github Actions
 * how to use Redis on Github Actions
-* how to use Github Actions build matrix to run parallel jobs and execute RSpec tests spread across many jobs to save time
+* how to use Github Actions build matrix to run parallel jobs and execute RSpec tests spread across multiple jobs to save time
 
 ## Github Actions YML config for Rails application
 
@@ -40,7 +40,7 @@ It's recommended to [use `ruby/setup-ruby` instead of outdated `actions/setup-ru
 
 To use Postgres on Github Actions you need to set up a service for Postgres. I recommend using additional options that will configure Postgres to use RAM instead of disk. This way your database can run faster in a testing environment.
 
-We also provide an option to do a health check to ensure the database is up and running before you start running tests.
+In the config below, we also pass the settings for doing a health check to ensure the database is up and running before you start running tests.
 
 {% highlight yml %}
 # If you need DB like PostgreSQL, Redis then define service below.
@@ -66,7 +66,7 @@ services:
 
 ### How to configure Redis on Github Actions
 
-You can use Redis Docker container to start Redis server on Github Actions. It's simple as that:
+You can use Redis Docker container to start Redis server on Github Actions. See how simple it is:
 
 {% highlight yml %}
 services:
