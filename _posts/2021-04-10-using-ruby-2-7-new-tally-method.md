@@ -23,7 +23,7 @@ words = %w(the be to of and a in that have I it for not on with he as you do at
 
 ### Pre Ruby 2.7
 
-In previous versions of Ruby, whenever we encountered a logic counting occurrences of collection elements (here: words in the array), we would most likely encounter a code similar to:
+In previous versions of Ruby, whenever we encountered a logic counting occurrences of collection elements (here: words in the array), we would most likely see a code similar to this:
 
 {% highlight ruby %}
 word_counts = {}
