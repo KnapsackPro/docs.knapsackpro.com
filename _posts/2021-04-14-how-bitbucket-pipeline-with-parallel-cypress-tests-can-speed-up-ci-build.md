@@ -24,7 +24,7 @@ Many things are unknown and unpredictable. That can affect how long it will take
 * running Cypress tests
 * tests can run against different browsers and this can affect how long the tests are executed
 * sometimes tests can fail and their execution time is different
-* other times you may have flaky tests randomly failing and you could use Test Retries in Cypress to automatically rerun failed test cases. This results in running a test file for longer.
+* other times you may have [flaky tests randomly failing](/2021/fix-intermittently-failing-ci-builds-flaky-tests-rspec) and you could use Test Retries in Cypress to automatically rerun failed test cases. This results in running a test file for longer.
 
 All above compounds into an uncertain time. It's hard to predict how to exactly divide test files between the parallel steps to ensure the steps complete work at a similar time. But there is a solution to that - a dynamic test suite split during runtime.
 
