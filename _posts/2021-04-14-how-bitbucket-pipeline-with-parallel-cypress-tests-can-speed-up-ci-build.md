@@ -91,6 +91,8 @@ definitions:
 
 If you look for an example with a custom docker container for a parallel step please see [this one](https://gist.github.com/ArturT/90b7ec869e3827b580664beb086a8cd6).
 
+Please remember to add API token in `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS` environment variable as [secure variable](https://support.atlassian.com/bitbucket-cloud/docs/variables-and-secrets/).
+
 ## Summary
 
 BitBucket Pipeline is a CI server that allows running scripts in parallel. You can use parallel steps to distribute your Cypress tests with [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-bitbucket-pipeline-with-parallel-cypress-tests-can-speed-up-ci-build) to save time and run CI build as fast as possible.
