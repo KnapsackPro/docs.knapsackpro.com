@@ -4,7 +4,7 @@ title:  "How and when to use Ruby case statements"
 date:   2021-04-01 12:00:00 +0100
 author: "Shadi Rezek"
 categories: techtips ruby
-og_image: ""
+og_image: "/images/blog/posts/how-and-when-to-use-ruby-case-statements/case_statement.png"
 ---
 
 Using the `case` expression in Ruby is a great way to write conditionals in a clear, and succinct way.

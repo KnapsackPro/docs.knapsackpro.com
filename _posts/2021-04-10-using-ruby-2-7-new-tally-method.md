@@ -4,11 +4,10 @@ title:  "Using Ruby's 2.7 new #tally method"
 date:   2021-04-10 09:00:00 +0100
 author: "Shadi Rezek"
 categories: techtips ruby
-og_image: ""
+og_image: "/images/blog/posts/using-ruby-2-7-new-tally-method/tally.png"
 ---
 
 Ruby 2.7 introduced the `Enumberable#tally` method. It allows to easily count elements' occurrences in a given collection. In other words, it literally _tallies them up_. :)
-
 
 ## The use case
 

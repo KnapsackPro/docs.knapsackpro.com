@@ -4,7 +4,7 @@ title:  "Fix: 'warning: Using the last argument as keyword parameters is depreca
 date:   2021-04-03 08:00:00 +0100
 author: "Shadi Rezek"
 categories: techtips ruby
-og_image: ""
+og_image: "/images/blog/posts/fix-warning-using-the-last-argument-as-keyword-parameters-is-deprecated/warning.png"
 ---
 
 Have you encountered the `warning: Using the last argument as keyword parameters is deprecated` message in your Ruby project? You probably started seeing this after upgrading your project to Ruby 2.7. This version introduced the deprecation as a means to prepare users for a breaking change in Ruby 3. Let's learn how to fix this!
