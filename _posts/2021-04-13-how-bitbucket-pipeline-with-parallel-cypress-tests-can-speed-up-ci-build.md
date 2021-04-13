@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How BitBucket Pipeline with parallel Cypress tests can speed up CI build"
-date:   2021-04-14 08:00:00 +0200
+date:   2021-04-13 20:00:00 +0200
 author: "Artur Trzop"
 categories: continuous_integration
 og_image: "/images/blog/posts/how-bitbucket-pipeline-with-parallel-cypress-tests-can-speed-up-ci-build/bitbucket-cypress.jpeg"
