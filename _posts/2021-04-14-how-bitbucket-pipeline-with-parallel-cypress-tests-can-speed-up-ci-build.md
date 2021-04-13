@@ -34,7 +34,7 @@ To distribute tests work across BitBucket Pipeline parallel steps you can use [K
 
 ## BitBucket Pipeline YML config
 
-Here is an example of BitBucket Pipeline config in YML. As you can see here are 3 parallel steps to run Cypress tests via [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-bitbucket-pipeline-with-parallel-cypress-tests-can-speed-up-ci-build). If you would like to run your tests on more parallel jobs you simply need to add more steps.
+Here is an example of a BitBucket Pipeline config in YML. As you can see, there are 3 parallel steps to run Cypress tests via [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-bitbucket-pipeline-with-parallel-cypress-tests-can-speed-up-ci-build). If you would like to run your tests on more parallel jobs you simply need to add more steps.
 
 {% highlight yml %}
 image: cypress/base:10
