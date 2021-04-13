@@ -11,7 +11,7 @@ Do you use BitBucket Pipeline as your CI server? Are you struggling with slow E2
 
 <img src="/images/blog/posts/how-bitbucket-pipeline-with-parallel-cypress-tests-can-speed-up-ci-build/bitbucket-cypress.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="BitBucket, Pipeline, CI, Cypress" />
 
-## How to distribute tests in parallel
+## How to run tests in parallel
 
 Distributing tests between parallel steps to spread the workload and run tests faster might be more challenging than you think. The question is how to divide Cypress test files between the parallel jobs in order to ensure the work is distributed evenly? But... is distributing work evenly what you actually want?
 
