@@ -26,7 +26,7 @@ Many things are unknown and unpredictable. This can affect how long it will take
 * sometimes tests can fail and their execution time is different
 * other times you may have [flaky tests randomly failing](/2021/fix-intermittently-failing-ci-builds-flaky-tests-rspec) and you could use Test Retries in Cypress to automatically rerun failed test cases. This results in running a test file for longer.
 
-All above compounds into an uncertain time. It's hard to predict how to exactly divide test files across the parallel steps to ensure the steps complete work at a similar time. But there is a solution to that - a dynamic test suite split during runtime.
+All of the above contribute to the uncertainty around execution time. It's hard to know how best to divide test files across the parallel steps to ensure the steps complete work at a similar time. But there is a solution to that - a dynamic test suite split during runtime.
 
 ## Queue Mode - a dynamic tests split
 
