@@ -7,7 +7,7 @@ categories: continuous_integration
 og_image: "/images/blog/posts/how-bitbucket-pipeline-with-parallel-cypress-tests-can-speed-up-ci-build/bitbucket-cypress.jpeg"
 ---
 
-Do you use BitBucket Pipeline as your CI server and you are struggling with slow E2E tests in Cypress? Do you know BitBucket Pipeline can run parallel steps? You can use it to distribute your browser tests between several parallel steps to execute end-to-end Cypress tests in a short amount of time.
+Do you use BitBucket Pipeline as your CI server and you are struggling with slow E2E tests in Cypress? Did you know BitBucket Pipeline can run parallel steps? You can use it to distribute your browser tests across several parallel steps to execute end-to-end Cypress tests in a short amount of time.
 
 <img src="/images/blog/posts/how-bitbucket-pipeline-with-parallel-cypress-tests-can-speed-up-ci-build/bitbucket-cypress.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="BitBucket, Pipeline, CI, Cypress" />
 
