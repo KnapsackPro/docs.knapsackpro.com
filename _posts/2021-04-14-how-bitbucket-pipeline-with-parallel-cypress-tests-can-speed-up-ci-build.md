@@ -13,7 +13,7 @@ Do you use BitBucket Pipeline as your CI server? Are you struggling with slow E2
 
 ## How to run tests in parallel
 
-Distributing tests between parallel steps to spread the workload and run tests faster might be more challenging than you think. The question is how to divide Cypress test files between the parallel jobs in order to ensure the work is distributed evenly? But... is distributing work evenly what you actually want?
+Distributing tests across parallel steps to spread the workload and run tests faster might be more challenging than you think. The question is how to divide Cypress test files across the parallel jobs in order to ensure the work is distributed evenly? But... is distributing work evenly what you actually want?
 
 To get the shortest CI build time you want to utilize the available CI resources to the fullest. You want to avoid waste of time. This means you want to ensure the parallel steps will finish work at a similar time as this would mean there are no bottlenecks in CI machines utilization.
 
@@ -26,11 +26,11 @@ Many things are unknown and unpredictable. That can affect how long it will take
 * sometimes tests can fail and their execution time is different
 * other times you may have [flaky tests randomly failing](/2021/fix-intermittently-failing-ci-builds-flaky-tests-rspec) and you could use Test Retries in Cypress to automatically rerun failed test cases. This results in running a test file for longer.
 
-All above compounds into an uncertain time. It's hard to predict how to exactly divide test files between the parallel steps to ensure the steps complete work at a similar time. But there is a solution to that - a dynamic test suite split during runtime.
+All above compounds into an uncertain time. It's hard to predict how to exactly divide test files across the parallel steps to ensure the steps complete work at a similar time. But there is a solution to that - a dynamic test suite split during runtime.
 
 ## Queue Mode - a dynamic tests split
 
-To distribute tests work between BitBucket Pipeline parallel steps you can use [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-bitbucket-pipeline-with-parallel-cypress-tests-can-speed-up-ci-build) with a Queue Mode. You can use [`@knapsack-pro/cypress` npm package](https://github.com/KnapsackPro/knapsack-pro-cypress#knapsack-procypress) that will generate a Queue with a list of test files on the Knapsack Pro API side and then all parallel steps can connect to the queue to consume test files and execute them. This way parallel steps ask for more tests only after they finished executing a set of tests previously fetched from the Knapsack Pro API. You can learn about the [details of Queue Mode from the article](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation).
+To distribute tests work across BitBucket Pipeline parallel steps you can use [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-bitbucket-pipeline-with-parallel-cypress-tests-can-speed-up-ci-build) with a Queue Mode. You can use [`@knapsack-pro/cypress` npm package](https://github.com/KnapsackPro/knapsack-pro-cypress#knapsack-procypress) that will generate a Queue with a list of test files on the Knapsack Pro API side and then all parallel steps can connect to the queue to consume test files and execute them. This way parallel steps ask for more tests only after they finished executing a set of tests previously fetched from the Knapsack Pro API. You can learn about the [details of Queue Mode from the article](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation).
 
 ## BitBucket Pipeline YML config
 
