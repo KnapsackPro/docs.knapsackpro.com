@@ -17,7 +17,7 @@ Distributing tests across parallel steps to spread the workload and run tests fa
 
 To get the shortest CI build time you want to utilize the available CI resources to the fullest. You want to avoid wasting time. This means that you want to ensure the parallel steps will finish work at a similar time as this would mean there are no bottlenecks in CI machines utilization.
 
-Many things are unknown and unpredictable. This can affect how long it will take to execute tests on BitBucket Pipeline. There is:
+Many things are unknown and unpredictable. This can affect how long it will take to execute tests on BitBucket Pipeline. There are things like:
 
 * boot time - time spent on loading your CI docker container
 * loading npm/yarn dependencies from cache
