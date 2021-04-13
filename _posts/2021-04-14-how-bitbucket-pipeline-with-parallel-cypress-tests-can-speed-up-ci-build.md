@@ -15,7 +15,7 @@ Do you use BitBucket Pipeline as your CI server? Are you struggling with slow E2
 
 Distributing tests across parallel steps to spread the workload and run tests faster might be more challenging than you think. The question is how to divide Cypress test files across the parallel jobs in order to ensure the work is distributed evenly? But... is distributing work evenly what you actually want?
 
-To get the shortest CI build time you want to utilize the available CI resources to the fullest. You want to avoid waste of time. This means you want to ensure the parallel steps will finish work at a similar time as this would mean there are no bottlenecks in CI machines utilization.
+To get the shortest CI build time you want to utilize the available CI resources to the fullest. You want to avoid wasting time. This means you want to ensure the parallel steps will finish work at a similar time as this would mean there are no bottlenecks in CI machines utilization.
 
 Many things are unknown and unpredictable. That can affect how long it will take to execute tests on BitBucket Pipeline. There is:
 
