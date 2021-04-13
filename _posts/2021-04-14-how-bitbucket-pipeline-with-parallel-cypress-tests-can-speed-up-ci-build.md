@@ -89,7 +89,7 @@ definitions:
     cypress: $HOME/.cache/Cypress
 {% endhighlight %}
 
-If you look for an example with a custom docker container for a parallel step please see [this one](https://gist.github.com/ArturT/90b7ec869e3827b580664beb086a8cd6).
+If you are looking for an example with a custom docker container for a parallel step please see [this one](https://gist.github.com/ArturT/90b7ec869e3827b580664beb086a8cd6).
 
 Please remember to add API token in `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS` environment variable as [secure variable](https://support.atlassian.com/bitbucket-cloud/docs/variables-and-secrets/).
 
