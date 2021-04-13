@@ -60,7 +60,7 @@ e2e: &e2e
     - export KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true
     - $(npm bin)/knapsack-pro-cypress
   artifacts:
-    # store any generates images and videos as artifacts
+    # store any generated images and videos as artifacts
     - cypress/screenshots/**
     - cypress/videos/**
 
