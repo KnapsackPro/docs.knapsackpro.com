@@ -19,7 +19,7 @@ permalink: /ruby/knapsack
 [Knapsack, The K is silent](http://www.youtube.com/watch?v=-Ae590hensE)
 
 [![Gem Version](https://badge.fury.io/rb/knapsack.svg)][gem_version]
-[![Build Status](https://travis-ci.org/ArturT/knapsack.svg?branch=master)][travis]
+[![Build Status](https://travis-ci.org/KnapsackPro/knapsack.svg?branch=master)][travis]
 [![Code Climate](https://codeclimate.com/github/ArturT/knapsack.svg)][codeclimate]
 [![Coverage Status](https://codeclimate.com/github/ArturT/knapsack/coverage.svg)][coverage]
 
