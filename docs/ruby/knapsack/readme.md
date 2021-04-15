@@ -5,7 +5,7 @@ permalink: /ruby/knapsack
 ---
 {% include knapsack_gem_utm_cookies.html %}
 
-<a href="https://github.com/ArturT/knapsack">
+<a href="https://github.com/KnapsackPro/knapsack">
   <span class="icon  icon--github">
     <svg viewBox="0 0 16 16">
       <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
@@ -20,13 +20,13 @@ permalink: /ruby/knapsack
 
 [![Gem Version](https://badge.fury.io/rb/knapsack.svg)][gem_version]
 [![Build Status](https://travis-ci.org/KnapsackPro/knapsack.svg?branch=master)][travis]
-[![Code Climate](https://codeclimate.com/github/ArturT/knapsack.svg)][codeclimate]
-[![Coverage Status](https://codeclimate.com/github/ArturT/knapsack/coverage.svg)][coverage]
+[![Code Climate](https://codeclimate.com/github/KnapsackPro/knapsack.svg)][codeclimate]
+[![Coverage Status](https://codeclimate.com/github/KnapsackPro/knapsack/coverage.svg)][coverage]
 
 [gem_version]: https://rubygems.org/gems/knapsack
-[travis]: http://travis-ci.org/ArturT/knapsack
-[codeclimate]: https://codeclimate.com/github/ArturT/knapsack
-[coverage]: https://codeclimate.com/github/ArturT/knapsack
+[travis]: http://travis-ci.org/KnapsackPro/knapsack
+[codeclimate]: https://codeclimate.com/github/KnapsackPro/knapsack
+[coverage]: https://codeclimate.com/github/KnapsackPro/knapsack
 
 Follow us on [Twitter @KnapsackPro](https://twitter.com/KnapsackPro) and give Like on [Facebook KnapsackPro](https://www.facebook.com/KnapsackPro)
 
@@ -190,7 +190,7 @@ How knapsack_pro makes my life easier as opposed to regular knapsack gem?
 
 ## Update gem
 
-Please check [changelog](https://github.com/ArturT/knapsack/blob/master/CHANGELOG.md) before update gem. Knapsack follows [semantic versioning](http://semver.org).
+Please check [changelog](https://github.com/KnapsackPro/knapsack/blob/master/CHANGELOG.md) before update gem. Knapsack follows [semantic versioning](http://semver.org).
 
 ## Installation
 
@@ -446,7 +446,7 @@ $ knapsack minitest "--verbose --pride"
 $ knapsack spinach "-f spinach_examples"
 {% endhighlight %}
 
-[Here](https://github.com/ArturT/knapsack/pull/21) you will find example when it might be useful.
+[Here](https://github.com/KnapsackPro/knapsack/pull/21) you will find example when it might be useful.
 
 ### Info for CircleCI users
 
@@ -948,7 +948,7 @@ Here is an example [`Jenkinsfile`](https://github.com/mknapik/jenkins-pipeline-k
 
 You may want to read article [Knapsack with Jenkins Pipeline](http://blog.knapik.me/knapsack-with-jenkins-pipeline/) from Michał Knapik.
 
-More tips can be found in the [issue](https://github.com/ArturT/knapsack/issues/42).
+More tips can be found in the [issue](https://github.com/KnapsackPro/knapsack/issues/42).
 
 ### Info for BitBucket Pipelines
 
@@ -1076,7 +1076,7 @@ require 'spec_helper'
 
 ### How to update existing knapsack report for a few test files?
 
-You may want to look at monkey patch in [this issue](https://github.com/ArturT/knapsack/issues/34). Take into account that there are some cons of this approach.
+You may want to look at monkey patch in [this issue](https://github.com/KnapsackPro/knapsack/issues/34). Take into account that there are some cons of this approach.
 
 ### How to run tests for particular CI node in your development environment
 
@@ -1137,7 +1137,7 @@ $ bundle exec rspec --default-path spec_examples
 
 ## Contributing
 
-1. Fork it ( [https://github.com/ArturT/knapsack/fork](https://github.com/ArturT/knapsack/fork) )
+1. Fork it ( [https://github.com/KnapsackPro/knapsack/fork](https://github.com/KnapsackPro/knapsack/fork) )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
