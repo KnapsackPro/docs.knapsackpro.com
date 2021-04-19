@@ -11,9 +11,9 @@ Have you heard of the [#pluck](https://api.rubyonrails.org/classes/ActiveRecord/
 
 ## The use case
 
-Sometimes when retrieving data from the database, we are only interested in certain attributes (e.g. just emails of all the users, instead of data residing in all columns of the `users` table).
+Sometimes when retrieving data from the database, we are only interested in certain attributes (e.g., just emails of all the users, instead of data residing in all columns of the `users` table).
 
-The _naïve_ approach would be to load all the data into the memory, and then `map` it so that only the subset of the data is left, e.g.:
+The _naïve_ approach would be to load all the data into the memory and then `map` it so that only the subset of the data is left, e.g.:
 
 {% highlight ruby %}
 User.all.map(&:email)
@@ -36,7 +36,7 @@ User.all.select(:email).map(&:email)
 #=> ["kate@example.com", "john@example.org", "janet@example.com"]
 {% endhighlight %}
 
-The SQL query is limited to one column now, but the `ActiveRecrod` objects are still being created in the intermediate step before `map`. Granted, they contain less data now (as the attributes we didn't `select` are omitted), but it's still quite unnecessary in this use case.
+The SQL query is limited to one column now, but the `ActiveRecord` objects are still being created in the intermediate step before `map`. Granted, they contain less data now (as the attributes we didn't `select` are omitted), but it's still quite unnecessary in this use case.
 
 ## Using the #pluck
 
