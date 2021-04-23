@@ -4,10 +4,12 @@ title:  "Estimate database connections pool size for Rails application"
 date:   2021-04-23 17:00:00 +0200
 author: "Artur Trzop"
 categories: techtips
-og_image: "/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/db-connections.jpeg"
+og_image: "/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/rails-db-pool.jpeg"
 ---
 
 Configuring the database connections pool for the Rails app might not be an obvious task for many programmers. There is a constraint of max opened connections on a database level. Your server environment configuration can change in time and affect the needed number of connections to the database. For instance number of servers you use can change when you autoscale it based on the web traffic. It means the number of web processes/threads running for Puma or Unicorn servers could change. All this adds additional complexity. When you use two databases (Postgres + Redis), then everything gets more complex. In this article, we will entangle that. You will learn how to estimate needed database connections for your Ruby on Rails production application.
+
+<img src="/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/rails-db-pool.jpeg" style="width:400px;margin-left: 15px;float:right;" alt="Rails, RoR, DB, database, pool" />
 
 ## Why available database connections matter?
 
