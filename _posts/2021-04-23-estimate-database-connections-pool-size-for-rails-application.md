@@ -44,33 +44,33 @@ Anyone request will check out a connection the first time it requires access to 
 
 The `pool` can be defined this way:
 
-```yaml
+{% highlight yml %}
 production:
   adapter: postgresql
   database: blog_production
   pool: 5
-```
+{% endhighlight %}
 
 or as part of URL to the database:
 
-```yaml
+{% highlight yml %}
 development:
   url: postgresql://localhost/blog_production?pool=5
-```
+{% endhighlight %}
 
 The URL option is popular when you host a database on an external server like Amazon RDS. Then you could define the URL this way:
 
-```yaml
+{% highlight yml %}
 production:
   url: postgres://blog_production:PASSWORD@blog-production.abcdefgh.eu-west-1.rds.amazonaws.com/blog_production?sslca=config/rds-combined-ca-bundle.pem&pool=5
-```
+{% endhighlight %}
 
 Please note that for the production, you should not commit credentials in the `config/database.yml` file. Instead, store it in environment variables and then read value during Rails app runtime.
 
-```yaml
+{% highlight yml %}
 production:
-  url: <%= ENV['DB_URL'] %> 
-```
+  url: <%= ENV['DB_URL'] %>
+{% endhighlight %}
 
 ## How ActiveRecord connection pool affects Postgres max connections?
 
