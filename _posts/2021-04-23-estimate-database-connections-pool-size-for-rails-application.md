@@ -78,6 +78,8 @@ production:
 
 Let's start with a simple example. Your application may use one of the application servers like Puma or Unicorn. Let's focus on Puma because it's more complex as it has a separate configuration for several processes (known as workers in Puma terms) and threads. Unicorn doesn't allow for many threads. It works exactly like Puma with a single thread setting.
 
+<img src="/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/puma.jpeg" style="width:400px;margin-left: 15px;float:right;" alt="Rails, RoR, DB, database, pool" />
+
 ### Puma 1 process and 1 thread
 
 Let's say you use the Puma server to run the Rails application. The Puma is configured to run 1 process (worker) and it has only 1 thread.
@@ -133,6 +135,8 @@ You need at least pool size of 10 in `config/database.yml` because Sidekiq by de
 If you use a pool size lower than 10 then Sidekiq threads will be fighting for access to limited connections in the pool. It could be fine for some time, but you should be aware that this can increse your job's processing time because half of the Sidekiq threads won't be able to use DB simultaneously as another half of threads. It can also lead to [a problem described here](https://github.com/mperham/sidekiq/wiki/Problems-and-Troubleshooting#cannot-get-database-connection-within-500-seconds).
 
 ### Sidekiq and Redis database connections
+
+<img src="/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/redis.jpeg" style="width:200px;margin-left: 15px;float:right;" alt="Rails, RoR, DB, database, pool" />
 
 Sidekiq uses the Redis database to store async jobs. It would be best if you calculate DB connections to Redis as well as Postgres connections. A Sidekiq server process requires at least (concurrency + 5) connections. The `concurrency` option is the number of Sidekiq threads per Sidekiq process.
 
