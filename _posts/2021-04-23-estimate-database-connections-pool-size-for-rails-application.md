@@ -80,7 +80,7 @@ Let's start with a simple example. Your application may use one of the applicati
 
 <img src="/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/puma.jpeg" style="width:400px;margin-left: 15px;float:right;" alt="Rails, RoR, DB, database, pool" />
 
-### Puma 1 process and 1 thread
+### Puma config: 1 process and 1 thread
 
 Let's say you use the Puma server to run the Rails application. The Puma is configured to run 1 process (worker) and it has only 1 thread.
 
@@ -88,19 +88,19 @@ The puma process can open up to 5 connections to the database because the `pool`
 
 Sometimes the database connection might be dead. In such a case, ActiveRecord can open a new connection, and then you may end up with 2 active connections. In the worst-case scenario when 4 connections would be dead, then Rails can open 5 connections max.
 
-### Puma 1 process and 2 threads
+### Puma config: 1 process and 2 threads
 
 If you use 2 threads per single Puma process (worker) then it means those 2 threads can use the same pool of DB connections within the Puma process.
 
 It means that 2 DB connections will be open out of 5 possible. If any connection is dead, then more connections can be opened until 5 connections in the pool limit are reached.
 
-### Puma 2 processes and 2 threads per process
+### Puma config: 2 processes and 2 threads per process
 
 If you run 2 Puma processes (workers) and each process has 2 threads then it means a single process will open 2 DB connections because you have 2 threads per process. You have 2 processes so that means at the start of your application, there might be opened 4 DB connections. Each process has its pool, so you have 2 pools. Each pool can open up to 5 DB connections. It means in the worst-case scenario, there can be even 10 connections created to the database.
 
 Assuming you use 2 threads per Puma process, then it's good to have `pool` option defined as 2 + some spare connections to avoid a problem when one of the DB connections is dead. When a dead connection happens then, ActiveRecord can use spare connections (not opened connections yet) to open a new connection.
 
-### Puma 2 processes and 2 threads, and 2 web dynos on Heroku
+### Puma config: 2 processes and 2 threads, and 2 web dynos on Heroku
 
 If you use Heroku to host your application, it allows scaling your web application horizontally by adding more servers (dynos). Assume you run your application on 2 servers (2 Heroku dynos), each dyno is running 2 Puma processes, and each process has 2 threads. That means at the start, your application may open 6 connections to the database. Here is why:
 
