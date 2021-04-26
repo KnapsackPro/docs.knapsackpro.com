@@ -148,7 +148,7 @@ More in [Sidekiq docs](https://github.com/mperham/sidekiq/wiki/Using-Redis#compl
 
 ## Redis database connections
 
-If you use Redis for processing background jobs, then not only the Sidekiq process is using Redis connections. Also, your Puma process and threads can use Redis to add new jobs to the Sidekiq queue. Typically you will have 1 Redis connection per 1 Puma thread.
+If you use Redis for processing background jobs, then it's not just the Sidekiq process that is using Redis connections. Your Puma process and threads can use Redis to add new jobs to the Sidekiq queue as well. Typically you will have 1 Redis connection per 1 Puma thread.
 
 If you explicitly open a new Redis connection with `Redis.new`, this can create a new connection per the Puma thread as well.
 
