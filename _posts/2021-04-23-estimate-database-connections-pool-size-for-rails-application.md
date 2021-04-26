@@ -76,7 +76,7 @@ production:
 
 ## How does ActiveRecord connection pool affects Postgres max connections?
 
-Let's start with a simple example. Your application may use one of the application servers like Puma or Unicorn. Let's focus on Puma because it's more complex as it has a separate configuration for several processes (known as workers in Puma terms) and threads. Unicorn doesn't allow for many threads. It works exactly like Puma with a single thread setting.
+Let's start with a simple example. Your application may use one of the application servers like Puma or Unicorn. Let's focus on Puma because it's more complex as it has a separate configuration for several processes (known as workers in Puma terms) and threads. Unicorn runs in a single thread only. It works exactly like Puma with a single thread setting.
 
 <img src="/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/puma.jpeg" style="width:400px;margin-left: 15px;float:right;" alt="Rails, RoR, DB, database, pool" />
 
