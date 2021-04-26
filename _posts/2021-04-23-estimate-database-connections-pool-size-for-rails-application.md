@@ -53,7 +53,7 @@ production:
   pool: 5
 {% endhighlight %}
 
-or as part of URL to the database:
+or as a part of a URL to the database:
 
 {% highlight yml %}
 development:
