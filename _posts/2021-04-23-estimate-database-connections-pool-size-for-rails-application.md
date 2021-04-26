@@ -19,7 +19,7 @@ This problem might not be apparent immediately. Often you will find out about it
 
 ## RoR application configuration step by step
 
-Let's break typical Ruby on Rails applications into smaller components that use databases.
+Let's break a typical Ruby on Rails application into smaller components that use databases.
 
 * We have a Rails application that uses the Postgres database for ActiveRecord usage.
 * We also use the Redis database for background workers like Sidekiq.
