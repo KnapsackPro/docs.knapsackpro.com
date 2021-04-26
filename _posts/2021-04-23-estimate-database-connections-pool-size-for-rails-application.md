@@ -31,7 +31,7 @@ It looks simple, isn't it? Let's start with that, and later on, we will add more
 How to check how many available connections do you have for Postgres?
 
 * If you use a dedicated server with Postgres installed, then most likely you have a default `max_connections` which is typically 100 connections.
-* If you use Postgres instance on the AWS, then you need to check the AWS documentation to find out what's the max allowed connections to your database instance (it depends if you use Amazon RDS or Aurora and what is server instance class)
+* If you use a Postgres instance on the AWS, then you need to check the AWS documentation to find out what's the max allowed connections to your database instance (it depends if you use Amazon RDS or Aurora and what is server instance class)
 * If you use Heroku, you can check `Connection Limit` for the [Postgres Heroku add-on](https://elements.heroku.com/addons/heroku-postgresql#pricing) to check max acceptable connections.
 
 ## ActiveRecord connection pool
