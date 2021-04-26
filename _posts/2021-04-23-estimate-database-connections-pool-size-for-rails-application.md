@@ -96,19 +96,19 @@ It means that 2 DB connections will be open out of 5 possible. If any connection
 
 ### Puma config: 2 processes and 2 threads per process
 
-If you run 2 Puma processes (workers) and each process has 2 threads then it means that each single process will open 2 DB connections because you have 2 threads per process. You have 2 processes so that means at the start of your application, there might be opened 4 DB connections. Each process has its pool, so you have 2 pools. Each pool can open up to 5 DB connections. It means in the worst-case scenario, there can be even 10 connections created to the database.
+If you run 2 Puma processes (workers) and each process has 2 threads then it means that each single process will open 2 DB connections because you have 2 threads per process. You have 2 processes so it means at the start of your application, there might be 4 DB connections open. Each process has its pool, so you have 2 pools. Each pool can open up to 5 DB connections. It means that in the worst-case scenario, there can be even 10 connections created to the database.
 
 Assuming you use 2 threads per Puma process, then it's good to have `pool` option defined as 2 + some spare connections to avoid a problem when one of the DB connections is dead. When a dead connection happens then, ActiveRecord can use spare connections (not opened connections yet) to open a new connection.
 
 ### Puma config: 2 processes and 2 threads, and 2 web dynos on Heroku
 
-If you use Heroku to host your application, it allows scaling your web application horizontally by adding more servers (dynos). Assume you run your application on 2 servers (2 Heroku dynos), each dyno is running 2 Puma processes, and each process has 2 threads. That means at the start, your application may open 6 connections to the database. Here is why:
+If you use Heroku to host your application, it allows scaling your web application horizontally by adding more servers (dynos). Assume you run your application on 2 servers (2 Heroku dynos), each dyno is running 2 Puma processes, and each process has 2 threads. It means at the start, your application may open 6 connections to the database. Here is why:
 
 2 dynos X 2 Puma processes X 2 Puma threads = 6 DB connections
 
 2 dynos X 2 Puma process X Pool size (5) = Total pool size 20
 
-It means in the worst-case scenario; your application may open 20 DB connections.
+It means that in the worst-case scenario; your application may open 20 DB connections.
 
 #### Autoscaling web application
 
