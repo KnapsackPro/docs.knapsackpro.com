@@ -67,7 +67,7 @@ production:
   url: postgres://blog_production:PASSWORD@blog-production.abcdefgh.eu-west-1.rds.amazonaws.com/blog_production?sslca=config/rds-combined-ca-bundle.pem&pool=5
 {% endhighlight %}
 
-Please note that for the production, you should not commit credentials in the `config/database.yml` file. Instead, store it in environment variables and then read value during Rails app runtime.
+Please note that for the production, you should not commit credentials in the `config/database.yml` file. Instead, store it in environment variables and then read the value at your Rails app's runtime.
 
 {% highlight yml %}
 production:
