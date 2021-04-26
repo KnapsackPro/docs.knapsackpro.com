@@ -140,7 +140,7 @@ If you use a pool size lower than 10 then Sidekiq threads will be fighting for a
 
 Sidekiq uses the Redis database to store async jobs. It would be best if you calculate DB connections to Redis as well as Postgres connections. A Sidekiq server process requires at least (concurrency + 5) connections. The `concurrency` option is the number of Sidekiq threads per Sidekiq process.
 
-Using previous example:
+Using the previous example:
 
 2 servers (dynos) X 1 Sidekiq process X 10 Sidekiq threads = 2 servers (dynos) X 1 Sidekiq process X (10 + 5) = 30 Redis connections required.
 
