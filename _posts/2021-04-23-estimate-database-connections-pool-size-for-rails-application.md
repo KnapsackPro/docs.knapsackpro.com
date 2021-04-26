@@ -84,7 +84,7 @@ Let's start with a simple example. Your application may use one of the applicati
 
 Let's say you use the Puma server to run the Rails application. The Puma is configured to run 1 process (worker) and it has only 1 thread.
 
-The puma process can open up to 5 connections to the database because the `pool` option is defined as 5 in `config/database.yml`. Typically, it's less because when you run 1 process and only 1 thread, only 1 connection to the Postgres database will be needed to make a database query.
+The puma process can open up to 5 connections to the database because the `pool` option is defined as 5 in `config/database.yml`. Typically, there are fewer connections than that because when you run 1 process and only 1 thread, only 1 connection to the Postgres database will be needed to make a database query.
 
 Sometimes the database connection might be dead. In such a case, ActiveRecord can open a new connection, and then you may end up with 2 active connections. In the worst-case scenario when 4 connections would be dead, then Rails can open 5 connections max.
 
