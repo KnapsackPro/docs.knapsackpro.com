@@ -17,7 +17,7 @@ The first question is, why do you need to care about available database connecti
 
 This problem might not be apparent immediately. Often you will find out about it in production. Your application might work just fine until specific circumstances cause the Rails app to need more DB connections, which can trigger exception flood. Let's see how to avoid it.
 
-## RoR application configuration in pieces
+## RoR application configuration step by step
 
 Let's break typical Ruby on Rails applications into smaller components that use databases.
 
