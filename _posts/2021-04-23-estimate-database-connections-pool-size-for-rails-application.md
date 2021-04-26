@@ -118,7 +118,7 @@ If you autoscale your web servers by adding more servers during the peak web tra
 
 We just talked about a webserver like Puma that can open connections and consume your max DB connections limit. But other non-web processes can do it as well:
 
-* You run Rails console on production in a Heroku dyno `heroku run bin/rails console --app=my-app-name`. It runs an instance of your Rails app, and 1 DB connection will be open. In the worst-case scenario, the number of connections defined in the `pool` can be opened. But it's doubtful to have your DB connections going dead, so rather, the whole pool won't be used. 
+* You run Rails console on production in a Heroku dyno `heroku run bin/rails console --app=my-app-name`. It runs an instance of your Rails app, and 1 DB connection will be open. In the worst-case scenario, the number of connections defined in the `pool` can be opened. But it's unlikely that your DB connections would go dead. So the whole pool limit shouldn't be used.
 * You run scheduled rake tasks via Heroku Scheduler (cron like tool). If the rake tasks are performed periodically, they need to open a connection to the DB so that at least 1 DB connection is used from the pool per rake task. Imagine you have 10 rake tasks that are started every hour. It means you need 10 available DB connections every hour. It's easy to miss it if you only calculate web connections for estimation purpose.
 * You use background workers like Sidekiq to perform async jobs. Your jobs may open DB connections. We will talk about it later.
 
