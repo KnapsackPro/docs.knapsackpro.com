@@ -36,7 +36,7 @@ How to check how many available connections do you have for Postgres?
 
 ## ActiveRecord connection pool
 
-In your Rails application, the `config/database.yml` file contains the `pool` option. In the [Rails docs](https://edgeguides.rubyonrails.org/configuring.html#database-pooling), you can read:
+In your Rails application, the `config/database.yml` file contains the `pool` option. As explained in the [Rails docs](https://edgeguides.rubyonrails.org/configuring.html#database-pooling):
 
 Active Record database connections are managed by `ActiveRecord::ConnectionAdapters::ConnectionPool`, which ensures that a connection pool synchronizes the amount of thread access to a limited number of database connections.
 
