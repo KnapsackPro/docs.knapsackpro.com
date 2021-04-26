@@ -108,7 +108,7 @@ If you use Heroku to host your application, it allows scaling your web applicati
 
 2 dynos X 2 Puma process X Pool size (5) = Total pool size 20
 
-It means that in the worst-case scenario; your application may open 20 DB connections.
+It means that in the worst-case your application may open 20 DB connections.
 
 #### Autoscaling web application
 
