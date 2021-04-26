@@ -112,7 +112,7 @@ It means that in the worst-case your application may open 20 DB connections.
 
 #### Autoscaling web application
 
-If you autoscale your web servers by adding more servers during peak of the web traffic, you need to be careful. Ensure your application stays in Postgres max connections limit. The above example shows you how to calculate expected opened DB connections and the worst-case scenario.  Please adjust your pool size to ensure that you will be below the max connections limit for your database engine in the worst-case scenario.
+If you autoscale your web servers by adding more servers during the peak web traffic, you need to be careful. Ensure your application stays in Postgres max connections limit. The above example shows you how to calculate expected opened DB connections and the worst-case scenario.  Please adjust your pool size to ensure that you will be below the max connections limit for your database engine in the worst-case scenario.
 
 ## What else can open DB connections?
 
