@@ -154,6 +154,6 @@ If you explicitly open a new Redis connection with `Redis.new`, this can create 
 
 ## Summary
 
-We covered a few examples of Postgres and Redis on calculating DB connections needed by your Rails application. I hope this will give you a better understanding of how to estimate how many DB connections you need on your database level to serve your application demand properly.
+We covered a few examples of Postgres and Redis on calculating DB connections needed by your Rails application. I hope this will give you a better understanding of how to estimate how many DB connections you need on your database level to serve your application's demands properly.
 
 If you are looking to improve your Rails application workflow please consider to check how to [run automated tests in parallel on your CI server](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation) with [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=estimate-database-connections-pool-size-for-rails-application).
