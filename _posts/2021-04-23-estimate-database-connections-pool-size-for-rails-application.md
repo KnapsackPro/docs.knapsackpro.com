@@ -124,7 +124,7 @@ We just talked about a webserver like Puma that can open connections and consume
 
 ## Background worker - Sidekiq and ActiveRecord pool
 
-Sidekiq process will use pool defined in `config/database.yml` similarly as Puma. All Sidekiq threads in a Sidekiq process can use a common pool of connections.
+Sidekiq process will use the pool defined in `config/database.yml` similarly as Puma. All Sidekiq threads in a Sidekiq process can use a common pool of connections.
 
 If you run multiple servers (Heroku dynos), then it works similarly to the Puma example.
 
