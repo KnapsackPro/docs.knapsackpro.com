@@ -11,7 +11,7 @@ Configuring the database connections pool for the Rails app might not be a strai
 
 <img src="/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/rails-db-pool.jpeg" style="width:400px;margin-left: 15px;float:right;" alt="Rails, RoR, DB, database, pool" />
 
-## Why available database connections matter?
+## Why do available database connections matter?
 
 The first question is, why do you need to care about available database connections? The answer is simple. Suppose you configured your Ruby application to open too many DB connections. In that case, it could happen that you will get `ActiveRecord::ConnectionTimeoutError` exceptions from the application when the database cannot handle more new connections from your Rails app. It can result in 500 errors visible for your web app users.
 
