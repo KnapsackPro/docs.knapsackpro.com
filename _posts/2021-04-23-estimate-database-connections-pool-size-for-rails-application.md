@@ -92,7 +92,7 @@ Sometimes the database connection might be dead. In such a case, ActiveRecord ca
 
 If you use 2 threads in a single Puma process (worker) then it means those 2 threads can use the same pool of DB connections within the Puma process.
 
-It means that 2 DB connections will be open out of 5 possible. If any connection is dead, then more connections can be opened until 5 connections in the pool limit are reached.
+It means that 2 DB connections will be open out of 5 possible. If any connection is dead, then more connections can be opened until the 5 connection pool limit is reached.
 
 ### Puma config: 2 processes and 2 threads per process
 
