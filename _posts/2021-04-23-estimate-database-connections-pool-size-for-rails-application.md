@@ -42,7 +42,7 @@ Active Record database connections are managed by `ActiveRecord::ConnectionAdapt
 
 Since the connection pooling is handled inside of Active Record by default, all application servers (Thin, Puma, Unicorn, etc.) should behave the same. The database connection pool is initially empty. As demand for connections increases, it will create them until it reaches the connection pool limit.
 
-Anyone request will check out a connection the first time it requires access to the database. At the end of the request, it will check the connection back in. This means that the additional connection slot will be available again for the next request in the queue.
+Any one request will check out a connection the first time it requires access to the database. At the end of the request, it will check the connection back in. This means that the additional connection slot will be available again for the next request in the queue.
 
 The `pool` can be defined this way:
 
