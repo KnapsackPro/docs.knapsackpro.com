@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Estimate database connections pool size for Rails application"
-date:   2021-04-23 17:00:00 +0200
+date:   2021-04-26 22:00:00 +0200
 author: "Artur Trzop"
 categories: techtips
 og_image: "/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/rails-db-pool.jpeg"
