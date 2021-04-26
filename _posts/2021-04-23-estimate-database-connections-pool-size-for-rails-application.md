@@ -32,11 +32,11 @@ How to check how many available connections do you have for Postgres?
 
 * If you use a dedicated server with Postgres installed, then most likely you have a default `max_connections` which is typically 100 connections.
 * If you use a Postgres instance on the AWS, then you need to check the AWS documentation to find out what's the max allowed connections to your database instance (it depends on if you use Amazon RDS or Aurora and what is server instance class)
-* If you use Heroku, you can check `Connection Limit` for the [Postgres Heroku add-on](https://elements.heroku.com/addons/heroku-postgresql#pricing) to check max acceptable connections.
+* If you use Heroku, you can check the `Connection Limit` for the [Postgres Heroku add-on](https://elements.heroku.com/addons/heroku-postgresql#pricing) to check max acceptable connections.
 
 ## ActiveRecord connection pool
 
-In your Rails application, the `config/database.yml` file contains `pool` option. In the [Rails docs](https://edgeguides.rubyonrails.org/configuring.html#database-pooling), you can read:
+In your Rails application, the `config/database.yml` file contains the `pool` option. In the [Rails docs](https://edgeguides.rubyonrails.org/configuring.html#database-pooling), you can read:
 
 Active Record database connections are managed by `ActiveRecord::ConnectionAdapters::ConnectionPool`, which ensures that a connection pool synchronizes the amount of thread access to a limited number of database connections.
 
