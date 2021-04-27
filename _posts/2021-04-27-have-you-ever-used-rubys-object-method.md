@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Have you ever used Ruby's Object#method?"
-date:   2021-04-23 12:00:00 +0100
+date:   2021-04-27 09:00:00 +0100
 author: "Shadi Rezek"
 categories: techtips ruby
 og_image: ""
