@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  "Using Ruby's Object#method"
+title:  "Have you ever used Ruby's Object#method?"
 date:   2021-04-23 12:00:00 +0100
 author: "Shadi Rezek"
 categories: techtips ruby
 og_image: ""
 ---
+
 `Object#method` is a little-known, yet very interesting Ruby method. Let's see how it works and how you can use it in your code.
 
 ## The basics
@@ -54,7 +55,7 @@ Consider this common Ruby shortcut:
 #=> [2, 4, 6]
 {% endhighlight %}
 
-The reason this works is two-fold. First, there is the `&` (ampersand) operator. When used at the beginning of a method argument, it transforms its operant into a `Proc` object (by calling `#to_proc` on it), and passes it to the method as if it was a block. Secondly, the `Symbol` class implements `#to_proc`. Because of the way it's implemented, it effectively allows us to `send` a given symbol to the provided argument. See `Symbol#to_proc` in action below:
+The reason this works is two-fold. First, there is the `&` (ampersand) operator. When used at the beginning of a method argument, it transforms its operant into a `Proc` object (by calling `#to_proc` on it), and passes it to the method as if it was a block. Secondly, the `Symbol` class implements `#to_proc`. The way it's implemented effectively allows us to `send` a given symbol to the provided argument. See `Symbol#to_proc` in action below:
 
 {% highlight ruby %}
 is_even = :even?.to_proc
@@ -143,4 +144,4 @@ numbers.select(&AboveMinThresholdChecker.method(:call)).
 
 Have you used `#method` in Ruby before? Can you think of other interesting situations it could prove handy? Please share in the comments below!
 
-If your project suffers from long CI builds you can address this with [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=using-ruby-object-method). Be the hero in your team by streamlining your CI process and [improving the developer productivity](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=using-ruby-object-method)!
+If your project suffers from long CI builds, you can address this with [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=have-you-ever-used-rubys-object-method). Be the hero in your team by streamlining your CI process and [improving the developer productivity](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=using-ruby-object-method)!
