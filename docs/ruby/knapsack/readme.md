@@ -516,7 +516,7 @@ Now you should update test command and enable parallel. Please remember to add a
   command: bundle exec rake knapsack:spinach
 {% endhighlight %}
 
-Now everything should works. You will get warning at the end of rspec/cucumber/minitest results if time execution will take too much.
+Now everything should work. You will get a warning at the end of rspec/cucumber/minitest results if time execution takes too long.
 
 ### Info for Travis users
 
