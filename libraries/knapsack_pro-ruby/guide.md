@@ -260,44 +260,6 @@ If you use knapsack_pro Queue Mode with CircleCI you may want to collect metadat
 </p>
 
 <p>
-<b>Legacy:</b> Here is an example for test configuration in your circleci.yml file for CircleCI 1.0.
-</p>
-
-{% highlight yaml %}
-# CircleCI 1.0
-
-machine:
-  environment:
-    # Tokens should be set in CircleCI settings to avoid expose tokens in build logs
-    # KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: rspec-token
-    # KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER: cucumber-token
-    # KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST: minitest-token
-    # KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT: test-unit-token
-    # KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH: spinach-token
-test:
-  override:
-    # Step for RSpec
-    - bundle exec rake knapsack_pro:rspec:
-        parallel: true # Caution: there are 8 spaces indentation!
-
-    # Step for Cucumber
-    - bundle exec rake knapsack_pro:cucumber:
-        parallel: true # Caution: there are 8 spaces indentation!
-
-    # Step for Minitest
-    - bundle exec rake knapsack_pro:minitest:
-        parallel: true # Caution: there are 8 spaces indentation!
-
-    # Step for test-unit
-    - bundle exec rake knapsack_pro:test_unit:
-        parallel: true # Caution: there are 8 spaces indentation!
-
-    # Step for Spinach
-    - bundle exec rake knapsack_pro:spinach:
-        parallel: true # Caution: there are 8 spaces indentation!
-{% endhighlight %}
-
-<p>
 Please remember to add additional containers for your project in CircleCI settings.
 </p>
   </div>

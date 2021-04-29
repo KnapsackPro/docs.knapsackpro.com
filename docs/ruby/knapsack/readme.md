@@ -452,29 +452,11 @@ $ knapsack spinach "-f spinach_examples"
 
 If you are using circleci.com you can omit `CI_NODE_TOTAL` and `CI_NODE_INDEX`. Knapsack will use `CIRCLE_NODE_TOTAL` and `CIRCLE_NODE_INDEX` provided by CircleCI.
 
-Here is an example for test configuration in your `circleci.yml` file.
+Here is an example for test configuration in your `.circleci/config.yml` file.
 
 #### Step 1
 
 For the first time run all tests on a single CI node with enabled report generator.
-
-{% highlight yaml %}
-# CircleCI 1.0
-test:
-  override:
-    # Step for RSpec
-    - KNAPSACK_GENERATE_REPORT=true bundle exec rspec spec
-
-    # Step for Cucumber
-    - KNAPSACK_GENERATE_REPORT=true bundle exec cucumber features
-
-    # Step for Minitest
-    - KNAPSACK_GENERATE_REPORT=true bundle exec rake test
-    - KNAPSACK_GENERATE_REPORT=true bundle exec rake test test:system # For Rails 5.1 runs unit and system tests
-
-    # Step for Spinach
-    - KNAPSACK_GENERATE_REPORT=true bundle exec spinach
-{% endhighlight %}
 
 {% highlight yaml %}
 # CircleCI 2.0
@@ -514,27 +496,6 @@ After tests pass on your CircleCI machine you should copy knapsack json report w
 #### Step 2
 
 Now you should update test command and enable parallel. Please remember to add additional containers for your project in CircleCI settings.
-
-{% highlight yaml %}
-# CircleCI 1.0
-test:
-  override:
-    # Step for RSpec
-    - bundle exec rake knapsack:rspec:
-        parallel: true # Caution: there are 8 spaces indentation!
-
-    # Step for Cucumber
-    - bundle exec rake knapsack:cucumber:
-        parallel: true # Caution: there are 8 spaces indentation!
-
-    # Step for Minitest
-    - bundle exec rake knapsack:minitest:
-        parallel: true # Caution: there are 8 spaces indentation!
-
-    # Step for Spinach
-    - bundle exec rake knapsack:spinach:
-        parallel: true # Caution: there are 8 spaces indentation!
-{% endhighlight %}
 
 {% highlight yaml %}
 # CircleCI 2.0
