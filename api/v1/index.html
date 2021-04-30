@@ -374,7 +374,7 @@ false (default)
 // It can happen only when the queue does not exist on the API side or cannot be read from the cache on the API side
 {
   "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
-  "message": "A queue with a list of test files does not exist on the API side yet. Knapsack Pro client library should automatically make a new request to try to initialize the queue. The request must have attributes like can_initialize_queue=true, attempt_connect_to_queue=false, and test_files (must contain test files existing on the disk that you want to run), etc.",
+  "message": "A queue with a list of test files does not exist on the API side yet. If you see this message, everything works as expected. Now Knapsack Pro client will initialize a queue on the API side with a list of test files you want to run. The request to initialize the queue will have attributes like can_initialize_queue=true, attempt_connect_to_queue=false, and test_files, etc.",
   "code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
 }
 
