@@ -8,7 +8,7 @@ categories: news
 
 This is important information from me, Artur Trzop, founder of KnapsackPro.com. We are growing and want to provide better service to you and allow more developers to save time. Upcoming changes are:
 
-The new owner of the KnapsackPro.com product and all personal data provided by users will be Knapsack Technologies Ltd. I'm a founder and director at the Knapsack Technologies Ltd.
+The new operator of the KnapsackPro.com product and all personal data provided by users will be Knapsack Technologies Ltd. I'm a founder and director at the Knapsack Technologies Ltd.
 
 Contact address:
 <br>
