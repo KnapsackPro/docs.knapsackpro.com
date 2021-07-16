@@ -3,7 +3,7 @@ layout: post
 title:  "Change of Knapsack Pro business entity, and updates to our Terms and Conditions & Privacy Policy"
 date:   2021-01-15 08:00:00 +0100
 author: "Artur Trzop"
-categories: news
+categories: news_off
 ---
 
 This is important information from me, Artur Trzop, founder of KnapsackPro.com. We are growing and want to provide better service to you and allow more developers to save time. Upcoming changes are:
