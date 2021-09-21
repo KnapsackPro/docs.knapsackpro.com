@@ -191,6 +191,10 @@ Response does not contain any data.
 {
   "message": "Please update client knapsack_pro-ruby/rspec 2.3.0 version to 2.4.0. See CHANGELOG: https://github.com/KnapsackPro/knapsack_pro-ruby/blob/master/CHANGELOG.md#change-log"
 }
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/202" target="_blank">202</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>// when parallel CI node was retried too many times
+{
+  "message": "You retried this parallel CI node over 100 times for the CI build. Unfortunately, we did not save just executed test files on our side to avoid flooding our database. As a result, you won't see the latest recorded test files in the Knapsack Pro user dashboard. However, it doesn't affect your CI build - you can retry tests as many times as you like."
+}
 </code></pre><h2>HTTP status code <a href="http://httpstatus.es/422" target="_blank">422</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>// example 1
 {
   "errors": [
