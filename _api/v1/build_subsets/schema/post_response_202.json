@@ -1,4 +1,4 @@
 // when parallel CI node was retried too many times
 {
-  "message": "You retried this parallel CI node over 100 times for the CI build. Unfortunately, we did not save just executed test files on our side to avoid flooding our database. As a result, you won't see the latest recorded test files in the Knapsack Pro user dashboard. However, it doesn't affect your CI build - you can retry tests as many times as you like."
+  "message": "You retried this parallel CI node over 100 times for the CI build. Information about additional retries is not saved into our database. As a result, you won't see the latest recorded test files in the Knapsack Pro user dashboard. However, it doesn't affect your CI build - you can retry tests as many times as you like."
 }
