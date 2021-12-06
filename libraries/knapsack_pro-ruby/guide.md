@@ -981,6 +981,7 @@ If you are going to relay on rspec to autobalance build when cucumber tests were
   </p>
 
 {% highlight yaml %}
+{% raw %}
 # .github/workflows/main.yaml
 name: Main
 
@@ -1077,6 +1078,7 @@ jobs:
           bundle exec rake knapsack_pro:queue:rspec
           bundle exec rake knapsack_pro:queue:cucumber
           bundle exec rake knapsack_pro:queue:minitest
+{% endraw %}
 {% endhighlight %}
 
 </div>
@@ -1114,6 +1116,7 @@ jobs:
   </p>
 
 {% highlight yaml %}
+{% raw %}
 # .codefresh/codefresh.yml
 version: "1.0"
 
@@ -1180,6 +1183,7 @@ steps:
       - bundle exec rake knapsack_pro:queue:rspec
       - bundle exec rake knapsack_pro:queue:cucumber
       - bundle exec rake knapsack_pro:queue:minitest
+{% endraw %}
 {% endhighlight %}
 
 {% highlight yaml %}
