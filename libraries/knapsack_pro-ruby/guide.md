@@ -980,7 +980,106 @@ If you are going to relay on rspec to autobalance build when cucumber tests were
   Below you can find full GitHub Actions config for Ruby on Rails project.
   </p>
 
-  <script src="https://gist.github.com/ArturT/a35284f34c2dc0b61a0ad2b4dd4bacae.js"></script>
+{% highlight yaml %}
+{% raw %}
+# .github/workflows/main.yaml
+name: Main
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    # If you need DB like PostgreSQL, Redis then define service below.
+    # https://github.com/actions/example-services/tree/master/.github/workflows
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ""
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        # tmpfs makes DB faster by using RAM
+        options: >-
+          --mount type=tmpfs,destination=/var/lib/postgresql/data
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: --entrypoint redis-server
+
+    # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
+    strategy:
+      fail-fast: false
+      matrix:
+        # [n] - where the n is a number of parallel jobs you want to run your tests on.
+        # Use a higher number if you have slow tests to split them between more parallel jobs.
+        # Remember to update the value of the `ci_node_index` below to (0..n-1).
+        ci_node_total: [2]
+        # Indexes for parallel jobs (starting from zero).
+        # E.g. use [0, 1] for 2 parallel jobs, [0, 1, 2] for 3 parallel jobs, etc.
+        ci_node_index: [0, 1]
+
+    env:
+      RAILS_ENV: test
+      GEMFILE_RUBY_VERSION: 2.7.2
+      PGHOST: localhost
+      PGUSER: postgres
+      # Rails verifies the time zone in DB is the same as the time zone of the Rails app
+      TZ: "Europe/Warsaw"
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          # Not needed with a .ruby-version file
+          ruby-version: 2.7
+          # runs 'bundle install' and caches installed gems automatically
+          bundler-cache: true
+
+      - name: Create DB
+        run: |
+          bin/rails db:prepare
+      - name: Run tests
+        env:
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER }}
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST }}
+          KNAPSACK_PRO_TEST_SUITE_TEST_UNIT: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT }}
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH }}
+          KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+          KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+          KNAPSACK_PRO_LOG_LEVEL: info
+          # if you use Knapsack Pro Queue Mode you must set below env variable
+          # to be able to retry CI build and run previously recorded tests
+          # https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node
+          KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
+          # RSpec split test files by test examples feature - it's optional
+          # https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it
+          # KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES: true
+        run: |
+          # run tests in Knapsack Pro Regular Mode
+          bundle exec rake knapsack_pro:rspec
+          bundle exec rake knapsack_pro:cucumber
+          bundle exec rake knapsack_pro:minitest
+          bundle exec rake knapsack_pro:test_unit
+          bundle exec rake knapsack_pro:spinach
+          # you can use Knapsack Pro in Queue Mode once recorded first CI build with Regular Mode
+          bundle exec rake knapsack_pro:queue:rspec
+          bundle exec rake knapsack_pro:queue:cucumber
+          bundle exec rake knapsack_pro:queue:minitest
+{% endraw %}
+{% endhighlight %}
 
 </div>
 
@@ -1016,7 +1115,111 @@ If you are going to relay on rspec to autobalance build when cucumber tests were
   Add <code class="highlighter-rouge">.codefresh/codefresh.yml</code> and <code class="highlighter-rouge">Test.Dockerfile</code> files to your project repository.
   </p>
 
-  <script src="https://gist.github.com/ArturT/722bccf19bfdce3e5d2dbbc2cb89834a.js"></script>
+{% highlight yaml %}
+{% raw %}
+# .codefresh/codefresh.yml
+version: "1.0"
+
+stages:
+  - "clone"
+  - "build"
+  - "tests"
+
+steps:
+  main_clone:
+    type: "git-clone"
+    description: "Cloning main repository..."
+    repo: "${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}"
+    revision: "${{CF_BRANCH}}"
+    stage: "clone"
+  BuildTestDockerImage:
+    title: Building Test Docker image
+    type: build
+    arguments:
+      image_name: '${{CF_ACCOUNT}}/${{CF_REPO_NAME}}-test'
+      tag: '${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}'
+      dockerfile: Test.Dockerfile
+    stage: "build"
+
+  run_tests:
+    stage: "tests"
+    image: '${{BuildTestDockerImage}}'
+    working_directory: /src
+    fail_fast: false
+    environment:
+      - RAILS_ENV=test
+      # set how many parallel jobs you want to run
+      - KNAPSACK_PRO_CI_NODE_TOTAL=2
+      - PGHOST=postgres
+      - PGUSER=rails-app-with-knapsack_pro
+      - PGPASSWORD=password
+    services:
+      composition:
+        postgres:
+          image: postgres:latest
+          environment:
+            - POSTGRES_DB=rails-app-with-knapsack_pro_test
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_USER=rails-app-with-knapsack_pro
+          ports:
+            - 5432
+    matrix:
+      environment:
+        # please ensure you have here listed N-1 indexes
+        # where N is KNAPSACK_PRO_CI_NODE_TOTAL
+        - KNAPSACK_PRO_CI_NODE_INDEX=0
+        - KNAPSACK_PRO_CI_NODE_INDEX=1
+    commands:
+      - bin/rails db:prepare
+
+      # run tests in Knapsack Pro Regular Mode
+      - bundle exec rake knapsack_pro:rspec
+      - bundle exec rake knapsack_pro:cucumber
+      - bundle exec rake knapsack_pro:minitest
+      - bundle exec rake knapsack_pro:test_unit
+      - bundle exec rake knapsack_pro:spinach
+
+      # you can use Knapsack Pro in Queue Mode once recorded first CI build with Regular Mode
+      - bundle exec rake knapsack_pro:queue:rspec
+      - bundle exec rake knapsack_pro:queue:cucumber
+      - bundle exec rake knapsack_pro:queue:minitest
+{% endraw %}
+{% endhighlight %}
+
+{% highlight yaml %}
+# Test.Dockerfile
+FROM ruby:2.6.5-alpine3.10
+
+# Prepare Docker image for Nokogiri
+RUN apk add --update \
+  build-base \
+  libxml2-dev \
+  libxslt-dev \
+  jq \
+  nodejs \
+  npm \
+  postgresql-dev \
+  python3-dev \
+  sqlite-dev \
+  git \
+  && rm -rf /var/cache/apk/*
+
+# Install AWS CLI
+RUN pip3 install awscli
+
+# Use libxml2, libxslt a packages from alpine for building nokogiri
+RUN bundle config build.nokogiri --use-system-libraries
+
+# Install Codefresh CLI
+RUN wget https://github.com/codefresh-io/cli/releases/download/v0.31.1/codefresh-v0.31.1-alpine-x64.tar.gz
+RUN tar -xf codefresh-v0.31.1-alpine-x64.tar.gz -C /usr/local/bin/
+
+COPY . /src
+
+WORKDIR /src
+
+RUN bundle install
+{% endhighlight %}
 </div>
 
   <div id="guide-provider-other" class="hidden">
