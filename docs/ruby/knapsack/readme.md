@@ -1117,5 +1117,5 @@ Many thanks to [Małgorzata Nowak](https://github.com/informatykgosia) for beaut
 * Semaphore | [Running Cucumber scenarios in parallel](https://semaphoreapp.com/docs/running-cucumber-scenarios-in-threads.html)
 * Buildkite | [Libraries](https://buildkite.com/docs/guides/parallelizing-builds#libraries)
 * Snap CI | [Knapsack: optimal test suite split based on time execution](https://docs.snap-ci.com/speeding-up-builds/test-parallelism/#parallelism-using-third-party-tools%23knapsack-optimal-test-suite-split-based-on-time-execution)
-* CircleCI | [Test suite split with knapsack gem](https://circleci.com/docs/parallel-manual-setup/#test-suite-split-with-knapsack-gem)
+* CircleCI | [Test splitting documentation](https://circleci.com/docs/2.0/parallelism-faster-jobs/)
 * Michał Knapik Blog | [Knapsack with Jenkins Pipeline](http://blog.knapik.me/knapsack-with-jenkins-pipeline/)
