@@ -5,4 +5,5 @@ group :development do
   gem 'rake'
   gem 'guard'
   gem 'guard-rake'
+  gem 'webrick'
 end
