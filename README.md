@@ -45,6 +45,7 @@ We welcome any blog post in categories:
 
 # Development of blog
 
+    $ bundle config build.eventmachine --with-cppflags=-I$(brew --prefix openssl@1.1)/include
     $ bundle install
 
 Show post with future publish date.
