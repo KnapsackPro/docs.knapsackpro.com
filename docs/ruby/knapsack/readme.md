@@ -105,7 +105,7 @@ JavaScript examples for test runners:
   </tr>
 </table>
 
-{% include sign_up_widget.html %}
+<br>
 
 How knapsack_pro makes my life easier as opposed to regular knapsack gem?
 
