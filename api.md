@@ -39,5 +39,3 @@ You can learn how Knapsack Pro API works from the below videos or reading the ar
 <p>
 You may also find a useful article with examples of how to <a href="/2018/how-to-export-test-suite-timing-data-from-knapsack-pro-api">extract timing data for recorded CI builds</a> using API.
 </p>
-
-{% include sign_up_widget.html %}
