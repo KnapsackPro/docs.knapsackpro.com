@@ -25,7 +25,7 @@ Next, tell Cypress to use Mochawesome by adding the following to your `cypress.j
 {
   "reporter": {
     "reporterOptions": {
-      "overwrite": false,
+      "overwrite": true,
       "html": false,
       "json": true
     }
