@@ -33,7 +33,7 @@ Next, tell Cypress to use Mochawesome by adding the following to your `cypress.j
 }
 {% endhighlight %}
 
-Now, when you run a Cypress test suite, a `.json` test report file will be generated for each `.spec` file ran, inside the `mochawesome-report` directory. Since Knapsack Pro runs tests one at a time, we need `"overwrite": true` to ensure that previous test reports are kept during subsequent test runs.
+Now, when you run a Cypress test suite, a `.json` test report file will be generated for each `.spec` file ran, inside the `mochawesome-report` directory. Since Knapsack Pro runs tests one at a time, we need `"overwrite": false` to ensure that previous test reports are kept during subsequent test runs.
 
 Note that we wrote `"html": false` and `"json": true`. Since we're running tests one at a time, generating an HTML report now will be useless, since it will only show the results of one spec file. These options tell Mochawesome to only generate a JSON report. After all the tests are done, we will merge all the JSON reports together, then generate an HTML report, so that we have one report with all of our test results.
 
