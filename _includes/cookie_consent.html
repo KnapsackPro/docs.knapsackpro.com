@@ -36,7 +36,7 @@
 
       document.cookie = cookieName + "=true;expires=" + dateString
 
-      window.ga('send', 'event', 'Cookie consent', 'Cookie consent - I agree', 'Alert');
+      gtag('event', 'Cookie consent - I agree', {});
     });
   });
 </script>
