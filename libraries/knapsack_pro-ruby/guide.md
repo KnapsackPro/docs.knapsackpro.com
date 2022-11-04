@@ -88,10 +88,14 @@ KnapsackPro::Adapters::RSpecAdapter.bind
   <h3>Step for Minitest</h3>
 
   <p markdown="1">
-    Add the following code at the beginning of your `test/test_helper.rb`:
+    Add the Knapsack Pro code after you load the app environment in the `test/test_helper.rb` file:
   </p>
 
 {% highlight ruby %}
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
+require 'rails/test_help'
+
 require 'knapsack_pro'
 knapsack_pro_adapter = KnapsackPro::Adapters::MinitestAdapter.bind
 knapsack_pro_adapter.set_test_helper_path(__FILE__)
