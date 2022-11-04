@@ -246,9 +246,13 @@ Knapsack::Adapters::CucumberAdapter.bind
 
 ### Step for Minitest
 
-Add at the beginning of your `test_helper.rb`:
+Add the Knapsack code after you load the app environment in the `test/test_helper.rb` file:
 
 {% highlight ruby %}
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
+require 'rails/test_help'
+
 require 'knapsack'
 
 # CUSTOM_CONFIG_GOES_HERE
