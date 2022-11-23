@@ -16,6 +16,10 @@ example: |
     }
   ]
 description: |
-  JSON array with objects. Each object contains test file path.
+  JSON array with objects. Each object contains a test file path.
 
-  Example contains all test files existing in the test suite.
+  The example contains all test files in the test suite you want to run in your CI build.
+
+  When `attempt_to_read_from_cache=false`, then the `test_files` field is required to initialize a test suite split on the API side.
+
+  Otherwise, the `test_files` field is not needed. Do not set it in the body to save data transfer and make a fast request.
