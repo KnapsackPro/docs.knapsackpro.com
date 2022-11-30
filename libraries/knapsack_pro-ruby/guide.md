@@ -25,7 +25,7 @@ bundle install
 {% endhighlight %}
 
 
-If you are not using Rails, then add this line at the bottom of your `Rakefile`:
+If you are not using Rails, add this line at the bottom of your `Rakefile`:
 
 {% highlight ruby %}
 # Only needed if you are not using Rails.
