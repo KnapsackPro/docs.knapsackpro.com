@@ -1,6 +1,9 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+const DOCS_URL = 'https://docs.knapsackpro.com';
+const KNAPSACK_PRO_URL = 'https://knapsackpro.com';
+
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
@@ -51,23 +54,66 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Knapsack Pro logo',
+          src: 'img/logo.png',
+          href: 'https://knapsackpro.com/',
         },
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
+            type: 'html',
             position: 'left',
-            label: 'Tutorial',
+            className: 'pl-0',
+            value: `<a href="https://knapsackpro.com/" class="navbar__link site-title">Knapsack Pro</a>&nbsp;<a href="/" class="navbar__link site-title"> <strong>Docs</strong> </a>`,
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            type: 'html',
             position: 'right',
+            value: `<a href="https://www.youtube.com/c/ArturTrzop" class="navbar__link menu__link menu__link--icon" rel="nofollow noopener" target="_blank"><i class="fab fa-youtube"></i></a>`,
+          },
+          {
+            type: 'html',
+            position: 'right',
+            value: `<a href="https://twitter.com/KnapsackPro" class="navbar__link menu__link menu__link--icon" rel="nofollow noopener" target="_blank"><i class="fab fa-twitter"></i></a>`,
+          },
+          {
+            type: 'html',
+            position: 'right',
+            value: `<a href="https://www.facebook.com/KnapsackPro" class="navbar__link menu__link menu__link--icon" rel="nofollow noopener" target="_blank" class="pagelink"><i class="fab fa-facebook-square"></i></a>`,
+          },
+          {
+            type: 'html',
+            position: 'right',
+            value: `<a href="https://www.linkedin.com/company/knapsackpro/" class="navbar__link menu__link menu__link--icon" rel="nofollow noopener" target="_blank"><i class="fab fa-linkedin"></i></a>`,
+          },
+          {
+            type: 'html',
+            position: 'right',
+            value: `<a href="https://github.com/KnapsackPro" class="navbar__link menu__link menu__link--icon" rel="nofollow noopener" target="_blank"><i class="fab fa-github"></i></a>`,
+          },
+          {
+            to: DOCS_URL,
+            label: 'Blog',
+            position: 'right',
+            target: '_self'
+          },
+          {
+            to: `${DOCS_URL}/integration/`,
+            label: 'Get started with integration',
+            position: 'right',
+            target: '_self'
+          },
+          {
+            to: `${DOCS_URL}/api/`,
+            label: 'API',
+            position: 'right',
+            target: '_self'
+          },
+          {
+            to: KNAPSACK_PRO_URL,
+            label: 'Sign up',
+            position: 'right',
+            target: '_self'
           },
         ],
       },
