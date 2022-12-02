@@ -9,7 +9,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
+  title: 'Knapsack Pro Docs',
   tagline: 'Dinosaurs are cool',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
@@ -64,7 +64,7 @@ const config = {
             type: 'html',
             position: 'left',
             className: 'pl-0',
-            value: `<a href="https://knapsackpro.com/" class="navbar__link site-title">Knapsack Pro</a>&nbsp;<a href="/" class="navbar__link site-title"> <strong>Docs</strong> </a>`,
+            value: `<a href="https://knapsackpro.com/" class="navbar__link site-title">Knapsack Pro</a>&nbsp;<a href="/" class="navbar__link site-title"><strong>Docs</strong></a>`,
           },
           {
             type: 'html',
