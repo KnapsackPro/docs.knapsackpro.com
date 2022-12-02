@@ -3,6 +3,7 @@
 
 const DOCS_URL = 'https://docs.knapsackpro.com';
 const KNAPSACK_PRO_URL = 'https://knapsackpro.com';
+const REPO_URL = 'https://github.com/KnapsackPro/docs.knapsackpro.com';
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
@@ -118,14 +119,13 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
+        style: 'light',
         links: [
           {
-            title: 'Docs',
+            title: 'Contribute',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                html: `<ul class="contact-list"><li>Found a typo? Want to contribute?</li><li><a href=${REPO_URL}>Source Code of this site</a></li></ul>`
               },
             ],
           },
@@ -133,34 +133,32 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                html: `<a href="https://www.youtube.com/c/ArturTrzop" class="footer__link-item" rel="nofollow noopener" target="_blank"><i class="fab fa-youtube"></i>&nbsp;Testing tips</a>`,
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                html: `<a href="https://twitter.com/KnapsackPro" class="footer__link-item" rel="nofollow noopener" target="_blank"><i class="fab fa-twitter"></i>&nbsp;Follow us on Twitter</a>`,
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                html: `<a href="https://www.facebook.com/KnapsackPro" class="footer__link-item" rel="nofollow noopener" target="_blank" class="pagelink"><i class="fab fa-facebook-square"></i>&nbsp;Like our Fanpage</a>`,
+              },
+              {
+                html: `<a href="https://www.linkedin.com/company/knapsackpro/" class="footer__link-item" rel="nofollow noopener" target="_blank"><i class="fab fa-linkedin"></i>&nbsp;Follow us on LinkedIn</a>`,
+              },
+              {
+                html: `<a href="https://github.com/KnapsackPro" class="footer__link-item" rel="nofollow noopener" target="_blank"><i class="fab fa-github"></i>&nbsp;GitHub</a>`,
               },
             ],
           },
           {
-            title: 'More',
+            title: 'Knapsack Pro',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                html: `Speed up your tests with optimal test suite parallelisation on your CI.`
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `© 2015 - ${new Date().getFullYear()} <a href="${KNAPSACK_PRO_URL}">KnapsackPro.com</a>`,
       },
       prism: {
         theme: lightCodeTheme,
