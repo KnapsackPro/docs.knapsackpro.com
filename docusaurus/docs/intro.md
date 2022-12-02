@@ -2,6 +2,10 @@
 sidebar_position: 1
 ---
 
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+</head>
+
 # Tutorial Intro
 
 Let's discover **Docusaurus in less than 5 minutes**.
