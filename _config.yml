@@ -9,6 +9,7 @@ knapsack_pro_url: https://knapsackpro.com
 permalink: /:year/:title
 twitter_username: KnapsackPro
 github_repository: https://github.com/KnapsackPro/docs.knapsackpro.com
+exclude: ["docusaurus"]
 
 # Build settings
 markdown: kramdown
