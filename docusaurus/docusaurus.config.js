@@ -34,6 +34,13 @@ const config = {
         crossorigin: 'anonymous',
       },
     },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:site',
+        content: '@KnapsackPro',
+      },
+    },
   ],
 
   // Even if you don't use internalization, you can use this field to set useful

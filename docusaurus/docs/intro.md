@@ -1,4 +1,5 @@
 ---
+description: Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.
 sidebar_position: 1
 sidebar_label: Ruby Quickstart
 hide_table_of_contents: true
