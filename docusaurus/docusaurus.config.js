@@ -77,7 +77,7 @@ const config = {
             type: 'html',
             position: 'left',
             className: 'pl-0',
-            value: `<a href="https://knapsackpro.com/" class="navbar__link site-title">Knapsack Pro</a>&nbsp;<a href="/" class="navbar__link site-title"><strong>Docs</strong></a>`,
+            value: `<a href="https://knapsackpro.com/" class="navbar__link site-title" rel="nofollow noopener" target="_blank">Knapsack Pro</a>&nbsp;<a href="/" class="navbar__link site-title"><strong>Docs</strong></a>`,
           },
           {
             type: 'html',
@@ -126,7 +126,6 @@ const config = {
             to: KNAPSACK_PRO_URL,
             label: 'Sign up',
             position: 'right',
-            target: '_self'
           },
         ],
       },
@@ -137,7 +136,7 @@ const config = {
             title: 'Contribute',
             items: [
               {
-                html: `<ul class="contact-list"><li>Found a typo? Want to contribute?</li><li><a href=${REPO_URL}>Source Code of this site</a></li></ul>`
+                html: `<ul class="contact-list"><li>Found a typo? Want to contribute?</li><li><a href="${REPO_URL}" rel="nofollow noopener" target="_blank">Source Code of this site</a></li></ul>`
               },
             ],
           },
@@ -170,7 +169,7 @@ const config = {
             ],
           },
         ],
-        copyright: `© 2015 - ${new Date().getFullYear()} <a href="${KNAPSACK_PRO_URL}">KnapsackPro.com</a>`,
+        copyright: `© 2015 - ${new Date().getFullYear()} <a href="${KNAPSACK_PRO_URL}" rel="nofollow noopener" target="_blank">KnapsackPro.com</a>`,
       },
       prism: {
         theme: lightCodeTheme,
