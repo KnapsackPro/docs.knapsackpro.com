@@ -24,6 +24,18 @@ const config = {
   organizationName: 'KnapsackPro', // Usually your GitHub org/user name.
   projectName: 'docs.knapsackpro.com', // Usually your repo name.
 
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        href: 'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
+        integrity: 'sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp',
+        crossorigin: 'anonymous',
+      },
+    },
+  ],
+
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
