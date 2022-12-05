@@ -4,6 +4,7 @@ end
 
 Jekyll::Hooks.register :site, :post_write do |page|
   Dir.chdir("docusaurus") do
+    system!("npm install")
     system!("npm run build")
   end
   system!("cp -R docusaurus/build/img _site")
