@@ -77,9 +77,7 @@ Please answer the following questions to get the basic `knapsack_pro` configurat
 
   ### Step for RSpec
 
-  <p markdown="1">
-    Add the following code at the beginning of your `spec/rails_helper.rb` or `spec/spec_helper.rb`:
-  </p>
+  Add the following code at the beginning of your `spec/rails_helper.rb` or `spec/spec_helper.rb`:
 
 ```ruby
 require 'knapsack_pro'
@@ -91,9 +89,7 @@ KnapsackPro::Adapters::RSpecAdapter.bind
 
   ### Step for Minitest
 
-  <p markdown="1">
-    Add the Knapsack Pro code after you load the app environment in the `test/test_helper.rb` file:
-  </p>
+  Add the Knapsack Pro code after you load the app environment in the `test/test_helper.rb` file:
 
 ```ruby
 ENV['RAILS_ENV'] ||= 'test'
@@ -110,9 +106,7 @@ knapsack_pro_adapter.set_test_helper_path(__FILE__)
 
   ### Step for test-unit
 
-  <p markdown="1">
-    Add the following code at the beginning of your `test/test_helper.rb`:
-  </p>
+  Add the following code at the beginning of your `test/test_helper.rb`:
 
 ```ruby
 require 'knapsack_pro'
@@ -125,9 +119,7 @@ knapsack_pro_adapter.set_test_helper_path(__FILE__)
 
   ### Step for Cucumber
 
-  <p markdown="1">
-    Create a `features/support/knapsack_pro.rb` file with the following code:
-  </p>
+  Create a `features/support/knapsack_pro.rb` file with the following code:
 
 ```ruby
 require 'knapsack_pro'
@@ -139,9 +131,7 @@ KnapsackPro::Adapters::CucumberAdapter.bind
 
   ### Step for Spinach
 
-  <p markdown="1">
-    Create a `features/support/knapsack_pro.rb` file with the following code:
-  </p>
+  Create a `features/support/knapsack_pro.rb` file with the following code:
 
 ```ruby
 require 'knapsack_pro'
@@ -153,9 +143,7 @@ KnapsackPro::Adapters::SpinachAdapter.bind
 
   ### Step for VCR/WebMock/FakeWeb gems
 
-<p markdown="1">
   Add Knapsack Pro API subdomain to ignored hosts in `spec/spec_helper.rb` (or wherever your VCR configuration is located):
-</p>
 
 ```ruby
 require 'vcr'
@@ -173,9 +161,7 @@ require 'fakeweb'
 FakeWeb.allow_net_connect = %r[^https?://api\.knapsackpro\.com]
 ```
 
-<p markdown="1">
   Ensure you have the `require: false` setting in Gemfile for the webmock gem when VCR is hooked into it. Thanks to that, the webmock configuration from `spec_helper.rb` is loaded properly.
-</p>
 
 ```ruby
 group :test do
@@ -185,10 +171,8 @@ group :test do
 end
 ```
 
-<p markdown="1">
   If you still happen to see your tests failing due to WebMock not allowing requests to Knapsack Pro API, it probably means that you reconfigure WebMock in some of your tests.
   For instance, you might be using `WebMock.reset!`. It might also be called automatically in an `after(:each)` block when using `require 'webmock/rspec'` (<a href="https://github.com/bblimke/webmock/issues/484#issuecomment-116193449" target="_blank">more about the issue</a>). This would remove `api.knapsackpro.com` from the allowed domains. In this case, please try the following:
-</p>
 
 ```ruby
 RSpec.configure do |config|
@@ -259,10 +243,9 @@ build:
         bundle exec rake knapsack_pro:queue:cucumber
 ```
 
-  <p markdown="1">
-    Adjust the number of parallel containers with the `parallelism` attribute.<br />
-    Please consult a full example of <a href="https://docs.knapsackpro.com//2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless" target="_blank">Rails project config on CircleCI 2.0</a> for more details.
-  </p>
+  Adjust the number of parallel containers with the `parallelism` attribute.
+
+  Please consult a full example of <a href="https://docs.knapsackpro.com//2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless" target="_blank">Rails project config on CircleCI 2.0</a> for more details.
 
   <p>
     If you use knapsack_pro Queue Mode with CircleCI, you may want to collect metadata like <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#circleci-and-knapsack_pro-queue-mode" target="_blank">junit xml report about your RSpec</a> test suite with junit formatter. Thanks to that, you can see failed tests in the nice CircleCI web UI. It's also possible to <a href="https://knapsackpro.com/faq/question/how-to-use-junit-formatter" target="_blank">configure junit formatter for knapsack_pro Regular Mode</a>.
@@ -275,11 +258,9 @@ build:
 
 <div id="guide-provider-travis-ci" className="hidden" markdown="1">
 
-  ### Step for Travis CI
+### Step for Travis CI
 
-  <p markdown="1">
-    You can parallelize your builds across virtual machines with the <a href="http://docs.travis-ci.com/user/speeding-up-the-build/#parallelizing-your-builds-across-virtual-machines" target="_blank">travis matrix feature</a>. Edit your config in the `.travis.yml` file.
-  </p>
+You can parallelize your builds across virtual machines with the [travis matrix feature](http://docs.travis-ci.com/user/speeding-up-the-build/#parallelizing-your-builds-across-virtual-machines). Edit your config in the `.travis.yml` file.
 
 ```yaml
 script:
@@ -344,9 +325,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 KNAPSACK_PRO_TEST_SUIT
 
   ### Step for Buildkite
 
-  <p markdown="1">
-    Knapsack Pro automatically reads the Buildkite ENV variables: `BUILDKITE_PARALLEL_JOB_COUNT` and `BUILDKITE_PARALLEL_JOB`. The only thing you need to do is to configure the `parallelism` parameter in your build step and run the appropriate command in your build:
-  </p>
+  Knapsack Pro automatically reads the Buildkite ENV variables: `BUILDKITE_PARALLEL_JOB_COUNT` and `BUILDKITE_PARALLEL_JOB`. The only thing you need to do is to configure the `parallelism` parameter in your build step and run the appropriate command in your build:
 
 ```bash
 # Step for RSpec
@@ -365,9 +344,7 @@ bundle exec rake knapsack_pro:test_unit
 bundle exec rake knapsack_pro:spinach
 ```
 
-  <p markdown="1">
-    Please remember to set up your `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` as a global environment variable.
-  </p>
+  Please remember to set up your `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` as a global environment variable.
 
   <p>
     Here you can find an article showing <a href="http://docs.knapsackpro.com/2017/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example" target="_blank">how to set up a new pipeline for your project in Buildkite and configure Knapsack Pro</a>. You can also check out the following example repositories for Ruby/Rails projects:
@@ -378,13 +355,9 @@ bundle exec rake knapsack_pro:spinach
     <li><a href="https://github.com/KnapsackPro/buildkite-rails-docker-parallel-example-with-knapsack_pro" target="_blank">Buildkite Rails Docker Parallel Example with Knapsack Pro</a></li>
   </ul>
 
-  <p markdown="1">
-    If you want to retry single Buildkite agents (CI nodes), then you should set <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank">`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`</a>.
-  </p>
+  If you want to retry single Buildkite agents (CI nodes), then you should set [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node).
 
-  <p markdown="1">
-    When using the `docker-compose` plugin on Buildkite, you have to pass some environment variables to the docker container. This is needed for Knapsack Pro to work correctly:
-  </p>
+  When using the `docker-compose` plugin on Buildkite, you have to pass some environment variables to the docker container. This is needed for Knapsack Pro to work correctly:
 
 ```yaml
 steps:
@@ -409,23 +382,17 @@ steps:
 
 <div id="guide-provider-semaphoreci" className="hidden" markdown="1">
 
-  ### Step for Semaphore CI
+### Step for Semaphore CI
 
-  <h4>Semaphore 2.0 <small>(<a href="#semaphore_1_0">click here for Semaphore 1.0</a>)</small></h4>
+#### Semaphore 2.0 <small>(<a href="#semaphore_1_0">click here for Semaphore 1.0</a>)</small>
 
 
-  <p markdown="1">
-    Knapsack Pro supports environment variables provided by Semaphore CI 2.0 to run your tests. You need to define a few things in the `.semaphore/semaphore.yml` config file.
-  </p>
+Knapsack Pro supports environment variables provided by Semaphore CI 2.0 to run your tests. You need to define a few things in the `.semaphore/semaphore.yml` config file.
 
-  <ul>
-    <li><p markdown="1">You need to set `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`. If you don't want to commit secrets in the yml file, you can <a href="https://docs.semaphoreci.com/article/66-environment-variables-and-secrets" target="_blank" rel="nofollow">follow this guide</a>.</p></li>
-    <li>You should create as many parallel jobs as you need with the <i>parallelism</i> property. Use more parallel jobs for long test suites.</li>
-  </ul>
+- You need to set `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`. If you don't want to commit secrets in the yml file, you can [follow this guide](https://docs.semaphoreci.com/article/66-environment-variables-and-secrets).
+- You should create as many parallel jobs as you need with the *parallelism* property. Use more parallel jobs for long test suites.
 
-  <p>
-    Full Semaphore CI 2.0 config example for a Rails project:
-  </p>
+Full Semaphore CI 2.0 config example for a Rails project:
 
 ```yaml
 # .semaphore/semaphore.yml
@@ -502,9 +469,7 @@ blocks:
 
   <h4 id="semaphore_1_0">Semaphore 1.0</h4>
 
-  <p markdown="1">
-    Run the proper `knapsack_pro` command for as many threads as you need. Here is an example:
-  </p>
+  Run the proper `knapsack_pro` command for as many threads as you need. Here is an example:
 
 ```bash
 # Thread 1
@@ -534,7 +499,7 @@ bundle exec rake knapsack_pro:spinach
 
   <p>Your tests will be divided across threads.</p>
 
-  <p markdown="1">Please remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` token as a global environment variable.</p>
+  Please remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` token as a global environment variable.
 </div>
 
 
@@ -542,9 +507,7 @@ bundle exec rake knapsack_pro:spinach
 
   ### Step for CloudBees CodeShip
 
-  <p markdown="1">
-    You need to define a `KNAPSACK_PRO_CI_NODE_TOTAL` and `KNAPSACK_PRO_CI_NODE_INDEX` environment variables for each <a href="https://documentation.codeship.com/basic/builds-and-configuration/parallel-tests/#using-parallel-test-pipelines" target="_blank">parallel test pipeline</a>. Here is an example for 2 pipelines.
-  </p>
+  You need to define a `KNAPSACK_PRO_CI_NODE_TOTAL` and `KNAPSACK_PRO_CI_NODE_INDEX` environment variables for each <a href="https://documentation.codeship.com/basic/builds-and-configuration/parallel-tests/#using-parallel-test-pipelines" target="_blank">parallel test pipeline</a>. Here is an example for 2 pipelines.
 
   <p>First pipeline:</p>
 
@@ -588,32 +551,22 @@ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knaps
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:queue:rspec
 ```
 
-  <p markdown="1">
-    Remember to define API tokens as `KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER` and `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` on the <i>Environment</i> page of your project settings in CodeShip.
-  </p>
+  Remember to define API tokens as `KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER` and `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` on the <i>Environment</i> page of your project settings in CodeShip.
 
-  <p markdown="1">
-    CodeShip uses the same build number if you restart a build. Because of that, you need to set <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank">`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`</a> in order to be able to restart a CI build in Queue Mode.
-  </p>
+  CodeShip uses the same build number if you restart a build. Because of that, you need to set [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node) in order to be able to restart a CI build in Queue Mode.
 </div>
 
 <div id="guide-provider-heroku-ci" className="hidden" markdown="1">
 
   ### Step for Heroku CI
 
-  <p markdown="1">
-    You can parallelize your tests on Heroku CI using the `app.json` file.
-  </p>
+  You can parallelize your tests on Heroku CI using the `app.json` file.
 
-  <p markdown="1">
-    You can set the number of parallel dynos you want to run with the `quantity` value.
-    Use the `test` key to run Knapsack Pro.
-  </p>
+  You can set the number of parallel dynos you want to run with the `quantity` value.
+  Use the `test` key to run Knapsack Pro.
 
-  <p markdown="1">
-    You also need to specify the environment variable with an API token for Knapsack Pro.
-    This should not be stored directly in the `app.json`, so you can add them to your pipeline's Heroku CI settings (we show it below in the config for illustrative purposes).
-  </p>
+  You also need to specify the environment variable with an API token for Knapsack Pro.
+  This should not be stored directly in the `app.json`, so you can add them to your pipeline's Heroku CI settings (we show it below in the config for illustrative purposes).
 
 ```json
 # app.json
@@ -654,9 +607,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knaps
 
   ### Step for AppVeyor
 
-  <p markdown="1">
-    You need to define `KNAPSACK_PRO_CI_NODE_TOTAL` and `KNAPSACK_PRO_CI_NODE_INDEX` variables for each parallel job running as part of the same CI build.
-  </p>
+  You need to define `KNAPSACK_PRO_CI_NODE_TOTAL` and `KNAPSACK_PRO_CI_NODE_INDEX` variables for each parallel job running as part of the same CI build.
 
 ```bash
 # Step for RSpec for the first CI node
@@ -685,18 +636,14 @@ KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 bundle exec rake knaps
 KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:spinach
 ```
 
-  <p markdown="1">
   Please remember to define your API token in the `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` global environment variable.
-  </p>
 </div>
 
 <div id="guide-provider-gitlab-ci" className="hidden" markdown="1">
 
   ### Step for GitLab CI
 
-  <p markdown="1">
-    Remember to add your API tokens as env variables (e.g. `KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER` or `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`) to <a href="https://gitlab.com/help/ci/variables/README.md#secret-variables" target="_blank">Secret Variables</a> in GitLab CI Settings -> CI/CD Pipelines -> Secret Variables.
-  </p>
+  Remember to add your API tokens as env variables (e.g. `KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER` or `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`) to <a href="https://gitlab.com/help/ci/variables/README.md#secret-variables" target="_blank">Secret Variables</a> in GitLab CI Settings -> CI/CD Pipelines -> Secret Variables.
 
   <h4>GitLab CI >= 11.5</h4>
 
@@ -733,9 +680,7 @@ script: bundle exec rake knapsack_pro:rspec
 
 <h4>GitLab CI &lt; 11.5 (old GitLab CI)</h4>
 
-  <p markdown="1">
-    You need to define `KNAPSACK_PRO_CI_NODE_TOTAL` and `KNAPSACK_PRO_CI_NODE_INDEX` environment variables for each parallel job running as part of the same test stage. Here is a relevant part of the `.gitlab-ci.yml` configuration file for 2 parallel jobs:
-  </p>
+  You need to define `KNAPSACK_PRO_CI_NODE_TOTAL` and `KNAPSACK_PRO_CI_NODE_INDEX` environment variables for each parallel job running as part of the same test stage. Here is a relevant part of the `.gitlab-ci.yml` configuration file for 2 parallel jobs:
 
 ```yaml
 # .gitlab-ci.yml
@@ -809,13 +754,9 @@ bundle exec rake knapsack_pro:test_unit
 bundle exec rake knapsack_pro:spinach
 ```
 
-  <p markdown="1">
-    Please remember to define your API token in a global environment variable (e.g. `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` for RSpec).
-  </p>
+  Please remember to define your API token in a global environment variable (e.g. `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` for RSpec).
 
-  <p markdown="1">
-    Here is an example of a <a href="https://cirrus-ci.org/examples/#ruby" target="_blank">`.cirrus.yml` configuration file</a>.
-  </p>
+  Here is an example of a [`.cirrus.yml` configuration file](https://cirrus-ci.org/examples/#ruby).
 </div>
 
 <div id="guide-provider-jenkins" className="hidden" markdown="1">
@@ -827,9 +768,7 @@ bundle exec rake knapsack_pro:spinach
     You can learn more in this article: <a href="https://www.cloudbees.com/blog/parallelism-and-distributed-builds-jenkins" target="_blank">Parallelism and Distributed Builds with Jenkins</a>.
   </p>
 
-  <p markdown="1">
-    Here is an example of a `Jenkinsfile` working with Jenkins Pipeline.
-  </p>
+  Here is an example of a `Jenkinsfile` working with Jenkins Pipeline.
 
 ```groovy
 timeout(time: 60, unit: 'MINUTES') {
@@ -881,9 +820,7 @@ parallel nodes // run CI nodes in parallel
 }
 ```
 
-  <p markdown="1">
-    Please remember to define your API token in a global environment variable (e.g. `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` for RSpec).
-  </p>
+  Please remember to define your API token in a global environment variable (e.g. `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` for RSpec).
 
   <p>
     In the above example, we first run cucumber tests in the Regular Mode and then RSpec tests in the Queue Mode.
@@ -895,18 +832,12 @@ parallel nodes // run CI nodes in parallel
 
   ### Step for GitHub Actions
 
-  <p markdown="1">
-    You need to define a few things in your `.github/workflows/main.yaml` config file.
-  </p>
+  You need to define a few things in your `.github/workflows/main.yaml` config file.
 
-  <ul>
-    <li><p markdown="1">Set up your API token (e.g. `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`) in GitHub settings -> Secrets for your repository. (<a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository" target="_blank" rel="nofollow">More info</a>).</p></li>
-    <li><p markdown="1">You should create as many parallel jobs as you need with the <a href="https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix" target="_blank" rel="nofollow">`matrix` property</a>. Use more parallel jobs for slow test suites.</p></li>
-  </ul>
+  - Set up your API token (e.g. `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`) in GitHub settings -> Secrets for your repository. ([More info](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)).
+  - You should create as many parallel jobs as you need with the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix). Use more parallel jobs for slow test suites.
 
-  <p>
-    Here is a full GitHub Actions config for a Ruby on Rails project:
-  </p>
+Here is a full GitHub Actions config for a Ruby on Rails project:
 
 ```yaml
 {% raw %}
@@ -1009,9 +940,7 @@ test:
 {% endraw %}
 ```
 
-  <p markdown="1">
-    Github Actions uses the same build number if you restart a build. Because of that, you need to set <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank">`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`</a> in order to be able to restart a CI build in Queue Mode.
-  </p>
+  Github Actions uses the same build number if you restart a build. Because of that, you need to set [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node) in order to be able to restart a CI build in Queue Mode.
 
 </div>
 
@@ -1019,47 +948,21 @@ test:
 
   ### Step for Codefresh
 
-  <p markdown="1">
-    You need to define a few things in your `.codefresh/codefresh.yml` config file.
-  </p>
+  You need to define a few things in your `.codefresh/codefresh.yml` config file.
 
-  <ul>
-    <li>
-      <span markdown="1">
-        Define an API token (e.g. `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`) in the Codefresh dashboard. See left menu <i>Pipelines -> settings (cog icon next to the pipeline) -> Variables tab (see a vertical menu on the right-hand side)</i>. Add a new API token there depending on the test runner you use:
-      </span>
-        <ul>
-          <li><span markdown="1">`KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`</span></li>
-          <li><span markdown="1">`KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER`</span></li>
-          <li><span markdown="1">`KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST`</span></li>
-          <li><span markdown="1">`KNAPSACK_PRO_TEST_SUITE_TEST_UNIT`</span></li>
-          <li><span markdown="1">`KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH`</span></li>
-        </ul>
-    </li>
-    <li>
-      <span markdown="1">
-        Set the Codefresh YAML file path. In the Codefresh dashboard, see left menu <i>Pipelines -> settings (cog icon next to pipeline) -> Workflow tab (horizontal menu on the top) -> Path to YAML</i> (set: `./.codefresh/codefresh.yml`).
-      </span>
-    </li>
-    <li>
-      <span markdown="1">
-        Define how many parallel jobs (parallel CI nodes) you want to run with the `KNAPSACK_PRO_CI_NODE_TOTAL` environment variable in the `.codefresh/codefresh.yml` file.
-      </span>
-    </li>
-    <li>
-      <span markdown="1">
-        Ensure that in the `matrix` section, you listed all `KNAPSACK_PRO_CI_NODE_INDEX` environment variables with values from `0` to `KNAPSACK_PRO_CI_NODE_TOTAL-1`. Codefresh will generate a matrix of parallel jobs, with each job having a distinct value for the `KNAPSACK_PRO_CI_NODE_INDEX` variable. This is needed for Knapsack Pro to work correctly.
-      </span>
-    </li>
-  </ul>
+  - Define an API token (e.g. `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`) in the Codefresh dashboard. See left menu <i>Pipelines -> settings (cog icon next to the pipeline) -> Variables tab (see a vertical menu on the right-hand side)</i>. Add a new API token there depending on the test runner you use:
+    - `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`
+    - `KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER`
+    - `KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST`
+    - `KNAPSACK_PRO_TEST_SUITE_TEST_UNIT`
+    - `KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH`
+  - Set the Codefresh YAML file path. In the Codefresh dashboard, see left menu *Pipelines -> settings (cog icon next to pipeline) -> Workflow tab (horizontal menu on the top) -> Path to YAML* (set: `./.codefresh/codefresh.yml`).
+  - Define how many parallel jobs (parallel CI nodes) you want to run with the `KNAPSACK_PRO_CI_NODE_TOTAL` environment variable in the `.codefresh/codefresh.yml` file.
+  - Ensure that in the `matrix` section, you listed all `KNAPSACK_PRO_CI_NODE_INDEX` environment variables with values from `0` to `KNAPSACK_PRO_CI_NODE_TOTAL-1`. Codefresh will generate a matrix of parallel jobs, with each job having a distinct value for the `KNAPSACK_PRO_CI_NODE_INDEX` variable. This is needed for Knapsack Pro to work correctly.
 
-  <p markdown="1">
-    Below you can find an example Codefresh YAML config and `Test.Dockerfile` used by Codefresh to run Ruby on Rails project with PostgreSQL in a Docker container.
-  </p>
+  Below you can find an example Codefresh YAML config and `Test.Dockerfile` used by Codefresh to run Ruby on Rails project with PostgreSQL in a Docker container.
 
-  <p markdown="1">
-    Add `.codefresh/codefresh.yml` and `Test.Dockerfile` files to your project repository.
-  </p>
+  Add `.codefresh/codefresh.yml` and `Test.Dockerfile` files to your project repository.
 
 ```yaml
 {% raw %}
@@ -1315,9 +1218,7 @@ KNAPSACK_PRO_CI_NODE_INDEX - the index of each CI node (starting from 0)
     Once you confirm the knapsack_pro Regular Mode works and your tests are green, you may want to <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode" target="_blank">learn about Queue Mode and how to use it</a>.
   </p>
 
-  <p markdown="1">
-    <strong>Please ensure you explicitly set `RAILS_ENV=test` on your CI nodes. You can add this setting to your CI environment variables configuration. It is needed for the Queue Mode to run correctly.</strong>
-  </p>
+  **Please ensure you explicitly set `RAILS_ENV=test` on your CI nodes. You can add this setting to your CI environment variables configuration. It is needed for the Queue Mode to run correctly.**
 
 ```bash
 # Example command for the Regular Mode in RSpec
@@ -1338,23 +1239,15 @@ bundle exec rake knapsack_pro:queue:minitest
 bundle exec rake knapsack_pro:queue:cucumber
 ```
 
-  <p>
-    We recommend using the Regular Mode first in order to record execution data for your project. You could also use the Queue Mode to do that, but it will be much slower when recording your first build. Please ensure your tests are green in the Regular Mode and there are no order-dependent test failures before trying the Queue Mode.
-  </p>
+  We recommend using the Regular Mode first in order to record execution data for your project. You could also use the Queue Mode to do that, but it will be much slower when recording your first build. Please ensure your tests are green in the Regular Mode and there are no order-dependent test failures before trying the Queue Mode.
 
-  <p markdown="1">
-    <strong>Note for the Queue Mode:</strong> if you use a CI provider that allows you to just retry a single CI node (for instance, Travis CI allows this when tests fail only on one of the parallel CI nodes), or when you use CI nodes on servers that can be killed during runtime (for instance using Buildkite with Amazon EC2 Spot Instances/Google Cloud Preemptible that can be preempted during CI run), then in the Queue Mode you need to set the <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node" target="_blank"><b>`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`</b></a> flag in order to handle this correctly.
-  </p>
+  **Note for the Queue Mode:** if you use a CI provider that allows you to just retry a single CI node (for instance, Travis CI allows this when tests fail only on one of the parallel CI nodes), or when you use CI nodes on servers that can be killed during runtime (for instance using Buildkite with Amazon EC2 Spot Instances/Google Cloud Preemptible that can be preempted during CI run), then in the Queue Mode you need to set the [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node) flag in order to handle this correctly.
 
-  <p markdown="1">
-    <strong>An important step for CI providers that allow retrying single failed CI nodes (like Buildkite)</strong>: See <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#required-ci-configuration-if-you-use-retry-single-failed-ci-node-feature-on-your-ci-server-when-knapsack_pro_fixed_queue_splittrue-in-queue-mode-or-knapsack_pro_fixed_test_suite_splittrue-in-regular-mode" target="_blank">the required CI configuration if you retry single failed CI nodes on your CI server</a> when using the `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true` (for the Queue Mode) or the `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT=true` setting (for the Regular Mode).
-  </p>
+  **An important step for CI providers that allow retrying single failed CI nodes (like Buildkite)**: See [the required CI configuration if you retry single failed CI nodes on your CI server](https://github.com/KnapsackPro/knapsack_pro-ruby#required-ci-configuration-if-you-use-retry-single-failed-ci-node-feature-on-your-ci-server-when-knapsack_pro_fixed_queue_splittrue-in-queue-mode-or-knapsack_pro_fixed_test_suite_splittrue-in-regular-mode) when using the `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true` (for the Queue Mode) or the `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT=true` setting (for the Regular Mode).
 
-  <p markdown="1">
-    <strong>Common problems with the Queue Mode</strong>: If you notice any test failures for RSpec when using the knapsack_pro Queue Mode, then it means that your test suite needs to be adjusted for using the `RSpec::Core::Runner` multiple times (which is what the Queue Mode does). Please see our <a href="https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-my-tests-fail" target="_blank">FAQ entry for common Queue Mode problems</a>.<br />
-    <br />
-    If you think your problem is not covered there, please <a href="https://knapsackpro.com/contact" target="_blank">contact us</a>. We've seen many projects and realize that each test suite might introduce different edge cases that sometimes make RSpec fail. We'll be happy to help you debug yours!
-  </p>
+  **Common problems with the Queue Mode**: If you notice any test failures for RSpec when using the knapsack\_pro Queue Mode, then it means that your test suite needs to be adjusted for using the `RSpec::Core::Runner` multiple times (which is what the Queue Mode does). Please see our [FAQ entry for common Queue Mode problems](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-my-tests-fail).
+
+  If you think your problem is not covered there, please [contact us](https://knapsackpro.com/contact). We've seen many projects and realize that each test suite might introduce different edge cases that sometimes make RSpec fail. We'll be happy to help you debug yours!
 
   <p>
     You can learn more about custom configuration and other <a href="https://knapsackpro.com/features" target="_blank">features</a> from the <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#table-of-contents" target="_blank">documentation</a>.
