@@ -3,7 +3,7 @@ name: Build Jekyll and publish to GitHub Pages
 on:
   push:
     branches:
-      - gh-pages
+      - main
 
 jobs:
   jekyll:
