@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Estimate database connections pool size for Rails application</title>
+  <meta name="description" content="Configuring the database connections pool for the Rails app might not be a straightforward task for many programmers. There is a constraint of max opened con...">
+
+  <meta property="og:title" content="Estimate database connections pool size for Rails application">
+  <meta name="twitter:title" content="Estimate database connections pool size for Rails application">
+  <meta name="twitter:description" content="Configuring the database connections pool for the Rails app might not be a straightforward task for many programmers. There is a constraint of max opened con...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/rails-db-pool.jpeg">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/rails-db-pool.jpeg">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2021/estimate-database-connections-pool-size-for-rails-application">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Estimate database connections pool size for Rails application</h1>
+    <p class="post-meta">
+    <time datetime="2021-04-26T20:00:00+00:00" itemprop="datePublished">Apr 26, 2021</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Artur Trzop</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/estimate-database-connections-pool-size-for-rails-application" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Configuring the database connections pool for the Rails app might not be a straightforward task for many programmers. There is a constraint of max opened connections on a database level. Your server environment configuration can change in time and affect the number of connections to the database required. For instance number of servers you use can change when you autoscale it based on the web traffic. It means that the number of web processes/threads running for Puma or Unicorn servers could change. All this adds additional complexity. When you use two databases (e.g. Postgres + Redis), everything gets more complex. In this article, we will address that. You will learn how to estimate needed database connections for your Ruby on Rails production application.</p>
+
+<p><img src="/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/rails-db-pool.jpeg" style="width:400px;margin-left: 15px;float:right;" alt="Rails, RoR, DB, database, pool" /></p>
+
+<h2 id="why-do-available-database-connections-matter">Why do available database connections matter?</h2>
+
+<p>The first question is, why do you need to care about available database connections? The answer is simple. Suppose you configured your Ruby application to open too many DB connections. In that case, it could happen that you will get <code class="language-plaintext highlighter-rouge">ActiveRecord::ConnectionTimeoutError</code> exceptions from the application when the database cannot handle more new connections from your Rails app. It can result in 500 errors visible for your web app users.</p>
+
+<p>This problem might not be apparent immediately. Often you will find out about it in production. Your application might work just fine until specific circumstances cause the Rails app to need more DB connections, which can trigger exception flood. Let’s see how to avoid it.</p>
+
+<h2 id="ror-application-configuration-step-by-step">RoR application configuration step by step</h2>
+
+<p>Let’s break a typical Ruby on Rails application down into smaller components that use databases.</p>
+
+<ul>
+  <li>We have a Rails application that uses the Postgres database for ActiveRecord usage.</li>
+  <li>We also use the Redis database for background workers like Sidekiq.</li>
+</ul>
+
+<p>It looks simple, isn’t it? Let’s start with that, and later on, we will add more complexity to the mix :)</p>
+
+<h2 id="postgres-database-connections---how-to-check-the-limit">Postgres database connections - how to check the limit?</h2>
+
+<p>How to check how many available connections do you have for Postgres?</p>
+
+<ul>
+  <li>If you use a dedicated server with Postgres installed, then most likely you have a default <code class="language-plaintext highlighter-rouge">max_connections</code> which is typically 100 connections.</li>
+  <li>If you use a Postgres instance on the AWS, then you need to check the AWS documentation to find out what’s the max allowed connections to your database instance (it depends on if you use Amazon RDS or Aurora and what is server instance class)</li>
+  <li>If you use Heroku, you can check the <code class="language-plaintext highlighter-rouge">Connection Limit</code> for the <a href="https://elements.heroku.com/addons/heroku-postgresql#pricing">Postgres Heroku add-on</a> to check max acceptable connections.</li>
+</ul>
+
+<h2 id="activerecord-connection-pool">ActiveRecord connection pool</h2>
+
+<p>In your Rails application, the <code class="language-plaintext highlighter-rouge">config/database.yml</code> file contains the <code class="language-plaintext highlighter-rouge">pool</code> option. As explained in the <a href="https://edgeguides.rubyonrails.org/configuring.html#database-pooling">Rails docs</a>:</p>
+
+<blockquote>
+  <p>Active Record database connections are managed by <code class="language-plaintext highlighter-rouge">ActiveRecord::ConnectionAdapters::ConnectionPool</code>, which ensures that a connection pool synchronizes the amount of thread access to a limited number of database connections.</p>
+
+  <p>Since the connection pooling is handled inside of Active Record by default, all application servers (Thin, Puma, Unicorn, etc.) should behave the same. The database connection pool is initially empty. As demand for connections increases, it will create them until it reaches the connection pool limit.</p>
+
+  <p>Any one request will check out a connection the first time it requires access to the database. At the end of the request, it will check the connection back in. This means that the additional connection slot will be available again for the next request in the queue.</p>
+</blockquote>
+
+<p>The <code class="language-plaintext highlighter-rouge">pool</code> can be defined this way:</p>
+
+<figure class="highlight"><pre><code class="language-yml" data-lang="yml"><span class="na">production</span><span class="pi">:</span>
+  <span class="na">adapter</span><span class="pi">:</span> <span class="s">postgresql</span>
+  <span class="na">database</span><span class="pi">:</span> <span class="s">blog_production</span>
+  <span class="na">pool</span><span class="pi">:</span> <span class="s">5</span></code></pre></figure>
+
+<p>or as a part of a URL to the database:</p>
+
+<figure class="highlight"><pre><code class="language-yml" data-lang="yml"><span class="na">development</span><span class="pi">:</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s">postgresql://localhost/blog_production?pool=5</span></code></pre></figure>
+
+<p>The URL option is popular when you host a database on an external server like Amazon RDS. Then you could define the URL this way:</p>
+
+<figure class="highlight"><pre><code class="language-yml" data-lang="yml"><span class="na">production</span><span class="pi">:</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s">postgres://blog_production:PASSWORD@blog-production.abcdefgh.eu-west-1.rds.amazonaws.com/blog_production?sslca=config/rds-combined-ca-bundle.pem&amp;pool=5</span></code></pre></figure>
+
+<p>Please note that for the production, you should not commit credentials in the <code class="language-plaintext highlighter-rouge">config/database.yml</code> file. Instead, store it in environment variables and then read the value at your Rails app’s runtime.</p>
+
+<figure class="highlight"><pre><code class="language-yml" data-lang="yml"><span class="na">production</span><span class="pi">:</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s">&lt;%= ENV['DB_URL'] %&gt;</span></code></pre></figure>
+
+<h2 id="how-does-activerecord-connection-pool-affects-postgres-max-connections">How does ActiveRecord connection pool affects Postgres max connections?</h2>
+
+<p>Let’s start with a simple example. Your application may use one of the application servers like Puma or Unicorn. Let’s focus on Puma because it’s more complex as it has a separate configuration for several processes (known as workers in Puma terms) and threads. Unicorn runs in a single thread only. It works exactly like Puma with a single thread setting.</p>
+
+<p><img src="/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/puma.jpeg" style="width:400px;margin-left: 15px;float:right;" alt="Rails, RoR, DB, database, pool" /></p>
+
+<h3 id="puma-config-1-process-and-1-thread">Puma config: 1 process and 1 thread</h3>
+
+<p>Let’s say you use the Puma server to run the Rails application. The Puma is configured to run 1 process (worker) and it has only 1 thread.</p>
+
+<p>The puma process can open up to 5 connections to the database because the <code class="language-plaintext highlighter-rouge">pool</code> option is defined as 5 in <code class="language-plaintext highlighter-rouge">config/database.yml</code>. Typically, there are fewer connections than that because when you run 1 process and only 1 thread, only 1 connection to the Postgres database will be needed to make a database query.</p>
+
+<p>Sometimes the database connection might be dead. In such a case, ActiveRecord can open a new connection, and then you may end up with 2 active connections. In the worst-case scenario when 4 connections would be dead, then Rails can open 5 connections max.</p>
+
+<h3 id="puma-config-1-process-and-2-threads">Puma config: 1 process and 2 threads</h3>
+
+<p>If you use 2 threads in a single Puma process (worker) then it means those 2 threads can use the same pool of DB connections within the Puma process.</p>
+
+<p>It means that 2 DB connections will be open out of 5 possible. If any connection is dead, then more connections can be opened until the 5 connection pool limit is reached.</p>
+
+<h3 id="puma-config-2-processes-and-2-threads-per-process">Puma config: 2 processes and 2 threads per process</h3>
+
+<p>If you run 2 Puma processes (workers) and each process has 2 threads then it means that each single process will open 2 DB connections because you have 2 threads per process. You have 2 processes so it means at the start of your application, there might be 4 DB connections open. Each process has its pool, so you have 2 pools. Each pool can open up to 5 DB connections. It means that in the worst-case scenario, there can be even 10 connections created to the database.</p>
+
+<p>Assuming you use 2 threads per Puma process, it’s good to have the <code class="language-plaintext highlighter-rouge">pool</code> option set to 2 + some spare connections. It allows ActiveRecord to open a new connection if one of the DB connections is dead.</p>
+
+<h3 id="puma-config-2-processes-and-2-threads-and-2-web-dynos-on-heroku">Puma config: 2 processes and 2 threads, and 2 web dynos on Heroku</h3>
+
+<p>If you use Heroku to host your application, it allows scaling your web application horizontally by adding more servers (dynos). Assume you run your application on 2 servers (2 Heroku dynos), each dyno is running 2 Puma processes, and each process has 2 threads. It means at the start, your application may open 6 connections to the database. Here is why:</p>
+
+<p>2 dynos X 2 Puma processes X 2 Puma threads = 6 DB connections</p>
+
+<p>2 dynos X 2 Puma process X Pool size (5) = Total pool size 20</p>
+
+<p>It means that in the worst-case your application may open 20 DB connections.</p>
+
+<h4 id="autoscaling-web-application">Autoscaling web application</h4>
+
+<p>If you autoscale your web servers by adding more servers during the peak web traffic, you need to be careful. Ensure your application stays within the Postgres max connections limit. The above example shows you how to calculate expected opened DB connections and the worst-case scenario.  Please adjust your pool size to ensure that you will be below the max connections limit for your database engine in the worst-case scenario.</p>
+
+<h2 id="what-else-can-open-db-connections">What else can open DB connections?</h2>
+
+<p>We just talked about a webserver like Puma that can open connections and consume your max DB connections limit. But other non-web processes can do it as well:</p>
+
+<ul>
+  <li>You run Rails console on production in a Heroku dyno <code class="language-plaintext highlighter-rouge">heroku run bin/rails console --app=my-app-name</code>. It runs an instance of your Rails app, and 1 DB connection will be open. In the worst-case scenario, the number of connections defined in the <code class="language-plaintext highlighter-rouge">pool</code> can be opened. But it’s unlikely that your DB connections would go dead. So the whole pool limit shouldn’t be used.</li>
+  <li>You run scheduled rake tasks via Heroku Scheduler (cron-like tool). If the rake tasks are performed periodically, they need to open a connection to the DB so that at least 1 DB connection is used from the pool per rake task. Imagine you have 10 rake tasks that are started every hour. It means you need 10 available DB connections every hour. It can be easy to miss this if you base your estimation on just the web connections.</li>
+  <li>You use background workers like Sidekiq to perform async jobs. Your jobs may open DB connections. We will talk about it later.</li>
+</ul>
+
+<h2 id="background-worker---sidekiq-and-activerecord-pool">Background worker - Sidekiq and ActiveRecord pool</h2>
+
+<p>Sidekiq process will use the pool defined in <code class="language-plaintext highlighter-rouge">config/database.yml</code> similarly as Puma. All Sidekiq threads in a Sidekiq process can use a common pool of connections.</p>
+
+<p>If you run multiple servers (Heroku dynos), then it works similarly to the Puma example.</p>
+
+<p>2 servers (dynos) X 1 Sidekiq process X 10 Sidekiq threads = 20 DB connections will be open.</p>
+
+<p>You need to have a pool size of at least 10 in <code class="language-plaintext highlighter-rouge">config/database.yml</code> because Sidekiq by default, uses 10 threads.</p>
+
+<p>If you use a pool size lower than 10 then Sidekiq threads will be fighting for access to limited connections in the pool. It could be fine for some time, but you should be aware that this can increase your job’s processing time because not all Sidekiq threads will use DB connections in parallel. It can also lead to <a href="https://github.com/mperham/sidekiq/wiki/Problems-and-Troubleshooting#cannot-get-database-connection-within-500-seconds">a problem described here</a>.</p>
+
+<h3 id="sidekiq-and-redis-database-connections">Sidekiq and Redis database connections</h3>
+
+<p><img src="/images/blog/posts/estimate-database-connections-pool-size-for-rails-application/redis.jpeg" style="width:200px;margin-left: 15px;float:right;" alt="Rails, RoR, DB, database, pool" /></p>
+
+<p>Sidekiq uses the Redis database to store async jobs. It would be best if you calculate DB connections to Redis as well as Postgres connections. A Sidekiq server process requires at least (concurrency + 5) connections. The <code class="language-plaintext highlighter-rouge">concurrency</code> option is the number of Sidekiq threads per Sidekiq process.</p>
+
+<p>Using the previous example:</p>
+
+<p>2 servers (dynos) X 1 Sidekiq process X 10 Sidekiq threads = 2 servers (dynos) X 1 Sidekiq process X (10 + 5) = 30 Redis connections required.</p>
+
+<p>More in <a href="https://github.com/mperham/sidekiq/wiki/Using-Redis#complete-control">Sidekiq docs</a>.</p>
+
+<h2 id="redis-database-connections">Redis database connections</h2>
+
+<p>If you use Redis for processing background jobs, then it’s not just the Sidekiq process that is using Redis connections. Your Puma process and threads can use Redis to add new jobs to the Sidekiq queue as well. Typically you will have 1 Redis connection per 1 Puma thread.</p>
+
+<p>If you explicitly open a new Redis connection with <code class="language-plaintext highlighter-rouge">Redis.new</code>, this can create a new connection per the Puma thread as well.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>We covered a few examples of Postgres and Redis on calculating DB connections needed by your Rails application. I hope this will give you a better understanding of how to estimate how many DB connections you need on your database level to serve your application’s demands properly.</p>
+
+<p>If you are looking to improve your Rails application workflow please consider checking how to <a href="/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation">run automated tests in parallel on your CI server</a> with <a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=estimate-database-connections-pool-size-for-rails-application">Knapsack Pro</a>.</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/estimate-database-connections-pool-size-for-rails-application" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+<div class="wrapper">
+<div class="author-container">
+  <img src="//gravatar.com/avatar/e3be50760a95eebc47c7f239b3ad3ede.png" class="rounded-circle author-img" alt="Artur Trzop" />
+  <div class="author-info">
+    <p>
+    Written by <strong>Artur Trzop</strong>
+    </p>
+    <p>
+    Let's connect on <i class="fab fa-linkedin linkedin-color"></i> <a href="https://www.linkedin.com/in/arturtrzop/" rel="nofollow noopener" target="_blank" class="page-link">LinkedIn</a> or see my <i class="fab fa-youtube youtube-color"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">YouTube</a>
+    </p>
+    <p>
+    Founder of Knapsack Pro, follow on <i class="fab fa-twitter twitter-color"></i> <a href="https://twitter.com/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Twitter</a>
+    </p>
+  </div>
+</div>
+</div>
+
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2021/estimate-database-connections-pool-size-for-rails-application"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2021/estimate-database-connections-pool-size-for-rails-application"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

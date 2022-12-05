@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Fix intermittently failing CI builds due to flaky tests in RSpec</title>
+  <meta name="description" content="Randomly failing CI builds can be frustrating. One run is green, another is red (with no changes in the code!). Disheartening. Let’s see what can be done wit...">
+
+  <meta property="og:title" content="Fix intermittently failing CI builds due to flaky tests in RSpec">
+  <meta name="twitter:title" content="Fix intermittently failing CI builds due to flaky tests in RSpec">
+  <meta name="twitter:description" content="Randomly failing CI builds can be frustrating. One run is green, another is red (with no changes in the code!). Disheartening. Let’s see what can be done wit...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/fix-intermittently-failing-ci-builds-flaky-tests-rspec/flaky_tests.jpeg">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/fix-intermittently-failing-ci-builds-flaky-tests-rspec/flaky_tests.jpeg">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2021/fix-intermittently-failing-ci-builds-flaky-tests-rspec">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Fix intermittently failing CI builds due to flaky tests in RSpec</h1>
+    <p class="post-meta">
+    <time datetime="2021-02-15T08:00:00+00:00" itemprop="datePublished">Feb 15, 2021</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Shadi Rezek</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/fix-intermittently-failing-ci-builds-flaky-tests-rspec" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Randomly failing CI builds can be frustrating. One run is green, another is red (with no changes in the code!). Disheartening. Let’s see what can be done with this.</p>
+
+<p><img src="/images/blog/posts/fix-intermittently-failing-ci-builds-flaky-tests-rspec/flaky_tests.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Knapsack Pro API" /></p>
+
+<h2 id="random-failures">Random failures</h2>
+
+<p>When builds are randomly failing, flaky tests are often the culprit.</p>
+
+<p>A flaky test is a test that can both fail and pass for the exact same code. In other (and more fancy) words, the test is <em>nondeterministic</em>. Its outcome varies, even if (seemingly) nothing else does.</p>
+
+<h2 id="trust-issues">Trust issues</h2>
+
+<p>Nondeterministic tests erode trust. Keeping them in the mix can quickly cause the whole test suite to lose its value. Think about it. The failed build is useful when the failure actually signifies something. It needs to make us stop. To signal that something needs fixing. The more it happens for trivial reasons, the less alert we become to it.</p>
+
+<p>It’s better to not run the test case at all if it can’t be trusted to provide useful feedback.</p>
+
+<h2 id="first-things-first">First things first</h2>
+
+<p>When you encounter this problem, think if you need a given test at all. If it wasn’t there already, would you write it? Ask other team members for their opinion.</p>
+
+<p>If the test is deemed important, the correct (and safest) solution would be to debug and solve the underlying issues right away.</p>
+
+<p>Not possible at the moment? At least make sure that it’s the <em>failure</em> of the test which is random, and not its <em>passing</em>. Then I strongly suggest documenting the issue, creating a ticket, or planning to solve it in some other way.</p>
+
+<p>Raise the issue inside your team. If they care about quality assurance and continuous delivery (or their own <em>sanity</em>, really), they will understand.</p>
+
+<p>When this is taken care of, we have a few short-term options.</p>
+
+<h2 id="rerunning-failed-builds">Rerunning failed builds</h2>
+
+<p>When the failure of a CI build is attributed to randomness, the natural reaction is to retry the build. If the rerun build passes, it would be best to still document what happened.</p>
+
+<p>Some CI providers let you configure auto-retrying failed builds. It might be tempting to “solve” randomness this way. I advise against using it (for flaky tests anyway).</p>
+
+<p>Here at Knapsack we are all about <a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=fix-intermittently-failing-ci-builds-flaky-tests-rspec">decreasing build times</a>. We strongly believe that the shorter the build times, the more productive the team becomes. Frequently rerunning the whole build results in just the opposite. It wastes a lot of time.</p>
+
+<h2 id="if-you-dont-trust-it-x-it">If you don’t trust it, x it!</h2>
+
+<p>In RSpec, we can change the <code class="language-plaintext highlighter-rouge">it</code> method (denoting a test example) to <code class="language-plaintext highlighter-rouge">xit</code> to skip a given test case [1]. By default, RSpec’s output shows how many tests were skipped. This way, they stay visible. This increases the chance that they will be fixed. That’s what makes this solution advantageous over just commenting the problematic code out.</p>
+
+<h2 id="rerunning-failed-test-case">Rerunning failed test case</h2>
+
+<p>Some flaky tests are caused by inadvertent order dependence or timing issues. Rerunning the individual example could result in a pass. <a href="https://github.com/NoRedInk/rspec-retry"><code class="language-plaintext highlighter-rouge">rspec-retry</code></a> is a library for RSpec that allows doing just that. With it, you can configure which tests should be retried on failure, and how many times. It’s also possible to specify wait time before subsequent retries.</p>
+
+<p>Retrying on a test case level limits the amount of time wasted. If you use <a href="/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation#dynamic-tests-split---queue-mode">Knapsack Pro in the Queue Mode</a>, the waste should be negligible.</p>
+
+<p>If you don’t use RSpec, just search for a similar solution for your test runner. It’s likely to be built-in or provided as an extension by an additional library.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>By understanding the consequences of each solution, we are well-equipped to tackle flaky tests.</p>
+
+<p><strong>How does your team respond to random failures?</strong> Please share in the comments below!</p>
+
+<p><br /></p>
+
+<hr />
+<p>[1] The ‘x’ prefix works with other methods as well. Please consult the <a href="https://relishapp.com/rspec/rspec-core/v/3-9/docs/pending-and-skipped-examples/skip-examples">RSpec docs</a> for details.</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/fix-intermittently-failing-ci-builds-flaky-tests-rspec" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2021/fix-intermittently-failing-ci-builds-flaky-tests-rspec"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2021/fix-intermittently-failing-ci-builds-flaky-tests-rspec"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

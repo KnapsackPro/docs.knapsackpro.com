@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Best Heroku add-ons for Ruby on Rails project</title>
+  <meta name="description" content="After working for over 8 years with Heroku and Ruby on Rails projects I have my own favorite set of Heroku add-ons that work great with Rails apps. You are a...">
+
+  <meta property="og:title" content="Best Heroku add-ons for Ruby on Rails project">
+  <meta name="twitter:title" content="Best Heroku add-ons for Ruby on Rails project">
+  <meta name="twitter:description" content="After working for over 8 years with Heroku and Ruby on Rails projects I have my own favorite set of Heroku add-ons that work great with Rails apps. You are a...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/heroku_addons.jpeg">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/heroku_addons.jpeg">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2021/best-heroku-add-ons-for-ruby-on-rails-project">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Best Heroku add-ons for Ruby on Rails project</h1>
+    <p class="post-meta">
+    <time datetime="2021-02-25T07:00:00+00:00" itemprop="datePublished">Feb 25, 2021</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Artur Trzop</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/best-heroku-add-ons-for-ruby-on-rails-project" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>After working for over 8 years with Heroku and Ruby on Rails projects I have my own favorite set of Heroku add-ons that work great with Rails apps. You are about to learn about the add-ons that come in handy in your daily Ruby developer life.</p>
+
+<p><img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/heroku_addons.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Heroku, Heroku Marketplace, Heroku add-on, add-on, add-ons, Ruby, RoR, Rails, Ruby on Rails" /></p>
+
+<h2 id="heroku-add-ons">Heroku add-ons</h2>
+
+<p>Here it is, a list of my favorite Heroku add-ons from Heroku Marketplace and why I choose them for my Ruby on Rails projects hosted on Heroku.</p>
+
+<h3 id="heroku-scheduler">Heroku Scheduler</h3>
+
+<p><a href="https://elements.heroku.com/addons/scheduler">Heroku Scheduler</a> can run scheduled tasks every 10 minutes, every hour, or every day. I use it to run my scheduled rake tasks. For instance every day I run a rake task that will send a summary of users who signed up in the last 24 hours to my mailbox.</p>
+
+<p>Heroku Scheduler add-on is free. The only limitation is that it has fewer options than the cron in the Unix system. If you need to run a rake task every Monday then you need to set up a rake task as a daily task in Heroku Scheduler and do a check of the day in the rake task itself to skip it when needed.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># lib/tasks/schedule/notify_users_about_past_due_subscription.rake</span>
+<span class="n">namespace</span> <span class="ss">:schedule</span> <span class="k">do</span>
+  <span class="n">desc</span> <span class="s1">'Send notification about past due subscriptions to users'</span>
+  <span class="n">task</span> <span class="ss">notify_users_about_past_due_subscription: :environment</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="no">Time</span><span class="p">.</span><span class="nf">current</span><span class="p">.</span><span class="nf">monday?</span>
+      <span class="no">Billing</span><span class="o">::</span><span class="no">NotifyUsersAboutPastDueSubscriptionWorker</span><span class="p">.</span><span class="nf">perform_async</span>
+    <span class="k">else</span>
+      <span class="no">Rails</span><span class="p">.</span><span class="nf">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"Skip schedule:notify_users_about_past_due_subscription task."</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<h3 id="new-relic-apm">New Relic APM</h3>
+
+<p><a href="https://elements.heroku.com/addons/newrelic">New Relic</a> add-on does application performance monitoring. It’s one of my favorite add-ons. It allows to track each process like puma/unicorn/sidekiq per dyno and its performance. You can see which Rails controller actions take the most time. You can see your API endpoints with the highest throughput and those which are time-consuming. New Relic helped me many times to debug bottlenecks in my app and thanks to that I was able to make <a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=best-heroku-add-ons-for-ruby-on-rails-project">Knapsack Pro API</a> with an average 50ms response time. Who said the Rails app has to be slow? :)</p>
+
+<p><img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/new_relic_api_response_time.png" alt="New Relic, response time, Rails, Ruby, API" /></p>
+
+<h3 id="rollbar">Rollbar</h3>
+
+<p><a href="https://elements.heroku.com/addons/rollbar">Rollbar</a> allows for exception tracking in your Ruby code and also in JS code on the front end side. It has a generous free plan with a 5000 exception limit per month.</p>
+
+<p>You can easily ignore some common Rails exceptions to stay within the free plan limit.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># config/initializers/rollbar.rb</span>
+<span class="no">Rollbar</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">access_token</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'ROLLBAR_ACCESS_TOKEN'</span><span class="p">]</span>
+
+  <span class="k">if</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">test?</span> <span class="o">||</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">development?</span>
+    <span class="n">config</span><span class="p">.</span><span class="nf">enabled</span> <span class="o">=</span> <span class="kp">false</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Add exception class names to the exception_level_filters hash to</span>
+  <span class="c1"># change the level that exception is reported at. Note that if an exception</span>
+  <span class="c1"># has already been reported and logged the level will need to be changed</span>
+  <span class="c1"># via the rollbar interface.</span>
+  <span class="c1"># Valid levels: 'critical', 'error', 'warning', 'info', 'debug', 'ignore'</span>
+  <span class="c1"># 'ignore' will cause the exception to not be reported at all.</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">exception_level_filters</span><span class="p">.</span><span class="nf">merge!</span><span class="p">(</span><span class="s1">'ActionController::RoutingError'</span> <span class="o">=&gt;</span> <span class="s1">'ignore'</span><span class="p">)</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">exception_level_filters</span><span class="p">.</span><span class="nf">merge!</span><span class="p">(</span><span class="s1">'ActionController::InvalidAuthenticityToken'</span> <span class="o">=&gt;</span> <span class="s1">'ignore'</span><span class="p">)</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">exception_level_filters</span><span class="p">.</span><span class="nf">merge!</span><span class="p">(</span><span class="s1">'ActionController::BadRequest'</span> <span class="o">=&gt;</span> <span class="s1">'ignore'</span><span class="p">)</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">exception_level_filters</span><span class="p">.</span><span class="nf">merge!</span><span class="p">(</span><span class="s1">'ActiveRecord::RecordNotFound'</span> <span class="o">=&gt;</span> <span class="s1">'ignore'</span><span class="p">)</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">exception_level_filters</span><span class="p">.</span><span class="nf">merge!</span><span class="p">(</span><span class="s1">'Rack::Timeout::RequestTimeoutException'</span> <span class="o">=&gt;</span> <span class="s1">'ignore'</span><span class="p">)</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">exception_level_filters</span><span class="p">.</span><span class="nf">merge!</span><span class="p">(</span><span class="s1">'Rack::QueryParser::InvalidParameterError'</span> <span class="o">=&gt;</span> <span class="s1">'ignore'</span><span class="p">)</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">exception_level_filters</span><span class="p">.</span><span class="nf">merge!</span><span class="p">(</span><span class="s1">'ActionDispatch::Http::MimeNegotiation::InvalidType'</span> <span class="o">=&gt;</span> <span class="s1">'ignore'</span><span class="p">)</span>
+
+  <span class="n">config</span><span class="p">.</span><span class="nf">environment</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'ROLLBAR_ENV'</span><span class="p">].</span><span class="nf">presence</span> <span class="o">||</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">env</span>
+<span class="k">end</span></code></pre></figure>
+
+<h3 id="logentries">Logentries</h3>
+
+<p><a href="https://elements.heroku.com/addons/logentries">Logentries</a> - collects your logs from Heroku standard output so that you can browse them later on. If you need to find info about an issue that happened a few days ago in your logs then Logentries might be helpful.</p>
+
+<p>Of course, you could use <a href="https://devcenter.heroku.com/articles/heroku-cli">Heroku Command Line Interface</a> and run <code class="language-plaintext highlighter-rouge">heroku logs -n 10000 --app my-heroku-app</code> command in terminal to browse logs for the last 10,000 lines but this method has limitations. You can’t go that much in past logs or easily filter logs as in Logentries.</p>
+
+<p>Logentries has a 5 GB and 7 days retention period in a free plan. This is enough for small Rails apps.</p>
+
+<p>A nice feature I like in Logentries is an option to save the query and later on quickly browse logs by it. You can also display charts based on logs. Maybe you want to see how often a particular worker in Sidekiq has been called? You could visualize it.</p>
+
+<h3 id="redis-cloud">Redis Cloud</h3>
+
+<p>If you use Redis in your Ruby on Rails app then <a href="https://elements.heroku.com/addons/rediscloud">Redis Cloud</a> is your add-on. It has a free plan and paid plans are more affordable than other add-ons have.</p>
+
+<p>Redis Cloud add-on does automatic backups of your data and offers a nice web UI to preview the live Redis usage and historical usage of your database instance.</p>
+
+<p><img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/redis_cloud_graphs.png" alt="Redis Cloud, Redis" /></p>
+
+<p>I like to use Redis Cloud + sidekiq gem in my Rails apps. Also, Redis is useful if you need to cache some data quickly in the memory and expire it after some time.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">redis_connection</span> <span class="o">=</span> <span class="no">Redis</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span>
+  <span class="c1"># use REDISCLOUD_URL when app is running on Heroku,</span>
+  <span class="c1"># or fallback to local Redis (useful for development)</span>
+  <span class="ss">url: </span><span class="no">ENV</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="s1">'REDISCLOUD_URL'</span><span class="p">,</span> <span class="s1">'redis://localhost:6379/0'</span><span class="p">),</span>
+  <span class="c1"># tune network timeouts to be a little more lenient when you are seeing occasional timeout</span>
+  <span class="c1"># errors for Heroku Redis Cloud addon</span>
+  <span class="c1"># https://github.com/mperham/sidekiq/wiki/Using-Redis#life-in-the-cloud</span>
+  <span class="ss">timeout: </span><span class="mi">5</span>
+<span class="p">)</span>
+
+<span class="n">redis_connection</span><span class="p">.</span><span class="nf">setex</span><span class="p">(</span><span class="s1">'my-key-name'</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="nf">hour</span><span class="p">,</span> <span class="s1">'this value will expire in 1 hour'</span><span class="p">)</span></code></pre></figure>
+
+<h3 id="twilio-sendgrid">Twilio SendGrid</h3>
+
+<p><a href="https://elements.heroku.com/addons/sendgrid">SendGrid</a> is a free add-on that allows you to start sending emails from your Ruby on Rails. You can even connect your domain to it so your users get emails from your domain.</p>
+
+<p>There are free 12,000 emails per month in the free plan.</p>
+
+<h2 id="heroku-add-on-to-save-you-time--money">Heroku Add-on to save you time &amp; money</h2>
+
+<p>Here are a few of my favorite add-ons that will help you save money and time in your project.</p>
+
+<h3 id="autoidle">AutoIdle</h3>
+
+<p><a href="https://elements.heroku.com/addons/autoidle">AutoIdle</a> lets you save money by automatically putting your staging and review apps to sleep on Heroku. I use it to turn off my web and worker dyno for the staging app when there is no traffic to the app. No more paying for Heroku resources during the night and weekends. ;)</p>
+
+<p><img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/autoidle.png" alt="AutoIdle, Heroku" /></p>
+
+<h3 id="rails-autoscale">Rails Autoscale</h3>
+
+<p><a href="https://elements.heroku.com/addons/rails-autoscale">Rails Autoscale</a> is a powerful add-on that will help you save money on Heroku. It will measure requests queue time and based on that add or remove dynos for your web processes. If you have higher traffic during the day it will add more dynos. During the night when the traffic is low, it will remove dynos.</p>
+
+<p><img src="/images/blog/posts/best-heroku-add-ons-for-ruby-on-rails-project/rails_autoscale_graph.png" alt="Rails Autoscale, Heroku, request queue" /></p>
+
+<p>Rails Autoscale can also track your worker queue. For instance, if you have a lot of jobs scheduled in Sidekiq then Rails Autoscale will add more worker dynos to process your job queue faster. It can even shut down worker dyno when there are no jobs to be processed which can save you even more money.</p>
+
+<h3 id="knapsack-pro">Knapsack Pro</h3>
+
+<p><a href="https://elements.heroku.com/addons/knapsack-pro">Knapsack Pro</a> is a Heroku add-on and ruby gem that can run your Rails tests in RSpec, Cucumber, Minitest, etc, and automatically split the tests between parallel machines on any CI server. It works with Heroku CI, CircleCI, Buildkite, Travis CI, etc. It will help you save time by doing <a href="/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation">a dynamic split of tests with Queue Mode</a> to ensure all parallel jobs finish work at a similar time. This way you optimize your CI build runs and save the most time.</p>
+
+<p>Below you can see an example of the optimal distribution of tests, where each parallel CI machine performs tests for 10 minutes, thanks to which the entire CI build lasts only 10 minutes instead of 40 if you would run tests on a single CI server only.</p>
+
+<p><img src="/images/blog/posts/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation/optimal-tests-split.png" style="width:100%;" alt="optimal tests split on CI server, CI parallelism" /></p>
+
+<p>I’ve been working on the <a href="https://elements.heroku.com/addons/knapsack-pro">Knapsack Pro add-on</a> and I’d love to hear your feedback if you give it a try.</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/best-heroku-add-ons-for-ruby-on-rails-project" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+<div class="wrapper">
+<div class="author-container">
+  <img src="//gravatar.com/avatar/e3be50760a95eebc47c7f239b3ad3ede.png" class="rounded-circle author-img" alt="Artur Trzop" />
+  <div class="author-info">
+    <p>
+    Written by <strong>Artur Trzop</strong>
+    </p>
+    <p>
+    Let's connect on <i class="fab fa-linkedin linkedin-color"></i> <a href="https://www.linkedin.com/in/arturtrzop/" rel="nofollow noopener" target="_blank" class="page-link">LinkedIn</a> or see my <i class="fab fa-youtube youtube-color"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">YouTube</a>
+    </p>
+    <p>
+    Founder of Knapsack Pro, follow on <i class="fab fa-twitter twitter-color"></i> <a href="https://twitter.com/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Twitter</a>
+    </p>
+  </div>
+</div>
+</div>
+
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2021/best-heroku-add-ons-for-ruby-on-rails-project"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2021/best-heroku-add-ons-for-ruby-on-rails-project"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

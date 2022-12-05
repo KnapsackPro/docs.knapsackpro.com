@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Setting up Knapsack Pro in your Ruby RSpec project</title>
+  <meta name="description" content="Knapsack Pro offers two modes for RSpec tests in your Ruby application: the Regular Mode and the Queue Mode. They differ in their approach towards dividing y...">
+
+  <meta property="og:title" content="Setting up Knapsack Pro in your Ruby RSpec project">
+  <meta name="twitter:title" content="Setting up Knapsack Pro in your Ruby RSpec project">
+  <meta name="twitter:description" content="Knapsack Pro offers two modes for RSpec tests in your Ruby application: the Regular Mode and the Queue Mode. They differ in their approach towards dividing y...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/setting-up-knapsack-pro-in-ruby-rspec-project/regular_vs_queue.jpeg">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/setting-up-knapsack-pro-in-ruby-rspec-project/regular_vs_queue.jpeg">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2021/setting-up-knapsack-pro-in-rspec-project">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Setting up Knapsack Pro in your Ruby RSpec project</h1>
+    <p class="post-meta">
+    <time datetime="2021-02-25T08:00:00+00:00" itemprop="datePublished">Feb 25, 2021</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Shadi Rezek</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/setting-up-knapsack-pro-in-rspec-project" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Knapsack Pro offers two modes for RSpec tests in your Ruby application: the Regular Mode and the Queue Mode. They differ in their approach towards dividing your test files between parallel CI nodes.</p>
+
+<p><img src="/images/blog/posts/setting-up-knapsack-pro-in-ruby-rspec-project/regular_vs_queue.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Knapsack Pro Regular Mode vs Queue Mode in Ruby RSpec" /></p>
+
+<h2 id="regular-mode-vs-queue-mode">Regular Mode vs Queue Mode</h2>
+
+<p>The <strong>Regular Mode</strong> uses timing data for every test file and splits all tests based on that. For example, if you use 6 parallel CI nodes, it will split your tests into 6 sets, roughly equal by their combined timings (based on previously collected timing data). These sets will then be distributed across parallel machines and run by them. We call this a <em>static</em> distribution of tests.</p>
+
+<p>With the <strong>Queue Mode</strong>, there is one central queue comprising all of the test files. Each parallel node receives a small subset of tests from the queue and runs them. The pattern repeats until the whole queue is empty. (BTW, The Queue Mode also uses the timing data - but this is used only to order the tests in the queue in a way that ensures the best overall performance.)
+We don’t know which tests will end up distributed to which node beforehand - that’s why this distribution is <em>dynamic</em>.</p>
+
+<p>The way the Queue Mode works helps mitigate unstable test run times and parallel node performance. When the metrics can vary, the queue mode is the answer.</p>
+
+<p>The Regular vs Queue Mode distinction is covered more in-depth <a href="/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation">here</a>.</p>
+
+<p>After helping many different projects over the years, we can say, that the Queue Mode is usually the best solution. In the real world, the performance of individual machines and tests is subject to all sorts of unpredictability. Using Queue Mode results in the most robust optimization despite these constraints.</p>
+
+<h2 id="always-start-your-setup-with-regular-mode">Always start your setup with Regular Mode</h2>
+
+<p>Since we are claiming that the Queue Mode is the ultimate best for most projects, you might be tempted to jump right in and give it a try. This is <em>not</em> what we advise, however. Let me explain why.</p>
+
+<h3 id="non-trivial-setup">Non-trivial setup</h3>
+
+<p>We are doing our best to make the <a href="https://docs.knapsackpro.com/integration/">Knapsack setup</a> experience as smooth as possible for every project giving our solution a try. Some things just lie outside of our control, though.</p>
+
+<p>The combination of your specific CI pipeline configuration and your RSpec usage might require some adjustments along the way.</p>
+
+<p>What we know from experience is that usually the Queue Mode uncovers different adjustment needs than the Regular Mode. The reason behind that is that in the Queue Mode, each one of your parallel CI nodes will usually run the RSpec command multiple times (as compared to just one run per node in the Regular Mode). This distinction might result in additional challenges to solve.</p>
+
+<p>As with all debugging, it’s best to narrow down (isolate) possible issues we are tackling at a given time. This is why we strongly suggest to <a href="https://docs.knapsackpro.com/integration/">set up</a> the Regular Mode first. When you ensure it works as expected, and confirm that in your <a href="https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=setting-up-knapsack-pro-in-rspec-project">User Dashboard</a>, you are ready to proceed to the Queue Mode setup.</p>
+
+<p>And now for the good news: we have documented all of the common issues you might encounter during your setup in our <a href="https://knapsackpro.com/faq?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=setting-up-knapsack-pro-in-rspec-project">FAQ</a>. Keep that in mind during your onboarding.</p>
+
+<p>Head over to our <a href="https://docs.knapsackpro.com/integration/">installation guide</a> and get the best out of Knapsack for your project today! We would very happy to assist you along the way, so do not hesitate to <a href="https://knapsackpro.com/contact?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=setting-up-knapsack-pro-in-rspec-project">contact us</a> if you need anything.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Following the described order of steps (using Regular Mode before Queue Mode) should result in the smoothest <a href="https://docs.knapsackpro.com/integration/">Knapsack Pro setup</a> experience. In case you are stuck at any point, please consult our <a href="https://docs.knapsackpro.com/knapsack_pro-ruby/guide/">installation guide</a>, <a href="https://knapsackpro.com/faq?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=setting-up-knapsack-pro-in-rspec-project">FAQ</a>, or simply <a href="https://knapsackpro.com/contact?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=setting-up-knapsack-pro-in-rspec-project">contact us</a>. We’ll be more than happy to help!</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/setting-up-knapsack-pro-in-rspec-project" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2021/setting-up-knapsack-pro-in-rspec-project"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2021/setting-up-knapsack-pro-in-rspec-project"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

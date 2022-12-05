@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Cypress parallel testing with Jenkins Pipeline stages</title>
+  <meta name="description" content="In this tutorial for JavaScript end to end testing, you will learn about Cypress test runner for UI automation testing and how to use it with Jenkins CI serv...">
+
+  <meta property="og:title" content="Cypress parallel testing with Jenkins Pipeline stages">
+  <meta name="twitter:title" content="Cypress parallel testing with Jenkins Pipeline stages">
+  <meta name="twitter:description" content="In this tutorial for JavaScript end to end testing, you will learn about Cypress test runner for UI automation testing and how to use it with Jenkins CI serv...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/cypress-parallel-testing-with-jenkins-pipeline-stages/cypress-jenkins.jpeg">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/cypress-parallel-testing-with-jenkins-pipeline-stages/cypress-jenkins.jpeg">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2019/cypress-parallel-testing-with-jenkins-pipeline-stages">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Cypress parallel testing with Jenkins Pipeline stages</h1>
+    <p class="post-meta">
+    <time datetime="2019-06-02T10:00:00+00:00" itemprop="datePublished">Jun 2, 2019</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Artur Trzop</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2019/cypress-parallel-testing-with-jenkins-pipeline-stages" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>In this tutorial for JavaScript end to end testing, you will learn about Cypress test runner for UI automation testing and how to use it with <a href="https://knapsackpro.com/ci_servers/jenkins?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=cypress-parallel-testing-with-jenkins-pipeline-stages">Jenkins CI server</a>. Cypress helps with frontend automation testing using headless browser or just regular browser. E2E tests often take a long time to run and for bigger projects, those type of tests can take dozens of minutes or even hours. To save developers time you want to load balancing Cypress tests across Jenkins parallel pipeline stages.  Thanks to that you can run your 1-hour test suite in a few minutes.</p>
+
+<p><img src="/images/blog/posts/cypress-parallel-testing-with-jenkins-pipeline-stages/cypress-jenkins.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Cypress Jenkins" /></p>
+
+<h2 id="how-to-speed-up-cypress-tests">How to speed up Cypress tests</h2>
+
+<p>Cypress is a Javascript End to End testing framework that has built in parallelisation but in this article, we will cover Cypress parallel without dashboard service. You want to be able to run tests also when external Cypress dashboard service API is down. It’s possible thanks to <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=cypress-parallel-testing-with-jenkins-pipeline-stages">Knapsack Pro client for Cypress with built-in Fallback Mode</a>.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/G6ixK4IK-3Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<h2 id="run-cypress-tests-in-parallel-with-jenkins-pipeline">Run Cypress tests in parallel with Jenkins Pipeline</h2>
+
+<p>You may want to run Cypress concurrent tests but for that, we will use declarative Jenkins Pipeline with defined <a href="https://knapsackpro.com/ci_servers/jenkins?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=cypress-parallel-testing-with-jenkins-pipeline-stages">Jenkins</a> stages. This allows us to run Cypress parallel tests.</p>
+
+<p>Let’s look at this Jenkins Pipeline as a code to understand Cypress Jenkins integration:</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">timeout(time: 60, unit: 'MINUTES') {
+  node() {
+    stage('Checkout') {
+      checkout([/* checkout code from git */])
+
+      // determine git commit hash because we need to pass it to Knapsack Pro
+      COMMIT_HASH = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+
+      stash 'source'
+    }
+  }
+
+  def num_nodes = 4; // define your total number of CI nodes (how many parallel jobs will be executed)
+  def nodes = [:]
+
+  for (int i = 0; i &lt; num_nodes; i++) {
+    def index = i;
+    nodes["ci_node_${i}"] = {
+      node() {
+        stage('Setup') {
+          unstash 'source'
+          // other setup steps
+        }
+
+        def knapsack_options = """\
+            KNAPSACK_PRO_CI_NODE_TOTAL=${num_nodes}\
+            KNAPSACK_PRO_CI_NODE_INDEX=${index}\
+            KNAPSACK_PRO_COMMIT_HASH=${COMMIT_HASH}\
+            KNAPSACK_PRO_BRANCH=${env.BRANCH_NAME}\
+        """
+
+        // Example how to run Cypress tests in Knapsack Pro Queue Mode
+        // Queue Mode should be a last stage if you have other stages in your pipeline
+        // thanks to that it can autobalance CI build time if other tests were not perfectly distributed
+        stage('Run Cypress in parallel') {
+          sh """KNAPSACK_PRO_CI_NODE_BUILD_ID=${env.BUILD_TAG} ${knapsack_options} $(npm bin)/knapsack-pro-cypress"""
+        }
+      }
+    }
+  }
+
+  parallel nodes // run CI nodes in parallel
+}</code></pre></figure>
+
+<h2 id="how-dynamic-tests-split-works-in-knapsack-pro-queue-mode">How dynamic tests split works in Knapsack Pro Queue Mode</h2>
+
+<p>To better understand how test suite split works when you allocate tests in a dynamic way across parallel stages please see below video. You will find here more edge cases that can be solved when <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=cypress-parallel-testing-with-jenkins-pipeline-stages">running tests in parallel and how Knapsack Pro Queue Mode helps with CI parallelisation</a>. Ensuring each of your parallel tasks run a similar amount of time is important to get optimal CI build time and thanks to that save you as much time as possible.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p><i>To compare Jenkins with other CI solutions, check out our popular comparison pages: <a href="https://knapsackpro.com/ci_comparisons/jenkins/vs/github-actions?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=cypress-parallel-testing-with-jenkins-pipeline-stages">Jenkins vs Github Actions</a>, <a href="https://knapsackpro.com/ci_comparisons/drone/vs/jenkins?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=cypress-parallel-testing-with-jenkins-pipeline-stages">Drone vs Jenkins</a>, <a href="https://knapsackpro.com/ci_comparisons/aws-codebuild/vs/jenkins?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=cypress-parallel-testing-with-jenkins-pipeline-stages">AWS CodeBuild vs Jenkins</a>, <a href="https://knapsackpro.com/ci_comparisons/google-cloud-build/vs/jenkins?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=cypress-parallel-testing-with-jenkins-pipeline-stages">Cloud Build vs Jenkins</a>, <a href="https://knapsackpro.com/ci_comparisons?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=cypress-parallel-testing-with-jenkins-pipeline-stages#jenkins">Jenkins vs Other CI providers</a>.</i></p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2019/cypress-parallel-testing-with-jenkins-pipeline-stages" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+<div class="wrapper">
+<div class="author-container">
+  <img src="//gravatar.com/avatar/e3be50760a95eebc47c7f239b3ad3ede.png" class="rounded-circle author-img" alt="Artur Trzop" />
+  <div class="author-info">
+    <p>
+    Written by <strong>Artur Trzop</strong>
+    </p>
+    <p>
+    Let's connect on <i class="fab fa-linkedin linkedin-color"></i> <a href="https://www.linkedin.com/in/arturtrzop/" rel="nofollow noopener" target="_blank" class="page-link">LinkedIn</a> or see my <i class="fab fa-youtube youtube-color"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">YouTube</a>
+    </p>
+    <p>
+    Founder of Knapsack Pro, follow on <i class="fab fa-twitter twitter-color"></i> <a href="https://twitter.com/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Twitter</a>
+    </p>
+  </div>
+</div>
+</div>
+
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2019/cypress-parallel-testing-with-jenkins-pipeline-stages"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2019/cypress-parallel-testing-with-jenkins-pipeline-stages"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

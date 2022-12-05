@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>URI.escape is obsolete. Percent-encoding your query string</title>
+  <meta name="description" content="Have you encountered one of those warnings in your Ruby 2.7.0 project?">
+
+  <meta property="og:title" content="URI.escape is obsolete. Percent-encoding your query string">
+  <meta name="twitter:title" content="URI.escape is obsolete. Percent-encoding your query string">
+  <meta name="twitter:description" content="Have you encountered one of those warnings in your Ruby 2.7.0 project?">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/uri-escape-is-obsolete-percent-encoding-your-query-string/encoded_space.jpeg">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/uri-escape-is-obsolete-percent-encoding-your-query-string/encoded_space.jpeg">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2020/uri-escape-is-obsolete-percent-encoding-your-query-string">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">URI.escape is obsolete. Percent-encoding your query string</h1>
+    <p class="post-meta">
+    <time datetime="2020-01-19T12:00:00+00:00" itemprop="datePublished">Jan 19, 2020</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Shadi Rezek</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2020/uri-escape-is-obsolete-percent-encoding-your-query-string" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Have you encountered one of those warnings in your Ruby 2.7.0 project?</p>
+
+<p><img src="/images/blog/posts/uri-escape-is-obsolete-percent-encoding-your-query-string/encoded_space.jpeg" style="width:200px;margin-left: 15px;float:right;" alt="url encoded space" /></p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">warning: URI.escape is obsolete
+warning: URI.encode is obsolete</code></pre></figure>
+
+<p>Find out how to fix it!</p>
+
+<h2 id="a-little-bit-of-history">A little bit of history</h2>
+
+<p>Ruby 2.7.0 shows a warning when invoking <code class="language-plaintext highlighter-rouge">URI.escape</code> or its alias, <code class="language-plaintext highlighter-rouge">URI.encode</code>. It might look like a fresh deprecation, but the fact is, these methods have been marked as obsolete for… <a href="https://github.com/ruby/ruby/commit/238b979f1789f95262a267d8df6239806f2859cc">over 10 years now</a>! If you’re wondering how come you’ve never encountered the warning before, here’s the answer: previously it was displayed only if you run your script in a verbose mode, and this has changed just recently.</p>
+
+<h2 id="so-why-is-uriescape-obsolete-anyway">So why is <code class="language-plaintext highlighter-rouge">URI.escape</code> obsolete, anyway?</h2>
+
+<p>The trouble with a concept of “escaping the URI” is that URI consists of many components (like <code class="language-plaintext highlighter-rouge">path</code> or <code class="language-plaintext highlighter-rouge">query</code>), and we don’t want to escape them in the same way. For example, it’s fine for a <code class="language-plaintext highlighter-rouge">#</code> character to appear at the end of the URI (when it’s used as what’s usually called an anchor, or in URI parlance - a <code class="language-plaintext highlighter-rouge">fragment</code> component) - but when the same <code class="language-plaintext highlighter-rouge">#</code> is part of user’s input (like in a search query), we want to encode it to ensure correct interpretation. Similarly, if the query string value contains other reserved characters, like <code class="language-plaintext highlighter-rouge">=</code> or <code class="language-plaintext highlighter-rouge">&amp;</code>, we <em>do</em> want to escape them so that they are not incorrectly interpreted as delimiters, as if they were used as reserved characters.</p>
+
+<p><code class="language-plaintext highlighter-rouge">URI.escape</code> relies on a simple <code class="language-plaintext highlighter-rouge">gsub</code> operation for the whole string and doesn’t differentiate between distinct components, which doesn’t take into account intricacies like those mentioned above.</p>
+
+<h2 id="how-to-fix-it">How to fix it?</h2>
+
+<p>Since I haven’t found an existing solution that would, when given a whole-URI string, interpret distinct components and apply different escaping rules in a desired way on its own, my advice is to encode different components separately. The most common (and most sensitive) use-case is probably encoding of the query string in the <code class="language-plaintext highlighter-rouge">query</code> component, so I’ll focus on this case. And Ruby’s <code class="language-plaintext highlighter-rouge">URI</code> module itself provides two handy methods that will help us achieve just that!</p>
+
+<h2 id="percent-encoding-your-query-string">Percent-encoding your query string</h2>
+
+<h4 id="uriencode_www_form_componentstring-encnil"><code class="language-plaintext highlighter-rouge">URI.encode_www_form_component(string, enc=nil)</code></h4>
+
+<p>This method will percent-encode every reserved character, leaving only <code class="language-plaintext highlighter-rouge">*, -, ., 0-9, A-Z, _, a-z</code> intact.
+It also substitues space with <code class="language-plaintext highlighter-rouge">+</code>. Examples:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">query</span> <span class="o">=</span> <span class="s2">"Tom &amp; Jerry"</span>
+<span class="n">query</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">encode_www_form_component</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="n">query</span> <span class="c1"># =&gt; "Tom+%26+Jerry"</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">post</span> <span class="o">=</span> <span class="s2">"So scared, but let's do this! #yolo"</span>
+<span class="n">post</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">encode_www_form_component</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+<span class="n">post</span> <span class="c1"># =&gt; "So+scared%2C+but+let%27s+do+this%21+%23yolo"</span></code></pre></figure>
+
+<p>As you can see, we can now safely build our query strings with values escaped this way. But if this seems like too much of manual work, there is a handy way to handle the whole query for you. Introducing…</p>
+
+<h4 id="uriencode_www_formenum-encnil"><code class="language-plaintext highlighter-rouge">URI.encode_www_form(enum, enc=nil)</code></h4>
+
+<p>Slightly different interface. It takes an <code class="language-plaintext highlighter-rouge">Enumerable</code> (usually a nested <code class="language-plaintext highlighter-rouge">Array</code> or a <code class="language-plaintext highlighter-rouge">Hash</code>) and builds the query accordingly. It uses <code class="language-plaintext highlighter-rouge">.encode_www_form_component</code> internally, so the encoding rules stay the same. The difference lies in the way you use it. Examples:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">URI</span><span class="p">.</span><span class="nf">encode_www_form</span><span class="p">([[</span><span class="s2">"search"</span><span class="p">,</span> <span class="s2">"Tom &amp; Jerry"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"page"</span><span class="p">,</span> <span class="s2">"3"</span><span class="p">]])</span>
+<span class="c1"># =&gt; "search=Tom+%26+Jerry&amp;page=3"</span>
+
+<span class="no">URI</span><span class="p">.</span><span class="nf">encode_www_form</span><span class="p">([</span><span class="s2">"search"</span><span class="p">,</span> <span class="s2">"2 + 2 = 5"</span><span class="p">])</span>
+<span class="c1"># =&gt; "search=2+%2B+2+%3D+5"</span>
+
+<span class="no">URI</span><span class="p">.</span><span class="nf">encode_www_form</span><span class="p">(</span><span class="ss">search: </span><span class="s2">"why is URI.escape obsolete"</span><span class="p">,</span> <span class="ss">category: </span><span class="s2">"meta"</span><span class="p">)</span>
+<span class="c1">#=&gt; "search=why+is+URI.escape+obsolete&amp;category=meta"</span>
+
+<span class="c1"># Shameless plug</span>
+<span class="no">URI</span><span class="p">.</span><span class="nf">encode_www_form</span><span class="p">(</span><span class="ss">q: </span><span class="s2">"how to speed up your CI?"</span><span class="p">,</span> <span class="ss">tag: </span><span class="p">[</span><span class="s2">"#devops"</span><span class="p">,</span> <span class="s2">"#productivity"</span><span class="p">],</span> <span class="ss">lang: </span><span class="s2">"en"</span><span class="p">)</span>
+<span class="c1">#=&gt; "q=how+to+speed+up+your+CI%3F&amp;tag=%23devops&amp;tag=%23productivity&amp;lang=en"</span></code></pre></figure>
+
+<p>Quite straightforward, isn’t it?</p>
+
+<h3 id="rails-project">Rails project?</h3>
+
+<h4 id="hashto_query"><code class="language-plaintext highlighter-rouge">Hash#to_query</code></h4>
+<p>(also aliased as <code class="language-plaintext highlighter-rouge">Hash.to_param</code>)</p>
+
+<p>Rails extends the <code class="language-plaintext highlighter-rouge">Hash</code> class with this handy method. It will return a query string in a correct format, with its values correctly encoded where needed.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">query_data</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">q: </span><span class="s2">"how to speed up your CI?"</span><span class="p">,</span> <span class="ss">tag: </span><span class="p">[</span><span class="s2">"#devops"</span><span class="p">,</span> <span class="s2">"#productivity"</span><span class="p">],</span> <span class="ss">lang: </span><span class="s2">"en"</span> <span class="p">}</span>
+<span class="n">query_data</span><span class="p">.</span><span class="nf">to_query</span>
+<span class="c1">#=&gt; "lang=en&amp;q=how+to+speed+up+your+CI%3F&amp;tag%5B%5D=%23devops&amp;tag%5B%5D=%23productivity"</span></code></pre></figure>
+
+<p>(Notice how it also sorts the keys alphabetically.)</p>
+
+<p>You can also pass an optional namespace to this method, which would enclose the key names in the returned string, resulting in a format like <code class="language-plaintext highlighter-rouge">search[q]="how to speed up your CI?"</code> (but obviously percent-encoded):</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">query_data</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">q: </span><span class="s2">"how to speed up your CI?"</span><span class="p">,</span> <span class="ss">tag: </span><span class="p">[</span><span class="s2">"#devops"</span><span class="p">,</span> <span class="s2">"#productivity"</span><span class="p">],</span> <span class="ss">lang: </span><span class="s2">"en"</span> <span class="p">}</span>
+<span class="n">query_data</span><span class="p">.</span><span class="nf">to_query</span><span class="p">(</span><span class="s2">"search"</span><span class="p">)</span>
+<span class="c1">#=&gt; "search%5Blang%5D=en&amp;search%5Bq%5D=how+to+speed+up+your+CI%3F&amp;search%5Btag%5D%5B%5D=%23devops&amp;search%5Btag%5D%5B%5D=%23productivity"</span></code></pre></figure>
+
+<h2 id="summing-up">Summing up</h2>
+
+<p>I hope that short article cleared up any confusion you might have had about encoding your strings for use in URI. Please let us know in the comments if you use any other ways of dealing with percent-encoding in your Ruby/Rails projects!</p>
+
+<p>And if your project is struggling with slow CI builds, check out <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=uri-escape-is-obsolete-percent-encoding-your-query-string">Knapsack Pro</a>, which can help you solve that problem.</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2020/uri-escape-is-obsolete-percent-encoding-your-query-string" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2020/uri-escape-is-obsolete-percent-encoding-your-query-string"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2020/uri-escape-is-obsolete-percent-encoding-your-query-string"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

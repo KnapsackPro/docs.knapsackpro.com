@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Auto balancing 7 hours tests between 100 parallel jobs on CI - Buildkite example</title>
+  <meta name="description" content="I like tests. You may like them too because thanks to them you are not afraid to change the code. Tests can help you catch errors earlier. I like tests, even...">
+
+  <meta property="og:title" content="Auto balancing 7 hours tests between 100 parallel jobs on CI - Buildkite example">
+  <meta name="twitter:title" content="Auto balancing 7 hours tests between 100 parallel jobs on CI - Buildkite example">
+  <meta name="twitter:description" content="I like tests. You may like them too because thanks to them you are not afraid to change the code. Tests can help you catch errors earlier. I like tests, even...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/buildkite.jpg">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/buildkite.jpg">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2017/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Auto balancing 7 hours tests between 100 parallel jobs on CI - Buildkite example</h1>
+    <p class="post-meta">
+    <time datetime="2017-03-26T11:20:00+00:00" itemprop="datePublished">Mar 26, 2017</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Artur Trzop</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2017/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>I like tests. You may like them too because thanks to them you are not afraid to change the code. Tests can help you catch errors earlier. I like tests, even more, when they are fast.</p>
+
+<p><img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/buildkite.jpg" style="width:250px;float:right;" alt="Buildkite" /></p>
+
+<p>In large projects tests tend to get bigger and bigger, your test suite starts taking dozens of minutes, then hours. We want to have feedback loop during development and testing short so with big test suites, we go for parallelism.</p>
+
+<h1 id="test-suite-parallelism">Test suite parallelism</h1>
+
+<p>We can split tests across multiple CI nodes to get faster feedback. There are a few ways how to do it, most common are:</p>
+
+<p><strong>Simple methods of distributing tests across CI nodes:</strong></p>
+
+<ul>
+  <li>Split tests based on type. For instance, we run unit tests on first CI node and feature tests on second CI node.</li>
+  <li>Split tests based on directory or file names, or number of test files</li>
+</ul>
+
+<p><strong>Advanced methods of distributing tests across CI nodes:</strong></p>
+
+<ul>
+  <li>
+    <p>Split tests based on time execution and running predetermine subset of tests per CI node.</p>
+
+    <p><img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/regular_mode.jpg" style="width:150px;" alt="Knapsack Pro Regular Mode API" /></p>
+
+    <p>This way we should get similar time execution on each CI node. But there are cons of this approach. Sometimes tests took different time because of bad CI node performance or the nature of the test like testing external API or feature tests clicking on the website that could take random time.</p>
+  </li>
+  <li>
+    <p>Dynamic tests split is a way based on recorded tests time execution and work queue.</p>
+
+    <p><img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/queue_mode.jpg" style="width:150px;" alt="Knapsack Pro Queue Mode API" /></p>
+
+    <p>Each CI node gets subsets of the test suite from the work queue until the queue is empty. This way we have faster, more efficient tests distribution across CI nodes. There is no bottleneck when one of our CI nodes has worse performance. It will just do less work than others but in the end, we developers get feedback about test suite passing or not as soon as it is possible.</p>
+  </li>
+</ul>
+
+<h1 id="the-story-of-knapsack">The story of knapsack</h1>
+
+<p><img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/knapsack.jpg" style="width:150px;float:right;" alt="Knapsack" /></p>
+
+<p>In 2014 I started working on predetermine test suite split solution based on tests time execution. In 2015 I developed more advanced solution called Regular Mode built into the <a href="https://github.com/KnapsackPro/knapsack_pro-ruby">gem knapsack_pro</a> to track tests time execution across commits and branches.</p>
+
+<p>In late 2016 I created the early version of dynamic test suite split solution based on tests time execution and work queue. Early 2017 I started testing it on large projects with a few companies. It happens the largest projects were using the <a href="https://buildkite.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=auto-balancing-buildkite">Buildkite.com CI provider</a>. I’m going to show you why and how to run insanely fast test suite there.</p>
+
+<h1 id="what-is-buildkitecom">What is Buildkite.com</h1>
+
+<p><img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/buildkite.jpg" style="width:150px;float:left;margin-right:20px;" alt="Buildkite" /></p>
+
+<p>Bulidkite gives you separation between CI web interface and the build infrastructure. Basically, you can run your tests on any machine with an installed buildkite agent. It can be cloud like AWS or your VPS or even your Mac or Windows. You can save a lot of time of booting your CI nodes with Buildkite because you can keep artifacts like installed gems, migrated DB etc on your machine unlike other CI provider do by uploading them to external store and booting CI node from scratch with every new run.</p>
+
+<p>Another nice thing about Buildkite is the fact that buildkite agent (CI node) starts work as soon as something is available. There are no locked CI nodes that just finished subset of CI build and waiting until whole CI build is completed.</p>
+
+<p>There is one more useful thing which is retry failed CI node feature. You can just retry only single CI node with failed tests instead of scheduling a completely new build and rerunning what already passed.</p>
+
+<h1 id="how-to-run-7-hours-build-across-100-parallel-jobs-with-knapsack_pro-gem">How to run 7 hours build across 100 parallel jobs with knapsack_pro gem?</h1>
+
+<p>We are going to use <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode">knapsack_pro gem with Queue Mode for RSpec</a>.
+You can find here info how to add it to your Gemfile and <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#installation">install knapsack_pro for your project</a>.</p>
+
+<p>Knapsack Pro supports buildkite environment variables to determine git commit, branch name and number of parallel jobs. The only thing you need to do is to configure the parallelism parameter in your pipeline step and run the appropiate knapsack_pro command.</p>
+
+<p><strong>Create pipeline:</strong></p>
+
+<p>If you have an account in Buildkite then you need to create a new pipeline for your project.</p>
+
+<p>You will have to provide a project name and git repository for the code checkout.</p>
+
+<p>In environment variables section you should set:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RACK_ENV=test
+RAILS_ENV=test
+KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true
+</code></pre></div></div>
+
+<p><a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node"><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true</code></a> flag allows us to use retry failed CI node feature on Buildkite.com. When we retry the CI node then we want to run what was run there previously instead of dynamically allocate tests again hence the fixed queue split flag is true.</p>
+
+<p><strong>Set step command:</strong></p>
+
+<ul>
+  <li>Commands to run: <code class="language-plaintext highlighter-rouge">bundle install &amp;&amp; bundle exec rake db:reset &amp;&amp; bundle exec rake knapsack_pro:queue:rspec</code></li>
+  <li>Label: <code class="language-plaintext highlighter-rouge">RSpec in Queue Mode</code></li>
+  <li>Environment Variables: <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=462c48d886ab38ddcdb81d379379e639</code></li>
+  <li>Parallelism: <code class="language-plaintext highlighter-rouge">100</code></li>
+</ul>
+
+<p>In environment variables, we set Knapsack Pro API key <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC</code> per step command. You can <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=auto-balancing-buildkite">obtain API key here</a>.</p>
+
+<p>When everything is filled you can save your pipeline and run your buildkite agents across your CI nodes.
+Push a new commit to your repository and allow it to pass. The first CI build run will record time execution of your tests and saves it to Knapsack Pro API.</p>
+
+<p>Go to user <a href="https://knapsackpro.com/dashboard">dashboard</a> and click build metrics link next to your API token. Click show link on the recent build and ensure the time execution data were recorded for all your CI nodes. You should see info that build subsets were collected.</p>
+
+<p>From now on you can run your tests with optimal test suite split thanks to dynamic tests allocation across CI nodes. The second commit pushed to repo should have better auto balancing time because Knapsack Pro API can use time execution recorded in the previous run to prepare better work queue.</p>
+
+<p>I tested this with a company who has a large test suite ~7 hours and the average time execution per CI node was ~4 minutes. That is pretty nice and insanely fast pipeline for such large test suite. I’m curious how it will work with your project.</p>
+
+<h1 id="what-else-can-i-learn">What else can I learn?</h1>
+
+<ul>
+  <li><strong>See an example repository of how to run Rails CI with <a href="https://github.com/KnapsackPro/buildkite-rails-parallel-example-with-knapsack_pro">Knapsack Pro and test steps in parallel with Buildkite</a>. Here is an example for <a href="https://github.com/KnapsackPro/buildkite-rails-docker-parallel-example-with-knapsack_pro">Docker, Knapsack Pro and Buildkite</a>.</strong></li>
+  <li>What is <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#what-is-optimal-order-of-test-commands">optimal order of test commands</a>?</li>
+  <li>Learn more about <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=auto-balancing-buildkite">Knapsack Pro parallelisation</a></li>
+  <li><a href="https://knapsackpro.com/ci_comparisons/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=auto-balancing-buildkite#buildkite">Compare Buildkite to other CI solutions</a>, including <a href="https://knapsackpro.com/ci_comparisons/buildkite/vs/jenkins?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=auto-balancing-buildkite">Buildkite vs Jenkins</a>, <a href="https://knapsackpro.com/ci_comparisons/buildkite/vs/circle-ci?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=auto-balancing-buildkite">Buildkite vs CircleCI</a>, and <a href="https://knapsackpro.com/ci_comparisons/buildkite/vs/github-actions?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=auto-balancing-buildkite">Buildkite vs Github Actions</a>.</li>
+</ul>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2017/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+<div class="wrapper">
+<div class="author-container">
+  <img src="//gravatar.com/avatar/e3be50760a95eebc47c7f239b3ad3ede.png" class="rounded-circle author-img" alt="Artur Trzop" />
+  <div class="author-info">
+    <p>
+    Written by <strong>Artur Trzop</strong>
+    </p>
+    <p>
+    Let's connect on <i class="fab fa-linkedin linkedin-color"></i> <a href="https://www.linkedin.com/in/arturtrzop/" rel="nofollow noopener" target="_blank" class="page-link">LinkedIn</a> or see my <i class="fab fa-youtube youtube-color"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">YouTube</a>
+    </p>
+    <p>
+    Founder of Knapsack Pro, follow on <i class="fab fa-twitter twitter-color"></i> <a href="https://twitter.com/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Twitter</a>
+    </p>
+  </div>
+</div>
+</div>
+
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2017/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2017/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

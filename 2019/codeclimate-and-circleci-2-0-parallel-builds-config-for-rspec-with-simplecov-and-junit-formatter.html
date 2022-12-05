@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>CodeClimate and CircleCI 2.0 parallel builds config for RSpec with SimpleCov and JUnit formatter</title>
+  <meta name="description" content="How to merge CodeClimate reports for your RSpec test suite executed with parallel builds on CircleCI 2.0? You will learn how to run RSpec parallel tests for ...">
+
+  <meta property="og:title" content="CodeClimate and CircleCI 2.0 parallel builds config for RSpec with SimpleCov and JUnit formatter">
+  <meta name="twitter:title" content="CodeClimate and CircleCI 2.0 parallel builds config for RSpec with SimpleCov and JUnit formatter">
+  <meta name="twitter:description" content="How to merge CodeClimate reports for your RSpec test suite executed with parallel builds on CircleCI 2.0? You will learn how to run RSpec parallel tests for ...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter/codeclimate.jpg">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter/codeclimate.jpg">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2019/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">CodeClimate and CircleCI 2.0 parallel builds config for RSpec with SimpleCov and JUnit formatter</h1>
+    <p class="post-meta">
+    <time datetime="2019-05-24T18:00:00+00:00" itemprop="datePublished">May 24, 2019</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Artur Trzop</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2019/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>How to merge CodeClimate reports for your RSpec test suite executed with parallel builds on CircleCI 2.0? You will learn how to run RSpec parallel tests for your for Ruby on Rails project using <a href="https://knapsackpro.com/ci_servers/circle-ci?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter">CircleCI</a> and how to send test coverage merged from parallel jobs into CodeClimate. We will cover config examples for:</p>
+
+<p><img src="/images/blog/posts/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter/codeclimate.jpg" style="width:300px;margin-left: 15px;float:right;" alt="CodeClimate" /></p>
+
+<ul>
+  <li>
+    <p>How to use SimpleCov needed by CodeClimate Test Reporter to prepare RSpec test coverage summary on each parallel job and then how to merge it so you will be able to send it to CodeClimate dashboard.</p>
+  </li>
+  <li>
+    <p>How to use JUnit formatter for RSpec running on parallel jobs. Thanks to JUnit formatter you can see nice tests results in CircleCI UI view. For instance, when your tests fail then <a href="https://knapsackpro.com/ci_servers/circle-ci?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter">CircleCI</a> will show you failing tests at the top of your CI build steps.</p>
+  </li>
+  <li>
+    <p>How to <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter">split your RSpec tests across parallel jobs using Knapsack Pro Queue Mode</a>. At the end of the article, you will see a video explaining how Queue Mode in knapsack_pro ruby gem dynamically distributes specs across parallel jobs to ensure each job takes a similar amount of time to ensure CI build is as fast as possible (to get you optimal CI build time).</p>
+  </li>
+</ul>
+
+<h2 id="codeclimate-and-parallel-builds-on-circleci-20">CodeClimate and parallel builds on CircleCI 2.0</h2>
+
+<p>Let’s start with the full YAML config for CircleCI 2.0. You will find comment for each important step and what it does. You may have already configured some of the stuff in your project so looking at a full example below might be more familiar to you. If you are just adding CodeClimate to your project for the first time then except below config you will need to setup simplecov gem and it’s covered in next section.</p>
+
+<p>Here is the full CircleCI 2.0 example for parallel builds using RSpec and CodeClimate.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># .circleci/config.yml</span>
+<span class="na">version</span><span class="pi">:</span> <span class="m">2</span>
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span>
+    <span class="c1"># set here how many parallel jobs you want to run.</span>
+    <span class="c1"># more parallel jobs the faster is your CI build</span>
+    <span class="na">parallelism</span><span class="pi">:</span> <span class="m">2</span>
+    <span class="na">docker</span><span class="pi">:</span>
+      <span class="c1"># specify the version you desire here</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/ruby:2.6.3-node-browsers</span>
+        <span class="na">environment</span><span class="pi">:</span>
+          <span class="na">PGHOST</span><span class="pi">:</span> <span class="s">127.0.0.1</span>
+          <span class="na">PGUSER</span><span class="pi">:</span> <span class="s">rails-app-with-knapsack_pro</span>
+          <span class="na">RAILS_ENV</span><span class="pi">:</span> <span class="s">test</span>
+          <span class="na">RACK_ENV</span><span class="pi">:</span> <span class="s">test</span>
+
+          <span class="c1"># API token should be set in CircleCI environment variables settings instead of here</span>
+          <span class="c1"># KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: rspec-token</span>
+
+      <span class="c1"># Specify service dependencies here if necessary</span>
+      <span class="c1"># CircleCI maintains a library of pre-built images</span>
+      <span class="c1"># documented at https://circleci.com/docs/2.0/circleci-images/</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/postgres:9.4.12-alpine</span>
+        <span class="na">environment</span><span class="pi">:</span>
+          <span class="na">POSTGRES_DB</span><span class="pi">:</span> <span class="s">rails-app-with-knapsack_pro_test</span>
+          <span class="na">POSTGRES_PASSWORD</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+          <span class="na">POSTGRES_USER</span><span class="pi">:</span> <span class="s">rails-app-with-knapsack_pro</span>
+
+    <span class="na">working_directory</span><span class="pi">:</span> <span class="s">~/repo</span>
+
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">checkout</span>
+
+      <span class="c1"># create directory for xml reports created by junit formatter</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">mkdir -p tmp/test-reports/rspec/queue_mode/</span>
+
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">Install Code Climate Test Reporter</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 &gt; ./cc-test-reporter</span>
+            <span class="s">chmod +x ./cc-test-reporter</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">./cc-test-reporter before-build</span>
+
+      <span class="c1"># Download and cache dependencies</span>
+      <span class="pi">-</span> <span class="na">restore_cache</span><span class="pi">:</span>
+          <span class="na">keys</span><span class="pi">:</span>
+          <span class="c1"># NOTE: remove space between { { here and in all below examples</span>
+          <span class="pi">-</span> <span class="s">v2-dependencies-bundler-{ { checksum "Gemfile.lock" }}</span>
+          <span class="c1"># fallback to using the latest cache if no exact match is found</span>
+          <span class="pi">-</span> <span class="s">v2-dependencies-bundler-</span>
+
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">install ruby dependencies</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">bundle install --jobs=4 --retry=3 --path vendor/bundle</span>
+
+      <span class="pi">-</span> <span class="na">save_cache</span><span class="pi">:</span>
+          <span class="na">paths</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">./vendor/bundle</span>
+          <span class="c1"># NOTE: remove space between { { here</span>
+          <span class="na">key</span><span class="pi">:</span> <span class="s">v2-dependencies-bundler-{ { checksum "Gemfile.lock" }}</span>
+
+      <span class="c1"># wait for postgres to be available</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">dockerize -wait tcp://localhost:5432 -timeout 1m</span>
+      <span class="c1"># Database setup</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">bin/rails db:setup</span>
+
+      <span class="c1"># Run RSpec tests with knapsack_pro Queue Mode and use junit formatter</span>
+      <span class="c1"># junit formatter must be configured as described in FAQ for knapsack_pro Queue Mode</span>
+      <span class="c1"># this is also described in this article later</span>
+      <span class="c1"># https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-junit-formatter-with-knapsack_pro-queue-mode</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/test-reports/rspec/queue_mode/rspec.xml]"</span>
+
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">Code Climate Test Coverage</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">./cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"</span>
+
+      <span class="c1"># store coverage directory with CodeClimate reports prepared based on simplecov reports</span>
+      <span class="c1"># it's special step used to persist a temporary file to be used by another job in the workflow</span>
+      <span class="pi">-</span> <span class="na">persist_to_workspace</span><span class="pi">:</span>
+          <span class="na">root</span><span class="pi">:</span> <span class="s">coverage</span>
+          <span class="na">paths</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">codeclimate.*.json</span>
+
+      <span class="c1"># store test reports created with junit formatter in order to allow CircleCI</span>
+      <span class="c1"># show info about executed tests in UI on top of CI build steps</span>
+      <span class="pi">-</span> <span class="na">store_test_results</span><span class="pi">:</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">tmp/test-reports</span>
+
+      <span class="c1"># store test reports created with junit formatter in order to allow CircleCI</span>
+      <span class="c1"># let you browse recorded xml files in Artifacts tab</span>
+      <span class="pi">-</span> <span class="na">store_artifacts</span><span class="pi">:</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">tmp/test-reports</span>
+
+  <span class="na">upload-coverage</span><span class="pi">:</span>
+    <span class="na">docker</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/ruby:2.6.3-node</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="c1"># you can add your CodeClimate test report ID here or in CircleCI</span>
+      <span class="c1"># settings for environment variables</span>
+      <span class="na">CC_TEST_REPORTER_ID</span><span class="pi">:</span> <span class="s">use-here-your-codeclimate-test-report-id</span>
+    <span class="na">working_directory</span><span class="pi">:</span> <span class="s">~/repo</span>
+
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="c1"># This will restore files from persist_to_workspace step</span>
+      <span class="c1"># Thanks to it we will have access to CodeClimate test coverage files from</span>
+      <span class="c1"># each parallel job. We need them in order to merge it into one file in next step.</span>
+      <span class="pi">-</span> <span class="na">attach_workspace</span><span class="pi">:</span>
+          <span class="na">at</span><span class="pi">:</span> <span class="s">~/repo</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">Install Code Climate Test Reporter</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 &gt; ./cc-test-reporter</span>
+            <span class="s">chmod +x ./cc-test-reporter</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="c1"># merge CodeClimate files from each parallel job into sum coverage</span>
+          <span class="c1"># and then upload it to CodeClimate dashboard</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">./cc-test-reporter sum-coverage --output - codeclimate.*.json | ./cc-test-reporter upload-coverage --debug --input -</span>
+
+<span class="na">workflows</span><span class="pi">:</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="m">2</span>
+
+  <span class="na">commit</span><span class="pi">:</span>
+    <span class="na">jobs</span><span class="pi">:</span>
+      <span class="c1"># run our CI build with tests</span>
+      <span class="pi">-</span> <span class="s">build</span>
+      <span class="c1"># once CI build is completed then we merge CodeClimate reports</span>
+      <span class="c1"># from each parallel job and upload summary coverage to CodeClimate</span>
+      <span class="pi">-</span> <span class="na">upload-coverage</span><span class="pi">:</span>
+          <span class="na">requires</span><span class="pi">:</span>
+             <span class="pi">-</span> <span class="s">build</span></code></pre></figure>
+
+<h2 id="simplecov-configuration-for-rspec">SimpleCov configuration for RSpec</h2>
+
+<p>When you use <a href="https://github.com/colszowka/simplecov">simplecov</a> gem in order to create test coverage for RSpec then you need to remember about one additional thing when you want to run tests in parallel on many CircleCI jobs. You set a unique name for the simplecov report with <code class="language-plaintext highlighter-rouge">SimpleCov.command_name</code>.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec/rails_helper.rb or spec/spec_helper.rb</span>
+<span class="nb">require</span> <span class="s1">'simplecov'</span>
+<span class="no">SimpleCov</span><span class="p">.</span><span class="nf">start</span>
+
+<span class="c1"># this is needed when you use knapsack_pro Queue Mode</span>
+<span class="no">KnapsackPro</span><span class="o">::</span><span class="no">Hooks</span><span class="o">::</span><span class="no">Queue</span><span class="p">.</span><span class="nf">before_queue</span> <span class="k">do</span>
+  <span class="no">SimpleCov</span><span class="p">.</span><span class="nf">command_name</span><span class="p">(</span><span class="s2">"rspec_ci_node_</span><span class="si">#{</span><span class="no">KnapsackPro</span><span class="o">::</span><span class="no">Config</span><span class="o">::</span><span class="no">Env</span><span class="p">.</span><span class="nf">ci_node_index</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">end</span></code></pre></figure>
+
+<h2 id="junit-formatter-for-rspec">JUnit formatter for RSpec</h2>
+
+<p>In order to show in CircleCI UI info about your test suite like failed tests, you need to generate xml report for your RSpec test suite using JUnit formatter.</p>
+
+<p>You can use junit formatter for RSpec thanks to gem <a href="https://github.com/sj26/rspec_junit_formatter">rspec_junit_formatter</a>.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># knapsack_pro Queue Mode</span>
+<span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="s2">"knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/test-reports/rspec/queue_mode/rspec.xml]"</span></code></pre></figure>
+
+<p>The xml report will contain all tests executed across intermediate test subset runs based on work queue. You need to add after subset queue hook to rename <code class="language-plaintext highlighter-rouge">rspec.xml</code> to <code class="language-plaintext highlighter-rouge">rspec_final_results.xml</code> thanks to that the final results file will contain only single xml tag with all tests executed on the CI node. This is related to the way how Queue Mode works. Detailed explanation is in the <a href="https://github.com/KnapsackPro/knapsack_pro-ruby/issues/40">issue</a>.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec_helper.rb or rails_helper.rb</span>
+
+<span class="c1"># TODO This must be the same path as value for rspec --out argument</span>
+<span class="c1"># Note the path should not contain sign ~, for instance path ~/project/tmp/rspec.xml may not work. Please use full path instead.</span>
+<span class="no">TMP_RSPEC_XML_REPORT</span> <span class="o">=</span> <span class="s1">'tmp/test-reports/rspec/queue_mode/rspec.xml'</span>
+<span class="c1"># move results to FINAL_RSPEC_XML_REPORT so the results won't accumulate with duplicated xml tags in TMP_RSPEC_XML_REPORT</span>
+<span class="no">FINAL_RSPEC_XML_REPORT</span> <span class="o">=</span> <span class="s1">'tmp/test-reports/rspec/queue_mode/rspec_final_results.xml'</span>
+
+<span class="no">KnapsackPro</span><span class="o">::</span><span class="no">Hooks</span><span class="o">::</span><span class="no">Queue</span><span class="p">.</span><span class="nf">after_subset_queue</span> <span class="k">do</span> <span class="o">|</span><span class="n">queue_id</span><span class="p">,</span> <span class="n">subset_queue_id</span><span class="o">|</span>
+  <span class="k">if</span> <span class="no">File</span><span class="p">.</span><span class="nf">exist?</span><span class="p">(</span><span class="no">TMP_RSPEC_XML_REPORT</span><span class="p">)</span>
+    <span class="no">FileUtils</span><span class="p">.</span><span class="nf">mv</span><span class="p">(</span><span class="no">TMP_RSPEC_XML_REPORT</span><span class="p">,</span> <span class="no">FINAL_RSPEC_XML_REPORT</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>This example is based on <a href="https://knapsackpro.com/faq/question/how-to-use-junit-formatter">Knapsack Pro FAQ</a>.</p>
+
+<h2 id="summary-and-queue-mode-to-do-dynamic-test-suite-split">Summary and Queue Mode to do dynamic test suite split</h2>
+
+<p>CI builds can be much faster thanks to leveraging parallel jobs on Circle CI 2.0 and CI parallelisation on any CI provider (see more <a href="/continuous_integration">parallelisation examples for your CI providers</a>). You can check <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter">Knapsack Pro tool for CI parallelisation</a> and learn more about Queue Mode and what problems it solves in below video.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p><a href="/knapsack_pro-ruby/guide/">Installation guide for knapsack_pro gem</a> can be found here in order to setup your RSpec test suite.</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2019/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+<div class="wrapper">
+<div class="author-container">
+  <img src="//gravatar.com/avatar/e3be50760a95eebc47c7f239b3ad3ede.png" class="rounded-circle author-img" alt="Artur Trzop" />
+  <div class="author-info">
+    <p>
+    Written by <strong>Artur Trzop</strong>
+    </p>
+    <p>
+    Let's connect on <i class="fab fa-linkedin linkedin-color"></i> <a href="https://www.linkedin.com/in/arturtrzop/" rel="nofollow noopener" target="_blank" class="page-link">LinkedIn</a> or see my <i class="fab fa-youtube youtube-color"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">YouTube</a>
+    </p>
+    <p>
+    Founder of Knapsack Pro, follow on <i class="fab fa-twitter twitter-color"></i> <a href="https://twitter.com/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Twitter</a>
+    </p>
+  </div>
+</div>
+</div>
+
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2019/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2019/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

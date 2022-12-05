@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>How to export test suite timing data from Knapsack Pro API</title>
+  <meta name="description" content="Knapsack Pro tracks your CI builds and how long each test files took to run on one of parallel CI nodes. Thanks to that Knapsack Pro can prepare the optimal ...">
+
+  <meta property="og:title" content="How to export test suite timing data from Knapsack Pro API">
+  <meta name="twitter:title" content="How to export test suite timing data from Knapsack Pro API">
+  <meta name="twitter:description" content="Knapsack Pro tracks your CI builds and how long each test files took to run on one of parallel CI nodes. Thanks to that Knapsack Pro can prepare the optimal ...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2018/how-to-export-test-suite-timing-data-from-knapsack-pro-api">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">How to export test suite timing data from Knapsack Pro API</h1>
+    <p class="post-meta">
+    <time datetime="2018-04-28T15:00:00+00:00" itemprop="datePublished">Apr 28, 2018</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Artur Trzop</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2018/how-to-export-test-suite-timing-data-from-knapsack-pro-api" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p><a href="https://knapsackpro.com">Knapsack Pro</a> tracks your CI builds and how long each test files took to run on one of parallel CI nodes. Thanks to that Knapsack Pro can prepare the optimal test suite split for your future test suite runs on your CI provider.</p>
+
+<p>You may find useful to export data about your CI builds and timing for your test files in case you would like to analyze it and observe trends how your test files change over time.</p>
+
+<h2 id="how-to-get-a-list-of-all-ci-builds">How to get a list of all CI builds</h2>
+
+<p>You can get the list of all CI builds recorded by Knapsack Pro tool. You need <code class="language-plaintext highlighter-rouge">test suite API token</code>. You can get it from <a href="https://knapsackpro.com/dashboard">user dashboard</a>.</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">curl -X GET \
+  https://api.knapsackpro.com/v1/builds \
+  -H 'cache-control: no-cache' \
+  -H 'KNAPSACK-PRO-TEST-SUITE-TOKEN: e5311882cbba506223ee8036fa68dc13'</code></pre></figure>
+
+<p>You will get a response from API with the list of CI builds.</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">{
+    "meta": {
+        "records_per_page": 100,
+        "total_pages": 1,
+        "prev_page": null,
+        "current_page": 1,
+        "next_page": null,
+        "is_first_page": true,
+        "is_last_page": true,
+        "is_page_out_of_range": false
+    },
+    "links": {
+        "first": "https://api.knapsackpro.com/v1/builds?page=1",
+        "prev": null,
+        "self": "https://api.knapsackpro.com/v1/builds?page=1",
+        "next": null,
+        "last": "https://api.knapsackpro.com/v1/builds?page=1"
+    },
+    "data": [
+        {
+          "id": "651efcce-cc5f-4cfc-b8fa-f49b4e5fb4af",
+          "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
+          "branch": "master",
+          "node_total": 3,
+          "created_at": "2018-04-21T10:57:42.439Z",
+          "updated_at": "2018-04-21T10:57:54.989Z"
+        },
+        {
+          "id": "ba2190af-1bb1-4e3a-8ce1-37303549a4c3",
+          "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
+          "branch": "master",
+          "node_total": 2,
+          "created_at": "2018-04-02T10:00:44.741Z",
+          "updated_at": "2018-04-02T10:00:44.763Z"
+        }
+    ]
+}</code></pre></figure>
+
+<p>Note the CI build from Knapsack Pro API perspective means a unique combination of <code class="language-plaintext highlighter-rouge">commit_hash</code>, <code class="language-plaintext highlighter-rouge">branch</code>, <code class="language-plaintext highlighter-rouge">node_total</code>. Even when you run multiple CI builds in your CI provider for the same combination of fields there will be only single CI build on Knapsack Pro API side.</p>
+
+<p>You can use <code class="language-plaintext highlighter-rouge">id</code> of the build to fetch detailed info about tests recorded for that CI build by doing request to <code class="language-plaintext highlighter-rouge">https://api.knapsackpro.com/v1/builds/:id</code> endpoint. You will learn about it in next section.</p>
+
+<p>You can see <a href="/api/v1/#builds_get">summary of <code class="language-plaintext highlighter-rouge">GET https://api.knapsackpro.com/v1/builds</code> endpoint here</a>.</p>
+
+<h3 id="filtering-ci-build-list">Filtering CI build list</h3>
+
+<p>You can use optional query params like <code class="language-plaintext highlighter-rouge">commit_hash</code>, <code class="language-plaintext highlighter-rouge">branch</code>, <code class="language-plaintext highlighter-rouge">node_total</code> to filter list of CI builds. See example:</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">curl -X GET \
+  https://api.knapsackpro.com/v1/builds?page=1&amp;branch=master&amp;node_total=2&amp;commit_hash=d1acb81ac1bead703eb6de64d1af24104d5d4b2c \
+  -H 'cache-control: no-cache' \
+  -H 'KNAPSACK-PRO-TEST-SUITE-TOKEN: e5311882cbba506223ee8036fa68dc13'</code></pre></figure>
+
+<h2 id="how-to-get-the-timing-of-test-files-for-ci-build">How to get the timing of test files for CI build</h2>
+
+<p>You can get detailed info about CI build with all <code class="language-plaintext highlighter-rouge">build subsets</code> containing the test files recorded timing for that CI build.</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">curl -X GET \
+  https://api.knapsackpro.com/v1/builds/651efcce-cc5f-4cfc-b8fa-f49b4e5fb4af \
+  -H 'cache-control: no-cache' \
+  -H 'KNAPSACK-PRO-TEST-SUITE-TOKEN: e5311882cbba506223ee8036fa68dc13'</code></pre></figure>
+
+<p>Note the CI build means unique combination of <strong>commit_hash</strong>, <strong>branch</strong>, <strong>node_total</strong>.
+If you will run your tests multiple times for that combination then you will get multiple recorded <code class="language-plaintext highlighter-rouge">build subset</code> records with test files timing for particular CI node indexes.</p>
+
+<p>For instance, you can get a response from Knapsack Pro API:</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">{
+  "id": "651efcce-cc5f-4cfc-b8fa-f49b4e5fb4af",
+  "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
+  "branch": "master",
+  "node_total": 2,
+  "created_at": "2018-04-02T10:00:44.741Z",
+  "updated_at": "2018-04-02T10:00:44.763Z",
+  "build_subsets": [
+    {
+      "id": "b9f09921-939d-43a6-ae5d-7c95866b4dec",
+      "node_index": 0,
+      "created_at": "2018-04-21T11:18:34.539Z",
+      "updated_at": "2018-04-21T11:18:34.539Z",
+      "test_files": [
+        {
+          "path": "spec/a_spec.rb",
+          "time_execution": 0.0008809566497802734
+        },
+        {
+          "path": "spec/b_spec.rb",
+          "time_execution": 0.019934892654418945
+        }
+      ]
+    },
+    {
+      "id": "2fa57fa8-0ff3-4af8-980f-5788c5ab6d21",
+      "node_index": 0,
+      "created_at": "2018-04-21T11:18:23.750Z",
+      "updated_at": "2018-04-21T11:18:23.750Z",
+      "test_files": [
+        {
+          "path": "spec/a_spec.rb",
+          "time_execution": 0.011754035949707031
+        },
+        {
+          "path": "spec/b_spec.rb",
+          "time_execution": 0.22170114517211914
+        }
+      ]
+    },
+    {
+      "id": "f7a0bdda-54d6-48b2-965a-4b1a4153043d",
+      "node_index": 1,
+      "created_at": "2018-04-21T11:18:39.506Z",
+      "updated_at": "2018-04-21T11:18:39.506Z",
+      "test_files": [
+        {
+          "path": "spec/c_spec.rb",
+          "time_execution": 0.013020992279052734
+        },
+        {
+          "path": "spec/d_spec.rb",
+          "time_execution": 0.0174105167388916
+        },
+        {
+          "path": "spec/e_spec.rb",
+          "time_execution": 0.23191308975219727
+        }
+      ]
+    },
+    {
+      "id": "cd424b01-9dfc-4b6d-be5f-e8acbea6c6f3",
+      "node_index": 1,
+      "created_at": "2018-04-21T11:18:29.156Z",
+      "updated_at": "2018-04-21T11:18:29.156Z",
+      "test_files": [
+        {
+          "path": "spec/c_spec.rb",
+          "time_execution": 0.011027812957763672
+        },
+        {
+          "path": "spec/d_spec.rb",
+          "time_execution": 0.019047812957763879
+        },
+        {
+          "path": "spec/e_spec.rb",
+          "time_execution": 0.038027712957363670
+        }
+      ]
+    }
+  ]
+}</code></pre></figure>
+
+<p>As you can see in the response you have two records for <code class="language-plaintext highlighter-rouge">node_index=0</code> and two for <code class="language-plaintext highlighter-rouge">node_index=1</code> because test suite was executed twice on CI provider.</p>
+
+<p>You can see <a href="/api/v1/#builds__id_get">summary of <code class="language-plaintext highlighter-rouge">GET https://api.knapsackpro.com/v1/builds/:id</code> endpoint here</a>.</p>
+
+<p>Hope this helps you to do whatever you like to do with your data. We keep data for last 90 days. If you need the data for a longer period please store them on your side. :)</p>
+
+<p>Manuel, one of our users did great job creating <a href="https://gist.github.com/manuelpuyol/9e1502cba67fa22c8b5e92b7382bab5a">ruby script to fetch data from Knapsack Pro API and calculate popular slow tests across multiple CI builds</a>. Note the script is based on old version of <a href="/api/v1/#builds_get"><code class="language-plaintext highlighter-rouge">/v1/builds</code></a> API and needs to be adjusted to work with pagination.</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2018/how-to-export-test-suite-timing-data-from-knapsack-pro-api" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+<div class="wrapper">
+<div class="author-container">
+  <img src="//gravatar.com/avatar/e3be50760a95eebc47c7f239b3ad3ede.png" class="rounded-circle author-img" alt="Artur Trzop" />
+  <div class="author-info">
+    <p>
+    Written by <strong>Artur Trzop</strong>
+    </p>
+    <p>
+    Let's connect on <i class="fab fa-linkedin linkedin-color"></i> <a href="https://www.linkedin.com/in/arturtrzop/" rel="nofollow noopener" target="_blank" class="page-link">LinkedIn</a> or see my <i class="fab fa-youtube youtube-color"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">YouTube</a>
+    </p>
+    <p>
+    Founder of Knapsack Pro, follow on <i class="fab fa-twitter twitter-color"></i> <a href="https://twitter.com/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Twitter</a>
+    </p>
+  </div>
+</div>
+</div>
+
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2018/how-to-export-test-suite-timing-data-from-knapsack-pro-api"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2018/how-to-export-test-suite-timing-data-from-knapsack-pro-api"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

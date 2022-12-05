@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Faster Cypress + RSpec test suite for Rails apps on GitHub Actions using Knapsack Pro</title>
+  <meta name="description" content="Cypress is an amazing tool for end to end testing Rails applications, but large test suites can quickly take upwards of 20 minutes to run. That’s where Knaps...">
+
+  <meta property="og:title" content="Faster Cypress + RSpec test suite for Rails apps on GitHub Actions using Knapsack Pro">
+  <meta name="twitter:title" content="Faster Cypress + RSpec test suite for Rails apps on GitHub Actions using Knapsack Pro">
+  <meta name="twitter:description" content="Cypress is an amazing tool for end to end testing Rails applications, but large test suites can quickly take upwards of 20 minutes to run. That’s where Knaps...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro/cypress_rspec.jpeg">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro/cypress_rspec.jpeg">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2021/faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Faster Cypress + RSpec test suite for Rails apps on GitHub Actions using Knapsack Pro</h1>
+    <p class="post-meta">
+    <time datetime="2021-03-23T18:00:00+00:00" itemprop="datePublished">Mar 23, 2021</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Matt Vague</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Cypress is an amazing tool for end to end testing Rails applications, but large test suites can quickly take upwards of 20 minutes to run. That’s where Knapsack Pro comes in. Knapsack Pro <a href="/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation">Queue Mode to intelligently split your test suite into jobs that can be run in parallel</a>, reducing run time to only a few minutes. In this article we’ll show how to quickly implement Knapsack Pro Queue Mode to speed up both Cypress &amp; RSpec test suites in a Ruby on Rails app on Github Actions</p>
+
+<p><img src="/images/blog/posts/faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro/cypress_rspec.jpeg" style="width:450px;margin-left: 15px;float:right;" alt="Cypress + RSpec" /></p>
+
+<h2 id="set-up-knapsack-pro-api-keys">Set up Knapsack Pro API Keys</h2>
+
+<p>First step is to go to your Knapsack <a href="https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro">dashboard</a> and grab your API keys for both RSpec and Cypress. Once you have those, go to your Github Repo’s settings, for example:</p>
+
+<p><img width="1404" alt="image" src="https://user-images.githubusercontent.com/64985/111044967-80297880-8400-11eb-92b6-8a1e8aa2701e.png" /></p>
+
+<h2 id="set-up-your-github-actions-config-file">Set up your GitHub Actions config file</h2>
+
+<p>Once you’ve added your <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC</code> and <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS</code> secrets, the next step is setting up your GitHub Actions configuration file to use the Knapsack Runner in place of the normal commands to run RSpec and Cypress.</p>
+
+<h3 id="existing-github-actions-config">Existing GitHub Actions config</h3>
+
+<p>For those that already have a GH actions config file setup (e.g. <code class="language-plaintext highlighter-rouge">.github/workflows/ci.yml</code>), here’s all that you should need to change to get Knapsack Pro Queue Mode working for both Cypress and RSpec.</p>
+
+<p>Change your RSpec run command to use Knapsack:</p>
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gi">+      strategy:
++        fail-fast: false
++        matrix:
++          # Set N number of parallel jobs you want to run tests on.
++          # Use higher number if you have slow tests to split them on more parallel jobs.
++          # Remember to update ci_node_index below to 0..N-1
++          ci_node_total: [2]
++          # set N-1 indexes for parallel jobs
++          # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
++          ci_node_index: [0, 1]
+</span>      - name: Run RSpec Tests
+<span class="gi">+      env:
++        KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
++        KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
++        KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
++        KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
++    run: bin/rake knapsack_pro:queue:rspec  # Run RSpec using Knapsack Pro Queue Mode
+</span><span class="gd">-    run: bin/rspec spec</span></code></pre></figure>
+
+<p>Change your cypress run command to use Knapsack as well:</p>
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gi">+      strategy:
++        fail-fast: false
++        matrix:
++          ci_node_total: [5]
++          # set N-1 indexes for parallel jobs
++          # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
++          ci_node_index: [0, 1, 2, 3, 4]
+</span>      - name: Run cypress tests
+<span class="gi">+        env:
++          KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS }}
++          KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
++          KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
++          KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
++          KNAPSACK_PRO_TEST_FILE_PATTERN: '{cypress/**/*,app/javascript/**/*.component}.spec.{js,ts,tsx}'
++        run: yarn knapsack-pro-cypress
+</span><span class="gd">-        run: yarn cypress run</span></code></pre></figure>
+
+<h3 id="new-github-actions-config-file">New Github Actions config file</h3>
+
+<p>For those starting from scratch, here’s a full example <code class="language-plaintext highlighter-rouge">.github/workflows/ci.yaml</code> for a Rails app with Cypress + RSpec with Knapsack tokens for RSpec and Cypress already added.</p>
+
+<figure class="highlight"><pre><code class="language-yml" data-lang="yml"><span class="na">name</span><span class="pi">:</span> <span class="s">ci</span>
+<span class="na">on</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">push</span><span class="pi">]</span>
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="c1"># OPTIONAL: Cancel any previous CI runs to save your GH Actions minutes</span>
+  <span class="na">cancel</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Cancel</span><span class="nv"> </span><span class="s">Previous</span><span class="nv"> </span><span class="s">Runs"</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-20.04</span>
+    <span class="na">timeout-minutes</span><span class="pi">:</span> <span class="m">3</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">styfle/cancel-workflow-action@0.8.0</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">workflow_id</span><span class="pi">:</span> <span class="m">3553203</span>
+  <span class="na">yarn</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-node@v2-beta</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">node-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">12"</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/cache@v2</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">**/node_modules"</span>
+          <span class="na">key</span><span class="pi">:</span> <span class="s">${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}</span>
+          <span class="na">restore-keys</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">${{ runner.os }}-yarn-</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Yarn install</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">yarn install --frozen-lockfile</span>
+        <span class="na">env</span><span class="pi">:</span>
+          <span class="na">CYPRESS_INSTALL_BINARY</span><span class="pi">:</span> <span class="m">0</span> <span class="c1"># Prevent installing Cypress binary until later when it's needed</span>
+  <span class="na">bundle</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">ruby/setup-ruby@v1</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">bundler-cache</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">rspec</span><span class="pi">:</span>
+    <span class="na">timeout-minutes</span><span class="pi">:</span> <span class="m">3</span> <span class="c1"># Adjust as needed, just here to prevent accidentally using up all your minutes from a silly infinite loop of some kind</span>
+    <span class="na">env</span><span class="pi">:</span>
+      <span class="na">RAILS_ENV</span><span class="pi">:</span> <span class="s">test</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">needs</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">bundle</span><span class="pi">]</span>
+    <span class="na">strategy</span><span class="pi">:</span>
+      <span class="na">fail-fast</span><span class="pi">:</span> <span class="no">false</span>
+      <span class="na">matrix</span><span class="pi">:</span>
+        <span class="c1"># Set N number of parallel jobs you want to run tests on.</span>
+        <span class="c1"># Use higher number if you have slow tests to split them on more parallel jobs.</span>
+        <span class="c1"># Remember to update ci_node_index below to 0..N-1</span>
+        <span class="na">ci_node_total</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">2</span><span class="pi">]</span>
+        <span class="c1"># set N-1 indexes for parallel jobs</span>
+        <span class="c1"># When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc</span>
+        <span class="na">ci_node_index</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">0</span><span class="pi">,</span> <span class="nv">1</span><span class="pi">]</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">ruby/setup-ruby@v1</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">bundler-cache</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build DB</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">bin/rails db:schema:load</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run RSpec Tests</span>
+        <span class="na">env</span><span class="pi">:</span>
+          <span class="na">PGPORT</span><span class="pi">:</span> <span class="s">${{ job.services.postgres.ports[5432] }}</span> <span class="c1"># get randomly assigned published port</span>
+          <span class="na">KNAPSACK_PRO_CI_NODE_TOTAL</span><span class="pi">:</span> <span class="s">${{ matrix.ci_node_total }}</span>
+          <span class="na">KNAPSACK_PRO_CI_NODE_INDEX</span><span class="pi">:</span> <span class="s">${{ matrix.ci_node_index }}</span>
+          <span class="na">KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC</span><span class="pi">:</span> <span class="s">${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}</span>
+          <span class="na">KNAPSACK_PRO_FIXED_QUEUE_SPLIT</span><span class="pi">:</span> <span class="no">true</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">bin/rake knapsack_pro:queue:rspec</span> <span class="c1"># Run RSpec using Knapsack Pro Queue Mode</span>
+  <span class="na">cypress</span><span class="pi">:</span>
+    <span class="na">timeout-minutes</span><span class="pi">:</span> <span class="m">20</span> <span class="c1"># Adjust as needed, just here to prevent accidentally using up all your minutes from a silly infinite loop of some kind</span>
+    <span class="na">env</span><span class="pi">:</span>
+      <span class="na">RAILS_ENV</span><span class="pi">:</span> <span class="s">test</span>
+      <span class="na">RACK_ENV</span><span class="pi">:</span> <span class="s">test</span>
+      <span class="na">GITHUB_TOKEN</span><span class="pi">:</span> <span class="s">${{ github.token }}</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">needs</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">bundle</span><span class="pi">,</span> <span class="nv">yarn</span><span class="pi">]</span>
+    <span class="na">strategy</span><span class="pi">:</span>
+      <span class="na">fail-fast</span><span class="pi">:</span> <span class="no">false</span>
+      <span class="na">matrix</span><span class="pi">:</span>
+        <span class="na">ci_node_total</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">5</span><span class="pi">]</span>
+        <span class="c1"># set N-1 indexes for parallel jobs</span>
+        <span class="c1"># When you run 5 parallel jobs then first job will have index 0, the second job will have index 1 etc</span>
+        <span class="na">ci_node_index</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">0</span><span class="pi">,</span> <span class="nv">1</span><span class="pi">,</span> <span class="nv">2</span><span class="pi">,</span> <span class="nv">3</span><span class="pi">,</span> <span class="nv">4</span><span class="pi">]</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-node@v2-beta</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">node-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">12"</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/cache@v2</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">**/node_modules"</span>
+          <span class="na">key</span><span class="pi">:</span> <span class="s">${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">ruby/setup-ruby@v1</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">bundler-cache</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build DB</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">bin/rails db:schema:load</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Rails Server in background</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">bin/rails server -p 3000 &amp;</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">npx cypress -v &gt; .cypress-version</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/cache@v2</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">~/.cache/Cypress</span>
+          <span class="na">key</span><span class="pi">:</span> <span class="s">cypress-cache-v3-${{ runner.os }}-${{ hashFiles('.cypress-version') }}</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">yarn cypress install</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-node@v2-beta</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">node-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">12"</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">yarn wait-on 'http-get://localhost:3000' -t </span><span class="m">30000</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run tests</span>
+        <span class="na">env</span><span class="pi">:</span>
+          <span class="na">KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS</span><span class="pi">:</span> <span class="s">${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS }}</span>
+          <span class="na">KNAPSACK_PRO_CI_NODE_TOTAL</span><span class="pi">:</span> <span class="s">${{ matrix.ci_node_total }}</span>
+          <span class="na">KNAPSACK_PRO_CI_NODE_INDEX</span><span class="pi">:</span> <span class="s">${{ matrix.ci_node_index }}</span>
+          <span class="na">KNAPSACK_PRO_FIXED_QUEUE_SPLIT</span><span class="pi">:</span> <span class="no">true</span>
+          <span class="na">KNAPSACK_PRO_TEST_FILE_PATTERN</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{cypress/**/*,app/javascript/**/*.component}.spec.{js,ts,tsx}"</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">yarn knapsack-pro-cypress</span> <span class="c1"># Run Cypress using Knapsack Pro Queue Mode</span>
+      <span class="c1"># Save screenshots and videos of failed tests and make them available as Github build artifacts</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/upload-artifact@v2</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">failure()</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">cypress-screenshots</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">cypress/screenshots</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/upload-artifact@v2</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">failure()</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">cypress-videos</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">cypress/videos</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/upload-artifact@v2</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">failure()</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">cypress-logs</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">cypress/logs</span></code></pre></figure>
+
+<h2 id="add-knapsack-pro-gem-and-npm-package">Add Knapsack Pro gem and npm package</h2>
+
+<p>Add the Knapsack Pro gem to your <code class="language-plaintext highlighter-rouge">Gemfile</code>:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="c1">#...</span>
+  <span class="n">gem</span> <span class="s1">'knapsack_pro'</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Add the Knapsack Pro npm package with <code class="language-plaintext highlighter-rouge">yarn add --dev @knapsack-pro/cypress</code></p>
+
+<h2 id="run-your-tests--view-your-results">Run your tests &amp; view your results</h2>
+
+<p>Once you’ve completed the above steps, trigger a test run on your repo. You should see multiple jobs for both RSpec and Cypress like so:</p>
+
+<p><img width="345" alt="Screen Shot 2021-03-23 at 10 13 30 AM" src="https://user-images.githubusercontent.com/64985/112190195-017fc880-8bc2-11eb-85ea-00fa3469be43.png" /></p>
+
+<p>Now check your <a href="https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro">Knapsack Dashboard</a> for the results 🚀</p>
+
+<p>The complete example Rails app can be found <a href="https://github.com/goodproblems/knapsack-example-rails-app">here</a>. Happy testing!</p>
+
+<h2 id="related-resources">Related resources</h2>
+
+<ul>
+  <li><a href="/integration/">Installation guide for Knapsack Pro</a></li>
+  <li><a href="/2021/setting-up-knapsack-pro-in-rspec-project">Regular Mode vs Queue Mode</a></li>
+  <li><a href="/2020/how-to-merge-cypress-test-reports-generated-by-mochawesome-on-github-actions">How to merge Cypress test reports generated by Mochawesome on Github Actions</a></li>
+</ul>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2021/faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2021/faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

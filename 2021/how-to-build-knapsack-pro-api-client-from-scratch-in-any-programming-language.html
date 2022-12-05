@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>How to build Knapsack Pro API client from scratch in any programming language</title>
+  <meta name="description" content="You will learn how to integrate with Knapsack Pro API to run parallel tests in any programming language for any testing framework. You will see what’s needed...">
+
+  <meta property="og:title" content="How to build Knapsack Pro API client from scratch in any programming language">
+  <meta name="twitter:title" content="How to build Knapsack Pro API client from scratch in any programming language">
+  <meta name="twitter:description" content="You will learn how to integrate with Knapsack Pro API to run parallel tests in any programming language for any testing framework. You will see what’s needed...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language/api.jpeg">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language/api.jpeg">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">How to build Knapsack Pro API client from scratch in any programming language</h1>
+    <p class="post-meta">
+    <time datetime="2021-02-18T07:00:00+00:00" itemprop="datePublished">Feb 18, 2021</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Artur Trzop</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>You will learn how to integrate with Knapsack Pro API to run parallel tests in any programming language for any testing framework. You will see what’s needed to build from scratch Knapsack Pro API client similar to our existing clients like <code class="language-plaintext highlighter-rouge">knapsack_pro</code> Ruby gem, <code class="language-plaintext highlighter-rouge">@knapsack-pro/jest</code> for Jest in JavaScript, or <code class="language-plaintext highlighter-rouge">@knapsack-pro/cypress</code> for Cypress test runner (also in JavaScript).</p>
+
+<p><img src="/images/blog/posts/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language/api.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="API, integration, knapsack, knapsack problem, knapsack pro" /></p>
+
+<p>Here you can find the <a href="/integration/">list of existing Knapsack Pro clients</a> to run your tests in parallel for programming languages like Ruby, JavaScript, and their testing frameworks.</p>
+
+<h2 id="introduction---learn-basics">Introduction - learn basics</h2>
+
+<p>First, you need to understand what <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language">Knapsack Pro</a> does and how it splits test files in parallel CI nodes to run your CI build fast.</p>
+
+<p>Learn <a href="/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation">what Regular Mode and Queue Mode are</a> in Knapsack Pro and how they work.</p>
+
+<p>Please see below the dictionary of terms we will use in this article:</p>
+
+<ul>
+  <li>
+    <p><strong>Knapsack Pro API</strong> - it’s an API responsible for deciding how to split test files between parallel CI nodes. Your API client is going to send recorded time execution of your test files to the API to see results in the <a href="https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language">Knapsack Pro user dashboard</a>. Knapsack Pro API will use the data to better predict how to split your test files in future CI build runs. Here is the <a href="/api/">documentation for all API endpoints</a>.</p>
+  </li>
+  <li>
+    <p><strong>Knapsack Pro client</strong> - is a library that you install in your project. It contains business logic responsible for connecting with Knapsack Pro API. The client knows how to read environment variables for various CI providers to automatically detect git commit hash, branch name, number of total parallel CI nodes, and CI node index. Knapsack Pro client connects with the Knapsack Pro API to fetch a list of test files to run a proper set of tests on a given parallel CI node. Knapsack Pro client also knows how to integrate with a test runner in a given programming language. For instance, the Knapsack Pro client in Ruby programming language is a <code class="language-plaintext highlighter-rouge">knapsack_pro</code> ruby gem. It knows how to run tests for test runners like RSpec, Cucumber, Minitest, etc. Simply speaking, Knapsack Pro client is a wrapper around test runner (testing framework) in a given programing language. Here is a <a href="/integration/">list of existing Knapsack Pro clients</a>.</p>
+  </li>
+  <li>
+    <p><strong>Test runner (testing framework)</strong> - each programming language has its own testing framework. For instance, in Ruby programming language there are test runners like RSpec, Cucumber, Minitest. In JavaScript, you can find Jest, Puppeteer, Karma, Jasmine, Cypress, TestCafe, etc. In Python, there are pytest, unittest.</p>
+  </li>
+  <li>
+    <p><strong>Knapsack Pro Regular Mode</strong> - it’s a static split of tests between parallel CI nodes (performed deterministically). Basically, before starting tests we know up front what set of test files should be run on each parallel CI node.</p>
+  </li>
+  <li>
+    <p><strong>Knapsack Pro Queue Mode</strong> - it’s a dynamic way of splitting tests between parallel CI nodes. In this case, each parallel CI node asks Knapsack Pro API for a set of tests and runs it. Once completed, it asks for another set of tests. It’s repeated until all tests are executed and the Knapsack Pro API has no more test files in the Queue. Please read the article about the <a href="/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation">difference between Regular Mode and Queue Mode</a> to learn about it in detail and see some graphs showing the difference.</p>
+  </li>
+</ul>
+
+<p>Now you know a few useful terms. Before we start learning how to build a Knapsack Pro client from scratch in your favorite programming language, let’s check how such a client looks like in JavaScript. In order to integrate with Knapsack Pro API in JavaScript, we created an NPM package called <a href="https://github.com/KnapsackPro/knapsack-pro-core-js"><code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code></a>. This package knows how to communicate with Knapsack Pro API and how to read environment variables for various CI providers.</p>
+
+<p>As you probably know, there are many testing frameworks written in JavaScript, e.g. Jest, Cypress, etc. For the Jest testing framework we created another package <a href="https://github.com/KnapsackPro/knapsack-pro-jest"><code class="language-plaintext highlighter-rouge">@knapsack-pro/jest</code></a> for the Jest testing framework that uses <code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code>. The <code class="language-plaintext highlighter-rouge">@knapsack-pro/jest</code> NPM package contains business logic responsible for integration with the Jest library so you can run Jest tests in parallel using Knapsack Pro API.</p>
+
+<p>Before you start building your own Knapsack Pro client in your programming language I highly recommend reading the article where we covered <a href="/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework">how <code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code> and <code class="language-plaintext highlighter-rouge">@knapsack-pro/jest</code> work</a>.
+Those are lightweight NPM packages and the source code is easy to understand. You can get some ideas about code organization and technical requirements for building a Knapsack Pro client from scratch.</p>
+
+<h2 id="how-to-build-knapsack-pro-client">How to build Knapsack Pro client</h2>
+
+<p>You will see how to build a Knapsack Pro client from scratch based on the  JavaScript example. Knapsack Pro client is built as 2 packages:</p>
+
+<ul>
+  <li><strong>Knapsack Pro Core</strong> - (i.e. <a href="https://github.com/KnapsackPro/knapsack-pro-core-js"><code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code></a>) which is responsible for:
+    <ul>
+      <li>connecting with the Knapsack Pro API. It can respond to, and handle common response types and errors coming from the API.</li>
+      <li>reading environment variables specific to Knapsack Pro client like API token, log level, API endpoint URL, etc.</li>
+      <li>CI providers environment variables integration - Knapsack Pro Core library can read environment variables for popular CI providers. Thanks to that it can automatically detect git commit hash, branch name, number of parallel CI nodes, etc.</li>
+      <li>Logger - it can log useful tips for the output or warnings.</li>
+      <li>Fallback Mode - it knows how to run tests in parallel when there is a network issue and the connection with Knapsack Pro API is not working.</li>
+    </ul>
+  </li>
+  <li><strong>Knapsack Pro Test Runner</strong> - (i.e. <a href="https://github.com/KnapsackPro/knapsack-pro-jest"><code class="language-plaintext highlighter-rouge">@knapsack-pro/jest</code></a>) is responsible for:
+    <ul>
+      <li>integration of Knapsack Pro Core with your test runner (testing framework) like Jest, etc.</li>
+      <li>knowing how to run tests for a given test runner, how to record time execution, and report it back to Knapsack Pro Core so the recorded test files can be saved on the Knapsack Pro API side.</li>
+      <li>reading environment variables specific for the test runner, for instance how to detect a list of Jest test files residing on the disk.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="knapsack-pro-core">Knapsack Pro Core</h2>
+
+<p>The core functionality of the Knapsack Pro client is in the Core package (<code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code>). We will review a few main elements and describe how they work.</p>
+
+<h3 id="environment-variables-integration">Environment variables integration</h3>
+
+<p>Knapsack Pro Core client should understand a few environment variables. See example for <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/config/knapsack-pro-env.config.ts"><code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code> environment variables</a>.
+Users can define those environment variables in their CI server settings to control the behavior of the Knapsack Pro client.</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_LOG_LEVEL</code> - it determines how much debugging info should be produced by the Knapsack Pro client to the output during the runtime of tests. The default is <code class="language-plaintext highlighter-rouge">info</code>. If you set the <code class="language-plaintext highlighter-rouge">debug</code> value then the Knapsack Pro client should show in the output a payload of requests and responses from the Knapsack Pro API.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_ENDPOINT</code> - it’s the URL of the Knapsack Pro API. The default value is <code class="language-plaintext highlighter-rouge">https://api.knapsackpro.com</code> which is production API. You can use our production API and your API token from the user dashboard for testing purposes.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TOKEN</code> - it’s an API token that you can use to connect with Knapsack Pro API. If the value is not defined then an error should be raised.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_FIXED_QUEUE_SPLIT</code> - it’s a flag to control the behavior of Queue Mode. The default value is <code class="language-plaintext highlighter-rouge">false</code>.</p>
+
+    <ul>
+      <li>
+        <p>If the value is <code class="language-plaintext highlighter-rouge">true</code> then the API will cache the way test files were split between parallel CI nodes. So when you retry the CI build the tests won’t be dynamically split. Instead, they will be split in the same order as during the very first run (which was a dynamic tests split).</p>
+      </li>
+      <li>
+        <p>Do you want to use “retry single failed parallel CI node” feature for your CI? For instance, some of CI providers like Travis CI, Buildkite or Codeship allow you to retry only one of failed parallel CI nodes instead of retrying the whole CI build with all parallel CI nodes. If you want to be able to retry only a single failed parallel CI node then you need to tell Knapsack Pro API to remember the way test files were allocated across parallel CI nodes by adding to your CI environment variables <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true</code>.</p>
+      </li>
+      <li>
+        <p>The default is <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false</code> which means that when you want to retry the whole failed CI build then a new dynamic test suite split will happen across all retried parallel CI nodes. Some people may prefer to retry the whole failed CI build with test files allocated across parallel CI nodes in the same order as it happened for the failed CI build - in such a case you should set <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true</code>.</p>
+      </li>
+      <li>
+        <p>To learn more about this flag you can also see <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node">examples in knapsack_pro ruby gem related to the <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true</code></a>.</p>
+      </li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_CI_NODE_TOTAL</code> - the default value conveying the number of parallel CI nodes used.
+    <ul>
+      <li>If <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_CI_NODE_TOTAL</code> has a value then it should be used.</li>
+      <li>If <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_CI_NODE_TOTAL</code> has no value then Knapsack Pro client should read CI provider environment variables to determine CI node total number.</li>
+      <li>If no value is detected then an error should be raised. Please see the <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L47,L61">source code of <code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code></a>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_CI_NODE_INDEX</code> - it is the index of the parallel CI node (parallel job). It should start from <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_CI_NODE_TOTAL - 1</code>. If you use 2 parallel CI nodes in total then indexes should be <code class="language-plaintext highlighter-rouge">0</code> and <code class="language-plaintext highlighter-rouge">1</code>.
+    <ul>
+      <li>If <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_CI_NODE_INDEX</code> has a value then it should be used.</li>
+      <li>If <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_CI_NODE_INDEX</code> has no value then Knapsack Pro client should read CI provider environment variables to determine CI node index.</li>
+      <li>If no value is detected then an error should be raised. Please see the <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L63,L76">source code of <code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code></a>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_CI_NODE_BUILD_ID</code> - a user of your Knapsack Pro client can define CI build ID with this environment variable. For instance, if the user uses Jenkins as a CI provider then Jenkins has no autogenerated CI build ID out of the box. In such a case, the user should create a custom value (unique for every CI build) and assign it to the <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_CI_NODE_BUILD_ID</code> environment variable.
+    <ul>
+      <li>CI build has many parallel CI nodes. Each parallel CI node should have the same <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_CI_NODE_BUILD_ID</code> value. This means the parallel CI nodes belong to the same CI build.</li>
+      <li>Knapsack Pro client by default should try to detect CI build ID for popular CI providers by looking for it in the environment variables.</li>
+      <li>If <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_CI_NODE_BUILD_ID</code> value was defined by the user then it should be used during a request to the Knapsak Pro API. It has <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L79,L81">higher priority</a> than <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L83,L86">detected CI build ID from a CI provider</a> environment variables.</li>
+      <li>If the user did not define <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_CI_NODE_BUILD_ID</code> then a default value <code class="language-plaintext highlighter-rouge">missing-build-id</code> should be used.
+        <ul>
+          <li>Knapsack Pro API understands <code class="language-plaintext highlighter-rouge">missing-build-id</code> string and knows the CI build has an undefined CI build ID then. In such a case only one parallel CI build can be run at a time for a given set of values (<code class="language-plaintext highlighter-rouge">git commit hash</code> AND <code class="language-plaintext highlighter-rouge">branch name</code> AND <code class="language-plaintext highlighter-rouge">number of parallel CI nodes</code>) - otherwise, tests could be accidentally split between 2 CI builds.
+            <ul>
+              <li>Why this set of values matter? From the Knapsack Pro API perspective, a unique CI build is a set of test files that belongs to a git commit hash, branch name and it is split across a certain number of parallel CI nodes. When the user will run a few CI builds at the same time for the same git commit, branch name and on the same number of parallel CI nodes then we need a way to distinguish CI builds from each other. That’s why CI build ID is useful and recommended to be pass in request to Knapsack Pro API.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>It might be easier to understand this logic, just <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L78">check the source code of <code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code></a>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_COMMIT_HASH</code> - it’s a commit hash.
+    <ul>
+      <li>If <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_COMMIT_HASH</code> has a value then it should be used.</li>
+      <li>If <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_COMMIT_HASH</code> has no value then Knapsack Pro client should read CI provider environment variables to determine git commit hash.</li>
+      <li>If no value is detected then a <code class="language-plaintext highlighter-rouge">git rev-parse HEAD</code> command should be run to determine the commit hash.</li>
+      <li>If <code class="language-plaintext highlighter-rouge">git</code> is not installed then raise an error. Please see the <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L108,L145">source code of <code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code></a>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_BRANCH</code> - it’s a branch name.
+    <ul>
+      <li>If <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_BRANCH</code> has a value then it should be used.</li>
+      <li>If <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_BRANCH</code> has no value then Knapsack Pro client should read CI provider environment variables to determine a branch name.</li>
+      <li>If no value is detected then a <code class="language-plaintext highlighter-rouge">git rev-parse --abbrev-ref HEAD</code> command should be run to determine the branch name.</li>
+      <li>If <code class="language-plaintext highlighter-rouge">git</code> is not installed then raise an error. Please see the <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L147,L184">source code of <code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code></a>.</li>
+    </ul>
+  </li>
+  <li>CI providers environment variables integration - Knapsack Pro client should try to read environment variables for popular CI providers. Thanks to that user have to do less work to set up the Knapsack Pro client with his project.
+    <ul>
+      <li>Here can be found a <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/config/ci-env.config.ts">list of supported CI providers</a>.</li>
+      <li>Here is a list of <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers">environment variables for each CI provider</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="fallback-mode">Fallback Mode</h3>
+
+<p>Knapsack Pro Core should have implemented business logic for running tests in Fallback Mode. When Knapsack Pro API is not reachable because of downtime then tests should be run in Fallback Mode without the need to use the API.</p>
+
+<p>How Fallback Mode works? The service responsible for Fallback Mode should take a list of test files and the number of total parallel CI nodes. You can sort the test files and divide them by the total parallel CI nodes number.</p>
+
+<p>It’s also possible that during tests runtime in Queue Mode the connection with Knapsack Pro API will be lost. This could mean that some of the test files were already executed based on the set of test files fetched from Queue API and then the connection was lost. In such a case Fallback Mode should exclude test files that were already executed.
+In Queue Mode the Fallback Mode guarantees each of the test files is run at least once across parallel CI nodes to make sure we never skip a test file.</p>
+
+<p>Here you can see the source code of <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/fallback-test-distributor.ts">Fallback Test Distributor</a>.</p>
+
+<h3 id="logger">Logger</h3>
+
+<p>Knapsack Pro Core should have a logger with a default <code class="language-plaintext highlighter-rouge">info</code> log level. A user should be able to control log level with the environment variable <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_LOG_LEVEL</code>. You use the logger to produce useful tips to the output during tests runtime:</p>
+
+<ul>
+  <li>info when Fallback Mode was started</li>
+  <li>when log level is <code class="language-plaintext highlighter-rouge">debug</code> then show request payload</li>
+  <li>when log level is <code class="language-plaintext highlighter-rouge">debug</code> then show response body</li>
+</ul>
+
+<p>Here is an example <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-logger.ts">service for the logger</a>.</p>
+
+<h3 id="knapsack-pro-api-integration">Knapsack Pro API integration</h3>
+
+<p>Knapsack Pro Core should have implemented <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts">business logic for making requests to Knapsack Pro API</a>. There are a few basic elements you need to cover:</p>
+
+<ul>
+  <li>
+    <p>Send headers with the client name and client version in each request to the Knapsack Pro API. You should add <code class="language-plaintext highlighter-rouge">KNAPSACK-PRO-CLIENT-NAME</code> and <code class="language-plaintext highlighter-rouge">KNAPSACK-PRO-CLIENT-VERSION</code> <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L81,L84">headers in each request</a>. Note that the Knapsack Pro Core (<code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code>) is just a core library so it means the actual client name and version should be defined in the Knapsack Pro Test Runner client (<code class="language-plaintext highlighter-rouge">@knapsack-pro/jest</code>) and provided as an <a href="https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L30,L31">argument to the Knapsack Pro Core</a> so when the Core client sends requests to the Knapsack Pro API it will use proper client name and version. Please use <a href="https://semver.org/">semantic versioning</a>.</p>
+  </li>
+  <li>When a request to the Knapsack Pro API fails then it should be repeated 3 times.
+    <ul>
+      <li>There are exceptions when a <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L68,L70">response status indicates a failure</a> - in these cases the request should never be repeated:
+        <ul>
+          <li>When response status is <code class="language-plaintext highlighter-rouge">400</code> then it means request attributes error.</li>
+          <li>When response status is <code class="language-plaintext highlighter-rouge">422</code> then it means validation error.</li>
+          <li>When the response status is <code class="language-plaintext highlighter-rouge">403</code> then a free trial period ended.</li>
+        </ul>
+      </li>
+      <li>For all above <code class="language-plaintext highlighter-rouge">4xx</code> response statuses you should show the error body response to the output and stop running tests. Ensure that the <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L77">process has exit code <code class="language-plaintext highlighter-rouge">1</code></a> - thanks to that CI provider will know the CI build failed.</li>
+    </ul>
+  </li>
+  <li>
+    <p>When the Knapsack Pro API returns different response status than listed above. For instance when you get <code class="language-plaintext highlighter-rouge">500</code> status then you should repeat the request 3 times. If the 3rd response has a non-<code class="language-plaintext highlighter-rouge">2xx</code> status as well, then you should <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L83,L110">run test files in Fallback Mode</a>.</p>
+  </li>
+  <li>Ensure you set max request <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L80">timeout to <code class="language-plaintext highlighter-rouge">15</code> seconds</a>. When Knapsack Pro API won’t send a response within 15 seconds then it’s better to cancel the request and <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L188,L199">wait some time before repeating the request</a>. You can wait 8 seconds, and increase by another 8 seconds each consequent request that must be repeated (e.g. wait for 8s, then 16s, then 24s).</li>
+</ul>
+
+<h4 id="knapsack-pro-api---queue-mode">Knapsack Pro API - Queue Mode</h4>
+
+<p>Knapsack Pro Core should contain logic for making requests to Knapsack Pro API for Queue Mode. Here is described the <a href="/api/v1/#queues_queue_post">Queue Mode API endpoint</a>.</p>
+
+<p>Please read the API documentation. Especially an example of <a href="/api/v1/#queues_queue_post">the request body</a>. There are 3 types of requests to ensure we can connect with the Queue on the API side in a fast way by sending a request payload as small as possible.</p>
+
+<p>I’ll describe below an example covering all 3 types of request payloads.
+There are different types of payloads because the Knapsack Pro client runs at the same time on parallel CI nodes and we don’t know which one will be connected with the Knapsack Pro API first. We need to deal with the parallel request problem. For instance, the very first request to Knapsack Pro Queue API should initialize a new Queue with the test files on the API side. But we don’t know which parallel CI nodes will connect to the API first. There is mutex protection on the API side to detect the very first request but we also need to take care of things on the Knapsack Pro Core side.</p>
+
+<p>Let’s start with a simple example. You have 2 parallel CI nodes. The first CI node has node index <code class="language-plaintext highlighter-rouge">0</code>. The second parallel CI node has index <code class="language-plaintext highlighter-rouge">1</code>. Note that the convention is to start index number from <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">N-1</code> (<code class="language-plaintext highlighter-rouge">N</code> is a total number of parallel CI nodes).</p>
+
+<p>Let’s assume that only the first parallel CI node (CI node index <code class="language-plaintext highlighter-rouge">0</code>) sends requests to the Knapsack Pro API because the CI machine for the first CI node started work earlier than the second CI node.</p>
+
+<p>The first CI node sends the below request. Its purpose is to attempt to connect to the existing Queue on the API side.</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">// 1st type of request to Queue API should set attributes:
+// can_initialize_queue: true AND attempt_connect_to_queue: true
+// Note that there is no test_files parameter in the payload to make the request fast and keep the payload small.</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"can_initialize_queue"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"attempt_connect_to_queue"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fixed_queue_split"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"commit_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e3396177d9f8ca87e2b93b4b0a25babd09d574d"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"branch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"node_total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"node_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"node_build_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>The above request was the very first request sent to the API and on the API side the Queue does not exist yet. It means the API response returns an error informing us about the Queue not existing.</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">// 1st type of response to the 1st type of request (when can_initialize_queue: true AND attempt_connect_to_queue: true)
+// It can happen only when the queue does not exist on the API side or cannot be read from the cache on the API side</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"queue_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:6baacadcdd493c1a6024ee7e51f018f5"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A queue with a list of test files does not exist on the API side yet. If you see this message, everything works as expected. Now Knapsack Pro client will initialize a queue on the API side with a list of test files you want to run. The request to initialize the queue will have attributes like can_initialize_queue=true, attempt_connect_to_queue=false, and test_files, etc."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ATTEMPT_CONNECT_TO_QUEUE_FAILED"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>You need to make a second request. This time, it should contain a list of test files residing on the disk. These will be used to create the Queue.</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">// 2nd type of request to Queue API should happen only if the API response for 1st type of request has:
+// "code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
+// it means an attempt to connect to the queue failed because the queue does not exist on the API side yet.
+// You must initialize a new queue with the below request.
+// It should set attributes:
+// can_initialize_queue: true AND attempt_connect_to_queue: false
+// Note that there is a test_files attribute in the payload to initialize a queue based on the list of test_files from your disk.
+// This request can be slow if you provide a large number of test files (~1000+).
+// That is why we did 1st request to try to connect to the existing queue first (as one of the other parallel CI nodes could have already initialized it).</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"can_initialize_queue"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"attempt_connect_to_queue"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fixed_queue_split"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"commit_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e3396177d9f8ca87e2b93b4b0a25babd09d574d"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"branch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"node_total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"node_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"node_build_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"test_files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test/fast/a_test.rb"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test/fast/b_test.rb"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test/slow/c_test.rb"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test/slow/d_test.rb"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>API should return a set of test files assigned to the first CI node (CI node index <code class="language-plaintext highlighter-rouge">0</code>). You should run the test files with your test runner now (using the Knapsack Pro Test Runner client - we will describe it later).</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">// 2nd type of response can happen for all types of request
+// It returns a list of test files that should be run with your test runner</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"queue_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:6baacadcdd493c1a6024ee7e51f018f5"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"build_subset_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"test_files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test/slow/d_test.rb"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"time_execution"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.14</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test/fast/b_test.rb"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"time_execution"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>After you execute the test files, you should ask the API for another set of test files until the API response contains an empty list of test files. This signifies that the whole Queue has been consumed.</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">// 3rd type of request to Queue API should happen only if 1st or 2nd type of request returned a list of test_files.
+// With the below request you can continue fetching test files from the queue to run them with your test runner.
+// Request payload should have attributes:
+// can_initialize_queue: false AND attempt_connect_to_queue: false
+// Note there is no test_files attribute in the payload to make the request fast and keep the payload small.</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"can_initialize_queue"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"attempt_connect_to_queue"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fixed_queue_split"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"commit_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e3396177d9f8ca87e2b93b4b0a25babd09d574d"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"branch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"node_total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"node_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"node_build_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>When the API response has no test files it means the Queue was consumed and all test files were executed.</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"queue_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:6baacadcdd493c1a6024ee7e51f018f5"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"build_subset_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"test_files"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>After test files have been run and their execution time has been recorded you can send the test files timing data to the Knapsack Pro API. You need to <a href="/api/v1/#build_subsets_post">create a build subset record</a> on the API side.</p>
+
+<p>You can consult the <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts">source code of <code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code> responsible for making requests to Knapsack Pro API</a> for Queue Mode and for a request to create a build subset.</p>
+
+<p>Please also see how Knapsack Pro Core (<code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code>) uses a <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts">service for the API</a> to <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts">run tests, record tests execution time, and save recorded test files time for a given CI node as a build subset</a> in the API.</p>
+
+<h2 id="knapsack-pro-test-runner-integration">Knapsack Pro Test Runner integration</h2>
+
+<p>In this section, you will learn what’s need to be covered in the Knapsack Pro Test Runner source code (e.g. <code class="language-plaintext highlighter-rouge">@knapsack-pro/jest</code>).</p>
+
+<p>You need to <a href="https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/src/env-config.ts">recognize environment variables</a> defined by user of Knapsack Pro client. The user define them in CI environment variables settings.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST</code> - the value of it should override the <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_TEST_SUITE_TOKEN</code> so that Knapsack Pro Core (<code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code>) can use the API token during requests.</li>
+  <li><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_TEST_FILE_PATTERN</code> - it should contain a default test file pattern that can be used to detect test files on the disk in a directory specific to your test runner. We use a <code class="language-plaintext highlighter-rouge">glob</code> function to detect test files on the disk.</li>
+  <li>There should be a <a href="https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/src/test-files-finder.ts">test file finder service</a> that can recognize the pattern and find the list of test files on the disk. We use this list of test files to send them in request to the API so that the API server can split those test files into parallel CI nodes.</li>
+  <li><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN</code> - is an exclude pattern. If a user wants to ignore some of the test files she can provide a pattern for it.</li>
+</ul>
+
+<p>Knapsack Pro Test Runner library (e.g. <code class="language-plaintext highlighter-rouge">@knapsack-pro/jest</code>) should have their <a href="https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L29,L31">name and version and it should be passed to Knapsack Pro Core</a> (<code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code>) when you will use <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts">core functionality</a> to connect with the API (for instance to run tests in Queue Mode).</p>
+
+<p>Please note that Knapsack Pro Test Runner should <a href="https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L68,L76">track recorded test files time execution in seconds</a> and pass it back to Knapsack Pro Core. It should also pass info whether <a href="https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L82">tests are green or red</a> (failing). Thanks to that Knapsack Pro Core will <a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L124">set proper process exit status</a>. When at least 1 test fails then the process exit status should be <code class="language-plaintext highlighter-rouge">1</code> so the CI provider will mark your CI build as a failed one.</p>
+
+<h2 id="testing-your-knapsack-pro-client">Testing your Knapsack Pro client</h2>
+
+<p>For testing your Knapsack Pro client I recommend creating a new project with tests in your testing framework (test runner). Here is an <a href="https://github.com/KnapsackPro/jest-example-test-suite#jest-example-test-suite-and-knapsackprocom">example project with Jest tests</a>.</p>
+
+<p>You can create a <a href="https://github.com/KnapsackPro/jest-example-test-suite/blob/master/bin/knapsack_pro_jest">bin script that runs tests</a> for a given CI node index using the Knapsack Pro client.</p>
+
+<p>For instance use:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">bin/knapsack_pro_jest 0 2</code> - run tests on CI node index <code class="language-plaintext highlighter-rouge">0</code>. The total number of CI nodes is <code class="language-plaintext highlighter-rouge">2</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">bin/knapsack_pro_jest 1 2</code> - run tests on CI node index <code class="language-plaintext highlighter-rouge">1</code>.</li>
+</ul>
+
+<h2 id="readme">README</h2>
+
+<p>It’s good to create a well-documentented README for your packages. You can get inspired by checking documentation for:</p>
+
+<ul>
+  <li><a href="https://github.com/KnapsackPro/knapsack-pro-core-js#knapsack-procore"><code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code> readme</a></li>
+  <li><a href="https://github.com/KnapsackPro/knapsack-pro-jest#knapsack-projest"><code class="language-plaintext highlighter-rouge">@knapsack-pro/jest</code> readme</a></li>
+</ul>
+
+<h2 id="extras---regular-mode-integration">Extras - Regular Mode integration</h2>
+
+<p>If you would like to build the Knapsack Pro client that uses Regular Mode instead of Queue Mode you need to <a href="https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L89">replace the step with using Queue Mode</a> and just use <a href="/api/v1/#build_distributions_subset_post">Regular Mode API</a> instead. It’s much simpler than Queue API.</p>
+
+<p>In Regular Mode, you need to send a list of existing test files on the disk to the API. The API returns a set of test files to run. Once you execute the tests you need to <a href="/api/v1/#build_subsets_post">create a build subset</a> record in the API.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT</code> - Regular Mode has a flag to control whether tests split should be cached on the API side. It’s <code class="language-plaintext highlighter-rouge">true</code> by default. Learn more about it from <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_test_suite_split-test-suite-split-based-on-seed">knapsack_pro ruby gem documentation</a>.
+    <ul>
+      <li>Value of <code class="language-plaintext highlighter-rouge">KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT</code> should be sent as attribute <code class="language-plaintext highlighter-rouge">fixed_test_suite_split</code> in <a href="http://localhost:4000/api/v1/#build_distributions_subset_post">request to the API</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="summary">Summary</h2>
+
+<p>We covered how to build Knapsack Pro client integration from scratch based on the example of the existing JavaScript/TypeScript client built from 2 NPM packages <code class="language-plaintext highlighter-rouge">@knapsack-pro/core</code> and <code class="language-plaintext highlighter-rouge">@knapsack-pro/jest</code>.</p>
+
+<p>I hope you find it useful. I recommend digging into the source code of the above packages. They are lightweight and should be easy to understand. You can replicate their behavior to build your integration with Knapsack Pro API for your favorite programming language and your test runner (testing framework).</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+<div class="wrapper">
+<div class="author-container">
+  <img src="//gravatar.com/avatar/e3be50760a95eebc47c7f239b3ad3ede.png" class="rounded-circle author-img" alt="Artur Trzop" />
+  <div class="author-info">
+    <p>
+    Written by <strong>Artur Trzop</strong>
+    </p>
+    <p>
+    Let's connect on <i class="fab fa-linkedin linkedin-color"></i> <a href="https://www.linkedin.com/in/arturtrzop/" rel="nofollow noopener" target="_blank" class="page-link">LinkedIn</a> or see my <i class="fab fa-youtube youtube-color"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">YouTube</a>
+    </p>
+    <p>
+    Founder of Knapsack Pro, follow on <i class="fab fa-twitter twitter-color"></i> <a href="https://twitter.com/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Twitter</a>
+    </p>
+  </div>
+</div>
+</div>
+
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

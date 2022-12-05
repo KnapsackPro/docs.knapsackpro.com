@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Have you ever used Ruby's Object#method?</title>
+  <meta name="description" content="Object#method is a little-known, yet very interesting Ruby method. Let’s see how it works and how you can use it in your code.">
+
+  <meta property="og:title" content="Have you ever used Ruby's Object#method?">
+  <meta name="twitter:title" content="Have you ever used Ruby's Object#method?">
+  <meta name="twitter:description" content="Object#method is a little-known, yet very interesting Ruby method. Let’s see how it works and how you can use it in your code.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2021/have-you-ever-used-rubys-object-method">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Have you ever used Ruby's Object#method?</h1>
+    <p class="post-meta">
+    <time datetime="2021-04-27T08:00:00+00:00" itemprop="datePublished">Apr 27, 2021</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Shadi Rezek</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/have-you-ever-used-rubys-object-method" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p><code class="language-plaintext highlighter-rouge">Object#method</code> is a little-known, yet very interesting Ruby method. Let’s see how it works and how you can use it in your code.</p>
+
+<h2 id="the-basics">The basics</h2>
+
+<p>Let’s imagine we have some Ruby class, e.g.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Animal</span>
+  <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="n">sound</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"I say </span><span class="si">#{</span><span class="n">sound</span><span class="si">}</span><span class="s2">!"</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Calling the <code class="language-plaintext highlighter-rouge">#method</code> on the instance of this class, would return a <a href="https://ruby-doc.org/core-3.0.1/Method.html" target="_blank">Method</a> object. This <code class="language-plaintext highlighter-rouge">Method</code> object acts as a closure in the context of the associated object.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">animal</span> <span class="o">=</span> <span class="no">Animal</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">met</span> <span class="o">=</span> <span class="n">animal</span><span class="p">.</span><span class="nf">method</span><span class="p">(</span><span class="ss">:speak</span><span class="p">)</span>
+
+<span class="n">met</span><span class="p">.</span><span class="nf">class</span>
+<span class="c1">#=&gt; Method</span>
+<span class="n">met</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="o">=&gt;</span> <span class="s2">"#&lt;Method: Animal#speak(sound)&gt;"</span>
+
+<span class="n">met</span><span class="p">.</span><span class="nf">call</span> <span class="c1"># we forget to pass the argument</span>
+<span class="c1">#=&gt; ArgumentError (wrong number of arguments (given 0, expected 1))</span>
+<span class="n">met</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="s1">'meow'</span><span class="p">)</span>
+<span class="c1"># I say meow!</span>
+<span class="c1"># =&gt; nil</span></code></pre></figure>
+
+<p>One thing that’s interesting in <code class="language-plaintext highlighter-rouge">Method</code> objects, is the fact they implement the <code class="language-plaintext highlighter-rouge">#to_proc</code> method. To see how this could be useful, let’s first remind ourselves of a widely-used Ruby shortcut.</p>
+
+<h2 id="the-ampersand-operator">The ampersand operator</h2>
+
+<p>Consider this common Ruby shortcut:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">].</span><span class="nf">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span> <span class="n">num</span><span class="p">.</span><span class="nf">even?</span> <span class="p">}</span>
+<span class="c1">#=&gt; [2, 4, 6]</span>
+
+<span class="c1"># commonly simplified with:</span>
+
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">].</span><span class="nf">select</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:even?</span><span class="p">)</span>
+<span class="c1">#=&gt; [2, 4, 6]</span></code></pre></figure>
+
+<p>The reason this works is two-fold. First, there is the <code class="language-plaintext highlighter-rouge">&amp;</code> (ampersand) operator. When used at the beginning of a method argument, it transforms its operant into a <code class="language-plaintext highlighter-rouge">Proc</code> object (by calling <code class="language-plaintext highlighter-rouge">#to_proc</code> on it), and passes it to the method as if it was a block. Secondly, the <code class="language-plaintext highlighter-rouge">Symbol</code> class implements <code class="language-plaintext highlighter-rouge">#to_proc</code>. The way it’s implemented effectively allows us to <code class="language-plaintext highlighter-rouge">send</code> a given symbol to the provided argument. See <code class="language-plaintext highlighter-rouge">Symbol#to_proc</code> in action below:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">is_even</span> <span class="o">=</span> <span class="ss">:even?</span><span class="p">.</span><span class="nf">to_proc</span>
+
+<span class="n">is_even</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#=&gt; false</span>
+<span class="n">is_even</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1">#=&gt; true</span></code></pre></figure>
+
+<p>This proc could also be passed to the <code class="language-plaintext highlighter-rouge">#select</code> method from the previous example. We still need to use the ampersand operator (so that Ruby knows to treat it like a block).</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">].</span><span class="nf">select</span><span class="p">(</span><span class="o">&amp;</span><span class="n">is_even</span><span class="p">)</span>
+<span class="c1">#=&gt; [2, 4, 6]</span></code></pre></figure>
+
+<h3 id="ampersand-with-the-method-object">Ampersand with the Method object</h3>
+
+<p>Given the fact that the Method object implements the <code class="language-plaintext highlighter-rouge">#to_proc</code> method as well, we can use it much the same way as we did the symbol. Let’s circle back to our previous example to see this in action.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Animal</span>
+  <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="n">sound</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"I say </span><span class="si">#{</span><span class="n">sound</span><span class="si">}</span><span class="s2">!"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">met</span> <span class="o">=</span> <span class="no">Animal</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">method</span><span class="p">(</span><span class="ss">:speak</span><span class="p">)</span>
+<span class="n">animal_sounds</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'meow'</span><span class="p">,</span> <span class="s1">'woof'</span><span class="p">,</span> <span class="s1">'moo'</span><span class="p">,</span> <span class="s1">'oink'</span><span class="p">,</span> <span class="s1">'hee-haw'</span><span class="p">]</span>
+
+<span class="n">animal_sounds</span><span class="p">.</span><span class="nf">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">met</span><span class="p">)</span>
+<span class="c1"># I say meow!</span>
+<span class="c1"># I say woof!</span>
+<span class="c1"># I say moo!</span>
+<span class="c1"># I say oink!</span>
+<span class="c1"># I say hee-haw!</span>
+<span class="c1"># =&gt; ["meow", "woof", "moo", "oink", "hee-haw"]</span></code></pre></figure>
+
+<h2 id="so-when-is-this-useful">So when is this useful?</h2>
+
+<p>One reason I used <code class="language-plaintext highlighter-rouge">#method</code> combined with the ampersand operator in the past was to get rid of repetitive, one-dimensional blocks. This is especially valuable, when you are chaining multiple methods together. Let’s say we have multiple filters with the same interface (all returning <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>) that we want to use on a collection:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">AboveMinThresholdChecker</span>
+  <span class="no">MIN_THRESHOLD</span> <span class="o">=</span> <span class="mi">200</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="n">new</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="n">number</span> <span class="o">&gt;</span> <span class="no">MIN_THRESHOLD</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">BelowMaxThresholdChecker</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">PrimeNumberChecker</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Using explicit blocks, we would then do something like:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">numbers</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">400</span><span class="p">).</span><span class="nf">to_a</span>
+
+<span class="n">numbers</span><span class="p">.</span><span class="nf">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span> <span class="no">AboveMinThresholdChecker</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="p">}.</span>
+        <span class="nf">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span> <span class="no">BelowMaxThresholdChecker</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="p">}.</span>
+        <span class="nf">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">num</span><span class="o">|</span> <span class="no">PrimeNumberChecker</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="p">}</span></code></pre></figure>
+
+<p>With our new knowledge, we can simplify the above in the following way using the <code class="language-plaintext highlighter-rouge">#method</code>:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">numbers</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="o">&amp;</span><span class="no">AboveMinThresholdChecker</span><span class="p">.</span><span class="nf">method</span><span class="p">(</span><span class="ss">:call</span><span class="p">)).</span>
+        <span class="nf">select</span><span class="p">(</span><span class="o">&amp;</span><span class="no">BelowMaxThresholdChecker</span><span class="p">.</span><span class="nf">method</span><span class="p">(</span><span class="ss">:call</span><span class="p">)).</span>
+        <span class="nf">select</span><span class="p">(</span><span class="o">&amp;</span><span class="no">PrimeNumberChecker</span><span class="p">.</span><span class="nf">method</span><span class="p">(</span><span class="ss">:call</span><span class="p">))</span></code></pre></figure>
+
+<h2 id="summary">Summary</h2>
+
+<p>Have you used <code class="language-plaintext highlighter-rouge">#method</code> in Ruby before? Can you think of other interesting situations it could prove handy? Please share in the comments below!</p>
+
+<p>If your project suffers from long CI builds, you can address this with <a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=have-you-ever-used-rubys-object-method">Knapsack Pro</a>. Be the hero in your team by streamlining your CI process and <a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=using-ruby-object-method">improving the developer productivity</a>!</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/have-you-ever-used-rubys-object-method" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2021/have-you-ever-used-rubys-object-method"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2021/have-you-ever-used-rubys-object-method"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

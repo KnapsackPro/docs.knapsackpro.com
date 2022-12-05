@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>RSpec testing parallel jobs with CircleCI and JUnit XML report</title>
+  <meta name="description" content="You will learn how to run RSpec tests for your Ruby on Rails project on CircleCI with parallel jobs to shorten the running time of your CI build. Moreover, y...">
+
+  <meta property="og:title" content="RSpec testing parallel jobs with CircleCI and JUnit XML report">
+  <meta name="twitter:title" content="RSpec testing parallel jobs with CircleCI and JUnit XML report">
+  <meta name="twitter:description" content="You will learn how to run RSpec tests for your Ruby on Rails project on CircleCI with parallel jobs to shorten the running time of your CI build. Moreover, y...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report/rspec_circleci.jpeg">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report/rspec_circleci.jpeg">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2021/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">RSpec testing parallel jobs with CircleCI and JUnit XML report</h1>
+    <p class="post-meta">
+    <time datetime="2021-02-23T07:00:00+00:00" itemprop="datePublished">Feb 23, 2021</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Artur Trzop</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>You will learn how to run RSpec tests for your Ruby on Rails project on CircleCI with parallel jobs to shorten the running time of your CI build. Moreover, you will learn how to configure JUnit formatter to generate an XML report for your tests to show failing RSpec test examples nicely in CircleCI web UI. Finally, you will see how to automatically detect slow spec files and divide their test examples between parallel jobs to eliminate the bottleneck job that’s taking too much time to run tests.</p>
+
+<p><img src="/images/blog/posts/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report/rspec_circleci.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="RSpec, CircleCI, Ruby, gem" /></p>
+
+<h2 id="ruby-gems-to-configure-your-ror-project">Ruby gems to configure your RoR project</h2>
+
+<p>Here are the key elements you need:</p>
+
+<ul>
+  <li><a href="https://github.com/sj26/rspec_junit_formatter">rspec_junit_formatter</a> - it’s a ruby gem that generates an XML report for executed tests with information about test failures. This report can be automatically read by CircleCI to present it in CircleCI web UI. No more browsing through long RSpec output - just look at highlighted failing specs in the <code class="language-plaintext highlighter-rouge">TESTS</code> tab :)</li>
+</ul>
+
+<p><img src="/images/blog/posts/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report/circleci_web_ui_failed_test.png" alt="CircleCI web UI, failure, RSpec, test, test case" /></p>
+
+<ul>
+  <li><a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report">knapsack_pro</a> - it’s a Ruby gem for running tests on parallel CI jobs to ensure all jobs finish work at a similar time to save you as much time as possible and eliminate bottlenecks.
+    <ul>
+      <li>It uses the <a href="/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation">Queue Mode to dynamically split test files between parallel jobs</a>.</li>
+      <li>Knapsack Pro can also <a href="https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report">detect your slow RSpec test files and divide them between parallel jobs by test examples</a>. You don’t have to manually split your big spec file into smaller files if you want to split work between parallel container on CircleCI :)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Just add the above gems to your <code class="language-plaintext highlighter-rouge">Gemfile</code>.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">group</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'rspec'</span>
+  <span class="n">gem</span> <span class="s1">'rspec_junit_formatter'</span>
+<span class="k">end</span>
+
+<span class="n">group</span> <span class="ss">:test</span><span class="p">,</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'knapsack_pro'</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>For <a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report">Knapsack Pro you will need an API token</a> and you need to follow the <a href="/knapsack_pro-ruby/guide/">installation guide</a> to configure your project.</p>
+
+<p>If you use <code class="language-plaintext highlighter-rouge">knapsack_pro</code> gem in Queue Mode with CircleCI you may want to collect metadata like JUnit XML report about your RSpec test suite.
+The important step for CircleCI is to copy the XML report to <code class="language-plaintext highlighter-rouge">$CIRCLE_TEST_REPORTS</code> directory. Below is a full config for your <code class="language-plaintext highlighter-rouge">spec_helper.rb</code> file (<a href="https://knapsackpro.com/faq/question/how-to-use-junit-formatter?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report#how-to-use-junit-formatter-with-knapsack_pro-queue-mode">source code from FAQ</a>):</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec_helper.rb or rails_helper.rb</span>
+
+<span class="c1"># This must be the same path as value for rspec --out argument</span>
+<span class="c1"># Note: the path should not contain '~' sign, for instance path ~/project/tmp/rspec.xml may not work.</span>
+<span class="c1"># Please use full path instead.</span>
+<span class="no">TMP_RSPEC_XML_REPORT</span> <span class="o">=</span> <span class="s1">'tmp/rspec.xml'</span>
+<span class="c1"># move results to FINAL_RSPEC_XML_REPORT</span>
+<span class="c1"># so that the results won't accumulate with duplicated xml tags in TMP_RSPEC_XML_REPORT</span>
+<span class="no">FINAL_RSPEC_XML_REPORT</span> <span class="o">=</span> <span class="s1">'tmp/rspec_final_results.xml'</span>
+
+<span class="no">KnapsackPro</span><span class="o">::</span><span class="no">Hooks</span><span class="o">::</span><span class="no">Queue</span><span class="p">.</span><span class="nf">after_subset_queue</span> <span class="k">do</span> <span class="o">|</span><span class="n">queue_id</span><span class="p">,</span> <span class="n">subset_queue_id</span><span class="o">|</span>
+  <span class="k">if</span> <span class="no">File</span><span class="p">.</span><span class="nf">exist?</span><span class="p">(</span><span class="no">TMP_RSPEC_XML_REPORT</span><span class="p">)</span>
+    <span class="no">FileUtils</span><span class="p">.</span><span class="nf">mv</span><span class="p">(</span><span class="no">TMP_RSPEC_XML_REPORT</span><span class="p">,</span> <span class="no">FINAL_RSPEC_XML_REPORT</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>You need the above logic in place to move the XML report from one place to another to avoid accidentally corrupting your XML file. When Knapsack Pro in Queue Mode runs your tests then it fetches a set of test files from Knapsack Pro Queue API and runs it and generates the XML report. After that, another set of test files is fetched from Queue API and the XML report is updated on the disk. If the report already exists on the disk it can get corrupted due to overriding the same file. That’s why you need to move the file to a different location after each set of tests from Queue API is executed.</p>
+
+<h2 id="circleci-yml-configuration-for-rspec">CircleCI YML configuration for RSpec</h2>
+
+<p>Here is the complete CircleCI YML config file for RSpec, Knapsack Pro and JUnit formatter.</p>
+
+<figure class="highlight"><pre><code class="language-yml" data-lang="yml"><span class="c1"># Ruby CircleCI 2.0 configuration file</span>
+<span class="c1">#</span>
+<span class="c1"># Check https://circleci.com/docs/2.0/language-ruby/ for more details</span>
+<span class="c1">#</span>
+<span class="na">version</span><span class="pi">:</span> <span class="m">2</span>
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span>
+    <span class="na">parallelism</span><span class="pi">:</span> <span class="m">10</span>
+    <span class="c1"># https://circleci.com/docs/2.0/configuration-reference/#resource_class</span>
+    <span class="na">resource_class</span><span class="pi">:</span> <span class="s">small</span>
+    <span class="na">docker</span><span class="pi">:</span>
+      <span class="c1"># specify the version you desire here</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/ruby:2.7.1-node-browsers</span>
+        <span class="na">environment</span><span class="pi">:</span>
+          <span class="na">PGHOST</span><span class="pi">:</span> <span class="s">127.0.0.1</span>
+          <span class="na">PGUSER</span><span class="pi">:</span> <span class="s">my_db_user</span>
+          <span class="na">RAILS_ENV</span><span class="pi">:</span> <span class="s">test</span>
+          <span class="c1"># Split slow RSpec test files by test examples</span>
+          <span class="c1"># https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it</span>
+          <span class="na">KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES</span><span class="pi">:</span> <span class="no">true</span>
+
+      <span class="c1"># Specify service dependencies here if necessary</span>
+      <span class="c1"># CircleCI maintains a library of pre-built images</span>
+      <span class="c1"># documented at https://circleci.com/docs/2.0/circleci-images/</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/postgres:10.6-alpine-ram</span>
+        <span class="na">environment</span><span class="pi">:</span>
+          <span class="na">POSTGRES_DB</span><span class="pi">:</span> <span class="s">my_db_name</span>
+          <span class="na">POSTGRES_PASSWORD</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+          <span class="na">POSTGRES_USER</span><span class="pi">:</span> <span class="s">my_db_user</span>
+          <span class="c1"># Rails verifies Time Zone in DB is the same as time zone of the Rails app</span>
+          <span class="na">TZ</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Europe/Warsaw"</span>
+
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">redis:6.0.7</span>
+
+    <span class="na">working_directory</span><span class="pi">:</span> <span class="s">~/repo</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">TZ</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Europe/Warsaw"</span>
+
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">checkout</span>
+
+      <span class="c1"># Download and cache dependencies</span>
+      <span class="pi">-</span> <span class="na">restore_cache</span><span class="pi">:</span>
+          <span class="na">keys</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">v2-dependencies-bundler-{{ checksum "Gemfile.lock" }}-{{ checksum ".ruby-version" }}</span>
+          <span class="c1"># fallback to using the latest cache if no exact match is found</span>
+          <span class="pi">-</span> <span class="s">v2-dependencies-bundler-</span>
+
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">install ruby dependencies</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">bundle install --jobs=4 --retry=3 --path vendor/bundle</span>
+
+      <span class="pi">-</span> <span class="na">save_cache</span><span class="pi">:</span>
+          <span class="na">paths</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">./vendor/bundle</span>
+          <span class="na">key</span><span class="pi">:</span> <span class="s">v2-dependencies-bundler-{{ checksum "Gemfile.lock" }}-{{ checksum ".ruby-version" }}</span>
+
+      <span class="c1"># Database setup</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">bin/rails db:prepare</span>
+
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">run tests</span>
+          <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">export CIRCLE_TEST_REPORTS=/tmp/test-results</span>
+            <span class="s">mkdir $CIRCLE_TEST_REPORTS</span>
+            <span class="s">bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"</span>
+
+      <span class="c1"># collect reports</span>
+      <span class="pi">-</span> <span class="na">store_test_results</span><span class="pi">:</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">/tmp/test-results</span>
+      <span class="pi">-</span> <span class="na">store_artifacts</span><span class="pi">:</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">/tmp/test-results</span>
+          <span class="na">destination</span><span class="pi">:</span> <span class="s">test-results</span></code></pre></figure>
+
+<h2 id="summary">Summary</h2>
+
+<p>You’ve just learned how to make your CircleCI builds way faster! Now your RSpec tests can be automatically run on many parallel machines to save you time. Please let us know if it was helpful or if you have any questions. Feel free to <a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report">sign up at Knapsack Pro</a> or down below and try it yourself.</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+<div class="wrapper">
+<div class="author-container">
+  <img src="//gravatar.com/avatar/e3be50760a95eebc47c7f239b3ad3ede.png" class="rounded-circle author-img" alt="Artur Trzop" />
+  <div class="author-info">
+    <p>
+    Written by <strong>Artur Trzop</strong>
+    </p>
+    <p>
+    Let's connect on <i class="fab fa-linkedin linkedin-color"></i> <a href="https://www.linkedin.com/in/arturtrzop/" rel="nofollow noopener" target="_blank" class="page-link">LinkedIn</a> or see my <i class="fab fa-youtube youtube-color"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">YouTube</a>
+    </p>
+    <p>
+    Founder of Knapsack Pro, follow on <i class="fab fa-twitter twitter-color"></i> <a href="https://twitter.com/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Twitter</a>
+    </p>
+  </div>
+</div>
+</div>
+
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2021/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2021/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

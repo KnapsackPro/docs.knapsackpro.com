@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>When distributed locks might be helpful in Ruby on Rails application</title>
+  <meta name="description" content="During this year I noticed 2 similar concurrency problems with my Ruby on Rails application and I solved them with distributed locks. I’m going to show you h...">
+
+  <meta property="og:title" content="When distributed locks might be helpful in Ruby on Rails application">
+  <meta name="twitter:title" content="When distributed locks might be helpful in Ruby on Rails application">
+  <meta name="twitter:description" content="During this year I noticed 2 similar concurrency problems with my Ruby on Rails application and I solved them with distributed locks. I’m going to show you h...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/distributed_lock.jpg">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/distributed_lock.jpg">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2017/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">When distributed locks might be helpful in Ruby on Rails application</h1>
+    <p class="post-meta">
+    <time datetime="2017-07-17T05:00:00+00:00" itemprop="datePublished">Jul 17, 2017</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Artur Trzop</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2017/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>During this year I noticed 2 similar concurrency problems with my Ruby on Rails application and I solved them with distributed locks. I’m going to show you how to detect if your application might have a concurrency problem and how to solve it.</p>
+
+<p><img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/distributed_lock.jpg" style="width:250px;float:right;" alt="Distributed lock" /></p>
+
+<p>Let me start with a bit of context before we discuss the problem. I’m running small SaaS application <a href="http://knapsackpro.com?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=distributed-locks">KnapsackPro.com</a> and the application provides API for the gem <a href="https://github.com/KnapsackPro/knapsack_pro-ruby">knapsack_pro</a>. The whole point of the tool is to optimize time execution of your RSpec, Cucumber etc test suite by splitting tests across CI nodes running in parallel.</p>
+
+<p>Imagine a scenario where you have 20 minutes long RSpec test suite and you would like to split it across 2 parallel CI nodes. In the perfect case, you should run half of RSpec tests on the first CI node and the second half on the second CI node. In result, your test suite would run only 10 minutes.</p>
+
+<h2 id="but-where-is-the-potential-risk-of-the-concurrency-problem">But where is the potential risk of the concurrency problem?</h2>
+
+<p>On the Knapsack Pro API side, there is test file queue generated for your CI build. Each CI node periodically requests the Knapsack Pro API via knapsack_pro gem for test files that should be executed next. Thanks to that each CI node will finish tests at the same time.</p>
+
+<p><img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/queue_mode.jpg" style="width:150px;" alt="Knapsack Pro Regular Mode API" /></p>
+
+<p>When both CI nodes start work at the same time to execute your test suite then the knapsack_pro gem does a request to Knapsack Pro API to get the list of test files that should be executed on the particular CI node. The first request coming to the Knapsack Pro API is responsible for creating a test file work queue.</p>
+
+<p>Take a look how code responsible for creating the queue looks like:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">test_files</span>
+  <span class="n">create_queue</span> <span class="k">unless</span> <span class="n">queue_exists?</span>
+
+  <span class="n">test_files_from_top_of_the_queue</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>At some point, I started getting emails from a customer that they notice that sometimes their test files are executed twice. At first, I could not reproduce the problem and I was wondering what the root problem might be. When I got the second email from one of the customers I was sure that it was not a single case. I spotted that probably something is wrong with the part of the code you see above. I started asking myself, maybe the checking <code class="language-plaintext highlighter-rouge">create_queue unless queue_exists?</code> is not enough?</p>
+
+<p>I knew the production server uses multiple unicorn processes and I was curious what if the checking if the test file queue exists is happening exactly at the same time.</p>
+
+<p>My idea to reproduce this situation was to write a script that would do concurrent requests in separate ruby threads against my API server. I was hoping if the problem is related to concurrency then this way I should be able to reveal it.</p>
+
+<p>I prepared the unicorn configuration that I could use in development to run multiple concurrent unicorn processes.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># bin/api_test/unicorn.rb</span>
+<span class="n">worker_processes</span> <span class="mi">5</span>
+<span class="n">timeout</span> <span class="mi">40</span>
+<span class="n">preload_app</span> <span class="kp">true</span>
+
+<span class="n">before_fork</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="p">,</span> <span class="n">worker</span><span class="o">|</span>
+  <span class="no">Signal</span><span class="p">.</span><span class="nf">trap</span> <span class="s1">'TERM'</span> <span class="k">do</span>
+    <span class="nb">puts</span> <span class="s1">'Unicorn master intercepting TERM and sending myself QUIT instead'</span>
+    <span class="no">Process</span><span class="p">.</span><span class="nf">kill</span> <span class="s1">'QUIT'</span><span class="p">,</span> <span class="no">Process</span><span class="p">.</span><span class="nf">pid</span>
+  <span class="k">end</span>
+
+  <span class="k">defined?</span><span class="p">(</span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">)</span> <span class="n">and</span>
+    <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">disconnect!</span>
+<span class="k">end</span>
+
+<span class="n">after_fork</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="p">,</span> <span class="n">worker</span><span class="o">|</span>
+  <span class="no">Signal</span><span class="p">.</span><span class="nf">trap</span> <span class="s1">'TERM'</span> <span class="k">do</span>
+    <span class="nb">puts</span> <span class="s1">'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'</span>
+  <span class="k">end</span>
+
+  <span class="k">defined?</span><span class="p">(</span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">)</span> <span class="n">and</span>
+    <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">establish_connection</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Below is my script to run concurrent requests. As you can see I use RSpec here to do <code class="language-plaintext highlighter-rouge">expect</code> and ensure there is no problem with API. When the test files in the work queue are duplicated then the test fails and that means the concurrency problem exists and the test file work queue is created twice instead of just once.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+<span class="c1"># bin/api_test/initialize_queue</span>
+<span class="nb">require</span> <span class="s1">'knapsack_pro'</span>
+<span class="nb">require</span> <span class="s1">'rspec'</span>
+
+<span class="c1"># Start rails server in development with unicorn</span>
+<span class="c1"># to test concurrent requests</span>
+<span class="c1">#  $  bundle exec unicorn -p 3000 -c bin/api_test/unicorn.rb</span>
+<span class="c1">#</span>
+<span class="c1"># Run this file with rspec</span>
+<span class="c1">#  $ rspec bin/api_test/initialize_queue</span>
+
+<span class="n">node_total</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># use development API</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s1">'KNAPSACK_PRO_MODE'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'development'</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s1">'KNAPSACK_PRO_TEST_SUITE_TOKEN'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'333e7b8d1b64fd6447df34a77e3662eb'</span>
+<span class="no">ENV</span><span class="p">[</span><span class="s1">'KNAPSACK_PRO_LOG_LEVEL'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'warn'</span>
+
+<span class="n">test_files</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span><span class="s2">"path"</span><span class="o">=&gt;</span><span class="s2">"spec/bar_spec.rb"</span><span class="p">},</span>
+  <span class="p">{</span><span class="s2">"path"</span><span class="o">=&gt;</span><span class="s2">"spec/controllers/articles_controller_spec.rb"</span><span class="p">},</span>
+  <span class="p">{</span><span class="s2">"path"</span><span class="o">=&gt;</span><span class="s2">"spec/controllers/welcome_controller_spec.rb"</span><span class="p">},</span>
+  <span class="p">{</span><span class="s2">"path"</span><span class="o">=&gt;</span><span class="s2">"spec/dir with spaces/foobar_spec.rb"</span><span class="p">},</span>
+  <span class="p">{</span><span class="s2">"path"</span><span class="o">=&gt;</span><span class="s2">"spec/features/calculator_spec.rb"</span><span class="p">},</span>
+  <span class="p">{</span><span class="s2">"path"</span><span class="o">=&gt;</span><span class="s2">"spec/features/homepage_spec.rb"</span><span class="p">},</span>
+  <span class="p">{</span><span class="s2">"path"</span><span class="o">=&gt;</span><span class="s2">"spec/foo_spec.rb"</span><span class="p">},</span>
+  <span class="p">{</span><span class="s2">"path"</span><span class="o">=&gt;</span><span class="s2">"spec/services/calculator_spec.rb"</span><span class="p">},</span>
+  <span class="p">{</span><span class="s2">"path"</span><span class="o">=&gt;</span><span class="s2">"spec/services/meme_spec.rb"</span><span class="p">},</span>
+  <span class="p">{</span><span class="s2">"path"</span><span class="o">=&gt;</span><span class="s2">"spec/timecop_spec.rb"</span><span class="p">},</span>
+  <span class="p">{</span><span class="s2">"path"</span><span class="o">=&gt;</span><span class="s2">"spec/vcr_spec.rb"</span><span class="p">}</span>
+<span class="p">]</span>
+<span class="n">expected_test_files</span> <span class="o">=</span> <span class="no">KnapsackPro</span><span class="o">::</span><span class="no">TestFilePresenter</span><span class="p">.</span><span class="nf">paths</span><span class="p">(</span><span class="n">test_files</span><span class="p">).</span><span class="nf">sort</span>
+
+<span class="k">def</span> <span class="nf">test_files_from_queue</span><span class="p">(</span><span class="n">can_initialize_queue</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">,</span> <span class="n">branch</span><span class="p">,</span> <span class="n">node_total</span><span class="p">,</span> <span class="n">node_index</span><span class="p">,</span> <span class="n">test_files</span><span class="p">)</span>
+  <span class="n">action</span> <span class="o">=</span> <span class="no">KnapsackPro</span><span class="o">::</span><span class="no">Client</span><span class="o">::</span><span class="no">API</span><span class="o">::</span><span class="no">V1</span><span class="o">::</span><span class="no">Queues</span><span class="p">.</span><span class="nf">queue</span><span class="p">(</span>
+    <span class="ss">can_initialize_queue: </span><span class="n">can_initialize_queue</span><span class="p">,</span>
+    <span class="ss">commit_hash: </span><span class="n">commit_hash</span><span class="p">,</span>
+    <span class="ss">branch: </span><span class="n">branch</span><span class="p">,</span>
+    <span class="ss">node_total: </span><span class="n">node_total</span><span class="p">,</span>
+    <span class="ss">node_index: </span><span class="n">node_index</span><span class="p">,</span>
+    <span class="ss">node_build_id: </span><span class="s1">'missing-build-id'</span><span class="p">,</span>
+    <span class="ss">test_files: </span><span class="n">test_files</span><span class="p">,</span>
+  <span class="p">)</span>
+  <span class="n">connection</span> <span class="o">=</span> <span class="no">KnapsackPro</span><span class="o">::</span><span class="no">Client</span><span class="o">::</span><span class="no">Connection</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="n">connection</span><span class="p">.</span><span class="nf">call</span>
+  <span class="k">if</span> <span class="n">connection</span><span class="p">.</span><span class="nf">success?</span>
+    <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">if</span> <span class="n">connection</span><span class="p">.</span><span class="nf">errors?</span>
+    <span class="no">KnapsackPro</span><span class="o">::</span><span class="no">TestFilePresenter</span><span class="p">.</span><span class="nf">paths</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">'test_files'</span><span class="p">])</span>
+  <span class="k">else</span>
+    <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"Couldn't connect with Knapsack Pro API. Response: </span><span class="si">#{</span><span class="n">response</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+
+<span class="n">commit_hash</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="p">.</span><span class="nf">hex</span>
+<span class="n">all_test_files</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">node_total</span><span class="p">.</span><span class="nf">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">node_index</span><span class="o">|</span>
+  <span class="n">threads</span> <span class="o">&lt;&lt;</span> <span class="no">Thread</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
+    <span class="n">can_initialize_queue</span> <span class="o">=</span> <span class="kp">true</span>
+    <span class="n">node_all_test_files</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="kp">true</span>
+      <span class="n">node_subset_test_files</span> <span class="o">=</span> <span class="n">test_files_from_queue</span><span class="p">(</span>
+        <span class="n">can_initialize_queue</span><span class="p">,</span>
+        <span class="n">commit_hash</span><span class="p">,</span>
+        <span class="s1">'api_test'</span><span class="p">,</span>
+        <span class="n">node_total</span><span class="p">,</span>
+        <span class="n">node_index</span><span class="p">,</span>
+        <span class="n">test_files</span>
+      <span class="p">)</span>
+      <span class="n">node_all_test_files</span> <span class="o">+=</span> <span class="n">node_subset_test_files</span>
+      <span class="n">can_initialize_queue</span> <span class="o">=</span> <span class="kp">false</span>
+
+      <span class="nb">puts</span>
+      <span class="nb">puts</span> <span class="s2">"CI node: </span><span class="si">#{</span><span class="n">node_index</span><span class="si">}</span><span class="s2">"</span>
+      <span class="nb">puts</span> <span class="n">node_subset_test_files</span><span class="p">.</span><span class="nf">inspect</span>
+
+      <span class="k">break</span> <span class="k">if</span> <span class="n">node_subset_test_files</span><span class="p">.</span><span class="nf">empty?</span>
+    <span class="k">end</span>
+    <span class="n">node_all_test_files</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">threads</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">thr</span><span class="o">|</span>
+  <span class="n">all_test_files</span> <span class="o">+=</span> <span class="n">thr</span><span class="p">.</span><span class="nf">join</span><span class="p">.</span><span class="nf">value</span>
+<span class="k">end</span>
+
+<span class="n">describe</span> <span class="s1">'Ensure queue API returns all test files without duplicates'</span> <span class="k">do</span>
+  <span class="n">it</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">all_test_files</span><span class="p">.</span><span class="nf">sort</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span> <span class="n">expected_test_files</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>This way I was able to reproduce the problem in development and I had a script thanks to that I could verify if a future fix will be working.</p>
+
+<h2 id="how-to-deal-with-concurrency-problem">How to deal with concurrency problem</h2>
+
+<p><img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/dining_philosophers_problem.jpg" style="width:250px;float:right;" alt="concurrency problem table" /></p>
+
+<p>The first thing that came to my mind was that maybe I should write myself some sort of solution. The test file work queue is stored in Redis so I was wondering maybe I could do something on the Redis level to ensure the work queue is created only once.</p>
+
+<p>I quickly realized that none of my ideas sound reasonable to solve the problem then I looked for options how people deal with the concurrency problem.</p>
+
+<p>Basically, the conclusion after my research was:</p>
+
+<ul>
+  <li>don’t reinvent the wheel</li>
+  <li>look for proven solutions because distributed problems are complex</li>
+</ul>
+
+<p>and I found that distributed lock can help to ensure the part of my code will be execute only once at a time.</p>
+
+<h2 id="distributed-locking-for-the-rescue">Distributed locking for the rescue</h2>
+
+<h3 id="what-distributed-lock-does">What distributed lock does?</h3>
+
+<p>Simply speaking it synchronize access to shared resources in our case the code responsible for creating the test file work queue.
+It means different processes (unicorn processes) must operate with shared resources in a mutually exclusive way.</p>
+
+<h3 id="why-you-want-a-lock-in-a-distributed-application">Why you want a lock in a distributed application?</h3>
+
+<p>There are 2 main reasons why you want to introduce lock:</p>
+
+<ul>
+  <li>Efficiency - because you want to avoid expensive computation and save time and money</li>
+  <li>Correctness - you would like to prevent data loss or data corruption. You want to avoid data inconsistency.</li>
+</ul>
+
+<p>I found a few gems like <a href="https://github.com/kenn/redis-mutex">redis-mutex</a>, <a href="https://github.com/mlanett/redis-lock">redis-lock</a>, <a href="https://github.com/leandromoreira/redlock-rb">redlock-rb</a>, <a href="https://github.com/dv/redis-semaphore">redis-semaphore</a>. While I was reading about all of those gems and checking their issues and pull requests I learned that distributed problems are even more complex than I thought at first.</p>
+
+<p>The most reasonable tool seemed to be <a href="https://github.com/dv/redis-semaphore">redis-semaphore</a> gem so I picked that. Here is the sample solution I did.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">test_files</span>
+  <span class="n">semaphore_name</span> <span class="o">=</span> <span class="ss">:ci_build_id</span> <span class="c1"># unique ID of CI build</span>
+  <span class="n">expire_lock_after</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># seconds</span>
+
+  <span class="n">semaphore</span> <span class="o">=</span> <span class="no">Redis</span><span class="o">::</span><span class="no">Semaphore</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">semaphore_name</span><span class="p">,</span> <span class="ss">host: </span><span class="s2">"localhost"</span><span class="p">)</span>
+  <span class="n">semaphore</span><span class="p">.</span><span class="nf">lock</span><span class="p">(</span><span class="n">expire_lock_after</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">create_queue</span> <span class="k">unless</span> <span class="n">queue_exists?</span>
+  <span class="k">end</span>
+
+  <span class="n">test_files_from_top_of_the_queue</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>As you can see I define semaphore name based on CI build ID because in my business context the concurrency error happened only for the CI build so the ID of the build seems to be the perfect candidate to use it as a semaphore name.</p>
+
+<p>I also set lock timeout to 5 seconds because I assume in most cases creating the work queue takes milliseconds and if something goes wrong and suddenly it will take seconds then it would be better to expire lock and allow the app to fail rather than lock unicorn process forever.</p>
+
+<p>When I had the working fix then I validated if it actually solves the problem by using my script to do concurrent requests in ruby threads. Indeed it solved the problem!</p>
+
+<h2 id="concurrency-problem-you-most-likely-have-too">Concurrency problem you most likely have too</h2>
+
+<p><img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/ruby_on_rails.jpg" style="width:250px;float:right;" alt="RoR - Ruby on Rails" /></p>
+
+<p>A month ago or so I found another concurrency issue in my API and the problematic code looked like:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">save</span>
+  <span class="n">build</span> <span class="o">=</span> <span class="n">find_build</span> <span class="o">||</span> <span class="n">new_build</span> <span class="c1"># similar to find_or_initialize_by</span>
+  <span class="n">do_something_complex_with_build</span>
+  <span class="n">build</span><span class="p">.</span><span class="nf">save</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>This may look familiar to you because it’s similar to what Rails method <code class="language-plaintext highlighter-rouge">find_or_initialize_by</code> does. If you have code like that in your codebase then ask yourself what if my code will be executed twice at the same time? Will this cause any problem?</p>
+
+<h2 id="what-should-you-remember">What should you remember?</h2>
+
+<ul>
+  <li>Locks are hard</li>
+  <li>Distributed locks are even harder</li>
+  <li>Don’t reinvent the wheel, use proven solutions</li>
+  <li>Most web apps are not thread-safe due to missing locks</li>
+  <li>Expect edge cases while you grow</li>
+</ul>
+
+<h2 id="final-tips">Final tips</h2>
+
+<ul>
+  <li>Be aware of trade-off. Do you care about efficiency or correctness?</li>
+  <li>Test your endpoints with concurrent requests to reproduce problem and to validate fix will work</li>
+  <li>Remember to use transactions when changing many records but don’t forget DB transactions won’t help with a concurrency problem due to the fact transaction works per DB connection.</li>
+  <li>If possible use unique index to ensure data consistency in DB. When concurrency problem will happen then at least DB will ensure data correctness.</li>
+  <li>Use tested distribution lock solutions</li>
+</ul>
+
+<p>I also recommend reading article: <a href="https://makandracards.com/makandra/31937-differences-between-transactions-and-locking">Differences between transactions and locking</a>.</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2017/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+<div class="wrapper">
+<div class="author-container">
+  <img src="//gravatar.com/avatar/e3be50760a95eebc47c7f239b3ad3ede.png" class="rounded-circle author-img" alt="Artur Trzop" />
+  <div class="author-info">
+    <p>
+    Written by <strong>Artur Trzop</strong>
+    </p>
+    <p>
+    Let's connect on <i class="fab fa-linkedin linkedin-color"></i> <a href="https://www.linkedin.com/in/arturtrzop/" rel="nofollow noopener" target="_blank" class="page-link">LinkedIn</a> or see my <i class="fab fa-youtube youtube-color"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">YouTube</a>
+    </p>
+    <p>
+    Founder of Knapsack Pro, follow on <i class="fab fa-twitter twitter-color"></i> <a href="https://twitter.com/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Twitter</a>
+    </p>
+  </div>
+</div>
+</div>
+
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2017/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2017/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>How and when to use Ruby case statements</title>
+  <meta name="description" content="Using the case expression in Ruby is a great way to write conditionals in a clear, and succinct way.Despite that, it’s not hard to encounter convoluted if co...">
+
+  <meta property="og:title" content="How and when to use Ruby case statements">
+  <meta name="twitter:title" content="How and when to use Ruby case statements">
+  <meta name="twitter:description" content="Using the case expression in Ruby is a great way to write conditionals in a clear, and succinct way.Despite that, it’s not hard to encounter convoluted if co...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/how-and-when-to-use-ruby-case-statements/case_statement.png">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/how-and-when-to-use-ruby-case-statements/case_statement.png">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2021/how-and-when-to-use-ruby-case-statements">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">How and when to use Ruby case statements</h1>
+    <p class="post-meta">
+    <time datetime="2021-04-01T11:00:00+00:00" itemprop="datePublished">Apr 1, 2021</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Shadi Rezek</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/how-and-when-to-use-ruby-case-statements" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Using the <code class="language-plaintext highlighter-rouge">case</code> expression in Ruby is a great way to write conditionals in a clear, and succinct way.
+Despite that, it’s not hard to encounter convoluted <code class="language-plaintext highlighter-rouge">if</code> constructs in places where refactoring to the <code class="language-plaintext highlighter-rouge">case</code> statement would result in huge improvements. Let’s learn more about the <code class="language-plaintext highlighter-rouge">case</code> expression and when it’s best to use it.</p>
+
+<h2 id="expressing-logic-simply">Expressing logic simply</h2>
+
+<p>Consider this piece of code:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">number</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">number</span> <span class="o">&lt;=</span> <span class="mi">3</span>
+  <span class="s1">'low value'</span>
+<span class="k">elsif</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="o">&amp;&amp;</span> <span class="n">number</span> <span class="o">&lt;=</span> <span class="mi">7</span>
+  <span class="s1">'medium value'</span>
+<span class="k">elsif</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="o">&amp;&amp;</span> <span class="n">number</span> <span class="o">&lt;=</span> <span class="mi">10</span>
+  <span class="s1">' high value'</span>
+<span class="k">else</span>
+  <span class="s1">'invalid value'</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>It seems like quite a complicated way to express a pretty straightforward logic, doesn’t it? Still, I bet that you have seen a construct like that many times. I know I have.</p>
+
+<p>This logic could be greatly simplified with the <code class="language-plaintext highlighter-rouge">case</code> expression:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">case</span> <span class="n">number</span>
+<span class="k">when</span> <span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="mi">3</span><span class="p">)</span>
+  <span class="s1">'low value'</span>
+<span class="k">when</span> <span class="p">(</span><span class="mi">4</span><span class="o">..</span><span class="mi">7</span><span class="p">)</span>
+  <span class="s1">'medium value'</span>
+<span class="k">when</span> <span class="p">(</span><span class="mi">8</span><span class="o">..</span><span class="mi">10</span><span class="p">)</span>
+  <span class="s1">'high value'</span>
+<span class="k">else</span>
+  <span class="s1">'invalid value'</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>We could also use the <code class="language-plaintext highlighter-rouge">then</code> keyword to make this even more succinct:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">case</span> <span class="n">number</span>
+<span class="k">when</span> <span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="mi">3</span><span class="p">)</span>  <span class="k">then</span> <span class="s1">'low value'</span>
+<span class="k">when</span> <span class="p">(</span><span class="mi">4</span><span class="o">..</span><span class="mi">7</span><span class="p">)</span>  <span class="k">then</span> <span class="s1">'medium value'</span>
+<span class="k">when</span> <span class="p">(</span><span class="mi">8</span><span class="o">..</span><span class="mi">10</span><span class="p">)</span> <span class="k">then</span> <span class="s1">'high value'</span>
+<span class="k">else</span>              <span class="s1">'invalid value'</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>This code effectively works like:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">if</span> <span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="mi">3</span><span class="p">)</span> <span class="o">===</span> <span class="n">number</span>
+  <span class="s1">'low value'</span>
+<span class="k">elsif</span> <span class="p">(</span><span class="mi">4</span><span class="o">..</span><span class="mi">7</span><span class="p">)</span> <span class="o">===</span> <span class="n">number</span>
+  <span class="s1">'medium value'</span>
+<span class="k">elsif</span> <span class="p">(</span><span class="mi">8</span><span class="o">..</span><span class="mi">10</span><span class="p">)</span> <span class="o">===</span> <span class="n">number</span>
+  <span class="s1">'high value'</span>
+<span class="k">else</span>
+  <span class="s1">'invalid value'</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>As you can see, the <code class="language-plaintext highlighter-rouge">case</code> statements are most powerful when our logic is concerned with a value of a single object (the <code class="language-plaintext highlighter-rouge">number</code> in the above examples), which is provided next to the <code class="language-plaintext highlighter-rouge">case</code> keyword.
+What comes after each <code class="language-plaintext highlighter-rouge">when</code> acts as a pattern. It doesn’t have to be a Range necessarily - this would work with any object.
+Similar to <a href="/2021/understanding-and-using-rubys-powerful-grep-method">how the #grep method behaves</a>, the <code class="language-plaintext highlighter-rouge">case</code> expression results in invoking the <code class="language-plaintext highlighter-rouge">#===</code> method on the given patterns.
+In fact, the <code class="language-plaintext highlighter-rouge">#===</code> method in Ruby is often called the “case equality”, as it’s mostly known for being used in case statements.</p>
+
+<p>You can consult the Ruby documentation and look into how the <code class="language-plaintext highlighter-rouge">#===</code> method is implement in various classes. On the <code class="language-plaintext highlighter-rouge">Object</code> class, it works the same as the regular equality method, the <code class="language-plaintext highlighter-rouge">#==</code>. It’s then up to descending classes to implement their own interpretation of the “case equality”.</p>
+
+<h2 id="patterns-in-the-case-statements">Patterns in the case statements</h2>
+
+<p>Let’s look at some examples of objects being used as patterns in the case statements.</p>
+
+<p>The case statement with integers as patterns:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">case</span> <span class="n">number</span>
+<span class="k">when</span> <span class="mi">0</span> <span class="k">then</span> <span class="kp">false</span>
+<span class="k">when</span> <span class="mi">1</span> <span class="k">then</span> <span class="kp">true</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>With strings:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">case</span> <span class="n">answer</span>
+<span class="k">when</span> <span class="s1">'Y'</span> <span class="k">then</span> <span class="kp">true</span>
+<span class="k">when</span> <span class="s1">'N'</span> <span class="k">then</span> <span class="kp">false</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>And with regexes:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">case</span> <span class="n">string</span>
+<span class="k">when</span> <span class="p">(</span><span class="sr">/^a/</span><span class="p">)</span> <span class="k">then</span> <span class="s1">'starts with an A'</span>
+<span class="k">when</span> <span class="p">(</span><span class="sr">/^z/</span><span class="p">)</span> <span class="k">then</span> <span class="s1">'starts with a Z'</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>You can of course mix the types of patterns within one statement:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">case</span> <span class="n">number</span>
+<span class="k">when</span> <span class="mi">0</span>       <span class="k">then</span> <span class="s1">'zero'</span>
+<span class="k">when</span> <span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">3</span><span class="p">)</span>  <span class="k">then</span> <span class="s1">'low value'</span>
+<span class="k">when</span> <span class="p">(</span><span class="mi">4</span><span class="o">..</span><span class="mi">7</span><span class="p">)</span>  <span class="k">then</span> <span class="s1">'medium value'</span>
+<span class="k">when</span> <span class="p">(</span><span class="mi">8</span><span class="o">..</span><span class="mi">10</span><span class="p">)</span> <span class="k">then</span> <span class="s1">'high value'</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>One last tip. You can provide multiple patterns for each <code class="language-plaintext highlighter-rouge">when</code>. This would effectively mimic the logical <code class="language-plaintext highlighter-rouge">||</code> operator, with each pattern beig compared against.
+To illustrate this, let’s expand on a previous example:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">case</span> <span class="n">answer</span><span class="p">.</span><span class="nf">downcase</span>
+<span class="k">when</span> <span class="s1">'y'</span><span class="p">,</span> <span class="s1">'yes'</span> <span class="k">then</span> <span class="kp">true</span>
+<span class="k">when</span> <span class="s1">'n'</span><span class="p">,</span> <span class="s1">'no'</span> <span class="k">then</span> <span class="kp">false</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Under the hood, this works just like:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">if</span> <span class="s1">'y'</span> <span class="o">===</span> <span class="n">answer</span><span class="p">.</span><span class="nf">downcase</span>  <span class="o">||</span> <span class="s1">'yes'</span> <span class="o">===</span> <span class="n">answer</span><span class="p">.</span><span class="nf">downcase</span>
+  <span class="kp">true</span>
+<span class="k">elsif</span> <span class="s1">'n'</span> <span class="o">===</span> <span class="n">answer</span><span class="p">.</span><span class="nf">downcase</span> <span class="o">||</span> <span class="s1">'no'</span> <span class="o">===</span> <span class="n">answer</span><span class="p">.</span><span class="nf">downcase</span>
+  <span class="kp">false</span>
+<span class="k">end</span></code></pre></figure>
+
+<h2 id="summary">Summary</h2>
+
+<p>I hope that you find this quick recap of the <code class="language-plaintext highlighter-rouge">case</code> expression useful. How often are you using case statements in your projects? Please share in the comments.</p>
+
+<p>If your Ruby project suffers from slow CI build times, consider using <a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=how-and-when-to-use-ruby-case-statements">Knapsack Pro</a> to improve the productivity of your team.</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/how-and-when-to-use-ruby-case-statements" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2021/how-and-when-to-use-ruby-case-statements"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2021/how-and-when-to-use-ruby-case-statements"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

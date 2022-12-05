@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Faster pipelines with Knapsack Pro by parallelizing Cypress tests on GitLab CI</title>
+  <meta name="description" content="When the runtime of our build pipeline had reached 20 minutes on average for each commit on each Merge Request, we knew we needed a solution to speed things ...">
+
+  <meta property="og:title" content="Faster pipelines with Knapsack Pro by parallelizing Cypress tests on GitLab CI">
+  <meta name="twitter:title" content="Faster pipelines with Knapsack Pro by parallelizing Cypress tests on GitLab CI">
+  <meta name="twitter:description" content="When the runtime of our build pipeline had reached 20 minutes on average for each commit on each Merge Request, we knew we needed a solution to speed things ...">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/logo.png">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/logo.png">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2021/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Faster pipelines with Knapsack Pro by parallelizing Cypress tests on GitLab CI</h1>
+    <p class="post-meta">
+    <time datetime="2021-03-02T15:20:00+00:00" itemprop="datePublished">Mar 2, 2021</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Daniel Spitzer</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>When the runtime of our build pipeline had reached 20 minutes on average for each commit on each Merge Request, we knew we needed a solution to speed things up. We wanted to optimize everything we could within the pipeline, a way of doing this was to parallelize our tests with <a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci">Knapsack Pro</a> to speed up our Cypress integration tests which would save us a sizable amount of time.</p>
+
+<p><a target="_blank" rel="noopener" href="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/logo.png">
+  <img src="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/logo.png" class="img-large" alt="Knapsack Pro, Gitlab, and Cypress logos flying around in a speed frenzy" />
+</a></p>
+
+<style>
+.post a > figure > figcaption {
+  color: #111;
+  text-decoration: none;
+}
+.post a:hover > figure > figcaption,
+.post a > figure:hover > figcaption,
+.post a > figure > figcaption:hover {
+  color: #1d7690;
+  text-decoration: none;
+}
+
+.post p,
+.post p > a > figure.
+.post p > a > figure > img {
+  display: block;
+  width: 75%;
+  margin: 15px auto;
+}
+
+.post section,
+.post article {
+  box-sizing: border-box;
+}
+.post section {
+  display: flex;
+  flex-wrap: wrap;
+}
+.post article {
+  width: 50%;
+  text-align: center;
+  padding: 15px;
+}
+
+.post section > article > a > figure > img {
+  max-height: 400px;
+  display: block;
+  margin: 0 auto 15px;
+}
+</style>
+
+<h2 id="what-is-our-setup">What is our setup?</h2>
+
+<p>Our team is working on <a href="https://www.kiwi.com/">Kiwi.com</a>, which is a travel company selling tickets for flights, trains, buses and any other kinds of transportation. More specifically, the team is responsible for the Help Center, where users can go to find articles and chat with support before, during and after their trips.</p>
+
+<p>Our application is deployed in two distinct ways: as an npm package integrated into other modules within Kiwi.com as a sidebar <em>(called <strong>sidebar</strong>)</em>, and as a standalone web application <em>(called <strong>full-page</strong>)</em> which is dockerized and then deployed on GKE (<a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine</a>) for our production environment and using GCR (<a href="https://cloud.google.com/run">Google Cloud Run</a>) for staging envs .</p>
+
+<p>Most of the code is shared between these units but there are some minor differences in design and major differences in flows/functionality, so they need to be tested separately.</p>
+
+<p>We use <a href="https://about.gitlab.com/">GitLab</a> for code reviews and version control and GitLab CI to run our build pipelines.</p>
+
+<p>We use <a href="https://www.cypress.io/">Cypress</a> for end-to-end and integration testing with separate tests for both types of deployment.</p>
+
+<h2 id="what-problem-are-we-trying-to-solve">What problem are we trying to solve?</h2>
+
+<p>We want our pipelines and tests to run faster but not spend too much time nor money on doing it, so running each test on its own server is probably not the best way to go, not to mention the overhead of starting up the runners and checking out the source code.</p>
+
+<p>If our pipelines are slow, developers could forget that they had something running in the background and jump between tasks or worse, somebody else merges code into the main branch and the pipeline has to be run again…</p>
+
+<p>If our pipelines are fast, then we have to wait less while they are running, after applying some of the changes suggested during code reviews and to get hotfixes out to production if necessary.</p>
+
+<h2 id="manual-splitting-of-cypress-tests">Manual splitting of Cypress tests</h2>
+
+<p>After seeing that running tests in series takes extremely long, we tried to split some areas up and run them on separate Cypress runners and this worked for a while. But, as the tests’ size grew asymmetrically, we had to shift around which suites should run together continuously.</p>
+
+<section>
+  <article>
+    <a target="_blank" rel="noopener" href="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/00-cypress-files-before-knapsack.png">
+      <figure>
+        <img src="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/00-cypress-files-before-knapsack.png" class="img-large" alt="List of Cypress test files, showing that tests are nested two levels: by module and by feature or area" />
+        <figcaption>List of Cypress test files, showing that tests are nested two levels: by module and by feature or area</figcaption>
+      </figure>
+    </a>
+  </article>
+  <article>
+    <a target="_blank" rel="noopener" href="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/01-pipeline-jobs-before-knapsack.png">
+      <figure>
+        <img src="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/01-pipeline-jobs-before-knapsack.png" class="img-list" alt="List of Cypress test Gitlab CI jobs, showing that there are many separate jobs for each of the test subfolders" />
+        <figcaption>List of Cypress test Gitlab CI jobs, showing that there are many separate jobs for each of the test subfolders</figcaption>
+      </figure>
+    </a>
+  </article>
+  <article>
+    <a target="_blank" rel="noopener" href="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/02-cypress-runtime-before-knapsack.png">
+      <figure>
+        <img src="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/02-cypress-runtime-before-knapsack.png" class="img-list" alt="List of Cypress test Gitlab CI jobs, showing that job runtimes vary from 53 seconds to 5 minutes" />
+        <figcaption>List of Cypress test Gitlab CI jobs, showing that job runtimes vary from 53 seconds to 5 minutes</figcaption>
+      </figure>
+    </a>
+  </article>
+  <article>
+    <a target="_blank" rel="noopener" href="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/03-pipeline-runtime-before-knapsack.png">
+      <figure>
+        <img src="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/03-pipeline-runtime-before-knapsack.png" class="img-list" alt="Pipeline summary showing: 33 jobs for master in 19 minutes and 24 seconds" />
+        <figcaption>Pipeline summary</figcaption>
+      </figure>
+    </a>
+  </article>
+</section>
+
+<h2 id="what-is-knapsack-pro">What is Knapsack Pro?</h2>
+
+<p><a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci">Knapsack Pro</a> is a tool that helps split up test suites in a dynamic way across parallel CI runners to ensure that each runner finishes work simultaneously.</p>
+
+<p>Its name comes from the “<a href="https://en.wikipedia.org/wiki/Knapsack_problem">knapsack problem</a>”, a problem in combinatorial optimization, to figure out how to take things (test suites) with certain attributes (number of tests, time it took on average to run, etc) and determine how best to divide them to get the most value (all CI nodes are running tests from boot until shutdown and they all finish at the same time).</p>
+
+<p>It comes with a dashboard to see the distribution of test subsets for each parallel run of CI runners, which is useful when splitting test suites or to see if something is going wrong with the runs. The dashboard also suggests if you’d benefit from less or more parallel runners as well.</p>
+
+<p>The founder of Knapsack Pro, <a href="https://github.com/ArturT">Artur Trzop</a> has been helping us proactively, sometimes noticing and notifying us that something went wrong with our pipeline even before we did. Whenever we had an issue, we could just write to him and we would figure out a solution together.</p>
+
+<h2 id="plugging-in-knapsack-pro">Plugging in Knapsack Pro</h2>
+
+<p>To try out <a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci">Knapsack Pro</a>, all we did was <a href="https://github.com/KnapsackPro/knapsack-pro-cypress#installation">follow the docs</a> and afterward merge all separate Cypress jobs into one and set up some <a href="https://docs.cypress.io/guides/tooling/reporters.html#Reporter-Options">reporterOptions</a> in Cypress to ensure that we’ll collect all of the test results as JUnit reports from all the parallel runs.</p>
+
+<p>Here’s a short example of our <strong>full-page</strong> test jobs before the conversion:</p>
+
+<figure class="highlight"><pre><code class="language-yml" data-lang="yml"><span class="na">.cypress_fp</span><span class="pi">:</span> <span class="nl">&amp;cypress_fp</span>
+  <span class="na">stage</span><span class="pi">:</span> <span class="s">cypress</span>
+  <span class="na">image</span><span class="pi">:</span> <span class="s2">"</span><span class="s">cypress/browsers:node14.15.0-chrome86-ff82"</span>
+  <span class="na">retry</span><span class="pi">:</span> <span class="m">2</span>
+  <span class="na">before_script</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">yarn install--frozen-lockfile --production=false</span>
+  <span class="na">artifacts</span><span class="pi">:</span> <span class="c1"># save screenshots as an artifact</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">fp-screenshots</span>
+    <span class="na">expire_in</span><span class="pi">:</span> <span class="s">3 days</span>
+    <span class="na">when</span><span class="pi">:</span> <span class="s">on_failure</span>
+    <span class="na">paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">cypress/screenshots/</span>
+
+<span class="na">fp contact</span><span class="pi">:</span>
+  <span class="na">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*cypress_fp</span>
+  <span class="na">script</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">yarn cypress:run-ci -s "./cypress/tests/full-page/contact/*.js"</span>
+
+<span class="na">fp login</span><span class="pi">:</span>
+  <span class="na">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*cypress_fp</span>
+  <span class="na">script</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">yarn cypress:run-ci-s "./cypress/tests/full-page/login/*.js"</span>
+
+<span class="na">fp search</span><span class="pi">:</span>
+  <span class="na">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*cypress_fp</span>
+  <span class="na">script</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">yarn cypress:run-ci -s "./cypress/tests/full-page/search/*.js"</span>
+
+<span class="c1"># etc ...</span></code></pre></figure>
+
+<p>Here is the new <strong>full-page</strong> test job after the conversion:</p>
+
+<figure class="highlight"><pre><code class="language-yml" data-lang="yml"><span class="na">.cypress_parallel_defaults</span><span class="pi">:</span> <span class="nl">&amp;cypress_parallel_defaults</span>
+
+<span class="na">full-page</span><span class="pi">:</span>
+  <span class="na">stage</span><span class="pi">:</span> <span class="s">cypress</span>
+  <span class="na">image</span><span class="pi">:</span> <span class="s2">"</span><span class="s">cypress/browsers:node14.15.0-chrome86-ff82"</span>
+  <span class="na">retry</span><span class="pi">:</span> <span class="m">0</span>
+  <span class="na">parallel</span><span class="pi">:</span> <span class="m">4</span>
+  <span class="na">before_script</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">yarn install--frozen-lockfile --production=false</span>
+  <span class="na">script</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">$(yarn bin)/knapsack-pro-cypress --record </span><span class="no">false</span><span class="s"> --reporter junit --reporter-options "mochaFile=cypress/results/junit-[hash].xml"</span>
+  <span class="na">after_script</span><span class="pi">:</span> <span class="c1"># collect all artifacts</span>
+    <span class="pi">-</span> <span class="s">mkdir -p cypress/screenshots/full-page &amp;&amp; cp -r cypress/screenshots/full-page $CI_PROJECT_DIR</span>
+    <span class="pi">-</span> <span class="s">mkdir -p cypress/videos/full-page &amp;&amp; cp -r cypress/videos/full-page $CI_PROJECT_DIR</span>
+    <span class="pi">-</span> <span class="s">mkdir -p cypress/results &amp;&amp; cp -r cypress/results $CI_PROJECT_DIR</span>
+    <span class="c1"># all the copying above is done to make it easy to browse the artifacts in the UI (single folder)</span>
+  <span class="na">artifacts</span><span class="pi">:</span> <span class="c1"># save videos and screenshots as artifacts</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$CI_JOB_NAME_$CI_NODE_INDEX-of-$CI_NODE_TOTAL"</span>
+    <span class="na">when</span><span class="pi">:</span> <span class="s">on_failure</span>
+    <span class="na">expire_in</span><span class="pi">:</span> <span class="s">3 days</span>
+    <span class="na">paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">full-page/</span>
+    <span class="na">reports</span><span class="pi">:</span>
+      <span class="na">junit</span><span class="pi">:</span> <span class="s">results/junit-*.xml</span>
+    <span class="na">expose_as</span><span class="pi">:</span> <span class="s">cypress_full-page</span>
+  <span class="na">variables</span><span class="pi">:</span>
+    <span class="na">CYPRESS_BASE_URL</span><span class="pi">:</span> <span class="s">https://$CI_ENVIRONMENT_SLUG.$CLOUDRUN_CUSTOM_DOMAIN_SUFFIX/en/help</span>
+    <span class="na">KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS</span><span class="pi">:</span> <span class="s">$KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS_FULL_PAGE</span>
+    <span class="na">KNAPSACK_PRO_CI_NODE_BUILD_ID</span><span class="pi">:</span> <span class="s">full-page-$CI_COMMIT_REF_SLUG-$CI_PIPELINE_ID</span>
+    <span class="na">KNAPSACK_PRO_TEST_FILE_PATTERN</span><span class="pi">:</span> <span class="s">cypress/integration/full-page/*.js</span></code></pre></figure>
+
+<p>This was the result we saw on the Knapsack Pro Dashboard, showing that our current separation of suites needs to be worked on to gain all the benefits of parallelization:</p>
+
+<p>
+  <a target="_blank" rel="noopener" href="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/04-cypress-suites-fullpage-before-split.png">
+    <figure>
+      <img src="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/04-cypress-suites-fullpage-before-split.png" class="img-large" alt="Knapsack Pro dashboard showing the slowest test files, slowest being almost four minutes while the second slowest is only 30 seconds" />
+      <figcaption>Knapsack Pro dashboard showing the slowest test files, slowest being almost four minutes while the second slowest is only 30 seconds</figcaption>
+    </figure>
+  </a>
+</p>
+
+<p>After some tweaking, splitting, and moving suites around, this is what we finally had:</p>
+
+<section>
+  <article>
+    <a target="_blank" rel="noopener" href="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/05-cypress-files-after-knapsack.png">
+      <figure>
+        <img src="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/05-cypress-files-after-knapsack.png" alt="List of Cypress test files, showing that tests are a single level: by module" />
+        <figcaption>List of Cypress test files, showing that tests are a single level: by module</figcaption>
+      </figure>
+    </a>
+      </article>
+      <article>
+    <a target="_blank" rel="noopener" href="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/06-pipeline-jobs-after-knapsack.png">
+      <figure>
+        <img src="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/06-pipeline-jobs-after-knapsack.png" alt="List of Cypress test Gitlab CI jobs, showing that there are only two separate jobs parallelized four times for each of the modules" />
+        <figcaption>List of Cypress test Gitlab CI jobs, showing that there are only two separate jobs parallelized four times for each of the modules</figcaption>
+      </figure>
+    </a>
+      </article>
+      <article>
+    <a target="_blank" rel="noopener" href="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/07-cypress-runtime-after-knapsack.png">
+      <figure>
+        <img src="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/07-cypress-runtime-after-knapsack.png" alt="List of Cypress test Gitlab CI jobs, showing that job runtimes are almost equal for each batch of parallel jobs (3:18 - 3:24 and 2:07 - 2:17)" />
+        <figcaption>List of Cypress test Gitlab CI jobs, showing that job runtimes are almost equal for each batch of parallel jobs (3:18 - 3:24 and 2:07 - 2:17)</figcaption>
+      </figure>
+    </a>
+      </article>
+      <article>
+    <a target="_blank" rel="noopener" href="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/08-pipeline-runtime-after-knapsack.png">
+      <figure>
+        <img src="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/08-pipeline-runtime-after-knapsack.png" alt="Pipeline summary showing: 33 jobs for master in 15 minutes and 21 seconds" />
+        <figcaption>Pipeline summary</figcaption>
+      </figure>
+    </a>
+  </article>
+</section>
+
+<p>It is still not perfectly balanced but with this granularity, we can utilize four runners at the same time and there isn’t too much idle time, so we’re not wasting CPU cycles.</p>
+
+<p>
+  <a target="_blank" rel="noopener" href="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/09-after_cypress_new_master_fullpage.png">
+    <figure>
+      <img src="/images/blog/posts/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci/09-after_cypress_new_master_fullpage.png" alt="Knapsack Pro dashboard showing the slowest test files, slowest being 21.803 seconds while the second slowest being 21.001 seconds (some other tests are only 1-6 seconds short)" />
+      <figcaption>Knapsack Pro dashboard showing the slowest test files, slowest being 21.803 seconds while the second slowest being 21.001 seconds (some other tests are only 1-6 seconds short)</figcaption>
+    </figure>
+  </a>
+</p>
+
+<h2 id="what-else-can-we-do">What else can we do?</h2>
+
+<p>15 minutes still feels long, pipeline runtimes around 10 minutes are a good goal to reach but we have more optimization to do around build times and Docker compilation times, which are out of scope for this article. If you’re interested in reading more about how to do that, I can recommend the article <a href="https://www.robincussol.com/docker-for-js-devs-how-to-containerise-nodejs-apps-efficiently/">Docker for JavaScript Devs: How to Containerize Node.js Apps Efficiently</a> for more details.</p>
+
+<h2 id="results">Results</h2>
+
+<p>The switch to <a href="https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci">Knapsack Pro</a> took less than a day. Most of the work afterward was to split up tasks and optimize other parts of GitLab CI. The whole process took two weeks for a single developer.</p>
+
+<p>By splitting up the test suites into smaller, equal sized chunks, running tests parallelized on four CI runners (for each of our target builds) and some other general pipeline fixes (better caching between jobs/steps, only running parts of the pipeline for actual changes), we’ve managed to decrease our pipeline runtime of ~20 minutes to ~15 minutes.</p>
+
+<p>When we add more test suites, Knapsack Pro will take care of sorting the tests to the proper CI runners to ensure that pipeline runtimes don’t increase if necessary.</p>
+
+<p>We sped up our pipeline by 25%, or 5 minutes on average, and seeing that each of our three developers starts about 6-10 pipelines a day (depending on the workload and type of work), we’ve essentially saved between 90-150 minutes of development time a day, as well as increased morale because <strong><em>nobody likes to wait.</em></strong></p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2021/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2021/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2021/faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

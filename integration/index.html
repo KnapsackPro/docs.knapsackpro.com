@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Blog about testing & documentation for KnapsackPro.com</title>
+  <title>Integration</title>
   <meta name="description" content="Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.">
 
-  <meta property="og:title" content="Blog about testing & documentation for KnapsackPro.com">
-  <meta name="twitter:title" content="Blog about testing & documentation for KnapsackPro.com">
+  <meta property="og:title" content="Integration">
+  <meta name="twitter:title" content="Integration">
   <meta name="twitter:description" content="Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@KnapsackPro">
@@ -19,7 +19,7 @@
 
   <link rel="shortcut icon" href="/images/favicon.ico" />
   <link rel="stylesheet" href="/css/main.css?version=1">
-  <link rel="canonical" href="https://docs.knapsackpro.com/404">
+  <link rel="canonical" href="https://docs.knapsackpro.com/integration/">
   <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -107,11 +107,91 @@ src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <div class="post">
 
-  <h1>Error 404</h1>
+  <header class="post-header">
+    <h1 class="post-title">Integration</h1>
+  </header>
 
-  File not found. Please go to <a href="/">home page</a>.
+  <article class="post-content">
+    <p>Follow installation guide to integrate Knapsack Pro with your project and CI provider.</p>
+
+<h2 id="test-runners-supported-out-of-the-box">Test runners supported out of the box</h2>
+
+<table class="pure-table extra-margin-top-2x">
+  <tr>
+    <th>Programming Language</th>
+    <th>Supported test runners</th>
+    <th>Installation guide</th>
+    <th style="min-width:200px;">Knapsack Pro Library README / Source</th>
+    <th>FAQ</th>
+    <th>Change&nbsp;log</th>
+  </tr>
+  <tr>
+    <td>Ruby</td>
+    <td>RSpec, Cucumber, Minitest, test-unit, Spinach, Turnip</td>
+    <td><a href="/knapsack_pro-ruby/guide/" class="btn-blue"><b>Install</b></a></td>
+    <td><a href="https://github.com/KnapsackPro/knapsack_pro-ruby">knapsack_pro gem</a></td>
+    <td><a href="https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_ruby">FAQ</a></td>
+    <td><a href="https://github.com/KnapsackPro/knapsack_pro-ruby/blob/master/CHANGELOG.md#change-log">Change log</a></td>
+  </tr>
+  <tr>
+    <td>JavaScript</td>
+    <td>Cypress.io</td>
+    <td><a href="https://github.com/KnapsackPro/knapsack-pro-cypress#installation" class="btn-blue"><b>Install</b></a></td>
+    <td><a href="https://github.com/KnapsackPro/knapsack-pro-cypress">@knapsack-pro/cypress</a></td>
+    <td><a href="https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_cypress">FAQ</a></td>
+    <td><a href="https://github.com/KnapsackPro/knapsack-pro-cypress/blob/master/CHANGELOG.md#change-log">Change log</a></td>
+  </tr>
+  <tr>
+    <td>JavaScript</td>
+    <td>Jest</td>
+    <td><a href="https://github.com/KnapsackPro/knapsack-pro-jest#installation" class="btn-blue"><b>Install</b></a></td>
+    <td><a href="https://github.com/KnapsackPro/knapsack-pro-jest">@knapsack-pro/jest</a></td>
+    <td><a href="https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_jest">FAQ</a></td>
+    <td><a href="https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/CHANGELOG.md#change-log">Change log</a></td>
+  </tr>
+</table>
+
+<p><br />
+<br /></p>
+
+<h2 id="custom-integration-with-knapsack-pro-api">Custom integration with Knapsack Pro API</h2>
+
+<table class="pure-table extra-margin-top-2x">
+  <tr>
+    <th>Programming Language</th>
+    <th>Supported test runners</th>
+    <th>Guide</th>
+    <th style="min-width:200px;">Knapsack Pro Library README / Source</th>
+    <th>FAQ</th>
+    <th>Change&nbsp;log</th>
+  </tr>
+  <tr>
+    <td>JavaScript / TypeScript</td>
+    <td>Any test runner in JavaScript</td>
+    <td><a href="/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework"><b>How to build native integration with Knapsack Pro API to run tests in parallel for any test runner</b></a></td>
+    <td><a href="https://github.com/KnapsackPro/knapsack-pro-core-js">@knapsack-pro/core</a></td>
+    <td><a href="https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_cypress#knapsack_pro_core_js">FAQ - see section: General questions for Knapsack Pro Core JavaScript integration</a></td>
+    <td><a href="https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/CHANGELOG.md">Change log</a></td>
+  </tr>
+  <tr>
+    <td>Any programming language</td>
+    <td>Any test runner</td>
+    <td><a href="/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language"><b>How to build a custom Knapsack Pro API client from scratch in any programming language</b></a></td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<p>
+Do you use other programming language or test runner? <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7Z6k__VczmRMmXykjA5i2MVEA3nEJ90gbiIeCRjecWhPOig/viewform?hl=en" rel="nofollow">Let us know</a>.
+</p>
+
+  </article>
 
 </div>
 

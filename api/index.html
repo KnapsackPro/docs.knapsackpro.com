@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Blog about testing & documentation for KnapsackPro.com</title>
+  <title>Knapsack Pro API</title>
   <meta name="description" content="Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.">
 
-  <meta property="og:title" content="Blog about testing & documentation for KnapsackPro.com">
-  <meta name="twitter:title" content="Blog about testing & documentation for KnapsackPro.com">
+  <meta property="og:title" content="Knapsack Pro API">
+  <meta name="twitter:title" content="Knapsack Pro API">
   <meta name="twitter:description" content="Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@KnapsackPro">
@@ -19,7 +19,7 @@
 
   <link rel="shortcut icon" href="/images/favicon.ico" />
   <link rel="stylesheet" href="/css/main.css?version=1">
-  <link rel="canonical" href="https://docs.knapsackpro.com/404">
+  <link rel="canonical" href="https://docs.knapsackpro.com/api/">
   <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -107,11 +107,52 @@ src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <div class="post">
 
-  <h1>Error 404</h1>
+  <header class="post-header">
+    <h1 class="post-title">Knapsack Pro API</h1>
+  </header>
 
-  File not found. Please go to <a href="/">home page</a>.
+  <article class="post-content">
+    <h2 id="api-documentation">API documentation</h2>
+
+<p>
+Here you can find API documentation for Regular Mode and Queue Mode. The API documentation might be useful if you want to build <a href="/integration/">a client library</a> to directly integrate with Knapsack Pro API.
+</p>
+
+<h1><a href="/api/v1/">Preview API v1 documentation</a></h1>
+
+<h2 id="how-api-works">How API works</h2>
+
+<p>You can learn how Knapsack Pro API works from the below videos or reading the article showing <a href="/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation">the difference between Regular Mode and Queue Mode</a>.</p>
+
+<ul>
+  <li>
+  <a href="https://youtu.be/ZEb6NeRRfQ4"><i class="fab fa-youtube"></i> Regular Mode - deterministic tests split across parallel CI nodes</a>.
+  <br />
+  Docs: <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-does-knapsack_pro-work">How knapsack_pro gem works in Regular Mode</a>.
+  </li>
+  <li>
+  <a href="https://youtu.be/hUEB1XDKEFY"><i class="fab fa-youtube"></i> Queue Mode - dynamic tests split across parallel CI nodes</a>.
+  <br />
+  Docs: <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode">How knapsack_pro gem works in Queue Mode</a>.
+  </li>
+</ul>
+
+<h2 id="how-to-build-native-integration-with-api">How to build native integration with API</h2>
+
+<ul>
+  <li><strong>JavaScript</strong>: <a href="/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework">How to build native integration with Knapsack Pro API to run tests in parallel for any test runner (testing framework)</a></li>
+  <li><strong>Any programming language</strong>: <a href="/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language">How to build a custom Knapsack Pro API client from scratch in any programming language</a></li>
+</ul>
+
+<h2 id="how-to-export-data-from-api">How to export data from API</h2>
+
+<p>
+You may also find a useful article with examples of how to <a href="/2018/how-to-export-test-suite-timing-data-from-knapsack-pro-api">extract timing data for recorded CI builds</a> using API.
+</p>
+
+  </article>
 
 </div>
 

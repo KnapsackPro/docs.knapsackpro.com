@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>CircleCI 2.0 Capybara feature specs - Selenium webdriver with Chrome headless</title>
+  <meta name="description" content="I’ve been using Capybara-WebKit for a long time but while switching from CircleCI 1.0 to CircleCI 2.0 I had some problems to use it on the CI.">
+
+  <meta property="og:title" content="CircleCI 2.0 Capybara feature specs - Selenium webdriver with Chrome headless">
+  <meta name="twitter:title" content="CircleCI 2.0 Capybara feature specs - Selenium webdriver with Chrome headless">
+  <meta name="twitter:description" content="I’ve been using Capybara-WebKit for a long time but while switching from CircleCI 1.0 to CircleCI 2.0 I had some problems to use it on the CI.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@KnapsackPro">
+
+  
+  <meta property="og:image" content="https://docs.knapsackpro.com/images/blog/posts/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless/circle.png">
+  <meta name="twitter:image" content="https://docs.knapsackpro.com/images/blog/posts/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless/circle.png">
+  
+
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css?version=1">
+  <link rel="canonical" href="https://docs.knapsackpro.com/2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless">
+  <link rel="alternate" type="application/rss+xml" title="Blog about testing & documentation for KnapsackPro.com" href="https://docs.knapsackpro.com/feed.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+
+
+  <body>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JPGP34N3JJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JPGP34N3JJ');
+</script>
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1803263473334711'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1803263473334711&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://knapsackpro.com/">
+      <img src="/images/logo.png" alt="Knapsack Pro Documentation" width="32" height="32">
+      Knapsack Pro&nbsp;
+    </a>
+    <a class="site-title" href="/">
+      <strong>Docs</strong>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link"><i class="fab fa-github"></i></a>
+        <a class="page-link" href="/">Blog</a>
+        <a class="page-link" href="/integration/">Get started with integration</a>
+        <a class="page-link" href="/api/">API</a>
+        <a class="page-link" href="https://knapsackpro.com">Sign up</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script>
+$(document).ready(function() {
+  if (document.cookie.includes("u_source")) {
+    return;
+  };
+
+  var date = new Date();
+  date.setMonth(date.getMonth() + 6);
+  var dateString = date.toUTCString();
+  var cookieAttributesString = "path=/;domain=knapsackpro.com;expires=" + dateString + ";";
+  var utmCampaignString = document.location.pathname.substring(6);
+
+  document.cookie = "u_source=docs_knapsackpro;" + cookieAttributesString;
+  document.cookie = "u_medium=blog_post;" + cookieAttributesString;
+  document.cookie = "u_campaign=" + utmCampaignString + ";" + cookieAttributesString;
+  document.cookie = "u_content=blog_post_pageview;" + cookieAttributesString;
+});
+</script>
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">CircleCI 2.0 Capybara feature specs - Selenium webdriver with Chrome headless</h1>
+    <p class="post-meta">
+    <time datetime="2017-10-16T19:00:00+00:00" itemprop="datePublished">Oct 16, 2017</time>
+     • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Artur Trzop</span></span>
+    
+    </p>
+  </header>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  <div class="post-content" itemprop="articleBody">
+    <p>I’ve been using Capybara-WebKit for a long time but while switching from CircleCI 1.0 to CircleCI 2.0 I had some problems to use it on the CI.</p>
+
+<p>This triggered to try Chrome Headless with Selenium Webdriver.  I will show you how to configure Circle CI 2.0 and your Ruby on Rails project to use capybara/selenium/chrome headless together.</p>
+
+<p><img src="/images/blog/posts/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless/circle.png" style="width:250px;margin-left: 15px;float:right;" alt="CircleCI" /></p>
+
+<h2 id="add-capybara-and-selenium-webdriver">Add capybara and selenium-webdriver</h2>
+
+<p>Let’s add <a href="https://github.com/teamcapybara/capybara">capybara</a> and <a href="https://github.com/seleniumhq/selenium">selenium-webdriver</a> gems to <code class="language-plaintext highlighter-rouge">Gemfile</code>:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Gemfile</span>
+<span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'capybara'</span>
+  <span class="n">gem</span> <span class="s1">'selenium-webdriver'</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>and run <code class="language-plaintext highlighter-rouge">bundle install</code>.</p>
+
+<p>If you already had the gems in your <code class="language-plaintext highlighter-rouge">Gemfile</code> then ensure you have latest version with <code class="language-plaintext highlighter-rouge">bundle update capybara selenium-webdriver</code>.</p>
+
+<p>If you want to make sure Capybara feature specs will work on your development machine:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span>brew <span class="nb">install </span>chromedriver</code></pre></figure>
+
+<p>If your feature specs fail then upgrade the driver because you may have installed old one.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span>brew upgrade chromedriver</code></pre></figure>
+
+<h2 id="configure-capybara">Configure Capybara</h2>
+
+<p>Add config file for Capybara:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec/support/config/capybara.rb</span>
+<span class="no">JS_DRIVER</span> <span class="o">=</span> <span class="ss">:selenium_chrome_headless</span>
+
+<span class="no">Capybara</span><span class="p">.</span><span class="nf">default_driver</span> <span class="o">=</span> <span class="ss">:rack_test</span>
+<span class="no">Capybara</span><span class="p">.</span><span class="nf">javascript_driver</span> <span class="o">=</span> <span class="no">JS_DRIVER</span>
+<span class="no">Capybara</span><span class="p">.</span><span class="nf">default_max_wait_time</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">before</span><span class="p">(</span><span class="ss">:each</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">example</span><span class="o">|</span>
+    <span class="no">Capybara</span><span class="p">.</span><span class="nf">current_driver</span> <span class="o">=</span> <span class="no">JS_DRIVER</span> <span class="k">if</span> <span class="n">example</span><span class="p">.</span><span class="nf">metadata</span><span class="p">[</span><span class="ss">:js</span><span class="p">]</span>
+    <span class="no">Capybara</span><span class="p">.</span><span class="nf">current_driver</span> <span class="o">=</span> <span class="ss">:selenium</span> <span class="k">if</span> <span class="n">example</span><span class="p">.</span><span class="nf">metadata</span><span class="p">[</span><span class="ss">:selenium</span><span class="p">]</span>
+    <span class="no">Capybara</span><span class="p">.</span><span class="nf">current_driver</span> <span class="o">=</span> <span class="ss">:selenium_chrome</span> <span class="k">if</span> <span class="n">example</span><span class="p">.</span><span class="nf">metadata</span><span class="p">[</span><span class="ss">:selenium_chrome</span><span class="p">]</span>
+  <span class="k">end</span>
+
+  <span class="n">config</span><span class="p">.</span><span class="nf">after</span><span class="p">(</span><span class="ss">:each</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">Capybara</span><span class="p">.</span><span class="nf">use_default_driver</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Ensure you load config files from <code class="language-plaintext highlighter-rouge">spec/support</code> directory:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec/rails_helper.rb</span>
+
+<span class="c1"># The following line is provided for convenience purposes. It has the downside</span>
+<span class="c1"># of increasing the boot-up time by auto-requiring all files in the support</span>
+<span class="c1"># directory. Alternatively, in the individual `*_spec.rb` files, manually</span>
+<span class="c1"># require only the support files necessary.</span>
+<span class="no">Dir</span><span class="p">[</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">'spec/support/**/*.rb'</span><span class="p">)].</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="nb">require</span> <span class="n">f</span> <span class="p">}</span></code></pre></figure>
+
+<h2 id="example-feature-spec">Example feature spec</h2>
+
+<p>We can create example feature spec to test if everything works:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># spec/features/home_spec.rb</span>
+<span class="n">feature</span> <span class="s1">'Homepage Features'</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">root_path</span> <span class="p">}</span>
+
+  <span class="c1"># it won't run js code but it is fast</span>
+  <span class="n">it</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span> <span class="s1">'Hello World'</span>
+  <span class="k">end</span>
+
+  <span class="c1"># it will run js code</span>
+  <span class="n">it</span> <span class="s1">''</span><span class="p">,</span> <span class="ss">:js</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span> <span class="s1">'Hello World'</span>
+  <span class="k">end</span>
+
+  <span class="c1"># it will open Firefox</span>
+  <span class="c1"># remove x from xit to run the test in Firefox on your machine to preview</span>
+  <span class="n">xit</span> <span class="s1">''</span><span class="p">,</span> <span class="ss">:selenium</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span> <span class="s1">'Hello World'</span>
+  <span class="k">end</span>
+
+  <span class="c1"># it will open Chrome</span>
+  <span class="c1"># remove x from xit to run the test in Chrome on your machine to preview</span>
+  <span class="n">xit</span> <span class="s1">''</span><span class="p">,</span> <span class="ss">:selenium_chrome</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span> <span class="s1">'Hello World'</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>And run tests on your development machine with <code class="language-plaintext highlighter-rouge">bin/rspec spec/features/home_spec.rb</code> or <code class="language-plaintext highlighter-rouge">bundle exec rspec spec/features/home_spec.rb</code>.</p>
+
+<h2 id="configure-circleci-20-to-run-chrome-headless">Configure CircleCI 2.0 to run Chrome headless</h2>
+
+<p>Here is example <code class="language-plaintext highlighter-rouge">.circleci/config.yml</code>:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># .circleci/config.yml</span>
+<span class="na">version</span><span class="pi">:</span> <span class="m">2</span>
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span>
+    <span class="na">parallelism</span><span class="pi">:</span> <span class="m">1</span>
+    <span class="na">working_directory</span><span class="pi">:</span> <span class="s">~/project-name</span>
+    <span class="na">docker</span><span class="pi">:</span>
+      <span class="c1"># this is important to use proper image with browsers support</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/ruby:2.4.2-node-browsers</span>
+        <span class="na">environment</span><span class="pi">:</span>
+          <span class="na">PGHOST</span><span class="pi">:</span> <span class="s">127.0.0.1</span>
+          <span class="na">PGUSER</span><span class="pi">:</span> <span class="s">project-name</span>
+          <span class="na">RAILS_ENV</span><span class="pi">:</span> <span class="s">test</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">circleci/postgres:9.4.12-alpine</span>
+        <span class="na">environment</span><span class="pi">:</span>
+          <span class="na">POSTGRES_DB</span><span class="pi">:</span> <span class="s">project-name_test</span>
+          <span class="na">POSTGRES_PASSWORD</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+          <span class="na">POSTGRES_USER</span><span class="pi">:</span> <span class="s">project-name</span>
+      <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">redis:3.2.7</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">checkout</span>
+
+      <span class="c1"># Restore bundle cache</span>
+      <span class="pi">-</span> <span class="na">type</span><span class="pi">:</span> <span class="s">cache-restore</span>
+        <span class="c1"># remove space between { {</span>
+        <span class="na">key</span><span class="pi">:</span> <span class="s">project-name-{ { checksum "Gemfile.lock" }}</span>
+
+      <span class="c1"># Bundle install dependencies</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">bundle install --path vendor/bundle</span>
+
+      <span class="c1"># Store bundle cache</span>
+      <span class="pi">-</span> <span class="na">type</span><span class="pi">:</span> <span class="s">cache-save</span>
+        <span class="c1"># remove space between { {</span>
+        <span class="na">key</span><span class="pi">:</span> <span class="s">project-name-{ { checksum "Gemfile.lock" }}</span>
+        <span class="na">paths</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">vendor/bundle</span>
+
+      <span class="c1"># Prepare .env, useful if you use dotenv gem</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">cp .env.example .env</span>
+
+      <span class="c1"># Database setup</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">bundle exec rake db:create</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">bundle exec rake db:schema:load</span>
+
+      <span class="c1"># Run rspec in parallel</span>
+      <span class="pi">-</span> <span class="na">type</span><span class="pi">:</span> <span class="s">shell</span>
+        <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">bundle exec rspec --profile 10 \</span>
+                            <span class="s">--format RspecJunitFormatter \</span>
+                            <span class="s">--out /tmp/test-results/rspec.xml \</span>
+                            <span class="s">--format progress</span>
+
+      <span class="c1"># Save artifacts</span>
+      <span class="pi">-</span> <span class="na">type</span><span class="pi">:</span> <span class="s">store_test_results</span>
+        <span class="na">path</span><span class="pi">:</span> <span class="s">/tmp/test-results</span></code></pre></figure>
+
+<h2 id="speed-up-your-tests-with-circle-ci-parallelisation">Speed up your tests with Circle CI parallelisation</h2>
+
+<p>If your feature specs are very long you can save some time by running multiple parallel CI nodes. For instance set it to <code class="language-plaintext highlighter-rouge">6</code> in <code class="language-plaintext highlighter-rouge">.circleci/config.yml</code> and use dynamic RSpec specs allocation across CI nodes with <code class="language-plaintext highlighter-rouge">knapsack_pro</code> gem and Queue Mode to get optimal test suite split to save as much time as possible.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># .circleci/config.yml</span>
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span>
+    <span class="na">parallelism</span><span class="pi">:</span> <span class="m">6</span>
+
+  <span class="na">steps</span><span class="pi">:</span>
+    <span class="c1"># some tests that are not balanced and executed only on first CI node</span>
+    <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">case $CIRCLE_NODE_INDEX in 0) npm test ;; esac</span>
+
+    <span class="c1"># auto-balancing CI build time execution to be flat and optimal (as fast as possible).</span>
+    <span class="c1"># Queue Mode does dynamic tests allocation so the previous not balanced run command won't</span>
+    <span class="c1"># create a bottleneck on the CI node</span>
+    <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">RSpec via knapsack_pro Queue Mode</span>
+      <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s"># export word is important here!</span>
+        <span class="s">export RAILS_ENV=test</span>
+        <span class="s">bundle exec rake "knapsack_pro:queue:rspec[--format documentation]"</span></code></pre></figure>
+
+<p>You can learn <a href="http://knapsackpro.com?utm_source=docs_knapsackpro&amp;utm_medium=blog_post&amp;utm_campaign=circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless#x-play-how-it-works-video">how RSpec test suite parallelisation works</a> in 1 minute video.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Now you are good to push your code to a repository and see how your Capybara feature specs work with Chrome Headless on CircleCI 2.0.</p>
+
+  </div>
+
+  <div class="share-post-container">
+  <div class="share-post-left">
+    <div class="fb-share-button" data-href="https://docs.knapsackpro.com/2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless" data-layout="button_count" data-mobile-iframe="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="KnapsackPro" data-hashtags="">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+
+  <div class="share-post-right">
+    <a href="https://twitter.com/KnapsackPro" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @KnapsackPro</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
+
+  
+<div class="wrapper">
+<div class="author-container">
+  <img src="//gravatar.com/avatar/e3be50760a95eebc47c7f239b3ad3ede.png" class="rounded-circle author-img" alt="Artur Trzop" />
+  <div class="author-info">
+    <p>
+    Written by <strong>Artur Trzop</strong>
+    </p>
+    <p>
+    Let's connect on <i class="fab fa-linkedin linkedin-color"></i> <a href="https://www.linkedin.com/in/arturtrzop/" rel="nofollow noopener" target="_blank" class="page-link">LinkedIn</a> or see my <i class="fab fa-youtube youtube-color"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">YouTube</a>
+    </p>
+    <p>
+    Founder of Knapsack Pro, follow on <i class="fab fa-twitter twitter-color"></i> <a href="https://twitter.com/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Twitter</a>
+    </p>
+  </div>
+</div>
+</div>
+
+
+
+  <div>
+  <div id="disqus_thread"></div>
+  <script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = "https://docs.knapsackpro.com/2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless"; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = "https://docs.knapsackpro.com/2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+
+  s.src = '//knapsackpro.disqus.com/embed.js';
+
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Blog about testing & documentation for KnapsackPro.com</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Found a typo? Want to contribute?</li>
+          <li><a href="https://github.com/KnapsackPro/docs.knapsackpro.com">Source Code of this site</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/c/ArturTrzop" rel="nofollow noopener" target="_blank" class="page-link">Testing tips</a></li>
+          <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Follow us on Twitter</a></li>
+          <li><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">Like our Fanpage</a></li>
+          <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/company/knapsackpro/" rel="nofollow noopener" target="_blank" class="page-link">Follow us on LinkedIn</a></li>
+          <li><i class="fab fa-github"></i> <a href="https://github.com/KnapsackPro" rel="nofollow noopener" target="_blank" class="page-link">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p class="text">Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.</p>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; 2015 - 2022 <a href="https://knapsackpro.com">KnapsackPro.com</a>
+    </div>
+
+  </div>
+
+</footer>
+
+    <style>
+  #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: calc(100% - 2rem); background: #efefef;}
+  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
+  #js-cookies-message button:hover {background-color: #5e8fc8;}
+</style>
+
+<div id="js-cookies-message">
+  <p>
+    This site uses cookies. By staying here you accept them. See our <a href="https://knapsackpro.com/cookies", target="_blank">Cookie Policy</a> for details.<br>
+    For more information on how to turn off the use of cookies, please <a href="https://knapsackpro.com/cookies#turning-off-cookies", target="_blank">see this</a>.<br>
+    To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
+  </p>
+  <p>
+    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+  </p>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var cookieName = 'cookies_consent_docs'
+
+    if (document.cookie.includes(cookieName)) {
+      // no-op
+    } else {
+      document.getElementById('js-cookies-message').style.display = 'block';
+    };
+
+    $("#js-cookies-close").click(function(e) {
+      e.preventDefault()
+
+      $("#js-cookies-message").fadeOut()
+
+      var date = new Date();
+      date.setMonth(date.getMonth() + 12);
+      var dateString = date.toUTCString();
+
+      document.cookie = cookieName + "=true;expires=" + dateString
+
+      gtag('event', 'Cookie consent - I agree', {});
+    });
+  });
+</script>
+
+  </body>
+
+</html>

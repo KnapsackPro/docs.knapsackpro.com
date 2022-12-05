@@ -1,9 +1,0 @@
-// when successfully created BuildSubset record on API side
-// and Knapsack Pro client is up to date
-Response does not contain any data.
-
-// when successfully created BuildSubset record on API side
-// and Knapsack Pro client is outdated
-{
-  "message": "Please update client knapsack_pro-ruby/rspec 2.3.0 version to 2.4.0. See CHANGELOG: https://github.com/KnapsackPro/knapsack_pro-ruby/blob/master/CHANGELOG.md#change-log"
-}
