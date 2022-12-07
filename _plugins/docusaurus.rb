@@ -9,6 +9,5 @@ Jekyll::Hooks.register :site, :post_write do |page|
   end
   system!("cp -R docusaurus/build/img _site")
   system!("cp -R docusaurus/build/assets _site")
-  system!("mkdir -p _site/docs/intro")
-  system!("cp docusaurus/build/docs/intro/index.html _site/docs/intro")
+  system!("cp docusaurus/build/knapsack_pro-ruby/guide/index.html _site/knapsack_pro-ruby/guide")
 end
