@@ -1,7 +1,5 @@
 ---
 description: Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.
-sidebar_position: 1
-sidebar_label: Quickstart
 hide_table_of_contents: true
 pagination_next: null
 pagination_prev: null

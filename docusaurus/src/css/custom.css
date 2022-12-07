@@ -62,7 +62,7 @@
   padding: 0;
 }
 
-/* Quickstart */
+/* Docs */
 
 .none-list {
   list-style: none;
@@ -71,4 +71,10 @@
 
 .hidden {
   display: none;
+}
+
+/* Sidebar */
+
+.theme-doc-sidebar-item-category-level-1 > div > a {
+  font-weight: bold;
 }
