@@ -70,6 +70,8 @@ const config = {
     ],
   ],
 
+  plugins: ['./googleAnalytics.plugin.js'],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
