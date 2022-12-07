@@ -23,7 +23,7 @@ We welcome any blog post in categories:
 * Category: [techtips](https://docs.knapsackpro.com/tech_tips/)
   * this can be super short blog post like a few sentences and block of code that solves some problem or error you found and might be helpful for others.
   * tips how to do something useful on CI server
-* Category: [continuous_integration](https://docs.knapsackpro.com/continuous_integration/)
+* Category: [continuous\_integration](https://docs.knapsackpro.com/continuous_integration/)
   * articles about integration with various CI servers and Knapsack Pro
 
 ## How to publish guest blog post?
@@ -31,7 +31,7 @@ We welcome any blog post in categories:
 * Fork this repository and create a new branch for your blog post.
 
 * You can copy example blog post file and read its content to find out how to create a new guest post on our blog.
-  See [_posts/2099-01-31-example-article.md](https://raw.githubusercontent.com/KnapsackPro/docs.knapsackpro.com/gh-pages/_posts/2099-01-31-example-article.md)
+  See [\_posts/2099-01-31-example-article.md](https://raw.githubusercontent.com/KnapsackPro/docs.knapsackpro.com/gh-pages/_posts/2099-01-31-example-article.md)
 
 * You can create thumbnail image for blog post with [Memopad app](https://www.tayasui.com/memopad/) which is free on iOS.
   Then you need to compress image with [TinyJPG](https://tinyjpg.com).
@@ -53,6 +53,24 @@ Show post with future publish date.
     $ bundle exec jekyll serve --watch --future
 
 Now you can preview blog at [http://localhost:4000/](http://localhost:4000/2099/example-article)
+
+# Development of docs
+
+We are moving incrementally from Jekyll to Docusaurus.
+
+```bash
+cd docusaurus
+npm install
+npm start
+```
+
+## Deployment
+
+Push to `main` to have a GitHub Action:
+
+- build Jekyll and Docusaurus ([`_plugins/docusaurus.rb`](./_plugins/docusaurus.rb))
+- publish the built files to the `gh-pages` branch
+- deploy to GitHub pages
 
 # Development of Knapsack Pro API docs
 
