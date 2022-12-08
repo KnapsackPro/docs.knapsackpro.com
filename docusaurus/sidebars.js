@@ -47,9 +47,9 @@ const sidebars = {
     collapsed: true,
     items: [
       {
-        type: 'link',
+        type: 'doc',
         label: 'Installation',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-cypress#installation',
+        id: 'cypress/guide/index',
       },
       {
         type: 'link',
