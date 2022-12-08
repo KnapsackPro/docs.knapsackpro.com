@@ -74,9 +74,9 @@ const sidebars = {
     collapsed: true,
     items: [
       {
-        type: 'link',
+        type: 'doc',
         label: 'Installation',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-jest#installation',
+        id: 'jest/guide/index',
       },
       {
         type: 'link',
