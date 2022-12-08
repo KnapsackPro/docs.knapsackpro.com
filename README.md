@@ -99,6 +99,12 @@ Compiled files are in `api` directory. Please commit them into repository.
 
 ## Guard
 
-You can run guard to recompile raml files whenever they change.
+You can run Guard to recompile RAML files whenever they change.
 
     $ guard
+
+Guard is also monitoring the Docusaurus files. If anything changes, then Jekyll build is triggered along with the Docusaurus build.
+Ensure you have a separate terminal window running the following command to run Jekyll build:
+
+    $ bundle exec jekyll serve --watch --future
+

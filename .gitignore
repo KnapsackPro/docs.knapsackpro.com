@@ -40,6 +40,9 @@ _site
 .jekyll-cache
 .jekyll-metadata
 
+# custom jekyll files
+.jekyll_build_trigger
+
 # nodejs
 /node_modules
 
