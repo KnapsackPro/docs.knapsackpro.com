@@ -1,8 +1,7 @@
-// 1st type of response to the 1st type of request (when attempt_to_read_from_cache: true).
+// 1st type of response to the 1st type of request (when cache_read_attempt: true).
 // It can happen only when the test suite split is not yet cached on the API side.
 {
-  "message": "An attempt to read the test suite split from the cache was canceled due to a missing cache. If you see this message, everything works as expected. Now Knapsack Pro client will repeat the request with a list of test files to initialize a new test suite split in Regular Mode.",
-  "code": "ATTEMPT_TO_READ_FROM_CACHE_CANCELED"
+  "code": "TEST_SUITE_SPLIT_CACHE_MISS"
 }
 
 // 2nd type of response can happen for all types of requests.

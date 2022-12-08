@@ -1,9 +1,9 @@
 // 1st type of request to Regular Mode API should set an attribute:
-// attempt_to_read_from_cache: true
+// cache_read_attempt: true
 // Note that there is no test_files parameter in the payload to make the request fast and keep the payload small.
 {
   "fixed_test_suite_split": true,
-  "attempt_to_read_from_cache": true,
+  "cache_read_attempt": true,
   "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
   "branch": "master",
   "node_total": "4",
@@ -12,17 +12,17 @@
 }
 
 // 2nd type of request to Regular Mode API should happen if the API response for 1st type of request has the following:
-// "code": "ATTEMPT_TO_READ_FROM_CACHE_CANCELED"
-// it means an attempt to read the test suite split from the API cache was canceled because the cache does not exist yet.
+// "code": "TEST_SUITE_SPLIT_CACHE_MISS"
+// it means the test suite split is not cached on the API side yet.
 // You must initialize a new test suite split with the following request.
 // It should set the attribute:
-// attempt_to_read_from_cache: false
+// cache_read_attempt: false
 // Note that there is a test_files attribute in the payload to initialize a test suite split based on the list of test_files from your disk.
 // This request can be slow if you provide a large number of test files (~1000+).
 // That is why we made the 1st request to try to read from the cache (as one of the other parallel CI nodes could have already initialized the test suite split).
 {
   "fixed_test_suite_split": true,
-  "attempt_to_read_from_cache": false,
+  "cache_read_attempt": false,
   "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
   "branch": "master",
   "node_total": "4",
