@@ -46,7 +46,7 @@ const postBodyTags = `
       date.setMonth(date.getMonth() + 12);
       var dateString = date.toUTCString();
 
-      document.cookie = cookieName + "=true;expires=" + dateString
+      document.cookie = cookieName + "=true;expires=" + dateString + "path=/"
 
       gtag('event', 'Cookie consent - I agree', {});
     });
