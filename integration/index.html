@@ -271,7 +271,7 @@ Do you use other programming language or test runner? <a href="https://docs.goog
       date.setMonth(date.getMonth() + 12);
       var dateString = date.toUTCString();
 
-      document.cookie = cookieName + "=true;expires=" + dateString + "path=/"
+      document.cookie = cookieName + "=true;expires=" + dateString + ";path=/"
 
       gtag('event', 'Cookie consent - I agree', {});
     });

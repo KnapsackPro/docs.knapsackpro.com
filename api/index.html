@@ -232,7 +232,7 @@ You may also find a useful article with examples of how to <a href="/2018/how-to
       date.setMonth(date.getMonth() + 12);
       var dateString = date.toUTCString();
 
-      document.cookie = cookieName + "=true;expires=" + dateString + "path=/"
+      document.cookie = cookieName + "=true;expires=" + dateString + ";path=/"
 
       gtag('event', 'Cookie consent - I agree', {});
     });

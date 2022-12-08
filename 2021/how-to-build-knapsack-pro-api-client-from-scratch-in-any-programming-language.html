@@ -691,7 +691,7 @@ There are different types of payloads because the Knapsack Pro client runs at th
       date.setMonth(date.getMonth() + 12);
       var dateString = date.toUTCString();
 
-      document.cookie = cookieName + "=true;expires=" + dateString + "path=/"
+      document.cookie = cookieName + "=true;expires=" + dateString + ";path=/"
 
       gtag('event', 'Cookie consent - I agree', {});
     });

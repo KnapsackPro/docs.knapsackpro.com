@@ -365,7 +365,7 @@ It also substitues space with <code class="language-plaintext highlighter-rouge"
       date.setMonth(date.getMonth() + 12);
       var dateString = date.toUTCString();
 
-      document.cookie = cookieName + "=true;expires=" + dateString + "path=/"
+      document.cookie = cookieName + "=true;expires=" + dateString + ";path=/"
 
       gtag('event', 'Cookie consent - I agree', {});
     });
