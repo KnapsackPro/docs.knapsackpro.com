@@ -1,5 +1,4 @@
 ---
-description: Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.
 toc_max_heading_level: 4
 pagination_next: null
 pagination_prev: null
