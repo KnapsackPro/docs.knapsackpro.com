@@ -64,7 +64,7 @@ const sidebars = {
       {
         type: 'link',
         label: 'Changelog',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-cypress/blob/master/CHANGELOG.md#change-log',
+        href: 'https://github.com/KnapsackPro/knapsack-pro-cypress/blob/master/CHANGELOG.md#changelog',
       },
     ]
   }, {
@@ -91,7 +91,7 @@ const sidebars = {
       {
         type: 'link',
         label: 'Changelog',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/CHANGELOG.md#change-log',
+        href: 'https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/CHANGELOG.md#changelog',
       },
     ]
   }, {
@@ -118,7 +118,7 @@ const sidebars = {
       {
         type: 'link',
         label: 'Changelog',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/CHANGELOG.md',
+        href: 'https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/CHANGELOG.md#changelog',
       },
     ]
   }, {
