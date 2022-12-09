@@ -1,3 +1,11 @@
+// 1st type of response to the 1st type of request (when cache_read_attempt: true).
+// It can happen only when the test suite split is not yet cached on the API side.
+{
+  "code": "TEST_SUITE_SPLIT_CACHE_MISS"
+}
+
+// 2nd type of response can happen for all types of requests.
+// It returns a list of test files that should be run with your test runner.
 {
   "build_distribution_id": "4315e028-8a17-4836-8748-42071389d48f",
   "node_index": 0,
