@@ -14,6 +14,11 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   sidebar: [{
+      type: 'doc',
+      label: 'Overview',
+      id: 'overview',
+    },
+    {
     type: 'category',
     label: 'Ruby',
     collapsible: true,

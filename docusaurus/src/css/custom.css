@@ -78,3 +78,52 @@
 .theme-doc-sidebar-item-category-level-1 > div > a {
   font-weight: bold;
 }
+
+/* Overview */
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cell {
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--ifm-toc-border-color);
+  color: var(--ifm-heading-color);
+  display: flex;
+  flex-shrink: 0;
+  gap: 20px;
+  padding: 10px 20px;
+  width: 250px;
+}
+
+.cell:hover {
+  border-color: var(--ifm-menu-color);
+  color: var(--ifm-heading-color);
+  text-decoration: none;
+}
+
+.cell__image {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  width: 70px;
+}
+
+.cell__image img {
+  border-radius: 9999px;
+  display: block;
+}
+
+.cell__image--ruby img {
+  border-radius: 0;
+  width: 60px;
+}
+
+.cell__title {
+  display: inline-block;
+  margin: 0;
+}

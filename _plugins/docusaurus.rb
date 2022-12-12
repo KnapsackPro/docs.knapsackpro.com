@@ -16,4 +16,7 @@ Jekyll::Hooks.register :site, :post_write do |page|
 
   system!("mkdir -p _site/jest/guide")
   system!("cp docusaurus/build/jest/guide/index.html _site/jest/guide")
+
+  system!("mkdir -p _site/overview")
+  system!("cp docusaurus/build/overview/index.html _site/overview")
 end
