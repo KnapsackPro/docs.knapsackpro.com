@@ -40,15 +40,6 @@
   text-decoration: underline;
 }
 
-/* .navbar__inner == desktop */
-.navbar__inner .menu__link--icon {
-  padding: 0;
-}
-
-.menu__link--icon:hover {
-  text-decoration: none;
-}
-
 .pl-0 {
   padding-left: 0;
 }

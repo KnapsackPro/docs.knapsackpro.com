@@ -97,31 +97,6 @@ const config = {
             value: `<a href="https://knapsackpro.com/" class="navbar__link site-title" rel="nofollow noopener" target="_blank">Knapsack Pro</a>&nbsp;<a href="/" class="navbar__link site-title"><strong>Docs</strong></a>`,
           },
           {
-            type: 'html',
-            position: 'right',
-            value: `<a href="https://www.youtube.com/c/ArturTrzop" class="navbar__link menu__link menu__link--icon" rel="nofollow noopener" target="_blank"><i class="fab fa-youtube"></i></a>`,
-          },
-          {
-            type: 'html',
-            position: 'right',
-            value: `<a href="https://twitter.com/KnapsackPro" class="navbar__link menu__link menu__link--icon" rel="nofollow noopener" target="_blank"><i class="fab fa-twitter"></i></a>`,
-          },
-          {
-            type: 'html',
-            position: 'right',
-            value: `<a href="https://www.facebook.com/KnapsackPro" class="navbar__link menu__link menu__link--icon" rel="nofollow noopener" target="_blank" class="pagelink"><i class="fab fa-facebook-square"></i></a>`,
-          },
-          {
-            type: 'html',
-            position: 'right',
-            value: `<a href="https://www.linkedin.com/company/knapsackpro/" class="navbar__link menu__link menu__link--icon" rel="nofollow noopener" target="_blank"><i class="fab fa-linkedin"></i></a>`,
-          },
-          {
-            type: 'html',
-            position: 'right',
-            value: `<a href="https://github.com/KnapsackPro" class="navbar__link menu__link menu__link--icon" rel="nofollow noopener" target="_blank"><i class="fab fa-github"></i></a>`,
-          },
-          {
             to: DOCS_URL,
             label: 'Blog',
             position: 'right',
