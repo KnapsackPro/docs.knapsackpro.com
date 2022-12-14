@@ -7,7 +7,7 @@ pagination_prev: null
 
 Welcome to the Knapsack Pro documentation.
 
-Explore our guides and examples to integrate Knapsack Pro into your project. If you have questions, feel free to contact us directly and we will be happy to help.
+Explore our guides and examples to integrate Knapsack Pro into your project. If you have questions, feel free to [contact us](https://knapsackpro.com/contact) directly and we will be happy to help.
 
 ## Out-of-the-box
 
