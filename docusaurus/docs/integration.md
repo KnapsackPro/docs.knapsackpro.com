@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Overview
+# Integration
 
 Welcome to the Knapsack Pro documentation.
 

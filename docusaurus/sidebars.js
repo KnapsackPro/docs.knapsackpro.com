@@ -15,8 +15,8 @@
 const sidebars = {
   sidebar: [{
       type: 'doc',
-      label: 'Overview',
-      id: 'overview',
+      label: 'Integration',
+      id: 'integration',
     },
     {
     type: 'category',

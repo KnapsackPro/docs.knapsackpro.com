@@ -94,7 +94,7 @@ const config = {
             type: 'html',
             position: 'left',
             className: 'pl-0',
-            value: `<a href="https://knapsackpro.com/" class="navbar__link site-title" rel="nofollow noopener" target="_blank">Knapsack Pro</a>&nbsp;<a href="/" class="navbar__link site-title"><strong>Docs</strong></a>`,
+            value: `<a href="https://knapsackpro.com/" class="navbar__link site-title" rel="nofollow noopener" target="_blank">Knapsack Pro</a>&nbsp;<a href="/integration" class="navbar__link site-title"><strong>Docs</strong></a>`,
           },
           {
             to: DOCS_URL,
@@ -103,10 +103,9 @@ const config = {
             target: '_self'
           },
           {
-            to: `${DOCS_URL}/integration/`,
+            to: `integration`,
             label: 'Get started with integration',
             position: 'right',
-            target: '_self'
           },
           {
             to: `${DOCS_URL}/api/`,
