@@ -4,39 +4,21 @@ title: Continuous Integration articles
 permalink: /continuous_integration/
 ---
 
-<div class="home">
+<h1 class="post-title">Continuous Integration</h1>
 
-  <h1 class="post-title">Continuous Integration</h1>
+<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+<p>
+<a href="{{ "/" | prepend: site.baseurl }}"><i class="fas fa-file-alt"></i> <b>Blog articles</b></a> |
+<i class="fas fa-cube"></i> <b>Continuous Integration</b> |
+<a href="{{ "/tech_tips/" | prepend: site.baseurl }}"><i class="fas fa-lightbulb"></i> <b>Tech tips</b></a> |
+<a href="{{ "/news/" | prepend: site.baseurl }}"><i class="fas fa-lightbulb"></i> <b>News</b></a>
+</p>
 
-  <p>
-  <a href="{{ "/" | prepend: site.baseurl }}"><i class="fas fa-file-alt"></i> <b>Blog articles</b></a> |
-  <i class="fas fa-cube"></i> <b>Continuous Integration</b> |
-  <a href="{{ "/tech_tips/" | prepend: site.baseurl }}"><i class="fas fa-lightbulb"></i> <b>Tech tips</b></a> |
-  <a href="{{ "/news/" | prepend: site.baseurl }}"><i class="fas fa-lightbulb"></i> <b>News</b></a>
-  </p>
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      {% if post.categories contains "continuous_integration" %}
-        <li style="clear:both;">
-          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-          <h2>
-            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-          </h2>
-
-          {% if post.og_image %}
-            <img src="{{ post.og_image }}" style="width:100px;margin-right:15px;float:left;" />
-          {% endif %}
-
-          {{ post.excerpt }}
-
-          <p class="text-right"><a href="{{ post.url | prepend: site.baseurl }}">continue reading →</a></p>
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-
-</div>
+<ul class="post-list">
+  {% for post in site.posts %}
+    {% if post.categories contains "continuous_integration" %}
+      {% include post_trailer.html post=post %}
+    {% endif %}
+  {% endfor %}
+</ul>
