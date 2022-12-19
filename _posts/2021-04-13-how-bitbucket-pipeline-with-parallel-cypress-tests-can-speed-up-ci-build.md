@@ -56,7 +56,7 @@ e2e: &e2e
     - export KNAPSACK_PRO_BRANCH=$BITBUCKET_BRANCH
     - export KNAPSACK_PRO_CI_NODE_TOTAL=$BITBUCKET_PARALLEL_STEP
     - export KNAPSACK_PRO_CI_NODE_INDEX=$BITBUCKET_PARALLEL_STEP_COUNT
-    # https://github.com/KnapsackPro/knapsack-pro-cypress#configuration-steps
+    # https://docs.knapsackpro.com/cypress/guide/#configuration-steps
     - export KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true
     - $(npm bin)/knapsack-pro-cypress
   artifacts:
