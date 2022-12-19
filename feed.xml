@@ -5,8 +5,8 @@
     <description>Speed up your tests with optimal test suite parallelisation on your CI. Blog &amp; documentation for Knapsack Pro.</description>
     <link>https://docs.knapsackpro.com/</link>
     <atom:link href="https://docs.knapsackpro.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 16 Dec 2022 10:45:52 +0000</pubDate>
-    <lastBuildDate>Fri, 16 Dec 2022 10:45:52 +0000</lastBuildDate>
+    <pubDate>Mon, 19 Dec 2022 10:06:29 +0000</pubDate>
+    <lastBuildDate>Mon, 19 Dec 2022 10:06:29 +0000</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       <item>
@@ -436,7 +436,7 @@ Secondly, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt
     &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;export KNAPSACK_PRO_BRANCH=$BITBUCKET_BRANCH&lt;/span&gt;
     &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;export KNAPSACK_PRO_CI_NODE_TOTAL=$BITBUCKET_PARALLEL_STEP&lt;/span&gt;
     &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;export KNAPSACK_PRO_CI_NODE_INDEX=$BITBUCKET_PARALLEL_STEP_COUNT&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# https://github.com/KnapsackPro/knapsack-pro-cypress#configuration-steps&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# https://docs.knapsackpro.com/cypress/guide/#configuration-steps&lt;/span&gt;
     &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;export KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true&lt;/span&gt;
     &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$(npm bin)/knapsack-pro-cypress&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;artifacts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
@@ -2123,7 +2123,7 @@ To achieve that you can split Cucumber test files in a dynamic way between the p
 
 &lt;h2 id=&quot;plugging-in-knapsack-pro&quot;&gt;Plugging in Knapsack Pro&lt;/h2&gt;
 
-&lt;p&gt;To try out &lt;a href=&quot;https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;amp;utm_medium=blog_post&amp;amp;utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci&quot;&gt;Knapsack Pro&lt;/a&gt;, all we did was &lt;a href=&quot;https://github.com/KnapsackPro/knapsack-pro-cypress#installation&quot;&gt;follow the docs&lt;/a&gt; and afterward merge all separate Cypress jobs into one and set up some &lt;a href=&quot;https://docs.cypress.io/guides/tooling/reporters.html#Reporter-Options&quot;&gt;reporterOptions&lt;/a&gt; in Cypress to ensure that we’ll collect all of the test results as JUnit reports from all the parallel runs.&lt;/p&gt;
+&lt;p&gt;To try out &lt;a href=&quot;https://knapsackpro.com/?utm_source=docs_knapsackpro&amp;amp;utm_medium=blog_post&amp;amp;utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci&quot;&gt;Knapsack Pro&lt;/a&gt;, all we did was &lt;a href=&quot;https://docs.knapsackpro.com/cypress/guide/&quot;&gt;follow the docs&lt;/a&gt; and afterward merge all separate Cypress jobs into one and set up some &lt;a href=&quot;https://docs.cypress.io/guides/tooling/reporters.html#Reporter-Options&quot;&gt;reporterOptions&lt;/a&gt; in Cypress to ensure that we’ll collect all of the test results as JUnit reports from all the parallel runs.&lt;/p&gt;
 
 &lt;p&gt;Here’s a short example of our &lt;strong&gt;full-page&lt;/strong&gt; test jobs before the conversion:&lt;/p&gt;
 
@@ -6041,7 +6041,7 @@ We could render nice message instead of the error. For instance if you have publ
 
 &lt;h2 id=&quot;run-cypress-tests-with-knapsack-pro-queue-mode&quot;&gt;Run Cypress tests with Knapsack Pro Queue Mode&lt;/h2&gt;
 
-&lt;p&gt;To start running your tests faster you can add to your project the &lt;i&gt;@knapsack-pro/cypress&lt;/i&gt; package. It works with many CI providers out of the box. Here you can find &lt;a href=&quot;https://github.com/KnapsackPro/knapsack-pro-cypress#installation&quot;&gt;detailed readme&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To start running your tests faster you can add to your project the &lt;i&gt;@knapsack-pro/cypress&lt;/i&gt; package. It works with many CI providers out of the box. Here you can find &lt;a href=&quot;https://docs.knapsackpro.com/cypress/guide/&quot;&gt;detailed readme&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Basically, we will run a single command on all parallel CI nodes and &lt;a href=&quot;https://knapsackpro.com?utm_source=docs_knapsackpro&amp;amp;utm_medium=blog_post&amp;amp;utm_campaign=run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes&quot;&gt;Knapsack Pro&lt;/a&gt; will take care of running your tests fast.&lt;/p&gt;
 
