@@ -35,7 +35,7 @@ Knapsack Pro API can also remember tests assigned to each parallel CI node. When
 
 ## Run Cypress tests with Knapsack Pro Queue Mode
 
-To start running your tests faster you can add to your project the <i>@knapsack-pro/cypress</i> package. It works with many CI providers out of the box. Here you can find [detailed readme](https://docs.knapsackpro.com/cypress/guide/).
+To start running your tests faster you can add to your project the <i>@knapsack-pro/cypress</i> package. It works with many CI providers out of the box. Here you can find the [installation guide](https://docs.knapsackpro.com/cypress/guide/).
 
 Basically, we will run a single command on all parallel CI nodes and [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes) will take care of running your tests fast.
 
