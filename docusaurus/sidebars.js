@@ -13,7 +13,13 @@
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-  sidebar: [{
+  sidebar: [
+   //{
+   //  type: 'doc',
+   //  label: 'Overview',
+   //  id: 'overview',
+   //},
+    {
       type: 'doc',
       label: 'Integration',
       id: 'integration',

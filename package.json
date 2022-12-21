@@ -25,5 +25,8 @@
   "homepage": "https://github.com/KnapsackPro/docs.knapsackpro.com",
   "devDependencies": {
     "raml2html": "^2.0.1"
+  },
+  "dependencies": {
+    "pure-react-carousel": "^1.30.1"
   }
 }

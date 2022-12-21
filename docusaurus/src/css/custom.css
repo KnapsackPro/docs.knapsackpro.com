@@ -118,3 +118,13 @@
   display: inline-block;
   margin: 0;
 }
+
+/* Overview */
+
+.center {
+  text-align: center;
+}
+
+.w-full {
+  width: 100%;
+}
