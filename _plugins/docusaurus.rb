@@ -19,4 +19,7 @@ Jekyll::Hooks.register :site, :post_write do |page|
 
   system!("mkdir -p _site/integration")
   system!("cp docusaurus/build/integration/index.html _site/integration")
+
+  system!("mkdir -p _site/overview")
+  system!("cp docusaurus/build/overview/index.html _site/overview")
 end
