@@ -9,18 +9,28 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 
-export const Carousel = ({ srcs }: { srcs: string[] }) => {
+type Image = {
+  src: string;
+  alt: string;
+};
+
+export const Carousel = ({ images }: { images: Image[] }) => {
   return (
     <CarouselProvider
       naturalSlideWidth={16}
       naturalSlideHeight={9}
-      totalSlides={srcs.length}
+      totalSlides={images.length}
     >
       <Slider>
-        {srcs.map((src, i) => {
+        {images.map(({ src, alt }, i) => {
           return (
             <Slide index={i}>
-              <Image src={src} style={{ objectFit: "contain" }} />
+              <Image
+                hasMasterSpinner={true}
+                src={src}
+                alt={alt}
+                style={{ objectFit: "contain" }}
+              />
             </Slide>
           );
         })}
