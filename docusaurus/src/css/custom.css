@@ -53,8 +53,6 @@
   padding: 0;
 }
 
-/* Docs */
-
 .none-list {
   list-style: none;
   margin-left: 0;
@@ -62,6 +60,10 @@
 
 .hidden {
   display: none;
+}
+
+li {
+  -webkit-text-size-adjust: 100%;
 }
 
 /* Sidebar */
