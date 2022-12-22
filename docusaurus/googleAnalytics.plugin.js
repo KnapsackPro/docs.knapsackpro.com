@@ -12,8 +12,6 @@ const headTags = `
 const postBodyTags = `
 <style>
   #js-cookies-message{padding: 0.5rem 1rem; display: none; opacity: 90%; text-align: center; position: fixed; bottom: 0; width: 100%; background: #efefef;}
-  #js-cookies-message button {cursor: pointer; border-radius: 10px; padding: 10px 20px; background-color: #0864cf; color: #fff; border: 0;}
-  #js-cookies-message button:hover {background-color: #5e8fc8;}
 </style>
 
 <div id="js-cookies-message">
@@ -23,7 +21,7 @@ const postBodyTags = `
     To refuse the use of cookies, please leave the page (more details <a href="https://knapsackpro.com/cookies#withdrawing-consent", target="_blank">here</a>).
   </p>
   <p>
-    <a href="#" class="btn btn-primary" id="js-cookies-close"><button>I Agree</button></a>
+    <a href="#" id="js-cookies-close"><button class="button--primary">I Agree</button></a>
   </p>
 </div>
 
