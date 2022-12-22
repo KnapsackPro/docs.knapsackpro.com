@@ -76,9 +76,9 @@ In this mode, the Knapsack Pro API returns to each Knapsack Pro client the subse
 
 However, as explained in the [Queue Mode](#queue-mode-dynamic-split) section, this will result in a suboptimal split.
 
-### Fallback mode
+### Fallback Mode
 
-In case of network issues, Knapsack Pro automatically switches to fallback mode and runs your tests with a split based on test file names.
+In case of network issues, Knapsack Pro automatically switches to Fallback Mode and runs your tests with a split based on test file names.
 
 ## Customer Support
 
