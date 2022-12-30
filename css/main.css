@@ -164,12 +164,6 @@ table.pure-table td { border: 1px solid #e8e8e8; }
 
 .hidden { display: none; }
 
-.newsletter-container { margin: 20px 0; border: 10px solid #2aaacf; border-radius: 10px; }
-
-.newsletter-container .indicates-required { float: right; }
-
-.newsletter-container .previous-campaigns { float: right; margin-right: 30px; }
-
 .rss-subscribe { float: right; }
 
 .author-container { margin: 2rem 0 0; width: 100%; }
