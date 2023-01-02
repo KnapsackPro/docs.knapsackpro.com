@@ -149,3 +149,7 @@ li {
 .w-full {
   width: 100%;
 }
+
+.h-auto {
+  height: auto;
+}
