@@ -5,6 +5,11 @@ pagination_prev: null
 
 import { Carousel } from "./Carousel"
 import Architecture from "@site/static/img/architecture.svg";
+import dashboardCiNodesGraph from "@site/static/img/dashboard-ci-nodes-graph.png"
+import dashboardCiNodesTable from "@site/static/img/dashboard-ci-nodes-table.png"
+import dashboardMonthlyCiBuilds from "@site/static/img/dashboard-monthly-ci-builds.png"
+import dashboardTestFileHistory from "@site/static/img/dashboard-test-file-history.png"
+import dashboardTestFiles from "@site/static/img/dashboard-test-files.png"
 
 # Overview
 
@@ -42,11 +47,11 @@ The Knapsack Pro Client is a library to install in your project that wraps your 
 Knapsack Pro comes with a web UI that displays graphs and stats about your test runs:
 
 <Carousel images={[
-  { src: "/img/dashboard-ci-nodes-graph.png", alt: "Dashboard - CI nodes graph" },
-  { src: "/img/dashboard-ci-nodes-table.png", alt: "Dashboard - CI nodes table" },
-  { src: "/img/dashboard-monthly-ci-builds.png", alt: "Dashboard - Monthly CI builds" },
-  { src: "/img/dashboard-test-file-history.png", alt: "Dashboard - Test file history" },
-  { src: "/img/dashboard-test-files.png", alt: "Dashboard - Test files" },
+  { src: dashboardCiNodesGraph, alt: "Dashboard - CI nodes graph" },
+  { src: dashboardCiNodesTable, alt: "Dashboard - CI nodes table" },
+  { src: dashboardMonthlyCiBuilds, alt: "Dashboard - Monthly CI builds" },
+  { src: dashboardTestFileHistory, alt: "Dashboard - Test file history" },
+  { src: dashboardTestFiles, alt: "Dashboard - Test files" },
 ]} />
 
 ## Tests Orchestration Modes
