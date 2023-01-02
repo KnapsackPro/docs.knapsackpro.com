@@ -23,7 +23,7 @@ Knapsack Pro wraps your current test runner(s) and works with your existing CI i
 - Supports out-of-the-box any Ruby test runners, Cypress, Jest (and provides both SDK and API to integrate with any other language)
 - Replaces local dependencies like Redis with an API and runs your tests regardless of network problems
 
-<div className="center w-full"><Architecture /></div>
+<Architecture className="w-full center" />
 
 ## Components
 
