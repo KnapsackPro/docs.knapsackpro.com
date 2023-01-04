@@ -16,13 +16,13 @@ const sidebars = {
   sidebar: [
     {
       type: 'doc',
-      label: 'Overview',
-      id: 'overview/index',
+      label: 'Integration',
+      id: 'integration',
     },
     {
       type: 'doc',
-      label: 'Integration',
-      id: 'integration',
+      label: 'Overview',
+      id: 'overview/index',
     },
     {
     type: 'category',

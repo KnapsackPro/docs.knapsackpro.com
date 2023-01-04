@@ -1,6 +1,6 @@
 ---
-pagination_next: integration
-pagination_prev: null
+pagination_prev: integration
+pagination_next: null
 ---
 
 import { Carousel } from "./Carousel"

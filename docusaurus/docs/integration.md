@@ -1,6 +1,6 @@
 ---
-pagination_next: null
-pagination_prev: overview/index
+pagination_prev: null
+pagination_next: overview/index
 ---
 
 import api from "@site/static/img/api.png";
