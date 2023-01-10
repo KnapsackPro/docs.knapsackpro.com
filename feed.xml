@@ -5,8 +5,8 @@
     <description>Speed up your tests with optimal test suite parallelisation on your CI. Blog &amp; documentation for Knapsack Pro.</description>
     <link>https://docs.knapsackpro.com/</link>
     <atom:link href="https://docs.knapsackpro.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 04 Jan 2023 08:31:58 +0000</pubDate>
-    <lastBuildDate>Wed, 04 Jan 2023 08:31:58 +0000</lastBuildDate>
+    <pubDate>Tue, 10 Jan 2023 16:36:06 +0000</pubDate>
+    <lastBuildDate>Tue, 10 Jan 2023 16:36:06 +0000</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       <item>
@@ -3094,63 +3094,6 @@ There are different types of payloads because the Knapsack Pro client runs at th
         <category>techtips</category>
         
         <category>rspec</category>
-        
-      </item>
-    
-      <item>
-        <title>Change of Knapsack Pro business entity, and updates to our Terms and Conditions &amp; Privacy Policy</title>
-        <description>&lt;p&gt;This is important information from me, Artur Trzop, founder of KnapsackPro.com. We are growing and want to provide better service to you and allow more developers to save time. Upcoming changes are:&lt;/p&gt;
-
-&lt;p&gt;The new operator of the KnapsackPro.com product and all personal data provided by users will be Knapsack Technologies Ltd. I’m a founder and director at the Knapsack Technologies Ltd.&lt;/p&gt;
-
-&lt;p&gt;Contact address:
-&lt;br /&gt;
-&lt;b&gt;Knapsack Technologies Ltd&lt;/b&gt;
-&lt;br /&gt;
-support@knapsackpro.com
-&lt;br /&gt;
-Registered office address:
-&lt;br /&gt;
-Craven House 40-44 Uxbridge Road, London, England, W5 2BS
-&lt;br /&gt;
-Company number 12680577&lt;/p&gt;
-
-&lt;p&gt;If you have a paid plan you will be receiving invoices from Knapsack Technologies Ltd beginning February 1st, 2021.&lt;/p&gt;
-
-&lt;p&gt;We at KnapsackPro.com are making several updates to make our Terms and Conditions, Privacy Policy simpler, and more transparent.&lt;/p&gt;
-
-&lt;p&gt;The updates will be effective for existing users as of February 1st, 2021. We encourage you to review them in full.&lt;/p&gt;
-
-&lt;p&gt;Below are some highlights:&lt;/p&gt;
-
-&lt;p&gt;Privacy Policy: We’ve updated the Privacy Policy to make it easier to understand and better describe the information we collect and how we use such information to help us provide the best possible service to you.
-&lt;br /&gt;
-https://knapsackpro.com/privacy_policy&lt;/p&gt;
-
-&lt;p&gt;Terms and Conditions: These have been updated to reflect the entity change, and also to make them easier to read and understand.
-&lt;br /&gt;
-https://knapsackpro.com/terms_and_conditions&lt;/p&gt;
-
-&lt;p&gt;Cookie Policy: It has been updated to make it easier to read and understand.
-&lt;br /&gt;
-https://knapsackpro.com/cookies&lt;/p&gt;
-
-&lt;p&gt;By continuing to use our services, you acknowledge our updated Privacy Policy, Terms and Conditions, and Cookie Policy.&lt;/p&gt;
-
-&lt;p&gt;Best,
-&lt;br /&gt;
-Artur Trzop
-&lt;br /&gt;
-Founder of KnapsackPro.com
-&lt;br /&gt;
-Director of Knapsack Technologies Ltd&lt;/p&gt;
-</description>
-        <pubDate>Fri, 15 Jan 2021 07:00:00 +0000</pubDate>
-        <link>https://docs.knapsackpro.com/2021/change-of-knapsack-pro-business-entity-and-updates-to-our-terms-and-conditions-privacy-policy</link>
-        <guid isPermaLink="true">https://docs.knapsackpro.com/2021/change-of-knapsack-pro-business-entity-and-updates-to-our-terms-and-conditions-privacy-policy</guid>
-        
-        
-        <category>news_off</category>
         
       </item>
     
