@@ -1,24 +1,20 @@
 ---
 layout: default
-title: News
-permalink: /news/
 ---
 
-<h1 class="post-title">News</h1>
+<h1 class="post-title">Blog about testing & tech articles</h1>
 
 <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
 <p>
-<a href="{{ "/blog/" | prepend: site.baseurl }}"><i class="fas fa-file-alt"></i> <b>Blog articles</b></a> |
+<i class="fas fa-file-alt"></i> <b>Blog articles</b> |
 <a href="{{ "/continuous_integration/" | prepend: site.baseurl }}"><i class="fas fa-cube"></i> <b>Continuous Integration</b></a> |
 <a href="{{ "/tech_tips/" | prepend: site.baseurl }}"><i class="fas fa-lightbulb"></i> <b>Tech tips</b></a> |
-<i class="fas fa-lightbulb"></i> <b>News</b>
+<a href="{{ "/news/" | prepend: site.baseurl }}"><i class="fas fa-lightbulb"></i> <b>News</b></a>
 </p>
 
 <ul class="post-list">
   {% for post in site.posts %}
-    {% if post.categories contains "news" %}
-      {% include post_trailer.html post=post %}
-    {% endif %}
+    {% include post_trailer.html post=post %}
   {% endfor %}
 </ul>

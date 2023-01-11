@@ -231,4 +231,4 @@ Now you will be able to download your report from the build artifacts:
 
 <img src="/images/blog/posts/how-to-merge-cypress-test-reports-generated-by-mochawesome-on-github-actions/final-reports.png" style="width:500px;" alt="Github build artifacts" />
 
-If you want to learn more about how to test your Javascript applications faster then check out the <a href="/">blog</a> and website about the <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-merge-cypress-test-reports-generated-by-mochawesome-on-github-actions">Knapsack Pro tool for CI parallelisation</a>.
+If you want to learn more about how to test your Javascript applications faster then check out the <a href="/blog/">blog</a> and website about the <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-merge-cypress-test-reports-generated-by-mochawesome-on-github-actions">Knapsack Pro tool for CI parallelisation</a>.

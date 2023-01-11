@@ -31,4 +31,4 @@ module API
 end
 {% endhighlight %}
 
-Above tip works for Rails 5+. Hope you will find this useful. If you want to learn more how to faster test your API and Rails application then check out <a href="/">blog</a> and website about <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=tech_tips&utm_campaign=handle-invalid-json-payload-in-rails-5-api-catch-json-parse-error">knapsack_pro gem for CI parallelisation</a>.
+Above tip works for Rails 5+. Hope you will find this useful. If you want to learn more how to faster test your API and Rails application then check out <a href="/blog/">blog</a> and website about <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=tech_tips&utm_campaign=handle-invalid-json-payload-in-rails-5-api-catch-json-parse-error">knapsack_pro gem for CI parallelisation</a>.

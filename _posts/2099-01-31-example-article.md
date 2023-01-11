@@ -72,4 +72,4 @@ echo ::set-env name=KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS::${{ secrets.KNAPSACK_
 
 Keep in the article link to Knapsack Pro website with utm tags in the url. This way we can track which article brings traffic to the website. Example below:
 
-If you want to learn more how to faster test your Rails application then check out <a href="/">blog</a> and website about <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=example-article">Knapsack Pro tool for CI parallelisation</a>.
+If you want to learn more how to faster test your Rails application then check out <a href="/blog/">blog</a> and website about <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=example-article">Knapsack Pro tool for CI parallelisation</a>.

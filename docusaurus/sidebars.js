@@ -17,7 +17,7 @@ const sidebars = {
     {
       type: 'doc',
       label: 'Integration',
-      id: 'integration',
+      id: 'index',
     },
     {
       type: 'doc',

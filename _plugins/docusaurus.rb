@@ -18,7 +18,8 @@ Jekyll::Hooks.register :site, :post_write do |page|
   system!("cp docusaurus/build/jest/guide/index.html _site/jest/guide")
 
   system!("mkdir -p _site/integration")
-  system!("cp docusaurus/build/integration/index.html _site/integration")
+  system!("cp docusaurus/build/integration/index.html _site/integration") # redirect to /
+  system!("cp docusaurus/build/index.html _site")
 
   system!("mkdir -p _site/overview")
   system!("cp docusaurus/build/overview/index.html _site/overview")

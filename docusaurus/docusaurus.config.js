@@ -78,7 +78,20 @@ const config = {
     ],
   ],
 
-  plugins: ['./googleAnalytics.plugin.js'],
+  plugins: [
+    './googleAnalytics.plugin.js',
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            to: '/',
+            from: '/integration',
+          },
+        ]
+      }
+    ]
+  ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -94,16 +107,16 @@ const config = {
             type: 'html',
             position: 'left',
             className: 'pl-0',
-            value: `<a href="https://knapsackpro.com/" class="navbar__link site-title" rel="nofollow noopener" target="_blank">Knapsack Pro</a>&nbsp;<a href="/integration" class="navbar__link site-title"><strong>Docs</strong></a>`,
+            value: `<a href="https://knapsackpro.com/" class="navbar__link site-title" rel="nofollow noopener" target="_blank">Knapsack Pro</a>&nbsp;<a href="/" class="navbar__link site-title"><strong>Docs</strong></a>`,
           },
           {
-            to: DOCS_URL,
+            to: `${DOCS_URL}/blog/`,
             label: 'Blog',
             position: 'right',
             target: '_self'
           },
           {
-            to: `integration`,
+            to: 'index',
             label: 'Get started with integration',
             position: 'right',
           },

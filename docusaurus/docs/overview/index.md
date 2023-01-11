@@ -1,5 +1,5 @@
 ---
-pagination_prev: integration
+pagination_prev: index
 pagination_next: null
 ---
 
