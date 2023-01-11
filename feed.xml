@@ -5,8 +5,8 @@
     <description>Speed up your tests with optimal test suite parallelisation on your CI. Blog &amp; documentation for Knapsack Pro.</description>
     <link>https://docs.knapsackpro.com/</link>
     <atom:link href="https://docs.knapsackpro.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 10 Jan 2023 16:36:06 +0000</pubDate>
-    <lastBuildDate>Tue, 10 Jan 2023 16:36:06 +0000</lastBuildDate>
+    <pubDate>Wed, 11 Jan 2023 15:47:50 +0000</pubDate>
+    <lastBuildDate>Wed, 11 Jan 2023 15:47:50 +0000</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       <item>
@@ -3705,7 +3705,7 @@ mochawesome-report
 
 &lt;p&gt;&lt;img src=&quot;/images/blog/posts/how-to-merge-cypress-test-reports-generated-by-mochawesome-on-github-actions/final-reports.png&quot; style=&quot;width:500px;&quot; alt=&quot;Github build artifacts&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;If you want to learn more about how to test your Javascript applications faster then check out the &lt;a href=&quot;/&quot;&gt;blog&lt;/a&gt; and website about the &lt;a href=&quot;https://knapsackpro.com?utm_source=docs_knapsackpro&amp;amp;utm_medium=blog_post&amp;amp;utm_campaign=how-to-merge-cypress-test-reports-generated-by-mochawesome-on-github-actions&quot;&gt;Knapsack Pro tool for CI parallelisation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to learn more about how to test your Javascript applications faster then check out the &lt;a href=&quot;/blog/&quot;&gt;blog&lt;/a&gt; and website about the &lt;a href=&quot;https://knapsackpro.com?utm_source=docs_knapsackpro&amp;amp;utm_medium=blog_post&amp;amp;utm_campaign=how-to-merge-cypress-test-reports-generated-by-mochawesome-on-github-actions&quot;&gt;Knapsack Pro tool for CI parallelisation&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Thu, 05 Mar 2020 11:00:00 +0000</pubDate>
         <link>https://docs.knapsackpro.com/2020/how-to-merge-cypress-test-reports-generated-by-mochawesome-on-github-actions</link>
@@ -5293,7 +5293,7 @@ We could render nice message instead of the error. For instance if you have publ
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Above tip works for Rails 5+. Hope you will find this useful. If you want to learn more how to faster test your API and Rails application then check out &lt;a href=&quot;/&quot;&gt;blog&lt;/a&gt; and website about &lt;a href=&quot;https://knapsackpro.com?utm_source=docs_knapsackpro&amp;amp;utm_medium=tech_tips&amp;amp;utm_campaign=handle-invalid-json-payload-in-rails-5-api-catch-json-parse-error&quot;&gt;knapsack_pro gem for CI parallelisation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Above tip works for Rails 5+. Hope you will find this useful. If you want to learn more how to faster test your API and Rails application then check out &lt;a href=&quot;/blog/&quot;&gt;blog&lt;/a&gt; and website about &lt;a href=&quot;https://knapsackpro.com?utm_source=docs_knapsackpro&amp;amp;utm_medium=tech_tips&amp;amp;utm_campaign=handle-invalid-json-payload-in-rails-5-api-catch-json-parse-error&quot;&gt;knapsack_pro gem for CI parallelisation&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Sun, 10 Feb 2019 11:00:00 +0000</pubDate>
         <link>https://docs.knapsackpro.com/2019/handle-invalid-json-payload-in-rails-5-api-catch-json-parse-error</link>
