@@ -41,6 +41,11 @@ const sidebars = {
         id: 'ruby/hooks',
       },
       {
+        type: 'doc',
+        label: 'Reference',
+        id: 'ruby/reference',
+      },
+      {
         type: 'link',
         label: 'GitHub',
         href: 'https://github.com/KnapsackPro/knapsack_pro-ruby',
