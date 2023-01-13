@@ -46,6 +46,24 @@ const sidebars = {
         id: 'ruby/reference',
       },
       {
+        type: 'category',
+        label: 'Use Knapsack Pro with...',
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            type: 'doc',
+            label: 'simplecov',
+            id: 'ruby/simplecov',
+          },
+          {
+            type: 'doc',
+            label: 'puffing-billy',
+            id: 'ruby/puffing-billy',
+          },
+        ]
+      },
+      {
         type: 'link',
         label: 'GitHub',
         href: 'https://github.com/KnapsackPro/knapsack_pro-ruby',
