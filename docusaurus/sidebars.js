@@ -36,6 +36,11 @@ const sidebars = {
         id: 'knapsack_pro-ruby/guide/index',
       },
       {
+        type: 'doc',
+        label: 'Hooks',
+        id: 'ruby/hooks',
+      },
+      {
         type: 'link',
         label: 'GitHub',
         href: 'https://github.com/KnapsackPro/knapsack_pro-ruby',
