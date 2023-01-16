@@ -25,5 +25,15 @@ Jekyll::Hooks.register :site, :post_write do |page|
   system!("cp docusaurus/build/overview/index.html _site/overview")
 
   system!("mkdir -p _site/ruby")
-  system!("cp docusaurus/build/ruby/* _site/ruby")
+  [
+    "code-climate.md",
+    "hooks.md",
+    "parallel_tests.md",
+    "puffing-billy.md",
+    "reference.md",
+    "simplecov.md",
+    "spring.md",
+  ].each do |filename|
+    system!("cp docusaurus/build/ruby/#{filename} _site/ruby")
+  end
 end
