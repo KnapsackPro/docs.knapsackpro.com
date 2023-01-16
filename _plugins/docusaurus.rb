@@ -26,14 +26,14 @@ Jekyll::Hooks.register :site, :post_write do |page|
 
   system!("mkdir -p _site/ruby")
   [
-    "code-climate.md",
-    "hooks.md",
-    "parallel_tests.md",
-    "puffing-billy.md",
-    "reference.md",
-    "simplecov.md",
-    "spring.md",
-  ].each do |filename|
-    system!("cp docusaurus/build/ruby/#{filename} _site/ruby")
+    "code-climate",
+    "hooks",
+    "parallel_tests",
+    "puffing-billy",
+    "reference",
+    "simplecov",
+    "spring",
+  ].each do |directory|
+    system!("cp -R docusaurus/build/ruby/#{directory} _site/ruby")
   end
 end
