@@ -32,3 +32,53 @@ When `KNAPSACK_PRO_LOG_DIR=log`, Knapsack Pro will write logs to the `log` direc
 ### Related FAQs
 
 - [How to write `knapsack_pro` logs to a file?](https://knapsackpro.com/faq/question/how-to-write-knapsack_pro-logs-to-a-file)
+
+## `KNAPSACK_PRO_TEST_FILE_PATTERN`
+
+:::caution
+Make sure to match individual files by adding the suffix (e.g., `_spec.rb`, `_test.rb`) so that Knapsack Pro can split by file and not by directory.
+:::
+
+Run tests matching a pattern.
+
+Default: all tests for the given test runner
+
+Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
+
+Examples:
+```
+KNAPSACK_PRO_TEST_FILE_PATTERN="spec/system/**/*_spec.rb"
+
+KNAPSACK_PRO_TEST_DIR=spec KNAPSACK_PRO_TEST_FILE_PATTERN="{spec,engines/*/spec}/**/*_spec.rb"
+```
+
+### Related FAQs
+
+- [How to run tests from a specific directory (only system tests or features specs)?](https://knapsackpro.com/faq/question/how-to-run-tests-from-a-specific-directory-only-system-tests-or-features-specs)
+- [How can I run tests from multiple directories?](https://knapsackpro.com/faq/question/how-can-i-run-tests-from-multiple-directories)
+
+## `KNAPSACK_PRO_TEST_DIR` (RSpec)
+
+Passed as-is to RSpec's [`--default-path`](https://relishapp.com/rspec/rspec-core/v/3-0/docs/configuration/setting-the-default-spec-path).
+
+Default: `rspec`
+
+Available: any folder relative to the root of your project that contains `spec_helper.rb`
+
+Example:
+```
+KNAPSACK_PRO_TEST_DIR=spec KNAPSACK_PRO_TEST_FILE_PATTERN="{spec,engines/*/spec}/**/*_spec.rb"
+```
+
+:::caution
+You may need to make your test files require `spec_helper` with:
+
+```ruby
+require_relative 'spec_helper' # ✅ Good
+
+require 'spec_helper' # ⛔️ Bad
+:::
+
+### Related FAQs
+
+- [How can I run tests from multiple directories?](https://knapsackpro.com/faq/question/how-can-i-run-tests-from-multiple-directories)
