@@ -1,0 +1,11 @@
+---
+pagination_next: null
+pagination_prev: null
+---
+
+# Use Knapsack Pro with CodeClimate
+
+Check how to configure CodeClimate with `knapsack_pro` on our blog:
+
+* [CodeClimate and CircleCI 2.0 parallel builds config for RSpec with SimpleCov and JUnit formatter](https://docs.knapsackpro.com/2019/codeclimate-and-circleci-2-0-parallel-builds-config-for-rspec-with-simplecov-and-junit-formatter)
+* [How to merge CodeClimate reports for parallel jobs (CI nodes) on Semaphore CI 2.0](https://docs.knapsackpro.com/2019/how-to-merge-codeclimate-reports-for-parallel-jobs-ci-nodes).
