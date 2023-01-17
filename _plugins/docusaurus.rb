@@ -31,6 +31,7 @@ Jekyll::Hooks.register :site, :post_write do |page|
     "parallel_tests",
     "puffing-billy",
     "reference",
+    "rspec",
     "simplecov",
     "spring",
   ].each do |directory|
