@@ -99,7 +99,7 @@ Goal:
 - 3 processes per CI node
 - 3 total parallel processes
 
-On each CI node execute:
+On the single CI node execute:
 
 ```bash
 export PARALLEL_TESTS_CONCURRENCY=3
