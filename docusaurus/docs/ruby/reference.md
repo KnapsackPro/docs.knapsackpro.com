@@ -39,23 +39,28 @@ When `KNAPSACK_PRO_LOG_DIR=log`, Knapsack Pro will write logs to the `log` direc
 Make sure to match individual files by adding the suffix (e.g., `_spec.rb`, `_test.rb`) so that Knapsack Pro can split by file and not by directory.
 :::
 
-Run tests matching a pattern.
+Run tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.
 
 Default: all tests for the given test runner
 
 Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
 
 Examples:
-```
+```bash
 KNAPSACK_PRO_TEST_FILE_PATTERN="spec/system/**/*_spec.rb"
 
 KNAPSACK_PRO_TEST_DIR=spec KNAPSACK_PRO_TEST_FILE_PATTERN="{spec,engines/*/spec}/**/*_spec.rb"
+
+KNAPSACK_PRO_TEST_FILE_PATTERN="spec/controllers/**{,/*/**}/*_spec.rb" \
+KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec.rb"
 ```
 
 ### Related FAQs
 
 - [How to run tests from a specific directory (only system tests or features specs)?](https://knapsackpro.com/faq/question/how-to-run-tests-from-a-specific-directory-only-system-tests-or-features-specs)
 - [How can I run tests from multiple directories?](https://knapsackpro.com/faq/question/how-can-i-run-tests-from-multiple-directories)
+- [How to exclude tests?](https://knapsackpro.com/faq/question/how-to-exclude-tests-from-running-them)
+- [Dir.glob pattern examples for `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`](https://knapsackpro.com/faq/question/dir-glob-pattern-examples-for-knapsack_pro_test_file_pattern-and-knapsack_pro_test_file_exclude_pattern)
 
 ## `KNAPSACK_PRO_TEST_DIR` (RSpec)
 
@@ -66,7 +71,7 @@ Default: `rspec`
 Available: any folder relative to the root of your project that contains `spec_helper.rb`
 
 Example:
-```
+```bash
 KNAPSACK_PRO_TEST_DIR=spec KNAPSACK_PRO_TEST_FILE_PATTERN="{spec,engines/*/spec}/**/*_spec.rb"
 ```
 
@@ -82,3 +87,61 @@ require 'spec_helper' # ⛔️ Bad
 ### Related FAQs
 
 - [How can I run tests from multiple directories?](https://knapsackpro.com/faq/question/how-can-i-run-tests-from-multiple-directories)
+
+## `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`
+
+Exclude tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
+
+Default: `nil`
+
+Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
+
+Examples:
+```bash
+KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/features/**{,/*/**}/*_spec.rb"
+
+KNAPSACK_PRO_TEST_FILE_PATTERN="spec/controllers/**{,/*/**}/*_spec.rb" \
+KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec.rb"
+```
+
+### Related FAQs
+
+- [How to exclude tests?](https://knapsackpro.com/faq/question/how-to-exclude-tests-from-running-them)
+- [Dir.glob pattern examples for `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`](https://knapsackpro.com/faq/question/dir-glob-pattern-examples-for-knapsack_pro_test_file_pattern-and-knapsack_pro_test_file_exclude_pattern)
+
+## `KNAPSACK_PRO_TEST_FILE_LIST`
+
+Comma-separated list of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
+
+Default: `nil`
+
+Example:
+```bash
+KNAPSACK_PRO_TEST_FILE_LIST=spec/features/dashboard_spec.rb,spec/models/user.rb:10,spec/models/user.rb:29
+```
+
+### Related FAQs
+
+- [How to run a specific list of test files or only some tests from test file?](https://knapsackpro.com/faq/question/how-to-run-a-specific-list-of-test-files-or-only-some-tests-from-test-file)
+
+## `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`
+
+File containing the list of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
+
+Default: `nil`
+
+Example:
+```bash
+KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=spec/fixtures/list.txt
+
+# list.txt
+./spec/test1_spec.rb
+spec/test2_spec.rb[1]
+./spec/test3_spec.rb[1:2:3:4]
+./spec/test4_spec.rb:4
+./spec/test4_spec.rb:5
+```
+
+### Related FAQs
+
+- [How to run a specific list of test files or only some tests from test file?](https://knapsackpro.com/faq/question/how-to-run-a-specific-list-of-test-files-or-only-some-tests-from-test-file)
