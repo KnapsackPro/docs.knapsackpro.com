@@ -6,6 +6,24 @@ toc_max_heading_level: 2
 
 # Reference
 
+## Command-line arguments
+
+You can pass command-line arguments to Knapsack Pro using the Rake argument syntax:
+
+```bash
+bundle exec rake "knapsack_pro:rspec[--tag focus --profile]"
+# ==
+bundle exec rake rspec --tag focus --profile
+```
+
+Or using the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack-pro-binary):
+
+```bash
+knapsack_pro rspec "--tag focus --profile"
+# ==
+bundle exec rake rspec --tag focus
+```
+
 ## `KNAPSACK_PRO_LOG_LEVEL`
 
 Default: `debug`
