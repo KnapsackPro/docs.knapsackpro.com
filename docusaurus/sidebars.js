@@ -53,13 +53,28 @@ const sidebars = {
         items: [
           {
             type: 'doc',
-            label: 'simplecov',
-            id: 'ruby/simplecov',
+            label: 'CodeClimate',
+            id: 'ruby/code-climate',
+          },
+          {
+            type: 'doc',
+            label: 'parallel_tests',
+            id: 'ruby/parallel_tests',
           },
           {
             type: 'doc',
             label: 'puffing-billy',
             id: 'ruby/puffing-billy',
+          },
+          {
+            type: 'doc',
+            label: 'simplecov',
+            id: 'ruby/simplecov',
+          },
+          {
+            type: 'doc',
+            label: 'spring',
+            id: 'ruby/spring',
           },
         ]
       },
