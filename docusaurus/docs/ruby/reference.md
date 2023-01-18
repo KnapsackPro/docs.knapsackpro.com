@@ -163,3 +163,24 @@ spec/test2_spec.rb[1]
 ### Related FAQs
 
 - [How to run a specific list of test files or only some tests from test file?](https://knapsackpro.com/faq/question/how-to-run-a-specific-list-of-test-files-or-only-some-tests-from-test-file)
+
+## `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES` (RSpec)
+
+Parallelize test examples (instead of files) across CI nodes.
+
+:::caution
+- Requires RSpec >= 3.3.0
+- Does not support `run_all_when_everything_filtered`
+- Does not support `--tag`
+:::
+
+```bash
+KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
+```
+
+Make sure to read the details in the [RSpec guide](/ruby/rspec/#parallelize-test-examples-instead-of-files).
+
+### Related FAQs
+
+- [How to split slow RSpec test files by test examples (by individual it)?](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it#warning-dont-use-deprecated-rspec-run_all_when_everything_filtered-option)
+
