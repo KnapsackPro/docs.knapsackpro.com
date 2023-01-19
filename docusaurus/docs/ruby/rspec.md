@@ -36,7 +36,7 @@ As an example, imagine you have two test files in your suite:
   </table>
 </div>
 
-On your [Knapsack Pro dashboard](/overview/#dashboard), you can see one is highlighted in yellow because it's a bottleneck.
+On your [Knapsack Pro dashboard](/overview/#dashboard), you can see the yellow highlights because of the bottleneck.
 
 By enabling `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`, the bottleneck disappears because Knapsack Pro can distribute tests so that each CI node is balanced (e.g., 4.5 minutes + 4.5 minutes):
 
