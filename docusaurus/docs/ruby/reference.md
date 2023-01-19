@@ -63,6 +63,8 @@ Default: all tests for the given test runner
 
 Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
 
+Hint: you can debug `Dir.glob(MY_GLOB)` in irb or rails console
+
 Examples:
 ```bash
 KNAPSACK_PRO_TEST_FILE_PATTERN="spec/system/**/*_spec.rb"
@@ -113,6 +115,8 @@ Exclude tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TE
 Default: `nil`
 
 Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
+
+Hint: you can debug `Dir.glob(MY_GLOB)` in irb or rails console
 
 Examples:
 ```bash
