@@ -179,9 +179,18 @@ RSpec.configure do |c|
   c.run_all_when_everything_filtered = true
 end
 
-# ✅ Ok
+# ✅ Good
 RSpec.configure do |c|
   c.filter_run_when_matching :focus
+end
+
+# 🤘 FYeah
+CI=true # Refer to your CI docs
+
+RSpec.configure do |c|
+  unless ENV['CI']
+    c.filter_run_when_matching :focus
+  end
 end
 ```
 
