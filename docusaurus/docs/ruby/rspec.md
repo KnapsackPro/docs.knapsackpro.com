@@ -26,7 +26,7 @@ As an example, imagine you have two test files in your suite:
           6 minutes and 30 seconds
         </td>
       </tr>
-      <tr>
+      <tr style={{ backgroundColor: '#fcf8e3' }}>
         <td style={{ whiteSpace: 'nowrap' }}>spec/features/books_spec.rb</td>
         <td style={{ width: '250px', whiteSpace: 'nowrap' }}>
           2 minutes and 30 seconds
