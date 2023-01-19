@@ -21,7 +21,7 @@ Or using the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro
 ```bash
 knapsack_pro rspec "--tag focus --profile"
 # ==
-bundle exec rake rspec --tag focus
+bundle exec rake rspec --tag focus --profile
 ```
 
 ## `KNAPSACK_PRO_LOG_LEVEL`
