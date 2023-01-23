@@ -26,7 +26,9 @@ Jekyll::Hooks.register :site, :post_write do |page|
 
   system!("mkdir -p _site/ruby")
   [
+    "capybara",
     "code-climate",
+    "cucumber",
     "hooks",
     "parallel_tests",
     "puffing-billy",
