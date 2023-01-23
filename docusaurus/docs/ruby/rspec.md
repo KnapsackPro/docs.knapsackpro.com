@@ -5,6 +5,18 @@ pagination_prev: null
 
 # Use Knapsack Pro with RSpec
 
+## `--fail-fast`
+
+You can use the [Rake argument syntax](/ruby/reference/#command-line-arguments) to fail fast:
+
+```bash
+# Stop when 1 test failed
+bundle exec rake "knapsack_pro:queue:rspec[--fail-fast]"
+
+# Stop when 3 tests failed
+bundle exec rake "knapsack_pro:queue:rspec[--fail-fast 3]"
+```
+
 ## Run a subset of tests
 
 To run a subset of your test suite you have a couple of options:
@@ -153,6 +165,19 @@ This applies also if you are running parallel test processes on each CI node (se
 
 ## Troubleshooting
 
+### Why do I see the summary of failed/pending tests multiple times in Queue Mode?
+
+It may happen if you use:
+- a custom RSpec formatter
+- `knapsack_pro` < 0.33.0
+- [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_modify_default_rspec_formatters-hide-duplicated-summary-of-pending-and-failed-tests)
+
+This is due to the fact that Knapsack Pro in Queue Mode [runs tests in batches](/overview/#queue-mode-dynamic-split), and RSpec accumulates failures/pending tests for all batches.
+
+### Why is `.rspec` ignored in Queue Mode?
+
+The `.rspec` file is ignored in Queue Mode because `knapsack_pro` needs to pass arguments explicitly to `RSpec::Core::Runner`. You can inline them with the [Rake argument syntax](/ruby/reference/#command-line-arguments) instead.
+
 ### Why are some of my test files not executed?
 
 First, check if the RSpec output mentions any filtering like the following:
@@ -200,7 +225,7 @@ Probably, you load `MY_RUBY_GEM` in `Rakefile` so when `knapsack_pro` runs a rak
 - Don't load `MY_RUBY_GEM` when `RAILS_ENV=test`
 - Add `MY_RUBY_GEM` in the `:test` group in the `Gemfile`
 
-### Why do I fix `Don't know how to build task 'knapsack_pro:rspec_test_example_detector'`?
+### How do I fix `Don't know how to build task 'knapsack_pro:rspec_test_example_detector'`?
 
 Try to remove the default prefix `bundle exec` used by `knapsack_pro` by setting `KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX=""`.
 
@@ -226,3 +251,7 @@ E, [2021-03-30T17:33:12.199368 #103] ERROR -- : [knapsack_pro] ---------- END of
 - [How to split tests based on test level instead of test file level?](https://knapsackpro.com/faq/question/how-to-split-tests-based-on-test-level-instead-of-test-file-level)
 - [How to run only RSpec feature tests or non feature tests?](https://knapsackpro.com/faq/question/how-to-run-only-rspec-feature-tests-or-non-feature-tests)
 - [RSpec is not running some tests](https://knapsackpro.com/faq/question/rspec-is-not-running-some-tests)
+- [How to stop running tests on the first failed test (fail fast tests in RSpec)?](https://knapsackpro.com/faq/question/how-to-stop-running-tests-on-the-first-failed-test-fail-fast-tests-in-rspec)
+- [Why when I use Queue Mode for RSpec then .rspec config is ignored?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-rspec-config-is-ignored)
+- [Why when I use Queue Mode for RSpec and test fails then I see multiple times info about failed test in RSpec result?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-and-test-fails-then-i-see-multiple-times-info-about-failed-test-in-rspec-result)
+- [Why when I use Queue Mode for RSpec then I see multiple times the same pending tests?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-i-see-multiple-times-the-same-pending-tests)

@@ -76,6 +76,16 @@ const sidebars = {
             label: 'spring',
             id: 'ruby/spring',
           },
+          {
+            type: 'doc',
+            label: 'Capybara',
+            id: 'ruby/capybara',
+          },
+          {
+            type: 'doc',
+            label: 'Cucumber',
+            id: 'ruby/cucumber',
+          },
         ]
       },
       {

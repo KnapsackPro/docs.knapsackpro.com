@@ -108,6 +108,23 @@ require 'spec_helper' # ⛔️ Bad
 
 - [How can I run tests from multiple directories?](https://knapsackpro.com/faq/question/how-can-i-run-tests-from-multiple-directories)
 
+## `KNAPSACK_PRO_TEST_DIR` (Cucumber)
+
+Passed as-is to Cucumber's [`--require`](https://github.com/cucumber/cucumber-ruby/blob/5220e53d91d5fb0dbca2eea1e650b54a83743a0c/lib/cucumber/cli/options.rb#L345).
+
+Default: `features`
+
+Available: any folder or file relative to the root of your project
+
+Example:
+```bash
+KNAPSACK_PRO_TEST_DIR="features/support/cucumber_config.rb"
+```
+
+### Related FAQs
+
+- [How to require different Cucumber config files in isolation?](https://knapsackpro.com/faq/question/how-to-require-different-cucumber-config-files-in-isolation)
+
 ## `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`
 
 Exclude tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
