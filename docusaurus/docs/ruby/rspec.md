@@ -129,6 +129,77 @@ RSpec.configure do |c|
 end
 ```
 
+### How do I fix FactoryBot/FactoryGirl errors in Queue Mode?
+
+- Use the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack-pro-binary):
+  ```bash
+  bundle exec knapsack_pro queue:rspec
+  ```
+- Avoid implicit associations:
+  ```ruby
+  # ⛔️ Bad
+  FactoryBot.define do
+    factory :assignment do
+      task
+    end
+  end
+
+  # ✅ Good
+  FactoryBot.define do
+    factory :assignment do
+      association :task
+    end
+  end
+  ```
+
+### How do I fix `TypeError: superclass mismatch for class MyClass` in Queue Mode?
+
+Probably, you are in the following situation:
+
+```ruby
+# spec/a_spec.rb
+
+class BaseClassA
+end
+
+module Mock
+  module FakeModels
+    class MyClass < BaseClassA
+      def args
+      end
+    end
+  end
+end
+
+describe 'A test of something' do
+  it do
+  end
+end
+
+
+# spec/b_spec.rb
+
+class BaseClassB
+end
+
+module Mock
+  module FakeModels
+    # 👇 Base class is different
+    class MyClass < BaseClassB
+      def args
+      end
+    end
+  end
+end
+
+describe 'B test of something' do
+  it do
+  end
+end
+```
+
+Use RSpec's [`stub_const`](https://relishapp.com/rspec/rspec-mocks/docs/mutating-constants) instead.
+
 ## Related FAQs
 
 - [How to use junit formatter?](https://knapsackpro.com/faq/question/how-to-use-junit-formatter)
@@ -141,3 +212,5 @@ end
 - [Why when I use Queue Mode for RSpec then .rspec config is ignored?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-rspec-config-is-ignored)
 - [Why when I use Queue Mode for RSpec and test fails then I see multiple times info about failed test in RSpec result?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-and-test-fails-then-i-see-multiple-times-info-about-failed-test-in-rspec-result)
 - [Why when I use Queue Mode for RSpec then I see multiple times the same pending tests?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-i-see-multiple-times-the-same-pending-tests)
+- [Why when I use Queue Mode for RSpec then FactoryBot/FactoryGirl tests fail?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-factorybotfactorygirl-tests-fail)
+- [Why when I use Queue Mode for RSpec then I see error superclass mismatch for class?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-i-see-error-superclass-mismatch-for-class)
