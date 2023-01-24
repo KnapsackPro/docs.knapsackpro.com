@@ -37,6 +37,7 @@ Jekyll::Hooks.register :site, :post_write do |page|
     "rspec",
     "run-multiple-test-suites-with-one-script",
     "simplecov",
+    "split-by-test-examples",
     "spring",
     "troubleshooting",
   ].each do |directory|
