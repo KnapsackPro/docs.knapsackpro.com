@@ -116,7 +116,7 @@ const config = {
             target: '_self'
           },
           {
-            to: 'index',
+            to: '/',
             label: 'Get started with integration',
             position: 'right',
           },
