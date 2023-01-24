@@ -9,7 +9,7 @@ pagination_prev: null
 
 Heroku CI allows only one test script in `app.json`, but you may want to run multiple test suites (e.g., RSpec and Cucumber).
 
-You can create a script as described in [Run multiple test suites with one script](/docs/ruby/run-multiple-test-suites-with-one-script) and use it in `scripts.test`:
+You can create a script as described in [Run multiple test suites with one script](/ruby/run-multiple-test-suites-with-one-script) and use it in `scripts.test`:
 
 ```json
 {
