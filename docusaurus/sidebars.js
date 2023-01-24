@@ -46,6 +46,11 @@ const sidebars = {
         id: 'ruby/reference',
       },
       {
+        type: 'doc',
+        label: 'Troubleshooting',
+        id: 'ruby/troubleshooting',
+      },
+      {
         type: 'category',
         label: 'Use Knapsack Pro with...',
         collapsible: true,
