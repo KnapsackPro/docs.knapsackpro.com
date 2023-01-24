@@ -5,6 +5,16 @@ pagination_prev: null
 
 # Use Knapsack Pro with RSpec
 
+## Retry failed/flaky tests
+
+You have a couple of options:
+- [rspec-retry](https://github.com/NoRedInk/rspec-retry) (recommended)
+- [RSpec's `--only-failures`](https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures)
+  ```bash
+  bundle exec rake knapsack_pro:queue:rspec
+  bundle exec rspec --only-failures
+  ```
+
 ## `--fail-fast`
 
 You can use the [Rake argument syntax](/ruby/reference/#command-line-arguments) to fail fast:
@@ -214,3 +224,4 @@ Use RSpec's [`stub_const`](https://relishapp.com/rspec/rspec-mocks/docs/mutating
 - [Why when I use Queue Mode for RSpec then I see multiple times the same pending tests?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-i-see-multiple-times-the-same-pending-tests)
 - [Why when I use Queue Mode for RSpec then FactoryBot/FactoryGirl tests fail?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-factorybotfactorygirl-tests-fail)
 - [Why when I use Queue Mode for RSpec then I see error superclass mismatch for class?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-i-see-error-superclass-mismatch-for-class)
+- [How to retry failed tests (flaky tests)?](https://knapsackpro.com/faq/question/how-to-retry-failed-tests-flaky-tests)
