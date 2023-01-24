@@ -29,13 +29,16 @@ Jekyll::Hooks.register :site, :post_write do |page|
     "capybara",
     "code-climate",
     "cucumber",
+    "heroku",
     "hooks",
     "parallel_tests",
     "puffing-billy",
     "reference",
     "rspec",
+    "run-multiple-test-suites-with-one-script",
     "simplecov",
     "spring",
+    "troubleshooting",
   ].each do |directory|
     system!("cp -R docusaurus/build/ruby/#{directory} _site/ruby")
   end
