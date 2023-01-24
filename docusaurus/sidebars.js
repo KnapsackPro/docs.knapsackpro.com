@@ -63,6 +63,11 @@ const sidebars = {
           },
           {
             type: 'doc',
+            label: 'Heroku CI',
+            id: 'ruby/heroku',
+          },
+          {
+            type: 'doc',
             label: 'parallel_tests',
             id: 'ruby/parallel_tests',
           },
