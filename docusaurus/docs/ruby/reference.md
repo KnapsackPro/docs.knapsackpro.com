@@ -205,3 +205,26 @@ Make sure to read the details in the [RSpec guide](/ruby/rspec/#parallelize-test
 
 - [How to split slow RSpec test files by test examples (by individual it)?](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it#warning-dont-use-deprecated-rspec-run_all_when_everything_filtered-option)
 
+
+## `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` (Queue Mode)
+
+Dynamic or fixed tests split when retrying a CI build.
+
+Default: `false`
+
+Available:
+- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes
+- `true`: if the triplet `(branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split
+
+Recommended:
+- `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
+- `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries
+- `false` otherwise
+
+## `KNAPSACK_PRO_CI_NODE_BUILD_ID`
+
+Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
+
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
+
+If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand - base64 32)` and make it available to all parallel nodes.
