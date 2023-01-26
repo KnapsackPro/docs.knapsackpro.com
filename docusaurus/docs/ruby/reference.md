@@ -228,3 +228,39 @@ Unique ID that identifies a CI build. It must be the same for all the parallel C
 Default: Knapsack Pro will take it from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
 
 If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand - base64 32)` and make it available to all parallel nodes.
+
+## `KNAPSACK_PRO_REPOSITORY_ADAPTER`
+
+Controls how Knapsack Pro sets `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH`.
+
+Default: not set
+
+Available:
+- not set: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
+- `git` (requires `KNAPSACK_PRO_PROJECT_DIR`): Knapsack Pro will set `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` using git on your CI
+
+## `KNAPSACK_PRO_PROJECT_DIR`
+
+Absolute path to the project directory (containing `.git/`) on the CI node.
+
+Required with `KNAPSACK_PRO_REPOSITORY_ADAPTER=git`.
+
+Default: not set
+
+Example: `/home/ubuntu/my-app-repository`
+
+## `KNAPSACK_PRO_COMMIT_HASH`
+
+Hash of the commit under test.
+
+You don't need to set it if either:
+- Your CI is one of the [supported CIs](/knapsack_pro-ruby/guide/)
+- You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
+
+## `KNAPSACK_PRO_BRANCH`
+
+Git branch under test.
+
+You don't need to set it if either:
+- Your CI is one of the [supported CIs](/knapsack_pro-ruby/guide/)
+- You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`

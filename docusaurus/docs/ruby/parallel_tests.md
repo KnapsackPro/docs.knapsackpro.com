@@ -14,7 +14,7 @@ In our experience, parallelizing tests by running more than one process per CI n
 To keep it simple, we recommend against `parallel_tests`. Instead, consider more parallel CI nodes with Knapsack Pro in [Queue Mode](https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode) if you are looking for fast tests execution and avoiding [confusing terminal outputs](https://github.com/grosser/parallel_tests/issues?q=is%3Aissue+is%3Aopen+output).
 
 In some cases, you may still consider using `knapsack_pro` to exploit auto-balancing the tests split with [Queue Mode](https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode) and `parallel_tests` to use fewer CI nodes. But monitor your [Knapsack Pro dashboard](/overview/#dashboard) for signs of saturated CI nodes:
-- Execution times of your CI builds are increasing: check `Recorded CI builds > Show (build) > Test Files > Total execution time`
+- Execution times of your CI builds are increasing: `Recorded CI builds > Show (build) > Test Files > Total execution time`
 - Individual test stats are trending up: `Statistics of test files history > Stats (test file) > History of the test file (chart)`
 - Tests executed locally on your machine are faster than on your CI
 

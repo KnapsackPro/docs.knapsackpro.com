@@ -28,6 +28,7 @@ Jekyll::Hooks.register :site, :post_write do |page|
   [
     "capybara",
     "code-climate",
+    "cookbook",
     "cucumber",
     "heroku",
     "hooks",
