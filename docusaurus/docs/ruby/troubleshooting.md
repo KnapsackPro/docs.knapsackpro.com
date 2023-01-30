@@ -9,35 +9,29 @@ pagination_prev: null
 
 ### Regular Mode
 
-To run the same subset of tests that were run on a specific CI node:
+To reproduce what Knapsack Pro executed on a specific CI node, check out the same branch and run:
 
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_TOKEN \
-KNAPSACK_PRO_PROJECT_DIR=MY_DIR \
-KNAPSACK_PRO_CI_NODE_TOTAL=MY_TOTAL \
 KNAPSACK_PRO_CI_NODE_INDEX=MY_INDEX \
-KNAPSACK_PRO_REPOSITORY_ADAPTER=git \
+KNAPSACK_PRO_CI_NODE_TOTAL=MY_TOTAL \
+KNAPSACK_PRO_BRANCH=MY_BRANCH \
+KNAPSACK_PRO_COMMIT_HASH=MY_COMMIT \
+KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 bundle exec rake "knapsack_pro:rspec[--seed MY_SEED]"
 ```
 
-You can also run the same subset of tests without Knapsack Pro. You should find in the logs how tests were executed (you may need to set `KNAPSACK_PRO_LOG_LEVEL=debug`):
+`KNAPSACK_PRO_CI_NODE_BUILD_ID` must be the same as the CI build you are trying to reproduce (if it helps, take a look at what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)).
+
+You can also run the same subset of tests without Knapsack Pro: in the logs, find the command that Knapsack Pro used to invoke the test runner:
 
 ```bash
-[knapsack_pro] {"build_distribution_id"=>"...", "node_index"=>0, "test_files"=>[{"path"=>"spec/models/user_spec.rb", "time_execution"=>30.023151551}, {"path"=>"spec/models/comment_spec.rb", "time_execution"=>10.0823417723}]}
-...
-Randomized with seed 24098
-```
-
-Then, you can invoke the test runner directly:
-
-```bash
-KNAPSACK_PRO_TEST_FILE_LIST=spec/models/user_spec.rb,spec/models/comment.rb \
-bundle exec rake "knapsack_pro:rspec[--seed 24098]"
+rspec  --default-path spec "spec/models/user_spec.rb" "spec/models/comment_spec.rb"
 ```
 
 ### Queue Mode
 
-In Queue Mode, Knapsack Pro logs the exact commands you can copy/paste to reproduce the test run.
+In Queue Mode, Knapsack Pro logs the exact commands you can copy/paste to reproduce the tests run.
 
 You will find multiple commands to reproduce each batch:
 
@@ -156,7 +150,7 @@ Make sure to follow the steps to [configure VCR/WebMock/FakeWeb](/knapsack_pro-r
 
 ## `ActiveRecord::SubclassNotFound`
 
-If files are changing during a test run, you may get the following error:
+If files are changing during a tests run, you may get the following error:
 
 ```bash
 ActiveRecord::SubclassNotFound:
