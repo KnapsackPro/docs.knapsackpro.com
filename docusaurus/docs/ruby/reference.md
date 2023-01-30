@@ -24,17 +24,44 @@ knapsack_pro rspec "--tag focus --profile"
 bundle exec rake rspec --tag focus --profile
 ```
 
-## `KNAPSACK_PRO_LOG_LEVEL`
+## `KNAPSACK_PRO_BRANCH`
 
-Default: `debug`
+Git branch under test.
 
-Available: `debug` | `info` | `warn` | `error` | `fatal`
+You don't need to set it if either:
+- Your CI is one of the [supported CIs](/knapsack_pro-ruby/guide/)
+- You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
 
-Recommended: `debug` when debugging issues, `info` to know what Knapsack Pro is doing
+## `KNAPSACK_PRO_CI_NODE_BUILD_ID`
 
-### Related FAQs
+Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
 
-- [How can I change log level?](https://knapsackpro.com/faq/question/how-can-i-change-log-level)
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
+
+If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand - base64 32)` and make it available to all parallel nodes.
+
+## `KNAPSACK_PRO_COMMIT_HASH`
+
+Hash of the commit under test.
+
+You don't need to set it if either:
+- Your CI is one of the [supported CIs](/knapsack_pro-ruby/guide/)
+- You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
+
+## `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` (Queue Mode)
+
+Dynamic or fixed tests split when retrying a CI build.
+
+Default: `false`
+
+Available:
+- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes
+- `true`: if the triplet `(branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split
+
+Recommended:
+- `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
+- `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries
+- `false` otherwise
 
 ## `KNAPSACK_PRO_LOG_DIR`
 
@@ -51,36 +78,74 @@ When `KNAPSACK_PRO_LOG_DIR=log`, Knapsack Pro will write logs to the `log` direc
 
 - [How to write `knapsack_pro` logs to a file?](https://knapsackpro.com/faq/question/how-to-write-knapsack_pro-logs-to-a-file)
 
-## `KNAPSACK_PRO_TEST_FILE_PATTERN`
+## `KNAPSACK_PRO_LOG_LEVEL`
+
+Default: `debug`
+
+Available: `debug` | `info` | `warn` | `error` | `fatal`
+
+Recommended: `debug` when debugging issues, `info` to know what Knapsack Pro is doing
+
+### Related FAQs
+
+- [How can I change log level?](https://knapsackpro.com/faq/question/how-can-i-change-log-level)
+
+## `KNAPSACK_PRO_PROJECT_DIR`
+
+Absolute path to the project directory (containing `.git/`) on the CI node.
+
+Required with `KNAPSACK_PRO_REPOSITORY_ADAPTER=git`.
+
+Default: not set
+
+Example: `/home/ubuntu/my-app-repository`
+
+## `KNAPSACK_PRO_REPOSITORY_ADAPTER`
+
+Controls how Knapsack Pro sets `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH`.
+
+Default: not set
+
+Available:
+- not set: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
+- `git` (requires `KNAPSACK_PRO_PROJECT_DIR`): Knapsack Pro will set `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` using git on your CI
+
+## `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES` (RSpec)
+
+Parallelize test examples (instead of files) across CI nodes.
 
 :::caution
-Make sure to match individual files by adding the suffix (e.g., `_spec.rb`, `_test.rb`) so that Knapsack Pro can split by file and not by directory.
+- Requires RSpec >= 3.3.0
+- Does not support `run_all_when_everything_filtered`
+- Does not support `--tag`
 :::
 
-Run tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.
-
-Default: all tests for the given test runner
-
-Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
-
-Hint: you can debug `Dir.glob(MY_GLOB)` in irb or rails console
-
-Examples:
 ```bash
-KNAPSACK_PRO_TEST_FILE_PATTERN="spec/system/**/*_spec.rb"
+KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
+```
 
-KNAPSACK_PRO_TEST_DIR=spec KNAPSACK_PRO_TEST_FILE_PATTERN="{spec,engines/*/spec}/**/*_spec.rb"
+Make sure to read the details in the [RSpec guide](/ruby/rspec/#parallelize-test-examples-instead-of-files).
 
-KNAPSACK_PRO_TEST_FILE_PATTERN="spec/controllers/**{,/*/**}/*_spec.rb" \
-KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec.rb"
+### Related FAQs
+
+- [How to split slow RSpec test files by test examples (by individual it)?](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it#warning-dont-use-deprecated-rspec-run_all_when_everything_filtered-option)
+
+## `KNAPSACK_PRO_TEST_DIR` (Cucumber)
+
+Passed as-is to Cucumber's [`--require`](https://github.com/cucumber/cucumber-ruby/blob/5220e53d91d5fb0dbca2eea1e650b54a83743a0c/lib/cucumber/cli/options.rb#L345).
+
+Default: `features`
+
+Available: any folder or file relative to the root of your project
+
+Example:
+```bash
+KNAPSACK_PRO_TEST_DIR="features/support/cucumber_config.rb"
 ```
 
 ### Related FAQs
 
-- [How to run tests from a specific directory (only system tests or features specs)?](https://knapsackpro.com/faq/question/how-to-run-tests-from-a-specific-directory-only-system-tests-or-features-specs)
-- [How can I run tests from multiple directories?](https://knapsackpro.com/faq/question/how-can-i-run-tests-from-multiple-directories)
-- [How to exclude tests?](https://knapsackpro.com/faq/question/how-to-exclude-tests-from-running-them)
-- [Dir.glob pattern examples for `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`](https://knapsackpro.com/faq/question/dir-glob-pattern-examples-for-knapsack_pro_test_file_pattern-and-knapsack_pro_test_file_exclude_pattern)
+- [How to require different Cucumber config files in isolation?](https://knapsackpro.com/faq/question/how-to-require-different-cucumber-config-files-in-isolation)
 
 ## `KNAPSACK_PRO_TEST_DIR` (RSpec)
 
@@ -107,23 +172,6 @@ require 'spec_helper' # ⛔️ Bad
 ### Related FAQs
 
 - [How can I run tests from multiple directories?](https://knapsackpro.com/faq/question/how-can-i-run-tests-from-multiple-directories)
-
-## `KNAPSACK_PRO_TEST_DIR` (Cucumber)
-
-Passed as-is to Cucumber's [`--require`](https://github.com/cucumber/cucumber-ruby/blob/5220e53d91d5fb0dbca2eea1e650b54a83743a0c/lib/cucumber/cli/options.rb#L345).
-
-Default: `features`
-
-Available: any folder or file relative to the root of your project
-
-Example:
-```bash
-KNAPSACK_PRO_TEST_DIR="features/support/cucumber_config.rb"
-```
-
-### Related FAQs
-
-- [How to require different Cucumber config files in isolation?](https://knapsackpro.com/faq/question/how-to-require-different-cucumber-config-files-in-isolation)
 
 ## `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`
 
@@ -185,82 +233,33 @@ spec/test2_spec.rb[1]
 
 - [How to run a specific list of test files or only some tests from test file?](https://knapsackpro.com/faq/question/how-to-run-a-specific-list-of-test-files-or-only-some-tests-from-test-file)
 
-## `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES` (RSpec)
-
-Parallelize test examples (instead of files) across CI nodes.
+## `KNAPSACK_PRO_TEST_FILE_PATTERN`
 
 :::caution
-- Requires RSpec >= 3.3.0
-- Does not support `run_all_when_everything_filtered`
-- Does not support `--tag`
+Make sure to match individual files by adding the suffix (e.g., `_spec.rb`, `_test.rb`) so that Knapsack Pro can split by file and not by directory.
 :::
 
-```bash
-KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
-```
+Run tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.
 
-Make sure to read the details in the [RSpec guide](/ruby/rspec/#parallelize-test-examples-instead-of-files).
+Default: all tests for the given test runner
+
+Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
+
+Hint: you can debug `Dir.glob(MY_GLOB)` in irb or rails console
+
+Examples:
+```bash
+KNAPSACK_PRO_TEST_FILE_PATTERN="spec/system/**/*_spec.rb"
+
+KNAPSACK_PRO_TEST_DIR=spec KNAPSACK_PRO_TEST_FILE_PATTERN="{spec,engines/*/spec}/**/*_spec.rb"
+
+KNAPSACK_PRO_TEST_FILE_PATTERN="spec/controllers/**{,/*/**}/*_spec.rb" \
+KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec.rb"
+```
 
 ### Related FAQs
 
-- [How to split slow RSpec test files by test examples (by individual it)?](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it#warning-dont-use-deprecated-rspec-run_all_when_everything_filtered-option)
-
-
-## `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` (Queue Mode)
-
-Dynamic or fixed tests split when retrying a CI build.
-
-Default: `false`
-
-Available:
-- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes
-- `true`: if the triplet `(branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split
-
-Recommended:
-- `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
-- `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries
-- `false` otherwise
-
-## `KNAPSACK_PRO_CI_NODE_BUILD_ID`
-
-Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
-
-Default: Knapsack Pro will take it from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
-
-If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand - base64 32)` and make it available to all parallel nodes.
-
-## `KNAPSACK_PRO_REPOSITORY_ADAPTER`
-
-Controls how Knapsack Pro sets `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH`.
-
-Default: not set
-
-Available:
-- not set: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
-- `git` (requires `KNAPSACK_PRO_PROJECT_DIR`): Knapsack Pro will set `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` using git on your CI
-
-## `KNAPSACK_PRO_PROJECT_DIR`
-
-Absolute path to the project directory (containing `.git/`) on the CI node.
-
-Required with `KNAPSACK_PRO_REPOSITORY_ADAPTER=git`.
-
-Default: not set
-
-Example: `/home/ubuntu/my-app-repository`
-
-## `KNAPSACK_PRO_COMMIT_HASH`
-
-Hash of the commit under test.
-
-You don't need to set it if either:
-- Your CI is one of the [supported CIs](/knapsack_pro-ruby/guide/)
-- You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
-
-## `KNAPSACK_PRO_BRANCH`
-
-Git branch under test.
-
-You don't need to set it if either:
-- Your CI is one of the [supported CIs](/knapsack_pro-ruby/guide/)
-- You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
+- [How to run tests from a specific directory (only system tests or features specs)?](https://knapsackpro.com/faq/question/how-to-run-tests-from-a-specific-directory-only-system-tests-or-features-specs)
+- [How can I run tests from multiple directories?](https://knapsackpro.com/faq/question/how-can-i-run-tests-from-multiple-directories)
+- [How to exclude tests?](https://knapsackpro.com/faq/question/how-to-exclude-tests-from-running-them)
+- [Dir.glob pattern examples for `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`](https://knapsackpro.com/faq/question/dir-glob-pattern-examples-for-knapsack_pro_test_file_pattern-and-knapsack_pro_test_file_exclude_pattern)
