@@ -55,8 +55,8 @@ Dynamic or fixed tests split when retrying a CI build.
 Default: `false`
 
 Available:
-- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes
-- `true`: if the triplet `(branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split
+- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
+- `true`: if the quadruplet `(ci build id, branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split (when `ci build id` is missing, only the other three are checked)
 
 Recommended:
 - `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
