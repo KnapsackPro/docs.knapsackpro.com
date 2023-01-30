@@ -5,6 +5,14 @@ pagination_prev: null
 
 # Troubleshooting
 
+## One CI node run the test suite again in Queue Mode
+
+Most likely, that CI node started when all the others finished running and initialized a new queue.
+
+You have a couple of options:
+- Make sure [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](/ruby/reference/#knapsack_pro_ci_node_build_id) is set (recommended)
+- Set [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode)
+
 ## Debug Knapsack Pro on your development environment/machine
 
 ### Regular Mode
@@ -191,3 +199,5 @@ Here are the most common reasons:
 - [When Ruby/RSpec tests fail with error like ActiveRecord::SubclassNotFound: Invalid single-table inheritance type: AuthenticationProviders::AnAuthenticationProvider](https://knapsackpro.com/faq/question/when-ruby-rspec-tests-fail-with-error-like-activerecord-subclassnotfound-invalid-single-table-inheritance-type-authenticationproviders-anauthenticationprovider)
 - [Why my tests are slower when I run more parallel CI nodes (jobs)?](https://knapsackpro.com/faq/question/why-my-tests-are-slower-when-i-run-more-parallel-ci-nodes-jobs)
 - [How to run tests for particular CI node in your development environment](https://knapsackpro.com/faq/question/how-to-run-tests-for-particular-ci-node-in-your-development-environment)
+- [Why my tests are executed twice in Queue Mode? Why CI node runs whole test suite again?](https://knapsackpro.com/faq/question/why-my-tests-are-executed-twice-in-queue-mode-why-ci-node-runs-whole-test-suite-again)
+- [If one of the parallel CI nodes starts work very late after other parallel CI nodes already finished work then tests are executed twice on late CI node in Knapsack Pro Queue Mode](https://knapsackpro.com/faq/question/if-one-of-the-parallel-ci-nodes-starts-work-very-late-after-other-parallel-ci-nodes-already-finished-work-then-tests-are-executed-twice-on-late-ci-node-in-knapsack-pro-queue-mode)
