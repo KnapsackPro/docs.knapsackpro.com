@@ -57,7 +57,45 @@ if [ -f "$THRESHOLD_FILE_PATH" ]; then
 fi
 ```
 
+## Run multiple test commands with one script
+
+```bash
+#!/bin/bash
+
+# Cucumber suite
+bundle exec rake knapsack_pro:queue:cucumber
+export CUCUMBER_EXIT_CODE=$?
+
+# RSpec suite
+bundle exec rake knapsack_pro:queue:rspec
+export RSPEC_EXIT_CODE=$?
+
+if [ "$CUCUMBER_EXIT_CODE" -ne "0" ]; then
+  exit $CUCUMBER_EXIT_CODE
+fi
+
+if [ "$RSPEC_EXIT_CODE" -ne "0" ]; then
+  exit $RSPEC_EXIT_CODE
+fi
+```
+
+## Run (and fail fast) multiple test commands with one script
+
+:::caution
+CI nodes that fail on the first suite won't run the second suite: tests will be distributed to fewer CI nodes and the CI run will take longer.
+:::
+
+```bash
+#!/bin/bash
+
+set -e # exit on error
+
+bundle exec rake knapsack_pro:queue:rspec
+bundle exec rake knapsack_pro:queue:cucumber
+```
+
 ## Related FAQs
 
 - [How to run `knapsack_pro` only on a few parallel CI nodes instead of all?](https://knapsackpro.com/faq/question/how-to-run-knapsack_pro-only-on-a-few-parallel-ci-nodes-instead-of-all)
 - [How to fail the CI build if one of the test files duration exceeds a certain limit?](https://knapsackpro.com/faq/question/how-to-fail-the-ci-build-if-one-of-the-test-files-duration-exceeds-a-certain-limit)
+- [How to run multiple test suite commands in Heroku CI?](https://knapsackpro.com/faq/question/how-to-run-multiple-test-suite-commands-in-heroku-ci)

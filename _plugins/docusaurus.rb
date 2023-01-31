@@ -36,7 +36,6 @@ Jekyll::Hooks.register :site, :post_write do |page|
     "puffing-billy",
     "reference",
     "rspec",
-    "run-multiple-test-suites-with-one-script",
     "simplecov",
     "split-by-test-examples",
     "spring",
