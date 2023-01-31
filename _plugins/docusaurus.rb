@@ -44,4 +44,7 @@ Jekyll::Hooks.register :site, :post_write do |page|
   ].each do |directory|
     system!("cp -R docusaurus/build/ruby/#{directory} _site/ruby")
   end
+
+  system!("mkdir -p _site/javascript_typescript/reference")
+  system!("cp docusaurus/build/javascript_typescript/reference/index.html _site/javascript_typescript/reference")
 end
