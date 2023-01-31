@@ -37,11 +37,6 @@ const sidebars = {
       },
       {
         type: 'doc',
-        label: 'Hooks',
-        id: 'ruby/hooks',
-      },
-      {
-        type: 'doc',
         label: 'Reference',
         id: 'ruby/reference',
       },
@@ -49,6 +44,29 @@ const sidebars = {
         type: 'doc',
         label: 'Troubleshooting',
         id: 'ruby/troubleshooting',
+      },
+      {
+        type: 'category',
+        label: 'Advanced',
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            type: 'doc',
+            label: 'Cookbook',
+            id: 'ruby/cookbook',
+          },
+          {
+            type: 'doc',
+            label: 'Hooks',
+            id: 'ruby/hooks',
+          },
+          {
+            type: 'doc',
+            label: 'Split by test examples',
+            id: 'ruby/split-by-test-examples',
+          },
+        ],
       },
       {
         type: 'category',
