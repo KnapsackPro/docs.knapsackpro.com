@@ -14,8 +14,14 @@ Jekyll::Hooks.register :site, :post_write do |page|
   system!("mkdir -p _site/cypress/guide")
   system!("cp docusaurus/build/cypress/guide/index.html _site/cypress/guide")
 
+  system!("mkdir -p _site/cypress/troubleshooting")
+  system!("cp docusaurus/build/cypress/troubleshooting/index.html _site/cypress/troubleshooting")
+
   system!("mkdir -p _site/jest/guide")
   system!("cp docusaurus/build/jest/guide/index.html _site/jest/guide")
+
+  system!("mkdir -p _site/jest/troubleshooting")
+  system!("cp docusaurus/build/jest/troubleshooting/index.html _site/jest/troubleshooting")
 
   system!("mkdir -p _site/integration")
   system!("cp docusaurus/build/integration/index.html _site/integration") # redirect to /
@@ -46,5 +52,7 @@ Jekyll::Hooks.register :site, :post_write do |page|
 
   system!("mkdir -p _site/javascript-typescript/reference")
   system!("cp docusaurus/build/javascript-typescript/reference/index.html _site/javascript-typescript/reference")
+
+  system!("mkdir -p _site/javascript-typescript/troubleshooting")
   system!("cp docusaurus/build/javascript-typescript/troubleshooting/index.html _site/javascript-typescript/troubleshooting")
 end

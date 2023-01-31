@@ -149,6 +149,11 @@ const sidebars = {
         id: 'cypress/guide/index',
       },
       {
+        type: 'doc',
+        label: 'Troubleshooting',
+        id: 'cypress/troubleshooting',
+      },
+      {
         type: 'link',
         label: 'GitHub',
         href: 'https://github.com/KnapsackPro/knapsack-pro-cypress',
@@ -176,6 +181,11 @@ const sidebars = {
         id: 'jest/guide/index',
       },
       {
+        type: 'doc',
+        label: 'Troubleshooting',
+        id: 'jest/troubleshooting',
+      },
+      {
         type: 'link',
         label: 'GitHub',
         href: 'https://github.com/KnapsackPro/knapsack-pro-jest',
@@ -201,6 +211,11 @@ const sidebars = {
         type: 'doc',
         label: 'Reference',
         id: 'javascript-typescript/reference',
+      },
+      {
+        type: 'doc',
+        label: 'Troubleshooting',
+        id: 'javascript-typescript/troubleshooting',
       },
       {
         type: 'link',
