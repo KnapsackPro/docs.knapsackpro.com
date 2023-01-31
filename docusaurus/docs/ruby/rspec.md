@@ -85,20 +85,9 @@ This applies also if you are running parallel test processes on each CI node (se
 
 ## Troubleshooting
 
-### Why do I see the summary of failed/pending tests multiple times in Queue Mode?
+If you cannot find what you are looking for in this section, please refer to the Ruby [troubleshooting page](/ruby/troubleshooting).
 
-It may happen if you use:
-- a custom RSpec formatter
-- `knapsack_pro` < 0.33.0
-- [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_modify_default_rspec_formatters-hide-duplicated-summary-of-pending-and-failed-tests)
-
-This is due to the fact that Knapsack Pro in Queue Mode [runs tests in batches](/overview/#queue-mode-dynamic-split), and RSpec accumulates failures/pending tests for all batches.
-
-### Why is `.rspec` ignored in Queue Mode?
-
-The `.rspec` file is ignored in Queue Mode because `knapsack_pro` needs to pass arguments explicitly to `RSpec::Core::Runner`. You can inline them with the [Rake argument syntax](/ruby/reference/#command-line-arguments) instead.
-
-### Why are some of my test files not executed?
+### Some of my test files not executed
 
 First, check if the RSpec output mentions any filtering like the following:
 
@@ -139,30 +128,20 @@ RSpec.configure do |c|
 end
 ```
 
-### How do I fix FactoryBot/FactoryGirl errors in Queue Mode?
+### I see the summary of failed/pending tests multiple times in Queue Mode
 
-- Use the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack-pro-binary):
-  ```bash
-  bundle exec knapsack_pro queue:rspec
-  ```
-- Avoid implicit associations:
-  ```ruby
-  # ⛔️ Bad
-  FactoryBot.define do
-    factory :assignment do
-      task
-    end
-  end
+It may happen if you use:
+- a custom RSpec formatter
+- `knapsack_pro` < 0.33.0
+- [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_modify_default_rspec_formatters-hide-duplicated-summary-of-pending-and-failed-tests)
 
-  # ✅ Good
-  FactoryBot.define do
-    factory :assignment do
-      association :task
-    end
-  end
-  ```
+This is due to the fact that Knapsack Pro in Queue Mode [runs tests in batches](/overview/#queue-mode-dynamic-split), and RSpec accumulates failures/pending tests for all batches.
 
-### How do I fix `TypeError: superclass mismatch for class MyClass` in Queue Mode?
+### `.rspec` is ignored in Queue Mode
+
+The `.rspec` file is ignored in Queue Mode because `knapsack_pro` needs to pass arguments explicitly to `RSpec::Core::Runner`. You can inline them with the [Rake argument syntax](/ruby/reference/#command-line-arguments) instead.
+
+### `TypeError: superclass mismatch for class MyClass` in Queue Mode
 
 Probably, you are in the following situation:
 
@@ -210,6 +189,12 @@ end
 
 Use RSpec's [`stub_const`](https://relishapp.com/rspec/rspec-mocks/docs/mutating-constants) instead.
 
+### My tests fail in Queue Mode
+
+Knapsack Pro uses [`RSpec::Core::Runner`](https://relishapp.com/rspec/rspec-core/docs/running-specs-multiple-times-with-different-runner-options-in-the-same-process) in Queue Mode to run tests without reloading Ruby/Rails for each batch of tests. If you monkey-patch RSpec or mutate its global state, the test runner may not be able to clean up properly after each batch.
+
+Also, you can try to use the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack-pro-binary) instead of `bundle exec rake knapsack_pro:rspec`.
+
 ## Related FAQs
 
 - [How to use junit formatter?](https://knapsackpro.com/faq/question/how-to-use-junit-formatter)
@@ -225,3 +210,4 @@ Use RSpec's [`stub_const`](https://relishapp.com/rspec/rspec-mocks/docs/mutating
 - [Why when I use Queue Mode for RSpec then FactoryBot/FactoryGirl tests fail?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-factorybotfactorygirl-tests-fail)
 - [Why when I use Queue Mode for RSpec then I see error superclass mismatch for class?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-i-see-error-superclass-mismatch-for-class)
 - [How to retry failed tests (flaky tests)?](https://knapsackpro.com/faq/question/how-to-retry-failed-tests-flaky-tests)
+- [Why when I use Queue Mode for RSpec then my tests fail?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-my-tests-fail)

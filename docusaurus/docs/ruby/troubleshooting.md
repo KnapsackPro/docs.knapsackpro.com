@@ -5,13 +5,9 @@ pagination_prev: null
 
 # Troubleshooting
 
-## One CI node run the test suite again in Queue Mode
+## `NameError: uninitialized constant MyModule::MyModelName`
 
-Most likely, that CI node started when all the others finished running and initialized a new queue.
-
-You have a couple of options:
-- Make sure [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](/ruby/reference/#knapsack_pro_ci_node_build_id) is set (recommended)
-- Set [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode)
+Try with full namespacing `::SomeModule::MyModule::MyModelName`.
 
 ## Debug Knapsack Pro on your development environment/machine
 
@@ -85,18 +81,6 @@ Some users reported frozen CI nodes with:
   end
   ```
 - Chrome 83+ [prevents downloads in sandboxed iframes](https://developer.chrome.com/blog/chrome-83-deps-rems/): add an `allow-downloads` keyword in the sandbox attribute list
-
-## Rake tasks under tests are run more than once in Queue Mode
-
-Make sure the Rake task is [loaded once](https://github.com/KnapsackPro/rails-app-with-knapsack_pro/commit/9f068e900deb3554bd72633e8d61c1cc7f740306):
-
-```ruby
-before do
-  Rake::Task[MY_TASK_NAME].clear if Rake::Task.task_defined?(MY_TASK_NAME)
-  Rake.application.rake_require(MY_TASK_FILENAME)
-  Rake::Task.define_task(:environment)
-end
-```
 
 ## Knapsack Pro does not work on a forked repository
 
@@ -197,6 +181,49 @@ Here are the most common reasons:
 - CI nodes share resources (CPU/RAM/IO)
 - Tests are accessing the same resource (e.g., Stripe sandbox, database)
 - Your CI gives you a limited pool of parallel CI nodes (and runs the rest serially)
+
+## FactoryBot/FactoryGirl raises in Queue Mode
+
+- Use the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack-pro-binary):
+  ```bash
+  bundle exec knapsack_pro queue:rspec
+  ```
+- Avoid implicit associations:
+  ```ruby
+  # ⛔️ Bad
+  FactoryBot.define do
+    factory :assignment do
+      task
+    end
+  end
+
+  # ✅ Good
+  FactoryBot.define do
+    factory :assignment do
+      association :task
+    end
+  end
+  ```
+
+## One CI node run the test suite again in Queue Mode
+
+Most likely, that CI node started when all the others finished running and initialized a new queue.
+
+You have a couple of options:
+- Make sure [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](/ruby/reference/#knapsack_pro_ci_node_build_id) is set (recommended)
+- Set [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode)
+
+## Rake tasks under tests are run more than once in Queue Mode
+
+Make sure the Rake task is [loaded once](https://github.com/KnapsackPro/rails-app-with-knapsack_pro/commit/9f068e900deb3554bd72633e8d61c1cc7f740306):
+
+```ruby
+before do
+  Rake::Task[MY_TASK_NAME].clear if Rake::Task.task_defined?(MY_TASK_NAME)
+  Rake.application.rake_require(MY_TASK_FILENAME)
+  Rake::Task.define_task(:environment)
+end
+```
 
 ## Related FAQs
 
