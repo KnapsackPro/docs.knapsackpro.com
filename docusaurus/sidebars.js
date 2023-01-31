@@ -96,6 +96,11 @@ const sidebars = {
           },
           {
             type: 'doc',
+            label: 'RSpec',
+            id: 'ruby/rspec',
+          },
+          {
+            type: 'doc',
             label: 'simplecov',
             id: 'ruby/simplecov',
           },
