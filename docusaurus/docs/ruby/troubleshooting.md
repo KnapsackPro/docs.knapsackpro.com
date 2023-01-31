@@ -51,6 +51,8 @@ KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 bundle exec rake "knapsack_pro:queue:rspec[--seed MY_SEED]"
 ```
 
+`KNAPSACK_PRO_CI_NODE_BUILD_ID` must be the same as the CI build you are trying to reproduce (if it helps, take a look at what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)).
+
 You can also run the same subset of tests without Knapsack Pro: in the logs, find the command that Knapsack Pro used to invoke the test runner.
 
 You will find multiple commands to reproduce each batch:
