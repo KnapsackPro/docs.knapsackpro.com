@@ -177,7 +177,7 @@ const sidebars = {
       {
         type: 'doc',
         label: 'Reference',
-        id: 'javascript_typescript/reference',
+        id: 'javascript-typescript/reference',
       },
       {
         type: 'link',
