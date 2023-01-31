@@ -39,7 +39,19 @@ rspec  --default-path spec "spec/models/user_spec.rb" "spec/models/comment_spec.
 
 ### Queue Mode
 
-In Queue Mode, Knapsack Pro logs the exact commands you can copy/paste to reproduce the tests run.
+To reproduce what Knapsack Pro executed on a specific CI node, check out the same branch and run:
+
+```bash
+KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_TOKEN \
+KNAPSACK_PRO_CI_NODE_INDEX=MY_INDEX \
+KNAPSACK_PRO_CI_NODE_TOTAL=MY_TOTAL \
+KNAPSACK_PRO_BRANCH=MY_BRANCH \
+KNAPSACK_PRO_COMMIT_HASH=MY_COMMIT \
+KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
+bundle exec rake "knapsack_pro:queue:rspec[--seed MY_SEED]"
+```
+
+You can also run the same subset of tests without Knapsack Pro: in the logs, find the command that Knapsack Pro used to invoke the test runner.
 
 You will find multiple commands to reproduce each batch:
 
