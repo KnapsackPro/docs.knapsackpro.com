@@ -124,7 +124,7 @@ Parallelize test examples (instead of files) across CI nodes.
 KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
 ```
 
-Make sure to read the details in the [RSpec guide](/ruby/rspec/#parallelize-test-examples-instead-of-files).
+Make sure to read the details in [Split by test examples](/ruby/split-by-test-examples).
 
 ### Related FAQs
 
