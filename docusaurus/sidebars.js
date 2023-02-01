@@ -150,8 +150,18 @@ const sidebars = {
       },
       {
         type: 'doc',
+        label: 'Reference',
+        id: 'cypress/reference',
+      },
+      {
+        type: 'doc',
         label: 'Troubleshooting',
         id: 'cypress/troubleshooting',
+      },
+      {
+        type: 'doc',
+        label: 'Cookbook',
+        id: 'cypress/cookbook',
       },
       {
         type: 'link',
@@ -182,8 +192,18 @@ const sidebars = {
       },
       {
         type: 'doc',
+        label: 'Reference',
+        id: 'jest/reference',
+      },
+      {
+        type: 'doc',
         label: 'Troubleshooting',
         id: 'jest/troubleshooting',
+      },
+      {
+        type: 'doc',
+        label: 'Cookbook',
+        id: 'jest/cookbook',
       },
       {
         type: 'link',

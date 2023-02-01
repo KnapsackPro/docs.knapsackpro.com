@@ -183,6 +183,13 @@ Here are the most common reasons:
 - Tests are accessing the same resource (e.g., Stripe sandbox, database)
 - Your CI gives you a limited pool of parallel CI nodes (and runs the rest serially)
 
+## Some tests were skipped in Regular Mode
+
+There is an unlikely scenario where some CI nodes may start in Fallback Mode but others in Regular Mode resulting in some tests being skipped. Our recommendations are either
+- Switch to [Queue Mode](/overview/#queue-mode-dynamic-split) and enjoy faster CI builds too
+- Disable Fallback mode with [`KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`](/ruby/reference/#knapsack_pro_fallback_mode_enabled)
+- Increase the request attempts with [`KNAPSACK_PRO_MAX_REQUEST_RETRIES`](/ruby/reference/#knapsack_pro_max_request_retries)
+
 ## FactoryBot/FactoryGirl raises in Queue Mode
 
 - Use the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack-pro-binary):
@@ -226,6 +233,12 @@ before do
 end
 ```
 
+## Tests distribution is unbalanced in Queue Mode
+
+Please consider:
+- [Splitting by test examples](/ruby/split-by-test-examples) if you have a bottleneck file that is packed with test examples
+- If it's a retry, remember that [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode) uses a cached split
+
 ## Related FAQs
 
 - [Why `knapsack_pro` hangs / freezes / is stale i.e. for Codeship in Queue Mode?](https://knapsackpro.com/faq/question/why-knapsack_pro-hangs--freezes--is-stale-ie-for-codeship-in-queue-mode)
@@ -243,3 +256,4 @@ end
 - [How to run tests for particular CI node in your development environment](https://knapsackpro.com/faq/question/how-to-run-tests-for-particular-ci-node-in-your-development-environment)
 - [Why my tests are executed twice in Queue Mode? Why CI node runs whole test suite again?](https://knapsackpro.com/faq/question/why-my-tests-are-executed-twice-in-queue-mode-why-ci-node-runs-whole-test-suite-again)
 - [If one of the parallel CI nodes starts work very late after other parallel CI nodes already finished work then tests are executed twice on late CI node in Knapsack Pro Queue Mode](https://knapsackpro.com/faq/question/if-one-of-the-parallel-ci-nodes-starts-work-very-late-after-other-parallel-ci-nodes-already-finished-work-then-tests-are-executed-twice-on-late-ci-node-in-knapsack-pro-queue-mode)
+- [Why is my distribution of tests unbalanced in the Queue Mode?](https://knapsackpro.com/faq/question/why-is-my-distribution-of-tests-unbalanced-in-the-queue-mode)

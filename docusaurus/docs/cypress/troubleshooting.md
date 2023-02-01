@@ -5,6 +5,27 @@ pagination_prev: null
 
 # Troubleshooting
 
+## Error with `--project`
+
+Please use [`KNAPSACK_PRO_TEST_FILE_PATTERN`](/cypress/reference/#knapsack_pro_test_file_pattern) instead of `--project`.
+
+If you really need to use `--project`, you can do so with an NPM script:
+
+```json
+{
+  ...
+  "scripts": {
+    "knapsack-pro-cypress-subdirectory": "cd subdirectory && knapsack-pro-cypress"
+  }
+}
+```
+
+and invoke it with:
+
+```bash
+npm run knapsack-pro-cypress-for-subdirectory
+```
+
 ## Debug Knapsack Pro on your development environment/machine
 
 To reproduce what Knapsack Pro executed on a specific CI node, check out the same branch and run:
@@ -23,6 +44,12 @@ $(npm bin)/knapsack-pro-cypress
 
 `KNAPSACK_PRO_CI_NODE_BUILD_ID` must be the same as the CI build you are trying to reproduce (if it helps, take a look at what Knapsack Pro uses as `ciNodeBuildId` for your [CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers)).
 
+## No tests are executed
+
+Make sure [`KNAPSACK_PRO_TEST_FILE_PATTERN`](/cypress/reference/#knapsack_pro_test_file_pattern) is correct.
+
 ## Related FAQs
 
 - [How to run Cypress tests locally with Knapsack Pro?](https://knapsackpro.com/faq/question/how-to-run-cypress-tests-locally-with-knapsack-pro)
+- [How to run tests only from a specific directory in Cypress? Define your test files pattern with `KNAPSACK_PRO_TEST_FILE_PATTERN`](https://knapsackpro.com/faq/question/how-to-run-tests-only-from-specific-directory-in-cypress)
+- [I'm getting an error when I run Cypress with the `--project` option](https://knapsackpro.com/faq/question/i-m-getting-an-error-when-i-run-cypress-with-the-project-option)

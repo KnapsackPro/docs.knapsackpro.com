@@ -90,7 +90,7 @@ However, as explained in the [Queue Mode](#queue-mode-dynamic-split) section, th
 
 ### Fallback Mode
 
-In case of network issues, Knapsack Pro automatically switches to Fallback Mode and runs your tests with a split based on test file names.
+In case of network issues, Knapsack Pro logs a warning and automatically switches to Fallback Mode to run your tests with a split based on test file names.
 
 ## Customer Support
 

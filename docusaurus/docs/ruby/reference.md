@@ -8,7 +8,7 @@ toc_max_heading_level: 2
 
 ## Command-line arguments
 
-You can pass command-line arguments to Knapsack Pro using the Rake argument syntax:
+You can pass command-line arguments using the Rake argument syntax:
 
 ```bash
 bundle exec rake "knapsack_pro:rspec[--tag focus --profile]"
@@ -47,6 +47,20 @@ Hash of the commit under test.
 You don't need to set it if either:
 - Your CI is one of the [supported CIs](/knapsack_pro-ruby/guide/)
 - You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
+
+## `KNAPSACK_PRO_FALLBACK_MODE_ENABLED`
+
+Enable/disable [Fallback Mode](/overview/#fallback-mode).
+
+Default: `true`
+
+Available:
+- `false`: Knapsack Pro will fail the build after `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
+- `true`: Knapsack Pro will switch to Fallback Mode after `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
+
+### Related FAQs
+
+- [What happens when Knapsack Pro API is not available/not reachable temporarily?](https://knapsackpro.com/faq/question/what-happens-when-knapsack-pro-api-is-not-availablenot-reachable-temporarily)
 
 ## `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` (Queue Mode)
 
@@ -89,6 +103,17 @@ Recommended: `debug` when debugging issues, `info` to know what Knapsack Pro is 
 ### Related FAQs
 
 - [How can I change log level?](https://knapsackpro.com/faq/question/how-can-i-change-log-level)
+
+## `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
+
+Max amount of request attempts to try before switching to [Fallback Mode](/overview/#fallback-mode). Retries respect a linear back-off.
+
+Default:
+- `6` when `KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`
+- `6` in Regular Mode
+- `3` otherwise
+
+Available: number (of seconds)
 
 ## `KNAPSACK_PRO_PROJECT_DIR`
 

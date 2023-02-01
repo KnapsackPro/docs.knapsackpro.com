@@ -14,11 +14,23 @@ Jekyll::Hooks.register :site, :post_write do |page|
   system!("mkdir -p _site/cypress/guide")
   system!("cp docusaurus/build/cypress/guide/index.html _site/cypress/guide")
 
+  system!("mkdir -p _site/cypress/reference")
+  system!("cp docusaurus/build/cypress/reference/index.html _site/cypress/reference")
+
+  system!("mkdir -p _site/cypress/cookbook")
+  system!("cp docusaurus/build/cypress/cookbook/index.html _site/cypress/cookbook")
+
   system!("mkdir -p _site/cypress/troubleshooting")
   system!("cp docusaurus/build/cypress/troubleshooting/index.html _site/cypress/troubleshooting")
 
   system!("mkdir -p _site/jest/guide")
   system!("cp docusaurus/build/jest/guide/index.html _site/jest/guide")
+
+  system!("mkdir -p _site/jest/reference")
+  system!("cp docusaurus/build/jest/reference/index.html _site/jest/reference")
+
+  system!("mkdir -p _site/jest/cookbook")
+  system!("cp docusaurus/build/jest/cookbook/index.html _site/jest/cookbook")
 
   system!("mkdir -p _site/jest/troubleshooting")
   system!("cp docusaurus/build/jest/troubleshooting/index.html _site/jest/troubleshooting")
