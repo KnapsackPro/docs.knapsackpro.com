@@ -70,7 +70,7 @@ Available: anything that [node-glob](https://github.com/isaacs/node-glob#glob-pr
 
 Hint: you can debug in `node`
 
-```node
+```js
 var glob = require("glob")
 var MY_GLOB="cypress/e2e/**/*.{js,jsx,coffee,cjsx}"
 glob(MY_GLOB, {}, function (err, files) { console.log(files) })

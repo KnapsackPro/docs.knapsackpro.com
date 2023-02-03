@@ -46,7 +46,7 @@ Available: anything that [node-glob](https://github.com/isaacs/node-glob#glob-pr
 
 Hint: you can debug in `node`
 
-```node
+```js
 var glob = require("glob")
 var MY_GLOB="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}"
 glob(MY_GLOB, {}, function (err, files) { console.log(files) })
