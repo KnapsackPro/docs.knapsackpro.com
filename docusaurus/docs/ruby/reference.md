@@ -113,7 +113,7 @@ Default:
 - `6` in Regular Mode
 - `3` otherwise
 
-Available: number (of seconds)
+Available: number
 
 ## `KNAPSACK_PRO_PROJECT_DIR`
 
