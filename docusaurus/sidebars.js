@@ -228,16 +228,6 @@ const sidebars = {
     collapsed: true,
     items: [
       {
-        type: 'doc',
-        label: 'Reference',
-        id: 'javascript-typescript/reference',
-      },
-      {
-        type: 'doc',
-        label: 'Troubleshooting',
-        id: 'javascript-typescript/troubleshooting',
-      },
-      {
         type: 'link',
         label: 'Guide',
         href: 'https://docs.knapsackpro.com/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework',

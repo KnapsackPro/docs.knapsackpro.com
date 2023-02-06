@@ -24,7 +24,7 @@ You can pass all the [supported Jest CLI options](https://jestjs.io/docs/en/cli#
 $(npm bin)/knapsack-pro-jest --debug
 ```
 
-You can also pass options to Node with environment variables (e.g., [`--max_old_space_size`](/javascript-typescript/troubleshooting/#javascript-heap-out-of-memory)).
+You can also pass options to Node with environment variables (e.g., [`--max_old_space_size`](/jest/troubleshooting/#javascript-heap-out-of-memory)).
 
 ## `KNAPSACK_PRO_LOG_LEVEL`
 

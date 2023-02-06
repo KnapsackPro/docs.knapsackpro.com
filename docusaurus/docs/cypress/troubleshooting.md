@@ -26,6 +26,18 @@ and invoke it with:
 npm run knapsack-pro-cypress-for-subdirectory
 ```
 
+## JavaScript heap out of memory
+
+You can increase the memory available to Node with [`--max_old_space_size`](https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes):
+
+```bash
+export NODE_OPTIONS=--max_old_space_size=4096
+
+$(npm bin)/knapsack-pro-jest
+
+$(npm bin)/knapsack-pro-cypress
+```
+
 ## Debug Knapsack Pro on your development environment/machine
 
 To reproduce what Knapsack Pro executed on a specific CI node, check out the same branch and run:
@@ -53,3 +65,4 @@ Make sure [`KNAPSACK_PRO_TEST_FILE_PATTERN`](/cypress/reference/#knapsack_pro_te
 - [How to run Cypress tests locally with Knapsack Pro?](https://knapsackpro.com/faq/question/how-to-run-cypress-tests-locally-with-knapsack-pro)
 - [How to run tests only from a specific directory in Cypress? Define your test files pattern with `KNAPSACK_PRO_TEST_FILE_PATTERN`](https://knapsackpro.com/faq/question/how-to-run-tests-only-from-specific-directory-in-cypress)
 - [I'm getting an error when I run Cypress with the `--project` option](https://knapsackpro.com/faq/question/i-m-getting-an-error-when-i-run-cypress-with-the-project-option)
+- [JavaScript heap out of memory - how to increase the max memory for Node with `max_old_space_size`](https://knapsackpro.com/faq/question/javascript-heap-out-of-memory-how-to-increase-the-max-memory-for-node-with-max_old_space_size)

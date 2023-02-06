@@ -15,7 +15,19 @@ $(npm bin)/knapsack-pro-jest --detectOpenHandles
 $(npm bin)/knapsack-pro-jest --forceExit
 ```
 
-Also, make sure `node` has enough [heap memory](/javascript-typescript/troubleshooting/#javascript-heap-out-of-memory) on your CI.
+Also, make sure `node` has enough [heap memory](#javascript-heap-out-of-memory) on your CI.
+
+## JavaScript heap out of memory
+
+You can increase the memory available to Node with [`--max_old_space_size`](https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes):
+
+```bash
+export NODE_OPTIONS=--max_old_space_size=4096
+
+$(npm bin)/knapsack-pro-jest
+
+$(npm bin)/knapsack-pro-cypress
+```
 
 ## Debug Knapsack Pro on your development environment/machine
 
@@ -44,3 +56,4 @@ Make sure [`KNAPSACK_PRO_TEST_FILE_PATTERN`](/jest/reference/#knapsack_pro_test_
 - [How to run Jest tests locally with Knapsack Pro?](https://knapsackpro.com/faq/question/how-to-run-jest-tests-locally-with-knapsack-pro)
 - [How to run tests only from a specific directory in Jest? Define your test files pattern with `KNAPSACK_PRO_TEST_FILE_PATTERN`](https://knapsackpro.com/faq/question/how-to-run-tests-only-from-specific-directory-in-jest)
 - [Why Jest freezes after tests run? (Jest hangs indefinitely)](https://knapsackpro.com/faq/question/why-jest-freezes-after-tests-run-jest-hangs-indefinitely)
+- [JavaScript heap out of memory - how to increase the max memory for Node with `max_old_space_size`](https://knapsackpro.com/faq/question/javascript-heap-out-of-memory-how-to-increase-the-max-memory-for-node-with-max_old_space_size)
