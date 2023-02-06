@@ -106,7 +106,7 @@ const config = {
           {
             type: 'html',
             position: 'left',
-            className: 'pl-0',
+            className: 'inline overflow-hidden white-space-nowrap',
             value: `<a href="https://knapsackpro.com/" class="navbar__link site-title" rel="nofollow noopener" target="_blank">Knapsack Pro</a>&nbsp;<a href="/" class="navbar__link site-title"><strong>Docs</strong></a>`,
           },
           {

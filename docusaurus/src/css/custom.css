@@ -40,8 +40,16 @@
   text-decoration: underline;
 }
 
-.pl-0 {
-  padding-left: 0;
+.inline {
+  display: inline-block;
+}
+
+.white-space-nowrap {
+  white-space: nowrap;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .site-title {
