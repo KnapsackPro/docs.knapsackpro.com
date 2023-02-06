@@ -7,10 +7,10 @@ pagination_prev: null
 import { TestRunnerCheckbox } from './TestRunnerCheckbox'
 import { CiRadio } from './CiRadio'
 
-# Installation guide for ruby gem knapsack_pro
+# Installation guide for ruby gem `knapsack_pro`
 
-You can find more detailed information and configuration options in the [README for the knapsack_pro gem](https://github.com/KnapsackPro/knapsack_pro-ruby).<br />
-[Create an account at Knapsack Pro to use the knapsack_pro gem](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide)
+You can find more detailed information and configuration options in the [README for the `knapsack_pro` gem](https://github.com/KnapsackPro/knapsack_pro-ruby).<br />
+[Create an account at Knapsack Pro to use the `knapsack_pro` gem](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide)
 
 ## Installation
 
@@ -35,6 +35,8 @@ If you are not using Rails, then add this line at the bottom of your `Rakefile`:
 # Only needed if you are not using Rails.
 KnapsackPro.load_tasks if defined?(KnapsackPro)
 ```
+
+Here's a [Rails application](https://github.com/KnapsackPro/rails-app-with-knapsack_pro) with `knapsack_pro` already configured.
 
 ## Questions
 
@@ -79,6 +81,9 @@ Please answer the following questions to get the basic `knapsack_pro` configurat
 
 ```ruby
 require 'knapsack_pro'
+
+# Custom KnapsackPro config here
+
 KnapsackPro::Adapters::RSpecAdapter.bind
 ```
 </div>
@@ -95,6 +100,9 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 require 'knapsack_pro'
+
+# Custom KnapsackPro config here
+
 knapsack_pro_adapter = KnapsackPro::Adapters::MinitestAdapter.bind
 knapsack_pro_adapter.set_test_helper_path(__FILE__)
 ```
@@ -108,6 +116,9 @@ knapsack_pro_adapter.set_test_helper_path(__FILE__)
 
 ```ruby
 require 'knapsack_pro'
+
+# Custom KnapsackPro config here
+
 knapsack_pro_adapter = KnapsackPro::Adapters::TestUnitAdapter.bind
 knapsack_pro_adapter.set_test_helper_path(__FILE__)
 ```
@@ -121,6 +132,9 @@ knapsack_pro_adapter.set_test_helper_path(__FILE__)
 
 ```ruby
 require 'knapsack_pro'
+
+# Custom KnapsackPro config here
+
 KnapsackPro::Adapters::CucumberAdapter.bind
 ```
 </div>
@@ -133,6 +147,9 @@ KnapsackPro::Adapters::CucumberAdapter.bind
 
 ```ruby
 require 'knapsack_pro'
+
+# Custom KnapsackPro config here
+
 KnapsackPro::Adapters::SpinachAdapter.bind
 ```
 </div>
@@ -141,7 +158,7 @@ KnapsackPro::Adapters::SpinachAdapter.bind
 
   ### Step for VCR/WebMock/FakeWeb gems
 
-  Add Knapsack Pro API subdomain to ignored hosts in `spec/spec_helper.rb` (or wherever your VCR configuration is located):
+  Add Knapsack Pro API subdomain to [ignored hosts](https://relishapp.com/vcr/vcr/v/6-1-0/docs/configuration/ignore-request) in `spec/spec_helper.rb` (or wherever your VCR configuration is located):
 
 ```ruby
 require 'vcr'
