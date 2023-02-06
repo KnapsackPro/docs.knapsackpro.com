@@ -5,6 +5,25 @@ pagination_prev: null
 
 # Cookbook
 
+## Set a custom logger
+
+:::info
+Consider [`KNAPSACK_PRO_LOG_LEVEL`](/ruby/reference/#knapsack_pro_log_level) and [`KNAPSACK_PRO_LOG_DIR`](/ruby/reference/#knapsack_pro_log_dir) instead.
+:::
+
+In your `rails_helper.rb`, you can set a custom Knapsack Pro logger:
+
+```ruby
+# This line should be already in your rails_helper.rb
+require File.expand_path('../../config/environment', __FILE__)
+
+require 'logger'
+KnapsackPro.logger = Logger.new(Rails.root.join('log', "knapsack_pro_node_#{KnapsackPro::Config::Env.ci_node_index}.log"))
+KnapsackPro.logger.level = Logger::DEBUG
+```
+
+The very first request to the Knapsack Pro API will still be sent to stdout because Knapsack Pro needs the subset of test files to execute before loading `rails_helper.rb`.
+
 ## Run Knapsack Pro on a subset of parallel CI nodes (instead of all)
 
 You may want to run Knapsack Pro only on a subset of parallel CI nodes, and use the others nodes for something else (e.g., linters).
@@ -99,3 +118,4 @@ bundle exec rake knapsack_pro:queue:cucumber
 - [How to run `knapsack_pro` only on a few parallel CI nodes instead of all?](https://knapsackpro.com/faq/question/how-to-run-knapsack_pro-only-on-a-few-parallel-ci-nodes-instead-of-all)
 - [How to fail the CI build if one of the test files duration exceeds a certain limit?](https://knapsackpro.com/faq/question/how-to-fail-the-ci-build-if-one-of-the-test-files-duration-exceeds-a-certain-limit)
 - [How to run multiple test suite commands in Heroku CI?](https://knapsackpro.com/faq/question/how-to-run-multiple-test-suite-commands-in-heroku-ci)
+- [How to write `knapsack_pro` logs to a file?](https://knapsackpro.com/faq/question/how-to-write-knapsack_pro-logs-to-a-file)
