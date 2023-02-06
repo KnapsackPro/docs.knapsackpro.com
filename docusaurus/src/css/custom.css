@@ -40,7 +40,7 @@
   text-decoration: underline;
 }
 
-.inline {
+.navbar__item.inline {
   display: inline-block;
 }
 
