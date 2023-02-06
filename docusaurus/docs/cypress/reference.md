@@ -6,6 +6,12 @@ toc_max_heading_level: 2
 
 # Reference
 
+You can configure things in two ways:
+- Command-line arguments for the test runner
+- Environment variables for Knapsack Pro or Node
+
+Unless specified otherwise, everything on this page is environment variables.
+
 ## Command-line arguments
 
 You can pass all the [supported Cypress CLI options](https://docs.cypress.io/guides/guides/module-api#Options) as command-line arguments:
