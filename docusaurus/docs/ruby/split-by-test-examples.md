@@ -9,7 +9,7 @@ pagination_prev: null
 Only RSpec is supported. [Let us know](https://knapsackpro.com/contact) if you use a different test runner.
 :::
 
-You can set [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](/ruby/reference/#knapsack_pro_rspec_split_by_test_examples-rspec) to parallelize tests at the `it`/`specify` level across CI nodes.
+You can set [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](/ruby/reference/#knapsack_pro_rspec_split_by_test_examples-rspec) to parallelize tests at the `it`/`specify` level across CI nodes. This is useful when you have slow test files but don't want to manually split test examples into smaller test files.
 
 As an example, imagine you have two test files in your suite:
 
