@@ -4,8 +4,8 @@ pagination_next: null
 pagination_prev: null
 ---
 
-import { TestRunnerCheckbox } from './TestRunnerCheckbox'
-import { CiRadio } from './CiRadio'
+import { TestRunnerCheckbox } from '@site/src/components/TestRunnerCheckbox'
+import { CiRadio } from '@site/src/components/CiRadio'
 
 # Installation guide for ruby gem `knapsack_pro`
 

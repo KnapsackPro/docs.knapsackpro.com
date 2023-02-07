@@ -3,7 +3,7 @@ pagination_prev: index
 pagination_next: null
 ---
 
-import { Carousel } from "./Carousel"
+import { Carousel } from "@site/src/components/Carousel"
 import Architecture from "@site/static/img/architecture.svg";
 import dashboardCiNodesGraph from "@site/static/img/dashboard-ci-nodes-graph.png"
 import dashboardCiNodesTable from "@site/static/img/dashboard-ci-nodes-table.png"
