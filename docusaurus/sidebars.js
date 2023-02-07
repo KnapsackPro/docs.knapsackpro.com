@@ -63,6 +63,11 @@ const sidebars = {
           },
           {
             type: 'doc',
+            label: 'Encryption',
+            id: 'ruby/encryption',
+          },
+          {
+            type: 'doc',
             label: 'Split by test examples',
             id: 'ruby/split-by-test-examples',
           },

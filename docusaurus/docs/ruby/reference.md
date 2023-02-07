@@ -38,6 +38,14 @@ You don't need to set it if either:
 - Your CI is one of the [supported CIs](/knapsack_pro-ruby/guide/)
 - You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
 
+## `KNAPSACK_PRO_BRANCH_ENCRYPTED`
+
+Enable [Branch Name Encryption](/ruby/encryption/).
+
+Default: `false`
+
+Available: `false` | `true`
+
 ## `KNAPSACK_PRO_CI_NODE_BUILD_ID`
 
 Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
@@ -160,6 +168,10 @@ Make sure to read the details in [Split by test examples](/ruby/split-by-test-ex
 ### Related FAQs
 
 - [How to split slow RSpec test files by test examples (by individual it)?](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it#warning-dont-use-deprecated-rspec-run_all_when_everything_filtered-option)
+
+## `KNAPSACK_PRO_SALT`
+
+Salt to use to [Encrypt Test File Names or Branch Names](/ruby/encryption/).
 
 ## `KNAPSACK_PRO_TEST_DIR` (Cucumber)
 
@@ -294,3 +306,11 @@ KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec
 - [How can I run tests from multiple directories?](https://knapsackpro.com/faq/question/how-can-i-run-tests-from-multiple-directories)
 - [How to exclude tests?](https://knapsackpro.com/faq/question/how-to-exclude-tests-from-running-them)
 - [Dir.glob pattern examples for `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`](https://knapsackpro.com/faq/question/dir-glob-pattern-examples-for-knapsack_pro_test_file_pattern-and-knapsack_pro_test_file_exclude_pattern)
+
+## `KNAPSACK_PRO_TEST_FILES_ENCRYPTED`
+
+Enable [Test File Names Encryption](/ruby/encryption/).
+
+Default: `false`
+
+Available: `false` | `true`

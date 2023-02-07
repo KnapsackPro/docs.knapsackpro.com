@@ -48,6 +48,7 @@ Jekyll::Hooks.register :site, :post_write do |page|
     "code-climate",
     "cookbook",
     "cucumber",
+    "encryption",
     "heroku",
     "hooks",
     "parallel_tests",
