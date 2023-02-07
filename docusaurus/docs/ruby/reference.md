@@ -54,6 +54,22 @@ Default: Knapsack Pro will take it from the CI environment (see [supported CIs](
 
 If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand - base64 32)` and make it available to all parallel nodes.
 
+## `KNAPSACK_PRO_CI_NODE_TOTAL`
+
+Total number of parallel CI nodes.
+
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
+
+If your CI is not supported, you need to set it manually.
+
+## `KNAPSACK_PRO_CI_NODE_INDEX`
+
+Index of current CI node (first should be 0, second should be 1, etc.).
+
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
+
+If your CI is not supported, you need to set it manually.
+
 ## `KNAPSACK_PRO_COMMIT_HASH`
 
 Hash of the commit under test.
@@ -61,6 +77,10 @@ Hash of the commit under test.
 You don't need to set it if either:
 - Your CI is one of the [supported CIs](/knapsack_pro-ruby/guide/)
 - You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
+
+## `KNAPSACK_PRO_ENDPOINT` (Internal)
+
+Default: `https://api.knapsackpro.com`
 
 ## `KNAPSACK_PRO_FALLBACK_MODE_ENABLED`
 
@@ -81,6 +101,21 @@ Available:
 Dynamic or fixed tests split when retrying a CI build.
 
 Default: `false`
+
+Available:
+- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
+- `true`: if the quadruplet `(ci build id, branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split (when `ci build id` is missing, only the other three are checked)
+
+Recommended:
+- `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
+- `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries
+- `false` otherwise
+
+## `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT` (Regular Mode)
+
+Dynamic or fixed tests split when retrying a CI build.
+
+Default: `true`
 
 Available:
 - `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
@@ -128,6 +163,15 @@ Default:
 - `3` otherwise
 
 Available: number
+
+## `KNAPSACK_PRO_MODE` (Internal)
+
+Default: `production`
+
+Available:
+- `production` sets `KNAPSACK_PRO_ENDPOINT` to `https://api.knapsackpro.com`
+- `development` sets `KNAPSACK_PRO_ENDPOINT` to `http://api.knapsackpro.test:3000`
+- `test` sets `KNAPSACK_PRO_ENDPOINT` to `https://api-staging.knapsackpro.com`
 
 ## `KNAPSACK_PRO_PROJECT_DIR`
 
