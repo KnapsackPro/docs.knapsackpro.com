@@ -87,7 +87,7 @@ This applies also if you are running parallel test processes on each CI node (se
 
 If you cannot find what you are looking for in this section, please refer to the Ruby [troubleshooting page](/ruby/troubleshooting).
 
-### Some of my test files not executed
+### Some of my test files are not executed
 
 First, check if the RSpec output mentions any filtering like the following:
 

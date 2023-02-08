@@ -234,6 +234,26 @@ KNAPSACK_PRO_TEST_DIR="features/support/cucumber_config.rb"
 
 - [How to require different Cucumber config files in isolation?](https://knapsackpro.com/faq/question/how-to-require-different-cucumber-config-files-in-isolation)
 
+## `KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN` (Internal)
+
+Split by test examples only files matching the pattern (instead of letting Knapsack Pro decide for you).
+
+Requires `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`, and must be subset of `KNAPSACK_PRO_TEST_FILE_PATTERN`.
+
+This is supposed to be used by gem developers for debugging Knapsack Pro. But if you decide to use it, **provide a short list of slow test files**. If the matched files are too many, the test suite may slow down or fail: the Knapsack Pro API could time out, or CI could run out of memory.
+
+Default: `nil`
+
+Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
+
+Example:
+```bash
+KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true \
+KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN="{spec/models/user_spec.rb,spec/controllers/**/*_spec.rb}"
+```
+
+Make sure to read the details in [Split by test examples](/ruby/split-by-test-examples).
+
 ## `KNAPSACK_PRO_TEST_DIR` (RSpec)
 
 Passed as-is to RSpec's [`--default-path`](https://relishapp.com/rspec/rspec-core/v/3-0/docs/configuration/setting-the-default-spec-path).
