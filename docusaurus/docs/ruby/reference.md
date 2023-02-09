@@ -54,6 +54,20 @@ Default: Knapsack Pro will take it from the CI environment (see [supported CIs](
 
 If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand - base64 32)` and make it available to all parallel nodes.
 
+## `KNAPSACK_PRO_CI_NODE_RETRY_COUNT`
+
+Retry count of the current CI node in case of a single node/job retry.
+
+On Buildkite, Knapsack Pro reads `BUILDKITE_RETRY_COUNT` from the environment, so you don't have to worry about this.
+
+If you use `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true` or `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT=true`, you need to set `KNAPSACK_PRO_CI_NODE_RETRY_COUNT=1` when retrying a single node to disable Fallback Mode. Otherwise, the CI node would use a different split and run a different subset of tests. Alternatively, disable Fallback Mode completely with `KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`.
+
+Default: `0` (or `BUILDKITE_RETRY_COUNT` on Buildkite)
+
+Available:
+- `0`: Fallback Mode follows `KNAPSACK_PRO_FALLBACK_MODE_ENABLED`
+- `> 0`: Fallback Mode is disabled and Knapsack Pro raises an error if the API cannot be reached after `KNAPSACK_PRO_MAX_REQUEST_RETRIES` tries
+
 ## `KNAPSACK_PRO_CI_NODE_TOTAL`
 
 Total number of parallel CI nodes.
@@ -172,6 +186,16 @@ Available:
 - `production` sets `KNAPSACK_PRO_ENDPOINT` to `https://api.knapsackpro.com`
 - `development` sets `KNAPSACK_PRO_ENDPOINT` to `http://api.knapsackpro.test:3000`
 - `test` sets `KNAPSACK_PRO_ENDPOINT` to `https://api-staging.knapsackpro.com`
+
+## `KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS` (RSpec)
+
+Enable/disable monkey patching of the [RSpec Formatters](https://www.relishapp.com/rspec/rspec-core/v/2-6/docs/command-line/format-option). You may want to set it to `false` if it interferes with your custom formatter.
+
+Default: `true`
+
+Available:
+- `true`: Show the summary of pending and failed tests only at the end of the test run.
+- `false`: Show the summary of pending and failed tests after each intermediate batch of tests. The summary is cumulative so you will the same tests mentioned multiple times, though they are executed only once.
 
 ## `KNAPSACK_PRO_PROJECT_DIR`
 
