@@ -21,8 +21,8 @@ If you consider test file names or branch names sensitive data, you can encrypt 
 - [Generate](https://knapsackpro.com/dashboard) a new API token (do not use the same token for encrypted and non-encrypted runs)
 - Create a salt with `bundle exec rake knapsack_pro:salt`
 - Pass the salt to Knapsack Pro with [`KNAPSACK_PRO_SALT`](/ruby/reference/#knapsack_pro_salt)
-- Enable test file names encryption with [`KNAPSACK_PRO_TEST_FILES_ENCRYPTED=true`](#a)
-- Enable branch name encryption with [`KNAPSACK_PRO_BRANCH_ENCRYPTED=true`](#a)
+- Enable test file names encryption with [`KNAPSACK_PRO_TEST_FILES_ENCRYPTED=true`](/ruby/reference/#knapsack_pro_test_files_encrypted)
+- Enable branch name encryption with [`KNAPSACK_PRO_BRANCH_ENCRYPTED=true`](/ruby/reference/#knapsack_pro_branch_encrypted)
 
 ## Caveats
 
