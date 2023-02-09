@@ -128,6 +128,24 @@ RSpec.configure do |c|
 end
 ```
 
+### Some tests are failing in Queue Mode
+
+Since Knapsack Pro [ignores `.rspec`](/ruby/rspec/#rspec-is-ignored-in-queue-mode) and many projects use it to require `spec_helper.rb` or `rails_helper.rb`, some tests may be falling. Make sure you either require the correct helper at the top of each test file or pass it as an argument:
+
+```bash
+bundle exec rake "knapsack_pro:queue:rspec[--require rails_helper]"
+```
+
+Also, please make sure you have explicitly set `RAILS_ENV=test` on your CI nodes.
+
+### `.rspec` is ignored in Queue Mode
+
+The `.rspec` file is ignored in Queue Mode because `knapsack_pro` needs to pass arguments explicitly to `RSpec::Core::Runner`. You can inline them with the [Rake argument syntax](/ruby/reference/#command-line-arguments) instead.
+
+### Something is wrong with my custom formatter
+
+Try with [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](/ruby/reference/#knapsack_pro_modify_default_rspec_formatters-rspec).
+
 ### I see the summary of failed/pending tests multiple times in Queue Mode
 
 It may happen if you use:
@@ -136,10 +154,6 @@ It may happen if you use:
 - [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_modify_default_rspec_formatters-hide-duplicated-summary-of-pending-and-failed-tests)
 
 This is due to the fact that Knapsack Pro in Queue Mode [runs tests in batches](/overview/#queue-mode-dynamic-split), and RSpec accumulates failures/pending tests for all batches.
-
-### `.rspec` is ignored in Queue Mode
-
-The `.rspec` file is ignored in Queue Mode because `knapsack_pro` needs to pass arguments explicitly to `RSpec::Core::Runner`. You can inline them with the [Rake argument syntax](/ruby/reference/#command-line-arguments) instead.
 
 ### `TypeError: superclass mismatch for class MyClass` in Queue Mode
 
