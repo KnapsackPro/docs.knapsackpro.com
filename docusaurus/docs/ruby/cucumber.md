@@ -5,6 +5,10 @@ pagination_prev: null
 
 # Use Knapsack Pro with Cucumber
 
+## Load tests faster with spring
+
+Take a look at [Use Knapsack Pro with `spring`](/ruby/spring/).
+
 ## Require different config files
 
 You may want to require different Cucumber configurations for different sets of tests (e.g., user dashboard tests vs admin dashboard tests). You can do so with [`KNAPSACK_PRO_TEST_DIR`](/ruby/reference/#knapsack_pro_test_dir-cucumber) and [`KNAPSACK_PRO_TEST_FILE_PATTERN`](/ruby/reference/#knapsack_pro_test_file_pattern):
