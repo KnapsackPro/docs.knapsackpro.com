@@ -5,6 +5,16 @@ pagination_prev: null
 
 # Cookbook
 
+## Use the Knapsack Pro binary
+
+You can install Knapsack Pro globally as a binary if you don't want it as a dependency in your Gemfile:
+
+```bash
+gem install knapsack_pro
+
+knapsack_pro queue:rspec "--tag MY_TAG --profile"
+```
+
 ## Set a custom logger
 
 :::info
