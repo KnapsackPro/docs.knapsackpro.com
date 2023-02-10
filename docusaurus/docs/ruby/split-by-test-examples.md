@@ -91,7 +91,7 @@ By enabling `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`, the bottleneck disappea
   </table>
 </div>
 
-To avoid memory overhead, Knapsack Pro only splits bottleneck files by test examples and parallelizes the rest of your test suite by file (see [`KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN`](/ruby/reference/#knapsack_pro_slow_test_file_pattern-internal)).
+RSpec consumes a lot of memory when running individual test examples, so Knapsack Pro only splits bottleneck files by test examples and parallelizes the rest of your test suite by file. In other words, files are split by test examples just enough to guarantee all the parallel CI nodes finish at a similar time to maximize performance.
 
 We recommend running at least 2 CI builds after you enable this feature or change the number of CI nodes to allow the Knapsack Pro API to learn about your test suite.
 
