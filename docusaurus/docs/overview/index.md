@@ -69,7 +69,7 @@ Each Knapsack Pro Client (parallel CI node):
 
 With Queue Mode, Knapsack Pro distributes tests so that each CI node finishes at the same time. Thanks to that, your CI build time is as fast as possible.
 
-Knapsack Pro allows distributing the tests in a static way too, but it’s not always a good solution:
+Knapsack Pro allows distributing the tests in a static way (Regular Mode) too, but it’s rarely a good solution:
 
 - Tests themselves, especially end to end, have varying execution times
 - Failing tests execute faster than green ones
