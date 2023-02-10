@@ -58,13 +58,18 @@ const sidebars = {
           },
           {
             type: 'doc',
+            label: 'Encryption',
+            id: 'ruby/encryption',
+          },
+          {
+            type: 'doc',
             label: 'Hooks',
             id: 'ruby/hooks',
           },
           {
             type: 'doc',
-            label: 'Encryption',
-            id: 'ruby/encryption',
+            label: 'Queue Mode',
+            id: 'ruby/queue-mode',
           },
           {
             type: 'doc',
