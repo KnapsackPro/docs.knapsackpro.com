@@ -41,9 +41,7 @@ Knapsack Pro allows distributing the tests in a static way (Regular Mode) too, b
 - Set `RAILS_ENV=test` (or `export RAILS_ENV=test`) on your CI nodes
 - Make sure [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](/ruby/reference/#knapsack_pro_ci_node_build_id) is set
 - Configure [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode) (read below for more details)
-- With [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode) make sure you either
-  - Take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](/ruby/reference/#knapsack_pro_ci_node_retry_count)
-  - Disable Fallback Mode with [`KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`](/ruby/reference/#knapsack_pro_fallback_mode_enabled)
+- With [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode), make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](/ruby/reference/#knapsack_pro_ci_node_retry_count)
 - Run Knapsack Pro in Queue Mode with:
   ```bash
   # RSpec >= 3.x
@@ -60,7 +58,7 @@ Note that Knapsack Pro returns single-file subsets when dealing with test files 
 
 ## Dynamic Split vs Fixed Split
 
-By default, Knapsack Pro generates a Dynamic Split from scratch for each CI build ([`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode)):
+By default, Knapsack Pro generates a Dynamic Split from scratch for each CI build ([`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode)). In other words, Knapsack Pro:
 
 - Creates a new queue filled with all the tests to run
 - Distributes the tests to each parallel CI node connected to the queue
@@ -68,13 +66,15 @@ By default, Knapsack Pro generates a Dynamic Split from scratch for each CI buil
 
 Parallel CI nodes connect to the same queue and run tests until it's consumed. If a CI node connects late and the queue is empty, it will receive an empty list of tests.
 
-The behavior described above guarantees the most performant split for each CI build, but it's problematic if your CI allows retrying single CI nodes/jobs. In this case, you want Knapsack Pro to return a Fixed Split ([`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode)): the retried node gets the same subset of tests that it run previously.
+The behavior described above guarantees the most performant split for each CI build, but it's problematic if your CI allows retrying single CI nodes/jobs. In this case, you want Knapsack Pro to return a Fixed Split ([`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode)): the retried node gets the same subset of tests that it run previously (not an empty list as described above).
 
-If you use spot/preemptible CI nodes like [Google Cloud Preemptible VMs](https://cloud.google.com/preemptible-vms/) or [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/), you also want a Fixed Split so that, when a preempted CI node restarts, it re-runs the previous subset of tests before connecting to the queue to continue with the remaining ones.
+Notice that the Dynamic Split works great when your CI allows *only* restarting all parallel CI nodes (instead of individual ones). In this case, each parallel CI node will receive a different subset of tests (because of the new queue), but the build would finish sooner.
 
-Altogether, when using Fixed Split, Knapsack Pro:
+If you use spot/preemptible CI nodes like [Google Cloud Preemptible VMs](https://cloud.google.com/preemptible-vms/) or [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/), you also want a Fixed Split: when a preempted CI node restarts because of a manual or automatic retry, it re-runs the previous subset of tests before connecting to the queue to continue with the remaining ones.
 
-1. `(commit hash, branch name, number of nodes)` was already split?
+Altogether, when using a Fixed Split, Knapsack Pro:
+
+1. Checks if `(commit hash, branch name, number of nodes)` was already split
     1. YES: Returns to the CI node the subset of tests it run previously
     1. YES: Loads the queue with the remaining tests to run
     1. NO: Creates a new queue filled with all the tests to run (Dynamic Split)

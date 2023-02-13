@@ -65,7 +65,7 @@ If you use `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true` or `KNAPSACK_PRO_FIXED_TEST_SUI
 Default: `0` (or `BUILDKITE_RETRY_COUNT` on Buildkite)
 
 Available:
-- `0`: Fallback Mode follows `KNAPSACK_PRO_FALLBACK_MODE_ENABLED`
+- `0`: Fallback Mode is enabled according to `KNAPSACK_PRO_FALLBACK_MODE_ENABLED`
 - `> 0`: Fallback Mode is disabled and Knapsack Pro raises an error if the API cannot be reached after `KNAPSACK_PRO_MAX_REQUEST_RETRIES` tries
 
 ## `KNAPSACK_PRO_CI_NODE_TOTAL`
