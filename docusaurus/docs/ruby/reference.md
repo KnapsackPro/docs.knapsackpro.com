@@ -344,7 +344,7 @@ KNAPSACK_PRO_TEST_FILE_LIST=spec/features/dashboard_spec.rb,spec/models/user.rb:
 
 ## `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`
 
-File containing the list of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
+File containing the list of **relative paths** of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
 
 Default: `nil`
 
@@ -352,12 +352,19 @@ Example:
 ```bash
 KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=spec/fixtures/list.txt
 
-# list.txt
+# ✅ list.txt
 ./spec/test1_spec.rb
 spec/test2_spec.rb[1]
 ./spec/test3_spec.rb[1:2:3:4]
 ./spec/test4_spec.rb:4
 ./spec/test4_spec.rb:5
+
+# ⛔️ list.txt
+/home/user123/project/spec/test1_spec.rb
+/home/user123/project/spec/test2_spec.rb[1]
+/home/user123/project/spec/test3_spec.rb[1:2:3:4]
+/home/user123/project/spec/test4_spec.rb:4
+/home/user123/project/spec/test4_spec.rb:5
 ```
 
 ### Related FAQs
