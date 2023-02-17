@@ -409,3 +409,27 @@ Enable [Test File Names Encryption](/ruby/encryption/).
 Default: `false`
 
 Available: `false` | `true`
+
+## `KNAPSACK_PRO_TEST_SUITE_TOKEN_*`
+
+`*` can be either `RSPEC`, `CUCUMBER`, `MINITEST`, `TEST_UNIT`, or `SPINACH`.
+
+API token required to run `knapsack_pro`.
+
+Each `knapsack_pro` command defined on CI should use an individual API token.
+
+Example:
+```bash
+KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
+  bundle exec rake knapsack_pro:rspec
+
+KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_OTHER_RSPEC_API_TOKEN \
+  bundle exec rake knapsack_pro:rspec[--tag tagA]
+
+KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
+  bundle exec rake knapsack_pro:cucumber
+```
+
+### Related FAQs
+- [How many API tokens/keys do I need?](https://knapsackpro.com/faq/question/how-many-api-keys-i-need)
+- [Do I need to use separate API token for Queue Mode and Regular Mode?](https://knapsackpro.com/faq/question/do-i-need-to-use-separate-api-token-for-queue-mode-and-regular-mode)

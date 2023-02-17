@@ -45,12 +45,14 @@ Jekyll::Hooks.register :site, :post_write do |page|
   system!("mkdir -p _site/ruby")
   [
     "capybara",
+    "circleci",
     "code-climate",
     "cookbook",
     "cucumber",
     "encryption",
     "heroku",
     "hooks",
+    "installation",
     "parallel_tests",
     "puffing-billy",
     "queue-mode",

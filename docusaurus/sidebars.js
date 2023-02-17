@@ -86,8 +86,23 @@ const sidebars = {
         items: [
           {
             type: 'doc',
+            label: 'Capybara',
+            id: 'ruby/capybara',
+          },
+          {
+            type: 'doc',
+            label: 'CircleCI',
+            id: 'ruby/circleci',
+          },
+          {
+            type: 'doc',
             label: 'CodeClimate',
             id: 'ruby/code-climate',
+          },
+          {
+            type: 'doc',
+            label: 'Cucumber',
+            id: 'ruby/cucumber',
           },
           {
             type: 'doc',
@@ -118,16 +133,6 @@ const sidebars = {
             type: 'doc',
             label: 'spring',
             id: 'ruby/spring',
-          },
-          {
-            type: 'doc',
-            label: 'Capybara',
-            id: 'ruby/capybara',
-          },
-          {
-            type: 'doc',
-            label: 'Cucumber',
-            id: 'ruby/cucumber',
           },
         ]
       },
