@@ -1,7 +1,8 @@
 import React from "react";
 import { useSearchParam } from "@site/src/hooks/useSearchParam";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
-export const CheckboxGroup = ({
+export const CheckboxGroup_ = ({
   inUrl,
   items,
 }: {
@@ -45,3 +46,11 @@ export const CheckboxGroup = ({
     </ul>
   );
 };
+
+export const CheckboxGroup = (props: {
+  inUrl: string;
+  items: {
+    value: string;
+    label: string;
+  }[];
+}) => <BrowserOnly>{() => <CheckboxGroup_ {...props} />}</BrowserOnly>;
