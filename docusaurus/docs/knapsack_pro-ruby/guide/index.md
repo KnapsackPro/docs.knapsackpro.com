@@ -7,10 +7,13 @@ pagination_prev: null
 import { CheckboxGroup } from '@site/src/components/CheckboxGroup'
 import { RadioGroup } from '@site/src/components/RadioGroup'
 import { ShowIfSearchParam, ShowIfSearchParamAndValue } from '@site/src/components/ShowIf'
+import { DelayHashNavigation } from '@site/src/components/DelayHashNavigation'
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Installation guide for the `knapsack_pro` ruby gem
+
+<DelayHashNavigation milliseconds={400} />
 
 [Create an account](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide) to generate API tokens and use the `knapsack_pro` gem.
 
