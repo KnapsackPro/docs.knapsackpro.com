@@ -1058,47 +1058,6 @@ blocks:
 
 Remember to set up `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as a [secret](https://docs.semaphoreci.com/article/66-environment-variables-and-secrets).
 
-#### Semaphore 1.0
-
-<Tabs>
-<TabItem value="thread-1" label="Thread 1">
-
-```bash
-KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-  bundle exec rake knapsack_pro:rspec
-KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-  bundle exec rake knapsack_pro:cucumber
-
-# ...Same for minitest, spinach, test_unit
-```
-
-</TabItem>
-<TabItem value="thread-2" label="Thread 2">
-
-```bash
-KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-  bundle exec rake knapsack_pro:rspec
-KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-  bundle exec rake knapsack_pro:cucumber
-
-# ...Same for minitest, spinach, test_unit
-```
-
-</TabItem>
-<TabItem value="thread-n" label="Thread N">
-
-```bash
-KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-  bundle exec rake knapsack_pro:rspec
-KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-  bundle exec rake knapsack_pro:cucumber
-
-# ...Same for minitest, spinach, test_unit
-```
-
-</TabItem>
-</Tabs>
-
 </ShowIfSearchParamAndValue>
 
 
