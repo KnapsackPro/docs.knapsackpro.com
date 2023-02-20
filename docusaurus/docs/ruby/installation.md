@@ -248,7 +248,7 @@ end
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_appveyor) for each `knapsack_pro` command.
 
 For each parallel job, define:
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_*)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index)
 
@@ -500,7 +500,7 @@ Here is an example of a [`.cirrus.yml` configuration file](https://cirrus-ci.org
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_codeship) for each `knapsack_pro` command.
 
 For each parallel job, define:
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_*)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index)
 
@@ -570,7 +570,7 @@ Consider moving the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` to the *Environment* page 
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_codefresh) for each `knapsack_pro` command.
 
 Define in `.codefresh/codefresh.yml`:
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_*)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index)
   - In the `matrix` section, list all the `KNAPSACK_PRO_CI_NODE_INDEX`es (from `0` to `KNAPSACK_PRO_CI_NODE_TOTAL-1`).
@@ -698,7 +698,7 @@ RUN bundle install
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_githubactions) for each `knapsack_pro` command.
 
 Define in `.github/workflows/main.yaml`:
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_*)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix):
 
@@ -828,7 +828,7 @@ See also [how to configure running parallel CI nodes in GitLab](https://docs.git
 #### GitLab CI < 11.5
 
 Define in `.gitlab-ci.yml`:
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_*)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index)
 
@@ -880,7 +880,7 @@ Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as [Secret Variables](h
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_herokuci) for each `knapsack_pro` command.
 
 Define in `app.json`:
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_*)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
 - `quantity`: number of parallel dynos
 - `test`: the Knapsack Pro command (or [multiple commands](/ruby/heroku/#run-multiple-test-suites))
 
@@ -993,7 +993,7 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 #### Semaphore 2.0
 
 Define in `.semaphore/semaphore.yml`:
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_*)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
 - `parallelism`
 
 Here's an example config for a Rails project:
@@ -1068,7 +1068,7 @@ Remember to set up `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as a [secret](https://docs.
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_travisci) for each `knapsack_pro` command.
 
 Define in `.travis.yml`:
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_*)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index) as [jobs](http://docs.travis-ci.com/user/speeding-up-the-build/#parallelizing-your-builds-across-virtual-machines)
 
@@ -1108,7 +1108,7 @@ You can find more info about the global and matrix env configuration in the [Tra
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_otherci) for each `knapsack_pro` command.
 
 Define the following global environment variables on your CI server:
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_*)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
 - [`KNAPSACK_PRO_REPOSITORY_ADAPTER=git`](/ruby/reference/#knapsack_pro_repository_adapter)
 - [`KNAPSACK_PRO_PROJECT_DIR`](/ruby/reference/#knapsack_pro_project_dir)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
