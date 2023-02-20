@@ -52,7 +52,6 @@ Jekyll::Hooks.register :site, :post_write do |page|
     "encryption",
     "heroku",
     "hooks",
-    "installation",
     "parallel_tests",
     "puffing-billy",
     "queue-mode",
