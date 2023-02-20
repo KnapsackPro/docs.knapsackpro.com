@@ -1186,7 +1186,7 @@ Push a new commit to your repository and visit your [dashboard](https://knapsack
 
 For an even faster CI build, switch to [Queue Mode](/ruby/queue-mode/) and [Split by test examples](/ruby/split-by-test-examples/).
 
-Make sure you check out the *Advanced* and *Use Knapsack Pro with..* pages from the navigation to fine-tune your Knapsack Pro setup.
+Make sure you check out the *Advanced* and *Use Knapsack Pro with...* pages from the navigation to fine-tune your Knapsack Pro setup.
 
 </ShowIfSearchParam>
 
