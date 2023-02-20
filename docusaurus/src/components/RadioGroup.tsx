@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSearchParam } from "@site/src/hooks/useSearchParam";
-import BrowserOnly from "@docusaurus/BrowserOnly";
 
 type Item = {
   value: string;
@@ -8,7 +7,13 @@ type Item = {
   defaultChecked?: boolean;
 };
 
-const RadioGroup_ = ({ inUrl, items }: { inUrl: string; items: Item[] }) => {
+export const RadioGroup = ({
+  inUrl,
+  items,
+}: {
+  inUrl: string;
+  items: Item[];
+}) => {
   const [checked, setChecked] = useSearchParam(inUrl);
 
   useEffect(() => {
@@ -54,7 +59,3 @@ const RadioGroup_ = ({ inUrl, items }: { inUrl: string; items: Item[] }) => {
     </ul>
   );
 };
-
-export const RadioGroup = (props: { inUrl: string; items: Item[] }) => (
-  <BrowserOnly>{() => <RadioGroup_ {...props} />}</BrowserOnly>
-);

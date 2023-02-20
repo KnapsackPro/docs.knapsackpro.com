@@ -1,8 +1,7 @@
 import React, { ReactNode } from "react";
 import { useSearchParam } from "@site/src/hooks/useSearchParam";
-import BrowserOnly from "@docusaurus/BrowserOnly";
 
-const ShowIfSearchParam_ = ({
+export const ShowIfSearchParam = ({
   searchParam,
   children,
 }: {
@@ -16,12 +15,7 @@ const ShowIfSearchParam_ = ({
   return <>{children}</>;
 };
 
-export const ShowIfSearchParam = (props: {
-  searchParam: string;
-  children: ReactNode;
-}) => <BrowserOnly>{() => <ShowIfSearchParam_ {...props} />}</BrowserOnly>;
-
-const ShowIfSearchParamAndValue_ = ({
+export const ShowIfSearchParamAndValue = ({
   searchParam,
   value,
   children,
@@ -36,11 +30,3 @@ const ShowIfSearchParamAndValue_ = ({
   }
   return <>{children}</>;
 };
-
-export const ShowIfSearchParamAndValue = (props: {
-  searchParam: string;
-  value: string;
-  children: ReactNode;
-}) => (
-  <BrowserOnly>{() => <ShowIfSearchParamAndValue_ {...props} />}</BrowserOnly>
-);
