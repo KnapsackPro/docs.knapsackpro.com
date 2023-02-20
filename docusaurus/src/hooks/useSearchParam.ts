@@ -1,9 +1,11 @@
 import { useEffect, useState, Dispatch } from "react";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 const EVENT_TYPE = "url-search-params-changed";
 
 const getAll = (param: string): Set<string> => {
-  const search = new URLSearchParams(location.search);
+  const safeLocation = ExecutionEnvironment.canUseDOM ? location.search : "";
+  const search = new URLSearchParams(safeLocation);
   return new Set(search.getAll(param));
 };
 
