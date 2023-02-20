@@ -1,5 +1,5 @@
 ---
-hide_table_of_contents: true
+toc_max_heading_level: 2
 pagination_next: null
 pagination_prev: null
 ---
