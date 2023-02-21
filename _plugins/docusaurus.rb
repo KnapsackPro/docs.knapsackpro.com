@@ -64,4 +64,21 @@ Jekyll::Hooks.register :site, :post_write do |page|
   ].each do |directory|
     system!("cp -R docusaurus/build/ruby/#{directory} _site/ruby")
   end
+
+  system!("mv _site/sitemap.xml _site/jekyll-sitemap.xml")
+  system!("cp docusaurus/build/sitemap.xml _site/docusaurus-sitemap.xml")
+
+  File.open("_site/sitemap.xml", "w") do |file|
+    file.write <<~HEREDOC
+    <?xml version="1.0" encoding="UTF-8"?>
+    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <sitemap>
+        <loc>https://docs.knapsackpro.com/jekyll-sitemap.xml</loc>
+      </sitemap>
+      <sitemap>
+        <loc>https://docs.knapsackpro.com/docusaurus-sitemap.xml</loc>
+      </sitemap>
+    </sitemapindex>
+    HEREDOC
+  end
 end

@@ -6,4 +6,5 @@ group :development do
   gem 'guard'
   gem 'guard-rake'
   gem 'webrick'
+  gem 'jekyll-sitemap'
 end
