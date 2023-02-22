@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { useSearchParam } from "@site/src/hooks/useSearchParam";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 export const ShowIfSearchParam = ({
   searchParam,
@@ -8,6 +9,9 @@ export const ShowIfSearchParam = ({
   searchParam: string;
   children: ReactNode;
 }) => {
+  if (!ExecutionEnvironment.canUseDOM) {
+    return <>{children}</>;
+  }
   const [values] = useSearchParam(searchParam);
   if (values.size === 0) {
     return null;
@@ -24,6 +28,9 @@ export const ShowIfSearchParamAndValue = ({
   value: string;
   children: ReactNode;
 }) => {
+  if (!ExecutionEnvironment.canUseDOM) {
+    return <>{children}</>;
+  }
   const [values] = useSearchParam(searchParam);
   if (!values.has(value)) {
     return null;
