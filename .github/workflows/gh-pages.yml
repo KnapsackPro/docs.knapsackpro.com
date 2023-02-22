@@ -62,6 +62,9 @@ jobs:
     needs: deploy
 
     steps:
+      - name: 📂 checkout
+        uses: actions/checkout@v2
+
       - name: 🔍 update index on Algolia
         uses: darrenjennings/algolia-docsearch-action@v0.2.0
         with:
