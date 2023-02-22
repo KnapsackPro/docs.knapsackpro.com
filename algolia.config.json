@@ -1,6 +1,6 @@
 {
   "index_name": "docs",
-  "start_urls": ["https://docs.knapsackpro.com/overview"],
+  "start_urls": ["https://docs.knapsackpro.com"],
   "sitemap_urls": ["https://docs.knapsackpro.com/sitemap.xml"],
   "js_render": false,
   "use_anchors": true,
@@ -18,10 +18,7 @@
     "/continuous_integration",
     "/tech_tips/",
     "/news",
-    "/api",
-    "/ruby",
-    "/jest",
-    "/cypress"
+    "/api"
   ],
   "selectors": {
     "lvl0": {
