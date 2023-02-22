@@ -180,6 +180,11 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages: ['ruby', 'bash'],
       },
+      algolia: {
+        appId: '0AV4WJXVOL',
+        apiKey: 'dee9139b275d7a7e06eba411b1cb84d0',
+        indexName: 'docs',
+      },
     }),
 };
 

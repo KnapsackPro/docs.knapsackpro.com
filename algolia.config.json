@@ -1,0 +1,59 @@
+{
+  "index_name": "docs",
+  "start_urls": ["https://docs.knapsackpro.com/overview"],
+  "sitemap_urls": ["https://docs.knapsackpro.com/sitemap.xml"],
+  "js_render": false,
+  "use_anchors": true,
+  "stop_urls": [
+    "/2015",
+    "/2016",
+    "/2017",
+    "/2018",
+    "/2019",
+    "/2020",
+    "/2021",
+    "/2022",
+    "/2023",
+    "/blog",
+    "/continuous_integration",
+    "/tech_tips/",
+    "/news",
+    "/api",
+    "/ruby",
+    "/jest",
+    "/cypress"
+  ],
+  "selectors": {
+    "lvl0": {
+      "selector": "//*[contains(@class, 'breadcrumbs__item')][2]",
+      "type": "xpath",
+      "global": true,
+      "default_value": "Documentation"
+    },
+    "lvl1": "article h1",
+    "lvl2": "article h2",
+    "lvl3": "article h3",
+    "lvl4": "article h4",
+    "lvl5": "article h5, article td:first-child",
+    "lvl6": "article h6",
+    "text": "article p, article li, article td:last-child"
+  },
+  "strip_chars": " .,;:#",
+  "custom_settings": {
+    "separatorsToIndex": "_",
+    "attributesForFaceting": [
+      "language",
+      "version",
+      "type",
+      "docusaurus_tag"
+    ],
+    "attributesToRetrieve": [
+      "hierarchy",
+      "content",
+      "anchor",
+      "url",
+      "url_without_anchor",
+      "type"
+    ]
+  }
+}
