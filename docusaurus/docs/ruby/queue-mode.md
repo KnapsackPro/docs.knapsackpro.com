@@ -68,6 +68,10 @@ Parallel CI nodes connect to the same queue and run tests until it's consumed. I
 
 The behavior described above guarantees the most performant split for each CI build, but it's problematic if your CI allows retrying single CI nodes/jobs. In this case, you want Knapsack Pro to return a Fixed Split ([`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode)): the retried node gets the same subset of tests that it run previously (not an empty list as described above).
 
+:::caution
+With `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`, make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](#knapsack_pro_ci_node_retry_count).
+:::
+
 Notice that the Dynamic Split works great when your CI allows *only* restarting all parallel CI nodes (instead of individual ones). In this case, each parallel CI node will receive a different subset of tests (because of the new queue), but the build would finish sooner.
 
 If you use spot/preemptible CI nodes like [Google Cloud Preemptible VMs](https://cloud.google.com/preemptible-vms/) or [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/), you also want a Fixed Split: when a preempted CI node restarts because of a manual or automatic retry, it re-runs the previous subset of tests before connecting to the queue to continue with the remaining ones.
