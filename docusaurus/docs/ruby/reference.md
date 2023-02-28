@@ -125,6 +125,10 @@ Recommended:
 - `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries
 - `false` otherwise
 
+:::caution
+With `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`, make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](#knapsack_pro_ci_node_retry_count).
+:::
+
 ## `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT` (Regular Mode)
 
 Dynamic or fixed tests split when retrying a CI build.
@@ -139,6 +143,10 @@ Recommended:
 - `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
 - `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries
 - `false` otherwise
+
+:::caution
+With `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT=true`, make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](#knapsack_pro_ci_node_retry_count).
+:::
 
 ## `KNAPSACK_PRO_LOG_DIR`
 
