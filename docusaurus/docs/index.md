@@ -10,7 +10,7 @@ import cypress from "@site/static/img/cypress.jpg"
 import ruby from "@site/static/img/ruby.png"
 import knapsack from "@site/static/img/knapsack.png"
 
-# Integration
+# Welcome
 
 Welcome to the Knapsack Pro documentation.
 
@@ -18,7 +18,16 @@ Explore our guides and examples to integrate Knapsack Pro into your project.
 
 If you have questions, feel free to [contact us](https://knapsackpro.com/contact) directly and we will be happy to help.
 
-## Out-of-the-box
+## Overview
+
+<div className="grid">
+<a href="/overview/" className="cell">
+<div className="cell__image cell__image--ruby"><img width="70" height="70" src={knapsack}></img></div>
+<h2 className="cell__title">Knapsack Overview</h2>
+</a>
+</div>
+
+## Libraries
 
 <div className="grid">
 <a href="/knapsack_pro-ruby/guide/" className="cell">
@@ -37,7 +46,9 @@ If you have questions, feel free to [contact us](https://knapsackpro.com/contact
 </a>
 </div>
 
-## SDK/API
+## Write your integration
+
+Can't see your language/testing framework above? You can still use Knapsack Pro:
 
 <div className="grid">
 <a href="https://docs.knapsackpro.com/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework" target="_blank" rel="noopener noreferrer" className="cell">
@@ -48,14 +59,5 @@ If you have questions, feel free to [contact us](https://knapsackpro.com/contact
 <a href="https://docs.knapsackpro.com/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language" target="_blank" rel="noopener noreferrer" className="cell">
 <div className="cell__image"><img width="70" height="70" src={api}></img></div>
 <h2 className="cell__title">Other Language</h2>
-</a>
-</div>
-
-## Overview
-
-<div className="grid">
-<a href="/overview/" className="cell">
-<div className="cell__image cell__image--ruby"><img width="70" height="70" src={knapsack}></img></div>
-<h2 className="cell__title">Knapsack Overview</h2>
 </a>
 </div>

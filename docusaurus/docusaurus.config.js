@@ -117,14 +117,8 @@ const config = {
           },
           {
             to: '/',
-            label: 'Get started with integration',
+            label: 'Docs',
             position: 'right',
-          },
-          {
-            to: `${DOCS_URL}/api/`,
-            label: 'API',
-            position: 'right',
-            target: '_self'
           },
           {
             to: KNAPSACK_PRO_URL,

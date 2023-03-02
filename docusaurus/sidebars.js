@@ -16,7 +16,7 @@ const sidebars = {
   sidebar: [
     {
       type: 'doc',
-      label: 'Integration',
+      label: 'Welcome',
       id: 'index',
     },
     {
@@ -238,44 +238,46 @@ const sidebars = {
     ]
   }, {
     type: 'category',
-    label: 'JavaScript / TypeScript',
+    label: 'Write your integration',
     collapsible: true,
     collapsed: true,
-    items: [
-      {
-        type: 'link',
-        label: 'Guide',
-        href: 'https://docs.knapsackpro.com/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework',
-      },
-      {
-        type: 'link',
-        label: 'GitHub',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-core-js',
-      },
-      {
-        type: 'link',
-        label: 'FAQ',
-        href: 'https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_cypress#knapsack_pro_core_js',
-      },
-      {
-        type: 'link',
-        label: 'Changelog',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/CHANGELOG.md#changelog',
-      },
-    ]
-  }, {
-    type: 'category',
-    label: 'Other Language',
-    collapsible: true,
-    collapsed: true,
-    items: [
-      {
-        type: 'link',
-        label: 'Guide',
-        href: 'https://docs.knapsackpro.com/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language',
-      },
-    ]
+    items: [{
+      type: 'category',
+      label: 'JavaScript SDK',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: 'link',
+          label: 'Guide',
+          href: 'https://docs.knapsackpro.com/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework',
+        },
+        {
+          type: 'link',
+          label: 'GitHub',
+          href: 'https://github.com/KnapsackPro/knapsack-pro-core-js',
+        },
+        {
+          type: 'link',
+          label: 'FAQ',
+          href: 'https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_cypress#knapsack_pro_core_js',
+        },
+        {
+          type: 'link',
+          label: 'Changelog',
+          href: 'https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/CHANGELOG.md#changelog',
+        },
+      ]
+    }, {
+      type: 'link',
+      label: 'Other Language',
+      href: 'https://docs.knapsackpro.com/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language',
+    }, {
+      type: 'link',
+      label: 'REST API Docs',
+      href: 'https://docs.knapsackpro.com/api',
   }],
+}]
 };
 
 module.exports = sidebars;
