@@ -1115,7 +1115,7 @@ Define the following global environment variables on your CI server:
 - [`KNAPSACK_PRO_REPOSITORY_ADAPTER=git`](/ruby/reference/#knapsack_pro_repository_adapter)
 - [`KNAPSACK_PRO_PROJECT_DIR`](/ruby/reference/#knapsack_pro_project_dir)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
-- [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index) as [jobs](http://docs.travis-ci.com/user/speeding-up-the-build/#parallelizing-your-builds-across-virtual-machines)
+- [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index)
 
 <Tabs>
 <TabItem value="node-1" label="Node 1">
