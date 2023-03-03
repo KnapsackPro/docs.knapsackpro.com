@@ -122,7 +122,7 @@ Available:
 
 Recommended:
 - `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
-- `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries
+- `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries (e.g., GitHub Actions, Travis, CodeShip)
 - `false` otherwise
 
 :::caution
@@ -141,7 +141,7 @@ Available:
 
 Recommended:
 - `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
-- `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries
+- `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries (e.g., GitHub Actions, Travis, CodeShip)
 - `false` otherwise
 
 :::caution
