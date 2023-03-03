@@ -1116,6 +1116,7 @@ Define the following global environment variables on your CI server:
 - [`KNAPSACK_PRO_PROJECT_DIR`](/ruby/reference/#knapsack_pro_project_dir)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index)
+- [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](/ruby/reference/#knapsack_pro_ci_node_build_id)
 
 <Tabs>
 <TabItem value="node-1" label="Node 1">
