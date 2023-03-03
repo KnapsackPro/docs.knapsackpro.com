@@ -3,11 +3,11 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Use Knapsack Pro with Cucumber
+# Using Knapsack Pro with Cucumber
 
 ## Load tests faster with spring
 
-Take a look at [Use Knapsack Pro with `spring`](/ruby/spring/).
+Take a look at [Using Knapsack Pro with `spring`](/ruby/spring/).
 
 ## Require different config files
 

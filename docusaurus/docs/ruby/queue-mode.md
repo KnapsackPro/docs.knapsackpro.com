@@ -103,6 +103,6 @@ When the Knapsack Pro API finds a previous split (i.) and remaining tests in the
 You can find additional configurations and troubleshooting on the following pages:
 
 - [Knapsack Pro Ruby - Troubleshooting](/ruby/troubleshooting/)
-- [Use Knapsack Pro with RSpec](/ruby/rspec/)
-- [Use Knapsack Pro with Cucumber](/ruby/cucumber/)
-- [Use Knapsack Pro with Capybara](/ruby/capybara/)
+- [Using Knapsack Pro with RSpec](/ruby/rspec/)
+- [Using Knapsack Pro with Cucumber](/ruby/cucumber/)
+- [Using Knapsack Pro with Capybara](/ruby/capybara/)

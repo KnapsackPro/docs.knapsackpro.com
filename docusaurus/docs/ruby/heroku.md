@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Use Knapsack Pro with Heroku CI
+# Using Knapsack Pro with Heroku CI
 
 ## Run multiple test suites
 

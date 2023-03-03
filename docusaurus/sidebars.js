@@ -80,7 +80,7 @@ const sidebars = {
       },
       {
         type: 'category',
-        label: 'Use Knapsack Pro with...',
+        label: 'Using Knapsack Pro with...',
         collapsible: true,
         collapsed: true,
         items: [

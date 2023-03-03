@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Use Knapsack Pro with Capybara
+# Using Knapsack Pro with Capybara
 
 ## Troubleshooting
 

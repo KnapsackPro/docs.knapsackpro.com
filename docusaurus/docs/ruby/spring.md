@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Use Knapsack Pro with `spring`
+# Using Knapsack Pro with `spring`
 
 :::caution
 If you are using Knapsack Pro in Queue Mode with Cucumber, read the dedicated section below.

@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Use Knapsack Pro with RSpec
+# Using Knapsack Pro with RSpec
 
 ## Retry failed/flaky tests
 

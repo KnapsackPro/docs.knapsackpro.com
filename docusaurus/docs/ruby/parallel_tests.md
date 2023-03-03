@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Use Knapsack Pro with `parallel_tests`
+# Using Knapsack Pro with `parallel_tests`
 
 :::caution
 We recommend using Knapsack Pro with more CI nodes instead of `knapsack_pro` + `parallel_tests` with fewer CI nodes.

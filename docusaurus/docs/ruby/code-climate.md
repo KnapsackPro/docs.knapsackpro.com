@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Use Knapsack Pro with CodeClimate
+# Using Knapsack Pro with CodeClimate
 
 Check how to configure CodeClimate with `knapsack_pro` on our blog:
 

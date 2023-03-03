@@ -6,7 +6,7 @@ pagination_prev: null
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Use Knapsack Pro with CircleCI
+# Using Knapsack Pro with CircleCI
 
 ## Collect metadata in Queue Mode
 
