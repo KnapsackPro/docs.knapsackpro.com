@@ -110,7 +110,7 @@ fi
 
 ## Error `commit_hash` parameter is required
 
-Knapsack Pro takes `KNAPSACK_PRO_COMMIT_HASH` and `KNAPSACK_PRO_BRANCH` from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/)). If your CI is not supported you may see the following error:
+Knapsack Pro takes `KNAPSACK_PRO_COMMIT_HASH` and `KNAPSACK_PRO_BRANCH` from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)). If your CI is not supported you may see the following error:
 
 ```bash
 ERROR -- : [knapsack_pro] {"errors"=>[{"commit_hash"=>["parameter is required"]}]}

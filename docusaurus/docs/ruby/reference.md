@@ -35,7 +35,7 @@ bundle exec rake rspec --tag focus --profile
 Git branch under test.
 
 You don't need to set it if either:
-- Your CI is one of the [supported CIs](/knapsack_pro-ruby/guide/)
+- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)
 - You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
 
 ## `KNAPSACK_PRO_BRANCH_ENCRYPTED`
@@ -50,7 +50,7 @@ Available: `false` | `true`
 
 Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
 
-Default: Knapsack Pro will take it from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
 
 If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand - base64 32)` and make it available to all parallel nodes.
 
@@ -72,7 +72,7 @@ Available:
 
 Total number of parallel CI nodes.
 
-Default: Knapsack Pro will take it from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
 
 If your CI is not supported, you need to set it manually.
 
@@ -80,7 +80,7 @@ If your CI is not supported, you need to set it manually.
 
 Index of current CI node (first should be 0, second should be 1, etc.).
 
-Default: Knapsack Pro will take it from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
 
 If your CI is not supported, you need to set it manually.
 
@@ -89,7 +89,7 @@ If your CI is not supported, you need to set it manually.
 Hash of the commit under test.
 
 You don't need to set it if either:
-- Your CI is one of the [supported CIs](/knapsack_pro-ruby/guide/)
+- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)
 - You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
 
 ## `KNAPSACK_PRO_ENDPOINT` (Internal)
@@ -222,7 +222,7 @@ Controls how Knapsack Pro sets `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HA
 Default: not set
 
 Available:
-- not set: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](/knapsack_pro-ruby/guide/))
+- not set: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
 - `git` (requires `KNAPSACK_PRO_PROJECT_DIR`): Knapsack Pro will set `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` using git on your CI
 
 ## `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES` (RSpec)
