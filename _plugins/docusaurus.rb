@@ -7,8 +7,11 @@ Jekyll::Hooks.register :site, :post_write do |page|
     system!("npm install")
     system!("npm run build")
   end
+
   system!("cp -R docusaurus/build/img _site")
   system!("cp -R docusaurus/build/assets _site")
+
+  system!("mkdir -p _site/knapsack_pro-ruby/guide")
   system!("cp docusaurus/build/knapsack_pro-ruby/guide/index.html _site/knapsack_pro-ruby/guide")
 
   system!("mkdir -p _site/cypress/guide")

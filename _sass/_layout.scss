@@ -102,7 +102,6 @@
     margin-bottom: $spacing-unit / 2;
 }
 
-.none-list,
 .contact-list,
 .social-media-list {
     list-style: none;
@@ -267,10 +266,6 @@
   }
 }
 
-.hidden {
-  display: none;
-}
-
 .rss-subscribe {
   float: right;
 }
@@ -308,18 +303,4 @@
 
 .linkedin-color {
   color: #3072AD;
-}
-
-.btn-blue {
-  cursor: pointer;
-  border-radius: 10px;
-  padding: 5px 20px;
-  background-color: #0864cf;
-  color: #fff;
-  border: 0;
-
-  &:hover {
-    background-color: #5e8fc8;
-    color: white;
-  }
 }
