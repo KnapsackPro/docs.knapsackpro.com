@@ -92,6 +92,17 @@ You don't need to set it if either:
 - Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)
 - You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
 
+## `KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX` (Cucumber, Queue Mode)
+
+Prefix to use when invoking Cucumber tests.
+
+Default: `"bundle exec"`
+
+Available:
+- `"bundle exec"`
+- `"bundle exec spring"` or `"bin/spring"` to run [Cucumber faster with Spring](https://docs.knapsackpro.com/ruby/spring/#use-knapsack-pro-in-queue-mode-with-spring-and-cucumber)
+
+
 ## `KNAPSACK_PRO_ENDPOINT` (Internal)
 
 Default: `https://api.knapsackpro.com`
