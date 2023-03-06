@@ -12,8 +12,6 @@ import knapsack from "@site/static/img/knapsack.png"
 
 # Welcome
 
-Welcome to the Knapsack Pro documentation.
-
 Explore our guides and examples to integrate Knapsack Pro into your project.
 
 If you have questions, feel free to [contact us](https://knapsackpro.com/contact) directly and we will be happy to help.
