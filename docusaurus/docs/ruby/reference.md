@@ -265,6 +265,16 @@ Make sure to read the details in [Split by test examples](/ruby/split-by-test-ex
 
 - [How to split slow RSpec test files by test examples (by individual it)?](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it#warning-dont-use-deprecated-rspec-run_all_when_everything_filtered-option)
 
+## `KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX` (RSpec)
+
+Customize the prefix used for generating test examples report when using `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`.
+
+Default: `"bundle exec"`
+
+Available:
+- `"bundle exec"`
+- try `""` in case of [issues](https://docs.knapsackpro.com/ruby/split-by-test-examples/#how-do-i-fix-dont-know-how-to-build-task-knapsack_prorspec_test_example_detector)
+
 ## `KNAPSACK_PRO_SALT`
 
 Salt to use to [Encrypt Test File Names or Branch Names](/ruby/encryption/).
