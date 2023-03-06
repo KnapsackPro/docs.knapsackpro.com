@@ -54,6 +54,14 @@ Default: Knapsack Pro will take it from the CI environment (see [supported CIs](
 
 If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand - base64 32)` and make it available to all parallel nodes.
 
+## `KNAPSACK_PRO_CI_NODE_INDEX`
+
+Index of current CI node (first should be 0, second should be 1, etc.).
+
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
+
+If your CI is not supported, you need to set it manually.
+
 ## `KNAPSACK_PRO_CI_NODE_RETRY_COUNT`
 
 Retry count of the current CI node in case of a single node/job retry.
@@ -71,14 +79,6 @@ Available:
 ## `KNAPSACK_PRO_CI_NODE_TOTAL`
 
 Total number of parallel CI nodes.
-
-Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
-
-If your CI is not supported, you need to set it manually.
-
-## `KNAPSACK_PRO_CI_NODE_INDEX`
-
-Index of current CI node (first should be 0, second should be 1, etc.).
 
 Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
 
@@ -225,6 +225,26 @@ Available:
 - not set: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
 - `git` (requires `KNAPSACK_PRO_PROJECT_DIR`): Knapsack Pro will set `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` using git on your CI
 
+## `KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN` (Internal)
+
+Split by test examples only files matching the pattern (instead of letting Knapsack Pro decide for you).
+
+Requires `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`, and must be subset of `KNAPSACK_PRO_TEST_FILE_PATTERN`.
+
+This is supposed to be used by gem developers for debugging Knapsack Pro. But if you decide to use it, **provide a short list of slow test files**. If the matched files are too many, the test suite may slow down or fail: the Knapsack Pro API could time out, or CI could run out of memory.
+
+Default: `nil`
+
+Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
+
+Example:
+```bash
+KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true \
+KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN="{spec/models/user_spec.rb,spec/controllers/**/*_spec.rb}"
+```
+
+Make sure to read the details in [Split by test examples](/ruby/split-by-test-examples).
+
 ## `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES` (RSpec)
 
 Parallelize test examples (instead of files) across CI nodes.
@@ -265,26 +285,6 @@ KNAPSACK_PRO_TEST_DIR="features/support/cucumber_config.rb"
 ### Related FAQs
 
 - [How to require different Cucumber config files in isolation?](https://knapsackpro.com/faq/question/how-to-require-different-cucumber-config-files-in-isolation)
-
-## `KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN` (Internal)
-
-Split by test examples only files matching the pattern (instead of letting Knapsack Pro decide for you).
-
-Requires `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`, and must be subset of `KNAPSACK_PRO_TEST_FILE_PATTERN`.
-
-This is supposed to be used by gem developers for debugging Knapsack Pro. But if you decide to use it, **provide a short list of slow test files**. If the matched files are too many, the test suite may slow down or fail: the Knapsack Pro API could time out, or CI could run out of memory.
-
-Default: `nil`
-
-Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
-
-Example:
-```bash
-KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true \
-KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN="{spec/models/user_spec.rb,spec/controllers/**/*_spec.rb}"
-```
-
-Make sure to read the details in [Split by test examples](/ruby/split-by-test-examples).
 
 ## `KNAPSACK_PRO_TEST_DIR` (RSpec)
 
