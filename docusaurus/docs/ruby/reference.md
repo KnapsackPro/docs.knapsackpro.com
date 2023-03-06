@@ -306,6 +306,7 @@ You may need to make your test files require `spec_helper` with:
 require_relative 'spec_helper' # ✅ Good
 
 require 'spec_helper' # ⛔️ Bad
+```
 :::
 
 ### Related FAQs
