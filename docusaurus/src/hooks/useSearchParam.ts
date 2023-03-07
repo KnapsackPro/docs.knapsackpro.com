@@ -21,11 +21,13 @@ export const useSearchParam = (
 ): [Set<string>, Dispatch<(_: Set<string>) => Set<string>>] => {
   const [values, setValues] = useState<Set<string>>(getAll(param));
 
+
   useEffect(() => {
     const callback = () => {
       setValues(getAll(param));
     };
     window.addEventListener(EVENT_TYPE, callback);
+    callback();
     () => window.removeEventListener(EVENT_TYPE, callback);
   }, [param]);
 
