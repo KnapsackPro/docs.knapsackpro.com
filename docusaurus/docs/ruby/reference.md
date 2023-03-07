@@ -102,7 +102,6 @@ Available:
 - `"bundle exec"`
 - `"bundle exec spring"` or `"bin/spring"` to run [Cucumber faster with Spring](https://docs.knapsackpro.com/ruby/spring/#use-knapsack-pro-in-queue-mode-with-spring-and-cucumber)
 
-
 ## `KNAPSACK_PRO_ENDPOINT` (Internal)
 
 Default: `https://api.knapsackpro.com`
@@ -448,9 +447,9 @@ Available: `false` | `true`
 - `KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT`
 - `KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH`
 
-API token required to run `knapsack_pro`.
+API token required to run Knapsack Pro.
 
-Each `knapsack_pro` command defined on CI should use an individual API token.
+Each Knapsack Pro command defined on CI should use an individual API token.
 
 Example:
 ```bash

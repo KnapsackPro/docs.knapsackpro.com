@@ -22,6 +22,65 @@ $(npm bin)/knapsack-pro-cypress --browser chrome
 
 You can also pass options to Node with environment variables (e.g., [`--max_old_space_size`](/cypress/troubleshooting/#javascript-heap-out-of-memory)).
 
+## `KNAPSACK_PRO_BRANCH`
+
+Git branch under test.
+
+You don't need to set it if either:
+- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers)
+- Your CI has git installed so that Knapsack Pro can retrieve it
+
+## `KNAPSACK_PRO_CI_NODE_BUILD_ID`
+
+Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
+
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers))
+
+If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand - base64 32)` and make it available to all parallel nodes.
+
+## `KNAPSACK_PRO_CI_NODE_INDEX`
+
+Index of current CI node (first should be 0, second should be 1, etc.).
+
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers))
+
+If your CI is not supported, you need to set it manually.
+
+## `KNAPSACK_PRO_CI_NODE_TOTAL`
+
+Total number of parallel CI nodes.
+
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers))
+
+If your CI is not supported, you need to set it manually.
+
+## `KNAPSACK_PRO_COMMIT_HASH`
+
+Hash of the commit under test.
+
+You don't need to set it if either:
+- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers)
+- Your CI has git installed so that Knapsack Pro can retrieve it
+
+## `KNAPSACK_PRO_ENDPOINT` (Internal)
+
+Default: `https://api.knapsackpro.com`
+
+## `KNAPSACK_PRO_FIXED_QUEUE_SPLIT`
+
+Dynamic or fixed tests split when retrying a CI build.
+
+Default: `false`
+
+Available:
+- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `ciNodeBuildId` for your [CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers))
+- `true`: if the triplet `(branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split
+
+Recommended:
+- `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
+- `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries (e.g., GitHub Actions, Travis, CodeShip)
+- `false` otherwise
+
 ## `KNAPSACK_PRO_LOG_LEVEL`
 
 Default: `info`
@@ -98,3 +157,20 @@ KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="cypress/e2e/admin/**/*.{js,jsx}"
 ### Related FAQs
 
 - [How to run tests only from a specific directory in Cypress? Define your test files pattern with `KNAPSACK_PRO_TEST_FILE_PATTERN`](https://knapsackpro.com/faq/question/how-to-run-tests-only-from-specific-directory-in-cypress)
+
+## `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS`
+
+API token required to run Knapsack Pro.
+
+Each Knapsack Pro command defined on CI should use an individual API token.
+
+Example:
+```bash
+KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_CYPRESS_API_TOKEN \
+KNAPSACK_PRO_TEST_FILE_PATTERN="cypress/e2e/user/**/*.{js,jsx,coffee,cjsx}" \
+  $(npm bin)/knapsack-pro-cypress
+
+KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_OTHER_CYPRESS_API_TOKEN \
+KNAPSACK_PRO_TEST_FILE_PATTERN="cypress/e2e/admin/**/*.{js,jsx,coffee,cjsx}" \
+  $(npm bin)/knapsack-pro-cypress
+```
