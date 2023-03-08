@@ -17,6 +17,9 @@ Jekyll::Hooks.register :site, :post_write do |page|
   system!("mkdir -p _site/cypress/guide")
   system!("cp docusaurus/build/cypress/guide/index.html _site/cypress/guide")
 
+  system!("mkdir -p _site/cypress/guide2")
+  system!("cp docusaurus/build/cypress/guide2/index.html _site/cypress/guide2")
+
   system!("mkdir -p _site/cypress/reference")
   system!("cp docusaurus/build/cypress/reference/index.html _site/cypress/reference")
 

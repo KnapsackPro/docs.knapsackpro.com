@@ -5,6 +5,32 @@ pagination_prev: null
 
 # Cookbook
 
+## Keep screenshots and videos
+
+Since Knapsack Pro runs Cypress multiple times, you need to set [`trashAssetsBeforeRuns`](https://docs.cypress.io/guides/references/configuration.html#Screenshots) to `false`.
+
+You can do so by either invoking Knapsack Pro with:
+
+```bash
+$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+```
+
+Or in `cypress.config.js`:
+
+```json
+{
+  "trashAssetsBeforeRuns": false
+}
+```
+
+### Component tests
+
+You can pass the `testingType` option to run [component tests](https://docs.cypress.io/guides/component-testing/introduction):
+
+```bash
+$(npm bin)/knapsack-pro-cypress --testingType=component
+```
+
 ## Record CI builds in Cypress Dashboard
 
 ```bash
