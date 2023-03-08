@@ -5,6 +5,29 @@ pagination_prev: null
 
 # Cookbook
 
+## Type-check in a separate CI step with `ts-jest`
+
+Since Knapsack Pro runs Jest multiple times, you can speed up tests execution by moving type-checking ([`isolatedModules`](https://huafu.github.io/ts-jest/user/config/isolatedModules)) and [`diagnostics`](https://huafu.github.io/ts-jest/user/config/diagnostics) to a separate CI step. On larger codebases, it increases execution time by more than 50%.
+
+```js title="jest.config.js"
+{
+  "globals": {
+    "ts-jest": {
+      "diagnostics": false,
+      "isolatedModules": true
+    }
+  }
+}
+```
+
+## Speed up tests with `--runInBand`
+
+Since Knapsack Pro runs Jest multiple times, you can speed up tests execution with `--runInBand`. This way tests run serially in the current process, rather than creating a worker pool of child processes that run tests:
+
+```bash
+$(npm bin)/knapsack-pro-jest --runInBand
+```
+
 ## Use a Jest config file
 
 :::caution

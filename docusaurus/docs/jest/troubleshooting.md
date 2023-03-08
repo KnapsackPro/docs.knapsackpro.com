@@ -47,7 +47,7 @@ $(npm bin)/knapsack-pro-jest --runInBand
 
 `KNAPSACK_PRO_CI_NODE_BUILD_ID` must be the same as the CI build you are trying to reproduce (if it helps, take a look at what Knapsack Pro uses as `ciNodeBuildId` for your [CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers)).
 
-## No tests are executed
+## No tests are executed (or `test_files: [ 'parameter is required' ]`)
 
 Make sure [`KNAPSACK_PRO_TEST_FILE_PATTERN`](/jest/reference/#knapsack_pro_test_file_pattern) is correct.
 
