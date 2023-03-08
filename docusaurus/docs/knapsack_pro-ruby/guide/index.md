@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 <DelayHashNavigation milliseconds={400} />
 
-[Create an account](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide) to generate API tokens and use the `knapsack_pro` gem.
+[Create an account](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide) to generate API tokens and use Knapsack Pro.
 
 ## Installation
 
@@ -248,7 +248,7 @@ end
 
 ### AppVeyor
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_appveyor) for each `knapsack_pro` command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_appveyor) for each Knapsack Pro command.
 
 For each parallel job, define:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
@@ -318,7 +318,7 @@ bundle exec rake knapsack_pro:cucumber
 
 ### Buildkite
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_buildkite) for each `knapsack_pro` command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_buildkite) for each Knapsack Pro command.
 
 Remember to configure the `parallelism` parameter in your build step.
 
@@ -400,7 +400,7 @@ You can also check out the following example repositories for Ruby on Rails proj
 
 ### CircleCI
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_circleci) for each `knapsack_pro` command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_circleci) for each Knapsack Pro command.
 
 Remember to add additional parallel containers in the CircleCI settings.
 
@@ -445,53 +445,29 @@ Here you can find an example of a [Rails project config on CircleCI 2.0](https:/
 
 ### Cirrus CI
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_cirrusci) for each `knapsack_pro` command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_cirrusci) for each Knapsack Pro command.
 
-Remember to configure the number of parallel CI nodes in Cirrus.
+Configure the number of parallel CI nodes with the [matrix modification](https://cirrus-ci.org/guide/writing-tasks/#matrix-modification):
 
-<Tabs>
-<TabItem value="node-1" label="Node 1">
-
-```bash
-KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
-
-KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
-
-# ...Same for minitest, spinach, test_unit
-```
-
-</TabItem>
-<TabItem value="node-2" label="Node 2">
-
-```bash
-KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
-
-KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+```yaml  title=".cirrus.yml"
+task:
+  environment:
+    KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ENCRYPTED[MY_RSPEC_API_TOKEN]
+    KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER: ENCRYPTED[MY_CUCUMBER_API_TOKEN]
+  matrix:
+    name: CI Node 0
+    name: CI Node 1
+    name: CI Node 2
+  test_script:
+    - bundle exec rake knapsack_pro:rspec
+    - bundle exec rake knapsack_pro:cucumber
 
 # ...Same for minitest, spinach, test_unit
 ```
 
-</TabItem>
-<TabItem value="node-n" label="Node N">
+Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as [encrypted variables](https://cirrus-ci.org/guide/writing-tasks/#encrypted-variables).
 
-```bash
-KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
-
-KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
-
-# ...Same for minitest, spinach, test_unit
-```
-
-</TabItem>
-</Tabs>
-
-Here is an example of a [`.cirrus.yml` configuration file](https://cirrus-ci.org/examples/#ruby).
+Here is an example of a [`.cirrus.yml` configuration file](https://cirrus-ci.org/examples/#ruby) for a Ruby project.
 
 </ShowIfSearchParamAndValue>
 
@@ -500,9 +476,9 @@ Here is an example of a [`.cirrus.yml` configuration file](https://cirrus-ci.org
 
 ### CloudBees CodeShip
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_codeship) for each `knapsack_pro` command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_codeship) for each Knapsack Pro command.
 
-For each parallel job, define:
+For each [parallel pipeline](https://documentation.codeship.com/basic/builds-and-configuration/parallel-tests/#using-parallel-test-pipelines), define:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index)
@@ -570,7 +546,7 @@ Consider moving the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` to the *Environment* page 
 
 ### Codefresh
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_codefresh) for each `knapsack_pro` command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_codefresh) for each Knapsack Pro command.
 
 Define in `.codefresh/codefresh.yml`:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
@@ -698,7 +674,7 @@ RUN bundle install
 
 ### GitHub Actions
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_githubactions) for each `knapsack_pro` command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_githubactions) for each Knapsack Pro command.
 
 Define in `.github/workflows/main.yaml`:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
@@ -707,90 +683,89 @@ Define in `.github/workflows/main.yaml`:
 
 Here's an example config for a Ruby on Rails project:
 
-```yaml
-# .github/workflows/main.yaml
+```yaml title=".github/workflows/main.yaml"
 name: Main
 
 on: [push]
 
 jobs:
-test:
-  runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-  # If you need a DB, then define it in the service below.
-  # https://github.com/actions/example-services/tree/master/.github/workflows
-  services:
-    postgres:
-      image: postgres:10.8
-      env:
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: ""
-        POSTGRES_DB: postgres
-      ports:
-        - 5432:5432
-      # needed because the postgres container does not provide a healthcheck
-      # tmpfs makes DB faster by using RAM
-      options: >-
-        --mount type=tmpfs,destination=/var/lib/postgresql/data
-        --health-cmd pg_isready
-        --health-interval 10s
-        --health-timeout 5s
-        --health-retries 5
-    redis:
-      image: redis
-      ports:
-        - 6379:6379
-      options: --entrypoint redis-server
+    # If you need a DB, then define it in the service below.
+    # https://github.com/actions/example-services/tree/master/.github/workflows
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ""
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        # tmpfs makes DB faster by using RAM
+        options: >-
+          --mount type=tmpfs,destination=/var/lib/postgresql/data
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: --entrypoint redis-server
 
-  strategy:
-    fail-fast: false
-    # highlight-start
-    matrix:
-      ci_node_total: [2]
-      ci_node_index: [0, 1]
-    # highlight-end
+    strategy:
+      fail-fast: false
+      # highlight-start
+      matrix:
+        ci_node_total: [2]
+        ci_node_index: [0, 1]
+      # highlight-end
 
-  env:
-    RAILS_ENV: test
-    GEMFILE_RUBY_VERSION: 2.7.2
-    PGHOST: localhost
-    PGUSER: postgres
-    # Rails verifies the time zone in DB is the same as the time zone of the Rails app
-    TZ: "Europe/Warsaw"
+    env:
+      RAILS_ENV: test
+      GEMFILE_RUBY_VERSION: 2.7.2
+      PGHOST: localhost
+      PGUSER: postgres
+      # Rails verifies the time zone in DB is the same as the time zone of the Rails app
+      TZ: "Europe/Warsaw"
 
-  steps:
-    - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        # Not needed with a .ruby-version file
-        ruby-version: 2.7
-        # runs 'bundle install' and caches installed gems automatically
-        bundler-cache: true
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          # Not needed with a .ruby-version file
+          ruby-version: 2.7
+          # runs 'bundle install' and caches installed gems automatically
+          bundler-cache: true
 
-    - name: Create DB
-      run: |
-        bin/rails db:prepare
+      - name: Create DB
+        run: |
+          bin/rails db:prepare
 
-    # highlight-start
-    - name: Run tests
-      env:
-        KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: MY_RSPEC_API_TOKEN
-        KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER: MY_CUCUMBER_API_TOKEN
-        KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST: MY_MINITEST_API_TOKEN
-        KNAPSACK_PRO_TEST_SUITE_TEST_UNIT: MY_MINITEST_API_TOKEN
-        KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH: MY_SPINACH_API_TOKEN
-        KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
-        KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-        KNAPSACK_PRO_LOG_LEVEL: info
-      run: |
-        bundle exec rake knapsack_pro:rspec
-        bundle exec rake knapsack_pro:cucumber
-        bundle exec rake knapsack_pro:minitest
-        bundle exec rake knapsack_pro:test_unit
-        bundle exec rake knapsack_pro:spinach
-    # highlight-end
+      # highlight-start
+      - name: Run tests
+        env:
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: MY_RSPEC_API_TOKEN
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER: MY_CUCUMBER_API_TOKEN
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST: MY_MINITEST_API_TOKEN
+          KNAPSACK_PRO_TEST_SUITE_TEST_UNIT: MY_MINITEST_API_TOKEN
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH: MY_SPINACH_API_TOKEN
+          KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+          KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+          KNAPSACK_PRO_LOG_LEVEL: info
+        run: |
+          bundle exec rake knapsack_pro:rspec
+          bundle exec rake knapsack_pro:cucumber
+          bundle exec rake knapsack_pro:minitest
+          bundle exec rake knapsack_pro:test_unit
+          bundle exec rake knapsack_pro:spinach
+      # highlight-end
 ```
 
 Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` in *GitHub Settings > Secrets* as suggested by [GitHub Actions' docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
@@ -810,7 +785,7 @@ KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN
 
 ### GitLab CI
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_gitlabci) for each `knapsack_pro` command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_gitlabci) for each Knapsack Pro command.
 
 #### GitLab CI >= 11.5
 
@@ -880,7 +855,7 @@ Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as [Secret Variables](h
 
 ### Heroku CI
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_herokuci) for each `knapsack_pro` command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_herokuci) for each Knapsack Pro command.
 
 Define in `app.json`:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
@@ -889,27 +864,27 @@ Define in `app.json`:
 
 ```json title="app.json"
 {
-"environments": {
-  "test": {
-    "formation": {
-      "test": {
-        // highlight-next-line
-        "quantity": 2
+  "environments": {
+    "test": {
+      "formation": {
+        "test": {
+          // highlight-next-line
+          "quantity": 2
+        }
+      },
+      "addons": [
+        "heroku-postgresql"
+      ],
+      // highlight-start
+      "scripts": {
+        "test": "bundle exec rake knapsack_pro:rspec"
+      },
+      "env": {
+        "KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC": "MY_RSPEC_API_TOKEN"
       }
-    },
-    "addons": [
-      "heroku-postgresql"
-    ],
-    // highlight-start
-    "scripts": {
-      "test": "bundle exec rake knapsack_pro:rspec"
-    },
-    "env": {
-      "KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC": "MY_RSPEC_API_TOKEN"
+      // highlight-end
     }
-    // highlight-end
   }
-}
 }
 ```
 
@@ -922,7 +897,7 @@ Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` outside of `app.json` i
 
 ### Jenkins
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_jenkins) for each `knapsack_pro` command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_jenkins) for each Knapsack Pro command.
 
 In order to run parallel jobs with Jenkins you should use Jenkins Pipeline as described in [Parallelism and Distributed Builds with Jenkins](https://www.cloudbees.com/blog/parallelism-and-distributed-builds-jenkins).
 
@@ -930,55 +905,56 @@ Here is an example of a `Jenkinsfile` working with Jenkins Pipeline:
 
 ```groovy
 timeout(time: 60, unit: 'MINUTES') {
-node() {
-  stage('Checkout') {
-    checkout([/* checkout code from git */])
+  node() {
+    stage('Checkout') {
+      checkout([/* checkout code from git */])
 
-    // determine git commit hash because we need to pass it to knapsack_pro
-    COMMIT_HASH = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+      // determine git commit hash because we need to pass it to Knapsack Pro
+      COMMIT_HASH = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
 
-    stash 'source'
-  }
-}
-
-// highlight-next-line
-def num_nodes = 4; // define your total number of CI nodes (how many parallel jobs will be executed)
-def nodes = [:]
-
-for (int i = 0; i < num_nodes; i++) {
-  def index = i;
-  nodes["ci_node_${i}"] = {
-    node() {
-      stage('Setup') {
-        unstash 'source'
-        // other setup steps
-      }
-
-      // highlight-start
-      def knapsack_options = """\
-          KNAPSACK_PRO_CI_NODE_TOTAL=${num_nodes}\
-          KNAPSACK_PRO_CI_NODE_INDEX=${index}\
-          KNAPSACK_PRO_COMMIT_HASH=${COMMIT_HASH}\
-          KNAPSACK_PRO_BRANCH=${env.BRANCH_NAME}\
-          KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN
-          KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN
-      """
-
-      stage('Run rspec') {
-        sh """KNAPSACK_PRO_CI_NODE_BUILD_ID=${env.BUILD_TAG} ${knapsack_options} bundle exec rake knapsack_pro:rspec"""
-      }
-
-      stage('Run cucumber') {
-        sh """${knapsack_options} bundle exec rake knapsack_pro:cucumber"""
-      }
-      // highlight-end
-
-      // ...Same for minitest, spinach, test_unit
+      stash 'source'
     }
   }
-}
 
-parallel nodes // run CI nodes in parallel
+  // highlight-next-line
+  def num_nodes = 4; // define your total number of CI nodes (how many parallel jobs will be executed)
+  def nodes = [:]
+
+  for (int i = 0; i < num_nodes; i++) {
+    def index = i;
+    nodes["ci_node_${i}"] = {
+      node() {
+        stage('Setup') {
+          unstash 'source'
+          // other setup steps
+        }
+
+        // highlight-start
+        def knapsack_options = """\
+            KNAPSACK_PRO_CI_NODE_TOTAL=${num_nodes}\
+            KNAPSACK_PRO_CI_NODE_INDEX=${index}\
+            KNAPSACK_PRO_COMMIT_HASH=${COMMIT_HASH}\
+            KNAPSACK_PRO_BRANCH=${env.BRANCH_NAME}\
+            KNAPSACK_PRO_CI_NODE_BUILD_ID=${env.BUILD_TAG}\
+            KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN\
+            KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN
+        """
+
+        stage('Run rspec') {
+          sh """${knapsack_options} bundle exec rake knapsack_pro:rspec"""
+        }
+
+        stage('Run cucumber') {
+          sh """${knapsack_options} bundle exec rake knapsack_pro:cucumber"""
+        }
+        // highlight-end
+
+        // ...Same for minitest, spinach, test_unit
+      }
+    }
+  }
+
+  parallel nodes // run CI nodes in parallel
 }
 ```
 
@@ -991,9 +967,7 @@ Consider setting up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as global environment 
 
 ### Semaphore CI
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_semaphoreci) for each `knapsack_pro` command.
-
-#### Semaphore 2.0
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_semaphoreci) for each Knapsack Pro command.
 
 Define in `.semaphore/semaphore.yml`:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
@@ -1007,56 +981,57 @@ version: v1.0
 name: Demo Rails 5 app
 
 agent:
-machine:
-  type: e1-standard-2
-  os_image: ubuntu1804
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
 
 blocks:
-- name: Setup
-  task:
-    jobs:
-      - name: bundle
+  - name: Setup
+    task:
+      jobs:
+        - name: bundle
+          commands:
+            - checkout
+            - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-master-
+            - sem-version ruby 2.6.1
+            - bundle install --jobs=4 --retry=3 --path vendor/bundle
+            - cache store gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock) vendor/bundle
+
+  - name: RSpec tests
+    task:
+      env_vars:
+        - name: RAILS_ENV
+          value: test
+        - name: PGHOST
+          value: 127.0.0.1
+        - name: PGUSER
+          value: postgres
+        # highlight-start
+        - name: KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC
+          value: MY_RSPEC_API_TOKEN
+        - name: KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER
+          value: MY_CUCUMBER_API_TOKEN
+        # highlight-end
+
+      prologue:
         commands:
           - checkout
           - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-master-
+          - sem-service start postgres
           - sem-version ruby 2.6.1
           - bundle install --jobs=4 --retry=3 --path vendor/bundle
-          - cache store gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock) vendor/bundle
+          - bundle exec rake db:setup
 
-- name: RSpec tests
-  task:
-    env_vars:
-      - name: RAILS_ENV
-        value: test
-      - name: PGHOST
-        value: 127.0.0.1
-      - name: PGUSER
-        value: postgres
       # highlight-start
-      - name: KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC
-        value: MY_RSPEC_API_TOKEN
-      - name: KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER
-        value: MY_CUCUMBER_API_TOKEN
+      jobs:
+        - name: Run tests with Knapsack Pro
+          parallelism: 2
+          commands:
+            - bundle exec rake knapsack_pro:rspec
+            - bundle exec rake knapsack_pro:cucumber
+
+        # ...Same for minitest, spinach, test_unit
       # highlight-end
-    prologue:
-      commands:
-        - checkout
-        - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-master-
-        - sem-service start postgres
-        - sem-version ruby 2.6.1
-        - bundle install --jobs=4 --retry=3 --path vendor/bundle
-        - bundle exec rake db:setup
-
-    # highlight-start
-    jobs:
-      - name: Run tests with Knapsack Pro
-        parallelism: 2
-        commands:
-        - bundle exec rake knapsack_pro:rspec
-        - bundle exec rake knapsack_pro:cucumber
-
-      # ...Same for minitest, spinach, test_unit
-    # highlight-end
 ```
 
 Remember to set up `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as a [secret](https://docs.semaphoreci.com/article/66-environment-variables-and-secrets).
@@ -1068,14 +1043,14 @@ Remember to set up `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as a [secret](https://docs.
 
 ### Travis CI
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_travisci) for each `knapsack_pro` command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_travisci) for each Knapsack Pro command.
 
 Define in `.travis.yml`:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index) as [jobs](http://docs.travis-ci.com/user/speeding-up-the-build/#parallelizing-your-builds-across-virtual-machines)
 
-```yaml
+```yaml title="travis.yml"
 script:
   - "bundle exec rake knapsack_pro:rspec"
   - "bundle exec rake knapsack_pro:cucumber"
@@ -1108,7 +1083,7 @@ You can find more info about the global and matrix env configuration in the [Tra
 
 ### Other CI provider
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_otherci) for each `knapsack_pro` command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_otherci) for each Knapsack Pro command.
 
 Define the following global environment variables on your CI server:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
@@ -1213,4 +1188,4 @@ Make sure you check out the *Advanced* and *Using Knapsack Pro with...* pages fr
 
 [Get in touch!](https://knapsackpro.com/contact)
 
-We have helped TONS of teams and seen TONS of projects. We know each test suite is a different beast and we'd be happy to help you setting up Knapsack Pro.
+We have helped TONS of teams and seen TONS of projects. We know each test suite is a different beast and we'd be happy to help you set up Knapsack Pro.
