@@ -466,7 +466,7 @@ jobs:
 
 ### GitLab CI
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=/:page&utm_campaign=knapsack-pro-cypress&utm_content=installation_guide_gitlabci) for each Knapsack Pro command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-cypress&utm_content=installation_guide_gitlabci) for each Knapsack Pro command.
 
 #### GitLab CI >= 11.5
 
