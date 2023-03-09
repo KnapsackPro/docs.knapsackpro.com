@@ -677,7 +677,7 @@ RUN bundle install
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_githubactions) for each Knapsack Pro command.
 
 Define in `.github/workflows/main.yaml`:
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_) in *GitHub Settings > Secrets* as described in [GitHub Actions' docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix):
 
@@ -751,11 +751,11 @@ jobs:
       # highlight-start
       - name: Run tests
         env:
-          KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: MY_RSPEC_API_TOKEN
-          KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER: MY_CUCUMBER_API_TOKEN
-          KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST: MY_MINITEST_API_TOKEN
-          KNAPSACK_PRO_TEST_SUITE_TEST_UNIT: MY_MINITEST_API_TOKEN
-          KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH: MY_SPINACH_API_TOKEN
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER }}
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST }}
+          KNAPSACK_PRO_TEST_SUITE_TEST_UNIT: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT }}
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH }}
           KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_PRO_LOG_LEVEL: info
@@ -766,16 +766,6 @@ jobs:
           bundle exec rake knapsack_pro:test_unit
           bundle exec rake knapsack_pro:spinach
       # highlight-end
-```
-
-Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` in *GitHub Settings > Secrets* as suggested by [GitHub Actions' docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
-
-```bash
-KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
-KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER }}
-KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST }}
-KNAPSACK_PRO_TEST_SUITE_TEST_UNIT: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT }}
-KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH }}
 ```
 
 </ShowIfSearchParamAndValue>
