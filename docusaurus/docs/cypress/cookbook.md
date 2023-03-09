@@ -23,7 +23,7 @@ Or in `cypress.config.js`:
 }
 ```
 
-### Component tests
+## Component tests
 
 You can pass the `testingType` option to run [component tests](https://docs.cypress.io/guides/component-testing/introduction):
 
