@@ -10,7 +10,7 @@ import { DelayHashNavigation } from '@site/src/components/DelayHashNavigation'
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Installation guide for the @knapsack-pro/cypress npm package
+# Knapsack Pro Cypress: Quickstart
 
 <DelayHashNavigation milliseconds={400} />
 

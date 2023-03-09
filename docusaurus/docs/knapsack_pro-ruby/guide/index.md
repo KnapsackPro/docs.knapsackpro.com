@@ -11,7 +11,7 @@ import { DelayHashNavigation } from '@site/src/components/DelayHashNavigation'
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Installation guide for the `knapsack_pro` ruby gem
+# Knapsack Pro Ruby: Quickstart
 
 <DelayHashNavigation milliseconds={400} />
 

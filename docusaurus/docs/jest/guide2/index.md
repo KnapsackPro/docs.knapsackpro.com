@@ -10,7 +10,7 @@ import { DelayHashNavigation } from '@site/src/components/DelayHashNavigation'
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Installation guide for the @knapsack-pro/jest npm package
+# Knapsack Pro Jest: Quickstart
 
 <DelayHashNavigation milliseconds={400} />
 
