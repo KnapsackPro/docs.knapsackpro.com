@@ -407,7 +407,7 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 Define in `.github/workflows/main.yaml`:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS`](/cypress/reference/#knapsack_pro_test_suite_token_cypress) in *GitHub Settings > Secrets* as described in [GitHub Actions' docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/cypress/reference/#knapsack_pro_ci_node_total) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
-- [`KNAPSACK_PRO_CI_NODE_INDEX`](/cypress/reference/#knapsack_pro_ci_node_index) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix):
+- [`KNAPSACK_PRO_CI_NODE_INDEX`](/cypress/reference/#knapsack_pro_ci_node_index) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
 - [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/cypress/reference/#knapsack_pro_fixed_queue_split)
 
 Here's an example config:
@@ -466,7 +466,7 @@ jobs:
 
 ### GitLab CI
 
-Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-cypress&utm_content=installation_guide_gitlabci) for each Knapsack Pro command.
+Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=/:page&utm_campaign=knapsack-pro-cypress&utm_content=installation_guide_gitlabci) for each Knapsack Pro command.
 
 #### GitLab CI >= 11.5
 
