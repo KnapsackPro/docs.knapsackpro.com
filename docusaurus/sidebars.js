@@ -143,11 +143,6 @@ const sidebars = {
       },
       {
         type: 'link',
-        label: 'FAQ',
-        href: 'https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_ruby',
-      },
-      {
-        type: 'link',
         label: 'Changelog',
         href: 'https://github.com/KnapsackPro/knapsack_pro-ruby/blob/master/CHANGELOG.md#change-log',
       },
@@ -182,11 +177,6 @@ const sidebars = {
         type: 'link',
         label: 'GitHub',
         href: 'https://github.com/KnapsackPro/knapsack-pro-cypress',
-      },
-      {
-        type: 'link',
-        label: 'FAQ',
-        href: 'https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_cypress',
       },
       {
         type: 'link',
@@ -227,11 +217,6 @@ const sidebars = {
       },
       {
         type: 'link',
-        label: 'FAQ',
-        href: 'https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_jest',
-      },
-      {
-        type: 'link',
         label: 'Changelog',
         href: 'https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/CHANGELOG.md#changelog',
       },
@@ -256,11 +241,6 @@ const sidebars = {
           type: 'link',
           label: 'GitHub',
           href: 'https://github.com/KnapsackPro/knapsack-pro-core-js',
-        },
-        {
-          type: 'link',
-          label: 'FAQ',
-          href: 'https://knapsackpro.com/faq/knapsack_pro_client/knapsack_pro_cypress#knapsack_pro_core_js',
         },
         {
           type: 'link',

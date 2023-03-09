@@ -104,10 +104,3 @@ npx percy exec -- knapsack_pro queue:rspec
 ```
 
 Here you can find the docs for the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack-pro-binary).
-
-## Related FAQs
-
-- [What is the order of RSpec hooks in the Queue Mode?](https://knapsackpro.com/faq/question/what-is-the-order-of-rspec-hooks-in-the-queue-mode)
-- [How to set before(:suite) and after(:suite) RSpec hooks in Queue Mode (Percy.io example)?](https://knapsackpro.com/faq/question/how-to-set-beforesuite-and-aftersuite-rspec-hooks-in-queue-mode-percyio-example)
-- [How to call before(:suite) and after(:suite) RSpec hooks only once in Queue Mode?](https://knapsackpro.com/faq/question/how-to-call-beforesuite-and-aftersuite-rspec-hooks-only-once-in-queue-mode)
-- [What hooks are supported in Queue Mode?](https://knapsackpro.com/faq/question/what-hooks-are-supported-in-queue-mode)

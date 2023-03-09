@@ -61,9 +61,3 @@ $(npm bin)/knapsack-pro-jest --ci --reporters=jest-junit
 ```
 
 Knapsack Pro will generate one XML reports for each batch of tests executed on the CI node. Some CI providers (e.g., GitLab CI) can merge multiple XML files from parallel CI nodes.
-
-## Related FAQs
-
-- [How to use Jest config file with Knapsack Pro Jest?](https://knapsackpro.com/faq/question/how-to-use-jest-config-file-with-knapsack-pro-jest)
-- [How to generate code coverage for Jest with Knapsack Pro Jest in Queue Mode?](https://knapsackpro.com/faq/question/how-to-generate-code-coverage-for-jest-with-knapsack-pro-jest-in-queue-mode)
-- [How to generate XML report using jest-junit with Knapsack Pro Jest in Queue Mode?](https://knapsackpro.com/faq/question/how-to-generate-xml-report-using-jest-junit-with-knapsack-pro-jest-in-queue-mode)

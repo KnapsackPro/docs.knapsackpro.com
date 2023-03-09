@@ -93,10 +93,6 @@ Available:
 - `debug`: Knapsack Pro API request headers and body
 - `silly`
 
-### Related FAQs
-
-- [How can I change log level?](https://knapsackpro.com/faq/question/how-to-change-log-level)
-
 ## `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`
 
 File containing the list of **relative paths** of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
@@ -153,10 +149,6 @@ KNAPSACK_PRO_TEST_FILE_PATTERN="cypress/e2e/**/*.{js,jsx,coffee,cjsx}"
 KNAPSACK_PRO_TEST_FILE_PATTERN="cypress/e2e/**/*.{js,jsx,coffee,cjsx}" \
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="cypress/e2e/admin/**/*.{js,jsx}"
 ```
-
-### Related FAQs
-
-- [How to run tests only from a specific directory in Cypress? Define your test files pattern with `KNAPSACK_PRO_TEST_FILE_PATTERN`](https://knapsackpro.com/faq/question/how-to-run-tests-only-from-specific-directory-in-cypress)
 
 ## `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS`
 

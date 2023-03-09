@@ -50,10 +50,3 @@ $(npm bin)/knapsack-pro-jest --runInBand
 ## No tests are executed (or `test_files: [ 'parameter is required' ]`)
 
 Make sure [`KNAPSACK_PRO_TEST_FILE_PATTERN`](/jest/reference/#knapsack_pro_test_file_pattern) is correct.
-
-## Related FAQs
-
-- [How to run Jest tests locally with Knapsack Pro?](https://knapsackpro.com/faq/question/how-to-run-jest-tests-locally-with-knapsack-pro)
-- [How to run tests only from a specific directory in Jest? Define your test files pattern with `KNAPSACK_PRO_TEST_FILE_PATTERN`](https://knapsackpro.com/faq/question/how-to-run-tests-only-from-specific-directory-in-jest)
-- [Why Jest freezes after tests run? (Jest hangs indefinitely)](https://knapsackpro.com/faq/question/why-jest-freezes-after-tests-run-jest-hangs-indefinitely)
-- [JavaScript heap out of memory - how to increase the max memory for Node with `max_old_space_size`](https://knapsackpro.com/faq/question/javascript-heap-out-of-memory-how-to-increase-the-max-memory-for-node-with-max_old_space_size)

@@ -122,10 +122,3 @@ set -e # exit on error
 bundle exec rake knapsack_pro:queue:rspec
 bundle exec rake knapsack_pro:queue:cucumber
 ```
-
-## Related FAQs
-
-- [How to run `knapsack_pro` only on a few parallel CI nodes instead of all?](https://knapsackpro.com/faq/question/how-to-run-knapsack_pro-only-on-a-few-parallel-ci-nodes-instead-of-all)
-- [How to fail the CI build if one of the test files duration exceeds a certain limit?](https://knapsackpro.com/faq/question/how-to-fail-the-ci-build-if-one-of-the-test-files-duration-exceeds-a-certain-limit)
-- [How to run multiple test suite commands in Heroku CI?](https://knapsackpro.com/faq/question/how-to-run-multiple-test-suite-commands-in-heroku-ci)
-- [How to write `knapsack_pro` logs to a file?](https://knapsackpro.com/faq/question/how-to-write-knapsack_pro-logs-to-a-file)

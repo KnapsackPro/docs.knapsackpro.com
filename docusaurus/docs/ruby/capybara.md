@@ -20,8 +20,3 @@ If the CI node is overloaded, the application under test may load slowly causing
 
 Capybara.default_max_wait_time = 5 # seconds
 ```
-
-## Related FAQs
-
-- [Why Capybara feature tests randomly fail when using CI parallelisation?](https://knapsackpro.com/faq/question/why-capybara-feature-tests-randomly-fail-when-using-ci-parallelisation)
-- [How to fix capybara-screenshot fail with SystemStackError: stack level too deep when using Queue Mode for RSpec?](https://knapsackpro.com/faq/question/how-to-fix-capybara-screenshot-fail-with-systemstackerror-stack-level-too-deep-when-using-queue-mode-for-rspec)

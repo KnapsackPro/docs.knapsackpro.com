@@ -48,7 +48,3 @@ end
 ```
 
 This problem is caused by how [`knapsack_pro` in Queue Mode uses](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-my-tests-fail) `RSpec::Core::Runner`.
-
-## Related FAQs
-
-- [How to configure puffing-billy gem with Knapsack Pro Queue Mode?](https://knapsackpro.com/faq/question/how-to-configure-puffing-billy-gem-with-knapsack-pro-queue-mode)

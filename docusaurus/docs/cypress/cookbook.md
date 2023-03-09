@@ -67,7 +67,3 @@ You should replace `$MY_CI_BUILD_ID` with the correct environment variable provi
 | Solano         | `TDDIUM_SESSION_ID` |
 | Travis         | `TRAVIS_BUILD_ID` |
 | Codefresh.io   | `CF_BUILD_ID` |
-
-## Related FAQs
-
-- [Record CI builds in Cypress Dashboard](https://knapsackpro.com/faq/question/how-to-record-ci-builds-in-cypress-dashboard)

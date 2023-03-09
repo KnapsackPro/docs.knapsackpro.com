@@ -105,10 +105,6 @@ Available:
 - `debug`: Knapsack Pro API request headers and body
 - `silly`
 
-### Related FAQs
-
-- [How can I change log level?](https://knapsackpro.com/faq/question/how-to-change-log-level)
-
 ## `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`
 
 Exclude tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
@@ -132,10 +128,6 @@ KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
 KNAPSACK_PRO_TEST_FILE_PATTERN=="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}" \
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
 ```
-
-### Related FAQs
-
-- [How to exclude tests to ignore them from running in Jest?](https://knapsackpro.com/faq/question/how-to-exclude-tests-to-ignore-them-from-running-in-jest)
 
 ## `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`
 
@@ -189,10 +181,6 @@ KNAPSACK_PRO_TEST_FILE_PATTERN=="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).j
 KNAPSACK_PRO_TEST_FILE_PATTERN=="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}" \
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
 ```
-
-### Related FAQs
-
-- [How to run tests only from a specific directory in Jest? Define your test files pattern with `KNAPSACK_PRO_TEST_FILE_PATTERN`](https://knapsackpro.com/faq/question/how-to-run-tests-only-from-specific-directory-in-jest)
 
 ## `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`
 

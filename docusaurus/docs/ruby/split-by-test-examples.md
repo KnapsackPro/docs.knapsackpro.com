@@ -133,6 +133,3 @@ E, [2021-03-30T17:33:12.199329 #103] ERROR -- : [knapsack_pro] There was a probl
 E, [2021-03-30T17:33:12.199348 #103] ERROR -- : [knapsack_pro] bundle exec rspec --format json --dry-run --out .knapsack_pro/test_case_detectors/rspec/rspec_dry_run_json_report_node_0.json --default-path spec spec/models/user_spec.rb spec/features/articles_spec.rb
 E, [2021-03-30T17:33:12.199368 #103] ERROR -- : [knapsack_pro] ---------- END of actionable error message --------------------------------------------------
 ```
-
-## Related FAQs
-- [How to split slow RSpec test files by test examples (by individual it)?](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it#warning-dont-use-deprecated-rspec-run_all_when_everything_filtered-option)

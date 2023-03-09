@@ -116,10 +116,6 @@ Available:
 - `false`: Knapsack Pro will fail the build after `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
 - `true`: Knapsack Pro will switch to Fallback Mode after `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
 
-### Related FAQs
-
-- [What happens when Knapsack Pro API is not available/not reachable temporarily?](https://knapsackpro.com/faq/question/what-happens-when-knapsack-pro-api-is-not-availablenot-reachable-temporarily)
-
 ## `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` (Queue Mode)
 
 Dynamic or fixed tests split when retrying a CI build.
@@ -169,10 +165,6 @@ When `KNAPSACK_PRO_LOG_DIR=log`, Knapsack Pro will write logs to the `log` direc
 - `log/knapsack_pro_node_0.log`
 - `log/knapsack_pro_node_1.log`
 
-### Related FAQs
-
-- [How to write `knapsack_pro` logs to a file?](https://knapsackpro.com/faq/question/how-to-write-knapsack_pro-logs-to-a-file)
-
 ## `KNAPSACK_PRO_LOG_LEVEL`
 
 Default: `debug`
@@ -180,10 +172,6 @@ Default: `debug`
 Available: `debug` | `info` | `warn` | `error` | `fatal`
 
 Recommended: `debug` when debugging issues, `info` to know what Knapsack Pro is doing
-
-### Related FAQs
-
-- [How can I change log level?](https://knapsackpro.com/faq/question/how-can-i-change-log-level)
 
 ## `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
 
@@ -271,10 +259,6 @@ KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
 
 Make sure to read the details in [Split by test examples](/ruby/split-by-test-examples).
 
-### Related FAQs
-
-- [How to split slow RSpec test files by test examples (by individual it)?](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it#warning-dont-use-deprecated-rspec-run_all_when_everything_filtered-option)
-
 ## `KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX` (RSpec)
 
 Customize the prefix used for generating test examples report when using `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`.
@@ -302,10 +286,6 @@ Example:
 KNAPSACK_PRO_TEST_DIR="features/support/cucumber_config.rb"
 ```
 
-### Related FAQs
-
-- [How to require different Cucumber config files in isolation?](https://knapsackpro.com/faq/question/how-to-require-different-cucumber-config-files-in-isolation)
-
 ## `KNAPSACK_PRO_TEST_DIR` (RSpec)
 
 Passed as-is to RSpec's [`--default-path`](https://relishapp.com/rspec/rspec-core/v/3-0/docs/configuration/setting-the-default-spec-path).
@@ -329,10 +309,6 @@ require 'spec_helper' # ⛔️ Bad
 ```
 :::
 
-### Related FAQs
-
-- [How can I run tests from multiple directories?](https://knapsackpro.com/faq/question/how-can-i-run-tests-from-multiple-directories)
-
 ## `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`
 
 Exclude tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
@@ -351,11 +327,6 @@ KNAPSACK_PRO_TEST_FILE_PATTERN="spec/controllers/**{,/*/**}/*_spec.rb" \
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec.rb"
 ```
 
-### Related FAQs
-
-- [How to exclude tests?](https://knapsackpro.com/faq/question/how-to-exclude-tests-from-running-them)
-- [Dir.glob pattern examples for `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`](https://knapsackpro.com/faq/question/dir-glob-pattern-examples-for-knapsack_pro_test_file_pattern-and-knapsack_pro_test_file_exclude_pattern)
-
 ## `KNAPSACK_PRO_TEST_FILE_LIST`
 
 Comma-separated list of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
@@ -366,10 +337,6 @@ Example:
 ```bash
 KNAPSACK_PRO_TEST_FILE_LIST=spec/features/dashboard_spec.rb,spec/models/user.rb:10,spec/models/user.rb:29
 ```
-
-### Related FAQs
-
-- [How to run a specific list of test files or only some tests from test file?](https://knapsackpro.com/faq/question/how-to-run-a-specific-list-of-test-files-or-only-some-tests-from-test-file)
 
 ## `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`
 
@@ -396,10 +363,6 @@ spec/test2_spec.rb[1]
 /home/user123/project/spec/test4_spec.rb:5
 ```
 
-### Related FAQs
-
-- [How to run a specific list of test files or only some tests from test file?](https://knapsackpro.com/faq/question/how-to-run-a-specific-list-of-test-files-or-only-some-tests-from-test-file)
-
 ## `KNAPSACK_PRO_TEST_FILE_PATTERN`
 
 :::caution
@@ -423,13 +386,6 @@ KNAPSACK_PRO_TEST_DIR=spec KNAPSACK_PRO_TEST_FILE_PATTERN="{spec,engines/*/spec}
 KNAPSACK_PRO_TEST_FILE_PATTERN="spec/controllers/**{,/*/**}/*_spec.rb" \
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec.rb"
 ```
-
-### Related FAQs
-
-- [How to run tests from a specific directory (only system tests or features specs)?](https://knapsackpro.com/faq/question/how-to-run-tests-from-a-specific-directory-only-system-tests-or-features-specs)
-- [How can I run tests from multiple directories?](https://knapsackpro.com/faq/question/how-can-i-run-tests-from-multiple-directories)
-- [How to exclude tests?](https://knapsackpro.com/faq/question/how-to-exclude-tests-from-running-them)
-- [Dir.glob pattern examples for `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`](https://knapsackpro.com/faq/question/dir-glob-pattern-examples-for-knapsack_pro_test_file_pattern-and-knapsack_pro_test_file_exclude_pattern)
 
 ## `KNAPSACK_PRO_TEST_FILES_ENCRYPTED`
 
@@ -462,7 +418,3 @@ KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_OTHER_RSPEC_API_TOKEN \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
   bundle exec rake knapsack_pro:cucumber
 ```
-
-### Related FAQs
-- [How many API tokens/keys do I need?](https://knapsackpro.com/faq/question/how-many-api-keys-i-need)
-- [Do I need to use separate API token for Queue Mode and Regular Mode?](https://knapsackpro.com/faq/question/do-i-need-to-use-separate-api-token-for-queue-mode-and-regular-mode)

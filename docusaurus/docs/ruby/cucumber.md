@@ -73,9 +73,3 @@ Knapsack Pro relies on Cucumber::Rake::Task, which uses Bundler. Bundler employs
 ```bash
 export BUNDLE_DISABLE_EXEC_LOAD=true
 ```
-
-## Related FAQs
-
-- [How to require different Cucumber config files in isolation?](https://knapsackpro.com/faq/question/how-to-require-different-cucumber-config-files-in-isolation)
-- [Why green test suite for Cucumber 2.99 tests always fails with invalid option: --require?](https://knapsackpro.com/faq/question/why-green-test-suite-for-cucumber-299-tests-always-fails-with-invalid-option---require)
-- [How to solve error cannot load such file -- `stripe_mock` (LoadError) when running tests with Cucumber?](https://knapsackpro.com/faq/question/how-to-solve-error-cannot-load-such-file-stripe_mock-loaderror-when-running-tests-with-cucumber)

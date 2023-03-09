@@ -30,8 +30,3 @@ export KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX=bin/spring
 
 bundle exec rake knapsack_pro:queue:cucumber
 ```
-
-## Related FAQs
-
-- [How to use spring gem with Knapsack Pro?](https://knapsackpro.com/faq/question/how-to-use-spring-gem-with-knapsack-pro)
-- [How to use spring gem to run Cucumber tests faster in Queue Mode?](https://knapsackpro.com/faq/question/how-to-use-spring-gem-to-run-cucumber-tests-faster-in-queue-mode)

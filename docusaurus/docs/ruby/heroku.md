@@ -33,7 +33,3 @@ You can create a script as described in [Run multiple test suites with one scrip
   }
 }
 ```
-
-## Related FAQs
-
-- [How to run multiple test suite commands in Heroku CI?](https://knapsackpro.com/faq/question/how-to-run-multiple-test-suite-commands-in-heroku-ci)

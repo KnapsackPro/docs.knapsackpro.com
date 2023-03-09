@@ -208,20 +208,3 @@ Use RSpec's [`stub_const`](https://relishapp.com/rspec/rspec-mocks/docs/mutating
 Knapsack Pro uses [`RSpec::Core::Runner`](https://relishapp.com/rspec/rspec-core/docs/running-specs-multiple-times-with-different-runner-options-in-the-same-process) in Queue Mode to run tests without reloading Ruby/Rails for each batch of tests. If you monkey-patch RSpec or mutate its global state, the test runner may not be able to clean up properly after each batch.
 
 Also, you can try to use the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack-pro-binary) instead of `bundle exec rake knapsack_pro:rspec`.
-
-## Related FAQs
-
-- [How to use junit formatter?](https://knapsackpro.com/faq/question/how-to-use-junit-formatter)
-- [How to use JSON formatter for RSpec?](https://knapsackpro.com/faq/question/how-to-use-json-formatter-for-rspec)
-- [How to run only a specific set of test files in RSpec (using tags or test file pattern)?](https://knapsackpro.com/faq/question/how-to-run-only-a-specific-set-of-test-files-in-rspec)
-- [How to split tests based on test level instead of test file level?](https://knapsackpro.com/faq/question/how-to-split-tests-based-on-test-level-instead-of-test-file-level)
-- [How to run only RSpec feature tests or non feature tests?](https://knapsackpro.com/faq/question/how-to-run-only-rspec-feature-tests-or-non-feature-tests)
-- [RSpec is not running some tests](https://knapsackpro.com/faq/question/rspec-is-not-running-some-tests)
-- [How to stop running tests on the first failed test (fail fast tests in RSpec)?](https://knapsackpro.com/faq/question/how-to-stop-running-tests-on-the-first-failed-test-fail-fast-tests-in-rspec)
-- [Why when I use Queue Mode for RSpec then .rspec config is ignored?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-rspec-config-is-ignored)
-- [Why when I use Queue Mode for RSpec and test fails then I see multiple times info about failed test in RSpec result?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-and-test-fails-then-i-see-multiple-times-info-about-failed-test-in-rspec-result)
-- [Why when I use Queue Mode for RSpec then I see multiple times the same pending tests?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-i-see-multiple-times-the-same-pending-tests)
-- [Why when I use Queue Mode for RSpec then FactoryBot/FactoryGirl tests fail?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-factorybotfactorygirl-tests-fail)
-- [Why when I use Queue Mode for RSpec then I see error superclass mismatch for class?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-i-see-error-superclass-mismatch-for-class)
-- [How to retry failed tests (flaky tests)?](https://knapsackpro.com/faq/question/how-to-retry-failed-tests-flaky-tests)
-- [Why when I use Queue Mode for RSpec then my tests fail?](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-my-tests-fail)

@@ -146,9 +146,3 @@ KNAPSACK_PRO_CI_NODE_TOTAL=3 KNAPSACK_PRO_CI_NODE_INDEX=1 PARALLEL_TESTS_CONCURR
 KNAPSACK_PRO_CI_NODE_TOTAL=3 KNAPSACK_PRO_CI_NODE_INDEX=2 PARALLEL_TESTS_CONCURRENCY=3
 # ...
 ```
-
-## Related FAQs
-
-- [How to run `knapsack_pro` with `parallel_tests` gem?](https://knapsackpro.com/faq/question/how-to-run-knapsack_pro-with-parallel_tests-gem)
-- [`parallel_tests` with `knapsack_pro` on parallel CI nodes](https://knapsackpro.com/faq/question/parallel_tests-with-knapsack_pro-on-parallel-ci-nodes)
-- [`parallel_tests` with `knapsack_pro` on single CI machine](https://knapsackpro.com/faq/question/parallel_tests-with-knapsack_pro-on-single-ci-machine)
