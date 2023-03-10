@@ -93,6 +93,31 @@ Available:
 - `debug`: Knapsack Pro API request headers and body
 - `silly`
 
+## `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`
+
+Exclude tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
+
+Default: `undefined`
+
+Available: anything that [node-glob](https://github.com/isaacs/node-glob#glob-primer) accepts
+
+Hint: you can debug in `node`
+
+```js
+var glob = require("glob")
+var MY_GLOB="cypress/e2e/admin/**/*.{js,jsx}"
+glob(MY_GLOB, {}, function (err, files) { console.log(files) })
+```
+
+Examples:
+```bash
+KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="cypress/e2e/admin/**/*.{js,jsx}"
+
+KNAPSACK_PRO_TEST_FILE_PATTERN="cypress/e2e/**/*.{js,jsx,coffee,cjsx}" \
+KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="cypress/e2e/admin/**/*.{js,jsx}"
+```
+
+
 ## `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`
 
 File containing the list of **relative paths** of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
