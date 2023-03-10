@@ -126,17 +126,17 @@ Default: `undefined`
 
 Example:
 ```bash
-KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=__tests__/fixtures/list.txt
+KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=cypress/fixtures/list.txt
 
 # ✅ list.txt
-__tests__/a.test.js
-__tests__/b.test.js
-__tests__/c.test.js
+cypress/e2e/a.spec.js
+cypress/e2e/b.spec.js
+cypress/e2e/c.spec.js
 
 # ⛔️ list.txt
-/home/user123/project/__tests__/a.test.js
-/home/user123/project/__tests__/b.test.js
-/home/user123/project/__tests__/c.test.js
+/home/user123/project/cypress/e2e/a.spec.js
+/home/user123/project/cypress/e2e/b.spec.js
+/home/user123/project/cypress/e2e/c.spec.js
 ```
 
 ## `KNAPSACK_PRO_TEST_FILE_PATTERN`
