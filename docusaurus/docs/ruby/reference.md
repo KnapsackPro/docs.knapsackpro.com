@@ -322,7 +322,7 @@ Hint: you can debug `Dir.glob(MY_GLOB)` in irb or rails console
 Examples:
 ```bash
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/features/**{,/*/**}/*_spec.rb"
-
+# or
 KNAPSACK_PRO_TEST_FILE_PATTERN="spec/controllers/**{,/*/**}/*_spec.rb" \
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec.rb"
 ```
@@ -380,9 +380,9 @@ Hint: you can debug `Dir.glob(MY_GLOB)` in irb or rails console
 Examples:
 ```bash
 KNAPSACK_PRO_TEST_FILE_PATTERN="spec/system/**/*_spec.rb"
-
+# or
 KNAPSACK_PRO_TEST_DIR=spec KNAPSACK_PRO_TEST_FILE_PATTERN="{spec,engines/*/spec}/**/*_spec.rb"
-
+# or
 KNAPSACK_PRO_TEST_FILE_PATTERN="spec/controllers/**{,/*/**}/*_spec.rb" \
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec.rb"
 ```

@@ -124,7 +124,7 @@ glob(MY_GLOB, {}, function (err, files) { console.log(files) })
 Examples:
 ```bash
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
-
+# or
 KNAPSACK_PRO_TEST_FILE_PATTERN=="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}" \
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
 ```
@@ -177,7 +177,7 @@ glob(MY_GLOB, {}, function (err, files) { console.log(files) })
 Examples:
 ```bash
 KNAPSACK_PRO_TEST_FILE_PATTERN=="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}"
-
+# or
 KNAPSACK_PRO_TEST_FILE_PATTERN=="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}" \
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
 ```
