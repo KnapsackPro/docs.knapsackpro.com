@@ -35,7 +35,7 @@ export const useSearchParam = (
     updateSearchParam_: (_: Set<string>) => Set<string>
   ): void => {
     const newValues = updateSearchParam_(values);
-    history.pushState(null, "", `?${newSearch(param, newValues)}`);
+    history.pushState(null, "", `?${newSearch(param, newValues)}${location.hash}`);
     dispatchEvent(new CustomEvent(EVENT_TYPE));
   };
 
