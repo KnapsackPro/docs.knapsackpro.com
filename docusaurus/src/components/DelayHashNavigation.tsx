@@ -7,6 +7,7 @@ export const DelayHashNavigation = ({
 }) => {
   useEffect(() => {
     const hash = location.hash;
+    if (hash.length === 0) return;
     const element = document.querySelector(hash);
     if (!element) return;
     const callback = () => {
