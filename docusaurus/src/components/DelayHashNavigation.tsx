@@ -7,9 +7,10 @@ export const DelayHashNavigation = ({
 }) => {
   useEffect(() => {
     const hash = location.hash;
+    const element = document.querySelector(hash);
+    if (!element) return;
     const callback = () => {
-      location.hash = "";
-      location.hash = hash;
+      element.scrollIntoView({ behavior: "smooth" });
     };
     const timeout = setTimeout(callback, milliseconds);
     () => clearTimeout(timeout);
