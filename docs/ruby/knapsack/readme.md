@@ -114,7 +114,7 @@ How knapsack_pro makes my life easier as opposed to regular knapsack gem?
 * The knapsack_pro version tracks all you branches so when your test code changes the knapsack_pro tries to provide you as optimal test suite split as possible. 
 * When your test codebase changes over time you need to manually generate a new knapsack report in free gem version which is extra overhead and waste of time of the developer.
 
-**Only [knapsack_pro gem](https://github.com/KnapsackPro/knapsack_pro-ruby) has Queue Mode feature that saves optimal amount of time? Please [visit Knapsack Pro](http://knapsackpro.com?utm_source=github&utm_medium=readme&utm_campaign=knapsack_gem&utm_content=try_knapsack_pro).**
+**Only [knapsack_pro gem](https://github.com/KnapsackPro/knapsack_pro-ruby) has Queue Mode feature that saves optimal amount of time? Please [visit Knapsack Pro](https://knapsackpro.com?utm_source=github&utm_medium=readme&utm_campaign=knapsack_gem&utm_content=try_knapsack_pro).**
 
 ### Presentations about knapsack gem
 
@@ -990,7 +990,7 @@ If you want to regenerate report take a look [here](#common-step).
 KNAPSACK_GENERATE_REPORT=true bundle exec rspec spec
 {% endhighlight %}
 
-If you run command like this on your development machine then test suite time execution might be different than if you generate a report on CI machine (for instance tests might be faster on your machine then on CI node) so that might be a reason why you see warning about regenerating report. You can generate the report on single CI node which should give you result specific for your CI node instead of your development machine. In case you don't want to bother about manually regenerating knapsack report please take a look on [knapsack_pro gem](http://knapsackpro.com?utm_source=github&utm_medium=readme&utm_campaign=knapsack_gem&utm_content=no_manual_report).
+If you run command like this on your development machine then test suite time execution might be different than if you generate a report on CI machine (for instance tests might be faster on your machine then on CI node) so that might be a reason why you see warning about regenerating report. You can generate the report on single CI node which should give you result specific for your CI node instead of your development machine. In case you don't want to bother about manually regenerating knapsack report please take a look on [knapsack_pro gem](https://knapsackpro.com?utm_source=github&utm_medium=readme&utm_campaign=knapsack_gem&utm_content=no_manual_report).
 
 ### What does "leftover specs" mean?
 

@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 
 <DelayHashNavigation milliseconds={400} />
 
-[Create an account](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-cypress&utm_content=installation_guide) to generate API tokens and use Knapsack Pro.
+[Create an account](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-cypress&utm_content=installation_guide) to generate API tokens and use Knapsack Pro.
 
 ## Installation
 
@@ -178,7 +178,7 @@ steps:
         # highlight-end
 ```
 
-Here you can find an article on [how to set up a new pipeline for your project in Buildkite and configure Knapsack Pro](http://docs.knapsackpro.com/2017/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example).
+Here you can find an article on [how to set up a new pipeline for your project in Buildkite and configure Knapsack Pro](https://docs.knapsackpro.com/2017/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example).
 
 You can also check out the following example repositories for Ruby on Rails projects:
 - [Buildkite Rails Parallel Example with Knapsack Pro](https://github.com/KnapsackPro/buildkite-rails-parallel-example-with-knapsack_pro)

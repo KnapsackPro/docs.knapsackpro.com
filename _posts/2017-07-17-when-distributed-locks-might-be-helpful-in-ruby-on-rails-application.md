@@ -11,7 +11,7 @@ During this year I noticed 2 similar concurrency problems with my Ruby on Rails 
 
 <img src="/images/blog/posts/when-distributed-locks-might-be-helpful-in-ruby-on-rails-application/distributed_lock.jpg" style="width:250px;float:right;" alt="Distributed lock" />
 
-Let me start with a bit of context before we discuss the problem. I'm running small SaaS application [KnapsackPro.com](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=distributed-locks) and the application provides API for the gem [knapsack_pro](https://github.com/KnapsackPro/knapsack_pro-ruby). The whole point of the tool is to optimize time execution of your RSpec, Cucumber etc test suite by splitting tests across CI nodes running in parallel. 
+Let me start with a bit of context before we discuss the problem. I'm running small SaaS application [KnapsackPro.com](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=distributed-locks) and the application provides API for the gem [knapsack_pro](https://github.com/KnapsackPro/knapsack_pro-ruby). The whole point of the tool is to optimize time execution of your RSpec, Cucumber etc test suite by splitting tests across CI nodes running in parallel. 
 
 Imagine a scenario where you have 20 minutes long RSpec test suite and you would like to split it across 2 parallel CI nodes. In the perfect case, you should run half of RSpec tests on the first CI node and the second half on the second CI node. In result, your test suite would run only 10 minutes.
 

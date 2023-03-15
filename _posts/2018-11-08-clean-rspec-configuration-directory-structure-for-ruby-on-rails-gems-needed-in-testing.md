@@ -246,7 +246,7 @@ WebMock.disable_net_connect!(allow: [
 
 ## Configuration for Knapsack Pro to split test suite across parallel CI nodes
 
-If you have a large test suite taking a dozen of minutes or maybe even hours then you may want to [run tests in parallel across multiple CI node with Knapsack Pro](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=clean-rspec-configuration-directory-structure-for-ruby-on-rails-gems-needed-in-testing) to get the fastest CI build.
+If you have a large test suite taking a dozen of minutes or maybe even hours then you may want to [run tests in parallel across multiple CI node with Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=clean-rspec-configuration-directory-structure-for-ruby-on-rails-gems-needed-in-testing) to get the fastest CI build.
 
 This is example config file.
 

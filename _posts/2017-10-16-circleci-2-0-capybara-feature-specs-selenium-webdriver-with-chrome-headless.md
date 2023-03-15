@@ -200,7 +200,7 @@ jobs:
         bundle exec rake "knapsack_pro:queue:rspec[--format documentation]"
 {% endhighlight %}
 
-You can learn [how RSpec test suite parallelisation works](http://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless#x-play-how-it-works-video) in 1 minute video.
+You can learn [how RSpec test suite parallelisation works](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless#x-play-how-it-works-video) in 1 minute video.
 
 ## Summary
 
