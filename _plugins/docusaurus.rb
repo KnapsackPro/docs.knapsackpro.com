@@ -11,6 +11,9 @@ Jekyll::Hooks.register :site, :post_write do |page|
   system!("cp -R docusaurus/build/img _site")
   system!("cp -R docusaurus/build/assets _site")
 
+  system!("mkdir -p _site/search")
+  system!("cp docusaurus/build/search/index.html _site/search")
+
   system!("mkdir -p _site/knapsack_pro-ruby/guide")
   system!("cp docusaurus/build/knapsack_pro-ruby/guide/index.html _site/knapsack_pro-ruby/guide")
 
