@@ -436,7 +436,7 @@ jobs:
 
 ```
 
-Here you can find an example of a [Rails project config on CircleCI 2.0](https://docs.knapsackpro.com//2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless).
+Here you can find an example of a [Rails project config on CircleCI 2.0](https://docs.knapsackpro.com/2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless).
 
 </ShowIfSearchParamAndValue>
 
