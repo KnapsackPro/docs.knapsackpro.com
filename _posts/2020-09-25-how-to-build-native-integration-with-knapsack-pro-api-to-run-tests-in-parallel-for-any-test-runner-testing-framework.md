@@ -9,7 +9,7 @@ og_image: "/images/blog/posts/how-to-build-native-integration-with-knapsack-pro-
 
 Do you know that Knapsack Pro API can work with any test runner in any programming language?
 
-If your test runner is not listed here as one of [the supported test runners out of the box in Knapsack Pro](/integration/), then you can use `@knapsack-pro/core` npm package to directly integrate with Knapsack Pro API and build your test runner integration with Knapsack Pro API.
+If your test runner is not listed here as one of [the supported test runners out of the box in Knapsack Pro](/), then you can use `@knapsack-pro/core` npm package to directly integrate with Knapsack Pro API and build your test runner integration with Knapsack Pro API.
 
 <img src="/images/blog/posts/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework/api.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Knapsack Pro API" />
 
@@ -68,7 +68,7 @@ You can fork [`@knapsack-pro/cypress`](https://github.com/KnapsackPro/knapsack-p
 
 Note that using [`@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js) instead of directly writing requests to Knapsack Pro API has the benefit of being able to use `@knapsack-pro/core` features, like the [Fallback Mode](https://knapsackpro.com/faq/question/what-happens-when-knapsack-pro-api-is-not-available-how-fallback-mode-works). When the library is not able to connect to the API then it can auto-retry requests and show warnings in the logger and also run the tests in the Fallback Mode. As you can see, using the library can help you avoid dealing with many hassles along the way!
 
-I hope this article was useful to you. Let us know if you have any questions or if you would like to see an out of the box integration for your favorite test runner. We'd like to add more test runners to our [list of supported out of the box test runners](/integration/) in the future.
+I hope this article was useful to you. Let us know if you have any questions or if you would like to see an out of the box integration for your favorite test runner. We'd like to add more test runners to our [list of supported out of the box test runners](/) in the future.
 
 ### Related articles
 

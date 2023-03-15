@@ -31,18 +31,18 @@ Since we are claiming that the Queue Mode is the ultimate best for most projects
 
 ### Non-trivial setup
 
-We are doing our best to make the [Knapsack setup](https://docs.knapsackpro.com/integration/) experience as smooth as possible for every project giving our solution a try. Some things just lie outside of our control, though.
+We are doing our best to make the [Knapsack setup](https://docs.knapsackpro.com/) experience as smooth as possible for every project giving our solution a try. Some things just lie outside of our control, though.
 
 The combination of your specific CI pipeline configuration and your RSpec usage might require some adjustments along the way.
 
 What we know from experience is that usually the Queue Mode uncovers different adjustment needs than the Regular Mode. The reason behind that is that in the Queue Mode, each one of your parallel CI nodes will usually run the RSpec command multiple times (as compared to just one run per node in the Regular Mode). This distinction might result in additional challenges to solve.
 
-As with all debugging, it's best to narrow down (isolate) possible issues we are tackling at a given time. This is why we strongly suggest to [set up](https://docs.knapsackpro.com/integration/) the Regular Mode first. When you ensure it works as expected, and confirm that in your [User Dashboard](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=setting-up-knapsack-pro-in-rspec-project), you are ready to proceed to the Queue Mode setup.
+As with all debugging, it's best to narrow down (isolate) possible issues we are tackling at a given time. This is why we strongly suggest to [set up](https://docs.knapsackpro.com/) the Regular Mode first. When you ensure it works as expected, and confirm that in your [User Dashboard](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=setting-up-knapsack-pro-in-rspec-project), you are ready to proceed to the Queue Mode setup.
 
 And now for the good news: we have documented all of the common issues you might encounter during your setup in our [FAQ](https://knapsackpro.com/faq?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=setting-up-knapsack-pro-in-rspec-project). Keep that in mind during your onboarding.
 
-Head over to our [installation guide](https://docs.knapsackpro.com/integration/) and get the best out of Knapsack for your project today! We would very happy to assist you along the way, so do not hesitate to [contact us](https://knapsackpro.com/contact?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=setting-up-knapsack-pro-in-rspec-project) if you need anything.
+Head over to our [installation guide](https://docs.knapsackpro.com/) and get the best out of Knapsack for your project today! We would very happy to assist you along the way, so do not hesitate to [contact us](https://knapsackpro.com/contact?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=setting-up-knapsack-pro-in-rspec-project) if you need anything.
 
 ## Conclusion
 
-Following the described order of steps (using Regular Mode before Queue Mode) should result in the smoothest [Knapsack Pro setup](https://docs.knapsackpro.com/integration/) experience. In case you are stuck at any point, please consult our [installation guide](https://docs.knapsackpro.com/knapsack_pro-ruby/guide/), [FAQ](https://knapsackpro.com/faq?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=setting-up-knapsack-pro-in-rspec-project), or simply [contact us](https://knapsackpro.com/contact?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=setting-up-knapsack-pro-in-rspec-project). We'll be more than happy to help!
+Following the described order of steps (using Regular Mode before Queue Mode) should result in the smoothest [Knapsack Pro setup](https://docs.knapsackpro.com/) experience. In case you are stuck at any point, please consult our [installation guide](https://docs.knapsackpro.com/knapsack_pro-ruby/guide/), [FAQ](https://knapsackpro.com/faq?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=setting-up-knapsack-pro-in-rspec-project), or simply [contact us](https://knapsackpro.com/contact?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=setting-up-knapsack-pro-in-rspec-project). We'll be more than happy to help!

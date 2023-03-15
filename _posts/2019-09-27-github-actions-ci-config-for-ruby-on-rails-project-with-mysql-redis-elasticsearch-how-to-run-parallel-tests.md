@@ -33,7 +33,7 @@ In this video, you will learn how dynamic test suite spilt across parallel jobs 
 
 [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=github-actions-ci-config-for-ruby-on-rails-project-with-mysql-redis-elasticsearch-how-to-run-parallel-tests) has also a deterministic way of splitting tests. Tests are split only once before running tests. This is the most simple way that you will try for the first time to record your CI build before you switch to Queue Mode.
 
-You can learn more about Knapsack Pro in the [installation guide](/integration/).
+You can learn more about Knapsack Pro in the [installation guide](/).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZEb6NeRRfQ4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

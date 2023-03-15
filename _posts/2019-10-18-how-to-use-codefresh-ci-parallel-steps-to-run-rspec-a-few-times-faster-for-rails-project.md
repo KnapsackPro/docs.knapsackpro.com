@@ -46,7 +46,7 @@ In this video, I explained technical details for a dynamic test suite split and 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-There are more test runners in Ruby like Cucumber, Minitest, etc that are supported by <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project">Knapsack Pro</a>. Even JavaScript tools like Cypress.io or Jest can be launched with Knapsack Pro wrapper ([see installation guide](/integration/)).
+There are more test runners in Ruby like Cucumber, Minitest, etc that are supported by <a href="https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project">Knapsack Pro</a>. Even JavaScript tools like Cypress.io or Jest can be launched with Knapsack Pro wrapper ([see installation guide](/)).
 
 I hope you find this tutorial useful and you can benefit from [faster CI builds](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-use-codefresh-ci-parallel-steps-to-run-rspec-a-few-times-faster-for-rails-project) for your Rails project thanks to running parallel steps on Codefresh.io.
 

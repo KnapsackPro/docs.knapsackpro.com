@@ -144,4 +144,4 @@ Here is the view from Github Actions showing that we run 8 parallel jobs for the
 
 ## Summary
 
-I hope you find this example useful. If you would like to learn more about [Knapsack Pro please check our homepage](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=cucumber-bdd-testing-using-github-actions-parallel-jobs-to-run-tests-quicker) and see a list of [supported test runners for parallel testing in Ruby, JavaScript, etc](/integration/).
+I hope you find this example useful. If you would like to learn more about [Knapsack Pro please check our homepage](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=cucumber-bdd-testing-using-github-actions-parallel-jobs-to-run-tests-quicker) and see a list of [supported test runners for parallel testing in Ruby, JavaScript, etc](/).

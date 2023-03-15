@@ -27,7 +27,7 @@ To [split tests in a dynamic way for Ruby & JavaScript tests you can use Queue M
 
 ## GitLab YAML config for parallel testing
 
-Here you can find an example config `.gitlab-ci.yml` for Ruby on Rails project that has RSpec tests executed across 2 parallel jobs using [Knapsack Pro Queue Mode](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-parallel-jobs-for-rspec-tests-on-gitlab-ci-pipeline-and-speed-up-ruby-javascript-testing). The similar configuration would be for JavaScript projects with Jest or Cypress tests ([full list of supported test runners](/integration/) in Knapsack Pro can be found here).
+Here you can find an example config `.gitlab-ci.yml` for Ruby on Rails project that has RSpec tests executed across 2 parallel jobs using [Knapsack Pro Queue Mode](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-parallel-jobs-for-rspec-tests-on-gitlab-ci-pipeline-and-speed-up-ruby-javascript-testing). The similar configuration would be for JavaScript projects with Jest or Cypress tests ([full list of supported test runners](/) in Knapsack Pro can be found here).
 
 Please remember to set API token for [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-parallel-jobs-for-rspec-tests-on-gitlab-ci-pipeline-and-speed-up-ruby-javascript-testing) as environment variable name `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` in GitLab Settings -> CI/CD -> Variables (Expand) as a masked variable.
 

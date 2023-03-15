@@ -137,7 +137,7 @@ Here is a config for your <i>app.json</i>
 ## Summary
 
 > You can find all integrations for various test runners in installation guide.<br>
-> [See supported test runners in Knapsack Pro](/integration/).
+> [See supported test runners in Knapsack Pro](/).
 
 Heroku CI is a great addition to Heroku. If you already use Heroku you can easily leverage parallel dynos and keep low costs of your CI as you pay only for dyno usage. The great thing is that you can run many parallel CI dynos with a subset of your test suite to save a ton of time for your engineering team. You can learn more about how [Knapsack Pro can help you save time with faster CI builds](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-tests-faster-on-heroku-ci-with-parallel-dynos).
 

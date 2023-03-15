@@ -57,7 +57,7 @@ Now we can configure our Github Actions workflow. The first job will run our Cyp
       - name: Configure Knapsack Pro
         run: |
           echo ::set-env name=KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS::${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS }}
-          echo ::set-env name=KNAPSACK_PRO_TEST_FILE_PATTERN::"cypress/integration/**/*.spec.{js,ts}"
+          echo ::set-env name=KNAPSACK_PRO_TEST_FILE_PATTERN::"cypress/**/*.spec.{js,ts}"
           echo ::set-env name=KNAPSACK_PRO_CI_NODE_TOTAL::${{ matrix.ci_node_total }}
           echo ::set-env name=KNAPSACK_PRO_CI_NODE_INDEX::${{ matrix.ci_node_index }}
 {% endraw %}
