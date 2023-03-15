@@ -41,13 +41,6 @@ const config = {
         content: '@KnapsackPro',
       },
     },
-    {
-      tagName: 'meta',
-      attributes: {
-        name: 'description',
-        content: 'Speed up your tests with optimal test suite parallelisation on your CI. Blog & documentation for Knapsack Pro.',
-      },
-    },
   ],
 
   // Even if you don't use internalization, you can use this field to set useful
