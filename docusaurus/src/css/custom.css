@@ -111,6 +111,7 @@ li {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: var(--ifm-paragraph-margin-bottom);
 }
 
 .cell {
