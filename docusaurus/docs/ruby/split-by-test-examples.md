@@ -6,10 +6,12 @@ pagination_prev: null
 # Split by test examples
 
 :::caution
-Only RSpec >= 3.3.0 is supported. [Let us know](https://knapsackpro.com/contact) if you use a different test runner.
+Only RSpec >= 3.3.0 is supported. [Let us know](https://knapsackpro.com/contact) if you use a different test runner. As an alternative, consider:
+- spreading test examples into multiple files
+- tagging test examples (e.g., RSpec's [`--tag`](https://docs.knapsackpro.com/ruby/rspec/#run-a-subset-of-tests))
 :::
 
-You can set [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](/ruby/reference/#knapsack_pro_rspec_split_by_test_examples-rspec) to parallelize tests at the `it`/`specify` level across CI nodes. This is useful when you have slow test files but don't want to manually split test examples into smaller test files.
+You can set [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](/ruby/reference/#knapsack_pro_rspec_split_by_test_examples-rspec) to parallelize tests across CI nodes by example (`it`/`specify`). This is useful when you have slow test files but don't want to manually split test examples into smaller test files.
 
 As an example, imagine you have two test files in your suite:
 
@@ -99,7 +101,7 @@ We recommend running at least 2 CI builds after you enable this feature or chang
 Does not support `--tag`
 :::
 
-Due to the [RSpec internals](https://github.com/rspec/rspec-core/issues/2522), `--tag` might be ignored when used together with `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`. But you can use the [environment variables](/ruby/reference) to filter the test files to run.
+Due to the [RSpec internals](https://github.com/rspec/rspec-core/issues/2522), `--tag` might be ignored when used together with `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`. But you can use the `KNAPSACK_PRO_TEST_FILE_*` [environment variables](/ruby/reference/) to filter the test files to run.
 
 :::caution
 Does not support [`run_all_when_everything_filtered`](/ruby/rspec/#some-of-my-test-files-are-not-executed)
