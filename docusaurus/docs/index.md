@@ -44,9 +44,11 @@ If you have questions, feel free to [contact us](https://knapsackpro.com/contact
 </a>
 </div>
 
-## Write your integration
+Can't see your language/testing framework above? [Let us know](https://docs.google.com/forms/d/e/1FAIpQLSe7Z6k__VczmRMmXykjA5i2MVEA3nEJ90gbiIeCRjecWhPOig/viewform?hl=en).
 
-Can't see your language/testing framework above? You can still use Knapsack Pro:
+You can still use Knapsack Pro by writing your integration on top of the JavaScript SDK or using the Knapsack Pro API:
+
+## Write your integration
 
 <div className="grid">
 <a href="https://docs.knapsackpro.com/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework" target="_blank" rel="noopener noreferrer" className="cell">
