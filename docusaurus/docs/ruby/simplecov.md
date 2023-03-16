@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Use Knapsack Pro in Queue Mode with SimpleCov
+# Using Knapsack Pro in Queue Mode with SimpleCov
 
 :::caution
 This is needed only if you are using Knapsack Pro in [Queue Mode](https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode).

@@ -19,7 +19,7 @@ bundle exec spring rake knapsack_pro:rspec
 bundle exec spring rake knapsack_pro:queue:rspec
 ```
 
-## Use Knapsack Pro in Queue Mode with `spring` and Cucumber
+## Using Knapsack Pro in Queue Mode with `spring` and Cucumber
 
 Make sure you have [`spring-commands-cucumber`](https://github.com/jonleighton/spring-commands-cucumber) installed and execute:
 
