@@ -92,7 +92,7 @@ RACK_ENV: test
       # Run RSpec tests with knapsack_pro Queue Mode and use junit formatter
       # junit formatter must be configured as described in FAQ for knapsack_pro Queue Mode
       # this is also described in this article later
-      # https://github.com/KnapsackPro/knapsack_pro-ruby#how-to-use-junit-formatter-with-knapsack_pro-queue-mode
+      # https://docs.knapsackpro.com/ruby/circleci/#collect-metadata-in-queue-mode
       - run: bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/test-reports/rspec/queue_mode/rspec.xml]"
 
       - run:

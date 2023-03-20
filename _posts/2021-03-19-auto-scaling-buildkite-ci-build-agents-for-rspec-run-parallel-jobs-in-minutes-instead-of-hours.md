@@ -74,7 +74,7 @@ KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: "204abb31f698a6686120a40efeff31e5"
 
 # allow to run the same set of test files on job retry
 
-# https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node
+# https://docs.knapsackpro.com/ruby/queue-mode/#dynamic-split-vs-fixed-split
 
 KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
 

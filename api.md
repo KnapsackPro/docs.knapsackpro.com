@@ -20,12 +20,12 @@ You can learn how Knapsack Pro API works from the below videos or reading the ar
   <li>
   <a href="https://youtu.be/ZEb6NeRRfQ4"><i class="fab fa-youtube"></i> Regular Mode - deterministic tests split across parallel CI nodes</a>.
   <br>
-  Docs: <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#how-does-knapsack_pro-work">How knapsack_pro gem works in Regular Mode</a>.
+  Docs: <a href="https://docs.knapsackpro.com/overview/#regular-mode-static-split">How knapsack_pro gem works in Regular Mode</a>.
   </li>
   <li>
   <a href="https://youtu.be/hUEB1XDKEFY"><i class="fab fa-youtube"></i> Queue Mode - dynamic tests split across parallel CI nodes</a>.
   <br>
-  Docs: <a href="https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode">How knapsack_pro gem works in Queue Mode</a>.
+  Docs: <a href="https://docs.knapsackpro.com/overview/#queue-mode-dynamic-split">How knapsack_pro gem works in Queue Mode</a>.
   </li>
 </ul>
 

@@ -48,7 +48,7 @@ First, you need to clone [`@knapsack-pro/core`](https://github.com/KnapsackPro/k
 
 The next step is to clone [`@knapsack-pro/cypress`](https://github.com/KnapsackPro/knapsack-pro-cypress) repository. You will have to replace Cypress with your test runner npm package.
 
-Here is some basic info about the project structure. It's written in TypeScript. The TypeScript source code is in `src` directory. The `lib` directory contains TypeScript code compiled to JavaScript. You should not modify files in the `lib` directory because they are overridden during compilation. You can find tips on how to compile the project in the [README file](https://github.com/KnapsackPro/knapsack-pro-cypress#development).
+Here is some basic info about the project structure. It's written in TypeScript. The TypeScript source code is in `src` directory. The `lib` directory contains TypeScript code compiled to JavaScript. You should not modify files in the `lib` directory because they are overridden during compilation. You can find tips on how to compile the project in the [README file](https://github.com/KnapsackPro/knapsack-pro-cypress#contributing).
 
 You can rename forked project `@knapsack-pro/cypress` to `@knapsack-pro/my-test-runner` and update the info in `package.json`.
 

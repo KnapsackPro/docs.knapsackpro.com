@@ -182,7 +182,7 @@ runs-on: ubuntu-latest
           KNAPSACK_PRO_LOG_LEVEL: info
           # if you use Knapsack Pro Queue Mode you must set below env variable
           # to be able to retry CI build and run previously recorded tests
-          # https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node
+          # https://docs.knapsackpro.com/ruby/queue-mode/#dynamic-split-vs-fixed-split
           KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
           # RSpec split test files by test examples feature - it's optional
           # https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it

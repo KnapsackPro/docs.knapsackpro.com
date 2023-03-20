@@ -56,8 +56,8 @@ There is one more useful thing which is retry failed CI node feature. You can ju
 
 # How to run 7 hours build across 100 parallel jobs with knapsack_pro gem?
 
-We are going to use [knapsack_pro gem with Queue Mode for RSpec](https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode).
-You can find here info how to add it to your Gemfile and [install knapsack_pro for your project](https://github.com/KnapsackPro/knapsack_pro-ruby#installation).
+We are going to use [knapsack_pro gem with Queue Mode for RSpec](https://docs.knapsackpro.com/overview/#queue-mode-dynamic-split).
+You can find here info how to add it to your Gemfile and [install knapsack_pro for your project](https://docs.knapsackpro.com/knapsack_pro-ruby/guide/).
 
 Knapsack Pro supports buildkite environment variables to determine git commit, branch name and number of parallel jobs. The only thing you need to do is to configure the parallelism parameter in your pipeline step and run the appropiate knapsack_pro command.
 
@@ -75,7 +75,7 @@ RAILS_ENV=test
 KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true
 ```
 
-[`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node) flag allows us to use retry failed CI node feature on Buildkite.com. When we retry the CI node then we want to run what was run there previously instead of dynamically allocate tests again hence the fixed queue split flag is true.
+[`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://docs.knapsackpro.com/ruby/queue-mode/#dynamic-split-vs-fixed-split) flag allows us to use retry failed CI node feature on Buildkite.com. When we retry the CI node then we want to run what was run there previously instead of dynamically allocate tests again hence the fixed queue split flag is true.
 
 **Set step command:**
 
@@ -98,6 +98,6 @@ I tested this with a company who has a large test suite ~7 hours and the average
 # What else can I learn?
 
 - **See an example repository of how to run Rails CI with [Knapsack Pro and test steps in parallel with Buildkite](https://github.com/KnapsackPro/buildkite-rails-parallel-example-with-knapsack_pro). Here is an example for [Docker, Knapsack Pro and Buildkite](https://github.com/KnapsackPro/buildkite-rails-docker-parallel-example-with-knapsack_pro).**
-- What is [optimal order of test commands](https://github.com/KnapsackPro/knapsack_pro-ruby#what-is-optimal-order-of-test-commands)?
+- What is [optimal order of test commands](https://knapsackpro.com/faq/question/what-is-optimal-order-of-test-commands)?
 - Learn more about [Knapsack Pro parallelisation](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite)
 - [Compare Buildkite to other CI solutions](https://knapsackpro.com/ci_comparisons/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite#buildkite), including [Buildkite vs Jenkins](https://knapsackpro.com/ci_comparisons/buildkite/vs/jenkins?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite), [Buildkite vs CircleCI](https://knapsackpro.com/ci_comparisons/buildkite/vs/circle-ci?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite), and [Buildkite vs Github Actions](https://knapsackpro.com/ci_comparisons/buildkite/vs/github-actions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite).
