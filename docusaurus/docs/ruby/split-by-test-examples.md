@@ -111,7 +111,7 @@ Does not support [`run_all_when_everything_filtered`](/ruby/rspec/#some-of-my-te
 
 ### Why are some of my test files not executed?
 
-Read the answer on the [RSpec page](/ruby/rspec#why-are-some-of-my-test-files-not-executed).
+Read the answer on the [RSpec page](/ruby/rspec#some-of-my-test-files-are-not-executed).
 
 ### How do I fix `LoadError: cannot load such file -- MY_RUBY_GEM`?
 
