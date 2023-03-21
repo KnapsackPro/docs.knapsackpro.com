@@ -68,7 +68,7 @@ MultiTest.disable_autorun
 
 ### How do I fix `cannot load such file -- stripe_mock (LoadError)`?
 
-Knapsack Pro relies on Cucumber::Rake::Task, which uses Bundler. Bundler employs a performance trick that may [*cause some subtle side-effects*](https://bundler.io/man/bundle-exec.1.html#Loading). You can disable such a trick with:
+Knapsack Pro relies on Cucumber::Rake::Task, which uses Bundler. Bundler employs a performance trick that may [_cause some subtle side-effects_](https://bundler.io/man/bundle-exec.1.html#Loading). You can disable such a trick with:
 
 ```bash
 export BUNDLE_DISABLE_EXEC_LOAD=true

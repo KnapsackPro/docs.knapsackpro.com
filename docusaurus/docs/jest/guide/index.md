@@ -41,23 +41,22 @@ Now, fill in the following form to generate the instruction steps for your proje
 
 **What is your CI provider?**
 <RadioGroup inUrl="ci" items={[
-  { value: "appveyor", label: "AppVeyor" },
-  { value: "buildkite", label: "Buildkite" },
-  { value: "circleci", label: "CircleCI" },
-  { value: "cirrus-ci", label: "Cirrus CI" },
-  { value: "codeship", label: "CloudBees CodeShip" },
-  { value: "codefresh", label: "Codefresh" },
-  { value: "github-actions", label: "GitHub Actions" },
-  { value: "gitlab-ci", label: "GitLab CI" },
-  { value: "heroku-ci", label: "Heroku CI" },
-  { value: "jenkins", label: "Jenkins" },
-  { value: "semaphoreci", label: "Semaphore CI" },
-  { value: "travis-ci", label: "Travis CI" },
-  { value: "other", label: "Other" },
+{ value: "appveyor", label: "AppVeyor" },
+{ value: "buildkite", label: "Buildkite" },
+{ value: "circleci", label: "CircleCI" },
+{ value: "cirrus-ci", label: "Cirrus CI" },
+{ value: "codeship", label: "CloudBees CodeShip" },
+{ value: "codefresh", label: "Codefresh" },
+{ value: "github-actions", label: "GitHub Actions" },
+{ value: "gitlab-ci", label: "GitLab CI" },
+{ value: "heroku-ci", label: "Heroku CI" },
+{ value: "jenkins", label: "Jenkins" },
+{ value: "semaphoreci", label: "Semaphore CI" },
+{ value: "travis-ci", label: "Travis CI" },
+{ value: "other", label: "Other" },
 ]} />
 
 ## Instructions
-
 
 <ShowIfSearchParamAndValue searchParam="ci" value="appveyor">
 
@@ -66,6 +65,7 @@ Now, fill in the following form to generate the instruction steps for your proje
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-jest&utm_content=installation_guide_appveyor) for each Knapsack Pro command.
 
 For each parallel job, define:
+
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](/jest/reference/#knapsack_pro_test_suite_token_jest)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/jest/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/jest/reference/#knapsack_pro_ci_node_index)
@@ -106,7 +106,6 @@ $(npm bin)/knapsack-pro-jest --runInBand
 </Tabs>
 
 </ShowIfSearchParamAndValue>
-
 
 <ShowIfSearchParamAndValue searchParam="ci" value="buildkite">
 
@@ -165,11 +164,11 @@ steps:
 Here you can find an article on [how to set up a new pipeline for your project in Buildkite and configure Knapsack Pro](https://docs.knapsackpro.com/2017/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example).
 
 You can also check out the following example repositories for Ruby on Rails projects:
+
 - [Buildkite Rails Parallel Example with Knapsack Pro](https://github.com/KnapsackPro/buildkite-rails-parallel-example-with-knapsack_pro)
 - [Buildkite Rails Docker Parallel Example with Knapsack Pro](https://github.com/KnapsackPro/buildkite-rails-docker-parallel-example-with-knapsack_pro)
 
 </ShowIfSearchParamAndValue>
-
 
 <ShowIfSearchParamAndValue searchParam="ci" value="circleci">
 
@@ -196,13 +195,11 @@ jobs:
         name: jest with @knapsack-pro/jest
         command: $(npm bin)/knapsack-pro-jest --runInBand
       # highlight-end
-
 ```
 
 Here you can find an example of a [Rails project config on CircleCI 2.0](https://docs.knapsackpro.com/2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless).
 
 </ShowIfSearchParamAndValue>
-
 
 <ShowIfSearchParamAndValue searchParam="ci" value="cirrus-ci">
 
@@ -212,7 +209,7 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 
 Configure the number of parallel CI nodes with the [matrix modification](https://cirrus-ci.org/guide/writing-tasks/#matrix-modification):
 
-```yaml  title=".cirrus.yml"
+```yaml title=".cirrus.yml"
 task:
   environment:
     KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST: ENCRYPTED[KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST]
@@ -230,7 +227,6 @@ Here is an example of a [`.cirrus.yml` configuration file](https://cirrus-ci.org
 
 </ShowIfSearchParamAndValue>
 
-
 <ShowIfSearchParamAndValue searchParam="ci" value="codeship">
 
 ### CloudBees CodeShip
@@ -238,6 +234,7 @@ Here is an example of a [`.cirrus.yml` configuration file](https://cirrus-ci.org
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-jest&utm_content=installation_guide_codeship) for each Knapsack Pro command.
 
 For each [parallel pipeline](https://documentation.codeship.com/basic/builds-and-configuration/parallel-tests/#using-parallel-test-pipelines), define:
+
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](/jest/reference/#knapsack_pro_test_suite_token_jest)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/jest/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/jest/reference/#knapsack_pro_ci_node_index)
@@ -279,10 +276,9 @@ $(npm bin)/knapsack-pro-jest --runInBand
 </TabItem>
 </Tabs>
 
-Consider moving the `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` to the *Environment* page of your project settings in CodeShip.
+Consider moving the `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` to the _Environment_ page of your project settings in CodeShip.
 
 </ShowIfSearchParamAndValue>
-
 
 <ShowIfSearchParamAndValue searchParam="ci" value="codefresh">
 
@@ -291,12 +287,13 @@ Consider moving the `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` to the *Environment* pa
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-jest&utm_content=installation_guide_codefresh) for each Knapsack Pro command.
 
 Define in `.codefresh/codefresh.yml`:
+
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](/jest/reference/#knapsack_pro_test_suite_token_jest)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/jest/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/jest/reference/#knapsack_pro_ci_node_index)
   - In the `matrix` section, list all the `KNAPSACK_PRO_CI_NODE_INDEX`es (from `0` to `KNAPSACK_PRO_CI_NODE_TOTAL-1`).
 
-Remember to configure the YAML file path on Codefresh: *Pipelines > Settings (cog icon next to the pipeline) > Workflow Tab (horizontal menu on the top) > Path to YAML > `./.codefresh/codefresh.yml`*.
+Remember to configure the YAML file path on Codefresh: _Pipelines > Settings (cog icon next to the pipeline) > Workflow Tab (horizontal menu on the top) > Path to YAML > `./.codefresh/codefresh.yml`_.
 
 Here's an example config:
 
@@ -322,14 +319,14 @@ steps:
     title: Building Test Docker image
     type: build
     arguments:
-      image_name: '${{CF_ACCOUNT}}/${{CF_REPO_NAME}}-test'
-      tag: '${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}'
+      image_name: "${{CF_ACCOUNT}}/${{CF_REPO_NAME}}-test"
+      tag: "${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}"
       dockerfile: Test.Dockerfile
     stage: "build"
 
   run_tests:
     stage: "tests"
-    image: '${{BuildTestDockerImage}}'
+    image: "${{BuildTestDockerImage}}"
     working_directory: /src
     fail_fast: false
     environment:
@@ -347,7 +344,7 @@ steps:
       # highlight-end
 ```
 
-Consider setting up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` on the Codefresh dashboard: *Pipelines > Settings (cog icon next to the pipeline) > Variables Tab (vertical menu on the right-hand side)*.
+Consider setting up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` on the Codefresh dashboard: _Pipelines > Settings (cog icon next to the pipeline) > Variables Tab (vertical menu on the right-hand side)_.
 
 </TabItem>
 
@@ -380,7 +377,6 @@ RUN npm install
 
 </ShowIfSearchParamAndValue>
 
-
 <ShowIfSearchParamAndValue searchParam="ci" value="github-actions">
 
 ### GitHub Actions
@@ -388,7 +384,8 @@ RUN npm install
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-jest&utm_content=installation_guide_githubactions) for each Knapsack Pro command.
 
 Define in `.github/workflows/main.yaml`:
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](/jest/reference/#knapsack_pro_test_suite_token_jest) in *GitHub Settings > Secrets* as described in [GitHub Actions' docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
+
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](/jest/reference/#knapsack_pro_test_suite_token_jest) in _GitHub Settings > Secrets_ as described in [GitHub Actions' docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/jest/reference/#knapsack_pro_ci_node_total) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/jest/reference/#knapsack_pro_ci_node_index) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
 - [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/jest/reference/#knapsack_pro_fixed_queue_split)
@@ -440,7 +437,6 @@ jobs:
 
 </ShowIfSearchParamAndValue>
 
-
 <ShowIfSearchParamAndValue searchParam="ci" value="gitlab-ci">
 
 ### GitLab CI
@@ -462,6 +458,7 @@ See also [how to configure running parallel CI nodes in GitLab](https://docs.git
 #### GitLab CI < 11.5
 
 Define in `.gitlab-ci.yml`:
+
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](/jest/reference/#knapsack_pro_test_suite_token_jest)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/jest/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/jest/reference/#knapsack_pro_ci_node_index)
@@ -494,10 +491,9 @@ test_ci_second_node:
     # highlight-end
 ```
 
-Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` as [Secret Variables](https://gitlab.com/help/ci/variables/README.md#secret-variables) in GitLab CI: *Settings > CI/CD Pipelines > Secret Variables*.
+Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` as [Secret Variables](https://gitlab.com/help/ci/variables/README.md#secret-variables) in GitLab CI: _Settings > CI/CD Pipelines > Secret Variables_.
 
 </ShowIfSearchParamAndValue>
-
 
 <ShowIfSearchParamAndValue searchParam="ci" value="heroku-ci">
 
@@ -506,6 +502,7 @@ Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` as [Secret Variables
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-jest&utm_content=installation_guide_herokuci) for each Knapsack Pro command.
 
 Define in `app.json`:
+
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](/jest/reference/#knapsack_pro_test_suite_token_jest)
 - `quantity`: number of parallel dynos
 - `test`: the Knapsack Pro command
@@ -520,9 +517,7 @@ Define in `app.json`:
           "quantity": 2
         }
       },
-      "addons": [
-        "heroku-postgresql"
-      ],
+      "addons": ["heroku-postgresql"],
       // highlight-start
       "scripts": {
         "test": "$(npm bin)/knapsack-pro-jest --runInBand"
@@ -539,7 +534,6 @@ Define in `app.json`:
 Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` outside of `app.json` in your Heroku CI pipeline's settings.
 
 </ShowIfSearchParamAndValue>
-
 
 <ShowIfSearchParamAndValue searchParam="ci" value="jenkins">
 
@@ -603,7 +597,6 @@ Consider setting up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as global environment 
 
 </ShowIfSearchParamAndValue>
 
-
 <ShowIfSearchParamAndValue searchParam="ci" value="semaphoreci">
 
 ### Semaphore CI
@@ -611,6 +604,7 @@ Consider setting up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as global environment 
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-jest&utm_content=installation_guide_semaphoreci) for each Knapsack Pro command.
 
 Define in `.semaphore/semaphore.yml`:
+
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](/jest/reference/#knapsack_pro_test_suite_token_jest)
 - `parallelism`
 
@@ -653,7 +647,6 @@ Remember to set up `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` as a [secret](https://do
 
 </ShowIfSearchParamAndValue>
 
-
 <ShowIfSearchParamAndValue searchParam="ci" value="travis-ci">
 
 ### Travis CI
@@ -661,6 +654,7 @@ Remember to set up `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` as a [secret](https://do
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-jest&utm_content=installation_guide_travisci) for each Knapsack Pro command.
 
 Define in `.travis.yml`:
+
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](/jest/reference/#knapsack_pro_test_suite_token_jest)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/jest/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/jest/reference/#knapsack_pro_ci_node_index) as [jobs](http://docs.travis-ci.com/user/speeding-up-the-build/#parallelizing-your-builds-across-virtual-machines)
@@ -668,7 +662,7 @@ Define in `.travis.yml`:
 
 ```yaml
 script:
-  - '$(npm bin)/knapsack-pro-jest --runInBand'
+  - "$(npm bin)/knapsack-pro-jest --runInBand"
 
 env:
   global:
@@ -687,7 +681,6 @@ You can find more info about the global and matrix env configuration in the [Tra
 
 </ShowIfSearchParamAndValue>
 
-
 <ShowIfSearchParamAndValue searchParam="ci" value="other">
 
 ### Other CI provider
@@ -695,6 +688,7 @@ You can find more info about the global and matrix env configuration in the [Tra
 Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-jest&utm_content=installation_guide_otherci) for each Knapsack Pro command.
 
 Define the following global environment variables on your CI server:
+
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](/jest/reference/#knapsack_pro_test_suite_token_jest)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](/jest/reference/#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](/jest/reference/#knapsack_pro_ci_node_index)
@@ -738,18 +732,17 @@ $(npm bin)/knapsack-pro-jest --runInBand
 
 </ShowIfSearchParamAndValue>
 
-
 <ShowIfSearchParam searchParam="ci">
 
 ### Verify that everything works
 
-Push a new commit to your repository and visit your [dashboard](https://knapsackpro.com/dashboard) to make sure all your CI nodes were recorded successfully in *Show build metrics > Show (build)*.
+Push a new commit to your repository and visit your [dashboard](https://knapsackpro.com/dashboard) to make sure all your CI nodes were recorded successfully in _Show build metrics > Show (build)_.
 
 **Congratulations!** Now that Knapsack Pro knows the statistics of your test suite, your CI builds will be parallelized optimally.
 
 ### Next up
 
-Make sure you check out the *Reference* and *Cookbook* pages from the navigation to fine-tune your Knapsack Pro setup.
+Make sure you check out the _Reference_ and _Cookbook_ pages from the navigation to fine-tune your Knapsack Pro setup.
 
 </ShowIfSearchParam>
 

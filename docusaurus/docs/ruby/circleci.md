@@ -11,6 +11,7 @@ import TabItem from '@theme/TabItem';
 ## Collect metadata in Queue Mode
 
 You may want to [collect metadata](https://circleci.com/docs/2.0/collect-test-data/#metadata-collection-in-custom-test-steps) in CircleCI. For example, to collect junit reports of your RSpec runs you would:
+
 - Configure the [junit formatter for RSpec](/ruby/rspec/#queue-mode)
 - Copy the report to the `$CIRCLE_TEST_REPORTS` directory as shown below
 

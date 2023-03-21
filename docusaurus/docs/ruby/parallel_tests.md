@@ -14,11 +14,13 @@ In our experience, parallelizing tests by running more than one process per CI n
 To keep it simple, we recommend against `parallel_tests`. Instead, consider more parallel CI nodes with Knapsack Pro in [Queue Mode](https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode) if you are looking for fast tests execution and avoiding [confusing terminal outputs](https://github.com/grosser/parallel_tests/issues?q=is%3Aissue+is%3Aopen+output).
 
 In some cases, you may still consider using `knapsack_pro` to exploit auto-balancing the tests split with [Queue Mode](https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode) and `parallel_tests` to use fewer CI nodes. But monitor your [Knapsack Pro dashboard](/overview/#dashboard) for signs of saturated CI nodes:
+
 - Execution times of your CI builds are increasing: `Recorded CI builds > Show (build) > Test Files > Total execution time`
 - Individual test stats are trending up: `Statistics of test files history > Stats (test file) > History of the test file (chart)`
 - Tests executed locally on your machine are faster than on your CI
 
 In case of saturation, consider:
+
 - Reducing the number of `parallel_tests` processes
 - Using more powerful CI nodes
 
@@ -29,6 +31,7 @@ Do this only if you have powerful CI nodes with a lot of CPU/RAM/IO that can han
 :::
 
 Goal:
+
 - 2 CI nodes
 - 3 processes per CI node
 - 6 total parallel processes
@@ -70,21 +73,23 @@ bundle exec rake knapsack_pro:queue:rspec
 
 Running the above on CI should result in:
 
-* First CI node:
+- First CI node:
+
   ```bash
   KNAPSACK_PRO_CI_NODE_TOTAL=6 KNAPSACK_PRO_CI_NODE_INDEX=0 PARALLEL_TESTS_CONCURRENCY=2
   KNAPSACK_PRO_CI_NODE_TOTAL=6 KNAPSACK_PRO_CI_NODE_INDEX=1 PARALLEL_TESTS_CONCURRENCY=2
   # ...
   ```
 
-* Second CI node:
+- Second CI node:
+
   ```bash
   KNAPSACK_PRO_CI_NODE_TOTAL=6 KNAPSACK_PRO_CI_NODE_INDEX=2 PARALLEL_TESTS_CONCURRENCY=2
   KNAPSACK_PRO_CI_NODE_TOTAL=6 KNAPSACK_PRO_CI_NODE_INDEX=3 PARALLEL_TESTS_CONCURRENCY=2
   # ...
   ```
 
-* Third CI node:
+- Third CI node:
   ```bash
   KNAPSACK_PRO_CI_NODE_TOTAL=6 KNAPSACK_PRO_CI_NODE_INDEX=4 PARALLEL_TESTS_CONCURRENCY=2
   KNAPSACK_PRO_CI_NODE_TOTAL=6 KNAPSACK_PRO_CI_NODE_INDEX=5 PARALLEL_TESTS_CONCURRENCY=2
@@ -98,6 +103,7 @@ Do this only if you have a single powerful CI node with a lot of CPU/RAM/IO that
 :::
 
 Goal:
+
 - 1 CI node
 - 3 processes per CI node
 - 3 total parallel processes
@@ -138,7 +144,7 @@ bundle exec rake knapsack_pro:queue:rspec
 
 Running the above on CI should result in:
 
-* First (and only) CI node:
+- First (and only) CI node:
 
 ```
 KNAPSACK_PRO_CI_NODE_TOTAL=3 KNAPSACK_PRO_CI_NODE_INDEX=0 PARALLEL_TESTS_CONCURRENCY=3

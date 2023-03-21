@@ -43,6 +43,7 @@ Knapsack Pro allows distributing the tests in a static way (Regular Mode) too, b
 - Configure [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode) (read below for more details)
 - With [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode), make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](/ruby/reference/#knapsack_pro_ci_node_retry_count)
 - Run Knapsack Pro in Queue Mode with:
+
   ```bash
   # RSpec >= 3.x
   bundle exec rake knapsack_pro:queue:rspec
@@ -72,16 +73,16 @@ The behavior described above guarantees the most performant split for each CI bu
 With `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`, make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](#knapsack_pro_ci_node_retry_count).
 :::
 
-Notice that the Dynamic Split works great when your CI allows *only* restarting all parallel CI nodes (instead of individual ones). In this case, each parallel CI node will receive a different subset of tests (because of the new queue), but the build would finish sooner.
+Notice that the Dynamic Split works great when your CI allows _only_ restarting all parallel CI nodes (instead of individual ones). In this case, each parallel CI node will receive a different subset of tests (because of the new queue), but the build would finish sooner.
 
 If you use spot/preemptible CI nodes like [Google Cloud Preemptible VMs](https://cloud.google.com/preemptible-vms/) or [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/), you also want a Fixed Split: when a preempted CI node restarts because of a manual or automatic retry, it re-runs the previous subset of tests before connecting to the queue to continue with the remaining ones.
 
 Altogether, when using a Fixed Split, Knapsack Pro:
 
 1. Checks if `(commit hash, branch name, number of nodes)` was already split
-    1. YES: Returns to the CI node the subset of tests it run previously
-    1. YES: Loads the queue with the remaining tests to run
-    1. NO: Creates a new queue filled with all the tests to run (Dynamic Split)
+   1. YES: Returns to the CI node the subset of tests it run previously
+   1. YES: Loads the queue with the remaining tests to run
+   1. NO: Creates a new queue filled with all the tests to run (Dynamic Split)
 1. Distributes the tests to each parallel CI node connected to the queue
 1. Removes from the queue the tests that have been run
 1. Caches the split for `(commit hash, branch name, number of nodes)`

@@ -20,9 +20,7 @@ You can create a script as described in [Run multiple test suites with one scrip
           "quantity": 2
         }
       },
-      "addons": [
-        "heroku-postgresql"
-      ],
+      "addons": ["heroku-postgresql"],
       "scripts": {
         "test": "bin/knapsack_pro_run_tests"
       },

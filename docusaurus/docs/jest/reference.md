@@ -7,6 +7,7 @@ toc_max_heading_level: 2
 # Reference
 
 You can configure things in two ways:
+
 - Command-line arguments for the test runner
 - Environment variables for Knapsack Pro or Node
 
@@ -31,6 +32,7 @@ You can also pass options to Node with environment variables (e.g., [`--max_old_
 Git branch under test.
 
 You don't need to set it if either:
+
 - Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers)
 - Your CI has git installed so that Knapsack Pro can retrieve it
 
@@ -63,6 +65,7 @@ If your CI is not supported, you need to set it manually.
 Hash of the commit under test.
 
 You don't need to set it if either:
+
 - Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers)
 - Your CI has git installed so that Knapsack Pro can retrieve it
 
@@ -85,10 +88,12 @@ Dynamic or fixed tests split when retrying a CI build.
 Default: `false`
 
 Available:
+
 - `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `ciNodeBuildId` for your [CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers))
 - `true`: if the triplet `(branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split
 
 Recommended:
+
 - `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
 - `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries (e.g., GitHub Actions, Travis, CodeShip)
 - `false` otherwise
@@ -98,6 +103,7 @@ Recommended:
 Default: `info`
 
 Available:
+
 - `error`: critical errors
 - `warn`: warnings (e.g. Fallback Mode has started)
 - `info`: Knapsack Pro API request response body
@@ -116,12 +122,15 @@ Available: anything that [node-glob](https://github.com/isaacs/node-glob#glob-pr
 Hint: you can debug in `node`
 
 ```js
-var glob = require("glob")
-var MY_GLOB="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}"
-glob(MY_GLOB, {}, function (err, files) { console.log(files) })
+var glob = require("glob");
+var MY_GLOB = "{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}";
+glob(MY_GLOB, {}, function (err, files) {
+  console.log(files);
+});
 ```
 
 Examples:
+
 ```bash
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
 # or
@@ -136,6 +145,7 @@ File containing the list of **relative paths** of tests to run. When `KNAPSACK_P
 Default: `undefined`
 
 Example:
+
 ```bash
 KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=__tests__/fixtures/list.txt
 
@@ -169,12 +179,15 @@ Available: anything that [node-glob](https://github.com/isaacs/node-glob#glob-pr
 Hint: you can debug in `node`
 
 ```js
-var glob = require("glob")
-var MY_GLOB="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}"
-glob(MY_GLOB, {}, function (err, files) { console.log(files) })
+var glob = require("glob");
+var MY_GLOB = "{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}";
+glob(MY_GLOB, {}, function (err, files) {
+  console.log(files);
+});
 ```
 
 Examples:
+
 ```bash
 KNAPSACK_PRO_TEST_FILE_PATTERN=="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}"
 # or
@@ -189,6 +202,7 @@ API token required to run Knapsack Pro.
 Each Knapsack Pro command defined on CI should use an individual API token.
 
 Example:
+
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_JEST_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN=="src/user/__tests__/**/*.js" \

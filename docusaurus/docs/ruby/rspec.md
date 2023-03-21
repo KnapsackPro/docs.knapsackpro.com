@@ -8,6 +8,7 @@ pagination_prev: null
 ## Retry failed/flaky tests
 
 You have a couple of options:
+
 - [rspec-retry](https://github.com/NoRedInk/rspec-retry) (recommended)
 - [RSpec's `--only-failures`](https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures)
   ```bash
@@ -30,6 +31,7 @@ bundle exec rake "knapsack_pro:queue:rspec[--fail-fast 3]"
 ## Run a subset of tests
 
 To run a subset of your test suite you have a couple of options:
+
 - `KNAPSACK_PRO_TEST_FILE_*` [environment variables](/ruby/reference/) (recommended)
 - RSpec's `--tag MY_TAG`, `--tag ~MY_TAG`, `--tag type:feature`, or `--tag ~type:feature`
 
@@ -81,6 +83,7 @@ If your CI nodes write to the same disk, you need to append the CI node index to
 TMP_REPORT = "tmp/tmp_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.xml"
 FINAL_REPORT = "tmp/final_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.xml"
 ```
+
 This applies also if you are running parallel test processes on each CI node (see our page on to integrate Knapsack Pro with [`parallel_tests`](/ruby/parallel_tests) for an example).
 
 ## Troubleshooting
@@ -96,6 +99,7 @@ Run options: include {:focus=>true, :ids=>{"./spec/example_spec.rb"=>["1:1:2"]}}
 ```
 
 Second, you may want to grep the codebase (including `.rspec`) for:
+
 - `--tag MY_TAG`, `-t MY_TAG`
 - `fit`, `fdescribe`, or `fcontext`
 - test examples or groups tagged with `:focus`
@@ -149,6 +153,7 @@ Try with [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](/ruby/reference/
 ### I see the summary of failed/pending tests multiple times in Queue Mode
 
 It may happen if you use:
+
 - a custom RSpec formatter
 - `knapsack_pro` < 0.33.0
 - [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_modify_default_rspec_formatters-hide-duplicated-summary-of-pending-and-failed-tests)

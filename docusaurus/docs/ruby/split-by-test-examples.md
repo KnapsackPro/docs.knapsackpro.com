@@ -7,9 +7,10 @@ pagination_prev: null
 
 :::caution
 Only RSpec >= 3.3.0 is supported. [Let us know](https://knapsackpro.com/contact) if you use a different test runner. As an alternative, consider:
+
 - spreading test examples into multiple files
 - tagging test examples (e.g., RSpec's [`--tag`](https://docs.knapsackpro.com/ruby/rspec/#run-a-subset-of-tests))
-:::
+  :::
 
 You can set [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](/ruby/reference/#knapsack_pro_rspec_split_by_test_examples-rspec) to parallelize tests across CI nodes by example (`it`/`specify`). This is useful when you have slow test files but don't want to manually split test examples into smaller test files.
 
@@ -116,6 +117,7 @@ Read the answer on the [RSpec page](/ruby/rspec#some-of-my-test-files-are-not-ex
 ### How do I fix `LoadError: cannot load such file -- MY_RUBY_GEM`?
 
 Probably, you load `MY_RUBY_GEM` in `Rakefile` so when `knapsack_pro` runs a rake task it fails. To fix the problem either:
+
 - Don't load `MY_RUBY_GEM` when `RAILS_ENV=test`
 - Add `MY_RUBY_GEM` in the `:test` group in the `Gemfile`
 

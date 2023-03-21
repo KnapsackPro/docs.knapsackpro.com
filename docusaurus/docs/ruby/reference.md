@@ -7,6 +7,7 @@ toc_max_heading_level: 2
 # Reference
 
 You can configure things in two ways:
+
 - Command-line arguments for the test runner
 - Environment variables for Knapsack Pro
 
@@ -35,6 +36,7 @@ bundle exec rake rspec --tag focus --profile
 Git branch under test.
 
 You don't need to set it if either:
+
 - Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)
 - You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
 
@@ -73,6 +75,7 @@ If you use `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true` or `KNAPSACK_PRO_FIXED_TEST_SUI
 Default: `0` (or `BUILDKITE_RETRY_COUNT` on Buildkite)
 
 Available:
+
 - `0`: Fallback Mode is enabled according to `KNAPSACK_PRO_FALLBACK_MODE_ENABLED`
 - `> 0`: Fallback Mode is disabled and Knapsack Pro raises an error if the API cannot be reached after `KNAPSACK_PRO_MAX_REQUEST_RETRIES` tries
 
@@ -89,6 +92,7 @@ If your CI is not supported, you need to set it manually.
 Hash of the commit under test.
 
 You don't need to set it if either:
+
 - Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)
 - You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
 
@@ -99,6 +103,7 @@ Prefix to use when invoking Cucumber tests.
 Default: `"bundle exec"`
 
 Available:
+
 - `"bundle exec"`
 - `"bundle exec spring"` or `"bin/spring"` to run [Cucumber faster with Spring](https://docs.knapsackpro.com/ruby/spring/#use-knapsack-pro-in-queue-mode-with-spring-and-cucumber)
 
@@ -113,6 +118,7 @@ Enable/disable [Fallback Mode](/overview/#fallback-mode).
 Default: `true`
 
 Available:
+
 - `false`: Knapsack Pro will fail the build after `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
 - `true`: Knapsack Pro will switch to Fallback Mode after `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
 
@@ -123,10 +129,12 @@ Dynamic or fixed tests split when retrying a CI build.
 Default: `false`
 
 Available:
+
 - `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
 - `true`: if the triplet `(branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split
 
 Recommended:
+
 - `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
 - `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries (e.g., GitHub Actions, Travis, CodeShip)
 - `false` otherwise
@@ -142,10 +150,12 @@ Dynamic or fixed tests split when retrying a CI build.
 Default: `true`
 
 Available:
+
 - `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
 - `true`: if the triplet `(branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split
 
 Recommended:
+
 - `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
 - `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries (e.g., GitHub Actions, Travis, CodeShip)
 - `false` otherwise
@@ -178,6 +188,7 @@ Recommended: `debug` when debugging issues, `info` to know what Knapsack Pro is 
 Max amount of request attempts to try before switching to [Fallback Mode](/overview/#fallback-mode). Retries respect a linear back-off.
 
 Default:
+
 - `6` when `KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`
 - `6` in Regular Mode
 - `3` otherwise
@@ -189,6 +200,7 @@ Available: number
 Default: `production`
 
 Available:
+
 - `production` sets `KNAPSACK_PRO_ENDPOINT` to `https://api.knapsackpro.com`
 - `development` sets `KNAPSACK_PRO_ENDPOINT` to `http://api.knapsackpro.test:3000`
 - `test` sets `KNAPSACK_PRO_ENDPOINT` to `https://api-staging.knapsackpro.com`
@@ -200,6 +212,7 @@ Enable/disable monkey patching of the [RSpec Formatters](https://www.relishapp.c
 Default: `true`
 
 Available:
+
 - `true`: Show the summary of pending and failed tests only at the end of the test run.
 - `false`: Show the summary of pending and failed tests after each intermediate batch of tests. The summary is cumulative so you will the same tests mentioned multiple times, though they are executed only once.
 
@@ -220,6 +233,7 @@ Controls how Knapsack Pro sets `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HA
 Default: not set
 
 Available:
+
 - not set: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
 - `git` (requires `KNAPSACK_PRO_PROJECT_DIR`): Knapsack Pro will set `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` using git on your CI
 
@@ -236,6 +250,7 @@ Default: `nil`
 Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
 
 Example:
+
 ```bash
 KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true \
 KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN="{spec/models/user_spec.rb,spec/controllers/**/*_spec.rb}"
@@ -248,10 +263,11 @@ Make sure to read the details in [Split by test examples](/ruby/split-by-test-ex
 Parallelize test examples (instead of files) across CI nodes.
 
 :::caution
+
 - Requires RSpec >= 3.3.0
 - Does not support `run_all_when_everything_filtered`
 - Does not support `--tag`
-:::
+  :::
 
 ```bash
 KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
@@ -266,6 +282,7 @@ Customize the prefix used for generating test examples report when using `KNAPSA
 Default: `"bundle exec"`
 
 Available:
+
 - `"bundle exec"`
 - try `""` in case of [issues](https://docs.knapsackpro.com/ruby/split-by-test-examples/#how-do-i-fix-dont-know-how-to-build-task-knapsack_prorspec_test_example_detector)
 
@@ -282,6 +299,7 @@ Default: `features`
 Available: any folder or file relative to the root of your project
 
 Example:
+
 ```bash
 KNAPSACK_PRO_TEST_DIR="features/support/cucumber_config.rb"
 ```
@@ -295,6 +313,7 @@ Default: `rspec`
 Available: any folder relative to the root of your project that contains `spec_helper.rb`
 
 Example:
+
 ```bash
 KNAPSACK_PRO_TEST_DIR=spec KNAPSACK_PRO_TEST_FILE_PATTERN="{spec,engines/*/spec}/**/*_spec.rb"
 ```
@@ -307,6 +326,7 @@ require_relative 'spec_helper' # ✅ Good
 
 require 'spec_helper' # ⛔️ Bad
 ```
+
 :::
 
 ## `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`
@@ -320,6 +340,7 @@ Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#met
 Hint: you can debug `Dir.glob(MY_GLOB)` in irb or rails console
 
 Examples:
+
 ```bash
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/features/**{,/*/**}/*_spec.rb"
 # or
@@ -334,6 +355,7 @@ Comma-separated list of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST` is set,
 Default: `nil`
 
 Example:
+
 ```bash
 KNAPSACK_PRO_TEST_FILE_LIST=spec/features/dashboard_spec.rb,spec/models/user.rb:10,spec/models/user.rb:29
 ```
@@ -345,6 +367,7 @@ File containing the list of **relative paths** of tests to run. When `KNAPSACK_P
 Default: `nil`
 
 Example:
+
 ```bash
 KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=spec/fixtures/list.txt
 
@@ -378,6 +401,7 @@ Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#met
 Hint: you can debug `Dir.glob(MY_GLOB)` in irb or rails console
 
 Examples:
+
 ```bash
 KNAPSACK_PRO_TEST_FILE_PATTERN="spec/system/**/*_spec.rb"
 # or
@@ -408,6 +432,7 @@ API token required to run Knapsack Pro.
 Each Knapsack Pro command defined on CI should use an individual API token.
 
 Example:
+
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
   bundle exec rake knapsack_pro:rspec

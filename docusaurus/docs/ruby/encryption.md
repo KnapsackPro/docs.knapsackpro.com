@@ -29,6 +29,7 @@ If you consider test file names or branch names sensitive data, you can encrypt 
 When you enable encryption, your first test suite split will not be optimal because Knapsack Pro needs to re-record test timings again.
 
 Also, note that the following branch names won't be encrypted to allow the Knapsack Pro API to determine timings for test files on newly created branches:
+
 - `master`
 - `main`
 - `develop`
