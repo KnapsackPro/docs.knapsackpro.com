@@ -10,7 +10,7 @@ Only RSpec >= 3.3.0 is supported. [Let us know](https://knapsackpro.com/contact)
 
 - spreading test examples into multiple files
 - tagging test examples (e.g., RSpec's [`--tag`](rspec.md#run-a-subset-of-tests))
-  :::
+:::
 
 You can set [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](reference.md#knapsack_pro_rspec_split_by_test_examples-rspec) to parallelize tests across CI nodes by example (`it`/`specify`). This is useful when you have slow test files but don't want to manually split test examples into smaller test files.
 
