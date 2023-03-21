@@ -6,7 +6,7 @@ pagination_prev: null
 # Hooks: Before and After
 
 :::caution
-Knapsack Pro hooks are only available in [Queue Mode](https://github.com/KnapsackPro/knapsack_pro-ruby#queue-mode).
+Knapsack Pro hooks are only available in [Queue Mode](../overview/index.md#queue-mode-dynamic-split).
 :::
 
 :::caution
@@ -103,4 +103,4 @@ npx percy exec -- rake knapsack_pro:queue:rspec
 npx percy exec -- knapsack_pro queue:rspec
 ```
 
-Here you can find the docs for the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack-pro-binary).
+Here you can find the docs for the [`knapsack_pro` binary](cookbook.md#use-the-knapsack-pro-binary).

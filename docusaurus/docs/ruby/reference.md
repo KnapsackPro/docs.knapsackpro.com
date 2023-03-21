@@ -23,7 +23,7 @@ bundle exec rake "knapsack_pro:rspec[--tag focus --profile]"
 bundle exec rake rspec --tag focus --profile
 ```
 
-Or using the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack-pro-binary):
+Or using the [`knapsack_pro` binary](cookbook.md#use-the-knapsack-pro-binary):
 
 ```bash
 knapsack_pro rspec "--tag focus --profile"
@@ -42,7 +42,7 @@ You don't need to set it if either:
 
 ## `KNAPSACK_PRO_BRANCH_ENCRYPTED`
 
-Enable [Branch Name Encryption](/ruby/encryption/).
+Enable [Branch Name Encryption](encryption.md).
 
 Default: `false`
 
@@ -105,7 +105,7 @@ Default: `"bundle exec"`
 Available:
 
 - `"bundle exec"`
-- `"bundle exec spring"` or `"bin/spring"` to run [Cucumber faster with Spring](https://docs.knapsackpro.com/ruby/spring/#use-knapsack-pro-in-queue-mode-with-spring-and-cucumber)
+- `"bundle exec spring"` or `"bin/spring"` to run [Cucumber faster with Spring](spring.md#using-knapsack-pro-in-queue-mode-with-spring-and-cucumber)
 
 ## `KNAPSACK_PRO_ENDPOINT` (Internal)
 
@@ -113,7 +113,7 @@ Default: `https://api.knapsackpro.com`
 
 ## `KNAPSACK_PRO_FALLBACK_MODE_ENABLED`
 
-Enable/disable [Fallback Mode](/overview/#fallback-mode).
+Enable/disable [Fallback Mode](../overview/index.md#fallback-mode).
 
 Default: `true`
 
@@ -185,7 +185,7 @@ Recommended: `debug` when debugging issues, `info` to know what Knapsack Pro is 
 
 ## `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
 
-Max amount of request attempts to try before switching to [Fallback Mode](/overview/#fallback-mode). Retries respect a linear back-off.
+Max amount of request attempts to try before switching to [Fallback Mode](../overview/index.md#fallback-mode). Retries respect a linear back-off.
 
 Default:
 
@@ -256,7 +256,7 @@ KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true \
 KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN="{spec/models/user_spec.rb,spec/controllers/**/*_spec.rb}"
 ```
 
-Make sure to read the details in [Split by test examples](/ruby/split-by-test-examples).
+Make sure to read the details in [Split by test examples](split-by-test-examples.md).
 
 ## `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES` (RSpec)
 
@@ -273,7 +273,7 @@ Parallelize test examples (instead of files) across CI nodes.
 KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
 ```
 
-Make sure to read the details in [Split by test examples](/ruby/split-by-test-examples).
+Make sure to read the details in [Split by test examples](split-by-test-examples.md).
 
 ## `KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX` (RSpec)
 
@@ -284,11 +284,11 @@ Default: `"bundle exec"`
 Available:
 
 - `"bundle exec"`
-- try `""` in case of [issues](https://docs.knapsackpro.com/ruby/split-by-test-examples/#how-do-i-fix-dont-know-how-to-build-task-knapsack_prorspec_test_example_detector)
+- try `""` in case of [issues](split-by-test-examples.md#how-do-i-fix-dont-know-how-to-build-task-knapsack_prorspec_test_example_detector)
 
 ## `KNAPSACK_PRO_SALT`
 
-Salt to use to [Encrypt Test File Names or Branch Names](/ruby/encryption/).
+Salt to use to [Encrypt Test File Names or Branch Names](encryption.md).
 
 ## `KNAPSACK_PRO_TEST_DIR` (Cucumber)
 
@@ -413,7 +413,7 @@ KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec
 
 ## `KNAPSACK_PRO_TEST_FILES_ENCRYPTED`
 
-Enable [Test File Names Encryption](/ruby/encryption/).
+Enable [Test File Names Encryption](encryption.md).
 
 Default: `false`
 

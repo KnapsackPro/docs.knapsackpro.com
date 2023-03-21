@@ -70,8 +70,8 @@ Or a single command at the end to execute all the batches the CI node executed:
 
 Some users reported frozen CI nodes with:
 
-- Test runners producing too much output (e.g., Codeship and Queue Mode): reduce it with [`KNAPSACK_PRO_LOG_LEVEL=warn`](/ruby/reference/#knapsack_pro_log_level)
-- Test runners producing no output: make sure to use a formatter (like RSpec's [`--format progress`](/ruby/rspec#formatters-rspec_junit_formatter-json))
+- Test runners producing too much output (e.g., Codeship and Queue Mode): reduce it with [`KNAPSACK_PRO_LOG_LEVEL=warn`](reference.md#knapsack_pro_log_level)
+- Test runners producing no output: make sure to use a formatter (like RSpec's [`--format progress`](rspec.md#formatters-rspec_junit_formatter-json))
 - Timecop (e.g., [Travis](https://docs.travis-ci.com/user/common-build-problems/#ruby-tests-frozen-and-cancelled-after-10-minute-log-silence)): ensure `Timecop.return` is executed after all examples
 
   ```ruby
@@ -94,8 +94,8 @@ Make sure your Knapsack Pro API token is set up as a secret in your CI (not hard
 
 Since the token won't be available on forked CI builds, you can use a script to run:
 
-- Knapsack Pro in [Fallback Mode](/overview/#fallback-mode)(static split by file names) on forked builds
-- Knapsack Pro in [Queue Mode](/overview/#queue-mode-dynamic-split) or [Regular Mode](/overview/#regular-mode-static-split) on internal builds
+- Knapsack Pro in [Fallback Mode](../overview/index.md#fallback-mode)(static split by file names) on forked builds
+- Knapsack Pro in [Queue Mode](../overview/index.md#queue-mode-dynamic-split) or [Regular Mode](../overview/index.md#regular-mode-static-split) on internal builds
 
 Create `bin/knapsack_pro_tests`, make it executable `chmod u+x`, and use it on CI to run your tests:
 
@@ -122,12 +122,12 @@ ERROR -- : [knapsack_pro] {"errors"=>[{"commit_hash"=>["parameter is required"]}
 
 In such a case, you have two options:
 
-- If you have `git` installed on CI, set [`KNAPSACK_PRO_REPOSITORY_ADAPTER=git`](/ruby/reference/#knapsack_pro_repository_adapter) and [`KNAPSACK_PRO_PROJECT_DIR`](/ruby/reference/#knapsack_pro_project_dir)
-- Otherwise, set [`KNAPSACK_PRO_COMMIT_HASH`](/ruby/reference/#knapsack_pro_commit_hash) and [`KNAPSACK_PRO_BRANCH`](/ruby/reference/#knapsack_pro_branch) yourself
+- If you have `git` installed on CI, set [`KNAPSACK_PRO_REPOSITORY_ADAPTER=git`](reference.md#knapsack_pro_repository_adapter) and [`KNAPSACK_PRO_PROJECT_DIR`](reference.md#knapsack_pro_project_dir)
+- Otherwise, set [`KNAPSACK_PRO_COMMIT_HASH`](reference.md#knapsack_pro_commit_hash) and [`KNAPSACK_PRO_BRANCH`](reference.md#knapsack_pro_branch) yourself
 
 ## `LoadError: cannot load such file -- spec_helper`
 
-If you are using a complex `KNAPSACK_PRO_TEST_FILE_PATTERN`, Knapsack Pro could have problems finding the directory containing the `spec_helper.rb` file. Please set [`KNAPSACK_PRO_TEST_DIR`](/ruby/reference/#knapsack_pro_test_dir-rspec).
+If you are using a complex `KNAPSACK_PRO_TEST_FILE_PATTERN`, Knapsack Pro could have problems finding the directory containing the `spec_helper.rb` file. Please set [`KNAPSACK_PRO_TEST_DIR`](reference.md#knapsack_pro_test_dir-rspec).
 
 ## CI builds fail with `Test::Unit` but all tests passed
 
@@ -159,7 +159,7 @@ VCR, WebMock, or FakeWeb may trigger the following error when Knapsack Pro inter
 OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=error: tlsv1 alert internal error
 ```
 
-Make sure to follow the steps to [configure VCR/WebMock/FakeWeb](/knapsack_pro-ruby/guide/).
+Make sure to follow the steps to [configure VCR/WebMock/FakeWeb](../knapsack_pro-ruby/guide/index.md).
 
 ## `ActiveRecord::SubclassNotFound`
 
@@ -180,7 +180,7 @@ config.eager_load = true
 
 ## Adding parallel CI nodes/jobs makes test slower
 
-You can verify if the tests are getting slower on your [Knapsack Pro dashboard](/overview/#dashboard):
+You can verify if the tests are getting slower on your [Knapsack Pro dashboard](../overview/index.md#dashboard):
 
 - Execution times of your CI builds are increasing: `Recorded CI builds > Show (build) > Test Files > Total execution time`
 - Individual test stats are trending up: `Statistics of test files history > Stats (test file) > History of the test file (chart)`
@@ -195,13 +195,13 @@ Here are the most common reasons:
 
 There is an unlikely scenario where some CI nodes may start in Fallback Mode but others in Regular Mode resulting in some tests being skipped. Our recommendations are either
 
-- Switch to [Queue Mode](/overview/#queue-mode-dynamic-split) and enjoy faster CI builds too
-- Disable Fallback mode with [`KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`](/ruby/reference/#knapsack_pro_fallback_mode_enabled)
-- Increase the request attempts with [`KNAPSACK_PRO_MAX_REQUEST_RETRIES`](/ruby/reference/#knapsack_pro_max_request_retries)
+- Switch to [Queue Mode](../overview/index.md#queue-mode-dynamic-split) and enjoy faster CI builds too
+- Disable Fallback mode with [`KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`](reference.md#knapsack_pro_fallback_mode_enabled)
+- Increase the request attempts with [`KNAPSACK_PRO_MAX_REQUEST_RETRIES`](reference.md#knapsack_pro_max_request_retries)
 
 ## FactoryBot/FactoryGirl raises in Queue Mode
 
-- Use the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack-pro-binary):
+- Use the [`knapsack_pro` binary](cookbook.md#use-the-knapsack-pro-binary):
   ```bash
   bundle exec knapsack_pro queue:rspec
   ```
@@ -229,8 +229,8 @@ Most likely, that CI node started when all the others finished running and initi
 
 You have a couple of options:
 
-- Make sure [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](/ruby/reference/#knapsack_pro_ci_node_build_id) is set (recommended)
-- Set [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode)
+- Make sure [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](reference.md#knapsack_pro_ci_node_build_id) is set (recommended)
+- Set [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](reference.md#knapsack_pro_fixed_queue_split-queue-mode)
 
 ## Rake tasks under tests are run more than once in Queue Mode
 
@@ -248,5 +248,5 @@ end
 
 Please consider:
 
-- [Splitting by test examples](/ruby/split-by-test-examples) if you have a bottleneck file that is packed with test examples
-- If it's a retry, remember that [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode) uses a cached split
+- [Splitting by test examples](split-by-test-examples.md) if you have a bottleneck file that is packed with test examples
+- If it's a retry, remember that [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](reference.md#knapsack_pro_fixed_queue_split-queue-mode) uses a cached split

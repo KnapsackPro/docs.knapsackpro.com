@@ -47,11 +47,11 @@ The Knapsack Pro Client is a library to install in your project that wraps your 
 Knapsack Pro comes with a web UI that displays graphs and stats about your test runs:
 
 <Carousel images={[
-  { src: dashboardCiNodesGraph, alt: "Dashboard - CI nodes graph" },
-  { src: dashboardCiNodesTable, alt: "Dashboard - CI nodes table" },
-  { src: dashboardMonthlyCiBuilds, alt: "Dashboard - Monthly CI builds" },
-  { src: dashboardTestFileHistory, alt: "Dashboard - Test file history" },
-  { src: dashboardTestFiles, alt: "Dashboard - Test files" },
+{ src: dashboardCiNodesGraph, alt: "Dashboard - CI nodes graph" },
+{ src: dashboardCiNodesTable, alt: "Dashboard - CI nodes table" },
+{ src: dashboardMonthlyCiBuilds, alt: "Dashboard - Monthly CI builds" },
+{ src: dashboardTestFileHistory, alt: "Dashboard - Test file history" },
+{ src: dashboardTestFiles, alt: "Dashboard - Test files" },
 ]} />
 
 ## Tests Orchestration Modes

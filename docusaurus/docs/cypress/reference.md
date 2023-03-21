@@ -21,7 +21,7 @@ You can pass all the [supported Cypress CLI options](https://docs.cypress.io/gui
 $(npm bin)/knapsack-pro-cypress --browser chrome
 ```
 
-You can also pass options to Node with environment variables (e.g., [`--max_old_space_size`](/cypress/troubleshooting/#javascript-heap-out-of-memory)).
+You can also pass options to Node with environment variables (e.g., [`--max_old_space_size`](troubleshooting.md#javascript-heap-out-of-memory)).
 
 ## `KNAPSACK_PRO_BRANCH`
 

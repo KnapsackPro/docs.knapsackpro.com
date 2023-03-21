@@ -18,7 +18,7 @@ You have a couple of options:
 
 ## `--fail-fast`
 
-You can use the [Rake argument syntax](/ruby/reference/#command-line-arguments) to fail fast:
+You can use the [Rake argument syntax](reference.md#command-line-arguments) to fail fast:
 
 ```bash
 # Stop when 1 test failed
@@ -32,14 +32,14 @@ bundle exec rake "knapsack_pro:queue:rspec[--fail-fast 3]"
 
 To run a subset of your test suite you have a couple of options:
 
-- `KNAPSACK_PRO_TEST_FILE_*` [environment variables](/ruby/reference/) (recommended)
+- `KNAPSACK_PRO_TEST_FILE_*` [environment variables](reference.md) (recommended)
 - RSpec's `--tag MY_TAG`, `--tag ~MY_TAG`, `--tag type:feature`, or `--tag ~type:feature`
 
 If you are seeking faster performance on your CI, you may want to read [Parallelize test examples (instead of files)](#parallelize-test-examples-instead-of-files)
 
 ## Parallelize test examples (instead of files)
 
-See [Split by test examples](/ruby/split-by-test-examples).
+See [Split by test examples](split-by-test-examples.md).
 
 ## Formatters ([`rspec_junit_formatter`](https://github.com/sj26/rspec_junit_formatter), [`json`](https://relishapp.com/rspec/rspec-core/v/3-12/docs/formatters/json-formatter))
 
@@ -84,11 +84,11 @@ TMP_REPORT = "tmp/tmp_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.xml"
 FINAL_REPORT = "tmp/final_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.xml"
 ```
 
-This applies also if you are running parallel test processes on each CI node (see our page on to integrate Knapsack Pro with [`parallel_tests`](/ruby/parallel_tests) for an example).
+This applies also if you are running parallel test processes on each CI node (see our page on to integrate Knapsack Pro with [`parallel_tests`](parallel_tests.md) for an example).
 
 ## Troubleshooting
 
-If you cannot find what you are looking for in this section, please refer to the Ruby [troubleshooting page](/ruby/troubleshooting).
+If you cannot find what you are looking for in this section, please refer to the Ruby [troubleshooting page](troubleshooting.md).
 
 ### Some of my test files are not executed
 
@@ -134,7 +134,7 @@ end
 
 ### Some tests are failing in Queue Mode
 
-Since Knapsack Pro [ignores `.rspec`](/ruby/rspec/#rspec-is-ignored-in-queue-mode) and many projects use it to require `spec_helper.rb` or `rails_helper.rb`, some tests may be falling. Make sure you either require the correct helper at the top of each test file or pass it as an argument:
+Since Knapsack Pro [ignores `.rspec`](rspec.md#rspec-is-ignored-in-queue-mode) and many projects use it to require `spec_helper.rb` or `rails_helper.rb`, some tests may be falling. Make sure you either require the correct helper at the top of each test file or pass it as an argument:
 
 ```bash
 bundle exec rake "knapsack_pro:queue:rspec[--require rails_helper]"
@@ -144,11 +144,11 @@ Also, please make sure you have explicitly set `RAILS_ENV=test` on your CI nodes
 
 ### `.rspec` is ignored in Queue Mode
 
-The `.rspec` file is ignored in Queue Mode because `knapsack_pro` needs to pass arguments explicitly to `RSpec::Core::Runner`. You can inline them with the [Rake argument syntax](/ruby/reference/#command-line-arguments) instead.
+The `.rspec` file is ignored in Queue Mode because `knapsack_pro` needs to pass arguments explicitly to `RSpec::Core::Runner`. You can inline them with the [Rake argument syntax](reference.md#command-line-arguments) instead.
 
 ### Something is wrong with my custom formatter
 
-Try with [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](/ruby/reference/#knapsack_pro_modify_default_rspec_formatters-rspec).
+Try with [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](reference.md#knapsack_pro_modify_default_rspec_formatters-rspec).
 
 ### I see the summary of failed/pending tests multiple times in Queue Mode
 
@@ -156,9 +156,9 @@ It may happen if you use:
 
 - a custom RSpec formatter
 - `knapsack_pro` < 0.33.0
-- [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_modify_default_rspec_formatters-hide-duplicated-summary-of-pending-and-failed-tests)
+- [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](reference.md#knapsack_pro_modify_default_rspec_formatters-rspec)
 
-This is due to the fact that Knapsack Pro in Queue Mode [runs tests in batches](/overview/#queue-mode-dynamic-split), and RSpec accumulates failures/pending tests for all batches.
+This is due to the fact that Knapsack Pro in Queue Mode [runs tests in batches](../overview/index.md#queue-mode-dynamic-split), and RSpec accumulates failures/pending tests for all batches.
 
 ### `TypeError: superclass mismatch for class MyClass` in Queue Mode
 
@@ -212,4 +212,4 @@ Use RSpec's [`stub_const`](https://relishapp.com/rspec/rspec-mocks/docs/mutating
 
 Knapsack Pro uses [`RSpec::Core::Runner`](https://relishapp.com/rspec/rspec-core/docs/running-specs-multiple-times-with-different-runner-options-in-the-same-process) in Queue Mode to run tests without reloading Ruby/Rails for each batch of tests. If you monkey-patch RSpec or mutate its global state, the test runner may not be able to clean up properly after each batch.
 
-Also, you can try to use the [`knapsack_pro` binary](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack-pro-binary) instead of `bundle exec rake knapsack_pro:rspec`.
+Also, you can try to use the [`knapsack_pro` binary](cookbook.md#use-the-knapsack-pro-binary) instead of `bundle exec rake knapsack_pro:rspec`.

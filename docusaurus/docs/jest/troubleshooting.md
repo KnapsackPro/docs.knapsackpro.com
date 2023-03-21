@@ -49,4 +49,4 @@ $(npm bin)/knapsack-pro-jest --runInBand
 
 ## No tests are executed (or `test_files: [ 'parameter is required' ]`)
 
-Make sure [`KNAPSACK_PRO_TEST_FILE_PATTERN`](/jest/reference/#knapsack_pro_test_file_pattern) is correct.
+Make sure [`KNAPSACK_PRO_TEST_FILE_PATTERN`](reference.md#knapsack_pro_test_file_pattern) is correct.

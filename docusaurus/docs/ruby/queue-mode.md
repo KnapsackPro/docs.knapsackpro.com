@@ -39,9 +39,9 @@ Knapsack Pro allows distributing the tests in a static way (Regular Mode) too, b
 
 - Create a new API token from your [dashboard](https://knapsackpro.com/dashboard) (to avoid mixing Regular Mode and Queue Mode runs)
 - Set `RAILS_ENV=test` (or `export RAILS_ENV=test`) on your CI nodes
-- Make sure [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](/ruby/reference/#knapsack_pro_ci_node_build_id) is set
-- Configure [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode) (read below for more details)
-- With [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode), make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](/ruby/reference/#knapsack_pro_ci_node_retry_count)
+- Make sure [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](reference.md#knapsack_pro_ci_node_build_id) is set
+- Configure [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](reference.md#knapsack_pro_fixed_queue_split-queue-mode) (read below for more details)
+- With [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](reference.md#knapsack_pro_fixed_queue_split-queue-mode), make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](reference.md#knapsack_pro_ci_node_retry_count)
 - Run Knapsack Pro in Queue Mode with:
 
   ```bash
@@ -59,7 +59,7 @@ Note that Knapsack Pro returns single-file subsets when dealing with test files 
 
 ## Dynamic Split vs Fixed Split
 
-By default, Knapsack Pro generates a Dynamic Split from scratch for each CI build ([`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode)). In other words, Knapsack Pro:
+By default, Knapsack Pro generates a Dynamic Split from scratch for each CI build ([`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false`](reference.md#knapsack_pro_fixed_queue_split-queue-mode)). In other words, Knapsack Pro:
 
 - Creates a new queue filled with all the tests to run
 - Distributes the tests to each parallel CI node connected to the queue
@@ -67,10 +67,10 @@ By default, Knapsack Pro generates a Dynamic Split from scratch for each CI buil
 
 Parallel CI nodes connect to the same queue and run tests until it's consumed. If a CI node connects late and the queue is empty, it will receive an empty list of tests.
 
-The behavior described above guarantees the most performant split for each CI build, but it's problematic if your CI allows retrying single CI nodes/jobs. In this case, you want Knapsack Pro to return a Fixed Split ([`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode)): the retried node gets the same subset of tests that it run previously (not an empty list as described above).
+The behavior described above guarantees the most performant split for each CI build, but it's problematic if your CI allows retrying single CI nodes/jobs. In this case, you want Knapsack Pro to return a Fixed Split ([`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](reference.md#knapsack_pro_fixed_queue_split-queue-mode)): the retried node gets the same subset of tests that it run previously (not an empty list as described above).
 
 :::caution
-With `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`, make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](#knapsack_pro_ci_node_retry_count).
+With `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`, make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](reference.md#knapsack_pro_ci_node_retry_count).
 :::
 
 Notice that the Dynamic Split works great when your CI allows _only_ restarting all parallel CI nodes (instead of individual ones). In this case, each parallel CI node will receive a different subset of tests (because of the new queue), but the build would finish sooner.
@@ -103,7 +103,7 @@ When the Knapsack Pro API finds a previous split (i.) and remaining tests in the
 
 You can find additional configurations and troubleshooting on the following pages:
 
-- [Knapsack Pro Ruby - Troubleshooting](/ruby/troubleshooting/)
-- [Using Knapsack Pro with RSpec](/ruby/rspec/)
-- [Using Knapsack Pro with Cucumber](/ruby/cucumber/)
-- [Using Knapsack Pro with Capybara](/ruby/capybara/)
+- [Knapsack Pro Ruby - Troubleshooting](troubleshooting.md)
+- [Using Knapsack Pro with RSpec](rspec.md)
+- [Using Knapsack Pro with Cucumber](cucumber.md)
+- [Using Knapsack Pro with Capybara](capybara.md)

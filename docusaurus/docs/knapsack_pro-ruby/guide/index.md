@@ -243,9 +243,9 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 
 For each parallel job, define:
 
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
-- [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
-- [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](../../ruby/reference.md#knapsack_pro_test_suite_token_)
+- [`KNAPSACK_PRO_CI_NODE_TOTAL`](../../ruby/reference.md#knapsack_pro_ci_node_total)
+- [`KNAPSACK_PRO_CI_NODE_INDEX`](../../ruby/reference.md#knapsack_pro_ci_node_index)
 
 Remember to configure the number of parallel CI nodes in AppVeyor.
 
@@ -467,9 +467,9 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 
 For each [parallel pipeline](https://documentation.codeship.com/basic/builds-and-configuration/parallel-tests/#using-parallel-test-pipelines), define:
 
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
-- [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
-- [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](../../ruby/reference.md#knapsack_pro_test_suite_token_)
+- [`KNAPSACK_PRO_CI_NODE_TOTAL`](../../ruby/reference.md#knapsack_pro_ci_node_total)
+- [`KNAPSACK_PRO_CI_NODE_INDEX`](../../ruby/reference.md#knapsack_pro_ci_node_index)
 
 <Tabs>
 <TabItem value="node-1" label="Node 1">
@@ -537,9 +537,9 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 
 Define in `.codefresh/codefresh.yml`:
 
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
-- [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
-- [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](../../ruby/reference.md#knapsack_pro_test_suite_token_)
+- [`KNAPSACK_PRO_CI_NODE_TOTAL`](../../ruby/reference.md#knapsack_pro_ci_node_total)
+- [`KNAPSACK_PRO_CI_NODE_INDEX`](../../ruby/reference.md#knapsack_pro_ci_node_index)
   - In the `matrix` section, list all the `KNAPSACK_PRO_CI_NODE_INDEX`es (from `0` to `KNAPSACK_PRO_CI_NODE_TOTAL-1`).
 
 Remember to configure the YAML file path on Codefresh: _Pipelines > Settings (cog icon next to the pipeline) > Workflow Tab (horizontal menu on the top) > Path to YAML > `./.codefresh/codefresh.yml`_.
@@ -665,9 +665,9 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 
 Define in `.github/workflows/main.yaml`:
 
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_) in _GitHub Settings > Secrets_ as described in [GitHub Actions' docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
-- [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
-- [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix):
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](../../ruby/reference.md#knapsack_pro_test_suite_token_) in _GitHub Settings > Secrets_ as described in [GitHub Actions' docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
+- [`KNAPSACK_PRO_CI_NODE_TOTAL`](../../ruby/reference.md#knapsack_pro_ci_node_total) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
+- [`KNAPSACK_PRO_CI_NODE_INDEX`](../../ruby/reference.md#knapsack_pro_ci_node_index) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix):
 
 Here's an example config for a Ruby on Rails project:
 
@@ -784,9 +784,9 @@ See also [how to configure running parallel CI nodes in GitLab](https://docs.git
 
 Define in `.gitlab-ci.yml`:
 
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
-- [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
-- [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](../../ruby/reference.md#knapsack_pro_test_suite_token_)
+- [`KNAPSACK_PRO_CI_NODE_TOTAL`](../../ruby/reference.md#knapsack_pro_ci_node_total)
+- [`KNAPSACK_PRO_CI_NODE_INDEX`](../../ruby/reference.md#knapsack_pro_ci_node_index)
 
 Here's an example configuration for 2 parallel jobs:
 
@@ -836,9 +836,9 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 
 Define in `app.json`:
 
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](../../ruby/reference.md#knapsack_pro_test_suite_token_)
 - `quantity`: number of parallel dynos
-- `test`: the Knapsack Pro command (or [multiple commands](/ruby/heroku/#run-multiple-test-suites))
+- `test`: the Knapsack Pro command (or [multiple commands](../../ruby/heroku.md#run-multiple-test-suites))
 
 ```json title="app.json"
 {
@@ -945,7 +945,7 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 
 Define in `.semaphore/semaphore.yml`:
 
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](../../ruby/reference.md#knapsack_pro_test_suite_token_)
 - `parallelism`
 
 Here's an example config for a Rails project:
@@ -1021,9 +1021,9 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 
 Define in `.travis.yml`:
 
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
-- [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
-- [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index) as [jobs](https://docs.travis-ci.com/user/speeding-up-the-build/#parallelizing-your-builds-across-virtual-machines)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](../../ruby/reference.md#knapsack_pro_test_suite_token_)
+- [`KNAPSACK_PRO_CI_NODE_TOTAL`](../../ruby/reference.md#knapsack_pro_ci_node_total)
+- [`KNAPSACK_PRO_CI_NODE_INDEX`](../../ruby/reference.md#knapsack_pro_ci_node_index) as [jobs](https://docs.travis-ci.com/user/speeding-up-the-build/#parallelizing-your-builds-across-virtual-machines)
 
 ```yaml title="travis.yml"
 script:
@@ -1061,12 +1061,12 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 
 Define the following global environment variables on your CI server:
 
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](/ruby/reference/#knapsack_pro_test_suite_token_)
-- [`KNAPSACK_PRO_REPOSITORY_ADAPTER=git`](/ruby/reference/#knapsack_pro_repository_adapter)
-- [`KNAPSACK_PRO_PROJECT_DIR`](/ruby/reference/#knapsack_pro_project_dir)
-- [`KNAPSACK_PRO_CI_NODE_TOTAL`](/ruby/reference/#knapsack_pro_ci_node_total)
-- [`KNAPSACK_PRO_CI_NODE_INDEX`](/ruby/reference/#knapsack_pro_ci_node_index)
-- [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](/ruby/reference/#knapsack_pro_ci_node_build_id)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](../../ruby/reference.md#knapsack_pro_test_suite_token_)
+- [`KNAPSACK_PRO_REPOSITORY_ADAPTER=git`](../../ruby/reference.md#knapsack_pro_repository_adapter)
+- [`KNAPSACK_PRO_PROJECT_DIR`](../../ruby/reference.md#knapsack_pro_project_dir)
+- [`KNAPSACK_PRO_CI_NODE_TOTAL`](../../ruby/reference.md#knapsack_pro_ci_node_total)
+- [`KNAPSACK_PRO_CI_NODE_INDEX`](../../ruby/reference.md#knapsack_pro_ci_node_index)
+- [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](../../ruby/reference.md#knapsack_pro_ci_node_build_id)
 
 <Tabs>
 <TabItem value="node-1" label="Node 1">
@@ -1152,7 +1152,7 @@ Push a new commit to your repository and visit your [dashboard](https://knapsack
 
 ### Next up
 
-For an even faster CI build, switch to [Queue Mode](/ruby/queue-mode/) and [Split by test examples](/ruby/split-by-test-examples/).
+For an even faster CI build, switch to [Queue Mode](../../ruby/queue-mode.md) and [Split by test examples](../../ruby/split-by-test-examples.md).
 
 Make sure you check out the _Advanced_ and _Using Knapsack Pro with..._ pages from the navigation to fine-tune your Knapsack Pro setup.
 

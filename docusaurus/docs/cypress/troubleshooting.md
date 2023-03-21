@@ -7,7 +7,7 @@ pagination_prev: null
 
 ## Error with `--project`
 
-Please use [`KNAPSACK_PRO_TEST_FILE_PATTERN`](/cypress/reference/#knapsack_pro_test_file_pattern) instead of `--project`.
+Please use [`KNAPSACK_PRO_TEST_FILE_PATTERN`](reference.md#knapsack_pro_test_file_pattern) instead of `--project`.
 
 If you really need to use `--project`, you can do so with an NPM script:
 
@@ -58,4 +58,4 @@ $(npm bin)/knapsack-pro-cypress
 
 ## No tests are executed (or `test_files: [ 'parameter is required' ]`)
 
-Make sure [`KNAPSACK_PRO_TEST_FILE_PATTERN`](/cypress/reference/#knapsack_pro_test_file_pattern) is correct.
+Make sure [`KNAPSACK_PRO_TEST_FILE_PATTERN`](reference.md#knapsack_pro_test_file_pattern) is correct.

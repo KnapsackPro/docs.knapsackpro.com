@@ -18,7 +18,7 @@ knapsack_pro queue:rspec "--tag MY_TAG --profile"
 ## Set a custom logger
 
 :::info
-Consider [`KNAPSACK_PRO_LOG_LEVEL`](/ruby/reference/#knapsack_pro_log_level) and [`KNAPSACK_PRO_LOG_DIR`](/ruby/reference/#knapsack_pro_log_dir) instead.
+Consider [`KNAPSACK_PRO_LOG_LEVEL`](reference.md#knapsack_pro_log_level) and [`KNAPSACK_PRO_LOG_DIR`](reference.md#knapsack_pro_log_dir) instead.
 :::
 
 In your `rails_helper.rb`, you can set a custom Knapsack Pro logger:
@@ -48,7 +48,7 @@ To find out which environment variable to use in place of `MY_CI_NODE_TOTAL`, ta
 
 ## Fail the CI build if one of the test files exceeds a certain time limit
 
-In the [`after_queue`](/ruby/hooks/) hook, retrieve the slowest test file and create a file on disk if it exceeds a given `THRESHOLD`:
+In the [`after_queue`](hooks.md) hook, retrieve the slowest test file and create a file on disk if it exceeds a given `THRESHOLD`:
 
 ```ruby
 KnapsackPro::Hooks::Queue.after_queue do |queue_id|
