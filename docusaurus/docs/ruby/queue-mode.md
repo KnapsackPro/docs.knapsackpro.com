@@ -8,7 +8,9 @@ import { YouTube } from "@site/src/components/YouTube"
 # Queue Mode
 
 :::caution
+
 Only RSpec >= 3.x, Minitest, and Cucumber are supported. [Let us know](https://knapsackpro.com/contact) if you use a different test runner.
+
 :::
 
 Knapsack Pro splits your tests dynamically (Queue Mode) between parallel CI nodes.
@@ -70,7 +72,9 @@ Parallel CI nodes connect to the same queue and run tests until it's consumed. I
 The behavior described above guarantees the most performant split for each CI build, but it's problematic if your CI allows retrying single CI nodes/jobs. In this case, you want Knapsack Pro to return a Fixed Split ([`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](reference.md#knapsack_pro_fixed_queue_split-queue-mode)): the retried node gets the same subset of tests that it run previously (not an empty list as described above).
 
 :::caution
+
 With `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`, make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](reference.md#knapsack_pro_ci_node_retry_count).
+
 :::
 
 Notice that the Dynamic Split works great when your CI allows _only_ restarting all parallel CI nodes (instead of individual ones). In this case, each parallel CI node will receive a different subset of tests (because of the new queue), but the build would finish sooner.

@@ -6,7 +6,9 @@ pagination_prev: null
 # Using Knapsack Pro with `parallel_tests`
 
 :::caution
+
 We recommend using Knapsack Pro with more CI nodes instead of `knapsack_pro` + `parallel_tests` with fewer CI nodes.
+
 :::
 
 In our experience, parallelizing tests by running more than one process per CI node can result in slower test suites. In fact, it's easy to saturate CPU/RAM/IO when running multiple tests in parallel on a single CI node, especially with E2E tests.
@@ -27,7 +29,9 @@ In case of saturation, consider:
 ## Example: `parallel_tests` with `knapsack_pro` on parallel CI nodes
 
 :::info
+
 Do this only if you have powerful CI nodes with a lot of CPU/RAM/IO that can handle multiple `parallel_tests` processes.
+
 :::
 
 Goal:
@@ -99,7 +103,9 @@ Running the above on CI should result in:
 ## Example: `parallel_tests` with `knapsack_pro` on a single CI node
 
 :::info
+
 Do this only if you have a single powerful CI node with a lot of CPU/RAM/IO that can handle multiple `parallel_tests` processes.
+
 :::
 
 Goal:

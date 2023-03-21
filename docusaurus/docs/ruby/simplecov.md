@@ -6,7 +6,9 @@ pagination_prev: null
 # Using Knapsack Pro in Queue Mode with SimpleCov
 
 :::caution
+
 This is needed only if you are using Knapsack Pro in [Queue Mode](../overview/index.md#queue-mode-dynamic-split).
+
 :::
 
 Apply the following patch:

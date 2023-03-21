@@ -6,11 +6,15 @@ pagination_prev: null
 # Hooks: Before and After
 
 :::caution
+
 Knapsack Pro hooks are only available in [Queue Mode](../overview/index.md#queue-mode-dynamic-split).
+
 :::
 
 :::caution
+
 If you are using RSpec or `percy-capybara`, read the dedicated sections below.
+
 :::
 
 Knapsack exposes four hooks to execute arbitrary code before or after certain events:

@@ -6,7 +6,9 @@ pagination_prev: null
 # Using Knapsack Pro in Queue Mode with `puffing-billy`
 
 :::caution
+
 This is needed only if you are using Knapsack Pro in [Queue Mode](../overview/index.md#queue-mode-dynamic-split).
+
 :::
 
 If you use the [puffing-billy](https://github.com/oesmith/puffing-billy) gem and encounter the crash described in this [Github issue](https://github.com/oesmith/puffing-billy/issues/253), apply the following patch:

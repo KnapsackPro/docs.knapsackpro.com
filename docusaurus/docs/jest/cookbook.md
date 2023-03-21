@@ -31,7 +31,9 @@ $(npm bin)/knapsack-pro-jest --runInBand
 ## Use a Jest config file
 
 :::caution
+
 To filter tests use [`KNAPSACK_PRO_TEST_FILE_PATTERN`](reference.md#knapsack_pro_test_file_pattern).
+
 :::
 
 You can pass it with a [command-line argument](reference.md#command-line-arguments):

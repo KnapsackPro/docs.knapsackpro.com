@@ -105,7 +105,9 @@ Second, you may want to grep the codebase (including `.rspec`) for:
 - test examples or groups tagged with `:focus`
 
 :::caution
+
 Do not use `run_all_when_everything_filtered`
+
 :::
 
 Make sure to use [`filter_run_when_matching`](https://relishapp.com/rspec/rspec-core/v/3-12/docs/filtering/filter-run-when-matching) instead of the deprecated [`run_all_when_everything_filtered`](https://relishapp.com/rspec/rspec-core/v/2-3/docs/filtering/run-all-when-everything-filtered). The latter may cause skipping some of your tests.

@@ -6,10 +6,12 @@ pagination_prev: null
 # Split by test examples
 
 :::caution
+
 Only RSpec >= 3.3.0 is supported. [Let us know](https://knapsackpro.com/contact) if you use a different test runner. As an alternative, consider:
 
 - spreading test examples into multiple files
 - tagging test examples (e.g., RSpec's [`--tag`](rspec.md#run-a-subset-of-tests))
+
 :::
 
 You can set [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](reference.md#knapsack_pro_rspec_split_by_test_examples-rspec) to parallelize tests across CI nodes by example (`it`/`specify`). This is useful when you have slow test files but don't want to manually split test examples into smaller test files.
@@ -99,13 +101,17 @@ RSpec consumes a lot of memory when running individual test examples, so Knapsac
 We recommend running at least 2 CI builds after you enable this feature or change the number of CI nodes to allow the Knapsack Pro API to learn about your test suite.
 
 :::caution
+
 Does not support `--tag`
+
 :::
 
 Due to the [RSpec internals](https://github.com/rspec/rspec-core/issues/2522), `--tag` might be ignored when used together with `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`. But you can use the `KNAPSACK_PRO_TEST_FILE_*` [environment variables](reference.md) to filter the test files to run.
 
 :::caution
+
 Does not support [`run_all_when_everything_filtered`](rspec.md#some-of-my-test-files-are-not-executed)
+
 :::
 
 ## Troubleshooting

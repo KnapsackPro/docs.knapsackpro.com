@@ -16,7 +16,9 @@ Unless specified otherwise, everything on this page is environment variables.
 ## Command-line arguments
 
 :::caution
+
 Use long options instead of short (e.g., `--updateSnapshot` instead of `-u`).
+
 :::
 
 You can pass all the [supported Jest CLI options](https://jestjs.io/docs/en/cli#options) as command-line arguments:
@@ -163,11 +165,15 @@ __tests__/c.test.js
 ## `KNAPSACK_PRO_TEST_FILE_PATTERN`
 
 :::caution
+
 Make sure to match individual files by adding the suffix (e.g., `.js`) so that Knapsack Pro can split by file and not by directory.
+
 :::
 
 :::caution
+
 Knapsack Pro ignores patterns specified as Jest CLI arguments or Jest config files.
+
 :::
 
 Run tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.

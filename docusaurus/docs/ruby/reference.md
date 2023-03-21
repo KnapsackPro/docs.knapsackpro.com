@@ -140,7 +140,9 @@ Recommended:
 - `false` otherwise
 
 :::caution
+
 With `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`, make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](#knapsack_pro_ci_node_retry_count).
+
 :::
 
 ## `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT` (Regular Mode)
@@ -161,7 +163,9 @@ Recommended:
 - `false` otherwise
 
 :::caution
+
 With `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT=true`, make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](#knapsack_pro_ci_node_retry_count).
+
 :::
 
 ## `KNAPSACK_PRO_LOG_DIR`
@@ -267,7 +271,8 @@ Parallelize test examples (instead of files) across CI nodes.
 - Requires RSpec >= 3.3.0
 - Does not support `run_all_when_everything_filtered`
 - Does not support `--tag`
-  :::
+
+:::
 
 ```bash
 KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
@@ -319,6 +324,7 @@ KNAPSACK_PRO_TEST_DIR=spec KNAPSACK_PRO_TEST_FILE_PATTERN="{spec,engines/*/spec}
 ```
 
 :::caution
+
 You may need to make your test files require `spec_helper` with:
 
 ```ruby
@@ -389,7 +395,9 @@ spec/test2_spec.rb[1]
 ## `KNAPSACK_PRO_TEST_FILE_PATTERN`
 
 :::caution
+
 Make sure to match individual files by adding the suffix (e.g., `_spec.rb`, `_test.rb`) so that Knapsack Pro can split by file and not by directory.
+
 :::
 
 Run tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.

@@ -18,7 +18,9 @@ knapsack_pro queue:rspec "--tag MY_TAG --profile"
 ## Set a custom logger
 
 :::info
+
 Consider [`KNAPSACK_PRO_LOG_LEVEL`](reference.md#knapsack_pro_log_level) and [`KNAPSACK_PRO_LOG_DIR`](reference.md#knapsack_pro_log_dir) instead.
+
 :::
 
 In your `rails_helper.rb`, you can set a custom Knapsack Pro logger:
@@ -111,7 +113,9 @@ fi
 ## Run (and fail fast) multiple test commands with one script
 
 :::caution
+
 CI nodes that fail on the first suite won't run the second suite: tests will be distributed to fewer CI nodes and the CI run will take longer.
+
 :::
 
 ```bash

@@ -151,15 +151,21 @@ cypress/e2e/c.spec.js
 ## `KNAPSACK_PRO_TEST_FILE_PATTERN`
 
 :::caution
+
 Make sure to match individual files by adding the suffix (e.g., `.js`) so that Knapsack Pro can split by file and not by directory.
+
 :::
 
 :::caution
+
 Knapsack Pro ignores patterns specified as Cypress CLI arguments or Cypress config files.
+
 :::
 
 :::caution
+
 If you are using Cypress < v10 use `"cypress/integration/**/*.{js,jsx,coffee,cjsx}"`.
+
 :::
 
 Run tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.

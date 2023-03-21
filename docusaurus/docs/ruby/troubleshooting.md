@@ -89,7 +89,9 @@ Some users reported frozen CI nodes with:
 ## Knapsack Pro does not work on a forked repository
 
 :::caution
+
 Make sure your Knapsack Pro API token is set up as a secret in your CI (not hardcoded in the repository) to avoid leaking it.
+
 :::
 
 Since the token won't be available on forked CI builds, you can use a script to run:
