@@ -31,8 +31,8 @@ You can learn how Knapsack Pro API works from the below videos or reading the ar
 
 ## How to build native integration with API
 
-* __JavaScript__: [How to build native integration with Knapsack Pro API to run tests in parallel for any test runner (testing framework)](/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework)
-* __Any programming language__: [How to build a custom Knapsack Pro API client from scratch in any programming language](/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language)
+- **JavaScript**: [How to build native integration with Knapsack Pro API to run tests in parallel for any test runner (testing framework)](/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework)
+- **Any programming language**: [How to build a custom Knapsack Pro API client from scratch in any programming language](/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language)
 
 ## How to export data from API
 

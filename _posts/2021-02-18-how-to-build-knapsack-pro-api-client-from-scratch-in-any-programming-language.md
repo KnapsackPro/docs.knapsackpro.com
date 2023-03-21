@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "How to build Knapsack Pro API client from scratch in any programming language"
-date:   2021-02-18 08:00:00 +0100
+title: "How to build Knapsack Pro API client from scratch in any programming language"
+date: 2021-02-18 08:00:00 +0100
 author: "Artur Trzop"
 categories: techtips continuous_integration
 og_image: "/images/blog/posts/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language/api.jpeg"
@@ -21,15 +21,15 @@ Learn [what Regular Mode and Queue Mode are](/2020/how-to-speed-up-ruby-and-java
 
 Please see below the dictionary of terms we will use in this article:
 
-* __Knapsack Pro API__ - it's an API responsible for deciding how to split test files between parallel CI nodes. Your API client is going to send recorded time execution of your test files to the API to see results in the [Knapsack Pro user dashboard](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language). Knapsack Pro API will use the data to better predict how to split your test files in future CI build runs. Here is the [documentation for all API endpoints](/api/).
+- **Knapsack Pro API** - it's an API responsible for deciding how to split test files between parallel CI nodes. Your API client is going to send recorded time execution of your test files to the API to see results in the [Knapsack Pro user dashboard](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language). Knapsack Pro API will use the data to better predict how to split your test files in future CI build runs. Here is the [documentation for all API endpoints](/api/).
 
-* __Knapsack Pro client__ - is a library that you install in your project. It contains business logic responsible for connecting with Knapsack Pro API. The client knows how to read environment variables for various CI providers to automatically detect git commit hash, branch name, number of total parallel CI nodes, and CI node index. Knapsack Pro client connects with the Knapsack Pro API to fetch a list of test files to run a proper set of tests on a given parallel CI node. Knapsack Pro client also knows how to integrate with a test runner in a given programming language. For instance, the Knapsack Pro client in Ruby programming language is a `knapsack_pro` ruby gem. It knows how to run tests for test runners like RSpec, Cucumber, Minitest, etc. Simply speaking, Knapsack Pro client is a wrapper around test runner (testing framework) in a given programing language. Here is a [list of existing Knapsack Pro clients](/).
+- **Knapsack Pro client** - is a library that you install in your project. It contains business logic responsible for connecting with Knapsack Pro API. The client knows how to read environment variables for various CI providers to automatically detect git commit hash, branch name, number of total parallel CI nodes, and CI node index. Knapsack Pro client connects with the Knapsack Pro API to fetch a list of test files to run a proper set of tests on a given parallel CI node. Knapsack Pro client also knows how to integrate with a test runner in a given programming language. For instance, the Knapsack Pro client in Ruby programming language is a `knapsack_pro` ruby gem. It knows how to run tests for test runners like RSpec, Cucumber, Minitest, etc. Simply speaking, Knapsack Pro client is a wrapper around test runner (testing framework) in a given programing language. Here is a [list of existing Knapsack Pro clients](/).
 
-* __Test runner (testing framework)__ - each programming language has its own testing framework. For instance, in Ruby programming language there are test runners like RSpec, Cucumber, Minitest. In JavaScript, you can find Jest, Puppeteer, Karma, Jasmine, Cypress, TestCafe, etc. In Python, there are pytest, unittest. 
+- **Test runner (testing framework)** - each programming language has its own testing framework. For instance, in Ruby programming language there are test runners like RSpec, Cucumber, Minitest. In JavaScript, you can find Jest, Puppeteer, Karma, Jasmine, Cypress, TestCafe, etc. In Python, there are pytest, unittest.
 
-* __Knapsack Pro Regular Mode__ - it's a static split of tests between parallel CI nodes (performed deterministically). Basically, before starting tests we know up front what set of test files should be run on each parallel CI node.
+- **Knapsack Pro Regular Mode** - it's a static split of tests between parallel CI nodes (performed deterministically). Basically, before starting tests we know up front what set of test files should be run on each parallel CI node.
 
-* __Knapsack Pro Queue Mode__ - it's a dynamic way of splitting tests between parallel CI nodes. In this case, each parallel CI node asks Knapsack Pro API for a set of tests and runs it. Once completed, it asks for another set of tests. It's repeated until all tests are executed and the Knapsack Pro API has no more test files in the Queue. Please read the article about the [difference between Regular Mode and Queue Mode](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation) to learn about it in detail and see some graphs showing the difference.
+- **Knapsack Pro Queue Mode** - it's a dynamic way of splitting tests between parallel CI nodes. In this case, each parallel CI node asks Knapsack Pro API for a set of tests and runs it. Once completed, it asks for another set of tests. It's repeated until all tests are executed and the Knapsack Pro API has no more test files in the Queue. Please read the article about the [difference between Regular Mode and Queue Mode](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation) to learn about it in detail and see some graphs showing the difference.
 
 Now you know a few useful terms. Before we start learning how to build a Knapsack Pro client from scratch in your favorite programming language, let's check how such a client looks like in JavaScript. In order to integrate with Knapsack Pro API in JavaScript, we created an NPM package called [`@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js). This package knows how to communicate with Knapsack Pro API and how to read environment variables for various CI providers.
 
@@ -40,19 +40,20 @@ Those are lightweight NPM packages and the source code is easy to understand. Yo
 
 ## How to build Knapsack Pro client
 
-You will see how to build a Knapsack Pro client from scratch based on the  JavaScript example. Knapsack Pro client is built as 2 packages:
+You will see how to build a Knapsack Pro client from scratch based on the JavaScript example. Knapsack Pro client is built as 2 packages:
 
-* __Knapsack Pro Core__ - (i.e. [`@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js)) which is responsible for:
-  * connecting with the Knapsack Pro API. It can respond to, and handle common response types and errors coming from the API.
-  * reading environment variables specific to Knapsack Pro client like API token, log level, API endpoint URL, etc.
-  * CI providers environment variables integration - Knapsack Pro Core library can read environment variables for popular CI providers. Thanks to that it can automatically detect git commit hash, branch name, number of parallel CI nodes, etc.
-  * Logger - it can log useful tips for the output or warnings.
-  * Fallback Mode - it knows how to run tests in parallel when there is a network issue and the connection with Knapsack Pro API is not working.
+- **Knapsack Pro Core** - (i.e. [`@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js)) which is responsible for:
 
-* __Knapsack Pro Test Runner__ - (i.e. [`@knapsack-pro/jest`](https://github.com/KnapsackPro/knapsack-pro-jest)) is responsible for:
-  * integration of Knapsack Pro Core with your test runner (testing framework) like Jest, etc.
-  * knowing how to run tests for a given test runner, how to record time execution, and report it back to Knapsack Pro Core so the recorded test files can be saved on the Knapsack Pro API side.
-  * reading environment variables specific for the test runner, for instance how to detect a list of Jest test files residing on the disk.
+  - connecting with the Knapsack Pro API. It can respond to, and handle common response types and errors coming from the API.
+  - reading environment variables specific to Knapsack Pro client like API token, log level, API endpoint URL, etc.
+  - CI providers environment variables integration - Knapsack Pro Core library can read environment variables for popular CI providers. Thanks to that it can automatically detect git commit hash, branch name, number of parallel CI nodes, etc.
+  - Logger - it can log useful tips for the output or warnings.
+  - Fallback Mode - it knows how to run tests in parallel when there is a network issue and the connection with Knapsack Pro API is not working.
+
+- **Knapsack Pro Test Runner** - (i.e. [`@knapsack-pro/jest`](https://github.com/KnapsackPro/knapsack-pro-jest)) is responsible for:
+  - integration of Knapsack Pro Core with your test runner (testing framework) like Jest, etc.
+  - knowing how to run tests for a given test runner, how to record time execution, and report it back to Knapsack Pro Core so the recorded test files can be saved on the Knapsack Pro API side.
+  - reading environment variables specific for the test runner, for instance how to detect a list of Jest test files residing on the disk.
 
 ## Knapsack Pro Core
 
@@ -63,56 +64,61 @@ The core functionality of the Knapsack Pro client is in the Core package (`@knap
 Knapsack Pro Core client should understand a few environment variables. See example for [`@knapsack-pro/core` environment variables](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/config/knapsack-pro-env.config.ts).
 Users can define those environment variables in their CI server settings to control the behavior of the Knapsack Pro client.
 
-* `KNAPSACK_PRO_LOG_LEVEL` - it determines how much debugging info should be produced by the Knapsack Pro client to the output during the runtime of tests. The default is `info`. If you set the `debug` value then the Knapsack Pro client should show in the output a payload of requests and responses from the Knapsack Pro API.
+- `KNAPSACK_PRO_LOG_LEVEL` - it determines how much debugging info should be produced by the Knapsack Pro client to the output during the runtime of tests. The default is `info`. If you set the `debug` value then the Knapsack Pro client should show in the output a payload of requests and responses from the Knapsack Pro API.
 
-* `KNAPSACK_PRO_ENDPOINT` - it's the URL of the Knapsack Pro API. The default value is `https://api.knapsackpro.com` which is production API. You can use our production API and your API token from the user dashboard for testing purposes.
+- `KNAPSACK_PRO_ENDPOINT` - it's the URL of the Knapsack Pro API. The default value is `https://api.knapsackpro.com` which is production API. You can use our production API and your API token from the user dashboard for testing purposes.
 
-* `KNAPSACK_PRO_TEST_SUITE_TOKEN` - it's an API token that you can use to connect with Knapsack Pro API. If the value is not defined then an error should be raised.
+- `KNAPSACK_PRO_TEST_SUITE_TOKEN` - it's an API token that you can use to connect with Knapsack Pro API. If the value is not defined then an error should be raised.
 
-* `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` - it's a flag to control the behavior of Queue Mode. The default value is `false`.
+- `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` - it's a flag to control the behavior of Queue Mode. The default value is `false`.
 
-  * If the value is `true` then the API will cache the way test files were split between parallel CI nodes. So when you retry the CI build the tests won't be dynamically split. Instead, they will be split in the same order as during the very first run (which was a dynamic tests split).
+  - If the value is `true` then the API will cache the way test files were split between parallel CI nodes. So when you retry the CI build the tests won't be dynamically split. Instead, they will be split in the same order as during the very first run (which was a dynamic tests split).
 
-  * Do you want to use "retry single failed parallel CI node" feature for your CI? For instance, some of CI providers like Travis CI, Buildkite or Codeship allow you to retry only one of failed parallel CI nodes instead of retrying the whole CI build with all parallel CI nodes. If you want to be able to retry only a single failed parallel CI node then you need to tell Knapsack Pro API to remember the way test files were allocated across parallel CI nodes by adding to your CI environment variables `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`.
+  - Do you want to use "retry single failed parallel CI node" feature for your CI? For instance, some of CI providers like Travis CI, Buildkite or Codeship allow you to retry only one of failed parallel CI nodes instead of retrying the whole CI build with all parallel CI nodes. If you want to be able to retry only a single failed parallel CI node then you need to tell Knapsack Pro API to remember the way test files were allocated across parallel CI nodes by adding to your CI environment variables `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`.
 
-  * The default is `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false` which means that when you want to retry the whole failed CI build then a new dynamic test suite split will happen across all retried parallel CI nodes. Some people may prefer to retry the whole failed CI build with test files allocated across parallel CI nodes in the same order as it happened for the failed CI build - in such a case you should set `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`.
+  - The default is `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false` which means that when you want to retry the whole failed CI build then a new dynamic test suite split will happen across all retried parallel CI nodes. Some people may prefer to retry the whole failed CI build with test files allocated across parallel CI nodes in the same order as it happened for the failed CI build - in such a case you should set `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`.
 
-  * To learn more about this flag you can also see [examples in knapsack_pro ruby gem related to the `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node).
+  - To learn more about this flag you can also see [examples in knapsack_pro ruby gem related to the `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node).
 
-* `KNAPSACK_PRO_CI_NODE_TOTAL` - the default value conveying the number of parallel CI nodes used.
-  * If `KNAPSACK_PRO_CI_NODE_TOTAL` has a value then it should be used.
-  * If `KNAPSACK_PRO_CI_NODE_TOTAL` has no value then Knapsack Pro client should read CI provider environment variables to determine CI node total number.
-  * If no value is detected then an error should be raised. Please see the [source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L47,L61).
+- `KNAPSACK_PRO_CI_NODE_TOTAL` - the default value conveying the number of parallel CI nodes used.
 
-* `KNAPSACK_PRO_CI_NODE_INDEX` - it is the index of the parallel CI node (parallel job). It should start from `0` to `KNAPSACK_PRO_CI_NODE_TOTAL - 1`. If you use 2 parallel CI nodes in total then indexes should be `0` and `1`.
-  * If `KNAPSACK_PRO_CI_NODE_INDEX` has a value then it should be used.
-  * If `KNAPSACK_PRO_CI_NODE_INDEX` has no value then Knapsack Pro client should read CI provider environment variables to determine CI node index.
-  * If no value is detected then an error should be raised. Please see the [source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L63,L76).
+  - If `KNAPSACK_PRO_CI_NODE_TOTAL` has a value then it should be used.
+  - If `KNAPSACK_PRO_CI_NODE_TOTAL` has no value then Knapsack Pro client should read CI provider environment variables to determine CI node total number.
+  - If no value is detected then an error should be raised. Please see the [source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L47,L61).
 
-* `KNAPSACK_PRO_CI_NODE_BUILD_ID` - a user of your Knapsack Pro client can define CI build ID with this environment variable. For instance, if the user uses Jenkins as a CI provider then Jenkins has no autogenerated CI build ID out of the box. In such a case, the user should create a custom value (unique for every CI build) and assign it to the `KNAPSACK_PRO_CI_NODE_BUILD_ID` environment variable.
-  * CI build has many parallel CI nodes. Each parallel CI node should have the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` value. This means the parallel CI nodes belong to the same CI build.
-  * Knapsack Pro client by default should try to detect CI build ID for popular CI providers by looking for it in the environment variables.
-  * If `KNAPSACK_PRO_CI_NODE_BUILD_ID` value was defined by the user then it should be used during a request to the Knapsak Pro API. It has [higher priority](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L79,L81) than [detected CI build ID from a CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L83,L86) environment variables.
-  * If the user did not define `KNAPSACK_PRO_CI_NODE_BUILD_ID` then a default value `missing-build-id` should be used.
-    * Knapsack Pro API understands `missing-build-id` string and knows the CI build has an undefined CI build ID then. In such a case only one parallel CI build can be run at a time for a given set of values (`git commit hash` AND `branch name` AND `number of parallel CI nodes`) - otherwise, tests could be accidentally split between 2 CI builds.
-      * Why this set of values matter? From the Knapsack Pro API perspective, a unique CI build is a set of test files that belongs to a git commit hash, branch name and it is split across a certain number of parallel CI nodes. When the user will run a few CI builds at the same time for the same git commit, branch name and on the same number of parallel CI nodes then we need a way to distinguish CI builds from each other. That's why CI build ID is useful and recommended to be pass in request to Knapsack Pro API.
-  * It might be easier to understand this logic, just [check the source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L78).
+- `KNAPSACK_PRO_CI_NODE_INDEX` - it is the index of the parallel CI node (parallel job). It should start from `0` to `KNAPSACK_PRO_CI_NODE_TOTAL - 1`. If you use 2 parallel CI nodes in total then indexes should be `0` and `1`.
 
-* `KNAPSACK_PRO_COMMIT_HASH` - it's a commit hash.
-  * If `KNAPSACK_PRO_COMMIT_HASH` has a value then it should be used.
-  * If `KNAPSACK_PRO_COMMIT_HASH` has no value then Knapsack Pro client should read CI provider environment variables to determine git commit hash.
-  * If no value is detected then a `git rev-parse HEAD` command should be run to determine the commit hash.
-  * If `git` is not installed then raise an error. Please see the [source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L108,L145).
+  - If `KNAPSACK_PRO_CI_NODE_INDEX` has a value then it should be used.
+  - If `KNAPSACK_PRO_CI_NODE_INDEX` has no value then Knapsack Pro client should read CI provider environment variables to determine CI node index.
+  - If no value is detected then an error should be raised. Please see the [source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L63,L76).
 
-* `KNAPSACK_PRO_BRANCH` - it's a branch name.
-  * If `KNAPSACK_PRO_BRANCH` has a value then it should be used.
-  * If `KNAPSACK_PRO_BRANCH` has no value then Knapsack Pro client should read CI provider environment variables to determine a branch name.
-  * If no value is detected then a `git rev-parse --abbrev-ref HEAD` command should be run to determine the branch name.
-  * If `git` is not installed then raise an error. Please see the [source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L147,L184).
+- `KNAPSACK_PRO_CI_NODE_BUILD_ID` - a user of your Knapsack Pro client can define CI build ID with this environment variable. For instance, if the user uses Jenkins as a CI provider then Jenkins has no autogenerated CI build ID out of the box. In such a case, the user should create a custom value (unique for every CI build) and assign it to the `KNAPSACK_PRO_CI_NODE_BUILD_ID` environment variable.
 
-* CI providers environment variables integration - Knapsack Pro client should try to read environment variables for popular CI providers. Thanks to that user have to do less work to set up the Knapsack Pro client with his project.
-  * Here can be found a [list of supported CI providers](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/config/ci-env.config.ts).
-  * Here is a list of [environment variables for each CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers).
+  - CI build has many parallel CI nodes. Each parallel CI node should have the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` value. This means the parallel CI nodes belong to the same CI build.
+  - Knapsack Pro client by default should try to detect CI build ID for popular CI providers by looking for it in the environment variables.
+  - If `KNAPSACK_PRO_CI_NODE_BUILD_ID` value was defined by the user then it should be used during a request to the Knapsak Pro API. It has [higher priority](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L79,L81) than [detected CI build ID from a CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L83,L86) environment variables.
+  - If the user did not define `KNAPSACK_PRO_CI_NODE_BUILD_ID` then a default value `missing-build-id` should be used.
+    - Knapsack Pro API understands `missing-build-id` string and knows the CI build has an undefined CI build ID then. In such a case only one parallel CI build can be run at a time for a given set of values (`git commit hash` AND `branch name` AND `number of parallel CI nodes`) - otherwise, tests could be accidentally split between 2 CI builds.
+      - Why this set of values matter? From the Knapsack Pro API perspective, a unique CI build is a set of test files that belongs to a git commit hash, branch name and it is split across a certain number of parallel CI nodes. When the user will run a few CI builds at the same time for the same git commit, branch name and on the same number of parallel CI nodes then we need a way to distinguish CI builds from each other. That's why CI build ID is useful and recommended to be pass in request to Knapsack Pro API.
+  - It might be easier to understand this logic, just [check the source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L78).
+
+- `KNAPSACK_PRO_COMMIT_HASH` - it's a commit hash.
+
+  - If `KNAPSACK_PRO_COMMIT_HASH` has a value then it should be used.
+  - If `KNAPSACK_PRO_COMMIT_HASH` has no value then Knapsack Pro client should read CI provider environment variables to determine git commit hash.
+  - If no value is detected then a `git rev-parse HEAD` command should be run to determine the commit hash.
+  - If `git` is not installed then raise an error. Please see the [source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L108,L145).
+
+- `KNAPSACK_PRO_BRANCH` - it's a branch name.
+
+  - If `KNAPSACK_PRO_BRANCH` has a value then it should be used.
+  - If `KNAPSACK_PRO_BRANCH` has no value then Knapsack Pro client should read CI provider environment variables to determine a branch name.
+  - If no value is detected then a `git rev-parse --abbrev-ref HEAD` command should be run to determine the branch name.
+  - If `git` is not installed then raise an error. Please see the [source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L147,L184).
+
+- CI providers environment variables integration - Knapsack Pro client should try to read environment variables for popular CI providers. Thanks to that user have to do less work to set up the Knapsack Pro client with his project.
+  - Here can be found a [list of supported CI providers](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/config/ci-env.config.ts).
+  - Here is a list of [environment variables for each CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers).
 
 ### Fallback Mode
 
@@ -129,9 +135,9 @@ Here you can see the source code of [Fallback Test Distributor](https://github.c
 
 Knapsack Pro Core should have a logger with a default `info` log level. A user should be able to control log level with the environment variable `KNAPSACK_PRO_LOG_LEVEL`. You use the logger to produce useful tips to the output during tests runtime:
 
-* info when Fallback Mode was started
-* when log level is `debug` then show request payload
-* when log level is `debug` then show response body
+- info when Fallback Mode was started
+- when log level is `debug` then show request payload
+- when log level is `debug` then show response body
 
 Here is an example [service for the logger](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-logger.ts).
 
@@ -139,18 +145,19 @@ Here is an example [service for the logger](https://github.com/KnapsackPro/knaps
 
 Knapsack Pro Core should have implemented [business logic for making requests to Knapsack Pro API](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-api.ts). There are a few basic elements you need to cover:
 
-* Send headers with the client name and client version in each request to the Knapsack Pro API. You should add `KNAPSACK-PRO-CLIENT-NAME` and `KNAPSACK-PRO-CLIENT-VERSION` [headers in each request](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L81,L84). Note that the Knapsack Pro Core (`@knapsack-pro/core`) is just a core library so it means the actual client name and version should be defined in the Knapsack Pro Test Runner client (`@knapsack-pro/jest`) and provided as an [argument to the Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L30,L31) so when the Core client sends requests to the Knapsack Pro API it will use proper client name and version. Please use [semantic versioning](https://semver.org/).
+- Send headers with the client name and client version in each request to the Knapsack Pro API. You should add `KNAPSACK-PRO-CLIENT-NAME` and `KNAPSACK-PRO-CLIENT-VERSION` [headers in each request](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L81,L84). Note that the Knapsack Pro Core (`@knapsack-pro/core`) is just a core library so it means the actual client name and version should be defined in the Knapsack Pro Test Runner client (`@knapsack-pro/jest`) and provided as an [argument to the Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L30,L31) so when the Core client sends requests to the Knapsack Pro API it will use proper client name and version. Please use [semantic versioning](https://semver.org/).
 
-* When a request to the Knapsack Pro API fails then it should be repeated 3 times.
-  * There are exceptions when a [response status indicates a failure](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L68,L70) - in these cases the request should never be repeated:
-    * When response status is `400` then it means request attributes error.
-    * When response status is `422` then it means validation error.
-    * When the response status is `403` then a free trial period ended.
-  * For all above `4xx` response statuses you should show the error body response to the output and stop running tests. Ensure that the [process has exit code `1`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L77) - thanks to that CI provider will know the CI build failed.
+- When a request to the Knapsack Pro API fails then it should be repeated 3 times.
 
-* When the Knapsack Pro API returns different response status than listed above. For instance when you get `500` status then you should repeat the request 3 times. If the 3rd response has a non-`2xx` status as well, then you should [run test files in Fallback Mode](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L83,L110).
+  - There are exceptions when a [response status indicates a failure](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L68,L70) - in these cases the request should never be repeated:
+    - When response status is `400` then it means request attributes error.
+    - When response status is `422` then it means validation error.
+    - When the response status is `403` then a free trial period ended.
+  - For all above `4xx` response statuses you should show the error body response to the output and stop running tests. Ensure that the [process has exit code `1`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L77) - thanks to that CI provider will know the CI build failed.
 
-* Ensure you set max request [timeout to `15` seconds](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L80). When Knapsack Pro API won't send a response within 15 seconds then it's better to cancel the request and [wait some time before repeating the request](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L188,L199). You can wait 8 seconds, and increase by another 8 seconds each consequent request that must be repeated (e.g. wait for 8s, then 16s, then 24s).
+- When the Knapsack Pro API returns different response status than listed above. For instance when you get `500` status then you should repeat the request 3 times. If the 3rd response has a non-`2xx` status as well, then you should [run test files in Fallback Mode](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-core.ts#L83,L110).
+
+- Ensure you set max request [timeout to `15` seconds](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L80). When Knapsack Pro API won't send a response within 15 seconds then it's better to cancel the request and [wait some time before repeating the request](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/knapsack-pro-api.ts#L188,L199). You can wait 8 seconds, and increase by another 8 seconds each consequent request that must be repeated (e.g. wait for 8s, then 16s, then 24s).
 
 #### Knapsack Pro API - Queue Mode
 
@@ -175,14 +182,14 @@ The first CI node sends the below request. Its purpose is to attempt to connect 
 
 {% highlight json %}
 {
-  "can_initialize_queue": true,
-  "attempt_connect_to_queue": true,
-  "fixed_queue_split": false,
-  "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
-  "branch": "master",
-  "node_total": "2",
-  "node_index": "0",
-  "node_build_id": "1234"
+"can_initialize_queue": true,
+"attempt_connect_to_queue": true,
+"fixed_queue_split": false,
+"commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
+"branch": "master",
+"node_total": "2",
+"node_index": "0",
+"node_build_id": "1234"
 }
 {% endhighlight %}
 
@@ -195,9 +202,9 @@ The above request was the very first request sent to the API and on the API side
 
 {% highlight json %}
 {
-  "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
-  "message": "A queue with a list of test files does not exist on the API side yet. If you see this message, everything works as expected. Now Knapsack Pro client will initialize a queue on the API side with a list of test files you want to run. The request to initialize the queue will have attributes like can_initialize_queue=true, attempt_connect_to_queue=false, and test_files, etc.",
-  "code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
+"queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
+"message": "A queue with a list of test files does not exist on the API side yet. If you see this message, everything works as expected. Now Knapsack Pro client will initialize a queue on the API side with a list of test files you want to run. The request to initialize the queue will have attributes like can_initialize_queue=true, attempt_connect_to_queue=false, and test_files, etc.",
+"code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
 }
 {% endhighlight %}
 
@@ -217,28 +224,28 @@ You need to make a second request. This time, it should contain a list of test f
 
 {% highlight json %}
 {
-  "can_initialize_queue": true,
-  "attempt_connect_to_queue": false,
-  "fixed_queue_split": false,
-  "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
-  "branch": "master",
-  "node_total": "2",
-  "node_index": "0",
-  "node_build_id": "1234",
-  "test_files": [
-    {
-      "path": "test/fast/a_test.rb"
-    },
-    {
-      "path": "test/fast/b_test.rb"
-    },
-    {
-      "path": "test/slow/c_test.rb"
-    },
-    {
-      "path": "test/slow/d_test.rb"
-    }
-  ]
+"can_initialize_queue": true,
+"attempt_connect_to_queue": false,
+"fixed_queue_split": false,
+"commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
+"branch": "master",
+"node_total": "2",
+"node_index": "0",
+"node_build_id": "1234",
+"test_files": [
+{
+"path": "test/fast/a_test.rb"
+},
+{
+"path": "test/fast/b_test.rb"
+},
+{
+"path": "test/slow/c_test.rb"
+},
+{
+"path": "test/slow/d_test.rb"
+}
+]
 }
 {% endhighlight %}
 
@@ -251,18 +258,18 @@ API should return a set of test files assigned to the first CI node (CI node ind
 
 {% highlight json %}
 {
-  "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
-  "build_subset_id": null,
-  "test_files": [
-    {
-      "path": "test/slow/d_test.rb",
-      "time_execution": 3.14
-    },
-    {
-      "path": "test/fast/b_test.rb",
-      "time_execution": null
-    }
-  ]
+"queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
+"build_subset_id": null,
+"test_files": [
+{
+"path": "test/slow/d_test.rb",
+"time_execution": 3.14
+},
+{
+"path": "test/fast/b_test.rb",
+"time_execution": null
+}
+]
 }
 {% endhighlight %}
 
@@ -278,14 +285,14 @@ After you execute the test files, you should ask the API for another set of test
 
 {% highlight json %}
 {
-  "can_initialize_queue": false,
-  "attempt_connect_to_queue": false,
-  "fixed_queue_split": false,
-  "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
-  "branch": "master",
-  "node_total": "2",
-  "node_index": "0",
-  "node_build_id": "1234"
+"can_initialize_queue": false,
+"attempt_connect_to_queue": false,
+"fixed_queue_split": false,
+"commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
+"branch": "master",
+"node_total": "2",
+"node_index": "0",
+"node_build_id": "1234"
 }
 {% endhighlight %}
 
@@ -293,9 +300,9 @@ When the API response has no test files it means the Queue was consumed and all 
 
 {% highlight json %}
 {
-  "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
-  "build_subset_id": null,
-  "test_files": []
+"queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
+"build_subset_id": null,
+"test_files": []
 }
 {% endhighlight %}
 
@@ -311,10 +318,10 @@ In this section, you will learn what's need to be covered in the Knapsack Pro Te
 
 You need to [recognize environment variables](https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/src/env-config.ts) defined by user of Knapsack Pro client. The user define them in CI environment variables settings.
 
-* `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` - the value of it should override the `KNAPSACK_PRO_TEST_SUITE_TOKEN` so that Knapsack Pro Core (`@knapsack-pro/core`) can use the API token during requests.
-* `KNAPSACK_PRO_TEST_FILE_PATTERN` - it should contain a default test file pattern that can be used to detect test files on the disk in a directory specific to your test runner. We use a `glob` function to detect test files on the disk.
-* There should be a [test file finder service](https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/src/test-files-finder.ts) that can recognize the pattern and find the list of test files on the disk. We use this list of test files to send them in request to the API so that the API server can split those test files into parallel CI nodes.
-* `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` - is an exclude pattern. If a user wants to ignore some of the test files she can provide a pattern for it.
+- `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` - the value of it should override the `KNAPSACK_PRO_TEST_SUITE_TOKEN` so that Knapsack Pro Core (`@knapsack-pro/core`) can use the API token during requests.
+- `KNAPSACK_PRO_TEST_FILE_PATTERN` - it should contain a default test file pattern that can be used to detect test files on the disk in a directory specific to your test runner. We use a `glob` function to detect test files on the disk.
+- There should be a [test file finder service](https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/src/test-files-finder.ts) that can recognize the pattern and find the list of test files on the disk. We use this list of test files to send them in request to the API so that the API server can split those test files into parallel CI nodes.
+- `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` - is an exclude pattern. If a user wants to ignore some of the test files she can provide a pattern for it.
 
 Knapsack Pro Test Runner library (e.g. `@knapsack-pro/jest`) should have their [name and version and it should be passed to Knapsack Pro Core](https://github.com/KnapsackPro/knapsack-pro-jest/blob/e6eca4868df9379ce17fe5df865302b11434803c/src/knapsack-pro-jest.ts#L29,L31) (`@knapsack-pro/core`) when you will use [core functionality](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/knapsack-pro-core.ts) to connect with the API (for instance to run tests in Queue Mode).
 
@@ -328,15 +335,15 @@ You can create a [bin script that runs tests](https://github.com/KnapsackPro/jes
 
 For instance use:
 
-* `bin/knapsack_pro_jest 0 2` - run tests on CI node index `0`. The total number of CI nodes is `2`.
-* `bin/knapsack_pro_jest 1 2` - run tests on CI node index `1`.
+- `bin/knapsack_pro_jest 0 2` - run tests on CI node index `0`. The total number of CI nodes is `2`.
+- `bin/knapsack_pro_jest 1 2` - run tests on CI node index `1`.
 
 ## README
 
 It's good to create a well-documentented README for your packages. You can get inspired by checking documentation for:
 
-* [`@knapsack-pro/core` readme](https://github.com/KnapsackPro/knapsack-pro-core-js#knapsack-procore)
-* [`@knapsack-pro/jest` readme](https://github.com/KnapsackPro/knapsack-pro-jest#knapsack-projest)
+- [`@knapsack-pro/core` readme](https://github.com/KnapsackPro/knapsack-pro-core-js#knapsack-procore)
+- [`@knapsack-pro/jest` readme](https://github.com/KnapsackPro/knapsack-pro-jest#knapsack-projest)
 
 ## Extras - Regular Mode integration
 
@@ -344,8 +351,8 @@ If you would like to build the Knapsack Pro client that uses Regular Mode instea
 
 In Regular Mode, you need to send a list of existing test files on the disk to the API. The API returns a set of test files to run. Once you execute the tests you need to [create a build subset](/api/v1/#build_subsets_post) record in the API.
 
-* `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT` - Regular Mode has a flag to control whether tests split should be cached on the API side. It's `true` by default. Learn more about it from [knapsack_pro ruby gem documentation](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_test_suite_split-test-suite-split-based-on-seed).
-  * Value of `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT` should be sent as attribute `fixed_test_suite_split` in [request to the API](http://localhost:4000/api/v1/#build_distributions_subset_post).
+- `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT` - Regular Mode has a flag to control whether tests split should be cached on the API side. It's `true` by default. Learn more about it from [knapsack_pro ruby gem documentation](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_test_suite_split-test-suite-split-based-on-seed).
+  - Value of `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT` should be sent as attribute `fixed_test_suite_split` in [request to the API](http://localhost:4000/api/v1/#build_distributions_subset_post).
 
 ## Summary
 

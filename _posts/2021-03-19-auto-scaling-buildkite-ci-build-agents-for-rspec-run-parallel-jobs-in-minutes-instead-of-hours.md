@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Auto-scaling Buildkite CI build agents for RSpec (run parallel jobs in minutes instead of hours)"
-date:   2021-03-19 08:00:00 +0100
+title: "Auto-scaling Buildkite CI build agents for RSpec (run parallel jobs in minutes instead of hours)"
+date: 2021-03-19 08:00:00 +0100
 author: "Artur Trzop"
 categories: continuous_integration
 og_image: "/images/blog/posts/auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours/buildkite-rspec.jpeg"
@@ -11,12 +11,12 @@ If your RSpec test suite runs for hours, you could shorten that to just minutes 
 
 <img src="/images/blog/posts/auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours/buildkite-rspec.jpeg" style="width:300px;margin-left: 15px;float:right;" alt="Buildkite, CI, RSpec, testing, Ruby" />
 
-* A real RSpec test suite taking 13 hours and 32 minutes executed in only 5 minutes 20 seconds by using 151 parallel Buildkite agents with [knapsack_pro Ruby gem](/knapsack_pro-ruby/guide/).
-* How to distribute test files between parallel jobs using Queue Mode in [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours) to utilize CI machines optimally.
-* A simple example of CI Buildkite parallelism config.
-* An advanced example of Buildkite config with Elastic CI Stack for AWS.
-* Why you might want to use AWS Spot Instances
-* How to automatically split slow RSpec test files by test examples (test cases) between parallel Buildkite agents
+- A real RSpec test suite taking 13 hours and 32 minutes executed in only 5 minutes 20 seconds by using 151 parallel Buildkite agents with [knapsack_pro Ruby gem](/knapsack_pro-ruby/guide/).
+- How to distribute test files between parallel jobs using Queue Mode in [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours) to utilize CI machines optimally.
+- A simple example of CI Buildkite parallelism config.
+- An advanced example of Buildkite config with Elastic CI Stack for AWS.
+- Why you might want to use AWS Spot Instances
+- How to automatically split slow RSpec test files by test examples (test cases) between parallel Buildkite agents
 
 ## A real RSpec test suite taking 13 hours and executed in only 5 minutes
 
@@ -37,14 +37,14 @@ To run CI build as fast as possible we need to utilize our available resources a
 
 The bigger the test suite, the longer it takes to run it and more edge cases can happen when you split running tests among many machines in the network. Some of the possible edge cases:
 
-* some of the test files take longer than others to run (for instance E2E test files)
-* some of the test cases fail and run quicker, some don't and run longer. This affects the overall time spent by the CI machine on running your tests.
-* some of the test cases take longer because they must connect with network/external API etc - this adds uncertainty to their execution time
-* some of the parallel machines spend more time on boot time
-  * installing Ruby gems takes longer
-  * loading Ruby gems from cache is slow
-  * or simply the CI provider has not started your job yet
-  * or maybe you have not enough available machines in the pool of available agents
+- some of the test files take longer than others to run (for instance E2E test files)
+- some of the test cases fail and run quicker, some don't and run longer. This affects the overall time spent by the CI machine on running your tests.
+- some of the test cases take longer because they must connect with network/external API etc - this adds uncertainty to their execution time
+- some of the parallel machines spend more time on boot time
+  - installing Ruby gems takes longer
+  - loading Ruby gems from cache is slow
+  - or simply the CI provider has not started your job yet
+  - or maybe you have not enough available machines in the pool of available agents
 
 Multiple things can disrupt the spread of work between parallel nodes.
 
@@ -61,25 +61,34 @@ Here is a very simple example of Buildkite config to run 2 parallel jobs as you 
 <img src="/images/blog/posts/auto-scaling-buildkite-ci-build-agents-for-rspec-run-parallel-jobs-in-minutes-instead-of-hours/buildkite-parallel-rspec.png" alt="Buildkite parallel RSpec agents" />
 
 {% highlight yml %}
+
 # .buildkite/pipeline.yml
+
 env:
-  # You should hide you secrets like API token
-  # Please follow https://buildkite.com/docs/pipelines/secrets
-  KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: "204abb31f698a6686120a40efeff31e5"
-  # allow to run the same set of test files on job retry
-  # https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node
-  KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
+
+# You should hide you secrets like API token
+
+# Please follow https://buildkite.com/docs/pipelines/secrets
+
+KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: "204abb31f698a6686120a40efeff31e5"
+
+# allow to run the same set of test files on job retry
+
+# https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node
+
+KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
 
 steps:
-  - command: "bundle exec rake knapsack_pro:queue:rspec"
-    parallelism: 2
-{% endhighlight %}
+
+- command: "bundle exec rake knapsack_pro:queue:rspec"
+  parallelism: 2
+  {% endhighlight %}
 
 Please note that you should hide your credentials like the Knapsack Pro API token and not commit it into your repository. You can refer to the [Buildkite secrets documentation](https://buildkite.com/docs/pipelines/secrets).
 
 ## An advanced Buildkite config with Elastic CI Stack for AWS
 
-When you want to run your big RSpec project on dozen or even hundreds of parallel machines you need powerful resources.  In such a case, you can follow the [Buildkite tutorial about AWS setup](https://buildkite.com/docs/tutorials/elastic-ci-stack-aws). The Elastic CI Stack for AWS gives you a private, autoscaling Buildkite Agent cluster in your own AWS account.
+When you want to run your big RSpec project on dozen or even hundreds of parallel machines you need powerful resources. In such a case, you can follow the [Buildkite tutorial about AWS setup](https://buildkite.com/docs/tutorials/elastic-ci-stack-aws). The Elastic CI Stack for AWS gives you a private, autoscaling Buildkite Agent cluster in your own AWS account.
 
 ### AWS Spot Instances can save you money
 

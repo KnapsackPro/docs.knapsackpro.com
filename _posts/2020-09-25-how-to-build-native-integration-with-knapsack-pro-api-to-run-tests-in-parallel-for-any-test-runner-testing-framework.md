@@ -17,8 +17,8 @@ We have users who did that, for instance, for the TestCafe test runner.
 
 Knapsack Pro offers out of the box support for test runners like Cypress and Jest with these packages:
 
-* [`@knapsack-pro/cypress`](https://github.com/KnapsackPro/knapsack-pro-cypress)
-* [`@knapsack-pro/jest`](https://github.com/KnapsackPro/knapsack-pro-jest)
+- [`@knapsack-pro/cypress`](https://github.com/KnapsackPro/knapsack-pro-cypress)
+- [`@knapsack-pro/jest`](https://github.com/KnapsackPro/knapsack-pro-jest)
 
 They both use [`@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js) which is a wrapper around Knapsack Pro API.
 
@@ -30,11 +30,11 @@ Here is the general idea behind Queue Mode in Knapsack Pro.
 
 There are parallel CI nodes on your CI server. Each CI node is running the Knapsack Pro client command to run tests.
 
-* The very first request from the Knapsack Pro client command (example `$(npm bin)/knapsack-pro-cypress`) sends a list of all test files existing on the disk to [Knapsack Pro API Queue](/api/v1/#queues_queue_post). Then API returns the proper set of tests for the CI node.
-* There is a Queue with a list of test files on the Knapsack Pro API side. The Queue is build based on a list of tests sent to the API and based on historically recorded data about your tests execution time in order to sort tests in the Queue from slowest to fastest.
-* Each Knapsack Pro client command connects with the Knapsack Pro API Queue and consumes a set of tests fetched from the Queue. API returns a set of tests from the top of the Queue (slowest first).
-* Once the set of tests is executed on the CI node then the Knapsack Pro client command asks for another set of tests from the Queue. This is repeated until the Queue is empty.
-* Once all tests are executed and their execution time is recorded then the Knapsack Pro client command sends recorded time of each test file to Knapsack Pro API (this [creates a Build Subset on the API side](/api/v1/#build_subsets_post)).
+- The very first request from the Knapsack Pro client command (example `$(npm bin)/knapsack-pro-cypress`) sends a list of all test files existing on the disk to [Knapsack Pro API Queue](/api/v1/#queues_queue_post). Then API returns the proper set of tests for the CI node.
+- There is a Queue with a list of test files on the Knapsack Pro API side. The Queue is build based on a list of tests sent to the API and based on historically recorded data about your tests execution time in order to sort tests in the Queue from slowest to fastest.
+- Each Knapsack Pro client command connects with the Knapsack Pro API Queue and consumes a set of tests fetched from the Queue. API returns a set of tests from the top of the Queue (slowest first).
+- Once the set of tests is executed on the CI node then the Knapsack Pro client command asks for another set of tests from the Queue. This is repeated until the Queue is empty.
+- Once all tests are executed and their execution time is recorded then the Knapsack Pro client command sends recorded time of each test file to Knapsack Pro API (this [creates a Build Subset on the API side](/api/v1/#build_subsets_post)).
 
 Thanks to the Queue Mode, tests are allocated between parallel CI nodes in a dynamic way to ensure that all CI nodes finish their work at a similar time. This allows getting optimal CI build time (as fast as possible).
 
@@ -52,9 +52,9 @@ Here is some basic info about the project structure. It's written in TypeScript.
 
 You can rename forked project `@knapsack-pro/cypress` to `@knapsack-pro/my-test-runner` and update the info in `package.json`.
 
-* Update name to `@knapsack-pro/my-test-runner` and `version` to `1.0.0`. [See in code](https://github.com/KnapsackPro/knapsack-pro-cypress/blob/8942e0430e9b529ab27cf877b15b2d2964f89222/package.json#L2,L3).
-* Add your test runner package to [`peerDependency`](https://docs.npmjs.com/files/package.json#peerdependencies). This allows a developer to use a runner within a specified version range when the developer installs your package in their project. [See in code](https://github.com/KnapsackPro/knapsack-pro-cypress/blob/8942e0430e9b529ab27cf877b15b2d2964f89222/package.json#L62).
-* Add your test runner package to `devDependencies`. This allows using a specific version of the test runner in development for testing your `@knapsack-pro/my-test-runner` with another local project using an example test suite supported by `my-test-runner` npm package. For example, to test `@knapscak-pro/cypress` we have a [separate repository with an example test suite written in Cypress](https://github.com/KnapsackPro/cypress-example-kitchensink). We verify with it that our `@knapsack-pro/cypress` package ([See in code](https://github.com/KnapsackPro/cypress-example-kitchensink/blob/5c5ddf80f8ca0fb317572d50d5d264070bb61af0/package.json#L67)) works fine. In order to do, we've created [an example bin script](https://github.com/KnapsackPro/cypress-example-kitchensink/blob/5c5ddf80f8ca0fb317572d50d5d264070bb61af0/bin/knapsack_pro_cypress_test_file_pattern#L29) to connect with Knapsack Pro API. Please remove from it the `ENDPOINT` environment variable - this way the `@knapsack-pro/core` will connect to the production API (https://api.knapsackpro.com) by default.
+- Update name to `@knapsack-pro/my-test-runner` and `version` to `1.0.0`. [See in code](https://github.com/KnapsackPro/knapsack-pro-cypress/blob/8942e0430e9b529ab27cf877b15b2d2964f89222/package.json#L2,L3).
+- Add your test runner package to [`peerDependency`](https://docs.npmjs.com/files/package.json#peerdependencies). This allows a developer to use a runner within a specified version range when the developer installs your package in their project. [See in code](https://github.com/KnapsackPro/knapsack-pro-cypress/blob/8942e0430e9b529ab27cf877b15b2d2964f89222/package.json#L62).
+- Add your test runner package to `devDependencies`. This allows using a specific version of the test runner in development for testing your `@knapsack-pro/my-test-runner` with another local project using an example test suite supported by `my-test-runner` npm package. For example, to test `@knapscak-pro/cypress` we have a [separate repository with an example test suite written in Cypress](https://github.com/KnapsackPro/cypress-example-kitchensink). We verify with it that our `@knapsack-pro/cypress` package ([See in code](https://github.com/KnapsackPro/cypress-example-kitchensink/blob/5c5ddf80f8ca0fb317572d50d5d264070bb61af0/package.json#L67)) works fine. In order to do, we've created [an example bin script](https://github.com/KnapsackPro/cypress-example-kitchensink/blob/5c5ddf80f8ca0fb317572d50d5d264070bb61af0/bin/knapsack_pro_cypress_test_file_pattern#L29) to connect with Knapsack Pro API. Please remove from it the `ENDPOINT` environment variable - this way the `@knapsack-pro/core` will connect to the production API (https://api.knapsackpro.com) by default.
 
 Note how we pass to `KnapsackProCore` the list of all existing test files on the disk - [see in code](https://github.com/KnapsackPro/knapsack-pro-cypress/blob/8942e0430e9b529ab27cf877b15b2d2964f89222/src/knapsack-pro-cypress.ts#L30). This is needed to initialize the Queue on the API side with the very first request to the API (as mentioned earlier). Those test files will be used to run your tests.
 
@@ -72,4 +72,4 @@ I hope this article was useful to you. Let us know if you have any questions or 
 
 ### Related articles
 
-* [How to build a custom Knapsack Pro API client from scratch in any programming language](/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language)
+- [How to build a custom Knapsack Pro API client from scratch in any programming language](/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language)

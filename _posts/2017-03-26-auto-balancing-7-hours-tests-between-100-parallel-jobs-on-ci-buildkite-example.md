@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Auto balancing 7 hours tests between 100 parallel jobs on CI - Buildkite example"
-date:   2017-03-26 13:20:00 +0200
+title: "Auto balancing 7 hours tests between 100 parallel jobs on CI - Buildkite example"
+date: 2017-03-26 13:20:00 +0200
 author: "Artur Trzop"
 categories: continuous_integration
 og_image: "/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/buildkite.jpg"
@@ -17,20 +17,20 @@ In large projects tests tend to get bigger and bigger, your test suite starts ta
 
 We can split tests across multiple CI nodes to get faster feedback. There are a few ways how to do it, most common are:
 
-__Simple methods of distributing tests across CI nodes:__
+**Simple methods of distributing tests across CI nodes:**
 
-* Split tests based on type. For instance, we run unit tests on first CI node and feature tests on second CI node.
-* Split tests based on directory or file names, or number of test files
+- Split tests based on type. For instance, we run unit tests on first CI node and feature tests on second CI node.
+- Split tests based on directory or file names, or number of test files
 
-__Advanced methods of distributing tests across CI nodes:__
+**Advanced methods of distributing tests across CI nodes:**
 
-* Split tests based on time execution and running predetermine subset of tests per CI node.
+- Split tests based on time execution and running predetermine subset of tests per CI node.
 
   <img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/regular_mode.jpg" style="width:150px;" alt="Knapsack Pro Regular Mode API" />
 
   This way we should get similar time execution on each CI node. But there are cons of this approach. Sometimes tests took different time because of bad CI node performance or the nature of the test like testing external API or feature tests clicking on the website that could take random time.
 
-* Dynamic tests split is a way based on recorded tests time execution and work queue.
+- Dynamic tests split is a way based on recorded tests time execution and work queue.
 
   <img src="/images/blog/posts/auto-balancing-7-hours-tests-between-100-parallel-jobs-on-ci-buildkite-example/queue_mode.jpg" style="width:150px;" alt="Knapsack Pro Queue Mode API" />
 
@@ -61,7 +61,7 @@ You can find here info how to add it to your Gemfile and [install knapsack_pro f
 
 Knapsack Pro supports buildkite environment variables to determine git commit, branch name and number of parallel jobs. The only thing you need to do is to configure the parallelism parameter in your pipeline step and run the appropiate knapsack_pro command.
 
-__Create pipeline:__
+**Create pipeline:**
 
 If you have an account in Buildkite then you need to create a new pipeline for your project.
 
@@ -77,12 +77,12 @@ KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true
 
 [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node) flag allows us to use retry failed CI node feature on Buildkite.com. When we retry the CI node then we want to run what was run there previously instead of dynamically allocate tests again hence the fixed queue split flag is true.
 
-__Set step command:__
+**Set step command:**
 
-* Commands to run: `bundle install && bundle exec rake db:reset && bundle exec rake knapsack_pro:queue:rspec`
-* Label: `RSpec in Queue Mode`
-* Environment Variables: `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=462c48d886ab38ddcdb81d379379e639`
-* Parallelism: `100`
+- Commands to run: `bundle install && bundle exec rake db:reset && bundle exec rake knapsack_pro:queue:rspec`
+- Label: `RSpec in Queue Mode`
+- Environment Variables: `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=462c48d886ab38ddcdb81d379379e639`
+- Parallelism: `100`
 
 In environment variables, we set Knapsack Pro API key `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC` per step command. You can [obtain API key here](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite).
 
@@ -97,7 +97,7 @@ I tested this with a company who has a large test suite ~7 hours and the average
 
 # What else can I learn?
 
-* __See an example repository of how to run Rails CI with [Knapsack Pro and test steps in parallel with Buildkite](https://github.com/KnapsackPro/buildkite-rails-parallel-example-with-knapsack_pro). Here is an example for [Docker, Knapsack Pro and Buildkite](https://github.com/KnapsackPro/buildkite-rails-docker-parallel-example-with-knapsack_pro).__
-* What is [optimal order of test commands](https://github.com/KnapsackPro/knapsack_pro-ruby#what-is-optimal-order-of-test-commands)?
-* Learn more about [Knapsack Pro parallelisation](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite)
-* [Compare Buildkite to other CI solutions](https://knapsackpro.com/ci_comparisons/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite#buildkite), including [Buildkite vs Jenkins](https://knapsackpro.com/ci_comparisons/buildkite/vs/jenkins?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite), [Buildkite vs CircleCI](https://knapsackpro.com/ci_comparisons/buildkite/vs/circle-ci?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite), and [Buildkite vs Github Actions](https://knapsackpro.com/ci_comparisons/buildkite/vs/github-actions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite).
+- **See an example repository of how to run Rails CI with [Knapsack Pro and test steps in parallel with Buildkite](https://github.com/KnapsackPro/buildkite-rails-parallel-example-with-knapsack_pro). Here is an example for [Docker, Knapsack Pro and Buildkite](https://github.com/KnapsackPro/buildkite-rails-docker-parallel-example-with-knapsack_pro).**
+- What is [optimal order of test commands](https://github.com/KnapsackPro/knapsack_pro-ruby#what-is-optimal-order-of-test-commands)?
+- Learn more about [Knapsack Pro parallelisation](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite)
+- [Compare Buildkite to other CI solutions](https://knapsackpro.com/ci_comparisons/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite#buildkite), including [Buildkite vs Jenkins](https://knapsackpro.com/ci_comparisons/buildkite/vs/jenkins?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite), [Buildkite vs CircleCI](https://knapsackpro.com/ci_comparisons/buildkite/vs/circle-ci?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite), and [Buildkite vs Github Actions](https://knapsackpro.com/ci_comparisons/buildkite/vs/github-actions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=auto-balancing-buildkite).
