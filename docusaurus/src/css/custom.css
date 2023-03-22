@@ -168,3 +168,13 @@ li {
 .h-auto {
   height: auto;
 }
+
+/* Table of Contents */
+
+#tableOfContentsTop code {
+  color: var(--ifm-toc-link-color);
+}
+
+#tableOfContentsTop code:hover {
+  color: var(--ifm-color-primary);
+}
