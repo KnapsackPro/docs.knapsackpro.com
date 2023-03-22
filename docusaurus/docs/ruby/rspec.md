@@ -3,17 +3,6 @@ pagination_next: null
 pagination_prev: null
 ---
 
-import { TOCTop } from '@site/src/components/TOCTop'
-
-<TOCTop label="Configuration">
-
-[`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS`](reference.md#knapsack_pro_modify_default_rspec_formatters-rspec)
-[`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](reference.md#knapsack_pro_rspec_split_by_test_examples-rspec)
-[`KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX`](reference.md#knapsack_pro_rspec_test_example_detector_prefix-rspec)
-[`KNAPSACK_PRO_TEST_DIR`](reference.md#knapsack_pro_test_dir-rspec)
-
-</TOCTop>
-
 # Using Knapsack Pro with RSpec
 
 ## Retry failed/flaky tests
