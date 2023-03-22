@@ -15,8 +15,8 @@
     "typecheck": "tsc",
     "typecheck:watch": "tsc --noEmit --watch",
     "remark": "remark",
-    "remark:once": "npm run remark -- --quiet --frail --use remark-validate-links docs/",
-    "remark:watch": "npm run remark -- --quiet --frail --use remark-validate-links --watch docs/"
+    "remark:once": "npm run remark -- --quiet --frail --use remark-validate-links --use remark-lint-relative-markdown-file-path-links docs/",
+    "remark:watch": "npm run remark -- --quiet --frail --use remark-validate-links --use remark-lint-relative-markdown-file-path-links --watch docs/"
   },
   "dependencies": {
     "@docusaurus/core": "^2.3.1",
