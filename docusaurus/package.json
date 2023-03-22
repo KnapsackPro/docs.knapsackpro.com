@@ -34,6 +34,7 @@
     "@tsconfig/docusaurus": "^1.0.5",
     "concurrently": "^7.6.0",
     "remark-cli": "^11.0.0",
+    "remark-lint-relative-markdown-file-path-links": "github:3v0k4/remark-lint-relative-markdown-file-path-links",
     "remark-validate-links": "^12.1.0",
     "typescript": "^4.9.5"
   },
