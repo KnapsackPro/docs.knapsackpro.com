@@ -32,6 +32,7 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.3.1",
     "@tsconfig/docusaurus": "^1.0.5",
+    "@types/react-dom": "^18.0.11",
     "concurrently": "^7.6.0",
     "remark-cli": "^11.0.0",
     "remark-lint-relative-markdown-file-path-links": "github:3v0k4/remark-lint-relative-markdown-file-path-links",
