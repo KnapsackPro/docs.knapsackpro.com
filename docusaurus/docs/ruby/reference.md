@@ -241,7 +241,7 @@ Available:
 - not set: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
 - `git` (requires `KNAPSACK_PRO_PROJECT_DIR`): Knapsack Pro will set `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` using git on your CI
 
-## `KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN` (Internal)
+## `KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN` (Internal, RSpec)
 
 Split by test examples only files matching the pattern (instead of letting Knapsack Pro decide for you).
 
