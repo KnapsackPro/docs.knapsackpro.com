@@ -5,6 +5,16 @@ pagination_prev: null
 
 # Split by test examples
 
+import { TOCBottom } from '@site/src/components/TOCBottom'
+import { IconExternalLink } from '@site/src/components/IconExternalLink'
+
+<TOCBottom heading="Reference" Icon={<IconExternalLink />}>
+
+- [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](reference.md#knapsack_pro_rspec_split_by_test_examples-rspec)
+- [`KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX`](reference.md#knapsack_pro_rspec_test_example_detector_prefix-rspec)
+
+</TOCBottom>
+
 :::caution
 
 Only RSpec >= 3.3.0 is supported. [Let us know](https://knapsackpro.com/contact) if you use a different test runner. As an alternative, consider:

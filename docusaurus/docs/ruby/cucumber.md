@@ -5,6 +5,16 @@ pagination_prev: null
 
 # Using Knapsack Pro with Cucumber
 
+import { TOCBottom } from '@site/src/components/TOCBottom'
+import { IconExternalLink } from '@site/src/components/IconExternalLink'
+
+<TOCBottom heading="Reference" Icon={<IconExternalLink />}>
+
+- [`KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX`](reference.md#knapsack_pro_cucumber_queue_prefix-cucumber-queue-mode)
+- [`KNAPSACK_PRO_TEST_DIR`](reference.md#knapsack_pro_test_dir-cucumber)
+
+</TOCBottom>
+
 ## Load tests faster with spring
 
 Take a look at [Using Knapsack Pro with `spring`](spring.md).

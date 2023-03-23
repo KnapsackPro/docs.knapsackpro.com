@@ -5,6 +5,17 @@ pagination_prev: null
 
 # Queue Mode
 
+import { TOCBottom } from '@site/src/components/TOCBottom'
+import { IconExternalLink } from '@site/src/components/IconExternalLink'
+
+<TOCBottom heading="Reference" Icon={<IconExternalLink />}>
+
+- [`KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX`](reference.md#knapsack_pro_cucumber_queue_prefix-cucumber-queue-mode)
+- [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](reference.md#knapsack_pro_fixed_queue_split-queue-mode)
+- [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](reference.md#knapsack_pro_ci_node_retry_count)
+
+</TOCBottom>
+
 :::caution
 
 Only RSpec >= 3.x, Minitest, and Cucumber are supported. [Let us know](https://knapsackpro.com/contact) if you use a different test runner.

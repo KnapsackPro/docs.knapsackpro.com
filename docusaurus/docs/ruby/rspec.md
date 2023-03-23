@@ -5,6 +5,18 @@ pagination_prev: null
 
 # Using Knapsack Pro with RSpec
 
+import { TOCBottom } from '@site/src/components/TOCBottom'
+import { IconExternalLink } from '@site/src/components/IconExternalLink'
+
+<TOCBottom heading="Reference" Icon={<IconExternalLink />}>
+
+- [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS`](reference.md#knapsack_pro_modify_default_rspec_formatters-rspec)
+- [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](reference.md#knapsack_pro_rspec_split_by_test_examples-rspec)
+- [`KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX`](reference.md#knapsack_pro_rspec_test_example_detector_prefix-rspec)
+- [`KNAPSACK_PRO_TEST_DIR`](reference.md#knapsack_pro_test_dir-rspec)
+
+</TOCBottom>
+
 ## Retry failed/flaky tests
 
 You have a couple of options:

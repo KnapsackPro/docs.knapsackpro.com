@@ -1,0 +1,14 @@
+.heading {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--ifm-toc-link-color);
+}
+
+:global(.table-of-contents code) {
+  color: var(--ifm-toc-link-color);
+}
+
+:global(.table-of-contents code:hover) {
+  color: var(--ifm-color-primary);
+}

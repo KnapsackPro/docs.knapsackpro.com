@@ -5,6 +5,17 @@ pagination_prev: null
 
 # Test files and branch names encryption
 
+import { TOCBottom } from '@site/src/components/TOCBottom'
+import { IconExternalLink } from '@site/src/components/IconExternalLink'
+
+<TOCBottom heading="Reference" Icon={<IconExternalLink />}>
+
+- [`KNAPSACK_PRO_BRANCH_ENCRYPTED`](reference.md#knapsack_pro_branch_encrypted)
+- [`KNAPSACK_PRO_SALT`](reference.md#knapsack_pro_salt)
+- [`KNAPSACK_PRO_TEST_FILES_ENCRYPTED`](reference.md#knapsack_pro_test_files_encrypted)
+
+</TOCBottom>
+
 Knapsack Pro collects a minimal amount of data about your project:
 
 - File paths of your tests (e.g., `spec/models/user_spec.rb`)
