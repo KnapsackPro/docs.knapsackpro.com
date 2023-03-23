@@ -3,8 +3,6 @@ pagination_next: null
 pagination_prev: null
 ---
 
-import { YouTube } from "@site/src/components/YouTube"
-
 # Queue Mode
 
 :::caution
@@ -34,6 +32,8 @@ Knapsack Pro allows distributing the tests in a static way (Regular Mode) too, b
 - CI nodes may load their caches at dissimilar times
 - Test execution starts at different times on different CI nodes
 - Flaky tests are.. Well, flaky!
+
+import { YouTube } from "@site/src/components/YouTube"
 
 <YouTube src="https://www.youtube.com/embed/hUEB1XDKEFY" />
 
