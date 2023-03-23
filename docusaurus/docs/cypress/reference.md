@@ -38,7 +38,7 @@ Unique ID that identifies a CI build. It must be the same for all the parallel C
 
 Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers))
 
-If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand - base64 32)` and make it available to all parallel nodes.
+If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand -base64 32)` and make it available to all parallel nodes.
 
 ## `KNAPSACK_PRO_CI_NODE_INDEX`
 
