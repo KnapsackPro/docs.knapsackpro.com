@@ -53,7 +53,7 @@ As an example, imagine you have two test files in your suite:
   </table>
 </div>
 
-On your [Knapsack Pro dashboard](../overview/index.md#dashboard), you can see the yellow highlights because of the bottleneck.
+On your [Knapsack Pro dashboard](../overview/index.md#dashboard), you can see the yellow highlights because of the bottleneck: if you run them on 2 parallel CI nodes, the total execution time would be 6.5 minutes instead of the optimal 4.5 minutes (2.5 minutes + 6.5 minutes divided by 2 CI nodes).
 
 By enabling `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`, the bottleneck disappears because Knapsack Pro can distribute tests so that each CI node is balanced (e.g., 4.5 minutes + 4.5 minutes):
 
@@ -106,7 +106,12 @@ By enabling `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`, the bottleneck disappea
   </table>
 </div>
 
-RSpec consumes a lot of memory when running individual test examples, so Knapsack Pro only splits bottleneck files by test examples and parallelizes the rest of your test suite by file. In other words, files are split by test examples just enough to guarantee all the parallel CI nodes finish at a similar time to maximize performance.
+Knapsack Pro knows the optimal time per parallel CI node is 4.5 minutes, so it looks for test files slower than 3.15 minutes (70% of 4.5 minutes) and splits them by test examples across parallel CI nodes. We use 70% as a threshold for two reasons:
+
+- Test execution time varies–especially for end-to-end tests–and we want to split all the potential bottlenecks.
+- RSpec consumes a lot of memory running individual test examples, so Knapsack Pro only splits potential bottlenecks and parallelizes the rest of your test suite by file.
+
+In other words, files are split by test examples just enough to guarantee all the parallel CI nodes finish at a similar time to maximize performance and minimize memory consumption.
 
 We recommend running at least 2 CI builds after you enable this feature or change the number of CI nodes to allow the Knapsack Pro API to learn about your test suite.
 
