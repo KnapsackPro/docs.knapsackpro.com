@@ -43,7 +43,7 @@ As an example, imagine you have two test files in your suite:
           6 minutes and 30 seconds
         </td>
       </tr>
-      <tr style={{ backgroundColor: '#fcf8e3' }}>
+      <tr>
         <td style={{ whiteSpace: 'nowrap' }}>spec/features/books_spec.rb</td>
         <td style={{ width: '250px', whiteSpace: 'nowrap' }}>
           2 minutes and 30 seconds
@@ -53,7 +53,7 @@ As an example, imagine you have two test files in your suite:
   </table>
 </div>
 
-On your [Knapsack Pro dashboard](../overview/index.md#dashboard), you can see the yellow highlights because of the bottleneck: if you run them on 2 parallel CI nodes, the total execution time would be 6.5 minutes instead of the optimal 4.5 minutes (2.5 minutes + 6.5 minutes divided by 2 CI nodes).
+On your [Knapsack Pro dashboard](../overview/index.md#dashboard), you can see the yellow highlight because of the bottleneck: if you run those tests on 2 parallel CI nodes, the total execution time would be 6.5 minutes instead of the optimal 4.5 minutes (2.5 minutes + 6.5 minutes divided by 2 CI nodes).
 
 By enabling `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`, the bottleneck disappears because Knapsack Pro can distribute tests so that each CI node is balanced (e.g., 4.5 minutes + 4.5 minutes):
 
@@ -91,15 +91,9 @@ By enabling `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`, the bottleneck disappea
         </td>
       </tr>
       <tr>
-        <td style={{ whiteSpace: 'nowrap' }}>spec/features/books_spec.rb[1:1]</td>
+        <td style={{ whiteSpace: 'nowrap' }}>spec/features/books_spec.rb</td>
         <td style={{ width: '250px', whiteSpace: 'nowrap' }}>
-          1 minute and 15 seconds
-        </td>
-      </tr>
-      <tr>
-        <td style={{ whiteSpace: 'nowrap' }}>spec/features/books_spec.rb[1:2]</td>
-        <td style={{ width: '250px', whiteSpace: 'nowrap' }}>
-          1 minute and 15 seconds
+          2 minutes and 30 seconds
         </td>
       </tr>
     </tbody>
