@@ -15,8 +15,8 @@
     "typecheck": "tsc",
     "typecheck:watch": "tsc --noEmit --watch",
     "remark": "remark",
-    "remark:once": "npm run remark -- --quiet --frail --use remark-validate-links --use remark-lint-relative-markdown-file-path-links docs/",
-    "remark:watch": "npm run remark -- --quiet --frail --use remark-validate-links --use remark-lint-relative-markdown-file-path-links --watch docs/"
+    "remark:once": "npm run remark -- --quiet --frail --use remark-validate-links --use remark-lint-relative-markdown-file-path-links --use remark-lint-docusaurus-empty-lines-around-admonition-content \"docs/**/*.{md,mdx}\"",
+    "remark:watch": "npm run remark -- --quiet --frail --use remark-validate-links --use remark-lint-relative-markdown-file-path-links --use remark-lint-docusaurus-empty-lines-around-admonition-content --watch \"docs/**/*.{md,mdx}\""
   },
   "dependencies": {
     "@docusaurus/core": "^2.3.1",
@@ -35,6 +35,7 @@
     "@types/react-dom": "^18.0.11",
     "concurrently": "^7.6.0",
     "remark-cli": "^11.0.0",
+    "remark-lint-docusaurus-empty-lines-around-admonition-content": "github:3v0k4/remark-lint-docusaurus-empty-lines-around-admonition-content",
     "remark-lint-relative-markdown-file-path-links": "github:3v0k4/remark-lint-relative-markdown-file-path-links",
     "remark-validate-links": "^12.1.0",
     "typescript": "^4.9.5"
