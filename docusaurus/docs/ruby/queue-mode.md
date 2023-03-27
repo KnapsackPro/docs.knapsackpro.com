@@ -116,7 +116,7 @@ When the Knapsack Pro API finds a previous split (i.) and remaining tests in the
 
 ## Configuration and Troubleshooting
 
-You can find additional configurations and troubleshooting on the following pages:
+You can find additional configuration options and troubleshooting on the following pages:
 
 - [Knapsack Pro Ruby - Troubleshooting](troubleshooting.md)
 - [Using Knapsack Pro with RSpec](rspec.md)
