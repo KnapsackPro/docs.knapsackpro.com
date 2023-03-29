@@ -30,7 +30,7 @@ bundle exec rake "knapsack_pro:rspec[--seed MY_SEED]"
 You can also run the same subset of tests without Knapsack Pro: in the logs, find the command that Knapsack Pro used to invoke the test runner:
 
 ```bash
-rspec  --default-path spec "spec/models/user_spec.rb" "spec/models/comment_spec.rb"
+rspec --default-path spec "spec/models/user_spec.rb" "spec/models/comment_spec.rb"
 ```
 
 ### Queue Mode
