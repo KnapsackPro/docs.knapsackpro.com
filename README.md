@@ -56,7 +56,7 @@ Show post with future publish date.
 bundle exec jekyll serve --watch --future
 ```
 
-Now you can preview the blog at [http://localhost:4000/](http://localhost:4000/2099/example-article)](http://localhost:4000/2099/example-article)
+Now you can preview the blog at [http://localhost:4000/](http://localhost:4000/2099/example-article)
 
 # Development of docs
 
