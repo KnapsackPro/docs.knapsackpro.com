@@ -107,7 +107,7 @@ final_exit_code = 1 unless tests_passed?
 exit(final_exit_code)
 {% endhighlight %}
 
-# Running Minitest continuously and fetching test files from the Queue in a dynamic way 
+## Running Minitest continuously and fetching test files from the Queue in a dynamic way
 
 Digging into the source code of Minitest helped me to find out a way to run my tests in a more efficient way. I applied this to the [knapsack_pro gem](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-tests-in-minitest-continuously) I'm working on.
 

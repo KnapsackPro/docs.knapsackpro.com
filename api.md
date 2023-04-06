@@ -10,7 +10,7 @@ permalink: /api/
 Here you can find API documentation for Regular Mode and Queue Mode. The API documentation might be useful if you want to build <a href="/">a client library</a> to directly integrate with Knapsack Pro API.
 </p>
 
-<h1><a href="/api/v1/">Preview API v1 documentation</a></h1>
+<h2><a href="/api/v1/">Preview API v1 documentation</a></h2>
 
 ## How API works
 
