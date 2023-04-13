@@ -92,6 +92,10 @@ However, as explained in the [Queue Mode](#queue-mode-dynamic-split) section, th
 
 In case of network issues, Knapsack Pro logs a warning and automatically switches to Fallback Mode to run your tests with a split based on test file names.
 
+## SAML-based single sign-on (SSO)
+
+Besides traditional authentication (magic links, email/password), Knapsack Pro supports your organization's Identity Provider (IdP) like Okta, OneLogin, Google Workspace, or any other SAML SSO provider.
+
 ## Customer Support
 
 If you have questions, feel free to [contact us](https://knapsackpro.com/contact) directly and we will be happy to help.
