@@ -28,7 +28,15 @@
     </div>
 
     <div class="footer-copy">
-      &copy; 2015 - {{ site.time | date: '%Y' }} <a href="{{ site.knapsack_pro_url }}">KnapsackPro.com</a>
+      <p>
+        <a href="https://knapsackpro.com/cookies" rel="nofollow noopener" target="_blank" class="page-link">Cookie Policy</a>
+        &bull;
+        <!-- Render CookieYes.com settings on the link click -->
+        <a class="cky-banner-element footer-link-secondary cursor-pointer">Cookie Settings</a>
+      </p>
+      <p>
+        &copy; 2015 - {{ site.time | date: '%Y' }} <a href="{{ site.knapsack_pro_url }}">KnapsackPro.com</a>
+      </p>
     </div>
 
   </div>
