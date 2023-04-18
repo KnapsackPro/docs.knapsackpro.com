@@ -73,7 +73,6 @@ const config = {
 
   plugins: [
     './googleAnalytics.plugin.js',
-    './hotjar.plugin.js',
     [
       '@docusaurus/plugin-client-redirects',
       {
