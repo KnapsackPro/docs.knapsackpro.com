@@ -5,7 +5,9 @@
 
   <body>
 
-    {% include google_analytics.html %}
+    {% if jekyll.environment == "production" %}
+      {% include analytics.html %}
+    {% endif %}
 
     {% include facebook_sdk.html %}
     {% include facebook_pixel.html %}
