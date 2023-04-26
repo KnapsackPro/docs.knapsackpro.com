@@ -11,9 +11,7 @@ const headTags = `
   gtag('js', new Date());
 
   gtag('config', 'G-JPGP34N3JJ');
-</script>
-
-<script defer data-domain="docs.knapsackpro.com" src="https://plausible.io/js/script.js"></script>`
+</script>`
 
 async function googleAnalyticsPlugin() {
   return {
