@@ -182,15 +182,15 @@ The first CI node sends the below request. Its purpose is to attempt to connect 
 
 {% highlight json %}
 {
-"can_initialize_queue": true,
-"attempt_connect_to_queue": true,
-"fixed_queue_split": false,
-"commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
-"branch": "master",
-"node_total": "2",
-"node_index": "0",
-"node_build_id": "1234",
-"user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7"
+  "can_initialize_queue": true,
+  "attempt_connect_to_queue": true,
+  "fixed_queue_split": false,
+  "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
+  "branch": "master",
+  "node_total": "2",
+  "node_index": "0",
+  "node_build_id": "1234",
+  "user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7"
 }
 {% endhighlight %}
 
@@ -203,9 +203,9 @@ The above request was the very first request sent to the API and on the API side
 
 {% highlight json %}
 {
-"queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
-"message": "A queue with a list of test files does not exist on the API side yet. If you see this message, everything works as expected. Now Knapsack Pro client will initialize a queue on the API side with a list of test files you want to run. The request to initialize the queue will have attributes like can_initialize_queue=true, attempt_connect_to_queue=false, and test_files, etc.",
-"code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
+  "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
+  "message": "A queue with a list of test files does not exist on the API side yet. If you see this message, everything works as expected. Now Knapsack Pro client will initialize a queue on the API side with a list of test files you want to run. The request to initialize the queue will have attributes like can_initialize_queue=true, attempt_connect_to_queue=false, and test_files, etc.",
+  "code": "ATTEMPT_CONNECT_TO_QUEUE_FAILED"
 }
 {% endhighlight %}
 
@@ -225,29 +225,29 @@ You need to make a second request. This time, it should contain a list of test f
 
 {% highlight json %}
 {
-"can_initialize_queue": true,
-"attempt_connect_to_queue": false,
-"fixed_queue_split": false,
-"commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
-"branch": "master",
-"node_total": "2",
-"node_index": "0",
-"node_build_id": "1234",
-"user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7",
-"test_files": [
-{
-"path": "test/fast/a_test.rb"
-},
-{
-"path": "test/fast/b_test.rb"
-},
-{
-"path": "test/slow/c_test.rb"
-},
-{
-"path": "test/slow/d_test.rb"
-}
-]
+  "can_initialize_queue": true,
+  "attempt_connect_to_queue": false,
+  "fixed_queue_split": false,
+  "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
+  "branch": "master",
+  "node_total": "2",
+  "node_index": "0",
+  "node_build_id": "1234",
+  "user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7",
+  "test_files": [
+    {
+      "path": "test/fast/a_test.rb"
+    },
+    {
+      "path": "test/fast/b_test.rb"
+    },
+    {
+      "path": "test/slow/c_test.rb"
+    },
+    {
+      "path": "test/slow/d_test.rb"
+    }
+  ]
 }
 {% endhighlight %}
 
@@ -260,18 +260,18 @@ API should return a set of test files assigned to the first CI node (CI node ind
 
 {% highlight json %}
 {
-"queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
-"build_subset_id": null,
-"test_files": [
-{
-"path": "test/slow/d_test.rb",
-"time_execution": 3.14
-},
-{
-"path": "test/fast/b_test.rb",
-"time_execution": null
-}
-]
+  "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
+  "build_subset_id": null,
+  "test_files": [
+    {
+      "path": "test/slow/d_test.rb",
+      "time_execution": 3.14
+    },
+    {
+      "path": "test/fast/b_test.rb",
+      "time_execution": null
+    }
+  ]
 }
 {% endhighlight %}
 
@@ -287,15 +287,15 @@ After you execute the test files, you should ask the API for another set of test
 
 {% highlight json %}
 {
-"can_initialize_queue": false,
-"attempt_connect_to_queue": false,
-"fixed_queue_split": false,
-"commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
-"branch": "master",
-"node_total": "2",
-"node_index": "0",
-"node_build_id": "1234",
-"user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7"
+  "can_initialize_queue": false,
+  "attempt_connect_to_queue": false,
+  "fixed_queue_split": false,
+  "commit_hash": "6e3396177d9f8ca87e2b93b4b0a25babd09d574d",
+  "branch": "master",
+  "node_total": "2",
+  "node_index": "0",
+  "node_build_id": "1234",
+  "user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7"
 }
 {% endhighlight %}
 
@@ -303,9 +303,9 @@ When the API response has no test files it means the Queue was consumed and all 
 
 {% highlight json %}
 {
-"queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
-"build_subset_id": null,
-"test_files": []
+  "queue_name": "1:6baacadcdd493c1a6024ee7e51f018f5",
+  "build_subset_id": null,
+  "test_files": []
 }
 {% endhighlight %}
 
