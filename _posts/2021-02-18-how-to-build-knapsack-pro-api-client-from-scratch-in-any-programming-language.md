@@ -189,7 +189,8 @@ The first CI node sends the below request. Its purpose is to attempt to connect 
 "branch": "master",
 "node_total": "2",
 "node_index": "0",
-"node_build_id": "1234"
+"node_build_id": "1234",
+"user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7"
 }
 {% endhighlight %}
 
@@ -232,6 +233,7 @@ You need to make a second request. This time, it should contain a list of test f
 "node_total": "2",
 "node_index": "0",
 "node_build_id": "1234",
+"user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7",
 "test_files": [
 {
 "path": "test/fast/a_test.rb"
@@ -292,7 +294,8 @@ After you execute the test files, you should ask the API for another set of test
 "branch": "master",
 "node_total": "2",
 "node_index": "0",
-"node_build_id": "1234"
+"node_build_id": "1234",
+"user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7"
 }
 {% endhighlight %}
 
