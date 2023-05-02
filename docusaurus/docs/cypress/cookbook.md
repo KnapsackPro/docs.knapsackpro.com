@@ -64,6 +64,5 @@ You should replace `$MY_CI_BUILD_ID` with the correct environment variable provi
 | Jenkins        | `BUILD_NUMBER` |
 | Semaphore 1.0  | `SEMAPHORE_BUILD_NUMBER` |
 | Semaphore 2.0  | `SEMAPHORE_WORKFLOW_ID` |
-| Solano         | `TDDIUM_SESSION_ID` |
 | Travis         | `TRAVIS_BUILD_ID` |
 | Codefresh.io   | `CF_BUILD_ID` |
