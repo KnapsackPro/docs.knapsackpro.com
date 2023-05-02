@@ -158,6 +158,8 @@ steps:
           - BUILDKITE_BUILD_NUMBER
           - BUILDKITE_COMMIT
           - BUILDKITE_BRANCH
+          - BUILDKITE_BUILD_AUTHOR
+          - BUILDKITE_BUILD_CREATOR
         # highlight-end
 ```
 
