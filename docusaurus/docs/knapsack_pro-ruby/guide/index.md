@@ -375,6 +375,8 @@ steps:
           - BUILDKITE_COMMIT
           - BUILDKITE_BRANCH
           - BUILDKITE_BUILD_CHECKOUT_PATH
+          - BUILDKITE_BUILD_AUTHOR
+          - BUILDKITE_BUILD_CREATOR
         # highlight-end
 ```
 

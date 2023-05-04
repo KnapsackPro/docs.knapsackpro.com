@@ -9,7 +9,8 @@
   "branch": "master",
   "node_total": "4",
   "node_index": "0",
-  "node_build_id": "1234"
+  "node_build_id": "1234",
+  "user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7"
 }
 
 // 2nd type of request to Queue API should happen only if the API response for 1st type of request has:
@@ -30,6 +31,7 @@
   "node_total": "4",
   "node_index": "0",
   "node_build_id": "1234",
+  "user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7",
   "test_files": [
     {
       "path": "test/fast/a_test.rb"
@@ -59,5 +61,6 @@
   "branch": "master",
   "node_total": "4",
   "node_index": "0",
-  "node_build_id": "1234"
+  "node_build_id": "1234",
+  "user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7"
 }
