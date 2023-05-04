@@ -454,7 +454,7 @@ KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
 
 ## `KNAPSACK_PRO_USER_SEAT`
 
-SHA-256 hash of the user name that started the CI build. Often it's the same person that created the git commit.
+SHA-256 hash of the user name that started the CI build. It is usually the same person that made the git commit.
 
 You don't need to set it if:
 
