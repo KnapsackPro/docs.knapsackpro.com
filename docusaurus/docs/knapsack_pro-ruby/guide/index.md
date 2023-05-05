@@ -669,7 +669,7 @@ Define in `.github/workflows/main.yaml`:
 
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_*`](../../ruby/reference.md#knapsack_pro_test_suite_token_) in _GitHub Settings > Secrets_ as described in [GitHub Actions' docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](../../ruby/reference.md#knapsack_pro_ci_node_total) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
-- [`KNAPSACK_PRO_CI_NODE_INDEX`](../../ruby/reference.md#knapsack_pro_ci_node_index) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix):
+- [`KNAPSACK_PRO_CI_NODE_INDEX`](../../ruby/reference.md#knapsack_pro_ci_node_index) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
 
 Here's an example config for a Ruby on Rails project:
 
