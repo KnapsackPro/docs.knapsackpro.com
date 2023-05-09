@@ -53,7 +53,7 @@ If you are seeking faster performance on your CI, you may want to read [Parallel
 
 See [Split by test examples](split-by-test-examples.md).
 
-## Formatters ([`rspec_junit_formatter`](https://github.com/sj26/rspec_junit_formatter), [`json`](https://relishapp.com/rspec/rspec-core/v/3-12/docs/formatters/json-formatter))
+## Formatters ([`rspec_junit_formatter`](https://github.com/sj26/rspec_junit_formatter), [`json`](https://rspec.info/features/3-12/rspec-core/formatters/json-formatter/))
 
 ### Regular Mode
 
