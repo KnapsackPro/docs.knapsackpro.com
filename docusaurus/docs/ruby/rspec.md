@@ -3,6 +3,8 @@ pagination_next: null
 pagination_prev: null
 ---
 
+import { TOCBottom } from '@site/src/components/TOCBottom'
+import { IconExternalLink } from '@site/src/components/IconExternalLink'
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import XmlRegularModeFormatter from './formatters/_xml_regular_mode.md';
@@ -11,9 +13,6 @@ import XmlQueueModeFormatter from './formatters/_xml_queue_mode.md';
 import JsonQueueModeFormatter from './formatters/_json_queue_mode.md';
 
 # Using Knapsack Pro with RSpec
-
-import { TOCBottom } from '@site/src/components/TOCBottom'
-import { IconExternalLink } from '@site/src/components/IconExternalLink'
 
 <TOCBottom heading="Reference" Icon={<IconExternalLink />}>
 
