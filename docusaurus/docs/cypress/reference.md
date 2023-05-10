@@ -18,7 +18,7 @@ Unless specified otherwise, everything on this page is environment variables.
 You can pass all the [supported Cypress CLI options](https://docs.cypress.io/guides/guides/module-api#Options) as command-line arguments:
 
 ```bash
-$(npm bin)/knapsack-pro-cypress --browser chrome
+npx knapsack-pro-cypress --browser chrome
 ```
 
 You can also pass options to Node with environment variables (e.g., [`--max_old_space_size`](troubleshooting.md#javascript-heap-out-of-memory)).
@@ -204,11 +204,11 @@ Example:
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_CYPRESS_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN="cypress/e2e/user/**/*.{js,jsx,coffee,cjsx}" \
-  $(npm bin)/knapsack-pro-cypress
+  npx knapsack-pro-cypress
 
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_OTHER_CYPRESS_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN="cypress/e2e/admin/**/*.{js,jsx,coffee,cjsx}" \
-  $(npm bin)/knapsack-pro-cypress
+  npx knapsack-pro-cypress
 ```
 
 ## `KNAPSACK_PRO_USER_SEAT`

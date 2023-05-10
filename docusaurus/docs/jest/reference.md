@@ -24,7 +24,7 @@ Use long options instead of short (e.g., `--updateSnapshot` instead of `-u`).
 You can pass all the [supported Jest CLI options](https://jestjs.io/docs/en/cli#options) as command-line arguments:
 
 ```bash
-$(npm bin)/knapsack-pro-jest --debug
+npx knapsack-pro-jest --debug
 ```
 
 You can also pass options to Node with environment variables (e.g., [`--max_old_space_size`](troubleshooting.md#javascript-heap-out-of-memory)).
@@ -212,11 +212,11 @@ Example:
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_JEST_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN=="src/user/__tests__/**/*.js" \
-  $(npm bin)/knapsack-pro-jest
+  npx knapsack-pro-jest
 
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_OTHER_JEST_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN=="src/admin/__tests__/**/*.js" \
-  $(npm bin)/knapsack-pro-jest
+  npx knapsack-pro-jest
 ```
 
 ## `KNAPSACK_PRO_USER_SEAT`

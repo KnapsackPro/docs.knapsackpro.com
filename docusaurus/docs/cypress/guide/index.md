@@ -88,7 +88,7 @@ Remember to configure the number of parallel CI nodes in AppVeyor.
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN \
-$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 </TabItem>
@@ -98,7 +98,7 @@ $(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN \
-$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 </TabItem>
@@ -108,7 +108,7 @@ $(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN \
-$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 </TabItem>
@@ -134,21 +134,21 @@ Remember to configure the `parallelism` parameter in your build step.
 <TabItem value="node-1" label="Node 1">
 
 ```bash
-$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 </TabItem>
 <TabItem value="node-2" label="Node 2">
 
 ```bash
-$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 </TabItem>
 <TabItem value="node-n" label="Node N">
 
 ```bash
-$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 </TabItem>
@@ -164,7 +164,7 @@ steps:
       - docker-compose#3.0.3:
         run: app
         # highlight-next-line
-        command: $(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+        command: npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
         config: docker-compose.test.yml
         # highlight-start
         env:
@@ -210,7 +210,7 @@ jobs:
       # highlight-start
       - run:
         name: cypress with @knapsack-pro/cypress
-        command: $(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+        command: npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
       # highlight-end
 ```
 
@@ -235,7 +235,7 @@ task:
     name: CI Node 1
     name: CI Node 2
   test_script:
-    - $(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+    - npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS` as an [encrypted variable](https://cirrus-ci.org/guide/writing-tasks/#encrypted-variables).
@@ -265,7 +265,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN \
 KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true\
-$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 </TabItem>
@@ -276,7 +276,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN \
 KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true\
-$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 </TabItem>
@@ -287,7 +287,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN \
 KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true\
-$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 </TabItem>
@@ -358,7 +358,7 @@ steps:
     commands:
       # highlight-start
       - (npm run start:ci &) && echo "npm run start:ci running in the background"
-      - $(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+      - npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
       # highlight-end
 ```
 
@@ -453,7 +453,7 @@ jobs:
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
         run: |
-          $(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+          npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
       # highlight-end
 ```
 
@@ -472,7 +472,7 @@ test:
   parallel: 2
 
   script:
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN $(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 See also [how to configure running parallel CI nodes in GitLab](https://docs.gitlab.com/ee/ci/yaml/#parallel).
@@ -501,7 +501,7 @@ test_ci_first_node:
   script:
     # highlight-start
     - export KNAPSACK_PRO_CI_NODE_INDEX=0
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN $(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
     # highlight-end
 
 test_ci_second_node:
@@ -509,7 +509,7 @@ test_ci_second_node:
   script:
     # highlight-start
     - export KNAPSACK_PRO_CI_NODE_INDEX=1
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN $(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
     # highlight-end
 ```
 
@@ -542,7 +542,7 @@ Define in `app.json`:
       "addons": ["heroku-postgresql"],
       // highlight-start
       "scripts": {
-        "test": "$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false"
+        "test": "npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false"
       },
       "env": {
         "KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS": "MY_CYPRESS_API_TOKEN"
@@ -604,7 +604,7 @@ timeout(time: 60, unit: 'MINUTES') {
         """
 
         stage('Run tests') {
-          sh """${knapsack_options} $(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false"""
+          sh """${knapsack_options} npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false"""
         }
         // highlight-end
       }
@@ -661,7 +661,7 @@ blocks:
         - name: Run tests with Knapsack Pro
           parallelism: 2
           commands:
-            - $(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+            - npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
       # highlight-end
 ```
 
@@ -684,7 +684,7 @@ Define in `.travis.yml`:
 
 ```yaml
 script:
-  - "$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false"
+  - "npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false"
 
 env:
   global:
@@ -724,7 +724,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
 KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN \
-$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 </TabItem>
@@ -735,7 +735,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
 KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN \
-$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 </TabItem>
@@ -746,7 +746,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
 KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN \
-$(npm bin)/knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 ```
 
 </TabItem>
