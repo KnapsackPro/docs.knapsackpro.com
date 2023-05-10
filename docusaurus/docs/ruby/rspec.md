@@ -85,6 +85,26 @@ Format stdout with the `documentation` formatter and file output with any RSpec 
   </TabItem>
 </Tabs>
 
+## Rswag gem configuration
+
+If you use the [Rswag gem](https://github.com/rswag/rswag) that extends rspec-rails "request specs" with a Swagger-based DSL, then you can configure Knapsack Pro to run Rswag tests with the Rswag formatter (`Rswag::Specs::SwaggerFormatter`) and run other tests without it.
+
+Run Rswag tests with [`KNAPSACK_PRO_TEST_FILE_PATTERN`](reference.md#knapsack_pro_test_file_pattern):
+
+```bash
+export KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=api-token-for-rswag-tests
+export KNAPSACK_PRO_TEST_FILE_PATTERN={spec/requests/**/*_spec.rb,spec/api/**/*_spec.rb,spec/integration/**/*_spec.rb}
+bundle exec rake "knapsack_pro:queue:rspec[--format Rswag::Specs::SwaggerFormatter]"
+```
+
+Run non-Rswag tests by skipping Rswag tests with [`KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`](reference.md#knapsack_pro_test_file_exclude_pattern):
+
+```bash
+export KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=api-token-for-non-rswag-tests
+export KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN={spec/requests/**/*_spec.rb,spec/api/**/*_spec.rb,spec/integration/**/*_spec.rb}
+bundle exec rake "knapsack_pro:queue:rspec"
+```
+
 ## Troubleshooting
 
 If you cannot find what you are looking for in this section, please refer to the Ruby [troubleshooting page](troubleshooting.md).
