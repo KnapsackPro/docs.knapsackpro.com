@@ -19,18 +19,10 @@ import TabItem from '@theme/TabItem';
 
 ## Installation
 
-Add `knapsack_pro` to your `Gemfile`:
+Install `knapsack_pro` in your project:
 
 ```ruby
-group :test, :development do
-  gem 'knapsack_pro'
-end
-```
-
-Execute:
-
-```bash
-bundle install
+bundle add knapsack_pro --group "development, test"
 ```
 
 Now, fill in the following form to generate the instruction steps for your project.
