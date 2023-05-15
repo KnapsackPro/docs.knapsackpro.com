@@ -313,7 +313,7 @@ KNAPSACK_PRO_TEST_DIR="features/support/cucumber_config.rb"
 
 Passed as-is to RSpec's [`--default-path`](https://relishapp.com/rspec/rspec-core/v/3-0/docs/configuration/setting-the-default-spec-path).
 
-Default: `rspec`
+Default: `spec`
 
 Available: any folder relative to the root of your project that contains `spec_helper.rb`
 
