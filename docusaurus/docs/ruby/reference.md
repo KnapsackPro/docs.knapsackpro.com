@@ -70,7 +70,7 @@ Retry count of the current CI node in case of a single node/job retry.
 
 On Buildkite, Knapsack Pro reads `BUILDKITE_RETRY_COUNT` from the environment, so you don't have to worry about this.
 
-If you use `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true` or `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT=true`, you need to set `KNAPSACK_PRO_CI_NODE_RETRY_COUNT=1` when retrying a single node to disable Fallback Mode. Otherwise, the CI node would use a different split and run a different subset of tests. Alternatively, disable Fallback Mode completely with `KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`.
+If you use `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true` or `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT=true`, you need to set `KNAPSACK_PRO_CI_NODE_RETRY_COUNT=1` when retrying a single node to disable Fallback Mode. Otherwise, the CI node would use a different (fallback) split and run a different subset of tests. Alternatively, disable Fallback Mode completely with `KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`.
 
 Default: `0` (or `BUILDKITE_RETRY_COUNT` on Buildkite)
 
@@ -139,12 +139,6 @@ Recommended:
 - `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries (e.g., GitHub Actions, Travis, CodeShip)
 - `false` otherwise
 
-:::caution
-
-With `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`, make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](#knapsack_pro_ci_node_retry_count).
-
-:::
-
 ## `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT` (Regular Mode)
 
 Dynamic or fixed tests split when retrying a CI build.
@@ -161,12 +155,6 @@ Recommended:
 - `true` when your CI allows retrying single CI nodes or if your CI nodes are spot instances/preemptible
 - `true` when your CI uses the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` on retries (e.g., GitHub Actions, Travis, CodeShip)
 - `false` otherwise
-
-:::caution
-
-With `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT=true`, make sure you take care of [`KNAPSACK_PRO_CI_NODE_RETRY_COUNT`](#knapsack_pro_ci_node_retry_count).
-
-:::
 
 ## `KNAPSACK_PRO_LOG_DIR`
 
