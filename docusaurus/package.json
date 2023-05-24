@@ -35,7 +35,7 @@
     "@types/react-dom": "^18.2.4",
     "concurrently": "^8.0.1",
     "remark-cli": "^11.0.0",
-    "remark-lint-docusaurus-empty-lines-around-admonition-content": "^0.1.2",
+    "remark-lint-docusaurus-empty-lines-around-admonition-content": "^0.2.0",
     "remark-lint-relative-markdown-file-path-links": "^0.1.0",
     "remark-validate-links": "^12.1.1",
     "typescript": "^5.0.4"
