@@ -48,6 +48,26 @@ Default: Knapsack Pro will take it from the CI environment (see [supported CIs](
 
 If your CI is not supported, you need to set it manually.
 
+## `KNAPSACK_PRO_CI_NODE_RETRY_COUNT`
+
+A retry count of the current CI node in case of a single node/job retry.
+
+There is no need to set this for the following CI providers that are supported out of the box:
+
+* GitHub Actions
+* Buildkite
+
+For other CI providers:
+
+If you use `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`, you need to set `KNAPSACK_PRO_CI_NODE_RETRY_COUNT=1` when retrying a single node to disable Fallback Mode. Otherwise, the CI node would use a different (fallback) split and run a different subset of tests when the API cannot be reached.
+
+Default: `0` (or an environment variable for supported CI providers)
+
+Available:
+
+- `0`: Fallback Mode is enabled
+- `> 0`: Fallback Mode is disabled and Knapsack Pro raises an error if the API cannot be reached
+
 ## `KNAPSACK_PRO_CI_NODE_TOTAL`
 
 Total number of parallel CI nodes.
