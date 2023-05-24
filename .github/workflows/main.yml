@@ -1,0 +1,25 @@
+name: Main
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📂 checkout
+        uses: actions/checkout@v3
+
+      - name: 💎 setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+          cache-version: 0 # Increment this number if you need to re-download cached gems
+
+      - name: 🔨 build Jekyll
+        run: bundle exec jekyll build
+
+      - name: 🔨 build Docusaurus
+        run: |
+          cd docusaurus
+          npm run build
