@@ -1,9 +1,6 @@
 name: Main
 
-on:
-  push:
-    branches-ignore:
-      - gh-pages
+on: [push]
 
 jobs:
   build_jekyll:
