@@ -66,13 +66,18 @@ If your CI is not supported, you need to set it manually.
 
 ## `KNAPSACK_PRO_CI_NODE_RETRY_COUNT`
 
-Retry count of the current CI node in case of a single node/job retry.
+A retry count of the current CI node in case of a single node/job retry.
 
-On Buildkite, Knapsack Pro reads `BUILDKITE_RETRY_COUNT` from the environment, so you don't have to worry about this.
+There is no need to set this for the following CI providers that are supported out of the box:
+
+* GitHub Actions
+* Buildkite
+
+For other CI provider:
 
 If you use `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true` or `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT=true`, you need to set `KNAPSACK_PRO_CI_NODE_RETRY_COUNT=1` when retrying a single node to disable Fallback Mode. Otherwise, the CI node would use a different (fallback) split and run a different subset of tests. Alternatively, disable Fallback Mode completely with `KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`.
 
-Default: `0` (or `BUILDKITE_RETRY_COUNT` on Buildkite)
+Default: `0`
 
 Available:
 
