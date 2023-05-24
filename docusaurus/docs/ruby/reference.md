@@ -73,11 +73,11 @@ There is no need to set this for the following CI providers that are supported o
 * GitHub Actions
 * Buildkite
 
-For other CI provider:
+For other CI providers:
 
-If you use `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true` or `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT=true`, you need to set `KNAPSACK_PRO_CI_NODE_RETRY_COUNT=1` when retrying a single node to disable Fallback Mode. Otherwise, the CI node would use a different (fallback) split and run a different subset of tests. Alternatively, disable Fallback Mode completely with `KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`.
+If you use `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true` or `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT=true`, you need to set `KNAPSACK_PRO_CI_NODE_RETRY_COUNT=1` when retrying a single node to disable Fallback Mode. Otherwise, the CI node would use a different (fallback) split and run a different subset of tests when the API cannot be reached. Alternatively, disable Fallback Mode completely with `KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`.
 
-Default: `0`
+Default: `0` (or an environment variable for supported CI providers)
 
 Available:
 
