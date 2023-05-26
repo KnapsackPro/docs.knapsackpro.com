@@ -52,19 +52,18 @@ import { YouTube } from "@site/src/components/YouTube"
 
 - Create a new API token from your [dashboard](https://knapsackpro.com/dashboard) (to avoid mixing Regular Mode and Queue Mode runs)
 - Update the `knapsack_pro` gem to the latest version (`bundle update knapsack_pro`)
-- Set `RAILS_ENV=test` (or `export RAILS_ENV=test`) on your CI nodes
 - Configure [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](reference.md#knapsack_pro_fixed_queue_split-queue-mode) (read below for more details)
 - Run Knapsack Pro in Queue Mode with:
 
   ```bash
   # RSpec >= 3.x
-  bundle exec rake knapsack_pro:queue:rspec
+  RAILS_ENV=test bundle exec rake knapsack_pro:queue:rspec
 
   # Minitest
-  bundle exec rake knapsack_pro:queue:minitest
+  RAILS_ENV=test bundle exec rake knapsack_pro:queue:minitest
 
   # Cucumber
-  bundle exec rake knapsack_pro:queue:cucumber
+  RAILS_ENV=test bundle exec rake knapsack_pro:queue:cucumber
   ```
 
 Note that Knapsack Pro returns single-file subsets when dealing with test files that haven't been recorded yet. This ensures your CI nodes complete at a similar time. However, if your test runner requires a long time to boot on each subset, it may take longer to run your tests. **This applies only to the first Knapsack Pro run ever per API token.**
