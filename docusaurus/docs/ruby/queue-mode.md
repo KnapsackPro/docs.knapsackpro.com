@@ -51,7 +51,7 @@ import { YouTube } from "@site/src/components/YouTube"
 ## Use Queue Mode
 
 - Create a new API token from your [dashboard](https://knapsackpro.com/dashboard) (to avoid mixing Regular Mode and Queue Mode runs)
-- Update the `knapsack_pro` gem to the latest version (`bundle update knapsack_pro`)
+- Update the `knapsack_pro` gem to the [latest version](https://rubygems.org/gems/knapsack_pro)
 - Configure [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](reference.md#knapsack_pro_fixed_queue_split-queue-mode) (read below for more details)
 - Run Knapsack Pro in Queue Mode with:
 
