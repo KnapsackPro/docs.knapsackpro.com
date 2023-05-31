@@ -49,8 +49,8 @@ after(:suite) { ... }
 with:
 
 ```ruby
-KnapsackPro::Hooks::Queue.before_queue(:suite) { ... }
-KnapsackPro::Hooks::Queue.after_queue(:suite) { ... }
+KnapsackPro::Hooks::Queue.before_queue { ... }
+KnapsackPro::Hooks::Queue.after_queue { ... }
 ```
 
 Otherwise, Knapsack Pro would call `before(:suite)` and `after(:suite)` for each subset of tests.
