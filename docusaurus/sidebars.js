@@ -176,7 +176,7 @@ const sidebars = {
       {
         type: 'link',
         label: 'GitHub',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-js',
+        href: 'https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/cypress',
       },
       {
         type: 'link',
@@ -213,7 +213,7 @@ const sidebars = {
       {
         type: 'link',
         label: 'GitHub',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-js',
+        href: 'https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/jest',
       },
       {
         type: 'link',
