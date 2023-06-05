@@ -176,12 +176,12 @@ const sidebars = {
       {
         type: 'link',
         label: 'GitHub',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-cypress',
+        href: 'https://github.com/KnapsackPro/knapsack-pro-js',
       },
       {
         type: 'link',
         label: 'Changelog',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-cypress/blob/master/CHANGELOG.md#changelog',
+        href: 'https://github.com/KnapsackPro/knapsack-pro-js/blob/main/packages/cypress/CHANGELOG.md',
       },
     ]
   }, {
@@ -213,12 +213,12 @@ const sidebars = {
       {
         type: 'link',
         label: 'GitHub',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-jest',
+        href: 'https://github.com/KnapsackPro/knapsack-pro-js',
       },
       {
         type: 'link',
         label: 'Changelog',
-        href: 'https://github.com/KnapsackPro/knapsack-pro-jest/blob/master/CHANGELOG.md#changelog',
+        href: 'https://github.com/KnapsackPro/knapsack-pro-js/blob/main/packages/jest/CHANGELOG.md',
       },
     ]
   }, {
@@ -240,12 +240,12 @@ const sidebars = {
         {
           type: 'link',
           label: 'GitHub',
-          href: 'https://github.com/KnapsackPro/knapsack-pro-core-js',
+          href: 'https://github.com/KnapsackPro/knapsack-pro-js',
         },
         {
           type: 'link',
           label: 'Changelog',
-          href: 'https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/CHANGELOG.md#changelog',
+          href: 'https://github.com/KnapsackPro/knapsack-pro-js/blob/main/packages/core/CHANGELOG.md',
         },
       ]
     }, {

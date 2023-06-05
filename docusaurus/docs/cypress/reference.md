@@ -29,14 +29,14 @@ Git branch under test.
 
 You don't need to set it if either:
 
-- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers)
+- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers)
 - Your CI has git installed so that Knapsack Pro can retrieve it
 
 ## `KNAPSACK_PRO_CI_NODE_BUILD_ID`
 
 Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
 
-Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers))
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers))
 
 If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand -base64 32)` and make it available to all parallel nodes.
 
@@ -44,7 +44,7 @@ If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_N
 
 Index of current CI node (first should be 0, second should be 1, etc.).
 
-Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers))
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers))
 
 If your CI is not supported, you need to set it manually.
 
@@ -72,7 +72,7 @@ Available:
 
 Total number of parallel CI nodes.
 
-Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers))
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers))
 
 If your CI is not supported, you need to set it manually.
 
@@ -82,7 +82,7 @@ Hash of the commit under test.
 
 You don't need to set it if either:
 
-- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers)
+- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers)
 - Your CI has git installed so that Knapsack Pro can retrieve it
 
 ## `KNAPSACK_PRO_ENDPOINT` (Internal)
@@ -97,7 +97,7 @@ Default: `false`
 
 Available:
 
-- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `ciNodeBuildId` for your [CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers))
+- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `ciNodeBuildId` for your [CI provider](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers))
 - `true`: if the triplet `(branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split
 
 Recommended:
@@ -237,7 +237,7 @@ SHA-256 hash of the user name that started the CI build. It is usually the same 
 
 You don't need to set it if:
 
-- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack-pro-core-js/tree/master/src/ci-providers) and we can read the user seat for the given CI provider.
+- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers) and we can read the user seat for the given CI provider.
 
 Examples:
 
