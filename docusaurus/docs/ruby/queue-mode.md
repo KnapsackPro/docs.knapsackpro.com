@@ -69,7 +69,11 @@ Note that Knapsack Pro returns single-file subsets when dealing with test files 
 
 ## Dynamic Split vs Fixed Split
 
+:::info
+
 By default, Knapsack Pro automagically decides how to split your tests depending on your CI provider. But you can continue reading if you prefer to have more control over the split strategy.
+
+:::
 
 Knapsack Pro generates a Dynamic Split from scratch for each CI build when [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false`](reference.md#knapsack_pro_fixed_queue_split-queue-mode). In other words, Knapsack Pro:
 
