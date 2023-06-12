@@ -240,7 +240,6 @@ For each [parallel pipeline](https://documentation.codeship.com/basic/builds-and
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](../reference.md#knapsack_pro_test_suite_token_jest)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](../reference.md#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](../reference.md#knapsack_pro_ci_node_index)
-- [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](../reference.md#knapsack_pro_fixed_queue_split)
 
 <Tabs>
 <TabItem value="node-1" label="Node 1">
@@ -249,7 +248,6 @@ For each [parallel pipeline](https://documentation.codeship.com/basic/builds-and
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST=MY_JEST_API_TOKEN \
-KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true\
 npx knapsack-pro-jest --runInBand
 ```
 
@@ -260,7 +258,6 @@ npx knapsack-pro-jest --runInBand
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST=MY_JEST_API_TOKEN \
-KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true\
 npx knapsack-pro-jest --runInBand
 ```
 
@@ -271,7 +268,6 @@ npx knapsack-pro-jest --runInBand
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST=MY_JEST_API_TOKEN \
-KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true\
 npx knapsack-pro-jest --runInBand
 ```
 
@@ -390,7 +386,6 @@ Define in `.github/workflows/main.yaml`:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](../reference.md#knapsack_pro_test_suite_token_jest) in _GitHub Settings > Secrets_ as described in [GitHub Actions' docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](../reference.md#knapsack_pro_ci_node_total) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](../reference.md#knapsack_pro_ci_node_index) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
-- [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](../reference.md#knapsack_pro_fixed_queue_split)
 
 Here's an example config:
 
@@ -431,7 +426,6 @@ jobs:
           KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST }}
           KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-          KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
         run: |
           npx knapsack-pro-jest --runInBand
       # highlight-end
@@ -660,7 +654,6 @@ Define in `.travis.yml`:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`](../reference.md#knapsack_pro_test_suite_token_jest)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](../reference.md#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](../reference.md#knapsack_pro_ci_node_index) as [jobs](http://docs.travis-ci.com/user/speeding-up-the-build/#parallelizing-your-builds-across-virtual-machines)
-- [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](../reference.md#knapsack_pro_fixed_queue_split)
 
 ```yaml
 script:
@@ -670,7 +663,6 @@ env:
   global:
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST=MY_JEST_API_TOKEN
     - KNAPSACK_PRO_CI_NODE_TOTAL=3
-    - KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true
   jobs:
     - KNAPSACK_PRO_CI_NODE_INDEX=0
     - KNAPSACK_PRO_CI_NODE_INDEX=1
