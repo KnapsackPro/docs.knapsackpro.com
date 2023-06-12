@@ -52,7 +52,6 @@ import { YouTube } from "@site/src/components/YouTube"
 
 - Create a new API token from your [dashboard](https://knapsackpro.com/dashboard) (to avoid mixing Regular Mode and Queue Mode runs)
 - Update the `knapsack_pro` gem to the [latest version](https://rubygems.org/gems/knapsack_pro)
-- Configure [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](reference.md#knapsack_pro_fixed_queue_split-queue-mode) (read below for more details)
 - Run Knapsack Pro in Queue Mode with:
 
   ```bash
@@ -70,7 +69,9 @@ Note that Knapsack Pro returns single-file subsets when dealing with test files 
 
 ## Dynamic Split vs Fixed Split
 
-By default, Knapsack Pro generates a Dynamic Split from scratch for each CI build ([`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false`](reference.md#knapsack_pro_fixed_queue_split-queue-mode)). In other words, Knapsack Pro:
+By default, Knapsack Pro automagically decides how to split your tests depending on your CI provider. But you can continue reading if you prefer to have more control over the split strategy.
+
+Knapsack Pro generates a Dynamic Split from scratch for each CI build when [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false`](reference.md#knapsack_pro_fixed_queue_split-queue-mode). In other words, Knapsack Pro:
 
 - Creates a new queue filled with all the tests to run
 - Distributes the tests to each parallel CI node connected to the queue
