@@ -131,7 +131,7 @@ Available:
 
 Dynamic or fixed tests split when retrying a CI build.
 
-Default: `false`
+Default: automagically set to the correct value for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)
 
 Available:
 

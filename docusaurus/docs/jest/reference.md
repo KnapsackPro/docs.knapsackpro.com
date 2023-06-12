@@ -107,7 +107,7 @@ Default: `https://api.knapsackpro.com`
 
 Dynamic or fixed tests split when retrying a CI build.
 
-Default: `false`
+Default: automagically set to the correct value for your [CI provider](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers)
 
 Available:
 
