@@ -153,6 +153,7 @@ steps:
         config: docker-compose.test.yml
         # highlight-start
         env:
+          - BUILDKITE
           - BUILDKITE_PARALLEL_JOB_COUNT
           - BUILDKITE_PARALLEL_JOB
           - BUILDKITE_BUILD_NUMBER
