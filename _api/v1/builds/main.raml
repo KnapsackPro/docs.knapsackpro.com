@@ -1,13 +1,13 @@
 get:
   description: |
-    Get list of all CI builds you have run. Array of CI builds is inside of __data__ key.
+    Get list of all CI builds you have run. Array of CI builds is inside of **data** key.
 
-    There are also available pagination urls in __links__ key so you can easily get CI builds for next page.
-    Key __meta__ contains basic info about current CI builds page.
+    There are also available pagination urls in **links** key so you can easily get CI builds for next page.
+    Key **meta** contains basic info about current CI builds page.
 
     ---
 
-    You can provide optional query params to filter list of CI builds by __commit_hash__, __branch__, __node_total__.
+    You can provide optional query params to filter list of CI builds by **commit_hash**, **branch**, **node_total**.
 
     Example 1: /v1/builds?page=1&branch=master&node_total=2
 
@@ -15,9 +15,9 @@ get:
 
     ---
 
-    CI build means unique combination of __commit_hash__, __branch__, __node_total__.
+    CI build means unique combination of **commit_hash**, **branch**, **node_total**.
 
-    You can use __id__ of the build to fetch detailed info about tests recorded for that CI build by doing request to __/v1/builds/:id__ endpoint.
+    You can use **id** of the build to fetch detailed info about tests recorded for that CI build by doing request to **/v1/builds/:id** endpoint.
 
   headers: !include ../headers/test_suite_token.raml
 
@@ -37,7 +37,7 @@ get:
     description: |
       Get detailed info about CI build with all build subsets containing the test files recorded timing for that CI build.
 
-      Note the CI build means unique combination of __commit_hash__, __branch__, __node_total__.
+      Note the CI build means unique combination of **commit_hash**, **branch**, **node_total**.
       If you will run your tests multiple times for that combination then you will get multiple recorded build subset records with test files timing for particular CI node indexes.
 
     headers: !include ../headers/test_suite_token.raml

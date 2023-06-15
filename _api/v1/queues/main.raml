@@ -3,17 +3,17 @@
     description: |
       Endpoint expects a list of all test files in your test suite.
 
-      In response, you will get a list of test files that should be run on a node with particular __node_index__ value. The CI node can request this endpoint multiple times til it gets an empty list of test files which means the end of the queue.
+      In response, you will get a list of test files that should be run on a node with particular **node_index** value. The CI node can request this endpoint multiple times til it gets an empty list of test files which means the end of the queue.
 
-      You will get also __queue_name__ to compare if all your CI nodes are running against the same test suite queue created for particular CI build.
+      You will get also **queue_name** to compare if all your CI nodes are running against the same test suite queue created for particular CI build.
 
-      In response you will see __build_subset_id__ when you have `fixed_queue_split=true` in request. When __build_subset_id__ has a value then the test suite split was done based on this old recorded build subset. In that case the __queue_name__ will be null.
+      In response you will see **build_subset_id** when you have `fixed_queue_split=true` in request. When **build_subset_id** has a value then the test suite split was done based on this old recorded build subset. In that case the **queue_name** will be null.
 
     headers: !include ../headers/default.raml
 
     body:
       application/json:
-        schema: !include schema/queue/post.json
+        type: !include schema/queue/post.json
 
     queryParameters:
       can_initialize_queue: !include ../params/can_initialize_queue.raml

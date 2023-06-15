@@ -3,15 +3,15 @@
     description: |
       Endpoint expects a list of all test files in your test suite.
 
-      In response, you will get a list of test files that should be run on a node with particular __node_index__ value.
+      In response, you will get a list of test files that should be run on a node with particular **node_index** value.
 
-      You will get also __build_distribution_id__ (seed) to compare if all your CI nodes are running based on the same test suite split.
+      You will get also **build_distribution_id** (seed) to compare if all your CI nodes are running based on the same test suite split.
 
     headers: !include ../headers/default.raml
 
     body:
       application/json:
-        schema: !include schema/subset/post.json
+        type: !include schema/subset/post.json
 
     queryParameters:
       fixed_test_suite_split: !include ../params/fixed_test_suite_split.raml
@@ -33,7 +33,7 @@
 /last:
   get:
     description: |
-      This endpoint returns a list of test files recorded for CI build that closely matches given params like __commit_hash__, __branch__, __node_total__.
+      This endpoint returns a list of test files recorded for CI build that closely matches given params like **commit_hash**, **branch**, **node_total**.
 
       If test files include paths to test cases then you need to merge them on your client-side to determine what test files are slow.
 
