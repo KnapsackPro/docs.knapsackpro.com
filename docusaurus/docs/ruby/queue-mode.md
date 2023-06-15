@@ -56,13 +56,13 @@ import { YouTube } from "@site/src/components/YouTube"
 
   ```bash
   # RSpec >= 3.x
-  RAILS_ENV=test bundle exec rake knapsack_pro:queue:rspec
+  bundle exec rake knapsack_pro:queue:rspec
 
   # Minitest
-  RAILS_ENV=test bundle exec rake knapsack_pro:queue:minitest
+  bundle exec rake knapsack_pro:queue:minitest
 
   # Cucumber
-  RAILS_ENV=test bundle exec rake knapsack_pro:queue:cucumber
+  bundle exec rake knapsack_pro:queue:cucumber
   ```
 
 Note that Knapsack Pro returns single-file subsets when dealing with test files that haven't been recorded yet. This ensures your CI nodes complete at a similar time. However, if your test runner requires a long time to boot on each subset, it may take longer to run your tests. **This applies only to the first Knapsack Pro run ever per API token.**
