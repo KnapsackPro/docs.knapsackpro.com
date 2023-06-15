@@ -50,7 +50,6 @@ Now, fill in the following form to generate the instruction steps for your proje
 **What is your CI provider?**
 <RadioGroup inUrl="ci" items={[
 { value: "appveyor", label: "AppVeyor" },
-{ value: "bitbucket", label: "BitBucket Pipelines" },
 { value: "buildkite", label: "Buildkite" },
 { value: "circleci", label: "CircleCI" },
 { value: "cirrus-ci", label: "Cirrus CI" },
@@ -113,12 +112,6 @@ npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
 
 </TabItem>
 </Tabs>
-
-</ShowIfSearchParamAndValue>
-
-<ShowIfSearchParamAndValue searchParam="ci" value="bitbucket">
-
-Read [How BitBucket Pipeline with parallel Cypress tests can speed up CI build](https://docs.knapsackpro.com/2021/how-bitbucket-pipeline-with-parallel-cypress-tests-can-speed-up-ci-build).
 
 </ShowIfSearchParamAndValue>
 
