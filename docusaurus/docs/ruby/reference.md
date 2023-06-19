@@ -282,7 +282,8 @@ Default: `"bundle exec"`
 Available:
 
 - `"bundle exec"`
-- try `""` in case of [issues](split-by-test-examples.md#how-do-i-fix-dont-know-how-to-build-task-knapsack_prorspec_test_example_detector)
+- `"MY_CUSTOM_VARIABLE=123 bundle exec"` in case you need to pass a custom environment variable to the `rake knasack_pro:rspec_test_example_detector` task that generates a test examples report of slow test files
+- try `""` to remove the `bundle exec` prefix in case of [issues](split-by-test-examples.md#how-do-i-fix-dont-know-how-to-build-task-knapsack_prorspec_test_example_detector)
 
 ## `KNAPSACK_PRO_SALT`
 
