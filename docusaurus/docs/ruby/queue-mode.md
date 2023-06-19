@@ -44,10 +44,6 @@ Knapsack Pro allows distributing the tests in a static way (Regular Mode) too, b
 - Test execution starts at different times on different CI nodes
 - Flaky tests are.. Well, flaky!
 
-import { YouTube } from "@site/src/components/YouTube"
-
-<YouTube src="https://www.youtube.com/embed/hUEB1XDKEFY" />
-
 ## Use Queue Mode
 
 - Create a new API token from your [dashboard](https://knapsackpro.com/dashboard) (to avoid mixing Regular Mode and Queue Mode runs)
@@ -119,3 +115,7 @@ You can find additional configuration options and troubleshooting on the followi
 - [Using Knapsack Pro with RSpec](rspec.md)
 - [Using Knapsack Pro with Cucumber](cucumber.md)
 - [Using Knapsack Pro with Capybara](capybara.md)
+
+import { YouTube } from "@site/src/components/YouTube"
+
+<YouTube src="https://www.youtube.com/embed/hUEB1XDKEFY" />
