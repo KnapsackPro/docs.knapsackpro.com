@@ -46,7 +46,6 @@ Knapsack Pro allows distributing the tests in a static way (Regular Mode) too, b
 
 ## Use Queue Mode
 
-- Create a new API token from your [dashboard](https://knapsackpro.com/dashboard) (to avoid mixing Regular Mode and Queue Mode runs)
 - Update the `knapsack_pro` gem to the [latest version](https://rubygems.org/gems/knapsack_pro)
 - Run Knapsack Pro in Queue Mode with:
 
