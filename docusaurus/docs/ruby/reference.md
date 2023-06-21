@@ -448,14 +448,14 @@ KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
 
 ## `KNAPSACK_PRO_USER_SEAT`
 
-SHA-256 hash of the user name that started the CI build. It is usually the same person that made the git commit.
+A user name that started the CI build. It is usually the same person that made the git commit.
 
 You don't need to set it if:
 
-- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci) and we can read the user seat for the given CI provider.
+- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci), and we can read the user seat for the given CI provider.
 
 Examples:
 
 ```bash
-KNAPSACK_PRO_USER_SEAT=fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7
+KNAPSACK_PRO_USER_SEAT="John Doe <john.doe@example.com>"
 ```
