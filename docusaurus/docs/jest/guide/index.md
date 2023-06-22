@@ -56,6 +56,12 @@ Now, fill in the following form to generate the instruction steps for your proje
 { value: "other", label: "Other" },
 ]} />
 
+**Do you use Create React App?**
+<RadioGroup inUrl="cra" items={[
+{ value: "yes", label: "Yes" },
+{ value: "no", label: "No" },
+]} />
+
 ## Instructions
 
 <ShowIfSearchParamAndValue searchParam="ci" value="appveyor">
@@ -724,6 +730,80 @@ npx knapsack-pro-jest --runInBand
 
 </TabItem>
 </Tabs>
+
+</ShowIfSearchParamAndValue>
+
+<ShowIfSearchParamAndValue searchParam="cra" value="yes">
+
+### Create React App
+
+If you are using Create React App, make sure to:
+
+- Add the following to your `package.json`
+  ```json
+  {
+    ...,
+    "jest": {
+      "roots": [
+        "<rootDir>/src"
+      ],
+      "collectCoverageFrom": [
+        "src/**/*.{js,jsx,ts,tsx}",
+        "!src/**/*.d.ts"
+      ],
+      "setupFiles": [
+        "react-app-polyfill/jsdom"
+      ],
+      "setupFilesAfterEnv": [
+        "<rootDir>/src/setupTests.ts"
+      ],
+      "testMatch": [
+        "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+        "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+      ],
+      "testEnvironment": "jsdom",
+      "transform": {
+        "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/node_modules/react-scripts/config/jest/babelTransform.js",
+        "^.+\\.css$": "<rootDir>/node_modules/react-scripts/config/jest/cssTransform.js",
+        "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/node_modules/react-scripts/config/jest/fileTransform.js"
+      },
+      "transformIgnorePatterns": [
+        "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+        "^.+\\.module\\.(css|sass|scss)$"
+      ],
+      "modulePaths": [],
+      "moduleNameMapper": {
+        "^react-native$": "react-native-web",
+        "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+      },
+      "moduleFileExtensions": [
+        "web.js",
+        "js",
+        "web.ts",
+        "ts",
+        "web.tsx",
+        "tsx",
+        "json",
+        "web.jsx",
+        "jsx",
+        "node"
+      ],
+      "watchPlugins": [
+        "jest-watch-typeahead/filename",
+        "jest-watch-typeahead/testname"
+      ],
+      "resetMocks": true
+    },
+    "babel": {
+      "presets": [
+        "react-app"
+      ]
+    }
+  }
+  ```
+  - call `npx knapsack-pro-jest` with the proper `KNAPSACK_PRO_TEST_FILE_PATTERN` (e.g., `KNAPSACK_PRO_TEST_FILE_PATTERN="{**/*.test.ts?(x),**/?(*.)(test).ts?(x)}"`)
+
+  Feel free to copy/paste from the [create-react-app-example](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/create-react-app-example) repository.
 
 </ShowIfSearchParamAndValue>
 
