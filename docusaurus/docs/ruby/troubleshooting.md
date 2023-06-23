@@ -267,13 +267,64 @@ You have a couple of options:
 
 ## Rake tasks under tests are run more than once in Queue Mode
 
-Make sure the Rake task is [loaded once](https://github.com/KnapsackPro/rails-app-with-knapsack_pro/commit/9f068e900deb3554bd72633e8d61c1cc7f740306):
+Make sure [the Rake task](https://github.com/KnapsackPro/rails-app-with-knapsack_pro/blob/master/lib/tasks/dummy.rake) is loaded once in [the spec file](https://github.com/KnapsackPro/rails-app-with-knapsack_pro/blob/master/spec/rake_tasks/dummy_rake_spec.rb).
+
+The rake task example:
 
 ```ruby
-before do
-  Rake::Task[MY_TASK_NAME].clear if Rake::Task.task_defined?(MY_TASK_NAME)
-  Rake.application.rake_require(MY_TASK_FILENAME)
-  Rake::Task.define_task(:environment)
+# lib/tasks/dummy.rake
+class DummyOutput
+  class << self
+    attr_accessor :count
+  end
+end
+
+namespace :dummy do
+  task do_something_once: :environment do
+    DummyOutput.count ||= 0
+    DummyOutput.count += 1
+    puts "Count: #{DummyOutput.count}"
+  end
+end
+```
+
+Load the rake task only once and execute it only once for each test example. The spec example:
+
+```ruby
+# spec/rake_tasks/dummy_rake_spec.rb
+require 'rake'
+
+describe 'Dummy rake' do
+  describe "dummy:do_something_once" do
+    let(:task_name) { "dummy:do_something_once" }
+    let(:task) { Rake::Task[task_name] }
+
+    before do
+      # clear the rake task from the memory to ensure it's not loaded multiple times
+      Rake::Task[task_name].clear if Rake::Task.task_defined?(task_name)
+
+      # loaad the rake task only once
+      Rake.load_rakefile("tasks/dummy.rake")
+      Rake::Task.define_task(:environment)
+    end
+
+    after do
+      Rake::Task[task_name].reenable
+
+      # reset the state that was changed by the rake task execution
+      DummyOutput.count = 0
+    end
+
+    it "calls the rake task once (increases counter by one)" do
+      expect { task.invoke }.to_not raise_error
+      expect(DummyOutput.count).to eq(1)
+    end
+
+    it "calls the rake task once again (increases counter by one)" do
+      expect { task.invoke }.to_not raise_error
+      expect(DummyOutput.count).to eq(1)
+    end
+  end
 end
 ```
 
