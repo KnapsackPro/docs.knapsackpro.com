@@ -267,12 +267,15 @@ You have a couple of options:
 
 ## Rake tasks under tests are run more than once in Queue Mode
 
-Make sure [the Rake task](https://github.com/KnapsackPro/rails-app-with-knapsack_pro/blob/master/lib/tasks/dummy.rake) is loaded once in [the spec file](https://github.com/KnapsackPro/rails-app-with-knapsack_pro/blob/master/spec/rake_tasks/dummy_rake_spec.rb).
+Make sure [the Rake task](https://github.com/KnapsackPro/rails-app-with-knapsack_pro/blob/master/lib/tasks/dummy.rake) is loaded once for each test example in [the spec file](https://github.com/KnapsackPro/rails-app-with-knapsack_pro/blob/master/spec/rake_tasks/dummy_rake_spec.rb):
 
-The rake task example:
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="rake">
 
 ```ruby
-# lib/tasks/dummy.rake
 class DummyOutput
   class << self
     attr_accessor :count
@@ -288,10 +291,11 @@ namespace :dummy do
 end
 ```
 
-Load the rake task only once and execute it only once for each test example. The spec example:
+</TabItem>
+
+<TabItem value="spec">
 
 ```ruby
-# spec/rake_tasks/dummy_rake_spec.rb
 require 'rake'
 
 describe 'Dummy rake' do
@@ -299,19 +303,15 @@ describe 'Dummy rake' do
     let(:task_name) { "dummy:do_something_once" }
     let(:task) { Rake::Task[task_name] }
 
-    before do
-      # clear the rake task from the memory to ensure it's not loaded multiple times
+    before(:each) do # make sure the rake task is defined *once*
       Rake::Task[task_name].clear if Rake::Task.task_defined?(task_name)
-
-      # loaad the rake task only once
       Rake.load_rakefile("tasks/dummy.rake")
       Rake::Task.define_task(:environment)
     end
 
-    after do
+    after(:each) do
       Rake::Task[task_name].reenable
-
-      # reset the state that was changed by the rake task execution
+      # Reset the state
       DummyOutput.count = 0
     end
 
@@ -327,6 +327,9 @@ describe 'Dummy rake' do
   end
 end
 ```
+
+</TabItem>
+</Tabs>
 
 ## Tests distribution is unbalanced in Queue Mode
 
