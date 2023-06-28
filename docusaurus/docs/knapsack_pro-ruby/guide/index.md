@@ -46,7 +46,7 @@ Please answer the following questions to generate the configuration for your pro
 { value: "test-unit", label: "test-unit" }
 ]} />
 
-**Do you use the VCR, WebMock, or FakeWeb gem?**
+**Do you use the VCR or WebMock gem?**
 <RadioGroup inUrl="vcr" items={[
 { value: "yes", label: "Yes" },
 { value: "no", label: "No" },
@@ -179,7 +179,7 @@ KnapsackPro::Adapters::SpinachAdapter.bind
 
 <ShowIfSearchParamAndValue searchParam="vcr" value="yes">
 
-### VCR/WebMock/FakeWeb
+### VCR/WebMock
 
 Add the Knapsack Pro API's subdomain to [ignored hosts](https://relishapp.com/vcr/vcr/v/6-1-0/docs/configuration/ignore-request) in `spec/spec_helper.rb` (or wherever your VCR configuration is located):
 
@@ -187,17 +187,12 @@ Add the Knapsack Pro API's subdomain to [ignored hosts](https://relishapp.com/vc
 require 'vcr'
 
 VCR.configure do |config|
-  config.hook_into :webmock # or :fakeweb
+  config.hook_into :webmock
   config.ignore_hosts('localhost', '127.0.0.1', '0.0.0.0', 'api.knapsackpro.com')
 end
 
-# Add the following code if you use Webmock
 require 'webmock/rspec'
 WebMock.disable_net_connect!(allow_localhost: true, allow: ['api.knapsackpro.com'])
-
-# Add the following code if you use FakeWeb
-require 'fakeweb'
-FakeWeb.allow_net_connect = %r[^https?://api\.knapsackpro\.com]
 ```
 
 You may need to add `require: false` in your Gemfile:
@@ -205,12 +200,11 @@ You may need to add `require: false` in your Gemfile:
 ```ruby
 group :test do
   gem 'vcr'
-  gem 'webmock', require: false # when using Webmock
-  gem 'fakeweb', require: false # when using Fakeweb
+  gem 'webmock', require: false
 end
 ```
 
-If some tests are failing due to requests to the Knapsack Pro API, you may have some code that reconfigures WebMock/FakeWeb. The usual suspects are calls to `WebMock.reset!` or an [issue](https://github.com/bblimke/webmock/issues/484#issuecomment-116193449) with `webmock/rspec`. In the latter case, you can solve the problem with:
+If some tests are failing due to requests to the Knapsack Pro API, you may have some code that reconfigures WebMock. The usual suspects are calls to `WebMock.reset!` or an [issue](https://github.com/bblimke/webmock/issues/484#issuecomment-116193449) with `webmock/rspec`. In the latter case, you can solve the problem with:
 
 ```ruby
 RSpec.configure do |config|

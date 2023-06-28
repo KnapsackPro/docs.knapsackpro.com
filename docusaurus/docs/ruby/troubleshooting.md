@@ -186,13 +186,13 @@ You can fix it by either:
 
 ## `OpenSSL::SSL::SSLError`
 
-VCR, WebMock, or FakeWeb may trigger the following error when Knapsack Pro interacts with the Knapsack Pro API:
+VCR or WebMock may trigger the following error when Knapsack Pro interacts with the Knapsack Pro API:
 
 ```bash
 OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=error: tlsv1 alert internal error
 ```
 
-Make sure to follow the steps to [configure VCR/WebMock/FakeWeb](../knapsack_pro-ruby/guide/index.md).
+Make sure to follow the steps to [configure VCR/WebMock](../knapsack_pro-ruby/guide/index.md).
 
 ## `ActiveRecord::SubclassNotFound`
 
