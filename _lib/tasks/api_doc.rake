@@ -13,6 +13,9 @@ namespace :api do
       raml_file = "#{ROOT_PATH}/#{file[:src]}"
       html_file = "#{ROOT_PATH}/#{file[:dest]}"
 
+      html_dir = File.dirname(html_file)
+      FileUtils.mkdir_p(html_dir)
+
       cmd = %Q[#{raml2html} #{raml_file} > #{html_file}]
       puts `#{cmd}`
       #Kernel.system(cmd)
