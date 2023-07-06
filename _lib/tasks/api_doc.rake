@@ -21,9 +21,9 @@ namespace :api do
       #Kernel.system(cmd)
       exitstatus = $?.exitstatus
       if exitstatus.zero?
-        puts "Done for #{file[:src]} and generated file #{file[:dest]}"
+        puts "Compilation done for #{file[:src]}. Generated the #{file[:dest]} file."
       else
-        puts "Something failed during RAML to HTML processing."
+        puts "Something failed during RAML to HTML compilation for #{raml_file}."
 
         if File.exist?(html_file)
           puts "You can check the HTML output in the #{html_file} file. It should contain an error message. Here is the preview:"
