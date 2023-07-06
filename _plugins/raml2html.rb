@@ -4,4 +4,6 @@ end
 
 Jekyll::Hooks.register :site, :post_write do |page|
   system!("bundle exec rake api:generate_docs")
+
+  system!("cp -R api _site")
 end
