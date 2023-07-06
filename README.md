@@ -79,7 +79,7 @@ npm install
 bundle exec jekyll serve --watch --future
 ```
 
-It shows a blog post with future publish date.
+It shows a blog post with a future publish date.
 Now you can preview the blog at [http://localhost:4000/](http://localhost:4000/2099/example-article).
 
 ## How to build Docusaurus only
