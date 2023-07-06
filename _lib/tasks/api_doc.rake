@@ -15,7 +15,20 @@ namespace :api do
 
       cmd = %Q[#{raml2html} #{raml_file} > #{html_file}]
       puts `#{cmd}`
-      puts "Done for #{file[:src]} and generated file #{file[:dest]}"
+      #Kernel.system(cmd)
+      exitstatus = $?.exitstatus
+      if exitstatus.zero?
+        puts "Done for #{file[:src]} and generated file #{file[:dest]}"
+      else
+        puts "Something failed during RAML to HTML processing."
+
+        if File.exist?(html_file)
+          puts "You can check the HTML output in the #{html_file} file. It should contain an error message. Here is the preview:"
+          puts File.read(html_file)
+        end
+
+        Kernel.exit(exitstatus)
+      end
     end
 
     puts 'Finished!'
