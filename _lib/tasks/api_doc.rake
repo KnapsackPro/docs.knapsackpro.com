@@ -17,8 +17,7 @@ namespace :api do
       FileUtils.mkdir_p(html_dir)
 
       cmd = %Q[#{raml2html} #{raml_file} > #{html_file}]
-      puts `#{cmd}`
-      #Kernel.system(cmd)
+      Kernel.system(cmd)
       exitstatus = $?.exitstatus
       if exitstatus.zero?
         puts "Compilation done for #{file[:src]}. Generated the #{file[:dest]} file."
