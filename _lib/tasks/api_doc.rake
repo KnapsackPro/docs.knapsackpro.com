@@ -24,7 +24,9 @@ namespace :api do
 
         if File.exist?(html_file)
           puts "You can check the HTML output in the #{html_file} file. It should contain an error message. Here is the preview:"
+          puts '=== START ==='
           puts File.read(html_file)
+          puts '=== END ==='
         end
 
         Kernel.exit(exitstatus)
