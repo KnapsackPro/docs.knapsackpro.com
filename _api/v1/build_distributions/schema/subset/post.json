@@ -9,7 +9,7 @@
   "node_total": "4",
   "node_index": "0",
   "ci_build_id": 1234,
-  "user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7"
+  "user_seat": "Jo** Do* <jo**.do*@ex*****.co*>"
 }
 
 // 2nd type of request to Regular Mode API should happen if the API response for 1st type of request has the following:
@@ -29,7 +29,7 @@
   "node_total": "4",
   "node_index": "0",
   "ci_build_id": 1234,
-  "user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7",
+  "user_seat": "Jo** Do* <jo**.do*@ex*****.co*>",
   "test_files": [
     {
       "path": "test/fast/a_test.rb"

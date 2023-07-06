@@ -2,4 +2,4 @@ type: string
 required: true
 example: fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7
 description: |
-  SHA-256 hash of the user name that started the CI build. It is usually the same person that made the git commit.
+  A user name that started the CI build. It is usually the same person that made the git commit. It must be masked with a regexp pattern `/(?<=\w{2})[a-zA-Z]/g`. For example, `John Doe <john.doe@example.com>` should be masked to `Jo** Do* <jo**.do*@ex*****.co*>`.
