@@ -116,7 +116,7 @@ Users can define those environment variables in their CI server settings to cont
   - If no value is detected then a `git rev-parse --abbrev-ref HEAD` command should be run to determine the branch name.
   - If `git` is not installed then raise an error. Please see the [source code of `@knapsack-pro/core`](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L147,L184).
 
-- `KNAPSACK_PRO_USER_SEAT` - SHA-256 hash of the user name that started the CI build. It is usually the same person that made the git commit.
+- `KNAPSACK_PRO_USER_SEAT` - A user name that started the CI build. It is usually the same person that made the git commit. It must be masked with a regexp pattern `/(?<=\w{2})[a-zA-Z]/g`. For example, `John Doe <john.doe@example.com>` should be masked to `Jo** Do* <jo**.do*@ex*****.co*>`.
 
 - CI providers environment variables integration - Knapsack Pro client should try to read environment variables for popular CI providers. Thanks to that user have to do less work to set up the Knapsack Pro client with his project.
   - Here can be found a [list of supported CI providers](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/master/src/config/ci-env.config.ts).
@@ -192,7 +192,7 @@ The first CI node sends the below request. Its purpose is to attempt to connect 
   "node_total": "2",
   "node_index": "0",
   "node_build_id": "1234",
-  "user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7"
+  "user_seat": "Jo** Do* <jo**.do*@ex*****.co*>"
 }
 {% endhighlight %}
 
@@ -235,7 +235,7 @@ You need to make a second request. This time, it should contain a list of test f
   "node_total": "2",
   "node_index": "0",
   "node_build_id": "1234",
-  "user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7",
+  "user_seat": "Jo** Do* <jo**.do*@ex*****.co*>",
   "test_files": [
     {
       "path": "test/fast/a_test.rb"
@@ -297,7 +297,7 @@ After you execute the test files, you should ask the API for another set of test
   "node_total": "2",
   "node_index": "0",
   "node_build_id": "1234",
-  "user_seat": "fa9602418c626dd0347ccdd488a93ac7d870fa763126fea7fd0c5133a69062a7"
+  "user_seat": "Jo** Do* <jo**.do*@ex*****.co*>"
 }
 {% endhighlight %}
 

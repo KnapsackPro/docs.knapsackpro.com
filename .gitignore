@@ -20,6 +20,9 @@ build/
 /doc/
 /rdoc/
 
+## API documentation generated files via raml2html:
+/api/
+
 ## Environment normalisation:
 /.bundle/
 /vendor/bundle
