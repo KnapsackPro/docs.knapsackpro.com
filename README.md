@@ -43,62 +43,76 @@ We welcome any blog post in the following categories:
 
 - Your blog post will be under [MIT license](LICENSE).
 
-# Development of blog
+# Development
+
+## Intro
+
+* Blog: We use Jekyll for blog posts.
+* API docs: We use `raml2html` npm package to compile RAML files into HTML files for API docs.
+* Docs: We use Docusaurus for new documentation.
+
+## Install dependencies
+
+Install node packages like `raml2html` which is needed to compile API docs.
+
+```bash
+npm install
+```
+
+Install Ruby gems (needed for Jekyll).
 
 ```bash
 bundle config build.eventmachine --with-cppflags=-I$(brew --prefix openssl@1.1)/include
 bundle install
 ```
 
-Show post with future publish date.
+We are moving incrementally from Jekyll to Docusaurus. Please install Docusaurus dependencies.
+
+```bash
+cd docusaurus
+npm install
+```
+
+## How to build everything (Jekyll, Docusaurus, API docs)
 
 ```bash
 bundle exec jekyll serve --watch --future
 ```
 
-Now you can preview the blog at [http://localhost:4000/](http://localhost:4000/2099/example-article)
+It shows a blog post with future publish date.
+Now you can preview the blog at [http://localhost:4000/](http://localhost:4000/2099/example-article).
 
-# Development of docs
-
-We are moving incrementally from Jekyll to Docusaurus.
+## How to build Docusaurus only
 
 ```bash
 cd docusaurus
-npm install
 npm start
 ```
 
-## Deployment
+## How to build API docs only
 
-Push to `main` to have a GitHub Action:
+[Raml](http://raml.org/) files for API docs are in the `_api` directory. You can edit them.
 
-- build Jekyll and Docusaurus ([`_plugins/docusaurus.rb`](./_plugins/docusaurus.rb))
-- publish the built files to the `gh-pages` branch
-- deploy to GitHub pages
-
-# Development of Knapsack Pro API docs
-
-## Dependencies
-
-```bash
-npm install
-```
-
-## Generate API docs
-
-[Raml](http://raml.org/) files with docs are in the `_api` directory.
-
-[Compile](https://github.com/kevinrenskers/raml2html) them with:
+We use [raml2html](https://github.com/kevinrenskers/raml2html) to compile them.
+If you need to manually compile API docs you can run the rake task:
 
 ```bash
 bundle exec rake api:generate_docs
 ```
 
-Compiled files are in the `api` directory. Please commit them to the repository.
+Compiled files are in the `api` directory.
+
+## Deployment
+
+Push to `main` to have a GitHub Action:
+
+- build Jekyll, Docusaurus ([`_plugins/docusaurus.rb`](./_plugins/docusaurus.rb)) and API docs ([`_plugins/raml2html.rb`](./_plugins/raml2html.rb))
+- publish the built files to the `gh-pages` branch
+- deploy to GitHub pages
 
 ## Guard
 
-Run Guard to recompile RAML files whenever they change:
+Run Guard to recompile RAML files or Docusaurus whenever they change:
 
 ```bash
 guard
