@@ -94,7 +94,7 @@ npm start
 [Raml](http://raml.org/) files for API docs are in the `_api` directory. You can edit them.
 
 We use [raml2html](https://github.com/kevinrenskers/raml2html) to compile them.
-If you need to manually compile API docs you can run the rake task:
+If you need to compile API docs manually, you can run the rake task:
 
 ```bash
 bundle exec rake api:generate_docs
