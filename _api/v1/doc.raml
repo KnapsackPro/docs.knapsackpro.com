@@ -4,6 +4,12 @@ title: Knapsack Pro API documentation
 baseUri: https://api.knapsackpro.com/v1
 version: v1
 mediaType: application/json
+types:
+  CommitAuthor:
+    type: object
+    properties:
+      commits: number
+      author:  string
 
 /build_subsets: !include build_subsets/main.raml
 /build_distributions: !include build_distributions/main.raml
