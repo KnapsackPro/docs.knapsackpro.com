@@ -18,7 +18,7 @@ Unless specified otherwise, everything on this page is environment variables.
 You can pass command-line arguments using the Rake argument syntax:
 
 ```bash
-bundle exec rake "knapsack_pro:rspec[--tag focus --profile]"
+bundle exec rake "knapsack_pro:queue:rspec[--tag focus --profile]"
 # ==
 bundle exec rake rspec --tag focus --profile
 ```
@@ -437,13 +437,13 @@ Example:
 
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-  bundle exec rake knapsack_pro:rspec
+  bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_OTHER_RSPEC_API_TOKEN \
-  bundle exec rake knapsack_pro:rspec[--tag tagA]
+  bundle exec rake knapsack_pro:queue:rspec[--tag tagA]
 
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-  bundle exec rake knapsack_pro:cucumber
+  bundle exec rake knapsack_pro:queue:cucumber
 ```
 
 ## `KNAPSACK_PRO_USER_SEAT`

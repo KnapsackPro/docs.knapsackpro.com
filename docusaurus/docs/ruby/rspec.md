@@ -233,7 +233,7 @@ Use RSpec's [`stub_const`](https://relishapp.com/rspec/rspec-mocks/docs/mutating
 
 Knapsack Pro uses [`RSpec::Core::Runner`](https://relishapp.com/rspec/rspec-core/docs/running-specs-multiple-times-with-different-runner-options-in-the-same-process) in Queue Mode to run tests without reloading Ruby/Rails for each batch of tests. If you monkey-patch RSpec or mutate its global state, the test runner may not be able to clean up properly after each batch.
 
-Also, you can try to use the [`knapsack_pro` binary](cookbook.md#use-the-knapsack-pro-binary) instead of `bundle exec rake knapsack_pro:rspec`.
+Also, you can try to use the [`knapsack_pro` binary](cookbook.md#use-the-knapsack-pro-binary) instead of `bundle exec rake knapsack_pro:queue:rspec`.
 
 ### `before(:suite)` / `after(:suite)` are executed multiple times in Queue Mode
 

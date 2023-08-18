@@ -242,14 +242,16 @@ Remember to configure the number of parallel CI nodes in AppVeyor.
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
+bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 </TabItem>
@@ -259,14 +261,16 @@ bundle exec rake knapsack_pro:cucumber
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
+bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 </TabItem>
@@ -276,14 +280,16 @@ bundle exec rake knapsack_pro:cucumber
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
+bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 </TabItem>
@@ -304,12 +310,14 @@ Remember to configure the `parallelism` parameter in your build step.
 
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
+bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 </TabItem>
@@ -317,12 +325,14 @@ bundle exec rake knapsack_pro:cucumber
 
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
+bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 </TabItem>
@@ -330,12 +340,14 @@ bundle exec rake knapsack_pro:cucumber
 
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
+bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 </TabItem>
@@ -351,7 +363,7 @@ steps:
       - docker-compose#3.0.3:
         run: app
         # highlight-next-line
-        command: bundle exec rake knapsack_pro:rspec
+        command: bundle exec rake knapsack_pro:queue:rspec
         config: docker-compose.test.yml
         # highlight-start
         env:
@@ -401,16 +413,18 @@ jobs:
         name: RSpec with knapsack_pro
         command: |
           KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-            bundle exec rake knapsack_pro:rspec
+            bundle exec rake knapsack_pro:queue:rspec
       # highlight-end
       # highlight-start
       - run:
         name: Cucumber with knapsack_pro
         command: |
           KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-            bundle exec rake knapsack_pro:cucumber
+            bundle exec rake knapsack_pro:queue:cucumber
 
-        # ...Same for minitest, spinach, test_unit
+        # ...or bundle exec rake knapsack_pro:queue:minitest
+        # ...or bundle exec rake knapsack_pro:spinach
+        # ...or bundle exec rake knapsack_pro:test_unit
       # highlight-end
 ```
 
@@ -436,10 +450,12 @@ task:
     name: CI Node 1
     name: CI Node 2
   test_script:
-    - bundle exec rake knapsack_pro:rspec
-    - bundle exec rake knapsack_pro:cucumber
+    - bundle exec rake knapsack_pro:queue:rspec
+    - bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as [encrypted variables](https://cirrus-ci.org/guide/writing-tasks/#encrypted-variables).
@@ -467,14 +483,16 @@ For each [parallel pipeline](https://documentation.codeship.com/basic/builds-and
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
+bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 </TabItem>
@@ -484,14 +502,16 @@ bundle exec rake knapsack_pro:cucumber
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
+bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 </TabItem>
@@ -501,14 +521,16 @@ bundle exec rake knapsack_pro:cucumber
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
+bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 </TabItem>
@@ -593,9 +615,9 @@ steps:
     commands:
       - bin/rails db:prepare
       # highlight-start
-      - KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN bundle exec rake knapsack_pro:rspec
-      - KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN bundle exec rake knapsack_pro:cucumber
-      - KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=MY_MINITEST_API_TOKEN bundle exec rake knapsack_pro:minitest
+      - KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN bundle exec rake knapsack_pro:queue:rspec
+      - KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN bundle exec rake knapsack_pro:queue:cucumber
+      - KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=MY_MINITEST_API_TOKEN bundle exec rake knapsack_pro:queue:minitest
       - KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT=MY_TEST_UNIT_API_TOKEN bundle exec rake knapsack_pro:test_unit
       - KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=MY_SPINACH_API_TOKEN bundle exec rake knapsack_pro:spinach
       # highlight-end
@@ -737,9 +759,9 @@ jobs:
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_PRO_LOG_LEVEL: info
         run: |
-          bundle exec rake knapsack_pro:rspec
-          bundle exec rake knapsack_pro:cucumber
-          bundle exec rake knapsack_pro:minitest
+          bundle exec rake knapsack_pro:queue:rspec
+          bundle exec rake knapsack_pro:queue:cucumber
+          bundle exec rake knapsack_pro:queue:minitest
           bundle exec rake knapsack_pro:test_unit
           bundle exec rake knapsack_pro:spinach
       # highlight-end
@@ -760,9 +782,9 @@ test:
   parallel: 2
 
   script:
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN bundle exec rake knapsack_pro:rspec
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN bundle exec rake knapsack_pro:cucumber
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=MY_MINITEST_API_TOKEN bundle exec rake knapsack_pro:minitest
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN bundle exec rake knapsack_pro:queue:rspec
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN bundle exec rake knapsack_pro:queue:cucumber
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=MY_MINITEST_API_TOKEN bundle exec rake knapsack_pro:queue:minitest
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT=MY_TEST_UNIT_API_TOKEN bundle exec rake knapsack_pro:test_unit
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=MY_SPINACH_API_TOKEN bundle exec rake knapsack_pro:spinach
 ```
@@ -793,9 +815,9 @@ test_ci_first_node:
   script:
     # highlight-start
     - export KNAPSACK_PRO_CI_NODE_INDEX=0
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN bundle exec rake knapsack_pro:rspec
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN bundle exec rake knapsack_pro:cucumber
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=MY_MINITEST_API_TOKEN bundle exec rake knapsack_pro:minitest
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN bundle exec rake knapsack_pro:queue:rspec
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN bundle exec rake knapsack_pro:queue:cucumber
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=MY_MINITEST_API_TOKEN bundle exec rake knapsack_pro:queue:minitest
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT=MY_TEST_UNIT_API_TOKEN bundle exec rake knapsack_pro:test_unit
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=MY_SPINACH_API_TOKEN bundle exec rake knapsack_pro:spinach
     # highlight-end
@@ -805,9 +827,9 @@ test_ci_second_node:
   script:
     # highlight-start
     - export KNAPSACK_PRO_CI_NODE_INDEX=1
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN bundle exec rake knapsack_pro:rspec
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN bundle exec rake knapsack_pro:cucumber
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=MY_MINITEST_API_TOKEN bundle exec rake knapsack_pro:minitest
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN bundle exec rake knapsack_pro:queue:rspec
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN bundle exec rake knapsack_pro:queue:cucumber
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST=MY_MINITEST_API_TOKEN bundle exec rake knapsack_pro:queue:minitest
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_TEST_UNIT=MY_TEST_UNIT_API_TOKEN bundle exec rake knapsack_pro:test_unit
     - KNAPSACK_PRO_TEST_SUITE_TOKEN_SPINACH=MY_SPINACH_API_TOKEN bundle exec rake knapsack_pro:spinach
     # highlight-end
@@ -842,7 +864,7 @@ Define in `app.json`:
       "addons": ["heroku-postgresql"],
       // highlight-start
       "scripts": {
-        "test": "bundle exec rake knapsack_pro:rspec"
+        "test": "bundle exec rake knapsack_pro:queue:rspec"
       },
       "env": {
         "KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC": "MY_RSPEC_API_TOKEN"
@@ -905,15 +927,17 @@ timeout(time: 60, unit: 'MINUTES') {
         """
 
         stage('Run rspec') {
-          sh """${knapsack_options} bundle exec rake knapsack_pro:rspec"""
+          sh """${knapsack_options} bundle exec rake knapsack_pro:queue:rspec"""
         }
 
         stage('Run cucumber') {
-          sh """${knapsack_options} bundle exec rake knapsack_pro:cucumber"""
+          sh """${knapsack_options} bundle exec rake knapsack_pro:queue:cucumber"""
         }
         // highlight-end
 
-        // ...Same for minitest, spinach, test_unit
+        // ...or bundle exec rake knapsack_pro:queue:minitest
+        // ...or bundle exec rake knapsack_pro:spinach
+        // ...or bundle exec rake knapsack_pro:test_unit
       }
     }
   }
@@ -991,10 +1015,12 @@ blocks:
         - name: Run tests with Knapsack Pro
           parallelism: 2
           commands:
-            - bundle exec rake knapsack_pro:rspec
-            - bundle exec rake knapsack_pro:cucumber
+            - bundle exec rake knapsack_pro:queue:rspec
+            - bundle exec rake knapsack_pro:queue:cucumber
 
-        # ...Same for minitest, spinach, test_unit
+        # ...or bundle exec rake knapsack_pro:queue:minitest
+        # ...or bundle exec rake knapsack_pro:spinach
+        # ...or bundle exec rake knapsack_pro:test_unit
       # highlight-end
 ```
 
@@ -1016,9 +1042,9 @@ Define in `.travis.yml`:
 
 ```yaml title="travis.yml"
 script:
-  - "bundle exec rake knapsack_pro:rspec"
-  - "bundle exec rake knapsack_pro:cucumber"
-  - "bundle exec rake knapsack_pro:minitest"
+  - "bundle exec rake knapsack_pro:queue:rspec"
+  - "bundle exec rake knapsack_pro:queue:cucumber"
+  - "bundle exec rake knapsack_pro:queue:minitest"
   - "bundle exec rake knapsack_pro:test_unit"
   - "bundle exec rake knapsack_pro:spinach"
 
@@ -1067,7 +1093,7 @@ KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_REPOSITORY_ADAPTER=git \
 KNAPSACK_PRO_PROJECT_DIR=MY_PROJECT_DIR \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
+bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
@@ -1075,9 +1101,11 @@ KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_REPOSITORY_ADAPTER=git \
 KNAPSACK_PRO_PROJECT_DIR=MY_PROJECT_DIR \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 </TabItem>
@@ -1090,7 +1118,7 @@ KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_REPOSITORY_ADAPTER=git \
 KNAPSACK_PRO_PROJECT_DIR=MY_PROJECT_DIR \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
+bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
@@ -1098,9 +1126,11 @@ KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_REPOSITORY_ADAPTER=git \
 KNAPSACK_PRO_PROJECT_DIR=MY_PROJECT_DIR \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 </TabItem>
@@ -1113,7 +1143,7 @@ KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_REPOSITORY_ADAPTER=git \
 KNAPSACK_PRO_PROJECT_DIR=MY_PROJECT_DIR \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_RSPEC_API_TOKEN \
-bundle exec rake knapsack_pro:rspec
+bundle exec rake knapsack_pro:queue:rspec
 
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
@@ -1121,9 +1151,11 @@ KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_REPOSITORY_ADAPTER=git \
 KNAPSACK_PRO_PROJECT_DIR=MY_PROJECT_DIR \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
-bundle exec rake knapsack_pro:cucumber
+bundle exec rake knapsack_pro:queue:cucumber
 
-# ...Same for minitest, spinach, test_unit
+# ...or bundle exec rake knapsack_pro:queue:minitest
+# ...or bundle exec rake knapsack_pro:spinach
+# ...or bundle exec rake knapsack_pro:test_unit
 ```
 
 </TabItem>
@@ -1137,11 +1169,19 @@ bundle exec rake knapsack_pro:cucumber
 
 Push a new commit to your repository and visit your [dashboard](https://knapsackpro.com/dashboard) to make sure all your CI nodes were recorded successfully in _Show build metrics > Show (build)_.
 
+:::caution
+
+The command `knapsack_pro:queue:TEST_RUNNER`, starts Knapsack Pro in [Queue Mode](../../ruby/queue-mode.md).
+
+If you encounter any problems, take a look at [troubleshooting](../../ruby/queue-mode.md#configuration-and-troubleshooting), or try [Regular Mode](../../overview/index.md#regular-mode-static-split) by running `knapsack_pro:TEST_RUNNER` (notice the missing `:queue`).
+
+:::
+
 **Congratulations!** Now that Knapsack Pro knows the statistics of your test suite, your CI builds will be parallelized optimally.
 
 ### Next up
 
-For an even faster CI build, switch to [Queue Mode](../../ruby/queue-mode.md) and [Split by test examples](../../ruby/split-by-test-examples.md).
+For an even faster CI build, consider [splitting by test examples](../../ruby/split-by-test-examples.md).
 
 Make sure you check out the _Advanced_ and _Using Knapsack Pro with..._ pages from the navigation to fine-tune your Knapsack Pro setup.
 
