@@ -3,6 +3,11 @@ pagination_next: null
 pagination_prev: null
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import BeforeSuiteHookQueueMode from './hooks/_before_suite_hook_queue_mode.md';
+import AfterSuiteHookQueueMode from './hooks/_after_suite_hook_queue_mode.md';
+
 # Hooks: Before and After
 
 :::caution
@@ -39,21 +44,21 @@ end
 
 ## RSpec
 
-If you are using Knapsack Pro in Queue Mode with RSpec, replace:
+If you use Knapsack Pro in Queue Mode with RSpec hooks:
 
 ```ruby
 before(:suite) { ... }
 after(:suite) { ... }
 ```
 
-with:
+Then you need to start using Queue Mode hooks:
 
 ```ruby
 KnapsackPro::Hooks::Queue.before_queue { ... }
 KnapsackPro::Hooks::Queue.after_queue { ... }
 ```
 
-Otherwise, Knapsack Pro would call `before(:suite)` and `after(:suite)` for each subset of tests.
+Otherwise, Knapsack Pro would call `before(:suite)` and `after(:suite)` for each subset of tests fetched from Queue API.
 
 For example, what follows are the hooks run with two subsets of tests:
 
@@ -74,6 +79,17 @@ after :suite
 
 after_queue
 ```
+
+Here are examples of how to define hooks properly so that they are called only once:
+
+<Tabs>
+  <TabItem value="junit-formatter" label="Before suite hook" default>
+    <BeforeSuiteHookQueueMode />
+  </TabItem>
+  <TabItem value="json-formatter" label="After suite hook">
+    <AfterSuiteHookQueueMode />
+  </TabItem>
+</Tabs>
 
 ## `percy-capybara`
 
