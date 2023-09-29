@@ -17,6 +17,7 @@ end
 KnapsackPro::Hooks::Queue.after_queue do |queue_id|
   after_suite_block.call
   puts 'Run this only when using Knapsack Pro Queue Mode'
-  puts "This code is executed outside of the RSpec after(:suite) hook context because it's impossible to determine which after(:suite) is the last one to execute until it's executed."
+  puts "This code is executed outside of the RSpec after(:suite) hook context because it's " +
+    "impossible to determine which after(:suite) is the last one to execute until it's executed."
 end
 ```
