@@ -18,7 +18,7 @@ To keep it simple, we recommend against `parallel_tests`. Instead, consider more
 In some cases, you may still consider using `knapsack_pro` to exploit auto-balancing the tests split with [Queue Mode](../overview/index.md#queue-mode-dynamic-split) and `parallel_tests` to use fewer CI nodes. But monitor your [Knapsack Pro dashboard](../overview/index.md#dashboard) for signs of saturated CI nodes:
 
 - Execution times of your CI builds are increasing: `Recorded CI builds > Show (build) > Test Files > Total execution time`
-- Individual test stats are trending up: `Statistics of test files history > Stats (test file) > History of the test file (chart)`
+- Individual test stats are trending up: `Test files trend > Trend (button) > Test file trend (chart)`
 - Tests executed locally on your machine are faster than on your CI
 
 In case of saturation, consider:
