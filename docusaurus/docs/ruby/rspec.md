@@ -111,6 +111,12 @@ If you cannot find what you are looking for in this section, please refer to the
 
 ### Some of my test files are not executed
 
+:::tip
+
+Use [`KNAPSACK_PRO_TEST_FILE_*`](https://docs.knapsackpro.com/ruby/reference/) to filter the tests files to run in Knapsack Pro.
+
+:::
+
 First, check if the RSpec output mentions any filtering like the following:
 
 ```bash
@@ -152,6 +158,8 @@ RSpec.configure do |c|
   end
 end
 ```
+
+If you are using RSpec in Queue Mode and [Split by test example](https://docs.knapsackpro.com/ruby/split-by-test-examples/), `--tag` is not supported.
 
 ### Some tests are failing in Queue Mode
 
