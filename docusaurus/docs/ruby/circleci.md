@@ -47,7 +47,7 @@ end
     name: RSpec with Knapsack Pro in Queue Mode
     command: |
       export CIRCLE_TEST_REPORTS=/tmp/test-results
-      mkdir $CIRCLE_TEST_REPORTS
+      mkdir -p $CIRCLE_TEST_REPORTS
       bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
 
 - store_test_results:
