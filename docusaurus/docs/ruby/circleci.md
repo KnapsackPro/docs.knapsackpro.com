@@ -62,3 +62,46 @@ end
 </Tabs>
 
 You can find a complete CircleCI configuration in [RSpec testing parallel jobs with CircleCI and JUnit XML report](https://docs.knapsackpro.com/2021/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report).
+
+## Rerun failed tests
+
+Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tests/) feature with Knapsack Pro to only rerun a subset of tests instead of rerunning the entire test suite when a transient test failure arises.
+
+Thanks to that, you save time and CircleCI resources. See a [video demo](https://www.youtube.com/watch?v=gf2BK_ZukUg).
+
+```yaml title=".circleci/config.yml"
+- run:
+    name: RSpec with Knapsack Pro in Queue Mode
+    command: |
+      export CIRCLE_TEST_REPORTS=/tmp/test-results
+      mkdir -p $CIRCLE_TEST_REPORTS
+
+      # split slow spec files by test examples
+      # https://docs.knapsackpro.com/ruby/split-by-test-examples/
+      export KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
+
+      # highlight-start
+      # Use circleci CLI to find out if we need to run all tests or rerun failed tests
+      # We are telling circleci to split the tests across 1 node to get the full list of all tests for consideration. We leave the splitting to Knapsack Pro.
+      circleci tests glob "spec/**/*_spec.rb" | circleci tests run --index 0 --total 1 --command ">/tmp/tests_to_run.txt xargs echo" --verbose > /tmp/tests_to_run.txt
+
+      # replace all spaces with newlines in the file
+      sed -i 's/ /\n/g' /tmp/tests_to_run.txt
+
+      # tell Knapsack Pro to run only tests from the file (and still use Knapsack Pro Queue Mode magic)
+      if [[ -s "/tmp/tests_to_run.txt" ]]; then
+        export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt
+        bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
+      fi
+      # highlight-end
+
+- store_test_results:
+    path: /tmp/test-results
+
+- store_artifacts:
+    path: /tmp/test-results
+    destination: test-results
+```
+
+- We use [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file) to feed Knapsack Pro with a list of test files to run.
+- Optionally, you can use [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](split-by-test-examples.md) to split slow test files by test examples automatically.
