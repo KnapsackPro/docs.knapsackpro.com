@@ -5,6 +5,7 @@ pagination_prev: null
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { YouTube } from '@site/src/components/YouTube';
 
 # Using Knapsack Pro with CircleCI
 
@@ -67,9 +68,9 @@ You can find a complete CircleCI configuration in [RSpec testing parallel jobs w
 
 Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tests/) feature with Knapsack Pro to only rerun a subset of tests instead of rerunning the entire test suite when a transient test failure arises.
 
-import { YouTube } from "@site/src/components/YouTube"
+<YouTube src="https://www.youtube.com/embed/9WEsUosgTGw" />
 
-<YouTube src="https://www.youtube.com/embed/gf2BK_ZukUg" />
+<br />
 
 ```yaml title=".circleci/config.yml"
 - run:
