@@ -5,6 +5,7 @@ pagination_prev: null
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { YouTube } from '@site/src/components/YouTube';
 
 # Using Knapsack Pro with CircleCI
 
@@ -47,7 +48,7 @@ end
     name: RSpec with Knapsack Pro in Queue Mode
     command: |
       export CIRCLE_TEST_REPORTS=/tmp/test-results
-      mkdir $CIRCLE_TEST_REPORTS
+      mkdir -p $CIRCLE_TEST_REPORTS
       bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
 
 - store_test_results:
@@ -62,3 +63,41 @@ end
 </Tabs>
 
 You can find a complete CircleCI configuration in [RSpec testing parallel jobs with CircleCI and JUnit XML report](https://docs.knapsackpro.com/2021/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report).
+
+## Rerun _only_ failed tests
+
+Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tests/) feature with Knapsack Pro to only rerun a subset of tests instead of rerunning the entire test suite when a transient test failure arises.
+
+<YouTube src="https://www.youtube.com/embed/9WEsUosgTGw" />
+
+<br />
+
+```yaml title=".circleci/config.yml"
+- run:
+    name: RSpec with Knapsack Pro in Queue Mode
+    command: |
+      export CIRCLE_TEST_REPORTS=/tmp/test-results
+      mkdir -p $CIRCLE_TEST_REPORTS
+
+      export KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
+
+      # highlight-start
+      export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt
+      # Retrieve the tests to run (all or just the failed ones), and let Knapsack Pro split them optimally.
+      circleci tests glob "spec/**/*_spec.rb" | circleci tests run --index 0 --total 1 --command ">$KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE xargs -n1 echo" --verbose > $KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE
+      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
+      # highlight-end
+
+- store_test_results:
+    path: /tmp/test-results
+
+- store_artifacts:
+    path: /tmp/test-results
+    destination: test-results
+```
+
+The snippet above uses:
+
+- [collecting meta data with JUnit XML report](#collect-metadata-in-queue-mode)
+- [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](split-by-test-examples.md) to split slow spec files by test examples
+- [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file) to specify what tests to run
