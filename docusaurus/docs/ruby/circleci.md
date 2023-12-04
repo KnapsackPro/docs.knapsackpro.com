@@ -67,7 +67,9 @@ You can find a complete CircleCI configuration in [RSpec testing parallel jobs w
 
 Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tests/) feature with Knapsack Pro to only rerun a subset of tests instead of rerunning the entire test suite when a transient test failure arises.
 
-Thanks to that, you save time and CircleCI resources. See a [video demo](https://www.youtube.com/watch?v=gf2BK_ZukUg).
+import { YouTube } from "@site/src/components/YouTube"
+
+<YouTube src="https://www.youtube.com/embed/gf2BK_ZukUg" />
 
 ```yaml title=".circleci/config.yml"
 - run:
