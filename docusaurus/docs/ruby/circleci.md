@@ -79,7 +79,7 @@ Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tes
       export CIRCLE_TEST_REPORTS=/tmp/test-results
       mkdir -p $CIRCLE_TEST_REPORTS
 
-      # split slow spec files by test examples
+      # Split by test examples
       # https://docs.knapsackpro.com/ruby/split-by-test-examples/
       export KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
 
