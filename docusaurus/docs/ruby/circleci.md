@@ -90,7 +90,6 @@ Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tes
       # replace all spaces with newlines in the file
       sed -i 's/ /\n/g' /tmp/tests_to_run.txt
 
-      # tell Knapsack Pro to run only tests from the file (and still use Knapsack Pro Queue Mode magic)
       if [[ -s "/tmp/tests_to_run.txt" ]]; then
         export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt
         bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
