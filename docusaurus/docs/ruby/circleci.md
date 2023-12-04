@@ -105,5 +105,7 @@ Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tes
     destination: test-results
 ```
 
-- We use [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file) to feed Knapsack Pro with a list of test files to run.
-- Optionally, you can use [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](split-by-test-examples.md) to split slow test files by test examples automatically.
+The snippet above uses:
+
+- [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](split-by-test-examples.md) to split slow spec files by test examples
+- [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file) to specify what tests to run
