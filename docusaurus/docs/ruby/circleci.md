@@ -63,7 +63,7 @@ end
 
 You can find a complete CircleCI configuration in [RSpec testing parallel jobs with CircleCI and JUnit XML report](https://docs.knapsackpro.com/2021/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report).
 
-## Rerun failed tests
+## Rerun _only_ failed tests
 
 Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tests/) feature with Knapsack Pro to only rerun a subset of tests instead of rerunning the entire test suite when a transient test failure arises.
 
