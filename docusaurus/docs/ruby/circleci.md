@@ -84,7 +84,7 @@ Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tes
       export KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
 
       # highlight-start
-      # Retrieve the tests to run (either all tests or just the failed ones), and let Knapsack Pro split them optimally.
+      # Retrieve the tests to run (all or just the failed ones), and let Knapsack Pro split them optimally.
       circleci tests glob "spec/**/*_spec.rb" | circleci tests run --index 0 --total 1 --command ">/tmp/tests_to_run.txt xargs echo" --verbose > /tmp/tests_to_run.txt
 
       # replace all spaces with newlines in the file
