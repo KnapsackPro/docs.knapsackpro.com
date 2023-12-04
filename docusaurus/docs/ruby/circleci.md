@@ -79,21 +79,13 @@ Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tes
       export CIRCLE_TEST_REPORTS=/tmp/test-results
       mkdir -p $CIRCLE_TEST_REPORTS
 
-      # Split by test examples
-      # https://docs.knapsackpro.com/ruby/split-by-test-examples/
       export KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
 
       # highlight-start
+      export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt
       # Retrieve the tests to run (all or just the failed ones), and let Knapsack Pro split them optimally.
-      circleci tests glob "spec/**/*_spec.rb" | circleci tests run --index 0 --total 1 --command ">/tmp/tests_to_run.txt xargs echo" --verbose > /tmp/tests_to_run.txt
-
-      # replace all spaces with newlines in the file
-      sed -i 's/ /\n/g' /tmp/tests_to_run.txt
-
-      if [[ -s "/tmp/tests_to_run.txt" ]]; then
-        export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt
-        bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
-      fi
+      circleci tests glob "spec/**/*_spec.rb" | circleci tests run --index 0 --total 1 --command ">$KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE xargs -n1 echo" --verbose > $KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE
+      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
       # highlight-end
 
 - store_test_results:
@@ -106,5 +98,6 @@ Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tes
 
 The snippet above uses:
 
+- [collecting meta data with JUnit XML report](#collect-metadata-in-queue-mode)
 - [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](split-by-test-examples.md) to split slow spec files by test examples
 - [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file) to specify what tests to run
