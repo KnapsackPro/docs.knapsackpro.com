@@ -96,8 +96,8 @@ Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tes
     destination: test-results
 ```
 
-The snippet above uses:
+The snippet above:
 
-- [collecting meta data with JUnit XML report](#collect-metadata-in-queue-mode)
-- [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](split-by-test-examples.md) to split slow spec files by test examples
-- [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file) to specify what tests to run
+- [Collects metadata with the JUnit XML formatter](#collect-metadata-in-queue-mode)
+- uses [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](split-by-test-examples.md) to split slow spec files by test examples
+- uses [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file) to specify what tests to run
