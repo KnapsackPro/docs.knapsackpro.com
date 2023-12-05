@@ -84,7 +84,7 @@ Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tes
       # highlight-start
       export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt
       # Retrieve the tests to run (all or just the failed ones), and let Knapsack Pro split them optimally.
-      circleci tests glob "spec/**/*_spec.rb" | circleci tests run --index 0 --total 1 --command ">$KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE xargs -n1 echo" --verbose > $KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE
+      circleci tests glob "spec/**/*_spec.rb" | circleci tests run --index 0 --total 1 --command ">$KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE xargs -n1 echo" --verbose
       bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
       # highlight-end
 
