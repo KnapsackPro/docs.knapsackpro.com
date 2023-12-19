@@ -1,0 +1,25 @@
+
+@docusaurus/core                       2.4.1    2.4.3    3.0.1  node_modules/@docusaurus/core                     docusaurus
+@docusaurus/module-type-aliases        2.4.1    2.4.3    3.0.1  node_modules/@docusaurus/module-type-aliases      docusaurus
+@docusaurus/plugin-client-redirects    2.4.1    2.4.3    3.0.1  node_modules/@docusaurus/plugin-client-redirects  docusaurus
+@docusaurus/preset-classic             2.4.1    2.4.3    3.0.1  node_modules/@docusaurus/preset-classic           docusaurus
+@mdx-js/react                         1.6.22   1.6.22    3.0.0  node_modules/@mdx-js/react                        docusaurus
+@tsconfig/docusaurus                   2.0.0    2.0.2    2.0.2  node_modules/@tsconfig/docusaurus                 docusaurus
+@types/react-dom                      18.2.7  18.2.18  18.2.18  node_modules/@types/react-dom                     docusaurus
+clsx                                   1.2.1    1.2.1    2.0.0  node_modules/clsx                                 docusaurus
+concurrently                           8.2.1    8.2.2    8.2.2  node_modules/concurrently                         docusaurus
+prism-react-renderer                   1.3.5    1.3.5    2.3.1  node_modules/prism-react-renderer                 docusaurus
+react                                 17.0.2   17.0.2   18.2.0  node_modules/react                                docusaurus
+react-dom                             17.0.2   17.0.2   18.2.0  node_modules/react-dom                            docusaurus
+remark-cli                            11.0.0   11.0.0   12.0.0  node_modules/remark-cli                           docusaurus
+remark-validate-links                 12.1.1   12.1.1   13.0.0  node_modules/remark-validate-links                docusaurus
+typescript                             5.2.2    5.3.3    5.3.3  node_modules/typescript                           docusaurus
+
+
+npm uninstall @tsconfig/docusaurus
+
+npm i @docusaurus/core@latest @docusaurus/module-type-aliases@latest @docusaurus/plugin-client-redirects@latest @docusaurus/preset-classic@latest @mdx-js/react@latest @docusaurus/tsconfig@latest @types/react-dom@latest prism-react-renderer@latest react@latest react-dom@latest typescript@latest
+clsx                                   1.2.1    1.2.1    2.0.0  node_modules/clsx                                 docusaurus
+concurrently                           8.2.1    8.2.2    8.2.2  node_modules/concurrently                         docusaurus
+remark-cli                            11.0.0   11.0.0   12.0.0  node_modules/remark-cli                           docusaurus
+remark-validate-links                 12.1.1   12.1.1   13.0.0  node_modules/remark-validate-links                docusaurus

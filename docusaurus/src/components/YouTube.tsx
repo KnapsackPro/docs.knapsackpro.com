@@ -1,5 +1,3 @@
-import React from "react";
-
 export const YouTube = ({ src }: { src: string }) => {
   return (
     <div

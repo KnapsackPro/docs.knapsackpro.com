@@ -50,7 +50,7 @@ To find out which environment variable to use in place of `MY_CI_NODE_TOTAL`, ta
 
 ## Fail the CI build if one of the test files exceeds a certain time limit
 
-In the [`after_queue`](hooks.md) hook, retrieve the slowest test file and create a file on disk if it exceeds a given `THRESHOLD`:
+In the [`after_queue`](hooks.mdx) hook, retrieve the slowest test file and create a file on disk if it exceeds a given `THRESHOLD`:
 
 ```ruby
 KnapsackPro::Hooks::Queue.after_queue do |queue_id|

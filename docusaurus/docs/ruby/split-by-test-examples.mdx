@@ -20,7 +20,7 @@ import { IconExternalLink } from '@site/src/components/IconExternalLink'
 Only RSpec >= 3.3.0 is supported. [Let us know](https://knapsackpro.com/contact) if you use a different test runner. As an alternative, consider:
 
 - spreading test examples into multiple files
-- tagging test examples (e.g., RSpec's [`--tag`](rspec.md#run-a-subset-of-tests))
+- tagging test examples (e.g., RSpec's [`--tag`](rspec.mdx#run-a-subset-of-tests))
 
 :::
 
@@ -53,7 +53,7 @@ As an example, imagine you have two test files in your suite:
   </table>
 </div>
 
-On your [Knapsack Pro dashboard](../overview/index.md#dashboard), you can see the yellow highlight because of the bottleneck: if you run those tests on 2 parallel CI nodes, the total execution time would be 6.5 minutes instead of the optimal 4.5 minutes (2.5 minutes + 6.5 minutes divided by 2 CI nodes).
+On your [Knapsack Pro dashboard](../overview/index.mdx#dashboard), you can see the yellow highlight because of the bottleneck: if you run those tests on 2 parallel CI nodes, the total execution time would be 6.5 minutes instead of the optimal 4.5 minutes (2.5 minutes + 6.5 minutes divided by 2 CI nodes).
 
 By enabling `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`, the bottleneck disappears because Knapsack Pro can distribute tests so that each CI node is balanced (e.g., 4.5 minutes + 4.5 minutes):
 
@@ -119,7 +119,7 @@ Due to the [RSpec internals](https://github.com/rspec/rspec-core/issues/2522), `
 
 :::caution
 
-Does not support [`run_all_when_everything_filtered`](rspec.md#some-of-my-test-files-are-not-executed)
+Does not support [`run_all_when_everything_filtered`](rspec.mdx#some-of-my-test-files-are-not-executed)
 
 :::
 
@@ -127,7 +127,7 @@ Does not support [`run_all_when_everything_filtered`](rspec.md#some-of-my-test-f
 
 ### Why are some of my test files not executed?
 
-Read the answer on the [RSpec page](rspec.md#some-of-my-test-files-are-not-executed).
+Read the answer on the [RSpec page](rspec.mdx#some-of-my-test-files-are-not-executed).
 
 ### How do I fix `LoadError: cannot load such file -- MY_RUBY_GEM`?
 

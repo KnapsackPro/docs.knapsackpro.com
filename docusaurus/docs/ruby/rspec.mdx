@@ -57,7 +57,7 @@ If you are seeking faster performance on your CI, you may want to read [Parallel
 
 ## Parallelize test examples (instead of files)
 
-See [Split by test examples](split-by-test-examples.md).
+See [Split by test examples](split-by-test-examples.mdx).
 
 ## Formatters ([`rspec_junit_formatter`](https://github.com/sj26/rspec_junit_formatter), [`json`](https://rspec.info/features/3-12/rspec-core/formatters/json-formatter/))
 
@@ -107,7 +107,7 @@ bundle exec rake "knapsack_pro:queue:rspec"
 
 ## Troubleshooting
 
-If you cannot find what you are looking for in this section, please refer to the Ruby [troubleshooting page](troubleshooting.md).
+If you cannot find what you are looking for in this section, please refer to the Ruby [troubleshooting page](troubleshooting.mdx).
 
 ### Some of my test files are not executed
 
@@ -159,11 +159,11 @@ RSpec.configure do |c|
 end
 ```
 
-If you are using RSpec in Queue Mode and [Split by test example](https://docs.knapsackpro.com/ruby/split-by-test-examples/), `--tag` is not supported.
+If you are using RSpec in Queue Mode and [Split by test example](split-by-test-examples.mdx), `--tag` is not supported.
 
 ### Some tests are failing in Queue Mode
 
-Since Knapsack Pro [ignores `.rspec`](rspec.md#rspec-is-ignored-in-queue-mode) and many projects use it to require `spec_helper.rb` or `rails_helper.rb`, some tests may be falling. Make sure you either require the correct helper at the top of each test file or pass it as an argument:
+Since Knapsack Pro [ignores `.rspec`](rspec.mdx#rspec-is-ignored-in-queue-mode) and many projects use it to require `spec_helper.rb` or `rails_helper.rb`, some tests may be falling. Make sure you either require the correct helper at the top of each test file or pass it as an argument:
 
 ```bash
 bundle exec rake "knapsack_pro:queue:rspec[--require rails_helper]"
@@ -187,7 +187,7 @@ It may happen if you use:
 - `knapsack_pro` < 0.33.0
 - [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](reference.md#knapsack_pro_modify_default_rspec_formatters-rspec)
 
-This is due to the fact that Knapsack Pro in Queue Mode [runs tests in batches](../overview/index.md#queue-mode-dynamic-split), and RSpec accumulates failures/pending tests for all batches.
+This is due to the fact that Knapsack Pro in Queue Mode [runs tests in batches](../overview/index.mdx#queue-mode-dynamic-split), and RSpec accumulates failures/pending tests for all batches.
 
 ### `TypeError: superclass mismatch for class MyClass` in Queue Mode
 
@@ -245,4 +245,4 @@ Also, you can try to use the [`knapsack_pro` binary](cookbook.md#use-the-knapsac
 
 ### `before(:suite)` / `after(:suite)` are executed multiple times in Queue Mode
 
-See [Hooks: Before and After](hooks.md#rspec)
+See [Hooks: Before and After](hooks.mdx#rspec)

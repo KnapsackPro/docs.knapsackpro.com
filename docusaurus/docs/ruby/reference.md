@@ -42,7 +42,7 @@ You don't need to set it if either:
 
 ## `KNAPSACK_PRO_BRANCH_ENCRYPTED`
 
-Enable [Branch Name Encryption](encryption.md).
+Enable [Branch Name Encryption](encryption.mdx).
 
 Default: `false`
 
@@ -118,7 +118,7 @@ Default: `https://api.knapsackpro.com`
 
 ## `KNAPSACK_PRO_FALLBACK_MODE_ENABLED`
 
-Enable/disable [Fallback Mode](../overview/index.md#fallback-mode).
+Enable/disable [Fallback Mode](../overview/index.mdx#fallback-mode).
 
 Default: `true`
 
@@ -182,7 +182,7 @@ Recommended: `debug` when debugging issues, `info` to know what Knapsack Pro is 
 
 ## `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
 
-Max amount of request attempts to try before switching to [Fallback Mode](../overview/index.md#fallback-mode). Retries respect a linear back-off.
+Max amount of request attempts to try before switching to [Fallback Mode](../overview/index.mdx#fallback-mode). Retries respect a linear back-off.
 
 Default:
 
@@ -253,7 +253,7 @@ KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true \
 KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN="{spec/models/user_spec.rb,spec/controllers/**/*_spec.rb}"
 ```
 
-Make sure to read the details in [Split by test examples](split-by-test-examples.md).
+Make sure to read the details in [Split by test examples](split-by-test-examples.mdx).
 
 ## `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES` (RSpec)
 
@@ -271,7 +271,7 @@ Parallelize test examples (instead of files) across CI nodes.
 KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
 ```
 
-Make sure to read the details in [Split by test examples](split-by-test-examples.md).
+Make sure to read the details in [Split by test examples](split-by-test-examples.mdx).
 
 ## `KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX` (RSpec)
 
@@ -283,11 +283,11 @@ Available:
 
 - `"bundle exec"`
 - `"MY_CUSTOM_VARIABLE='value' bundle exec"` in case you need to pass a custom environment variable to the `rake knasack_pro:rspec_test_example_detector` task that generates a test examples report of slow test files
-- try `""` to remove the `bundle exec` prefix in case of [issues](split-by-test-examples.md#how-do-i-fix-dont-know-how-to-build-task-knapsack_prorspec_test_example_detector)
+- try `""` to remove the `bundle exec` prefix in case of [issues](split-by-test-examples.mdx#how-do-i-fix-dont-know-how-to-build-task-knapsack_prorspec_test_example_detector)
 
 ## `KNAPSACK_PRO_SALT`
 
-Salt to use to [Encrypt Test File Names or Branch Names](encryption.md).
+Salt to use to [Encrypt Test File Names or Branch Names](encryption.mdx).
 
 ## `KNAPSACK_PRO_TEST_DIR` (Cucumber)
 
@@ -415,7 +415,7 @@ KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec
 
 ## `KNAPSACK_PRO_TEST_FILES_ENCRYPTED`
 
-Enable [Test File Names Encryption](encryption.md).
+Enable [Test File Names Encryption](encryption.mdx).
 
 Default: `false`
 

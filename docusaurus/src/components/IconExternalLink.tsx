@@ -1,5 +1,3 @@
-import React from "react";
-
 export const IconExternalLink = ({
   width = 13.5,
   height = 13.5,

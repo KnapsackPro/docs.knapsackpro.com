@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { useSearchParam } from "@site/src/hooks/useSearchParam";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 

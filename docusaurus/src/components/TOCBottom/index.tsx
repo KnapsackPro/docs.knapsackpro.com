@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
 
 import styles from "./styles.module.css";

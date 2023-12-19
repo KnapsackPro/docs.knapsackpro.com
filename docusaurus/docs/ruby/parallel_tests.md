@@ -13,9 +13,9 @@ We recommend using Knapsack Pro with more CI nodes instead of `knapsack_pro` + `
 
 In our experience, parallelizing tests by running more than one process per CI node can result in slower test suites. In fact, it's easy to saturate CPU/RAM/IO when running multiple tests in parallel on a single CI node, especially with E2E tests.
 
-To keep it simple, we recommend against `parallel_tests`. Instead, consider more parallel CI nodes with Knapsack Pro in [Queue Mode](../overview/index.md#queue-mode-dynamic-split) if you are looking for fast tests execution and avoiding [confusing terminal outputs](https://github.com/grosser/parallel_tests/issues?q=is%3Aissue+is%3Aopen+output).
+To keep it simple, we recommend against `parallel_tests`. Instead, consider more parallel CI nodes with Knapsack Pro in [Queue Mode](../overview/index.mdx#queue-mode-dynamic-split) if you are looking for fast tests execution and avoiding [confusing terminal outputs](https://github.com/grosser/parallel_tests/issues?q=is%3Aissue+is%3Aopen+output).
 
-In some cases, you may still consider using `knapsack_pro` to exploit auto-balancing the tests split with [Queue Mode](../overview/index.md#queue-mode-dynamic-split) and `parallel_tests` to use fewer CI nodes. But monitor your [Knapsack Pro dashboard](../overview/index.md#dashboard) for signs of saturated CI nodes:
+In some cases, you may still consider using `knapsack_pro` to exploit auto-balancing the tests split with [Queue Mode](../overview/index.mdx#queue-mode-dynamic-split) and `parallel_tests` to use fewer CI nodes. But monitor your [Knapsack Pro dashboard](../overview/index.mdx#dashboard) for signs of saturated CI nodes:
 
 - Execution times of your CI builds are increasing: `Recorded CI builds > Show (build) > Test Files > Total execution time`
 - Individual test stats are trending up: `Test files trend > Trend (button) > Test file trend (chart)`

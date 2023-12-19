@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSearchParam } from "@site/src/hooks/useSearchParam";
 
 type Item = {

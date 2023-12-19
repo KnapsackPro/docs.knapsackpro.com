@@ -1,4 +1,3 @@
-import React from "react";
 import { useSearchParam } from "@site/src/hooks/useSearchParam";
 
 export const CheckboxGroup = ({
