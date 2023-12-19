@@ -190,7 +190,6 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 Remember to add additional parallel containers in the CircleCI settings.
 
 ```yaml title=".circleci/config.yml"
-version: 2
 jobs:
   build:
     # highlight-next-line
@@ -208,7 +207,7 @@ jobs:
       # highlight-end
 ```
 
-Here you can find an example of a [Rails project config on CircleCI 2.0](https://docs.knapsackpro.com/2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless).
+Here you can find an example of a [Rails application configured with Knapsack Pro and CircleCI 2.0](https://docs.knapsackpro.com/2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless).
 
 </ShowIfSearchParamAndValue>
 

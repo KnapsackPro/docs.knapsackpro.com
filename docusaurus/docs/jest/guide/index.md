@@ -188,7 +188,6 @@ Generate [API tokens](https://knapsackpro.com/dashboard?utm_source=docs_knapsack
 Remember to add additional parallel containers in the CircleCI settings.
 
 ```yaml title=".circleci/config.yml"
-version: 2
 jobs:
   build:
     # highlight-next-line
