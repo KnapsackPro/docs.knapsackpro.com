@@ -222,11 +222,11 @@ Each Knapsack Pro command defined on CI should use an individual API token.
 Example:
 
 ```bash
-KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_CYPRESS_API_TOKEN \
+KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN="cypress/e2e/user/**/*.{js,jsx,coffee,cjsx}" \
   npx knapsack-pro-cypress
 
-KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_OTHER_CYPRESS_API_TOKEN \
+KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_OTHER_CYPRESS_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN="cypress/e2e/admin/**/*.{js,jsx,coffee,cjsx}" \
   npx knapsack-pro-cypress
 ```
