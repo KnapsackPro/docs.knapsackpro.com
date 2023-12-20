@@ -230,11 +230,11 @@ Each Knapsack Pro command defined on CI should use an individual API token.
 Example:
 
 ```bash
-KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_JEST_API_TOKEN \
+KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST=MY_JEST_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN=="src/user/__tests__/**/*.js" \
   npx knapsack-pro-jest
 
-KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_OTHER_JEST_API_TOKEN \
+KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST=MY_OTHER_JEST_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN=="src/admin/__tests__/**/*.js" \
   npx knapsack-pro-jest
 ```
