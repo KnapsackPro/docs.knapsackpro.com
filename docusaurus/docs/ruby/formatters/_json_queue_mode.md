@@ -10,7 +10,7 @@ bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format json 
 
 # `TMP_REPORT` must be the same path as `--out`
 # `TMP_REPORT` must be a full path (no `~`)
-TMP_REPORT = "tmp/tmp_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.json"
+TMP_REPORT = "tmp/rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.json"
 FINAL_REPORT = "tmp/final_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.json"
 
 KnapsackPro::Hooks::Queue.after_subset_queue do |queue_id, subset_queue_id|
@@ -25,7 +25,7 @@ end
 If your CI nodes write to the same disk, you need to append the CI node index to the solution presented above to avoid conflicts:
 
 ```ruby
-TMP_REPORT = "tmp/tmp_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.json"
+TMP_REPORT = "tmp/rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.json"
 FINAL_REPORT = "tmp/final_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.json"
 ```
 
