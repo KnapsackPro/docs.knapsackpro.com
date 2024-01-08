@@ -72,6 +72,8 @@ Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tes
 
 <br />
 
+### RSpec
+
 ```yaml title=".circleci/config.yml"
 - run:
     name: RSpec with Knapsack Pro in Queue Mode
@@ -101,3 +103,27 @@ The snippet above:
 - [Collects metadata with the JUnit XML formatter](#collect-metadata-in-queue-mode)
 - uses [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](split-by-test-examples.mdx) to split slow spec files by test examples
 - uses [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file) to specify what tests to run
+
+### Minitest
+
+Install the `minitest-ci` gem:
+
+```bash
+bundle add minitest-ci
+```
+
+Configure CircleCI:
+
+```yaml title=".circleci/config.yml"
+- run:
+    name: Minitest with Knapsack Pro in Queue Mode
+    command: |
+      export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt
+
+      # Retrieve the tests to run (all or just the failed ones), and let Knapsack Pro split them optimally.
+      circleci tests glob "test/**/*_test.rb" | circleci tests run --index 0 --total 1 --command ">$KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE xargs -n1 echo" --verbose
+      bundle exec rake "knapsack_pro:queue:minitest[--verbose --ci-report --no-ci-clean]"
+
+- store_test_results:
+    path: test/reports
+```
