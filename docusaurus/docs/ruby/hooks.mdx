@@ -118,9 +118,9 @@ If you are using Knapsack Pro in Queue Mode with `percy-capybara` >= 4, you need
 After that, you can use the following command:
 
 ```bash
-npx percy exec -- rake knapsack_pro:queue:rspec
-# or
-npx percy exec -- knapsack_pro queue:rspec
+npx percy exec --parallel -- rake knapsack_pro:queue:rspec
+# or with the knapsack_pro binary
+npx percy exec --parallel -- knapsack_pro queue:rspec
 ```
 
 Here you can find the docs for the [`knapsack_pro` binary](cookbook.md#use-the-knapsack-pro-binary).
