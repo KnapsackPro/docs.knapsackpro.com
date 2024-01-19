@@ -20,24 +20,17 @@ You may want to [collect metadata](https://circleci.com/docs/collect-test-data/#
 <TabItem value="RSpec">
 
 ```ruby title="spec_helper.rb or rails_helper.rb"
-# `TMP_REPORT` must be the same path as `--out`
-# `TMP_REPORT` must be a full path (no `~`)
-TMP_REPORT = "tmp/rspec.xml"
-FINAL_REPORT = "tmp/final_rspec.xml"
+KnapsackPro::Hooks::Queue.after_queue do |_queue_id|
+  # `JUNIT_REPORT` must be the same path as `--out`
+  # `JUNIT_REPORT` must be a full path (no `~`)
+  JUNIT_REPORT = "tmp/rspec.xml"
 
-KnapsackPro::Hooks::Queue.after_subset_queue do |queue_id, subset_queue_id|
-  if File.exist?(TMP_REPORT)
-    FileUtils.mv(TMP_REPORT, FINAL_REPORT)
+  if File.exist?(JUNIT_REPORT) && ENV['CIRCLE_TEST_REPORTS']
+    # highlight-start
+    FileUtils.cp(JUNIT_REPORT, "#{ENV['CIRCLE_TEST_REPORTS']}/rspec.xml")
+    # highlight-end
   end
 end
-
-# highlight-start
-KnapsackPro::Hooks::Queue.after_queue do |queue_id|
-  if File.exist?(FINAL_REPORT) && ENV['CIRCLE_TEST_REPORTS']
-    FileUtils.cp(FINAL_REPORT, "#{ENV['CIRCLE_TEST_REPORTS']}/rspec.xml")
-  end
-end
-# highlight-end
 ```
 
 </TabItem>
