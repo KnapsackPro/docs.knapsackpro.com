@@ -42,55 +42,6 @@ KnapsackPro::Hooks::Queue.after_queue do |queue_id|
 end
 ```
 
-## RSpec
-
-If you use Knapsack Pro in Queue Mode with RSpec hooks:
-
-```ruby
-before(:suite) { ... }
-after(:suite) { ... }
-```
-
-Then you need to start using Queue Mode hooks:
-
-```ruby
-KnapsackPro::Hooks::Queue.before_queue { ... }
-KnapsackPro::Hooks::Queue.after_queue { ... }
-```
-
-Otherwise, Knapsack Pro would call `before(:suite)` and `after(:suite)` for each subset of tests fetched from Queue API.
-
-For example, what follows are the hooks run with two subsets of tests:
-
-```
-before_queue
-
-# First subset of tests from Knapsack Pro API
-before :suite
-first_spec.rb
-second_spec.rb
-after :suite
-
-# Second subset of tests from Knapsack Pro API
-before :suite
-third_spec.rb
-fourth_spec.rb
-after :suite
-
-after_queue
-```
-
-Here are examples of how to define hooks properly so that they are called only once:
-
-<Tabs>
-  <TabItem value="junit-formatter" label="Before suite hook" default>
-    <BeforeSuiteHookQueueMode />
-  </TabItem>
-  <TabItem value="json-formatter" label="After suite hook">
-    <AfterSuiteHookQueueMode />
-  </TabItem>
-</Tabs>
-
 ## `percy-capybara`
 
 ### `percy-capybara` >= 4
