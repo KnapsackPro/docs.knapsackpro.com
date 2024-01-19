@@ -14,27 +14,7 @@ import { YouTube } from '@site/src/components/YouTube';
 You may want to [collect metadata](https://circleci.com/docs/collect-test-data/#metadata-collection-in-custom-test-steps) in CircleCI. For example, to collect junit reports of your RSpec runs you would:
 
 - Configure the [junit formatter for RSpec](rspec.mdx#queue-mode)
-- Copy the report to the `$CIRCLE_TEST_REPORTS` directory as shown below
-
-<Tabs>
-<TabItem value="RSpec">
-
-```ruby title="spec_helper.rb or rails_helper.rb"
-KnapsackPro::Hooks::Queue.after_queue do |_queue_id|
-  # `JUNIT_REPORT` must be the same path as `--out`
-  # `JUNIT_REPORT` must be a full path (no `~`)
-  JUNIT_REPORT = "tmp/rspec.xml"
-
-  if File.exist?(JUNIT_REPORT) && ENV['CIRCLE_TEST_REPORTS']
-    # highlight-start
-    FileUtils.cp(JUNIT_REPORT, "#{ENV['CIRCLE_TEST_REPORTS']}/rspec.xml")
-    # highlight-end
-  end
-end
-```
-
-</TabItem>
-<TabItem value="CircleCI">
+- Generate the report to the `$CIRCLE_TEST_REPORTS` directory as shown below
 
 ```yaml title=".circleci/config.yml"
 - run:
@@ -42,7 +22,7 @@ end
     command: |
       export CIRCLE_TEST_REPORTS=/tmp/test-results
       mkdir -p $CIRCLE_TEST_REPORTS
-      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
+      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out $CIRCLE_TEST_REPORTS/rspec.xml]"
 
 - store_test_results:
     path: /tmp/test-results
@@ -51,9 +31,6 @@ end
     path: /tmp/test-results
     destination: test-results
 ```
-
-</TabItem>
-</Tabs>
 
 You can find a complete CircleCI configuration in [RSpec testing parallel jobs with CircleCI and JUnit XML report](https://docs.knapsackpro.com/2021/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report).
 
@@ -80,7 +57,7 @@ Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tes
       export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt
       # Retrieve the tests to run (all or just the failed ones), and let Knapsack Pro split them optimally.
       circleci tests glob "spec/**/*_spec.rb" | circleci tests run --index 0 --total 1 --command ">$KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE xargs -n1 echo" --verbose
-      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
+      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out $CIRCLE_TEST_REPORTS/rspec.xml]"
       # highlight-end
 
 - store_test_results:
