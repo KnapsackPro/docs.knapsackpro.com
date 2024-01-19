@@ -93,24 +93,6 @@ Here are examples of how to define hooks properly so that they are called only o
 
 ## `percy-capybara`
 
-### `percy-capybara` < 4
-
-If you are using Knapsack Pro in Queue Mode with `percy-capybara` < 4 and RSpec, replace:
-
-```ruby
-before(:suite) { Percy::Capybara.initialize_build }
-after(:suite) { Percy::Capybara.finalize_build }
-```
-
-with:
-
-```ruby
-KnapsackPro::Hooks::Queue.before_queue { |queue_id| Percy::Capybara.initialize_build }
-KnapsackPro::Hooks::Queue.after_queue { |queue_id| Percy::Capybara.finalize_build }
-```
-
-Otherwise, Knapsack Pro would call `before(:suite)` and `after(:suite)` for each subset of tests.
-
 ### `percy-capybara` >= 4
 
 If you are using Knapsack Pro in Queue Mode with `percy-capybara` >= 4, you need to configure the environment variables as explained in [Percy's docs](https://docs.percy.io/docs/parallel-test-suites#section-manual-configuration-with-environment-variables).
