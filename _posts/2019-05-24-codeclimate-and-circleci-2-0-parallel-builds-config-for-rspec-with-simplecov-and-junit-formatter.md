@@ -29,14 +29,18 @@ Here is the full CircleCI 2.0 example for parallel builds using RSpec and CodeCl
 
 version: 2
 jobs:
-build: # set here how many parallel jobs you want to run. # more parallel jobs the faster is your CI build
-parallelism: 2
-docker: # specify the version you desire here - image: circleci/ruby:2.6.3-node-browsers
-environment:
-PGHOST: 127.0.0.1
-PGUSER: rails-app-with-knapsack_pro
-RAILS_ENV: test
-RACK_ENV: test
+  build:
+    # set here how many parallel jobs you want to run.
+    # more parallel jobs the faster is your CI build
+    parallelism: 2
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.6.3-node-browsers
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: rails-app-with-knapsack_pro
+          RAILS_ENV: test
+          RACK_ENV: test
 
           # API token should be set in CircleCI environment variables settings instead of here
           # KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: rspec-token
@@ -117,11 +121,14 @@ RACK_ENV: test
       - store_artifacts:
           path: tmp/test-reports
 
-upload-coverage:
-docker: - image: circleci/ruby:2.6.3-node
-environment: # you can add your CodeClimate test report ID here or in CircleCI # settings for environment variables
-CC_TEST_REPORTER_ID: use-here-your-codeclimate-test-report-id
-working_directory: ~/repo
+  upload-coverage:
+    docker:
+      - image: circleci/ruby:2.6.3-node
+    environment:
+      # you can add your CodeClimate test report ID here or in CircleCI
+      # settings for environment variables
+      CC_TEST_REPORTER_ID: use-here-your-codeclimate-test-report-id
+    working_directory: ~/repo
 
     steps:
       # This will restore files from persist_to_workspace step
@@ -141,11 +148,17 @@ working_directory: ~/repo
             ./cc-test-reporter sum-coverage --output - codeclimate.*.json | ./cc-test-reporter upload-coverage --debug --input -
 
 workflows:
-version: 2
+  version: 2
 
-commit:
-jobs: # run our CI build with tests - build # once CI build is completed then we merge CodeClimate reports # from each parallel job and upload summary coverage to CodeClimate - upload-coverage:
-requires: - build
+  commit:
+    jobs:
+      # run our CI build with tests
+      - build
+      # once CI build is completed then we merge CodeClimate reports
+      # from each parallel job and upload summary coverage to CodeClimate
+      - upload-coverage:
+          requires:
+             - build
 {% endhighlight %}
 
 ## SimpleCov configuration for RSpec
@@ -153,16 +166,14 @@ requires: - build
 When you use [simplecov](https://github.com/colszowka/simplecov) gem in order to create test coverage for RSpec then you need to remember about one additional thing when you want to run tests in parallel on many CircleCI jobs. You set a unique name for the simplecov report with `SimpleCov.command_name`.
 
 {% highlight ruby %}
-
 # spec/rails_helper.rb or spec/spec_helper.rb
 
 require 'simplecov'
 SimpleCov.start
 
 # this is needed when you use knapsack_pro Queue Mode
-
-KnapsackPro::Hooks::Queue.before*queue do
-SimpleCov.command_name("rspec_ci_node*#{KnapsackPro::Config::Env.ci_node_index}")
+KnapsackPro::Hooks::Queue.before_queue do
+  SimpleCov.command_name("rspec_ci_node_#{KnapsackPro::Config::Env.ci_node_index}")
 end
 {% endhighlight %}
 
@@ -196,9 +207,9 @@ TMP_RSPEC_XML_REPORT = 'tmp/test-reports/rspec/queue_mode/rspec.xml'
 FINAL_RSPEC_XML_REPORT = 'tmp/test-reports/rspec/queue_mode/rspec_final_results.xml'
 
 KnapsackPro::Hooks::Queue.after_subset_queue do |queue_id, subset_queue_id|
-if File.exist?(TMP_RSPEC_XML_REPORT)
-FileUtils.mv(TMP_RSPEC_XML_REPORT, FINAL_RSPEC_XML_REPORT)
-end
+  if File.exist?(TMP_RSPEC_XML_REPORT)
+    FileUtils.mv(TMP_RSPEC_XML_REPORT, FINAL_RSPEC_XML_REPORT)
+  end
 end
 {% endhighlight %}
 
