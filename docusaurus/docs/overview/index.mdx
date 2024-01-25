@@ -92,6 +92,18 @@ However, as explained in the [Queue Mode](#queue-mode-dynamic-split) section, th
 
 In case of network issues, Knapsack Pro logs a warning and automatically switches to Fallback Mode to run your tests with a split based on test file names.
 
+## Split by test examples
+
+Knapsack Pro can [parallelize tests across CI nodes by example](/ruby/split-by-test-examples/). This is useful when you have slow test files but don't want to manually split test examples into smaller test files.
+
+## Spot CI nodes
+
+When you use spot CI nodes like Google Cloud Preemptible VMs or Amazon EC2 Spot Instances, Knapsack Pro gracefully [handles preemptions](/ruby/queue-mode/#dynamic-split-vs-fixed-split): when you retry a node that was shut down the same tests are executed.
+
+## Retry only failed CI nodes
+
+Knapsack Pro remembers what tests each CI node runs, so you can safely retry single nodes instead of re-running the entire suite. In some cases, you can [retry only the tests that failed](/ruby/circleci/#rerun-only-failed-tests)!
+
 ## SAML-based single sign-on (SSO)
 
 Besides traditional authentication (magic links, email/password), Knapsack Pro supports your organization's Identity Provider (IdP) like Okta, OneLogin, Google Workspace, or any other SAML SSO provider.
