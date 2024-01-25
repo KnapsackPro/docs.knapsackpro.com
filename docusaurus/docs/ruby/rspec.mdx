@@ -16,7 +16,6 @@ import JsonQueueModeFormatter from './formatters/_json_queue_mode.md';
 
 <TOCBottom heading="Reference" Icon={<IconExternalLink />}>
 
-- [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS`](reference.md#knapsack_pro_modify_default_rspec_formatters-rspec)
 - [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](reference.md#knapsack_pro_rspec_split_by_test_examples-rspec)
 - [`KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX`](reference.md#knapsack_pro_rspec_test_example_detector_prefix-rspec)
 - [`KNAPSACK_PRO_TEST_DIR`](reference.md#knapsack_pro_test_dir-rspec)
@@ -178,20 +177,6 @@ Also, please make sure you have explicitly set `RAILS_ENV=test` on your CI nodes
 ### `.rspec` is ignored in Queue Mode
 
 The `.rspec` file is ignored in Queue Mode because `knapsack_pro` needs to pass arguments explicitly to `RSpec::Core::Runner`. You can inline them with the [Rake argument syntax](reference.md#command-line-arguments) instead.
-
-### Something is wrong with my custom formatter
-
-Try with [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](reference.md#knapsack_pro_modify_default_rspec_formatters-rspec).
-
-### I see the summary of failed/pending tests multiple times in Queue Mode
-
-It may happen if you use:
-
-- a custom RSpec formatter
-- `knapsack_pro` < 0.33.0
-- [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](reference.md#knapsack_pro_modify_default_rspec_formatters-rspec)
-
-This is due to the fact that Knapsack Pro in Queue Mode [runs tests in batches](../overview/index.mdx#queue-mode-dynamic-split), and RSpec accumulates failures/pending tests for all batches.
 
 ### `TypeError: superclass mismatch for class MyClass` in Queue Mode
 

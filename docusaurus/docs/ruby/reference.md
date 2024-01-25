@@ -202,17 +202,6 @@ Available:
 - `development` sets `KNAPSACK_PRO_ENDPOINT` to `http://api.knapsackpro.test:3000`
 - `test` sets `KNAPSACK_PRO_ENDPOINT` to `https://api-staging.knapsackpro.com`
 
-## `KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS` (RSpec)
-
-Enable/disable monkey patching of the [RSpec Formatters](https://www.relishapp.com/rspec/rspec-core/v/2-6/docs/command-line/format-option). You may want to set it to `false` if it interferes with your custom formatter.
-
-Default: `true`
-
-Available:
-
-- `true`: Show the summary of pending and failed tests only at the end of the test run.
-- `false`: Show the summary of pending and failed tests after each intermediate batch of tests. The summary is cumulative so you will the same tests mentioned multiple times, though they are executed only once.
-
 ## `KNAPSACK_PRO_PROJECT_DIR`
 
 Absolute path to the project directory (containing `.git/`) on the CI node.
