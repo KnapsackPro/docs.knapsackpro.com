@@ -29,8 +29,7 @@ Here is the full CircleCI 2.0 example for parallel builds using RSpec and CodeCl
 version: 2
 jobs:
   build:
-    # set here how many parallel jobs you want to run.
-    # more parallel jobs the faster is your CI build
+    # Specify the number of parallel jobs to run. Increasing the parallelism speeds your CI build.
     parallelism: 2
     docker:
       # specify the version you desire here
