@@ -7,10 +7,6 @@ import { TOCBottom } from '@site/src/components/TOCBottom'
 import { IconExternalLink } from '@site/src/components/IconExternalLink'
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import XmlRegularModeFormatter from './formatters/_xml_regular_mode.md';
-import JsonRegularModeFormatter from './formatters/_json_regular_mode.md';
-import XmlQueueModeFormatter from './formatters/_xml_queue_mode.md';
-import JsonQueueModeFormatter from './formatters/_json_queue_mode.md';
 
 # Using Knapsack Pro with RSpec
 
@@ -68,10 +64,14 @@ You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_
 
 <Tabs>
   <TabItem value="junit-formatter" label="JUnit XML" default>
-    <XmlRegularModeFormatter />
+    ```bash
+    bundle exec rake "knapsack_pro:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
+    ```
   </TabItem>
   <TabItem value="json-formatter" label="JSON">
-    <JsonRegularModeFormatter />
+    ```bash
+    bundle exec rake "knapsack_pro:rspec[--format documentation --format json --out tmp/rspec.json]"
+    ```
   </TabItem>
 </Tabs>
 
@@ -81,10 +81,36 @@ You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_
 
 <Tabs>
   <TabItem value="junit-formatter" label="JUnit XML" default>
-    <XmlQueueModeFormatter />
+    ```bash
+    bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
+    ```
+
+    You need to append the CI node index to the report name to avoid conflicts if your CI nodes write to the same disk:
+
+    ```bash
+    # Refer to your CI docs for `$MY_CI_NODE_INDEX`
+    export KNAPSACK_PRO_CI_NODE_INDEX=$MY_CI_NODE_INDEX
+
+    bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
+    ```
+
+    This applies also if you are running parallel test processes on each CI node (see our page on to integrate Knapsack Pro with [`parallel_tests`](../parallel_tests.md) for an example).
   </TabItem>
   <TabItem value="json-formatter" label="JSON">
-    <JsonQueueModeFormatter />
+    ```bash
+    bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format json --out tmp/rspec.json]"
+    ```
+
+    You need to append the CI node index to the report name to avoid conflicts if your CI nodes write to the same disk:
+
+    ```bash
+    # Refer to your CI docs for `$MY_CI_NODE_INDEX`
+    export KNAPSACK_PRO_CI_NODE_INDEX=$MY_CI_NODE_INDEX
+
+    bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format json --out tmp/rspec_$KNAPSACK_PRO_CI_NODE_INDEX.json]"
+    ```
+
+    This applies also if you are running parallel test processes on each CI node (see our page on to integrate Knapsack Pro with [`parallel_tests`](../parallel_tests.md) for an example).
   </TabItem>
 </Tabs>
 
