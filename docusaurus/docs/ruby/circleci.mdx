@@ -14,7 +14,7 @@ import { YouTube } from '@site/src/components/YouTube';
 You may want to [collect metadata](https://circleci.com/docs/collect-test-data/#metadata-collection-in-custom-test-steps) in CircleCI. For example, to collect junit reports of your RSpec runs you would:
 
 - Configure the [junit formatter for RSpec](rspec.mdx#queue-mode)
-- Generate the report to the `$CIRCLE_TEST_REPORTS` directory as shown below
+- Store the test results as shown below
 
 ```yaml title=".circleci/config.yml"
 - run:
