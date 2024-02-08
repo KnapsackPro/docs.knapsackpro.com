@@ -37,6 +37,27 @@ To collect JUnit reports of your RSpec runs, you would:
 
 You can find a complete CircleCI configuration in [RSpec testing parallel jobs with CircleCI and JUnit XML report](https://docs.knapsackpro.com/2021/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report).
 
+### Cucumber
+
+Please provide a directory path in the `--out` option, where JUnit XML reports are generated. The directory path `tmp/test-reports/` must end with `/` as shown in the following example:
+
+```yaml title=".circleci/config.yml"
+- run:
+    name: Cucumber with Knapsack Pro in Queue Mode
+    command: |
+      mkdir -p /tmp/test-results
+      bundle exec rake "knapsack_pro:queue:cucumber[--format junit --out tmp/test-reports/]"
+
+- store_test_results:
+    path: /tmp/test-results
+
+- store_artifacts:
+    path: /tmp/test-results
+    destination: test-results
+```
+
+The XML report is generated for each batch of tests fetched from the Queue API. Multiple reports are created on each CI node in Queue Mode.
+
 ## Rerun _only_ failed tests
 
 Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tests/) feature with Knapsack Pro to only rerun a subset of tests instead of rerunning the entire test suite when a transient test failure arises.
