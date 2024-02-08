@@ -95,9 +95,8 @@ jobs:
       - run:
           name: run tests
           command: |
-            export CIRCLE_TEST_REPORTS=/tmp/test-results
-            mkdir $CIRCLE_TEST_REPORTS
-            bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out $CIRCLE_TEST_REPORTS/rspec.xml]"
+            mkdir -p /tmp/test-results
+            bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out /tmp/test-results/rspec.xml]"
 
       - run:
           name: Code Climate Test Coverage
