@@ -136,7 +136,7 @@ bundle exec rake "knapsack_pro:queue:rspec"
 
 ## Load code only once for a specific type of specs
 
-In large projects that use RSpec, it is common to have some expensive setup logic that is only needed when certain kinds of specs have been loaded. If that kind of spec has not been loaded, you’d prefer to avoid the cost of doing the setup.
+In large projects that use RSpec, it is common to have some expensive setup logic that is only needed when certain kinds of specs have been loaded. You would prefer to avoid the setup cost if that kind of spec has not been loaded.
 
 The `when_first_matching_example_defined` hook makes it easy to conditionally perform some logic when the first test example is defined with matching metadata, allowing you to ensure the necessary setup is only performed when needed.
 
