@@ -136,13 +136,11 @@ bundle exec rake "knapsack_pro:queue:rspec"
 
 ## Load code only once for a specific type of specs
 
-You can save time and run tests faster if you avoid loading a service that is not needed to run tests.
+In large projects that use RSpec, it’s common to have some expensive setup logic that is only needed when certain kinds of specs have been loaded. If that kind of spec has not been loaded, you’d prefer to avoid the cost of doing the setup.
 
-For example, your system tests require `MyExpensiveService` to run. Tests are allocated dynamically between parallel CI nodes in Queue Mode. A CI node may not have a system test assigned to it. There is no point in booting `MyExpensiveService` in such a case.
+The `when_first_matching_example_defined` hook makes it easy to conditionally perform some logic when the first example is defined with matching metadata, allowing you to ensure the necessary setup is performed only when needed.
 
-You can configure RSpec to load the service dependency only when needed. It is loaded only once after the first system test is fetched from the Queue API.
-
-Please add the following helper to your `spec_helper.rb`:
+Due to the internals of Knapsack Pro, you need to add the following code to `spec_helper.rb` to use `when_first_matching_example_defined` with Queue Mode:
 
 ```ruby
 def when_first_matching_example_defined(type:)
