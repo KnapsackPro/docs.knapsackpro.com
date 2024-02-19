@@ -174,7 +174,7 @@ When `KNAPSACK_PRO_LOG_DIR=log`, Knapsack Pro will write logs to the `log` direc
 
 ## `KNAPSACK_PRO_LOG_LEVEL`
 
-Default: `debug`
+Default: `info`
 
 Available: `debug` | `info` | `warn` | `error` | `fatal`
 
