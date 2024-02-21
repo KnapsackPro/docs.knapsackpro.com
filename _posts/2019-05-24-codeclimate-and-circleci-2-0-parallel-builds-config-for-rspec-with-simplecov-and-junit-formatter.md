@@ -188,8 +188,6 @@ You can use junit formatter for RSpec thanks to gem [rspec_junit_formatter](http
 bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out /tmp/test-reports/rspec.xml]"
 {% endhighlight %}
 
-The xml report will contain all tests executed on a CI node.
-
 [Learn more in docs](https://docs.knapsackpro.com/ruby/circleci/#collect-metadata-in-queue-mode).
 
 ## Summary and Queue Mode to do dynamic test suite split
