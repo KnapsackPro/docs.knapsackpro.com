@@ -58,29 +58,12 @@ See [Split by test examples](split-by-test-examples.mdx).
 
 Format stdout with the `documentation` formatter and file output with any RSpec supported formatter.
 
-### Regular Mode
-
 You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_junit_formatter) gem.
 
-<Tabs>
-  <TabItem value="junit-formatter" label="JUnit XML" default>
-    ```bash
-    bundle exec rake "knapsack_pro:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
-    ```
-  </TabItem>
-  <TabItem value="json-formatter" label="JSON">
-    ```bash
-    bundle exec rake "knapsack_pro:rspec[--format documentation --format json --out tmp/rspec.json]"
-    ```
-  </TabItem>
-</Tabs>
-
-### Queue Mode
-
-You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_junit_formatter) gem.
+### JUnit formatter
 
 <Tabs>
-  <TabItem value="junit-formatter" label="JUnit XML" default>
+  <TabItem value="junit-formatter" label="Queue Mode" default>
     ```bash
     bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
     ```
@@ -96,7 +79,17 @@ You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_
 
     This also applies if you are running parallel test processes on each CI node (see how to [integrate Knapsack Pro with `parallel_tests` here](parallel_tests.md)).
   </TabItem>
-  <TabItem value="json-formatter" label="JSON">
+  <TabItem value="json-formatter" label="Regular Mode">
+    ```bash
+    bundle exec rake "knapsack_pro:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
+    ```
+  </TabItem>
+</Tabs>
+
+### JSON formatter
+
+<Tabs>
+  <TabItem value="junit-formatter" label="Queue Mode" default>
     ```bash
     bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format json --out tmp/rspec.json]"
     ```
@@ -111,6 +104,11 @@ You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_
     ```
 
     This also applies if you are running parallel test processes on each CI node (see how to [integrate Knapsack Pro with `parallel_tests` here](parallel_tests.md)).
+  </TabItem>
+  <TabItem value="json-formatter" label="Regular Mode">
+    ```bash
+    bundle exec rake "knapsack_pro:rspec[--format documentation --format json --out tmp/rspec.json]"
+    ```
   </TabItem>
 </Tabs>
 
