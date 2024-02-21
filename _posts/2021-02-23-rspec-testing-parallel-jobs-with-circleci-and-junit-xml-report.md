@@ -39,7 +39,8 @@ end
 For [Knapsack Pro you will need an API token](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report) and you need to follow the [installation guide](/knapsack_pro-ruby/guide/) to configure your project.
 
 If you use `knapsack_pro` gem in Queue Mode with CircleCI you may want to collect metadata like JUnit XML report about your RSpec test suite.
-The important step for CircleCI is to copy the XML report to `/tmp/test-results` directory. [Learn more in docs](https://docs.knapsackpro.com/ruby/circleci/#collect-metadata-in-queue-mode).
+
+It's important to copy the XML report to `/tmp/test-results`. Learn more about [collecting metadata on CircleCI](https://docs.knapsackpro.com/ruby/circleci/#collect-metadata-in-queue-mode) in the docs.
 
 ## CircleCI YML configuration for RSpec
 
