@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "concurrently \"npm run remark:watch\" \"npm run typecheck:watch\" \"docusaurus start\"",
+    "start": "concurrently \"npm run remark:watch\" \"npm run typecheck:watch\" \"docusaurus start -p 3001\"",
     "build": "npm run remark:once && npm run typecheck && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
