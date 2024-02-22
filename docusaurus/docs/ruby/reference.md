@@ -180,6 +180,12 @@ Available: `debug` | `info` | `warn` | `error` | `fatal`
 
 Recommended: `debug` when debugging issues, `info` to know what Knapsack Pro is doing
 
+<details>
+  <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
+
+  Default: `debug`
+</details>
+
 ## `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
 
 Max amount of request attempts to try before switching to [Fallback Mode](../overview/index.mdx#fallback-mode). Retries respect a linear back-off.
