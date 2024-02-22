@@ -79,9 +79,7 @@ end
 
   <Tabs>
     <TabItem value="junit-formatter" label="Before suite hook" default>
-      ```ruby
-      # spec_helper.rb
-
+      ```ruby title="spec_helper.rb"
       before_suite_block = proc {
         puts 'RSpec before suite hook called only once'
       }
@@ -103,9 +101,7 @@ end
       ```
     </TabItem>
     <TabItem value="json-formatter" label="After suite hook">
-      ```ruby
-      # spec_helper.rb
-
+      ```ruby title="spec_helper.rb"
       after_suite_block = proc {
         puts 'after suite hook called only once'
       }
