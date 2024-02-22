@@ -3,6 +3,9 @@ pagination_next: null
 pagination_prev: null
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Hooks: Before and After
 
 :::caution
@@ -30,6 +33,102 @@ KnapsackPro::Hooks::Queue.after_queue do |queue_id|
   puts 'after_queue - run after the test suite'
 end
 ```
+
+ ## RSpec
+
+<details>
+  <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
+
+  If you use Knapsack Pro in Queue Mode with RSpec hooks:
+
+  ```ruby
+  before(:suite) { ... }
+  after(:suite) { ... }
+  ```
+
+  Then you need to start using Queue Mode hooks:
+
+  ```ruby
+  KnapsackPro::Hooks::Queue.before_queue { ... }
+  KnapsackPro::Hooks::Queue.after_queue { ... }
+  ```
+
+  Otherwise, Knapsack Pro would call `before(:suite)` and `after(:suite)` for each batch of tests fetched from the Queue API.
+
+  For example, what follows are the hooks run with two batches of tests:
+
+  ```
+  before_queue
+
+  # First batch of tests from Knapsack Pro API
+  before :suite
+  first_spec.rb
+  second_spec.rb
+  after :suite
+
+  # Second batch of tests from Knapsack Pro API
+  before :suite
+  third_spec.rb
+  fourth_spec.rb
+  after :suite
+
+  after_queue
+  ```
+
+  Here are examples of how to define hooks properly so that they are called only once:
+
+  <Tabs>
+    <TabItem value="junit-formatter" label="Before suite hook" default>
+      ```ruby
+      # spec_helper.rb
+
+      before_suite_block = proc {
+        puts 'RSpec before suite hook called only once'
+      }
+
+      unless KnapsackPro::Config::Env.queue_recording_enabled?
+        RSpec.configure do |config|
+          config.before(:suite) do
+            before_suite_block.call
+            puts 'Run this only when not using Knapsack Pro Queue Mode'
+          end
+        end
+      end
+
+      KnapsackPro::Hooks::Queue.before_queue do |queue_id|
+        before_suite_block.call
+        puts 'Run this only when using Knapsack Pro Queue Mode'
+        puts 'This code is executed within the context of RSpec before(:suite) hook'
+      end
+      ```
+    </TabItem>
+    <TabItem value="json-formatter" label="After suite hook">
+      ```ruby
+      # spec_helper.rb
+
+      after_suite_block = proc {
+        puts 'after suite hook called only once'
+      }
+
+      unless KnapsackPro::Config::Env.queue_recording_enabled?
+        RSpec.configure do |config|
+          config.after(:suite) do
+            after_suite_block.call
+            puts 'Run this only when not using Knapsack Pro Queue Mode'
+          end
+        end
+      end
+
+      KnapsackPro::Hooks::Queue.after_queue do |queue_id|
+        after_suite_block.call
+        puts 'Run this only when using Knapsack Pro Queue Mode'
+        puts "This code is executed outside of the RSpec after(:suite) hook context because it's " +
+          "impossible to determine which after(:suite) is the last one to execute until it's executed."
+      end
+      ```
+    </TabItem>
+  </Tabs>
+</details>
 
 ## `percy-capybara`
 
