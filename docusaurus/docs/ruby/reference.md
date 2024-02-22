@@ -40,6 +40,8 @@ You don't need to set it if either:
 - Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)
 - You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
 
+In some cases, particularly for pull request merge commits or if the CI provider checks out a specific git commit during the build process, Git might only expose `HEAD` instead of the actual branch name.
+
 ## `KNAPSACK_PRO_BRANCH_ENCRYPTED`
 
 Enable [Branch Name Encryption](encryption.mdx).
