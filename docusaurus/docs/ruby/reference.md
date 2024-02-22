@@ -202,6 +202,27 @@ Available:
 - `development` sets `KNAPSACK_PRO_ENDPOINT` to `http://api.knapsackpro.test:3000`
 - `test` sets `KNAPSACK_PRO_ENDPOINT` to `https://api-staging.knapsackpro.com`
 
+## `KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS` (Removed, RSpec)
+
+:::caution
+
+This feature was removed in `knapsack_pro` version 7.0, as it is no longer needed.
+
+:::
+
+<details>
+  <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
+
+  Enable/disable monkey patching of the RSpec Formatters. You may want to set it to `false` if it interferes with your custom formatter.
+
+  Default: `true`
+
+  Available:
+
+  - `true`: Show the summary of pending and failed tests only at the end of the test run.
+  - `false`: Show the summary of pending and failed tests after each intermediate batch of tests fetched from the Queue API. The summary is cumulative so you will the same tests mentioned multiple times, though they are executed only once.
+</details>
+
 ## `KNAPSACK_PRO_PROJECT_DIR`
 
 Absolute path to the project directory (containing `.git/`) on the CI node.
