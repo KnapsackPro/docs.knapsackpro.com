@@ -1,0 +1,10 @@
+---
+pagination_prev: null
+pagination_next: null
+---
+
+# Troubleshooting
+
+## When using two different CI providers, why are not all test files executed?
+
+If you are utilizing two CI providers simultaneously, for example, CircleCI and TravisCI, and you run a test suite, it is necessary to have a separate API token for tests executed on CircleCI and another separate API token for the test suite executed on TravisCI.

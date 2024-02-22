@@ -224,6 +224,11 @@ const sidebars: SidebarsConfig = {
       ],
     },
     {
+      type: "doc",
+      label: "Troubleshooting",
+      id: "troubleshooting",
+    },
+    {
       type: "category",
       label: "Write your integration",
       collapsible: true,
