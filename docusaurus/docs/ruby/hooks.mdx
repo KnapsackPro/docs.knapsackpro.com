@@ -145,3 +145,25 @@ npx percy exec --parallel -- knapsack_pro queue:rspec
 ```
 
 Here you can find the docs for the [`knapsack_pro` binary](cookbook.md#use-the-knapsack-pro-binary).
+
+### `percy-capybara` < 4 (legacy)
+
+<details>
+  <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
+
+  If you are using Knapsack Pro in Queue Mode with `percy-capybara` < 4 and RSpec, replace:
+
+  ```ruby
+  before(:suite) { Percy::Capybara.initialize_build }
+  after(:suite) { Percy::Capybara.finalize_build }
+  ```
+
+  with:
+
+  ```ruby
+  KnapsackPro::Hooks::Queue.before_queue { |queue_id| Percy::Capybara.initialize_build }
+  KnapsackPro::Hooks::Queue.after_queue { |queue_id| Percy::Capybara.finalize_build }
+  ```
+
+  Otherwise, Knapsack Pro would call `before(:suite)` and `after(:suite)` for each batch of tests fetched from the Queue API.
+</details>
