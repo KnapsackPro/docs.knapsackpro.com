@@ -208,9 +208,9 @@ In large projects that use RSpec, it is common to have some expensive setup logi
 
 The `when_first_matching_example_defined` hook makes it easy to conditionally perform some logic when the first test example is defined with matching metadata, allowing you to ensure the necessary setup is only performed when needed.
 
-Due to the internals of Knapsack Pro, you need to add the following code to `spec_helper.rb` to use `when_first_matching_example_defined` with Queue Mode:
+Due to the internals of Knapsack Pro, you need to add the following code to use `when_first_matching_example_defined` with Queue Mode:
 
-```ruby
+```ruby title="spec_helper.rb"
 def when_first_matching_example_defined(type:)
   env_var_name = "WHEN_FIRST_MATCHING_EXAMPLE_DEFINED_FOR_#{type}"
 
