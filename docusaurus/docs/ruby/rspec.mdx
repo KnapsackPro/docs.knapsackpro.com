@@ -208,7 +208,11 @@ In large projects that use RSpec, it is common to have some expensive setup logi
 
 The `when_first_matching_example_defined` hook makes it easy to conditionally perform some logic when the first test example is defined with matching metadata, allowing you to ensure the necessary setup is only performed when needed.
 
-Due to the internals of Knapsack Pro, you need to add the following code to use `when_first_matching_example_defined` with Queue Mode:
+It is not advisable to combine `before(:suite)` with the RSpec `when_first_matching_example_defined` method in Queue Mode if your goal is to run `MyExpensiveService.start` just once for specific test types upon their first load.
+
+This setup risks the `before(:suite)` hook not being executed if a test of a particular type (e.g., `system`) is not included in the initial batch fetched from the Queue API.
+
+To guarantee that `MyExpensiveService.start` is executed only once and precisely when a specific test type is loaded for the first time, you need to use the following helper:
 
 ```ruby title="spec_helper.rb"
 def when_first_matching_example_defined(type:)
