@@ -24,19 +24,21 @@ Let's start with the full YAML config for CircleCI 2.0. You will find comment fo
 Here is the full CircleCI 2.0 example for parallel builds using RSpec and CodeClimate.
 
 {% highlight yaml %}
-
 # .circleci/config.yml
 
 version: 2
 jobs:
-build: # set here how many parallel jobs you want to run. # more parallel jobs the faster is your CI build
-parallelism: 2
-docker: # specify the version you desire here - image: circleci/ruby:2.6.3-node-browsers
-environment:
-PGHOST: 127.0.0.1
-PGUSER: rails-app-with-knapsack_pro
-RAILS_ENV: test
-RACK_ENV: test
+  build:
+    # Specify the number of parallel jobs to run. Increasing the parallelism speeds your CI build.
+    parallelism: 2
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.6.3-node-browsers
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: rails-app-with-knapsack_pro
+          RAILS_ENV: test
+          RACK_ENV: test
 
           # API token should be set in CircleCI environment variables settings instead of here
           # KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: rspec-token
@@ -54,9 +56,6 @@ RACK_ENV: test
 
     steps:
       - checkout
-
-      # create directory for xml reports created by junit formatter
-      - run: mkdir -p tmp/test-reports/rspec/queue_mode/
 
       - run:
           name: Install Code Climate Test Reporter
@@ -93,7 +92,11 @@ RACK_ENV: test
       # junit formatter must be configured as described in FAQ for knapsack_pro Queue Mode
       # this is also described in this article later
       # https://docs.knapsackpro.com/ruby/circleci/#collect-metadata-in-queue-mode
-      - run: bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/test-reports/rspec/queue_mode/rspec.xml]"
+      - run:
+          name: run tests
+          command: |
+            mkdir -p /tmp/test-results
+            bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out /tmp/test-results/rspec.xml]"
 
       - run:
           name: Code Climate Test Coverage
@@ -110,18 +113,21 @@ RACK_ENV: test
       # store test reports created with junit formatter in order to allow CircleCI
       # show info about executed tests in UI on top of CI build steps
       - store_test_results:
-          path: tmp/test-reports
+          path: /tmp/test-reports
 
       # store test reports created with junit formatter in order to allow CircleCI
       # let you browse recorded xml files in Artifacts tab
       - store_artifacts:
-          path: tmp/test-reports
+          path: /tmp/test-reports
 
-upload-coverage:
-docker: - image: circleci/ruby:2.6.3-node
-environment: # you can add your CodeClimate test report ID here or in CircleCI # settings for environment variables
-CC_TEST_REPORTER_ID: use-here-your-codeclimate-test-report-id
-working_directory: ~/repo
+  upload-coverage:
+    docker:
+      - image: circleci/ruby:2.6.3-node
+    environment:
+      # you can add your CodeClimate test report ID here or in CircleCI
+      # settings for environment variables
+      CC_TEST_REPORTER_ID: use-here-your-codeclimate-test-report-id
+    working_directory: ~/repo
 
     steps:
       # This will restore files from persist_to_workspace step
@@ -141,11 +147,17 @@ working_directory: ~/repo
             ./cc-test-reporter sum-coverage --output - codeclimate.*.json | ./cc-test-reporter upload-coverage --debug --input -
 
 workflows:
-version: 2
+  version: 2
 
-commit:
-jobs: # run our CI build with tests - build # once CI build is completed then we merge CodeClimate reports # from each parallel job and upload summary coverage to CodeClimate - upload-coverage:
-requires: - build
+  commit:
+    jobs:
+      # run our CI build with tests
+      - build
+      # once CI build is completed then we merge CodeClimate reports
+      # from each parallel job and upload summary coverage to CodeClimate
+      - upload-coverage:
+          requires:
+             - build
 {% endhighlight %}
 
 ## SimpleCov configuration for RSpec
@@ -153,16 +165,14 @@ requires: - build
 When you use [simplecov](https://github.com/colszowka/simplecov) gem in order to create test coverage for RSpec then you need to remember about one additional thing when you want to run tests in parallel on many CircleCI jobs. You set a unique name for the simplecov report with `SimpleCov.command_name`.
 
 {% highlight ruby %}
-
 # spec/rails_helper.rb or spec/spec_helper.rb
 
 require 'simplecov'
 SimpleCov.start
 
 # this is needed when you use knapsack_pro Queue Mode
-
-KnapsackPro::Hooks::Queue.before*queue do
-SimpleCov.command_name("rspec_ci_node*#{KnapsackPro::Config::Env.ci_node_index}")
+KnapsackPro::Hooks::Queue.before_queue do
+  SimpleCov.command_name("rspec_ci_node_#{KnapsackPro::Config::Env.ci_node_index}")
 end
 {% endhighlight %}
 
@@ -173,36 +183,12 @@ In order to show in CircleCI UI info about your test suite like failed tests, yo
 You can use junit formatter for RSpec thanks to gem [rspec_junit_formatter](https://github.com/sj26/rspec_junit_formatter).
 
 {% highlight ruby %}
-
 # knapsack_pro Queue Mode
 
-bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/test-reports/rspec/queue_mode/rspec.xml]"
+bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out /tmp/test-reports/rspec.xml]"
 {% endhighlight %}
 
-The xml report will contain all tests executed across intermediate test subset runs based on work queue. You need to add after subset queue hook to rename `rspec.xml` to `rspec_final_results.xml` thanks to that the final results file will contain only single xml tag with all tests executed on the CI node. This is related to the way how Queue Mode works. Detailed explanation is in the [issue](https://github.com/KnapsackPro/knapsack_pro-ruby/issues/40).
-
-{% highlight ruby %}
-
-# spec_helper.rb or rails_helper.rb
-
-# TODO This must be the same path as value for rspec --out argument
-
-# Note the path should not contain sign ~, for instance path ~/project/tmp/rspec.xml may not work. Please use full path instead.
-
-TMP_RSPEC_XML_REPORT = 'tmp/test-reports/rspec/queue_mode/rspec.xml'
-
-# move results to FINAL_RSPEC_XML_REPORT so the results won't accumulate with duplicated xml tags in TMP_RSPEC_XML_REPORT
-
-FINAL_RSPEC_XML_REPORT = 'tmp/test-reports/rspec/queue_mode/rspec_final_results.xml'
-
-KnapsackPro::Hooks::Queue.after_subset_queue do |queue_id, subset_queue_id|
-if File.exist?(TMP_RSPEC_XML_REPORT)
-FileUtils.mv(TMP_RSPEC_XML_REPORT, FINAL_RSPEC_XML_REPORT)
-end
-end
-{% endhighlight %}
-
-This example is based on [Knapsack Pro FAQ](https://knapsackpro.com/faq/question/how-to-use-junit-formatter).
+Learn more about [collecting metadata in CircleCI](https://docs.knapsackpro.com/ruby/circleci/#collect-metadata-in-queue-mode) in the docs.
 
 ## Summary and Queue Mode to do dynamic test suite split
 

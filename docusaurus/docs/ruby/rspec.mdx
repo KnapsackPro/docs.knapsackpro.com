@@ -7,16 +7,11 @@ import { TOCBottom } from '@site/src/components/TOCBottom'
 import { IconExternalLink } from '@site/src/components/IconExternalLink'
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import XmlRegularModeFormatter from './formatters/_xml_regular_mode.md';
-import JsonRegularModeFormatter from './formatters/_json_regular_mode.md';
-import XmlQueueModeFormatter from './formatters/_xml_queue_mode.md';
-import JsonQueueModeFormatter from './formatters/_json_queue_mode.md';
 
 # Using Knapsack Pro with RSpec
 
 <TOCBottom heading="Reference" Icon={<IconExternalLink />}>
 
-- [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS`](reference.md#knapsack_pro_modify_default_rspec_formatters-rspec)
 - [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](reference.md#knapsack_pro_rspec_split_by_test_examples-rspec)
 - [`KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX`](reference.md#knapsack_pro_rspec_test_example_detector_prefix-rspec)
 - [`KNAPSACK_PRO_TEST_DIR`](reference.md#knapsack_pro_test_dir-rspec)
@@ -63,25 +58,127 @@ See [Split by test examples](split-by-test-examples.mdx).
 
 Format stdout with the `documentation` formatter and file output with any RSpec supported formatter.
 
-### Regular Mode
+You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_junit_formatter) gem.
+
+### JUnit formatter
 
 <Tabs>
-  <TabItem value="junit-formatter" label="JUnit XML" default>
-    <XmlRegularModeFormatter />
+  <TabItem value="junit-formatter" label="Queue Mode" default>
+    ```bash
+    bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
+    ```
+
+    You need to append the CI node index to the report name to avoid conflicts if your CI nodes write to the same disk:
+
+    ```bash
+    # Refer to your CI docs for `$MY_CI_NODE_INDEX`
+    export KNAPSACK_PRO_CI_NODE_INDEX=$MY_CI_NODE_INDEX
+
+    bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
+    ```
+
+    This also applies if you are running parallel test processes on each CI node (see how to [integrate Knapsack Pro with `parallel_tests` here](parallel_tests.md)).
+
+    <details>
+      <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
+
+      ```bash
+      # Refer to your CI docs for `$MY_CI_NODE_INDEX`
+      export KNAPSACK_PRO_CI_NODE_INDEX=$MY_CI_NODE_INDEX
+
+      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
+      ```
+
+      ```ruby title="spec_helper.rb or rails_helper.rb"
+      # `TMP_REPORT` must be the same path as `--out`
+      # `TMP_REPORT` must be a full path (no `~`)
+      TMP_REPORT = "tmp/rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.xml"
+      FINAL_REPORT = "tmp/final_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.xml"
+
+      KnapsackPro::Hooks::Queue.after_subset_queue do |queue_id, subset_queue_id|
+        if File.exist?(TMP_REPORT)
+          FileUtils.mv(TMP_REPORT, FINAL_REPORT)
+        end
+      end
+      ```
+
+      `FINAL_REPORT` will contain all the tests run on the CI node (not just the last subset). For more information, you can read this [Github issue](https://github.com/KnapsackPro/knapsack_pro-ruby/issues/40).
+
+      If your CI nodes write to the same disk, you need to append the CI node index to the solution presented above to avoid conflicts:
+
+      ```ruby
+      TMP_REPORT = "tmp/rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.xml"
+      FINAL_REPORT = "tmp/final_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.xml"
+      ```
+
+      This applies also if you are running parallel test processes on each CI node (see our page on to integrate Knapsack Pro with [`parallel_tests`](parallel_tests.md) for an example).
+    </details>
   </TabItem>
-  <TabItem value="json-formatter" label="JSON">
-    <JsonRegularModeFormatter />
+  <TabItem value="json-formatter" label="Regular Mode">
+    ```bash
+    bundle exec rake "knapsack_pro:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
+    ```
   </TabItem>
 </Tabs>
 
-### Queue Mode
+### JSON formatter
 
 <Tabs>
-  <TabItem value="junit-formatter" label="JUnit XML" default>
-    <XmlQueueModeFormatter />
+  <TabItem value="junit-formatter" label="Queue Mode" default>
+    ```bash
+    bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format json --out tmp/rspec.json]"
+    ```
+
+    You need to append the CI node index to the report name to avoid conflicts if your CI nodes write to the same disk:
+
+    ```bash
+    # Refer to your CI docs for `$MY_CI_NODE_INDEX`
+    export KNAPSACK_PRO_CI_NODE_INDEX=$MY_CI_NODE_INDEX
+
+    bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format json --out tmp/rspec_$KNAPSACK_PRO_CI_NODE_INDEX.json]"
+    ```
+
+    This also applies if you are running parallel test processes on each CI node (see how to [integrate Knapsack Pro with `parallel_tests` here](parallel_tests.md)).
+
+    <details>
+      <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
+
+      ```bash
+      # Refer to your CI docs for `$MY_CI_NODE_INDEX`
+      export KNAPSACK_PRO_CI_NODE_INDEX=$MY_CI_NODE_INDEX
+
+      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format json --out tmp/rspec_$KNAPSACK_PRO_CI_NODE_INDEX.json]"
+      ```
+
+      ```ruby title="spec_helper.rb or rails_helper.rb"
+      # `TMP_REPORT` must be the same path as `--out`
+      # `TMP_REPORT` must be a full path (no `~`)
+      TMP_REPORT = "tmp/rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.json"
+      FINAL_REPORT = "tmp/final_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.json"
+
+      KnapsackPro::Hooks::Queue.after_subset_queue do |queue_id, subset_queue_id|
+        if File.exist?(TMP_REPORT)
+          FileUtils.mv(TMP_REPORT, FINAL_REPORT)
+        end
+      end
+      ```
+
+      `FINAL_REPORT` will contain all the tests run on the CI node (not just the last subset). For more information, you can read this [Github issue](https://github.com/KnapsackPro/knapsack_pro-ruby/issues/40).
+
+      If your CI nodes write to the same disk, you need to append the CI node index to the solution presented above to avoid conflicts:
+
+      ```ruby
+      TMP_REPORT = "tmp/rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.json"
+      FINAL_REPORT = "tmp/final_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.json"
+      ```
+
+      This applies also if you are running parallel test processes on each CI node (see our page on to integrate Knapsack Pro with [`parallel_tests`](parallel_tests.md) for an example).
+    </details>
   </TabItem>
-  <TabItem value="json-formatter" label="JSON">
-    <JsonQueueModeFormatter />
+  <TabItem value="json-formatter" label="Regular Mode">
+    ```bash
+    bundle exec rake "knapsack_pro:rspec[--format documentation --format json --out tmp/rspec.json]"
+    ```
   </TabItem>
 </Tabs>
 
@@ -103,6 +200,39 @@ Run non-Rswag tests by skipping Rswag tests with [`KNAPSACK_PRO_TEST_FILE_EXCLUD
 export KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=api-token-for-non-rswag-tests
 export KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN={spec/requests/**/*_spec.rb,spec/api/**/*_spec.rb,spec/integration/**/*_spec.rb}
 bundle exec rake "knapsack_pro:queue:rspec"
+```
+
+## Load code only once for a specific type of specs
+
+In large projects that use RSpec, it is common to have some expensive setup logic that is only needed when certain kinds of specs have been loaded. You would prefer to avoid the setup cost if that kind of spec has not been loaded.
+
+The `when_first_matching_example_defined` hook makes it easy to conditionally perform some logic when the first test example is defined with matching metadata, allowing you to ensure the necessary setup is only performed when needed.
+
+It is not advisable to combine `before(:suite)` with the RSpec `when_first_matching_example_defined` method in Queue Mode if your goal is to run `MyExpensiveService.start` just once for specific test types upon their first load.
+
+This setup risks the `before(:suite)` hook not being executed if a test of a particular type (e.g., `system`) is not included in the initial batch fetched from the Queue API.
+
+To guarantee that `MyExpensiveService.start` is executed only once and precisely when a specific test type is loaded for the first time, you need to use the following helper:
+
+```ruby title="spec_helper.rb"
+def when_first_matching_example_defined(type:)
+  env_var_name = "WHEN_FIRST_MATCHING_EXAMPLE_DEFINED_FOR_#{type}"
+
+  RSpec.configure do |config|
+    config.when_first_matching_example_defined(type: type) do
+      config.before(:context) do
+        unless ENV[env_var_name]
+          yield
+        end
+        ENV[env_var_name] = 'hook_called'
+      end
+    end
+  end
+end
+
+when_first_matching_example_defined(type: :system) do
+  MyExpensiveService.start
+end
 ```
 
 ## Troubleshooting
@@ -177,17 +307,29 @@ The `.rspec` file is ignored in Queue Mode because `knapsack_pro` needs to pass 
 
 ### Something is wrong with my custom formatter
 
-Try with [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](reference.md#knapsack_pro_modify_default_rspec_formatters-rspec).
+Please ensure the `knapsack_pro` gem is updated to [version 7.0](https://github.com/KnapsackPro/knapsack_pro-ruby/blob/master/CHANGELOG.md#700) or higher.
+
+<details>
+  <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
+
+  Try with [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](reference.md#knapsack_pro_modify_default_rspec_formatters-removed-rspec).
+</details>
 
 ### I see the summary of failed/pending tests multiple times in Queue Mode
 
-It may happen if you use:
+Please ensure the `knapsack_pro` gem is updated to [version 7.0](https://github.com/KnapsackPro/knapsack_pro-ruby/blob/master/CHANGELOG.md#700) or higher.
 
-- a custom RSpec formatter
-- `knapsack_pro` < 0.33.0
-- [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](reference.md#knapsack_pro_modify_default_rspec_formatters-rspec)
+<details>
+  <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
 
-This is due to the fact that Knapsack Pro in Queue Mode [runs tests in batches](../overview/index.mdx#queue-mode-dynamic-split), and RSpec accumulates failures/pending tests for all batches.
+  It may happen if you use:
+
+  - a custom RSpec formatter
+  - `knapsack_pro` < 0.33.0
+  - [`KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS=false`](reference.md#knapsack_pro_modify_default_rspec_formatters-removed-rspec)
+
+  This is due to the fact that Knapsack Pro in Queue Mode [runs tests in batches](../overview/index.mdx#queue-mode-dynamic-split), and RSpec accumulates failures/pending tests for all batches.
+</details>
 
 ### `TypeError: superclass mismatch for class MyClass` in Queue Mode
 
@@ -245,4 +387,4 @@ Also, you can try to use the [`knapsack_pro` binary](cookbook.md#use-the-knapsac
 
 ### `before(:suite)` / `after(:suite)` are executed multiple times in Queue Mode
 
-See [Hooks: Before and After](hooks.mdx#rspec)
+This issue has been fixed in knapsack_pro version 7.0. Learn more about [Knapsack Pro hooks](hooks.mdx).

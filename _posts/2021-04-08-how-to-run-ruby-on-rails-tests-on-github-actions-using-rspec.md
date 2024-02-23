@@ -27,13 +27,14 @@ This article covers a few things for Github Actions YAML config:
 It's recommended to [use `ruby/setup-ruby` instead of outdated `actions/setup-ruby`](/2021/how-to-load-ruby-gems-from-cache-on-github-actions).
 
 {% highlight yml %}
-
 - name: Set up Ruby
   uses: ruby/setup-ruby@v1
-  with: # Not needed with a .ruby-version file
-  ruby-version: 2.7 # runs 'bundle install' and caches installed gems automatically
-  bundler-cache: true
-  {% endhighlight %}
+  with:
+    # Not needed with a .ruby-version file
+    ruby-version: 2.7
+    # runs 'bundle install' and caches installed gems automatically
+    bundler-cache: true
+{% endhighlight %}
 
 ### How to configure Postgres on Github Actions
 
@@ -42,25 +43,27 @@ To use Postgres on Github Actions you need to set up a service for Postgres. I r
 In the config below, we also pass the settings for doing a health check to ensure the database is up and running before you start running tests.
 
 {% highlight yml %}
-
 # If you need DB like PostgreSQL, Redis then define service below.
 
 # https://github.com/actions/example-services/tree/master/.github/workflows
 
 services:
-postgres:
-image: postgres:10.8
-env:
-POSTGRES_USER: postgres
-POSTGRES_PASSWORD: ""
-POSTGRES_DB: postgres
-ports: - 5432:5432 # needed because the postgres container does not provide a healthcheck # tmpfs makes DB faster by using RAM
-options: >-
---mount type=tmpfs,destination=/var/lib/postgresql/data
---health-cmd pg_isready
---health-interval 10s
---health-timeout 5s
---health-retries 5
+  postgres:
+    image: postgres:10.8
+    env:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ""
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    # needed because the postgres container does not provide a healthcheck
+    # tmpfs makes DB faster by using RAM
+    options: >-
+      --mount type=tmpfs,destination=/var/lib/postgresql/data
+      --health-cmd pg_isready
+      --health-interval 10s
+      --health-timeout 5s
+      --health-retries 5
 {% endhighlight %}
 
 ### How to configure Redis on Github Actions
@@ -69,10 +72,11 @@ You can use Redis Docker container to start Redis server on Github Actions. See 
 
 {% highlight yml %}
 services:
-redis:
-image: redis
-ports: - 6379:6379
-options: --entrypoint redis-server
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    options: --entrypoint redis-server
 {% endhighlight %}
 
 ### How to use Github Actions build matrix to run tests with parallel jobs
@@ -83,19 +87,18 @@ You will need to split test files between these parallel jobs. For that, you can
 
 {% highlight yml %}
 {% raw %}
-
 - name: Run tests
   env:
-  KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
-  KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
-  KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-  KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
-  KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES: true
-  KNAPSACK_PRO_LOG_LEVEL: info
+    KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
+    KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+    KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+    KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
+    KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES: true
+    KNAPSACK_PRO_LOG_LEVEL: info
   run: |
-  bundle exec rake knapsack_pro:queue:rspec
-  {% endraw %}
-  {% endhighlight %}
+    bundle exec rake knapsack_pro:queue:rspec
+{% endraw %}
+{% endhighlight %}
 
 You can see that for RSpec we also use a `knapsack_pro` Ruby gem flag `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`. It allows to automatically [detect slow test files and split them between parallel jobs](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-ruby-on-rails-tests-on-github-actions-using-rspec).
 
@@ -112,8 +115,8 @@ name: Main
 on: [push]
 
 jobs:
-test:
-runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
     # If you need DB like PostgreSQL, Redis then define service below.
     # https://github.com/actions/example-services/tree/master/.github/workflows

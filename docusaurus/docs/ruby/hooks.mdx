@@ -5,20 +5,12 @@ pagination_prev: null
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import BeforeSuiteHookQueueMode from './hooks/_before_suite_hook_queue_mode.md';
-import AfterSuiteHookQueueMode from './hooks/_after_suite_hook_queue_mode.md';
 
 # Hooks: Before and After
 
 :::caution
 
 Knapsack Pro hooks are only available in [Queue Mode](../overview/index.mdx#queue-mode-dynamic-split).
-
-:::
-
-:::caution
-
-If you are using RSpec or `percy-capybara`, read the dedicated sections below.
 
 :::
 
@@ -42,74 +34,99 @@ KnapsackPro::Hooks::Queue.after_queue do |queue_id|
 end
 ```
 
-## RSpec
+ ## RSpec
 
-If you use Knapsack Pro in Queue Mode with RSpec hooks:
+<details>
+  <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
 
-```ruby
-before(:suite) { ... }
-after(:suite) { ... }
-```
+  If you use Knapsack Pro in Queue Mode with RSpec hooks:
 
-Then you need to start using Queue Mode hooks:
+  ```ruby
+  before(:suite) { ... }
+  after(:suite) { ... }
+  ```
 
-```ruby
-KnapsackPro::Hooks::Queue.before_queue { ... }
-KnapsackPro::Hooks::Queue.after_queue { ... }
-```
+  Then you need to start using Queue Mode hooks:
 
-Otherwise, Knapsack Pro would call `before(:suite)` and `after(:suite)` for each subset of tests fetched from Queue API.
+  ```ruby
+  KnapsackPro::Hooks::Queue.before_queue { ... }
+  KnapsackPro::Hooks::Queue.after_queue { ... }
+  ```
 
-For example, what follows are the hooks run with two subsets of tests:
+  Otherwise, Knapsack Pro would call `before(:suite)` and `after(:suite)` for each batch of tests fetched from the Queue API.
 
-```
-before_queue
+  For example, what follows are the hooks run with two batches of tests:
 
-# First subset of tests from Knapsack Pro API
-before :suite
-first_spec.rb
-second_spec.rb
-after :suite
+  ```
+  before_queue
 
-# Second subset of tests from Knapsack Pro API
-before :suite
-third_spec.rb
-fourth_spec.rb
-after :suite
+  # First batch of tests from Knapsack Pro API
+  before :suite
+  first_spec.rb
+  second_spec.rb
+  after :suite
 
-after_queue
-```
+  # Second batch of tests from Knapsack Pro API
+  before :suite
+  third_spec.rb
+  fourth_spec.rb
+  after :suite
 
-Here are examples of how to define hooks properly so that they are called only once:
+  after_queue
+  ```
 
-<Tabs>
-  <TabItem value="junit-formatter" label="Before suite hook" default>
-    <BeforeSuiteHookQueueMode />
-  </TabItem>
-  <TabItem value="json-formatter" label="After suite hook">
-    <AfterSuiteHookQueueMode />
-  </TabItem>
-</Tabs>
+  Here are examples of how to define hooks properly so that they are called only once:
+
+  <Tabs>
+    <TabItem value="junit-formatter" label="Before suite hook" default>
+      ```ruby title="spec_helper.rb"
+      before_suite_block = proc {
+        puts 'RSpec before suite hook called only once'
+      }
+
+      unless KnapsackPro::Config::Env.queue_recording_enabled?
+        RSpec.configure do |config|
+          config.before(:suite) do
+            before_suite_block.call
+            puts 'Run this only when not using Knapsack Pro Queue Mode'
+          end
+        end
+      end
+
+      KnapsackPro::Hooks::Queue.before_queue do |queue_id|
+        before_suite_block.call
+        puts 'Run this only when using Knapsack Pro Queue Mode'
+        puts 'This code is executed within the context of RSpec before(:suite) hook'
+      end
+      ```
+    </TabItem>
+    <TabItem value="json-formatter" label="After suite hook">
+      ```ruby title="spec_helper.rb"
+      after_suite_block = proc {
+        puts 'after suite hook called only once'
+      }
+
+      unless KnapsackPro::Config::Env.queue_recording_enabled?
+        RSpec.configure do |config|
+          config.after(:suite) do
+            after_suite_block.call
+            puts 'Run this only when not using Knapsack Pro Queue Mode'
+          end
+        end
+      end
+
+      KnapsackPro::Hooks::Queue.after_queue do |queue_id|
+        after_suite_block.call
+        puts 'Run this only when using Knapsack Pro Queue Mode'
+        puts "This code is executed outside of the RSpec after(:suite) hook context because it's " +
+          "impossible to determine which after(:suite) is the last one to execute until it's executed."
+      end
+      ```
+    </TabItem>
+  </Tabs>
+</details>
 
 ## `percy-capybara`
-
-### `percy-capybara` < 4
-
-If you are using Knapsack Pro in Queue Mode with `percy-capybara` < 4 and RSpec, replace:
-
-```ruby
-before(:suite) { Percy::Capybara.initialize_build }
-after(:suite) { Percy::Capybara.finalize_build }
-```
-
-with:
-
-```ruby
-KnapsackPro::Hooks::Queue.before_queue { |queue_id| Percy::Capybara.initialize_build }
-KnapsackPro::Hooks::Queue.after_queue { |queue_id| Percy::Capybara.finalize_build }
-```
-
-Otherwise, Knapsack Pro would call `before(:suite)` and `after(:suite)` for each subset of tests.
 
 ### `percy-capybara` >= 4
 
@@ -124,3 +141,25 @@ npx percy exec --parallel -- knapsack_pro queue:rspec
 ```
 
 Here you can find the docs for the [`knapsack_pro` binary](cookbook.md#use-the-knapsack-pro-binary).
+
+### `percy-capybara` < 4 (legacy)
+
+<details>
+  <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
+
+  If you are using Knapsack Pro in Queue Mode with `percy-capybara` < 4 and RSpec, replace:
+
+  ```ruby
+  before(:suite) { Percy::Capybara.initialize_build }
+  after(:suite) { Percy::Capybara.finalize_build }
+  ```
+
+  with:
+
+  ```ruby
+  KnapsackPro::Hooks::Queue.before_queue { |queue_id| Percy::Capybara.initialize_build }
+  KnapsackPro::Hooks::Queue.after_queue { |queue_id| Percy::Capybara.finalize_build }
+  ```
+
+  Otherwise, Knapsack Pro would call `before(:suite)` and `after(:suite)` for each batch of tests fetched from the Queue API.
+</details>
