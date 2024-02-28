@@ -267,7 +267,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "doc",
       label: "Troubleshooting",
-      id: "troubleshooting",
+      id: "troubleshooting/index",
     },
   ],
 };
