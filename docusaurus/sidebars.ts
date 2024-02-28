@@ -264,6 +264,11 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+    {
+      type: "doc",
+      label: "Troubleshooting",
+      id: "troubleshooting",
+    },
   ],
 };
 

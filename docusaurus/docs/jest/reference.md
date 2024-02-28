@@ -38,6 +38,8 @@ You don't need to set it if either:
 - Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers)
 - Your CI has git installed so that Knapsack Pro can retrieve it
 
+In some cases, particularly for pull request merge commits or if the CI provider checks out a specific git commit during the build process, Git might only expose `HEAD` instead of the actual branch name.
+
 ## `KNAPSACK_PRO_CI_NODE_BUILD_ID`
 
 Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
