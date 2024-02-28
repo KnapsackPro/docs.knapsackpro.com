@@ -3,8 +3,31 @@ pagination_prev: null
 pagination_next: null
 ---
 
+import ruby from "@site/static/img/ruby.png"
+import cypress from "@site/static/img/cypress.jpg"
+import jest from "@site/static/img/jest.jpg"
+
 # Troubleshooting
 
 ## When using two different CI providers, why are not all test files executed?
 
 If you are utilizing two CI providers simultaneously, for example, CircleCI and TravisCI, and you run a test suite, it is necessary to have a separate API token for tests executed on CircleCI and another separate API token for the test suite executed on TravisCI.
+
+## Troubleshooting language/framework issues
+
+<div className="grid">
+<a href="/ruby/troubleshooting/" className="cell">
+<div className="cell__image cell__image--ruby"><img width="60" height="60" src={ruby}></img></div>
+<h2 className="cell__title">Ruby</h2>
+</a>
+
+<a href="/cypress/troubleshooting/" className="cell">
+<div className="cell__image"><img width="70" height="70" src={cypress}></img></div>
+<h2 className="cell__title">Cypress</h2>
+</a>
+
+<a href="/jest/troubleshooting/" className="cell">
+<div className="cell__image"><img width="70" height="70" src={jest}></img></div>
+<h2 className="cell__title">Jest</h2>
+</a>
+</div>
