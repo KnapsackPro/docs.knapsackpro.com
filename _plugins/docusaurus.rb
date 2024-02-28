@@ -48,6 +48,9 @@ Jekyll::Hooks.register :site, :post_write do |page|
   system!("mkdir -p _site/overview")
   system!("cp docusaurus/build/overview/index.html _site/overview")
 
+  system!("mkdir -p _site/troubleshooting")
+  system!("cp docusaurus/build/troubleshooting/index.html _site/troubleshooting")
+
   system!("mkdir -p _site/ruby")
   [
     "capybara",
