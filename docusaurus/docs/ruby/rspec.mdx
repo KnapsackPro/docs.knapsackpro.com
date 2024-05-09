@@ -388,3 +388,24 @@ Also, you can try to use the [`knapsack_pro` binary](cookbook.md#use-the-knapsac
 ### `before(:suite)` / `after(:suite)` are executed multiple times in Queue Mode
 
 This issue has been fixed in knapsack_pro version 7.0. Learn more about [Knapsack Pro hooks](hooks.mdx).
+
+### The `before(:suite)` hooks defined in test files are not executed in Queue Mode
+
+It is recommended that you define your `before(:suite)` hooks in `spec_helper.rb` or `rails_helper.rb`. These files should be loaded before any test files so that the hook is registered by RSpec.
+
+The `before(:suite)` hook is executed first. After that, test files are dynamically loaded in multiple batches from the Knapsack Pro Queue API. __The `before(:suite)` hooks defined in test files won't be executed because it is too late!__
+
+If you need to have something that is similar to `before(:suite)` and you want to define it in a test file, then you can use this:
+
+```ruby title="spec/features/a_spec.rb"
+RSpec.configure do |config|
+  config.before(:context) do
+    unless ENV['MY_HOOK_NAME']
+      # your code to run in the hook
+    end
+    ENV['MY_HOOK_NAME'] = 'hook_called'
+  end
+end
+```
+
+Alternatively, if you need to [load code only once for a specific type of specs you can check this](#load-code-only-once-for-a-specific-type-of-specs).
