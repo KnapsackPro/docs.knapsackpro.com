@@ -46,12 +46,6 @@ Please answer the following questions to generate the configuration for your pro
 { value: "test-unit", label: "test-unit" }
 ]} />
 
-**Do you use the VCR or WebMock gem?**
-<RadioGroup inUrl="vcr" items={[
-{ value: "yes", label: "Yes" },
-{ value: "no", label: "No" },
-]} />
-
 **What is your CI provider?**
 <RadioGroup inUrl="ci" items={[
 { value: "appveyor", label: "AppVeyor" },
@@ -165,50 +159,6 @@ require 'knapsack_pro'
 # Custom Knapsack Pro config here
 
 KnapsackPro::Adapters::SpinachAdapter.bind
-```
-
-</ShowIfSearchParamAndValue>
-
-<ShowIfSearchParamAndValue searchParam="vcr" value="yes">
-
-### VCR/WebMock
-
-Add the Knapsack Pro API's subdomain to [ignored hosts](https://relishapp.com/vcr/vcr/v/6-1-0/docs/configuration/ignore-request) in `spec/spec_helper.rb` (or wherever your VCR configuration is located):
-
-```ruby
-require 'vcr'
-
-VCR.configure do |config|
-  config.hook_into :webmock
-  config.ignore_hosts('localhost', '127.0.0.1', '0.0.0.0', 'api.knapsackpro.com')
-end
-
-require 'webmock/rspec'
-WebMock.disable_net_connect!(allow_localhost: true, allow: ['api.knapsackpro.com'])
-```
-
-You may need to add `require: false` in your Gemfile:
-
-```ruby
-group :test do
-  gem 'vcr'
-  gem 'webmock', require: false
-end
-```
-
-If some tests are failing due to requests to the Knapsack Pro API, you may have some code that reconfigures WebMock. The usual suspects are calls to `WebMock.reset!` or an [issue](https://github.com/bblimke/webmock/issues/484#issuecomment-116193449) with `webmock/rspec`. In the latter case, you can solve the problem with:
-
-```ruby
-RSpec.configure do |config|
-  config.after(:suite) do
-    WebMock.disable_net_connect!(
-      allow_localhost: true,
-      allow: [
-        'api.knapsackpro.com',
-      ],
-    )
-  end
-end
 ```
 
 </ShowIfSearchParamAndValue>

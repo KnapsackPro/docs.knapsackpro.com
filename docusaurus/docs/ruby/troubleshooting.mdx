@@ -184,15 +184,59 @@ You can fix it by either:
 - Using a gem like [VCR](https://github.com/vcr/vcr) to record/replay your HTTP interactions
 - Write your tests so that they can run in parallel (e.g., each test creates/deletes its own Stripe data)
 
-## `OpenSSL::SSL::SSLError`
+## WebMock/VCR
 
-VCR or WebMock may trigger the following error when Knapsack Pro interacts with the Knapsack Pro API:
+WebMock or VCR may trigger the following errors when Knapsack Pro interacts with the Knapsack Pro API:
 
-```bash
-OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=error: tlsv1 alert internal error
-```
+- "Real HTTP connections are disabled"
+- `WebMock::NetConnectNotAllowedError`
+- `VCR::Errors::UnhandledHTTPRequestError`
+- `OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=error: tlsv1 alert internal error`
 
-Make sure to follow the steps to [configure VCR/WebMock](../knapsack_pro-ruby/guide/index.mdx).
+**`knapsack_pro` version 7.2 fixed those issues.**
+
+<details>
+  <summary>For legacy versions of `knapsack_pro` older than 7.2, please click here.</summary>
+
+  Add the Knapsack Pro API's subdomain to the [ignored hosts](https://relishapp.com/vcr/vcr/v/6-1-0/docs/configuration/ignore-request) and [`disable_web_connect!`](https://github.com/bblimke/webmock) in `spec/spec_helper.rb` (or wherever your WebMock/VCR configuration is located):
+
+  ```ruby
+  require 'vcr'
+
+  VCR.configure do |config|
+    config.hook_into :webmock
+    config.ignore_hosts('localhost', '127.0.0.1', '0.0.0.0', 'api.knapsackpro.com')
+  end
+
+  require 'webmock/rspec'
+  WebMock.disable_net_connect!(allow_localhost: true, allow: ['api.knapsackpro.com'])
+  ```
+
+  You may need to add `require: false` in your Gemfile:
+
+  ```ruby
+  group :test do
+    gem 'vcr'
+    gem 'webmock', require: false
+  end
+  ```
+
+  If some tests are failing due to requests to the Knapsack Pro API, you may have some code that reconfigures WebMock. The usual suspects are calls to `WebMock.reset!` or an [issue](https://github.com/bblimke/webmock/issues/484#issuecomment-116193449) with `webmock/rspec`. In the latter case, you can solve the problem with:
+
+  ```ruby
+  RSpec.configure do |config|
+    config.after(:suite) do
+      WebMock.disable_net_connect!(
+        allow_localhost: true,
+        allow: [
+          'api.knapsackpro.com',
+        ],
+      )
+    end
+  end
+  ```
+
+</details>
 
 ## `ActiveRecord::SubclassNotFound`
 
