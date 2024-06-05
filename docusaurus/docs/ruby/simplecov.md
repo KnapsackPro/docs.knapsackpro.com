@@ -3,6 +3,15 @@ pagination_next: null
 pagination_prev: null
 ---
 
+import { TOCBottom } from '@site/src/components/TOCBottom'
+import { IconExternalLink } from '@site/src/components/IconExternalLink'
+
+<TOCBottom heading="Reference" Icon={<IconExternalLink />}>
+
+- [Using Knapsack Pro with CodeClimate](code-climate.md)
+
+</TOCBottom>
+
 # Using Knapsack Pro in Queue Mode with SimpleCov
 
 :::caution
