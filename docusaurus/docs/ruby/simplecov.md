@@ -98,6 +98,8 @@ You can also look at these examples:
 * [How to merge SimpleCov results with parallel Rails specs on Semaphore CI](https://docs.knapsackpro.com/2020/how-to-merge-simplecov-results-with-parallel-rails-specs)
 * [How to merge CodeClimate reports for parallel jobs (CI nodes)](https://docs.knapsackpro.com/2019/how-to-merge-codeclimate-reports-for-parallel-jobs-ci-nodes)
 
+In Knapsack Pro Queue Mode, a late CI node will run no tests. The CI node is late when it starts work after other parallel nodes have already executed all the tests. This means there will be no SimpleCov report on the late CI node. You should adjust your CI pipeline for this when you expect to fetch SimpleCov reports from parallel nodes.
+
 ### Shared disk between parallel nodes
 
 SimpleCov generates a single report at `coverage/index.html` with merged data if a local drive is shared between parallel nodes. This is the case when you use Jenkins and the disk is shared between parallel nodes.
