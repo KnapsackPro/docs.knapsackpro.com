@@ -7,7 +7,7 @@ pagination_prev: null
 
 :::caution
 
-This is needed only if you are using Knapsack Pro in [Queue Mode](../overview/index.mdx#queue-mode-dynamic-split).
+This is needed only if you are using Knapsack Pro in [Queue Mode](../overview/index.mdx#queue-mode-dynamic-split) and legacy versions of `knapsack_pro` older than 7.0.
 
 :::
 
