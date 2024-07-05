@@ -64,4 +64,4 @@ By understanding the consequences of each solution, we are well-equipped to tack
 <br/>
 
 ___
-[1] The 'x' prefix works with other methods as well. Please consult the [RSpec docs](https://relishapp.com/rspec/rspec-core/v/3-9/docs/pending-and-skipped-examples/skip-examples) for details.
+[1] The 'x' prefix works with other methods as well. Please consult the [RSpec docs](https://rspec.info/features/3-13/rspec-core/pending-and-skipped-examples/) for details.

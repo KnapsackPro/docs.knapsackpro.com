@@ -206,7 +206,7 @@ WebMock or VCR may trigger the following errors when Knapsack Pro interacts with
 <details>
   <summary>For legacy versions of `knapsack_pro` older than 7.2, please click here.</summary>
 
-  Add the Knapsack Pro API's subdomain to the [ignored hosts](https://relishapp.com/vcr/vcr/v/6-1-0/docs/configuration/ignore-request) and [`disable_web_connect!`](https://github.com/bblimke/webmock) in `spec/spec_helper.rb` (or wherever your WebMock/VCR configuration is located):
+  Add the Knapsack Pro API's subdomain to the [ignored hosts](https://benoittgt.github.io/vcr/#/configuration/ignore_request) and [`disable_web_connect!`](https://github.com/bblimke/webmock) in `spec/spec_helper.rb` (or wherever your WebMock/VCR configuration is located):
 
   ```ruby
   require 'vcr'
