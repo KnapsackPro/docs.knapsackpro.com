@@ -381,7 +381,7 @@ Use RSpec's [`stub_const`](https://rspec.info/features/3-13/rspec-mocks/mutating
 
 ### My tests fail in Queue Mode
 
-Knapsack Pro uses `RSpec::Core::Runner` in Queue Mode to run tests without reloading Ruby/Rails for each batch of tests. If you monkey-patch RSpec or mutate its global state, the test runner may not be able to clean up properly after each batch.
+Knapsack Pro in Queue Mode runs tests without reloading Ruby/Rails for each batch of tests. If you monkey-patch RSpec or mutate its global state, the test runner may not be able to clean up properly after each batch. Please [let us know](https://knapsackpro.com/contact) if you have any issues.
 
 Also, you can try to use the [`knapsack_pro` binary](cookbook.md#use-the-knapsack-pro-binary) instead of `bundle exec rake knapsack_pro:queue:rspec`.
 
