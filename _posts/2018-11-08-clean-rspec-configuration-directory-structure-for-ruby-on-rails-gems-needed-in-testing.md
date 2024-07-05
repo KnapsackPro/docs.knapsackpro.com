@@ -307,7 +307,7 @@ end
 
 ## Configuration for shared examples
 
-You can organize your [RSpec shared examples](https://relishapp.com/rspec/rspec-core/docs/example-groups/shared-examples) in directory `spec/support/shared_examples` that will be autoloaded.
+You can organize your [RSpec shared examples](https://rspec.info/features/3-13/rspec-core/example-groups/shared-examples/) in directory `spec/support/shared_examples` that will be autoloaded.
 
 ## Summary
 

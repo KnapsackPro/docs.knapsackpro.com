@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
 You have a couple of options:
 
 - [rspec-retry](https://github.com/NoRedInk/rspec-retry) (recommended)
-- [RSpec's `--only-failures`](https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures)
+- [RSpec's `--only-failures`](https://rspec.info/features/3-13/rspec-core/command-line/only-failures/)
   ```bash
   bundle exec rake knapsack_pro:queue:rspec
   bundle exec rspec --only-failures
@@ -265,7 +265,7 @@ Do not use `run_all_when_everything_filtered`
 
 :::
 
-Make sure to use [`filter_run_when_matching`](https://relishapp.com/rspec/rspec-core/v/3-12/docs/filtering/filter-run-when-matching) instead of the deprecated [`run_all_when_everything_filtered`](https://relishapp.com/rspec/rspec-core/v/2-3/docs/filtering/run-all-when-everything-filtered). The latter may cause skipping some of your tests.
+Make sure to use [`filter_run_when_matching`](https://rspec.info/features/3-13/rspec-core/filtering/filter-run-when-matching/) instead of the deprecated [`run_all_when_everything_filtered`](https://rspec.info/features/3-13/rspec-core/configuration/run-all-when-everything-filtered/). The latter may cause skipping some of your tests.
 
 ```ruby
 # ⛔️ Bad
@@ -377,11 +377,11 @@ describe 'B test of something' do
 end
 ```
 
-Use RSpec's [`stub_const`](https://relishapp.com/rspec/rspec-mocks/docs/mutating-constants) instead.
+Use RSpec's [`stub_const`](https://rspec.info/features/3-13/rspec-mocks/mutating-constants/stub-defined-constant/) instead.
 
 ### My tests fail in Queue Mode
 
-Knapsack Pro uses [`RSpec::Core::Runner`](https://relishapp.com/rspec/rspec-core/docs/running-specs-multiple-times-with-different-runner-options-in-the-same-process) in Queue Mode to run tests without reloading Ruby/Rails for each batch of tests. If you monkey-patch RSpec or mutate its global state, the test runner may not be able to clean up properly after each batch.
+Knapsack Pro in Queue Mode runs tests without reloading Ruby/Rails for each batch of tests. If you monkey-patch RSpec or mutate its global state, the test runner may not be able to clean up properly after each batch. Please [let us know](https://knapsackpro.com/contact) if you have any issues.
 
 Also, you can try to use the [`knapsack_pro` binary](cookbook.md#use-the-knapsack-pro-binary) instead of `bundle exec rake knapsack_pro:queue:rspec`.
 
