@@ -86,43 +86,45 @@ Some users reported frozen CI nodes with:
 
 - Chrome 83+ [prevents downloads in sandboxed iframes](https://developer.chrome.com/blog/chrome-83-deps-rems/): add an `allow-downloads` keyword in the sandbox attribute list
 
-- Tests freeze and CI node timeouts (the Ruby process is killed by a CI provider). Add the following script to `spec_helper.rb`. Thanks to that, you will see the backtrace showing what code line causes the hanging problem. Backtrace is visible only if the Ruby process got kill with `USR1` signal. Learn more from this [GitHub issue](https://github.com/rspec/rspec-rails/issues/1353#issuecomment-93173691).
+### Why does the CI node hang? (backtrace debugging)
 
-  ```ruby
-  # source https://github.com/rspec/rspec-rails/issues/1353#issuecomment-93173691
-  puts "Process pid: #{Process.pid}"
+Tests freeze and CI node timeouts (the Ruby process is killed by a CI provider). Add the following script to `spec_helper.rb`. Thanks to that, you will see the backtrace showing what code line causes the hanging problem. Backtrace is visible only if the Ruby process got kill with `USR1` signal. Learn more from this [GitHub issue](https://github.com/rspec/rspec-rails/issues/1353#issuecomment-93173691).
 
-  trap 'USR1' do
-    threads = Thread.list
+```ruby
+# source https://github.com/rspec/rspec-rails/issues/1353#issuecomment-93173691
+puts "Process pid: #{Process.pid}"
 
+trap 'USR1' do
+  threads = Thread.list
+
+  puts
+  puts "=" * 80
+  puts "Received USR1 signal; printing all #{threads.count} thread backtraces."
+
+  threads.each do |thr|
+    description = thr == Thread.main ? "Main thread" : thr.inspect
     puts
-    puts "=" * 80
-    puts "Received USR1 signal; printing all #{threads.count} thread backtraces."
-
-    threads.each do |thr|
-      description = thr == Thread.main ? "Main thread" : thr.inspect
-      puts
-      puts "#{description} backtrace: "
-      puts thr.backtrace.join("\n")
-    end
-
-    puts "=" * 80
+    puts "#{description} backtrace: "
+    puts thr.backtrace.join("\n")
   end
-  ```
 
-  If the CI provider does not kill the frozen process, you can do it by running the below command in the terminal (when you are ssh-ed into the CI node):
+  puts "=" * 80
+end
+```
 
-  ```bash
-  kill -USR1 <process pid>
-  ```
+If the CI provider does not kill the frozen process, you can do it by running the below command in the terminal (when you are ssh-ed into the CI node):
 
-  Alternatively, you can use the `timeout` program to send the USR1 signal after Knapsack runs too long.
+```bash
+kill -USR1 <process pid>
+```
 
-  ```bash
-  timeout --signal=USR1 600 bundle exec rake "knapsack_pro:queue:rspec[--format d]"
-  ```
+Alternatively, you can use the `timeout` program to send the USR1 signal after Knapsack runs too long.
 
-  Notice that `600` is in seconds. It sends the signal after 10 minutes of running the command. You may want to adjust that number to ensure the USR1 signal is sent after the process is stuck and not before.
+```bash
+timeout --signal=USR1 600 bundle exec rake "knapsack_pro:queue:rspec[--format d]"
+```
+
+Notice that `600` is in seconds. It sends the signal after 10 minutes of running the command. You may want to adjust that number to ensure the USR1 signal is sent after the process is stuck and not before.
 
 ## Knapsack Pro does not work on a forked repository
 
