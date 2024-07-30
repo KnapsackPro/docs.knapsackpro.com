@@ -72,9 +72,7 @@ You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_
 
     ```bash
     # Refer to your CI docs for `$MY_CI_NODE_INDEX`
-    export KNAPSACK_PRO_CI_NODE_INDEX=$MY_CI_NODE_INDEX
-
-    bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
+    bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec_$MY_CI_NODE_INDEX.xml]"
     ```
 
     This also applies if you are running parallel test processes on each CI node (see how to [integrate Knapsack Pro with `parallel_tests` here](parallel_tests.md)).
@@ -84,9 +82,7 @@ You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_
 
       ```bash
       # Refer to your CI docs for `$MY_CI_NODE_INDEX`
-      export KNAPSACK_PRO_CI_NODE_INDEX=$MY_CI_NODE_INDEX
-
-      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec_$KNAPSACK_PRO_CI_NODE_INDEX.xml]"
+      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec_$MY_CI_NODE_INDEX.xml]"
       ```
 
       ```ruby title="spec_helper.rb or rails_helper.rb"
@@ -133,9 +129,7 @@ You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_
 
     ```bash
     # Refer to your CI docs for `$MY_CI_NODE_INDEX`
-    export KNAPSACK_PRO_CI_NODE_INDEX=$MY_CI_NODE_INDEX
-
-    bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format json --out tmp/rspec_$KNAPSACK_PRO_CI_NODE_INDEX.json]"
+    bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format json --out tmp/rspec_$MY_CI_NODE_INDEX.json]"
     ```
 
     This also applies if you are running parallel test processes on each CI node (see how to [integrate Knapsack Pro with `parallel_tests` here](parallel_tests.md)).
@@ -145,9 +139,7 @@ You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_
 
       ```bash
       # Refer to your CI docs for `$MY_CI_NODE_INDEX`
-      export KNAPSACK_PRO_CI_NODE_INDEX=$MY_CI_NODE_INDEX
-
-      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format json --out tmp/rspec_$KNAPSACK_PRO_CI_NODE_INDEX.json]"
+      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format json --out tmp/rspec_$MY_CI_NODE_INDEX.json]"
       ```
 
       ```ruby title="spec_helper.rb or rails_helper.rb"
