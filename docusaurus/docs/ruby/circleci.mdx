@@ -113,6 +113,14 @@ Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tes
 
 <br />
 
+:::caution
+
+Remove [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](reference.md#knapsack_pro_fixed_queue_split-queue-mode) if you use it, then the default `false` value is used, which allows rerunning failed tests correctly.
+
+:::
+
+<br />
+
 ### RSpec
 
 ```yaml title=".circleci/config.yml"
