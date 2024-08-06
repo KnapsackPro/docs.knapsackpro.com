@@ -86,6 +86,8 @@ Some users reported frozen CI nodes with:
 
 - Chrome 83+ [prevents downloads in sandboxed iframes](https://developer.chrome.com/blog/chrome-83-deps-rems/): add an `allow-downloads` keyword in the sandbox attribute list
 
+- Ensure you use the latest version of the `simplecov` gem that fixes [the bug](https://github.com/rspec/rspec-rails/issues/1353#issuecomment-1120477035).
+
 ### Why does the CI node hang? (backtrace debugging)
 
 Tests freeze and CI node timeouts (the Ruby process is killed by a CI provider). Add the following script to `spec_helper.rb`. Thanks to that, you will see the backtrace showing what code line causes the hanging problem. Backtrace is visible only if the Ruby process got kill with `USR1` signal. Learn more from this [GitHub issue](https://github.com/rspec/rspec-rails/issues/1353#issuecomment-93173691).
