@@ -128,6 +128,49 @@ timeout --signal=USR1 600 bundle exec rake "knapsack_pro:queue:rspec[--format d]
 
 Notice that `600` is in seconds. It sends the signal after 10 minutes of running the command. You may want to adjust that number to ensure the USR1 signal is sent after the process is stuck and not before.
 
+<details>
+  <summary>For legacy versions of `knapsack_pro` older than 7.7.0, please click here.</summary>
+
+  Tests freeze and CI node timeouts (the Ruby process is killed by a CI provider). Add the following script to `spec_helper.rb`. Thanks to that, you will see the backtrace showing what code line causes the hanging problem. Backtrace is visible only if the Ruby process got kill with `USR1` signal. Learn more from this [GitHub issue](https://github.com/rspec/rspec-rails/issues/1353#issuecomment-93173691).
+
+  ```ruby
+  # source https://github.com/rspec/rspec-rails/issues/1353#issuecomment-93173691
+  puts "Process pid: #{Process.pid}"
+
+  trap 'USR1' do
+    threads = Thread.list
+
+    puts
+    puts "=" * 80
+    puts "Received USR1 signal; printing all #{threads.count} thread backtraces."
+
+    threads.each do |thr|
+      description = thr == Thread.main ? "Main thread" : thr.inspect
+      puts
+      puts "#{description} backtrace: "
+      puts thr.backtrace.join("\n")
+    end
+
+    puts "=" * 80
+  end
+  ```
+
+  If the CI provider does not kill the frozen process, you can do it by running the below command in the terminal (when you are ssh-ed into the CI node):
+
+  ```bash
+  kill -USR1 <process pid>
+  ```
+
+  Alternatively, you can use the `timeout` program to send the USR1 signal after Knapsack runs too long.
+
+  ```bash
+  timeout --signal=USR1 600 bundle exec rake "knapsack_pro:queue:rspec[--format d]"
+  ```
+
+  Notice that `600` is in seconds. It sends the signal after 10 minutes of running the command. You may want to adjust that number to ensure the USR1 signal is sent after the process is stuck and not before.
+
+</details>
+
 ## Knapsack Pro does not work on a forked repository
 
 :::caution
