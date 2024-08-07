@@ -163,7 +163,7 @@ Use the above approach to discover the root issue of hanging tests in your test 
 
 :::tip
 
-You can use the `timeout` program to send the `USR1` signal after Knapsack runs too long if the CI provider does not kill the frozen process.
+You can use [the `timeout` program](https://man7.org/linux/man-pages/man1/timeout.1.html) to send the `USR1` signal after Knapsack runs too long if the CI provider does not kill the frozen process.
 
 ```bash
 timeout --signal=USR1 600 bundle exec rake "knapsack_pro:queue:rspec[--format d]"
