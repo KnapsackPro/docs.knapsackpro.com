@@ -90,43 +90,94 @@ Some users reported frozen CI nodes with:
 
 ### Why does the CI node hang? (backtrace debugging)
 
-Tests freeze and CI node timeouts (the Ruby process is killed by a CI provider). Add the following script to `spec_helper.rb`. Thanks to that, you will see the backtrace showing what code line causes the hanging problem. Backtrace is visible only if the Ruby process got kill with `USR1` signal. Learn more from this [GitHub issue](https://github.com/rspec/rspec-rails/issues/1353#issuecomment-93173691).
+Knapsack Pro would print Ruby threads to the output when tests freeze and CI node timeouts (the Ruby process is killed by a CI provider).
+See the backtrace(s) showing what code line causes the hanging problem. The backtrace is visible only if the Ruby process got killed with one of the OS signals like `HUP`, `INT`, `TERM`, `ABRT`, `QUIT`, `USR1`, or `USR2`.
 
-```ruby
-# source https://github.com/rspec/rspec-rails/issues/1353#issuecomment-93173691
-puts "Process pid: #{Process.pid}"
+```text title="Tests output"
+================================================================================
+Start logging 2 detected threads.
+Use the following backtrace(s) to find the line of code that got stuck
+if the CI node hung and terminated your tests.
 
-trap 'USR1' do
-  threads = Thread.list
+Main thread backtrace:
+knapsack_pro-ruby/lib/knapsack_pro/runners/queue/base_runner.rb:83:in `backtrace'
+knapsack_pro-ruby/lib/knapsack_pro/runners/queue/base_runner.rb:83:in `block in log_threads'
+knapsack_pro-ruby/lib/knapsack_pro/runners/queue/base_runner.rb:75:in `each'
+knapsack_pro-ruby/lib/knapsack_pro/runners/queue/base_runner.rb:75:in `log_threads'
+knapsack_pro-ruby/lib/knapsack_pro/runners/queue/base_runner.rb:62:in `block (2 levels) in trap_signals'
+# highlight-start
+knapsack_pro-ruby/spec_integration/b_spec.rb:7:in `kill'
+# highlight-end
+knapsack_pro-ruby/spec_integration/b_spec.rb:7:in `block (3 levels) in <top (required)>'
+.rvm/gems/ruby-3.3.4/gems/rspec-core-3.13.0/lib/rspec/core/example.rb:263:in `instance_exec'
+...
 
-  puts
-  puts "=" * 80
-  puts "Received USR1 signal; printing all #{threads.count} thread backtraces."
+Non-main thread inspect: #<Thread:0x000000011e18f6e0 spec_integration/a_spec.rb:5 sleep>
+Non-main thread backtrace:
+# highlight-start
+knapsack_pro-ruby/spec_integration/a_spec.rb:6:in `sleep'
+# highlight-end
+knapsack_pro-ruby/spec_integration/a_spec.rb:6:in `block (3 levels) in <top (required)>'
 
-  threads.each do |thr|
-    description = thr == Thread.main ? "Main thread" : thr.inspect
-    puts
-    puts "#{description} backtrace: "
-    puts thr.backtrace.join("\n")
+
+End logging threads.
+================================================================================
+```
+
+The above-highlighted lines of code got stuck. See them in the following spec files.
+
+The main thread was killed due to the following `b_spec.rb`:
+
+```ruby title="b_spec.rb"
+describe 'B1_describe' do
+  describe 'B1.1_describe' do
+    xit 'B1.1.1 test example' do
+      expect(1).to eq 1
+    end
+    it 'B1.1.2 test example' do
+      # highlight-start
+      Process.kill("INT", Process.pid)
+      # highlight-end
+    end
   end
-
-  puts "=" * 80
 end
 ```
 
-If the CI provider does not kill the frozen process, you can do it by running the below command in the terminal (when you are ssh-ed into the CI node):
+The non-main thread was stuck at the time due to the following `sleep` in `a_spec.rb`:
 
-```bash
-kill -USR1 <process pid>
+```ruby title="a_spec.rb"
+describe 'A_describe' do
+  it 'A1 test example' do
+    expect(1).to eq 1
+
+    Thread.new do
+      # highlight-start
+      sleep 10
+      # highlight-end
+    end
+  end
+end
 ```
 
-Alternatively, you can use the `timeout` program to send the USR1 signal after Knapsack runs too long.
+Use the above approach to discover the root issue of hanging tests in your test suite.
+
+:::tip
+
+You can use the `timeout` program to send the `USR1` signal after Knapsack runs too long if the CI provider does not kill the frozen process.
 
 ```bash
 timeout --signal=USR1 600 bundle exec rake "knapsack_pro:queue:rspec[--format d]"
 ```
 
-Notice that `600` is in seconds. It sends the signal after 10 minutes of running the command. You may want to adjust that number to ensure the USR1 signal is sent after the process is stuck and not before.
+Notice that `600` is in seconds. It sends the signal after 10 minutes of running the command. You may want to adjust that number to ensure the `USR1` signal is sent after the process is stuck and not before.
+For example, you could use 600 seconds (10 minutes) if you know that your tests take no more than 7 minutes to run.
+
+Alternatively, you can check your CI provider documentation to configure a timeout. For example, Github Actions uses:
+
+* [`jobs.<job_id>.timeout-minutes`](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idtimeout-minutes) - The maximum number of minutes to let a job run before GitHub automatically cancels it.
+* [`jobs.<job_id>.steps[*].timeout-minutes`](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstepstimeout-minutes) - The maximum number of minutes to run the step before killing the process.
+
+:::
 
 <details>
   <summary>For legacy versions of `knapsack_pro` older than 7.7.0, please click here.</summary>
