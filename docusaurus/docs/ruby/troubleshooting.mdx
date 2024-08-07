@@ -128,7 +128,7 @@ The above-highlighted lines of code got stuck. See them in the following spec fi
 
 The main thread was killed due to the following `b_spec.rb`:
 
-```ruby title="b_spec.rb"
+```ruby title="b_spec.rb" showLineNumbers
 describe 'B1_describe' do
   describe 'B1.1_describe' do
     xit 'B1.1.1 test example' do
@@ -145,7 +145,7 @@ end
 
 The non-main thread was stuck at the time due to the following `sleep` in `a_spec.rb`:
 
-```ruby title="a_spec.rb"
+```ruby title="a_spec.rb" showLineNumbers
 describe 'A_describe' do
   it 'A1 test example' do
     expect(1).to eq 1
