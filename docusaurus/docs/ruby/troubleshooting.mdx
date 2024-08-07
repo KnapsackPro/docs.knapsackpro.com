@@ -126,7 +126,7 @@ End logging threads.
 
 The above-highlighted lines of code got stuck. See them in the following spec files.
 
-The main thread was killed due to the following `b_spec.rb`:
+The main thread was killed due to the following `b_spec.rb:7` line:
 
 ```ruby title="b_spec.rb" showLineNumbers
 describe 'B1_describe' do
@@ -143,7 +143,7 @@ describe 'B1_describe' do
 end
 ```
 
-The non-main thread was stuck at the time due to the following `sleep` in `a_spec.rb`:
+The non-main thread was stuck at the time due to the following `sleep` in the `a_spec.rb:6` line:
 
 ```ruby title="a_spec.rb" showLineNumbers
 describe 'A_describe' do
@@ -171,6 +171,10 @@ timeout --signal=USR1 600 bundle exec rake "knapsack_pro:queue:rspec[--format d]
 
 Notice that `600` is in seconds. It sends the signal after 10 minutes of running the command. You may want to adjust that number to ensure the `USR1` signal is sent after the process is stuck and not before.
 For example, you could use 600 seconds (10 minutes) if you know that your tests take no more than 7 minutes to run.
+
+:::
+
+:::tip
 
 Alternatively, you can check your CI provider documentation to configure a timeout. For example, Github Actions uses:
 
