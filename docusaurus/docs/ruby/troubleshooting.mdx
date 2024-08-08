@@ -88,6 +88,10 @@ Some users reported frozen CI nodes with:
 
 - Ensure you use the latest version of the `simplecov` gem that fixes [the bug](https://github.com/rspec/rspec-rails/issues/1353#issuecomment-1120477035).
 
+- Too much memory consumption, leading to a timeout on the CI:
+
+  - A heap size too big in Elasticsearch could lead to saturated memory. Add `ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"` to force the JVM to use 1GB for the heap size.
+
 ### Why does the CI node hang? (backtrace debugging)
 
 Knapsack Pro would print Ruby threads to the output when tests freeze and CI node timeouts (the Ruby process is killed by a CI provider).
