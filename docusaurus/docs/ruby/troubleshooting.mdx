@@ -71,7 +71,7 @@ Or a single command at the end to execute all the batches the CI node executed:
 Some users reported frozen CI nodes with:
 
 - Test runners producing too much output (e.g., Codeship and Queue Mode): reduce it with [`KNAPSACK_PRO_LOG_LEVEL=warn`](reference.md#knapsack_pro_log_level)
-- Test runners producing no output: make sure to use a formatter (like RSpec's [`--format progress`](rspec.mdx#formatters-rspec_junit_formatter-json))
+- Test runners producing no output: make sure to use a formatter (like RSpec's [`--format progress`](reference.md#command-line-arguments))
 - Timecop (e.g., [Travis](https://docs.travis-ci.com/user/common-build-problems/#ruby-tests-frozen-and-cancelled-after-10-minute-log-silence)): ensure `Timecop.return` is executed after all examples
 
   ```ruby
