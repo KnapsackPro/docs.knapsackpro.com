@@ -22,7 +22,7 @@
     "@docusaurus/core": "^3.1.0",
     "@docusaurus/plugin-client-redirects": "^3.1.0",
     "@docusaurus/preset-classic": "^3.1.0",
-    "@docusaurus/tsconfig": "^3.1.0",
+    "@docusaurus/tsconfig": "^3.5.1",
     "@mdx-js/react": "^3.0.0",
     "@types/react": "^18.2.48",
     "prism-react-renderer": "^2.3.1",
