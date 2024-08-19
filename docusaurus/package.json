@@ -19,7 +19,7 @@
     "remark:watch": "npm run remark -- --quiet --frail --use remark-validate-links --use remark-lint-relative-markdown-file-path-links --use remark-lint-docusaurus-empty-lines-around-admonition-content --watch \"docs/**/*.{md,mdx}\""
   },
   "dependencies": {
-    "@docusaurus/core": "^3.1.0",
+    "@docusaurus/core": "^3.5.2",
     "@docusaurus/plugin-client-redirects": "^3.1.0",
     "@docusaurus/preset-classic": "^3.1.0",
     "@docusaurus/tsconfig": "^3.1.0",
