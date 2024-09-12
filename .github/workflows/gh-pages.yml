@@ -1,4 +1,4 @@
-name: Build Jekyll and publish to GitHub Pages
+name: Build Jekyll, publish to GitHub Pages, update Algolia
 
 on:
   push:
