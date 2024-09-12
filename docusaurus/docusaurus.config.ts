@@ -113,7 +113,7 @@ const config: Config = {
           position: "right",
         },
         {
-          to: KNAPSACK_PRO_URL,
+          to: `${KNAPSACK_PRO_URL}/registrations`,
           label: "Sign up",
           position: "right",
         },

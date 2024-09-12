@@ -126,4 +126,4 @@ jobs:
 
 ## Summary
 
-You've just learned how to make your CircleCI builds way faster! Now your RSpec tests can be automatically run on many parallel machines to save you time. Please let us know if it was helpful or if you have any questions. Feel free to [sign up at Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report) or down below and try it yourself.
+You've just learned how to make your CircleCI builds way faster! Now your RSpec tests can be automatically run on many parallel machines to save you time. Please let us know if it was helpful or if you have any questions. Feel free to [sign up at Knapsack Pro](https://knapsackpro.com/registrations?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report) or down below and try it yourself.
