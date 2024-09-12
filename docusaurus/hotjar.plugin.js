@@ -10,11 +10,11 @@ const headTags = `<script>
 </script>`
 
 async function hotjarPlugin() {
-  if (process.env.NODE_ENV !== 'production') return {}
+  const plugin = { name: 'knapsackpro-hotjar-plugin' };
+  if (process.env.NODE_ENV !== 'production') return plugin;
 
   return {
-    name: 'knapsackpro-hotjar-plugin',
-
+    ...plugin,
     injectHtmlTags() {
       return {
         headTags,
