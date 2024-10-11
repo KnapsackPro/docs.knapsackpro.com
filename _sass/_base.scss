@@ -189,24 +189,6 @@ pre {
 
 
 
-/**
- * Icons
- */
-.icon {
-
-    > svg {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        vertical-align: middle;
-
-        path {
-            fill: $grey-color;
-        }
-    }
-}
-
-
 /*
  * Others
  */
@@ -219,33 +201,8 @@ pre {
   margin-top: 1em;
 }
 
-.extra-margin-top-2x {
-  margin-top: 2em;
-}
-
 .extra-margin-top-3x {
   margin-top: 3em;
-}
-
-/*
- * Tables
- */
-table.pure-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-
-  th, td {
-    padding: 10px;
-  }
-
-  th {
-    border: 1px solid $grey-color-light;
-    border-bottom: 5px solid $brand-color;
-  }
-
-  td {
-    border: 1px solid $grey-color-light;
-  }
 }
 
 /*

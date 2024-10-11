@@ -82,6 +82,10 @@ const config: Config = {
             to: "/",
             from: "/integration",
           },
+          {
+            to: "https://github.com/KnapsackPro/knapsack",
+            from: "/ruby/knapsack",
+          },
         ],
       },
     ],

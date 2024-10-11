@@ -74,6 +74,9 @@ Jekyll::Hooks.register :site, :post_write do |page|
     system!("cp -R docusaurus/build/ruby/#{directory} _site/ruby")
   end
 
+  system!("mkdir -p _site/ruby/knapsack")
+  system!("cp docusaurus/build/ruby/knapsack/index.html _site/ruby/knapsack") # redirect to https://github.com/KnapsackPro/knapsack
+
   system!("mv _site/sitemap.xml _site/jekyll-sitemap.xml")
   system!("cp docusaurus/build/sitemap.xml _site/docusaurus-sitemap.xml")
 
