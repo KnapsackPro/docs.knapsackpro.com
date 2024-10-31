@@ -128,9 +128,9 @@ Does not support [`run_all_when_everything_filtered`](rspec.mdx#some-of-my-test-
 
 ### Why aren’t some test files split by examples?
 
-When many test files are skipped (e.g., with `--tag ~skip`), the actual CI node time may fall short of estimates since Knapsack Pro can’t detect filtered files, marking fewer test files as slow and unbalancing the CI build.
+When many test files are skipped (e.g., with `--tag ~skip`), the actual CI node time may fall short of estimates, marking fewer test files as slow and unbalancing the CI build.
 
-You can manually set a threshold for splitting test files by examples with [`KNAPSACK_PRO_SLOW_TEST_FILE_THRESHOLD`](reference.md#knapsack_pro_slow_test_file_threshold).
+You can manually set a threshold for splitting test files by examples with [`KNAPSACK_PRO_SLOW_TEST_FILE_THRESHOLD`](reference.md#knapsack_pro_slow_test_file_threshold). This should help with unbalanced CI builds.
 
 ### Why are some of my test files not executed?
 
