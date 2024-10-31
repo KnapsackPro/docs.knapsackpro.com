@@ -273,6 +273,30 @@ KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN="{spec/models/user_spec.rb,spec/controllers/
 
 Make sure to read the details in [Split by test examples](split-by-test-examples.mdx).
 
+## `KNAPSACK_PRO_SLOW_TEST_FILE_THRESHOLD`
+
+:::caution
+
+This option takes effect if you split test files by test cases among parallel CI nodes using:
+
+* [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`](split-by-test-examples.mdx)
+
+:::
+
+Default: not set
+
+Available:
+
+- not set: automatically determines the slow test files threshold
+- Set a number of seconds. Test files above the threshold are split by test cases among parallel CI nodes.
+
+Example:
+
+```bash
+# 180 seconds (3 minutes)
+KNAPSACK_PRO_SLOW_TEST_FILE_THRESHOLD=180
+```
+
 ## `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES` (RSpec)
 
 Parallelize test examples (instead of files) across CI nodes.
