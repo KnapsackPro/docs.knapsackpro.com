@@ -273,22 +273,17 @@ KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN="{spec/models/user_spec.rb,spec/controllers/
 
 Make sure to read the details in [Split by test examples](split-by-test-examples.mdx).
 
-## `KNAPSACK_PRO_SLOW_TEST_FILE_THRESHOLD`
+## `KNAPSACK_PRO_SLOW_TEST_FILE_THRESHOLD` (Internal)
 
-:::caution
+Set the time threshold above which test files are split by test cases (instead of letting Knapsack Pro decide for you).
 
-This option takes effect if you split test files by test cases among parallel CI nodes using:
+Requires [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`](split-by-test-examples.mdx).
 
-* [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`](split-by-test-examples.mdx)
+This is supposed to be used by gem developers for debugging Knapsack Pro. But if you decide to use it, provide a big enough positive number. If the threshold is too low, it may match too many files and the test suite may slow down or fail: the Knapsack Pro API could time out, or CI could run out of memory.
 
-:::
+Default: not set
 
-Default: unset
-
-Available:
-
-- unset: automatically determines the slow test files threshold
-- Set a number of seconds. Test files above the threshold are split by test cases among parallel CI nodes.
+Available: not set | seconds
 
 Example:
 
