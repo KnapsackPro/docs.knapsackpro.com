@@ -237,7 +237,7 @@ Absolute path to the project directory (containing `.git/`) on the CI node.
 
 Required with `KNAPSACK_PRO_REPOSITORY_ADAPTER=git`.
 
-Default: not set
+Default: unset
 
 Example: `/home/ubuntu/my-app-repository`
 
@@ -245,11 +245,11 @@ Example: `/home/ubuntu/my-app-repository`
 
 Controls how Knapsack Pro sets `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH`.
 
-Default: not set
+Default: unset
 
 Available:
 
-- not set: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
+- unset: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
 - `git` (requires `KNAPSACK_PRO_PROJECT_DIR`): Knapsack Pro will set `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` using git on your CI
 
 ## `KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN` (Internal, RSpec)
@@ -260,7 +260,7 @@ Requires `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`, and must be subset of
 
 This is supposed to be used by gem developers for debugging Knapsack Pro. But if you decide to use it, **provide a short list of slow test files**. If the matched files are too many, the test suite may slow down or fail: the Knapsack Pro API could time out, or CI could run out of memory.
 
-Default: `nil`
+Default: unset
 
 Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
 
@@ -283,11 +283,11 @@ This option takes effect if you split test files by test cases among parallel CI
 
 :::
 
-Default: not set
+Default: unset
 
 Available:
 
-- not set: automatically determines the slow test files threshold
+- unset: automatically determines the slow test files threshold
 - Set a number of seconds. Test files above the threshold are split by test cases among parallel CI nodes.
 
 Example:
@@ -375,7 +375,7 @@ require 'spec_helper' # ⛔️ Bad
 
 Exclude tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
 
-Default: `nil`
+Default: unset
 
 Available: anything that [Dir.glob](https://ruby-doc.org/core-3.0.0/Dir.html#method-c-glob) accepts
 
@@ -394,7 +394,7 @@ KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec
 
 Comma-separated list of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
 
-Default: `nil`
+Default: unset
 
 Example:
 
@@ -406,7 +406,7 @@ KNAPSACK_PRO_TEST_FILE_LIST=spec/features/dashboard_spec.rb,spec/models/user.rb:
 
 File containing the list of **relative paths** of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
 
-Default: `nil`
+Default: unset
 
 Example:
 
