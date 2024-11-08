@@ -519,7 +519,10 @@ Define in `app.json`:
           "quantity": 2
         }
       },
-      "addons": ["heroku-postgresql"],
+      "addons": [
+        "heroku-postgresql:in-dyno",
+        "heroku-redis:in-dyno"
+      ],
       // highlight-start
       "scripts": {
         "test": "npx knapsack-pro-jest --runInBand"

@@ -43,7 +43,8 @@ We can split Ruby tests written in RSpec, Minitest or other tests runners across
         }
       },
       "addons": [
-        "heroku-postgresql"
+        "heroku-postgresql:in-dyno",
+        "heroku-redis:in-dyno"
       ],
       "scripts": {
         "test": "bundle exec rake knapsack_pro:rspec"
@@ -90,7 +91,8 @@ Here is a config for your <i>app.json</i>
         }
       },
       "addons": [
-        "heroku-postgresql"
+        "heroku-postgresql:in-dyno",
+        "heroku-redis:in-dyno"
       ],
       "scripts": {
         "test": "$(npm bin)/knapsack-pro-cypress"
