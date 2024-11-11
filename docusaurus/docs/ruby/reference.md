@@ -129,6 +129,12 @@ Available:
 - `false`: Knapsack Pro will fail the build after `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
 - `true`: Knapsack Pro will switch to Fallback Mode after `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
 
+## `KNAPSACK_PRO_FALLBACK_MODE_ERROR_EXIT_CODE`
+
+Set the exit code to use in case Knapsack Pro fails because it cannot switch to Fallback Mode.
+
+Default: `1`
+
 ## `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` (Queue Mode)
 
 Dynamic or fixed tests split when retrying a CI build.
