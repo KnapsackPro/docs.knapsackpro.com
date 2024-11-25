@@ -38,7 +38,7 @@
     "remark-lint-docusaurus-empty-lines-around-admonition-content": "^0.2.0",
     "remark-lint-relative-markdown-file-path-links": "^0.1.1",
     "remark-validate-links": "^13.0.1",
-    "typescript": "^5.6.2"
+    "typescript": "^5.7.2"
   },
   "browserslist": {
     "production": [
