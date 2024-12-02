@@ -31,7 +31,7 @@ Here you can find Semaphore CI 2.0 config for projects using:
 
 `knapsack_pro` gem supports environment variables provided by Semaphore CI 2.0 to run your tests. You will have to define a few things in `.semaphore/semaphore.yml` config file.
 
-- You need to set `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`. If you don't want to commit secrets in yml file then you can <a href="https://docs.semaphoreci.com/article/66-environment-variables-and-secrets" target="_blank" rel="nofollow">follow this guide</a>.
+- You need to set `KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC`. If you don't want to commit secrets in yml file then you can <a href="https://docs.semaphoreci.com/using-semaphore/secrets" target="_blank" rel="nofollow">follow this guide</a>.
 - You should create as many parallel jobs as you need with `parallelism` property. If your test suite is long you should use more parallel jobs.
 
 Below you can find full Semaphore CI 2.0 config for Rails project.
@@ -135,7 +135,7 @@ blocks:
 
 `@knapsack-pro/cypress` supports environment variables provided by Semaphore CI 2.0 to run your tests. You will have to define a few things in `.semaphore/semaphore.yml` config file.
 
-- You need to set `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS`. If you don't want to commit secrets in yml file then you can <a href="https://docs.semaphoreci.com/article/66-environment-variables-and-secrets" target="_blank" rel="nofollow">follow this guide</a>.
+- You need to set `KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS`. If you don't want to commit secrets in yml file then you can <a href="https://docs.semaphoreci.com/using-semaphore/secrets" target="_blank" rel="nofollow">follow this guide</a>.
 - You should create as many parallel jobs as you need with `parallelism` property. If your test suite is long you should use more parallel jobs.
 
 Below you can find example part of Semaphore CI 2.0 config.
@@ -164,7 +164,7 @@ blocks:
 
 `@knapsack-pro/jest` supports environment variables provided by Semaphore CI 2.0 to run your tests. You will have to define a few things in `.semaphore/semaphore.yml` config file.
 
-- You need to set `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`. If you don't want to commit secrets in yml file then you can <a href="https://docs.semaphoreci.com/article/66-environment-variables-and-secrets" target="_blank" rel="nofollow">follow this guide</a>.
+- You need to set `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`. If you don't want to commit secrets in yml file then you can <a href="https://docs.semaphoreci.com/using-semaphore/secrets" target="_blank" rel="nofollow">follow this guide</a>.
 - You should create as many parallel jobs as you need with `parallelism` property. If your test suite is long you should use more parallel jobs.
 
 Below you can find example part of Semaphore CI 2.0 config.
