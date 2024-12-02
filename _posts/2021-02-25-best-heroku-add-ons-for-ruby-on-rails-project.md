@@ -74,16 +74,6 @@ Rollbar.configure do |config|
 end
 {% endhighlight %}
 
-### Logentries
-
-[Logentries](https://elements.heroku.com/addons/logentries) - collects your logs from Heroku standard output so that you can browse them later on. If you need to find info about an issue that happened a few days ago in your logs then Logentries might be helpful.
-
-Of course, you could use [Heroku Command Line Interface](https://devcenter.heroku.com/articles/heroku-cli) and run `heroku logs -n 10000 --app my-heroku-app` command in terminal to browse logs for the last 10,000 lines but this method has limitations. You can't go that much in past logs or easily filter logs as in Logentries.
-
-Logentries has a 5 GB and 7 days retention period in a free plan. This is enough for small Rails apps.
-
-A nice feature I like in Logentries is an option to save the query and later on quickly browse logs by it. You can also display charts based on logs. Maybe you want to see how often a particular worker in Sidekiq has been called? You could visualize it.
-
 ### Redis Cloud
 
 If you use Redis in your Ruby on Rails app then [Redis Cloud](https://elements.heroku.com/addons/rediscloud) is your add-on. It has a free plan and paid plans are more affordable than other add-ons have.
