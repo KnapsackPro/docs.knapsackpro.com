@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Cookbook
+# Ruby Cookbook
 
 ## Use the Knapsack Pro binary
 

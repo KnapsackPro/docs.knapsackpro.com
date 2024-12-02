@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Troubleshooting
+# Cypress Troubleshooting
 
 ## Error with `--project`
 
