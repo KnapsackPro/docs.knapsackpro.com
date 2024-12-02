@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Cookbook
+# Cypress Cookbook
 
 ## Keep screenshots and videos
 

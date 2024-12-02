@@ -4,7 +4,7 @@ pagination_prev: null
 toc_max_heading_level: 2
 ---
 
-# Reference
+# Cypress Reference
 
 You can configure things in two ways:
 

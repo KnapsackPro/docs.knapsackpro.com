@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Troubleshooting
+# Jest Troubleshooting
 
 ## Jest hangs after running tests
 

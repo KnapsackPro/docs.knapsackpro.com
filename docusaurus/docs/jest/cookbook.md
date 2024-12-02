@@ -3,7 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Cookbook
+# Jest Cookbook
 
 ## Type-check in a separate CI step with `ts-jest`
 
