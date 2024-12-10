@@ -19,26 +19,26 @@
     "remark:watch": "npm run remark -- --quiet --frail --use remark-validate-links --use remark-lint-relative-markdown-file-path-links --use remark-lint-docusaurus-empty-lines-around-admonition-content --watch \"docs/**/*.{md,mdx}\""
   },
   "dependencies": {
-    "@docusaurus/core": "^3.5.2",
-    "@docusaurus/plugin-client-redirects": "^3.5.2",
-    "@docusaurus/preset-classic": "^3.5.2",
-    "@docusaurus/tsconfig": "^3.5.2",
-    "@mdx-js/react": "^3.0.1",
+    "@docusaurus/core": "^3.6.3",
+    "@docusaurus/plugin-client-redirects": "^3.6.3",
+    "@docusaurus/preset-classic": "^3.6.3",
+    "@docusaurus/tsconfig": "^3.6.3",
+    "@mdx-js/react": "^3.1.0",
     "@types/react": "^18.3.5",
     "prism-react-renderer": "^2.4.0",
-    "pure-react-carousel": "^1.30.1",
+    "pure-react-carousel": "^1.32.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.5.2",
+    "@docusaurus/module-type-aliases": "^3.6.3",
     "@types/react-dom": "^18.3.0",
-    "concurrently": "^9.0.1",
+    "concurrently": "^9.1.0",
     "remark-cli": "^12.0.1",
     "remark-lint-docusaurus-empty-lines-around-admonition-content": "^0.2.0",
     "remark-lint-relative-markdown-file-path-links": "^0.1.1",
-    "remark-validate-links": "^13.0.1",
-    "typescript": "^5.6.2"
+    "remark-validate-links": "^13.0.2",
+    "typescript": "^5.7.2"
   },
   "browserslist": {
     "production": [
