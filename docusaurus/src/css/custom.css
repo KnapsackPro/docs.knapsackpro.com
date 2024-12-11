@@ -99,6 +99,18 @@ li {
   cursor: unset;
 }
 
+div[class^='announcementBar_'] {
+  font-size: 20px;
+  background: repeating-linear-gradient(
+    35deg,
+    #c5e7fc,
+    #c5e7fc 20px,
+    #fcf5c5 10px,
+    #fcf5c5 40px
+  );
+  font-weight: bold;
+}
+
 /* Sidebar */
 
 .theme-doc-sidebar-item-category-level-1 > div > a {

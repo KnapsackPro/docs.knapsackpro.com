@@ -93,9 +93,8 @@ const config: Config = {
 
   themeConfig: {
     announcementBar: {
-      backgroundColor: "#c5e7fc",
       content:
-        'Please answer <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLScyX464Zjz_bRsRmS-xp5ISiheTDWGZTwkptmtirXkBFn761Q/viewform?usp=sf_link">one question</a> about code coverage 🙏',
+        'Please answer <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSdhqElxupHqFANRQlv-O55ilx-NoJrNP1F5KzRDcxd7ldLMEg/viewform?usp=sf_link">one question</a> about Test Prediction 🙏',
     },
     navbar: {
       logo: {
