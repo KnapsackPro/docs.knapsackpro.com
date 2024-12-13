@@ -1,5 +1,6 @@
 namespace :api do
   task :generate_docs do
+    canonical_url = 'https://docs.knapsackpro.com/api/v1/'
     raml2html = 'node_modules/raml2html/bin/raml2html'
 
     raml_files = [
@@ -20,6 +21,14 @@ namespace :api do
       Kernel.system(cmd)
       exitstatus = $?.exitstatus
       if exitstatus.zero?
+        html = File
+          .read(html_file)
+          .gsub('<head>', <<~HEAD)
+            <head><link rel="canonical" href="#{canonical_url}" />
+          HEAD
+
+        File.open(html_file, 'w') { |f| f.write(html) }
+
         puts "Compilation done for #{file[:src]}. Generated the #{file[:dest]} file."
       else
         puts "Something failed during RAML to HTML compilation for #{raml_file}."
