@@ -21,11 +21,13 @@ namespace :api do
       Kernel.system(cmd)
       exitstatus = $?.exitstatus
       if exitstatus.zero?
-        html_contents = File.read(html_file)
-        html_contents.gsub!('<head>', '<head><link rel="canonical" href="'+canonical_url+'" />')
-        File.open(html_file, 'w') do |f|
-          f.write(html_contents)
-        end
+        html = File
+          .read(html_file)
+          .gsub('<head>', <<~HEAD)
+            <head><link rel="canonical" href="#{canonical_url}" />
+          HEAD
+
+        File.open(html_file, 'w') { |f| f.write(html) }
 
         puts "Compilation done for #{file[:src]}. Generated the #{file[:dest]} file."
       else
