@@ -126,6 +126,14 @@ div[class^='announcementBar_'] {
   margin-bottom: var(--ifm-paragraph-margin-bottom);
 }
 
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 10px;
+  margin-bottom: var(--ifm-paragraph-margin-bottom);
+}
+
+
 .cell {
   align-items: center;
   border-radius: 10px;
@@ -135,6 +143,9 @@ div[class^='announcementBar_'] {
   flex-shrink: 0;
   gap: 20px;
   padding: 10px 20px;
+}
+
+.cell--fixed {
   width: 265px;
 }
 

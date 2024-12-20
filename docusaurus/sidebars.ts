@@ -225,6 +225,39 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Vitest",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          label: "Installation",
+          id: "vitest/guide/index",
+        },
+        {
+          type: "doc",
+          label: "Reference",
+          id: "vitest/reference",
+        },
+        {
+          type: "doc",
+          label: "Troubleshooting",
+          id: "vitest/troubleshooting",
+        },
+        {
+          type: "link",
+          label: "GitHub",
+          href: "https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/vitest",
+        },
+        {
+          type: "link",
+          label: "Changelog",
+          href: "https://github.com/KnapsackPro/knapsack-pro-js/blob/main/packages/vitest/CHANGELOG.md",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Write your integration",
       collapsible: true,
       collapsed: true,

@@ -5,6 +5,7 @@ pagination_next: overview/index
 
 import api from "@site/static/img/api.png";
 import javascript from "@site/static/img/javascript.png"
+import Vitest from "@site/static/img/vitest.svg"
 import jest from "@site/static/img/jest.jpg"
 import cypress from "@site/static/img/cypress.jpg"
 import ruby from "@site/static/img/ruby.png"
@@ -20,15 +21,15 @@ If you have questions, feel free to [contact us](https://knapsackpro.com/contact
 ## Overview
 
 <div className="grid">
-<a href="/overview/" className="cell">
-<div className="cell__image"><img width="70" height="70" src={knapsack}></img></div>
+<a href="/overview/" className="cell cell--fixed">
+<span className="cell__image"><img width="70" height="70" src={knapsack}></img></span>
 <h2 className="cell__title">Knapsack Overview</h2>
 </a>
 </div>
 
 ## Libraries
 
-<div className="grid">
+<div className="grid-4">
 <a href="/knapsack_pro-ruby/guide/" className="cell">
 <div className="cell__image cell__image--ruby"><img width="60" height="60" src={ruby}></img></div>
 <h2 className="cell__title">Ruby</h2>
@@ -43,6 +44,11 @@ If you have questions, feel free to [contact us](https://knapsackpro.com/contact
 <div className="cell__image"><img width="70" height="70" src={jest}></img></div>
 <h2 className="cell__title">Jest</h2>
 </a>
+
+<a href="/vitest/guide/" className="cell">
+<div className="cell__image"><Vitest className="w-full h-auto center" /></div>
+<h2 className="cell__title">Vitest</h2>
+</a>
 </div>
 
 Can't see your language/testing framework above? [Let us know](https://docs.google.com/forms/d/e/1FAIpQLSe7Z6k__VczmRMmXykjA5i2MVEA3nEJ90gbiIeCRjecWhPOig/viewform?hl=en).
@@ -52,12 +58,12 @@ Can't see your language/testing framework above? [Let us know](https://docs.goog
 You can still use Knapsack Pro by writing your integration on top of the JavaScript SDK or using the Knapsack Pro API:
 
 <div className="grid">
-<a href="https://docs.knapsackpro.com/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework" target="_blank" rel="noopener noreferrer" className="cell">
+<a href="https://docs.knapsackpro.com/2020/how-to-build-native-integration-with-knapsack-pro-api-to-run-tests-in-parallel-for-any-test-runner-testing-framework" target="_blank" rel="noopener noreferrer" className="cell cell--fixed">
 <div className="cell__image"><img width="70" height="70" src={javascript}></img></div>
 <h2 className="cell__title">JavaScript / TypeScript</h2>
 </a>
 
-<a href="https://docs.knapsackpro.com/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language" target="_blank" rel="noopener noreferrer" className="cell">
+<a href="https://docs.knapsackpro.com/2021/how-to-build-knapsack-pro-api-client-from-scratch-in-any-programming-language" target="_blank" rel="noopener noreferrer" className="cell cell--fixed">
 <div className="cell__image"><img width="70" height="70" src={api}></img></div>
 <h2 className="cell__title">Other Language</h2>
 </a>
@@ -66,7 +72,7 @@ You can still use Knapsack Pro by writing your integration on top of the JavaScr
 ## Troubleshooting
 
 <div className="grid">
-<a href="/troubleshooting/" className="cell" style={{width: 'auto'}}>
+<a href="/troubleshooting/" className="cell cell--fixed" style={{width: 'auto'}}>
 <div className="cell__image"><img width="70" height="70" src={troubleshooting}></img></div>
 <h2 className="cell__title">Troubleshooting</h2>
 </a>
