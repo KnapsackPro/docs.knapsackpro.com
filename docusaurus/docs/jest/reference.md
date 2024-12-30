@@ -146,11 +146,10 @@ Available: anything that [node-glob](https://github.com/isaacs/node-glob#glob-pr
 Hint: you can debug in `node`
 
 ```js
-var glob = require("glob");
-var MY_GLOB = "{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}";
-glob(MY_GLOB, {}, function (err, files) {
-  console.log(files);
-});
+const { globSync } = require("glob");
+const MY_GLOB = "{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}";
+const files = globSync(MY_GLOB);
+console.log(files);
 ```
 
 Examples:
@@ -207,11 +206,10 @@ Available: anything that [node-glob](https://github.com/isaacs/node-glob#glob-pr
 Hint: you can debug in `node`
 
 ```js
-var glob = require("glob");
-var MY_GLOB = "{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}";
-glob(MY_GLOB, {}, function (err, files) {
-  console.log(files);
-});
+const { globSync } = require("glob");
+const MY_GLOB = "{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}";
+const files = globSync(MY_GLOB);
+console.log(files);
 ```
 
 Examples:
