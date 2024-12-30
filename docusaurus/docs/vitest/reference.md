@@ -192,7 +192,7 @@ Hint: you can debug in `node`
 
 ```js
 var glob = require("glob");
-var MY_GLOB = "{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}";
+var MY_GLOB = "**/*.{test,spec}.?(c|m)[jt]s?(x)";
 glob(MY_GLOB, {}, function (err, files) {
   console.log(files);
 });
