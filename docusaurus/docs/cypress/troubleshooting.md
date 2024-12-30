@@ -33,8 +33,6 @@ You can increase the memory available to Node with [`--max_old_space_size`](http
 ```bash
 export NODE_OPTIONS=--max_old_space_size=4096
 
-npx knapsack-pro-jest
-
 npx knapsack-pro-cypress
 ```
 

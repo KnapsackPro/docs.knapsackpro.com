@@ -132,11 +132,10 @@ Available: anything that [node-glob](https://github.com/isaacs/node-glob#glob-pr
 Hint: you can debug in `node`
 
 ```js
-var glob = require("glob");
-var MY_GLOB = "cypress/e2e/admin/**/*.{js,jsx}";
-glob(MY_GLOB, {}, function (err, files) {
-  console.log(files);
-});
+const { globSync } = require("glob");
+const MY_GLOB = "cypress/e2e/admin/**/*.{js,jsx}";
+const files = globSync(MY_GLOB);
+console.log(files);
 ```
 
 Examples:
@@ -199,11 +198,10 @@ Available: anything that [node-glob](https://github.com/isaacs/node-glob#glob-pr
 Hint: you can debug in `node`
 
 ```js
-var glob = require("glob");
-var MY_GLOB = "cypress/e2e/**/*.{js,jsx,coffee,cjsx}";
-glob(MY_GLOB, {}, function (err, files) {
-  console.log(files);
-});
+const { globSync } = require("glob");
+const MY_GLOB = "cypress/e2e/**/*.{js,jsx,coffee,cjsx}";
+const files = globSync(MY_GLOB);
+console.log(files);
 ```
 
 Examples:

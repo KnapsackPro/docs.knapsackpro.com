@@ -4,7 +4,7 @@ pagination_prev: null
 toc_max_heading_level: 2
 ---
 
-# Jest Reference
+# Vitest Reference
 
 You can configure things in two ways:
 
@@ -15,19 +15,11 @@ Unless specified otherwise, everything on this page is environment variables.
 
 ## Command-line arguments
 
-:::caution
-
-Use long options instead of short (e.g., `--updateSnapshot` instead of `-u`).
-
-:::
-
-You can pass all the [supported Jest CLI options](https://jestjs.io/docs/en/cli#options) as command-line arguments:
+You can pass all the [supported Vitest CLI options](https://vitest.dev/guide/cli.html) as command-line arguments:
 
 ```bash
-npx knapsack-pro-jest --debug
+npx knapsack-pro-vitest --coverage
 ```
-
-You can also pass options to Node with environment variables (e.g., [`--max_old_space_size`](troubleshooting.md#javascript-heap-out-of-memory)).
 
 ## `KNAPSACK_PRO_BRANCH`
 
@@ -95,11 +87,9 @@ You don't need to set it if either:
 
 ## `KNAPSACK_PRO_COVERAGE_DIRECTORY`
 
-The directory where Jest should output its coverage files.
+The directory where Vitest writes coverage reports.
 
-Default: `undefined`
-
-Read more on [Generate code coverage reports](cookbook.md#generate-code-coverage-reports).
+Default: if not specified, it falls back to [Vitest `coverage.reportsDirectory`](https://vitest.dev/config/#coverage-reportsdirectory)
 
 ## `KNAPSACK_PRO_ENDPOINT` (Internal)
 
@@ -139,7 +129,7 @@ Available:
 
 Exclude tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
 
-Default: `undefined`
+Default: if not specified, it falls back to [Vitest `exclude`](https://vitest.dev/config/#exclude)
 
 Available: anything that [node-glob](https://github.com/isaacs/node-glob#glob-primer) accepts
 
@@ -147,7 +137,7 @@ Hint: you can debug in `node`
 
 ```js
 const { globSync } = require("glob");
-const MY_GLOB = "{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}";
+const MY_GLOB = "**/*.{test,spec}.?(c|m)[jt]s?(x)";
 const files = globSync(MY_GLOB);
 console.log(files);
 ```
@@ -191,15 +181,9 @@ Make sure to match individual files by adding the suffix (e.g., `.js`) so that K
 
 :::
 
-:::caution
-
-Knapsack Pro ignores patterns specified as Jest CLI arguments or Jest config files.
-
-:::
-
 Run tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.
 
-Default: `"{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}"`
+Default: if not specified, it falls back to [Vitest `include`](https://vitest.dev/config/#include)
 
 Available: anything that [node-glob](https://github.com/isaacs/node-glob#glob-primer) accepts
 
@@ -207,7 +191,7 @@ Hint: you can debug in `node`
 
 ```js
 const { globSync } = require("glob");
-const MY_GLOB = "{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}";
+const MY_GLOB = "**/*.{test,spec}.?(c|m)[jt]s?(x)";
 const files = globSync(MY_GLOB);
 console.log(files);
 ```
@@ -221,7 +205,7 @@ KNAPSACK_PRO_TEST_FILE_PATTERN=="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).j
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
 ```
 
-## `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`
+## `KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST`
 
 API token required to run Knapsack Pro.
 
@@ -230,13 +214,13 @@ Each Knapsack Pro command defined on CI should use an individual API token.
 Example:
 
 ```bash
-KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST=MY_JEST_API_TOKEN \
+KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN=="src/user/__tests__/**/*.js" \
-  npx knapsack-pro-jest
+  npx knapsack-pro-vitest
 
-KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST=MY_OTHER_JEST_API_TOKEN \
+KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_OTHER_VITEST_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN=="src/admin/__tests__/**/*.js" \
-  npx knapsack-pro-jest
+  npx knapsack-pro-vitest
 ```
 
 ## `KNAPSACK_PRO_USER_SEAT`
