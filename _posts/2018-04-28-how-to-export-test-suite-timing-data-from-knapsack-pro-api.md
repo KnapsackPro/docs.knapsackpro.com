@@ -12,7 +12,7 @@ You may find useful to export data about your CI builds and timing for your test
 
 ## How to get a list of all CI builds
 
-You can get the list of all CI builds recorded by Knapsack Pro tool. You need `test suite API token`. You can get it from [user dashboard](https://knapsackpro.com/dashboard).
+You can get the list of all CI builds recorded by Knapsack Pro tool. You need `test suite API token`. You can get it from [user dashboard](https://knapsackpro.com/sessions).
 
 {% highlight plain %}
 curl -X GET \

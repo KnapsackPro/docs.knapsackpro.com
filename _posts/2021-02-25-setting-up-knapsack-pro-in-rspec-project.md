@@ -37,7 +37,7 @@ The combination of your specific CI pipeline configuration and your RSpec usage 
 
 What we know from experience is that usually the Queue Mode uncovers different adjustment needs than the Regular Mode. The reason behind that is that in the Queue Mode, each one of your parallel CI nodes will usually run the RSpec command multiple times (as compared to just one run per node in the Regular Mode). This distinction might result in additional challenges to solve.
 
-As with all debugging, it's best to narrow down (isolate) possible issues we are tackling at a given time. This is why we strongly suggest to [set up](https://docs.knapsackpro.com/) the Regular Mode first. When you ensure it works as expected, and confirm that in your [User Dashboard](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=setting-up-knapsack-pro-in-rspec-project), you are ready to proceed to the Queue Mode setup.
+As with all debugging, it's best to narrow down (isolate) possible issues we are tackling at a given time. This is why we strongly suggest to [set up](https://docs.knapsackpro.com/) the Regular Mode first. When you ensure it works as expected, and confirm that in your [User Dashboard](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=setting-up-knapsack-pro-in-rspec-project), you are ready to proceed to the Queue Mode setup.
 
 And now for the good news: we have documented all of the common issues you might encounter during your setup in our [FAQ](https://knapsackpro.com/faq?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=setting-up-knapsack-pro-in-rspec-project). Keep that in mind during your onboarding.
 
