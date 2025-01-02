@@ -13,7 +13,7 @@ Cypress is an amazing tool for end to end testing Rails applications, but large 
 
 ## Set up Knapsack Pro API Keys
 
-First step is to go to your Knapsack [dashboard](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro) and grab your API keys for both RSpec and Cypress. Once you have those, go to your Github Repo's settings, for example:
+First step is to go to your Knapsack [dashboard](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro) and grab your API keys for both RSpec and Cypress. Once you have those, go to your Github Repo's settings, for example:
 
 <img width="1404" alt="image" src="https://user-images.githubusercontent.com/64985/111044967-80297880-8400-11eb-92b6-8a1e8aa2701e.png">
 
@@ -233,7 +233,7 @@ Once you've completed the above steps, trigger a test run on your repo. You shou
 
 <img width="345" alt="Screen Shot 2021-03-23 at 10 13 30 AM" src="https://user-images.githubusercontent.com/64985/112190195-017fc880-8bc2-11eb-85ea-00fa3469be43.png">
 
-Now check your [Knapsack Dashboard](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro) for the results 🚀
+Now check your [Knapsack Dashboard](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro) for the results 🚀
 
 The complete example Rails app can be found [here](https://github.com/goodproblems/knapsack-example-rails-app). Happy testing!
 

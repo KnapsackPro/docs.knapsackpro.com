@@ -89,7 +89,7 @@ In environment variables, we set Knapsack Pro API key `KNAPSACK_PRO_TEST_SUITE_T
 When everything is filled you can save your pipeline and run your buildkite agents across your CI nodes.
 Push a new commit to your repository and allow it to pass. The first CI build run will record time execution of your tests and saves it to Knapsack Pro API.
 
-Go to user [dashboard](https://knapsackpro.com/dashboard) and click build metrics link next to your API token. Click show link on the recent build and ensure the time execution data were recorded for all your CI nodes. You should see info that build subsets were collected.
+Go to user [dashboard](https://knapsackpro.com/sessions) and click build metrics link next to your API token. Click show link on the recent build and ensure the time execution data were recorded for all your CI nodes. You should see info that build subsets were collected.
 
 From now on you can run your tests with optimal test suite split thanks to dynamic tests allocation across CI nodes. The second commit pushed to repo should have better auto balancing time because Knapsack Pro API can use time execution recorded in the previous run to prepare better work queue.
 

@@ -63,7 +63,7 @@ Apart from these two, there are two additional variables defined: `KNAPSACK_PRO_
 
 `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` is a token needed for Knapsack API authorization. It's pulled from GitHub secrets set in your project's repository. You can access your secrets in the Settings -> Secrets on your repo's GH page.
 
-To view or generate Knapsack API token for your project, head over to [Knapsack User's Dashboard](https://knapsackpro.com/dashboard/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-jest-on-github-actions-with-parallelization) (you may need to sign up for an account if you don't have one). Save your API token in your GitHub Secrets as `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`.
+To view or generate Knapsack API token for your project, head over to [Knapsack User's Dashboard](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-jest-on-github-actions-with-parallelization) (you may need to sign up for an account if you don't have one). Save your API token in your GitHub Secrets as `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`.
 
 The other variable, `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` needs to be set to `true`. This will ensure the retry functionality on GitHub Actions works correctly with Knapsack API.
 
@@ -121,6 +121,6 @@ jobs:
 
 When your GitHub Actions is properly set up, it's going to run your build when you push new changes to the repository. You can now enjoy the optimal parallelization of your Jest tests.
 
-To see how Knapsack is splitting your test suite, visit the [User Dashboard](https://knapsackpro.com/dashboard/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-jest-on-github-actions-with-parallelization). The GitHub Actions builds will also be visible under the _Actions_ tab in your project's repository on GH.
+To see how Knapsack is splitting your test suite, visit the [User Dashboard](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-jest-on-github-actions-with-parallelization). The GitHub Actions builds will also be visible under the _Actions_ tab in your project's repository on GH.
 
 Anything unclear? Leave a comment below or go ahead and [contact us](https://knapsackpro.com/contact?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-jest-on-github-actions-with-parallelization) about your problem. We'll be happy to help!
