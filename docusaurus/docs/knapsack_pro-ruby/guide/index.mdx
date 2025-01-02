@@ -167,7 +167,7 @@ KnapsackPro::Adapters::SpinachAdapter.bind
 
 ### AppVeyor
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_appveyor) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_appveyor) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 For each parallel job, define:
 
@@ -243,7 +243,7 @@ bundle exec rake knapsack_pro:queue:cucumber
 
 ### Buildkite
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_buildkite) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_buildkite) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 Remember to configure the `parallelism` parameter in your build step.
 
@@ -334,7 +334,7 @@ You can also check out the following example repositories for Ruby on Rails proj
 
 ### CircleCI
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_circleci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_circleci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 Remember to add additional parallel containers in the CircleCI settings.
 
@@ -379,7 +379,7 @@ See how to configure [advanced CircleCI features](../../ruby/circleci.mdx) with 
 
 ### Cirrus CI
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_cirrusci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_cirrusci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 Configure the number of parallel CI nodes with the [matrix modification](https://cirrus-ci.org/guide/writing-tasks/#matrix-modification):
 
@@ -411,7 +411,7 @@ Here is an example of a [`.cirrus.yml` configuration file](https://cirrus-ci.org
 
 ### CloudBees CodeShip
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_codeship) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_codeship) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 For each [parallel pipeline](https://documentation.codeship.com/basic/builds-and-configuration/parallel-tests/#using-parallel-test-pipelines), define:
 
@@ -487,7 +487,7 @@ Consider moving the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` to the _Environment_ page 
 
 ### Codefresh
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_codefresh) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_codefresh) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 Define in `.codefresh/codefresh.yml`:
 
@@ -615,7 +615,7 @@ RUN bundle install
 
 ### GitHub Actions
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_githubactions) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_githubactions) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 Define in `.github/workflows/main.yaml`:
 
@@ -716,7 +716,7 @@ jobs:
 
 ### GitLab CI
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_gitlabci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_gitlabci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 #### GitLab CI >= 11.5
 
@@ -786,7 +786,7 @@ Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as [Secret Variables](h
 
 ### Heroku CI
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_herokuci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_herokuci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 Define in `app.json`:
 
@@ -829,7 +829,7 @@ Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` outside of `app.json` i
 
 ### Jenkins
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_jenkins) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_jenkins) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 In order to run parallel jobs with Jenkins you should use Jenkins Pipeline as described in [Parallelism and Distributed Builds with Jenkins](https://www.cloudbees.com/blog/parallelism-and-distributed-builds-jenkins).
 
@@ -900,7 +900,7 @@ Consider setting up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as global environment 
 
 ### Semaphore CI
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_semaphoreci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_semaphoreci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 Define in `.semaphore/semaphore.yml`:
 
@@ -978,7 +978,7 @@ Remember to set up `KNAPSACK_PRO_TEST_SUITE_TOKEN_*` as a [secret](https://docs.
 
 ### Travis CI
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_travisci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_travisci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 Define in `.travis.yml`:
 
@@ -1018,7 +1018,7 @@ You can find more info about the global and matrix env configuration in the [Tra
 
 ### Other CI provider
 
-[Generate an API token](https://knapsackpro.com/dashboard?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_otherci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
+[Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack_pro-ruby_gem&utm_content=installation_guide_otherci) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
 Define the following global environment variables on your CI server:
 
@@ -1113,7 +1113,7 @@ bundle exec rake knapsack_pro:queue:cucumber
 
 ### Verify that everything works
 
-Push a new commit to your repository and visit your [dashboard](https://knapsackpro.com/dashboard) to make sure all your CI nodes were recorded successfully in _Show build metrics > Show (build)_.
+Push a new commit to your repository and visit your [dashboard](https://knapsackpro.com/sessions) to make sure all your CI nodes were recorded successfully in _Show build metrics > Show (build)_.
 
 :::caution
 
