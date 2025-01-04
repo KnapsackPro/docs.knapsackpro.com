@@ -63,3 +63,12 @@ npx knapsack-pro-jest --ci --reporters=jest-junit
 ```
 
 Knapsack Pro will generate one XML reports for each batch of tests executed on the CI node. Some CI providers (e.g., GitLab CI) can merge multiple XML files from parallel CI nodes.
+
+## Run a subset of tests
+
+To run a subset of your test suite you have a couple of options:
+
+- `KNAPSACK_PRO_TEST_FILE_*` environment variables:
+  - [`KNAPSACK_PRO_TEST_FILE_PATTERN`](reference.md#knapsack_pro_test_file_pattern)
+  - [`KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`](reference.md#knapsack_pro_test_file_exclude_pattern)
+  - [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file)
