@@ -45,8 +45,12 @@ bundle exec rake "knapsack_pro:queue:rspec[--fail-fast 3]"
 
 To run a subset of your test suite you have a couple of options:
 
-- `KNAPSACK_PRO_TEST_FILE_*` [environment variables](reference.md) (recommended)
-- RSpec's `--tag MY_TAG`, `--tag ~MY_TAG`, `--tag type:feature`, or `--tag ~type:feature`
+- `KNAPSACK_PRO_TEST_FILE_*` environment variables (recommended):
+  - [`KNAPSACK_PRO_TEST_FILE_PATTERN`](reference.md#knapsack_pro_test_file_pattern)
+  - [`KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`](reference.md#knapsack_pro_test_file_exclude_pattern)
+  - [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file)
+  - [`KNAPSACK_PRO_TEST_FILE_LIST`](reference.md#knapsack_pro_test_file_list)
+- RSpec's `--tag MY_TAG`, `--tag ~MY_TAG`, `--tag type:feature`, or `--tag ~type:feature`. See how to [pass command-line arguments](reference.md#command-line-arguments) here.
 
 If you are seeking faster performance on your CI, you may want to read [Parallelize test examples (instead of files)](#parallelize-test-examples-instead-of-files)
 
