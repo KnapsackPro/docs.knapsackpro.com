@@ -245,6 +245,11 @@ const sidebars: SidebarsConfig = {
           id: "vitest/troubleshooting",
         },
         {
+          type: "doc",
+          label: "Cookbook",
+          id: "vitest/cookbook",
+        },
+        {
           type: "link",
           label: "GitHub",
           href: "https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/vitest",

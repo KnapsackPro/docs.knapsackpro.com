@@ -66,3 +66,11 @@ You should replace `$MY_CI_BUILD_ID` with the correct environment variable provi
 | Semaphore 2.0  | `SEMAPHORE_WORKFLOW_ID`  |
 | Travis         | `TRAVIS_BUILD_ID`        |
 | Codefresh.io   | `CF_BUILD_ID`            |
+
+## Run a subset of tests
+
+To run a subset of your test suite you can use the `KNAPSACK_PRO_TEST_FILE_*` environment variables:
+
+- [`KNAPSACK_PRO_TEST_FILE_PATTERN`](reference.md#knapsack_pro_test_file_pattern)
+- [`KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`](reference.md#knapsack_pro_test_file_exclude_pattern)
+- [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file)
