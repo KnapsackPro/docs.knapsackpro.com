@@ -31,7 +31,7 @@ I was also looking if something similar exists in Minitest to ensure we have a p
 
 ## Digging into Minitest source code
 
-I found out that Minitest has [class method `run`](https://github.com/seattlerb/minitest/blob/master/lib/minitest.rb#L120) that will start running the loaded test files.
+I found out that Minitest has [class method `run`](https://github.com/minitest/minitest/blob/8a59450038f31f30fe591946bbb0418ac9f65617/lib/minitest.rb#L546) that will start running the loaded test files.
 
 {% highlight ruby %}
 # minitest/lib/minitest.rb
