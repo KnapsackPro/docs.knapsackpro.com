@@ -15,7 +15,7 @@ Unless specified otherwise, everything on this page is environment variables.
 
 ## Command-line arguments
 
-You can pass all the [supported Cypress CLI options](https://docs.cypress.io/guides/guides/module-api#Options) as command-line arguments:
+You can pass all the [supported Cypress CLI options](https://docs.cypress.io/app/references/module-api#Options) as command-line arguments:
 
 ```bash
 npx knapsack-pro-cypress --browser chrome
