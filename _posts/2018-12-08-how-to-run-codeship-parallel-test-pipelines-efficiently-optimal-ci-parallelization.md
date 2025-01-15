@@ -70,7 +70,7 @@ If you use CodeShip Pro then a parallel step group is defined by using the `type
     command: KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 bundle exec rake knapsack_pro:queue:rspec
 {% endhighlight %}
 
-More examples how to configure [CodeShip Pro parallelism](https://documentation.codeship.com/pro/builds-and-configuration/steps/#parallelizing-steps-and-tests)
+More examples how to configure [CodeShip Pro parallelism](https://docs.cloudbees.com/docs/cloudbees-codeship/latest/pro-builds-and-configuration/steps#_parallelizing_steps_and_tests)
 
 ## How dynamic test suite split works
 
