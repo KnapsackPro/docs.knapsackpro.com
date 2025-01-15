@@ -128,7 +128,7 @@ The founder of Knapsack Pro, [Artur Trzop](https://github.com/ArturT) has been h
 
 ## Plugging in Knapsack Pro
 
-To try out [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci), all we did was [follow the docs](https://docs.knapsackpro.com/cypress/guide/) and afterward merge all separate Cypress jobs into one and set up some [reporterOptions](https://docs.cypress.io/guides/tooling/reporters.html#Reporter-Options) in Cypress to ensure that we’ll collect all of the test results as JUnit reports from all the parallel runs.
+To try out [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci), all we did was [follow the docs](https://docs.knapsackpro.com/cypress/guide/) and afterward merge all separate Cypress jobs into one and set up some [reporterOptions](https://docs.cypress.io/app/tooling/reporters#Reporter-Options) in Cypress to ensure that we’ll collect all of the test results as JUnit reports from all the parallel runs.
 
 Here’s a short example of our **full-page** test jobs before the conversion:
 
