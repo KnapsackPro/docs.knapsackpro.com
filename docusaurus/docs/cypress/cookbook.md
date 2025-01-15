@@ -25,7 +25,7 @@ Or in `cypress.config.js`:
 
 ## Component tests
 
-You can pass the `testingType` option to run [component tests](https://docs.cypress.io/guides/component-testing/introduction):
+You can pass the `testingType` option to run [component tests](https://docs.cypress.io/app/component-testing/get-started):
 
 ```bash
 npx knapsack-pro-cypress --testingType=component
