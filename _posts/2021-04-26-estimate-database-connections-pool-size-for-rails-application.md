@@ -144,7 +144,7 @@ Using the previous example:
 
 2 servers (dynos) X 1 Sidekiq process X 10 Sidekiq threads = 2 servers (dynos) X 1 Sidekiq process X (10 + 5) = 30 Redis connections required.
 
-More in [Sidekiq docs](https://github.com/mperham/sidekiq/wiki/Using-Redis#complete-control).
+More in [Sidekiq docs](https://github.com/sidekiq/sidekiq/wiki/Using-Redis).
 
 ## Redis database connections
 
