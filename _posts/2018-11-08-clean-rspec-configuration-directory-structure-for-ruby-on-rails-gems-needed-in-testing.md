@@ -135,7 +135,7 @@ RSpec::Sidekiq.configure do |config|
 end
 {% endhighlight %}
 
-I use gems like [sidekiq-unique-jobs](https://github.com/mhenrixon/sidekiq-unique-jobs) and [rspec-sidekiq](https://github.com/philostler/rspec-sidekiq). Here you can read more about [Sidekiq testing](https://github.com/mperham/sidekiq/wiki/Testing) configuration.
+I use gems like [sidekiq-unique-jobs](https://github.com/mhenrixon/sidekiq-unique-jobs) and [rspec-sidekiq](https://github.com/wspurgin/rspec-sidekiq). Here you can read more about [Sidekiq testing](https://github.com/mperham/sidekiq/wiki/Testing) configuration.
 
 ## Configuration for FactoryBot (known as FactoryGirl)
 
