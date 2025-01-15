@@ -111,7 +111,7 @@ exit(final_exit_code)
 
 Digging into the source code of Minitest helped me to find out a way to run my tests in a more efficient way. I applied this to the [knapsack_pro gem](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-tests-in-minitest-continuously) I'm working on.
 
-You can see in the below video how dynamic tests allocation across CI nodes can save time and run test suite faster. Last week one of my users from [https://angel.co](https://angel.co) tried the Queue Mode in knapsack_pro for Minitest and it helped him run CI builds faster. Maybe this will help you too. :)
+You can see in the below video how dynamic tests allocation across CI nodes can save time and run test suite faster. Last week one of my users from [https://wellfound.com](https://wellfound.com) tried the Queue Mode in knapsack_pro for Minitest and it helped him run CI builds faster. Maybe this will help you too. :)
 
 <div class="video-container">
   <iframe src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
