@@ -7,7 +7,7 @@ pagination_prev: null
 
 ## Keep screenshots and videos
 
-Since Knapsack Pro runs Cypress multiple times, you need to set [`trashAssetsBeforeRuns`](https://docs.cypress.io/guides/references/configuration.html#Screenshots) to `false`.
+Since Knapsack Pro runs Cypress multiple times, you need to set [`trashAssetsBeforeRuns`](https://docs.cypress.io/app/references/configuration#Screenshots) to `false`.
 
 You can do so by either invoking Knapsack Pro with:
 
