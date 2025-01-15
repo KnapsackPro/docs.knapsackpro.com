@@ -15,7 +15,7 @@ When you use CodeShip as your CI server you can significantly increase the speed
 
 ### Setup via CodeShip interface
 
-One way is to define commands via [CodeShip interface](https://documentation.codeship.com/basic/builds-and-configuration/parallel-tests/#using-parallel-test-pipelines). Once parallel test pipelines are enabled, each project can have multiple test pipelines that will be run in parallel.
+One way is to define commands via [CodeShip interface](https://docs.cloudbees.com/docs/cloudbees-codeship/latest/basic-builds-and-configuration/parallel-tests#using-parallel-test-pipelines). Once parallel test pipelines are enabled, each project can have multiple test pipelines that will be run in parallel.
 
 In order to run CI build as fast as possible we need to ensure the parallel commands will run subset of the test suite in a way that all the commands complete at the same time to avoid slow pipeline bottleneck. To split test suite we will use [Knapsack Pro with Queue Mode which does dynamic test suite split across pipelines for Ruby and JavaScript tests](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-codeship-parallel-test-pipelines-efficiently-optimal-ci-parallelization) to keep running our tests in an optimal way across parallel pipelines (also known as CI nodes).
 
