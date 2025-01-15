@@ -56,7 +56,7 @@ When the runtime of our build pipeline had reached 20 minutes on average for eac
 
 ## What is our setup?
 
-Our team is working on [Kiwi.com](https://www.kiwi.com/), which is a travel company selling tickets for flights, trains, buses and any other kinds of transportation. More specifically, the team is responsible for the Help Center, where users can go to find articles and chat with support before, during and after their trips.
+Our team is working on [Kiwi.com](https://www.kiwi.com/en/), which is a travel company selling tickets for flights, trains, buses and any other kinds of transportation. More specifically, the team is responsible for the Help Center, where users can go to find articles and chat with support before, during and after their trips.
 
 Our application is deployed in two distinct ways: as an npm package integrated into other modules within Kiwi.com as a sidebar _(called **sidebar**)_, and as a standalone web application _(called **full-page**)_ which is dockerized and then deployed on GKE ([Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine)) for our production environment and using GCR ([Google Cloud Run](https://cloud.google.com/run)) for staging envs .
 
