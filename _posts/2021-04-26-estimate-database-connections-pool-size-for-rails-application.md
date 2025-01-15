@@ -132,7 +132,7 @@ If you run multiple servers (Heroku dynos), then it works similarly to the Puma 
 
 You need to have a pool size of at least 10 in `config/database.yml` because Sidekiq by default, uses 10 threads.
 
-If you use a pool size lower than 10 then Sidekiq threads will be fighting for access to limited connections in the pool. It could be fine for some time, but you should be aware that this can increase your job's processing time because not all Sidekiq threads will use DB connections in parallel. It can also lead to [a problem described here](https://github.com/mperham/sidekiq/wiki/Problems-and-Troubleshooting#cannot-get-database-connection-within-500-seconds).
+If you use a pool size lower than 10 then Sidekiq threads will be fighting for access to limited connections in the pool. It could be fine for some time, but you should be aware that this can increase your job's processing time because not all Sidekiq threads will use DB connections in parallel. It can also lead to [a problem described here](https://github.com/sidekiq/sidekiq/wiki/Problems-and-Troubleshooting#cannot-get-database-connection-within-500-seconds).
 
 ### Sidekiq and Redis database connections
 
