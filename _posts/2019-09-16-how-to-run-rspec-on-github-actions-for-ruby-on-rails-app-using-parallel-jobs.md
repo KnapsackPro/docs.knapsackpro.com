@@ -78,7 +78,7 @@ To split tests you can use Ruby gem [Knapsack Pro](https://knapsackpro.com?utm_s
 In our case, you split tests across 2 parallel jobs so you need to set 2 as `matrix.ci_node_total`. Then each parallel job should have assigned index to `matrix.ci_node_index` starting from 0. The first parallel job gets index 0 and the second job gets index 1. This allows [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-rspec-on-github-actions-for-ruby-on-rails-app-using-parallel-jobs) to know what tests should be executed on a particular job.
 
 {% highlight yaml %}
-# https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
+# https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
 strategy:
   fail-fast: false
   matrix:
