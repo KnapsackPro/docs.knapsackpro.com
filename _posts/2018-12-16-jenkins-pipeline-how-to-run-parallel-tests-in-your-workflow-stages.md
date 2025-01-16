@@ -11,7 +11,7 @@ Jenkins Pipeline is a suite of plugins that allows creating simple-to-complex bu
 
 <img src="/images/blog/posts/jenkins-pipeline-how-to-run-parallel-tests-in-your-workflow-stages/jenkins.jpg" style="width:300px;margin-left: 15px;float:right;" alt="Jenkins" />
 
-In order to run parallel stages with [Jenkins Pipeline](https://www.jenkins.io/doc/book/pipeline/), we will need a proper Jenkinsfile which represents our delivery pipeline as code via the Pipeline domain-specific language (DSL) syntax.
+In order to run parallel stages with [Jenkins Pipeline](https://www.jenkins.io/doc/book/pipeline/), you need a proper Jenkinsfile which represents our delivery pipeline as code via the Pipeline DSL.
 
 Another thing we will have to figure out is the problem how to divide our test suite across parallel stages in a way that each subset of test suite executed across all stages will complete work at the same time. It's important to complete the tests on all stages at a similar time to run our CI build as fast as possible and eliminate bottleneck stage.
 

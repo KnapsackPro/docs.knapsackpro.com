@@ -254,4 +254,4 @@ This may look familiar to you because it's similar to what Rails method `find_or
 * If possible use unique index to ensure data consistency in DB. When concurrency problem will happen then at least DB will ensure data correctness.
 * Use tested distribution lock solutions
 
-I also recommend reading article: [Differences between transactions and locking](https://makandracards.com/makandra/31937-differences-transactions-locking).
+I also recommend reading the following article: [Differences between transactions and locking](https://makandracards.com/makandra/31937-differences-transactions-locking).

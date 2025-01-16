@@ -80,7 +80,7 @@ Please note that you should hide your credentials like the Knapsack Pro API toke
 
 ## An advanced Buildkite config with Elastic CI Stack for AWS
 
-When you want to run your big RSpec project on dozen or even hundreds of parallel machines you need powerful resources. In such a case, you can follow the [Buildkite tutorial about AWS setup](https://buildkite.com/docs/agent/v3/elastic-ci-aws). The Elastic CI Stack for AWS gives you a private, autoscaling Buildkite Agent cluster in your own AWS account.
+If you want to run your RSpec project on dozen or even hundreds of parallel machines, you need powerful resources. In such a case, you can follow the [Buildkite tutorial about AWS setup](https://buildkite.com/docs/agent/v3/elastic-ci-aws). The Elastic CI Stack for AWS gives you a private, autoscaling Buildkite Agent cluster in your own AWS account.
 
 ### AWS Spot Instances can save you money
 
