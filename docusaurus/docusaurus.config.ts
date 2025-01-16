@@ -89,6 +89,13 @@ const config: Config = {
         ],
       },
     ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        docLayoutComponent: require.resolve("./src/components/ExternalLink"),
+        docItemComponent: require.resolve("./src/components/ExternalLink"),
+      },
+    ],
   ],
 
   themeConfig: {
