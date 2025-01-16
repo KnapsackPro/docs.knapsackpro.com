@@ -60,7 +60,7 @@ const config: Config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: `${REPO_URL}/tree/main/docusaurus/`,
+          editUrl: `${REPO_URL}/blob/main/docusaurus/`,
           routeBasePath: "/",
         },
         blog: false,
