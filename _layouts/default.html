@@ -16,7 +16,7 @@
 
     <div class="page-content">
       <div class="wrapper">
-        {{ content }}
+        {{ content | replace: '<a href="https://knapsackpro.com', '<a rel="noopener noreferrer" target="_blank" href="https://knapsackpro.com' | replace: '<a href="https://docs.knapsackpro.com', '<a rel="noopener noreferrer" target="_blank" href="https://docs.knapsackpro.com' | replace: '<a href="http', '<a rel="nofollow noopener noreferrer" target="_blank" href="http' }}
       </div>
     </div>
 
