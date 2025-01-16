@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📂 checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: actions/setup-node@v3
         with:
@@ -69,7 +69,7 @@ jobs:
 
     steps:
       - name: 📂 checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🔍 update index on Algolia
         uses: darrenjennings/algolia-docsearch-action@v0.2.0
