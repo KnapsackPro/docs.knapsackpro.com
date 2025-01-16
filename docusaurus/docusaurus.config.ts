@@ -89,6 +89,7 @@ const config: Config = {
         ],
       },
     ],
+    "./external-link-nofollow.plugin.js",
   ],
 
   themeConfig: {
