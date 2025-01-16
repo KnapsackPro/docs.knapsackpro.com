@@ -165,7 +165,7 @@ const config: Config = {
               html: `<a href="https://knapsackpro.com/cookies" class="footer__link-item" rel="nofollow noopener" target="_blank">Cookie Policy</a>`,
             },
             {
-              html: `<a class="cky-banner-element footer__link-item cursor-pointer">Cookie Settings</a>`, // Render CookieYes.com settings on the link click
+              html: `<a class="cky-banner-element footer__link-item cursor-pointer" rel="nofollow">Cookie Settings</a>`, // Render CookieYes.com settings on the link click
             },
           ],
         },
