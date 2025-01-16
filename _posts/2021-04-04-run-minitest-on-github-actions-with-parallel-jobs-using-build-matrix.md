@@ -31,7 +31,7 @@ I described [how Queue Mode splits Ruby and JavaScript tests in parallel with a 
 
 ## Github Actions build matrix to run parallel tests
 
-Github Actions has a [build matrix feature](https://docs.github.com/en/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix) that allows running many jobs at the same time. You can use it to run your Minitest tests between parallel jobs.
+Github Actions has a [build matrix feature](https://docs.github.com/en/actions/writing-workflows/about-workflows#using-a-matrix) that allows running many jobs at the same time. You can use it to run your Minitest tests between parallel jobs.
 
 Below is a full Github Actions YML config for a Rails project and Minitest.
 The tests are split with `knapsack_pro` Ruby gem and Queue Mode.
@@ -71,7 +71,7 @@ jobs:
           - 6379:6379
         options: --entrypoint redis-server
 
-    # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
+    # https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
     strategy:
       fail-fast: false
       matrix:

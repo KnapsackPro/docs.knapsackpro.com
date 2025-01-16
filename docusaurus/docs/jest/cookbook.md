@@ -50,7 +50,7 @@ export KNAPSACK_PRO_COVERAGE_DIRECTORY=coverage
 npx knapsack-pro-jest --coverage
 ```
 
-Knapsack Pro will generate one coverage report for each batch of tests executed on the CI node. To merge the reports you may consider [this script](https://github.com/facebook/jest/issues/2418#issuecomment-478932514).
+Knapsack Pro generates one coverage report for each batch of tests executed on the CI node. To merge the reports you may consider [this script](https://github.com/jestjs/jest/issues/2418#issuecomment-478932514).
 
 ## Generate XML reports
 

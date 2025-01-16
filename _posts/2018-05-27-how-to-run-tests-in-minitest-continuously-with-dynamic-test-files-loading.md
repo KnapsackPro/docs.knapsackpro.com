@@ -31,7 +31,7 @@ I was also looking if something similar exists in Minitest to ensure we have a p
 
 ## Digging into Minitest source code
 
-I found out that Minitest has [class method `run`](https://github.com/seattlerb/minitest/blob/master/lib/minitest.rb#L120) that will start running the loaded test files.
+I found out that Minitest comes with class method [`run`](https://github.com/minitest/minitest/blob/8a59450038f31f30fe591946bbb0418ac9f65617/lib/minitest.rb#L546) that runs the loaded test files.
 
 {% highlight ruby %}
 # minitest/lib/minitest.rb
@@ -110,8 +110,6 @@ exit(final_exit_code)
 ## Running Minitest continuously and fetching test files from the Queue in a dynamic way
 
 Digging into the source code of Minitest helped me to find out a way to run my tests in a more efficient way. I applied this to the [knapsack_pro gem](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-tests-in-minitest-continuously) I'm working on.
-
-You can see in the below video how dynamic tests allocation across CI nodes can save time and run test suite faster. Last week one of my users from [https://angel.co](https://angel.co) tried the Queue Mode in knapsack_pro for Minitest and it helped him run CI builds faster. Maybe this will help you too. :)
 
 <div class="video-container">
   <iframe src="https://www.youtube.com/embed/hUEB1XDKEFY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

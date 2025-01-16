@@ -7,7 +7,7 @@ pagination_prev: null
 
 ## Keep screenshots and videos
 
-Since Knapsack Pro runs Cypress multiple times, you need to set [`trashAssetsBeforeRuns`](https://docs.cypress.io/guides/references/configuration.html#Screenshots) to `false`.
+Since Knapsack Pro runs Cypress multiple times, you need to set [`trashAssetsBeforeRuns`](https://docs.cypress.io/app/references/configuration#Screenshots) to `false`.
 
 You can do so by either invoking Knapsack Pro with:
 
@@ -25,7 +25,7 @@ Or in `cypress.config.js`:
 
 ## Component tests
 
-You can pass the `testingType` option to run [component tests](https://docs.cypress.io/guides/component-testing/introduction):
+You can pass the `testingType` option to run [component tests](https://docs.cypress.io/app/component-testing/get-started):
 
 ```bash
 npx knapsack-pro-cypress --testingType=component
@@ -59,7 +59,7 @@ You should replace `$MY_CI_BUILD_ID` with the correct environment variable provi
 | Codeship Pro   | `CI_BUILD_ID`            |
 | Drone          | `DRONE_BUILD_NUMBER`     |
 | Gitlab         | `CI_PIPELINE_ID`         |
-| Github Actions | `GITHUB_RUN_ID`          |
+| GitHub Actions | `GITHUB_RUN_ID`          |
 | Heroku         | `HEROKU_TEST_RUN_ID`     |
 | Jenkins        | `BUILD_NUMBER`           |
 | Semaphore 1.0  | `SEMAPHORE_BUILD_NUMBER` |

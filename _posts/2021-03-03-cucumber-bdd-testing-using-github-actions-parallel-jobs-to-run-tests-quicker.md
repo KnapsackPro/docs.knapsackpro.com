@@ -13,7 +13,7 @@ Cucumber employs Behavior-Driven Development (BDD) for testing your application.
 
 ## Github Actions matrix strategy
 
-You can use the [Github Actions matrix strategy](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) to run parallel jobs. You will need to divide your Cucumber test files between the parallel jobs in a way that work will be balanced out between the jobs.
+You can use the [Github Actions matrix strategy](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) to run parallel jobs. You will need to divide your Cucumber test files between the parallel jobs in a way that work will be balanced out between the jobs.
 
 It's not that simple to do because often Cucumber tests can take a different amount of time. One test file can have many test cases, the other can have only a few but very complex ones, etc.
 
@@ -79,7 +79,7 @@ jobs:
           - 6379:6379
         options: --entrypoint redis-server
 
-    # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
+    # https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
     strategy:
       fail-fast: false
       matrix:

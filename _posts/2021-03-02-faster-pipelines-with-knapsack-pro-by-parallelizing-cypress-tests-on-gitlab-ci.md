@@ -56,7 +56,7 @@ When the runtime of our build pipeline had reached 20 minutes on average for eac
 
 ## What is our setup?
 
-Our team is working on [Kiwi.com](https://www.kiwi.com/), which is a travel company selling tickets for flights, trains, buses and any other kinds of transportation. More specifically, the team is responsible for the Help Center, where users can go to find articles and chat with support before, during and after their trips.
+Our team is working on [Kiwi.com](https://www.kiwi.com/en/), which is a travel company selling tickets for flights, trains, buses and any other kinds of transportation. More specifically, the team is responsible for the Help Center, where users can go to find articles and chat with support before, during and after their trips.
 
 Our application is deployed in two distinct ways: as an npm package integrated into other modules within Kiwi.com as a sidebar _(called **sidebar**)_, and as a standalone web application _(called **full-page**)_ which is dockerized and then deployed on GKE ([Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine)) for our production environment and using GCR ([Google Cloud Run](https://cloud.google.com/run)) for staging envs .
 
@@ -128,7 +128,7 @@ The founder of Knapsack Pro, [Artur Trzop](https://github.com/ArturT) has been h
 
 ## Plugging in Knapsack Pro
 
-To try out [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci), all we did was [follow the docs](https://docs.knapsackpro.com/cypress/guide/) and afterward merge all separate Cypress jobs into one and set up some [reporterOptions](https://docs.cypress.io/guides/tooling/reporters.html#Reporter-Options) in Cypress to ensure that we’ll collect all of the test results as JUnit reports from all the parallel runs.
+To try out [Knapsack Pro](https://knapsackpro.com/?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-pipelines-with-knapsack-pro-by-parallelizing-cypress-tests-on-gitlab-ci), all we did was [follow the docs](https://docs.knapsackpro.com/cypress/guide/) and afterward merge all separate Cypress jobs into one and set up some [reporterOptions](https://docs.cypress.io/app/tooling/reporters#Reporter-Options) in Cypress to ensure that we’ll collect all of the test results as JUnit reports from all the parallel runs.
 
 Here’s a short example of our **full-page** test jobs before the conversion:
 

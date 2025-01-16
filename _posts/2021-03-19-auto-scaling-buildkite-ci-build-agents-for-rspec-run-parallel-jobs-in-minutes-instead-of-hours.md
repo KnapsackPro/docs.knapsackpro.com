@@ -65,7 +65,7 @@ Here is a very simple example of Buildkite config to run 2 parallel jobs as you 
 
 env:
   # You should hide you secrets like API token
-  # Please follow https://buildkite.com/docs/pipelines/secrets
+  # Please follow https://buildkite.com/docs/pipelines/security/secrets/managing
   KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: "204abb31f698a6686120a40efeff31e5"
   # allow to run the same set of test files on job retry
   # https://github.com/KnapsackPro/knapsack_pro-ruby#knapsack_pro_fixed_queue_split-remember-queue-split-on-retry-ci-node
@@ -76,11 +76,11 @@ steps:
     parallelism: 2
 {% endhighlight %}
 
-Please note that you should hide your credentials like the Knapsack Pro API token and not commit it into your repository. You can refer to the [Buildkite secrets documentation](https://buildkite.com/docs/pipelines/secrets).
+Please note that you should hide your credentials like the Knapsack Pro API token and not commit it into your repository. You can refer to the [Buildkite secrets documentation](https://buildkite.com/docs/pipelines/security/secrets/managing).
 
 ## An advanced Buildkite config with Elastic CI Stack for AWS
 
-When you want to run your big RSpec project on dozen or even hundreds of parallel machines you need powerful resources. In such a case, you can follow the [Buildkite tutorial about AWS setup](https://buildkite.com/docs/tutorials/elastic-ci-stack-aws). The Elastic CI Stack for AWS gives you a private, autoscaling Buildkite Agent cluster in your own AWS account.
+If you want to run your RSpec project on dozen or even hundreds of parallel machines, you need powerful resources. In such a case, you can follow the [Buildkite tutorial about AWS setup](https://buildkite.com/docs/agent/v3/elastic-ci-aws). The Elastic CI Stack for AWS gives you a private, autoscaling Buildkite Agent cluster in your own AWS account.
 
 ### AWS Spot Instances can save you money
 

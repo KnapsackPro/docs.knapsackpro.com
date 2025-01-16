@@ -243,7 +243,7 @@ Here is an example of a [`.cirrus.yml` configuration file](https://cirrus-ci.org
 
 [Generate an API token](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=page&utm_campaign=knapsack-pro-cypress&utm_content=installation_guide_codeship) for each Knapsack Pro command on the CI. Each command needs its own API token to treat every test suite as a separate entity.
 
-For each [parallel pipeline](https://documentation.codeship.com/basic/builds-and-configuration/parallel-tests/#using-parallel-test-pipelines), define:
+For each [parallel pipeline](https://docs.cloudbees.com/docs/cloudbees-codeship/latest/basic-builds-and-configuration/parallel-tests#using-parallel-test-pipelines), define:
 
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS`](../reference.md#knapsack_pro_test_suite_token_cypress)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](../reference.md#knapsack_pro_ci_node_total)
@@ -392,9 +392,9 @@ RUN npm install
 
 Define in `.github/workflows/main.yaml`:
 
-- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS`](../reference.md#knapsack_pro_test_suite_token_cypress) in _GitHub Settings > Secrets_ as described in [GitHub Actions' docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
-- [`KNAPSACK_PRO_CI_NODE_TOTAL`](../reference.md#knapsack_pro_ci_node_total) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
-- [`KNAPSACK_PRO_CI_NODE_INDEX`](../reference.md#knapsack_pro_ci_node_index) using the [`matrix` property](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
+- [`KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS`](../reference.md#knapsack_pro_test_suite_token_cypress) in _GitHub Settings > Secrets_ as described in [GitHub Actions' docs](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
+- [`KNAPSACK_PRO_CI_NODE_TOTAL`](../reference.md#knapsack_pro_ci_node_total) using the [`matrix` property](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
+- [`KNAPSACK_PRO_CI_NODE_INDEX`](../reference.md#knapsack_pro_ci_node_index) using the [`matrix` property](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)
 
 Here's an example config:
 
@@ -669,7 +669,7 @@ Define in `.travis.yml`:
 
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS`](../reference.md#knapsack_pro_test_suite_token_cypress)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](../reference.md#knapsack_pro_ci_node_total)
-- [`KNAPSACK_PRO_CI_NODE_INDEX`](../reference.md#knapsack_pro_ci_node_index) as [jobs](http://docs.travis-ci.com/user/speeding-up-the-build/#parallelizing-your-builds-across-virtual-machines)
+- [`KNAPSACK_PRO_CI_NODE_INDEX`](../reference.md#knapsack_pro_ci_node_index) as [jobs](https://docs.travis-ci.com/user/speeding-up-the-build/#parallelize-builds-across-virtual-machines)
 
 ```yaml
 script:

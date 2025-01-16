@@ -11,7 +11,7 @@ This is needed only if you are using Knapsack Pro in [Queue Mode](../overview/in
 
 :::
 
-If you use the [puffing-billy](https://github.com/oesmith/puffing-billy) gem and encounter the crash described in this [Github issue](https://github.com/oesmith/puffing-billy/issues/253), apply the following patch:
+If you use the [puffing-billy](https://github.com/oesmith/puffing-billy) gem and encounter the crash described in this [GitHub issue](https://github.com/oesmith/puffing-billy/issues/253), apply the following patch:
 
 ```ruby
 # rails_helper.rb or spec_helper.rb

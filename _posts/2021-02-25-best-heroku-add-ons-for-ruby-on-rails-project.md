@@ -91,7 +91,7 @@ redis_connection = Redis.new(
   url: ENV.fetch('REDISCLOUD_URL', 'redis://localhost:6379/0'),
   # tune network timeouts to be a little more lenient when you are seeing occasional timeout
   # errors for Heroku Redis Cloud addon
-  # https://github.com/mperham/sidekiq/wiki/Using-Redis#life-in-the-cloud
+  # https://github.com/sidekiq/sidekiq/wiki/Using-Redis#life-in-the-cloud
   timeout: 5
 )
 

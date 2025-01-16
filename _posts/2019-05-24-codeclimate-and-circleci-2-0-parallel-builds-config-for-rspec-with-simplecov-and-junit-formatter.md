@@ -162,7 +162,7 @@ workflows:
 
 ## SimpleCov configuration for RSpec
 
-When you use [simplecov](https://github.com/colszowka/simplecov) gem in order to create test coverage for RSpec then you need to remember about one additional thing when you want to run tests in parallel on many CircleCI jobs. You set a unique name for the simplecov report with `SimpleCov.command_name`.
+When you use [simplecov](https://github.com/simplecov-ruby/simplecov) with RSpec, you have to set a unique name for its report with `SimpleCov.command_name`:
 
 {% highlight ruby %}
 # spec/rails_helper.rb or spec/spec_helper.rb

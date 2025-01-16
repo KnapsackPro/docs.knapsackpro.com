@@ -70,7 +70,7 @@ jobs:
           - 6379:6379
         options: --entrypoint redis-server
 
-    # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
+    # https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
     strategy:
       fail-fast: false
       matrix:
