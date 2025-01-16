@@ -59,7 +59,7 @@ You should replace `$MY_CI_BUILD_ID` with the correct environment variable provi
 | Codeship Pro   | `CI_BUILD_ID`            |
 | Drone          | `DRONE_BUILD_NUMBER`     |
 | Gitlab         | `CI_PIPELINE_ID`         |
-| Github Actions | `GITHUB_RUN_ID`          |
+| GitHub Actions | `GITHUB_RUN_ID`          |
 | Heroku         | `HEROKU_TEST_RUN_ID`     |
 | Jenkins        | `BUILD_NUMBER`           |
 | Semaphore 1.0  | `SEMAPHORE_BUILD_NUMBER` |

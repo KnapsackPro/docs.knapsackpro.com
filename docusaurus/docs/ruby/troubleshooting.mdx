@@ -183,7 +183,7 @@ For example, you could use 600 seconds (10 minutes) if you know that your tests 
 
 :::tip
 
-Check your CI provider documentation to configure a timeout if you worry about wasting resources on the hanging CI node. For example, Github Actions uses:
+Check your CI provider documentation to configure a timeout if you worry about wasting resources on the hanging CI node. For example, GitHub Actions uses:
 
 * [`jobs.<job_id>.timeout-minutes`](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idtimeout-minutes) - The maximum number of minutes to let a job run before GitHub automatically cancels it.
 * [`jobs.<job_id>.steps[*].timeout-minutes`](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstepstimeout-minutes) - The maximum number of minutes to run the step before killing the process.
