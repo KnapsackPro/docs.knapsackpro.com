@@ -9,8 +9,7 @@ export default function AWrapper(props: Props): JSX.Element {
   const { href } = props;
   const isExternal =
     href?.startsWith('http') &&
-    !href?.startsWith('https://knapsackpro.com') &&
-    !href?.includes(window.location.origin);
+    !href?.startsWith('https://knapsackpro.com')
 
   return (
     <>
