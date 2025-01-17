@@ -51,4 +51,4 @@ Make sure [`KNAPSACK_PRO_TEST_FILE_PATTERN`](reference.md#knapsack_pro_test_file
 
 ## Missing Jest coverage data
 
-See [how to configure code coverage](cookbook.md#generate-code-coverage-reports).
+See [how to configure Jest code coverage](cookbook.md#generate-code-coverage-reports).
