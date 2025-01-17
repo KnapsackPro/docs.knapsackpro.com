@@ -3,6 +3,7 @@
 // https://docusaurus.io/docs/swizzling/
 //
 // We added nofollow to the link for SEO purposes.
+
 import React from 'react';
 import Translate from '@docusaurus/Translate';
 import {ThemeClassNames} from '@docusaurus/theme-common';
