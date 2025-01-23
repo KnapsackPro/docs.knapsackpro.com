@@ -105,7 +105,7 @@ Start logging 2 detected threads.
 Use the following backtrace(s) to find the line of code that got stuck if the CI node hung and terminated your tests.
 How to read the backtrace: https://knapsackpro.com/perma/ruby/backtrace-debugging
 
-Hanging specs in the main thread:
+Running specs in the main thread:
 # highlight-start
 knapsack_pro-ruby/spec_integration/b_spec.rb:7:in `kill'
 # highlight-end
@@ -113,7 +113,7 @@ knapsack_pro-ruby/spec_integration/b_spec.rb:7:in `block (3 levels) in <top (req
 
 
 Non-main thread inspect: #<Thread:0x000000011e18f6e0 spec_integration/a_spec.rb:5 sleep>
-Hanging specs in non-main thread:
+Running specs in non-main thread:
 # highlight-start
 knapsack_pro-ruby/spec_integration/a_spec.rb:6:in `sleep'
 # highlight-end
