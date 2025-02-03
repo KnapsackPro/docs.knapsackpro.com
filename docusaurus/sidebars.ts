@@ -75,6 +75,12 @@ const sidebars: SidebarsConfig = {
               label: "Split by test examples",
               id: "ruby/split-by-test-examples",
             },
+            {
+              type: "doc",
+              label: "PREDICT",
+              id: "ruby/predict",
+              className: "hidden",
+            },
           ],
         },
         {

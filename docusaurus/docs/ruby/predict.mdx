@@ -1,0 +1,68 @@
+---
+pagination_next: null
+pagination_prev: null
+---
+
+# PREDICT
+
+:::caution
+
+This feature is limited to beta-testers.
+
+:::
+
+:::caution
+
+Only Ruby >= 3.2.0 & RSpec are supported.
+
+:::
+
+
+A substantial percentage of your CI builds is spent running tests that would never fail. For example, updating a README.md should not require any testing. And changing a bunch of files should not run the entire test suite.
+
+PREDICT runs only the tests that are likely to fail. The subset of tests is calculated by combining the test code coverage collected over time with the changes you are working on.
+
+To enable PREDICT, set any of the following ENV variables:
+
+* `KNAPSACK_PRO_PREDICT_DISABLED_ON_BRANCHES` (comma-separated list): on what branches to run all the tests
+* `KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES` (glob): what files, if modified, cause all the tests to run
+* `KNAPSACK_PRO_PREDICT_ALWAYS_RUN_TESTS` (glob): what tests to always run
+
+If PREDICT finds the string `[skip predict]` / `[predict skip]` in the commit message, it will run all the tests.
+
+:::tip
+
+You can expand a glob with:
+
+```bash
+ruby -e "puts (Dir.glob 'Gemfile.*')"
+
+# Gemfile
+# Gemfile.lock
+```
+
+:::
+
+Given the dynamic nature of Ruby, PREDICT will likely not be correct 100% of the time. So we recommend you run all the tests before deploying to production. You can do that in multiple ways:
+
+* Include `[skip predict]` / `[predict skip]` in the last commit message before you merge a pull request
+* Include your production branch in `KNAPSACK_PRO_PREDICT_DISABLED_ON_BRANCHES`
+
+## **Example**
+
+Given the following configuration on CI:
+
+```bash
+KNAPSACK_PRO_PREDICT_DISABLED_ON_BRANCHES='main,staging' \
+KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES='{Gemfile,Gemfile.lock}' \
+KNAPSACK_PRO_PREDICT_ALWAYS_RUN_TESTS='spec/features/**/*_spec.rb' \
+bin/rake "knapsack_pro:queue:rspec"
+```
+
+You can expect the following behaviour:
+
+* On main and staging, all tests are run
+* On the other branches, the tests subset is run (including `spec/features/**/*_spec.rb`) unless:
+  * `Gemfile` or `Gemfile.lock` were modified
+  * The current commit message contains `[skip predict]` / `[predict skip]`
+  * The per-test coverage does not exist on the Knapsack Pro API (e.g., just enabled the feature)

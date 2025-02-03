@@ -75,6 +75,7 @@ Jekyll::Hooks.register :site, :post_write do |page|
     "hooks",
     "parallel_tests",
     "puffing-billy",
+    "predict",
     "queue-mode",
     "reference",
     "rspec",
