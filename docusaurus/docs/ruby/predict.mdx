@@ -3,6 +3,9 @@ pagination_next: null
 pagination_prev: null
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # PREDICT
 
 :::caution
@@ -66,3 +69,47 @@ You can expect the following behaviour:
   * `Gemfile` or `Gemfile.lock` were modified
   * The current commit message contains `[skip predict]` / `[predict skip]`
   * The per-test coverage does not exist on the Knapsack Pro API (e.g., just enabled the feature)
+
+## Troubleshooting
+
+### Sidekiq throws a segmentation fault
+
+The latest patch versions of Sidekiq are affected by an [issue](https://github.com/sidekiq/sidekiq/issues/6502) that causes segmentation faults.
+
+On CI, before running your tests you can downgrade to the latest patch that works correctly:
+
+```ruby
+bundle config --local deployment false # "Unfreezes" the lock file. May not be necessary.
+bundle remove sidekiq && bundle add sidekiq --version=7.3.2
+```
+
+### Using with Coverage or SimpleCov
+
+If you are executing `Coverage` or [`SimpleCov`](https://github.com/simplecov-ruby/simplecov) before Knapsack Pro, enable both line and eval coverage:
+
+<Tabs>
+<TabItem value="simplecov" label="SimpleCov">
+
+```ruby
+require 'simplecov'
+SimpleCov.start do
+  # line coverage is the default
+  enable_coverage_for_eval
+end
+
+require 'knapsack_pro'
+# ...
+```
+
+</TabItem>
+<TabItem value="coverage" label="Coverage">
+
+```ruby
+Coverage.start(lines: true, eval: true)
+
+require 'knapsack_pro'
+# ...
+```
+
+</TabItem>
+</Tabs>
