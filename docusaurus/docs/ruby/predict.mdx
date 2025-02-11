@@ -59,7 +59,7 @@ Given the following configuration on CI:
 KNAPSACK_PRO_PREDICT_DISABLED_ON_BRANCHES='main,staging' \
 KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES='{Gemfile,Gemfile.lock}' \
 KNAPSACK_PRO_PREDICT_ALWAYS_RUN_TESTS='spec/features/**/*_spec.rb' \
-bin/rake "knapsack_pro:queue:rspec"
+bundle exec rake "knapsack_pro:queue:rspec"
 ```
 
 You can expect the following behaviour:
