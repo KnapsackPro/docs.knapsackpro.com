@@ -129,8 +129,6 @@ Remove [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](reference.md#knapsack_pro_fixed_queue_
     command: |
       mkdir -p /tmp/test-results
 
-      export KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
-
       # highlight-start
       export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt
       # Retrieve the tests to run (all or just the failed ones), and let Knapsack Pro split them optimally.
@@ -149,7 +147,6 @@ Remove [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](reference.md#knapsack_pro_fixed_queue_
 The snippet above:
 
 - [Collects metadata with the JUnit XML formatter](#collect-metadata-in-queue-mode)
-- uses [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](split-by-test-examples.mdx) to split slow spec files by test examples
 - uses [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file) to specify what tests to run
 
 <details>
@@ -161,8 +158,6 @@ The snippet above:
       command: |
         export CIRCLE_TEST_REPORTS=/tmp/test-results
         mkdir -p $CIRCLE_TEST_REPORTS
-
-        export KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
 
         # highlight-start
         export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt

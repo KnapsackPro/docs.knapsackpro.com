@@ -310,9 +310,11 @@ Parallelize test examples (instead of files) across CI nodes.
 
 :::
 
-```bash
-KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true
-```
+Default: `true`
+
+Available:
+- `true`: distribute test examples across CI nodes (more balanced builds)
+- `false`: distribute whole test files across CI nodes
 
 Make sure to read the details in [Split by test examples](split-by-test-examples.mdx).
 
