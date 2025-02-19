@@ -25,7 +25,7 @@ Only RSpec >= 3.3.0 is supported. [Let us know](https://knapsackpro.com/contact)
 
 :::
 
-You can set [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`](reference.md#knapsack_pro_rspec_split_by_test_examples-rspec) to parallelize tests across CI nodes by example (`it`/`specify`). This is useful when you have slow test files but don't want to manually split test examples into smaller test files.
+By default, Knapsack Pro parallelizes tests across CI nodes by example (`it`/`specify`). This is useful when you have slow test files but don't want to manually split test examples into smaller test files. You can disable this feature with [`KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=false`](reference.md#knapsack_pro_rspec_split_by_test_examples-rspec).
 
 As an example, imagine you have two test files in your suite:
 
@@ -56,7 +56,7 @@ As an example, imagine you have two test files in your suite:
 
 On your [Knapsack Pro dashboard](../overview/index.mdx#dashboard), you can see the yellow highlight because of the bottleneck: if you run those tests on 2 parallel CI nodes, the total execution time would be 6.5 minutes instead of the optimal 4.5 minutes (2.5 minutes + 6.5 minutes divided by 2 CI nodes).
 
-By enabling `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`, the bottleneck disappears because Knapsack Pro can distribute tests so that each CI node is balanced (e.g., 4.5 minutes + 4.5 minutes):
+When splitting by test examples, the bottleneck disappears because Knapsack Pro distributes individual tests so that each CI node is balanced (e.g., 4.5 minutes + 4.5 minutes):
 
 <div style={{ overflowX: 'auto' }}>
   <table style={{ width: '100%', display: 'table' }}>
@@ -116,7 +116,7 @@ Does not support `--tag`
 
 :::
 
-Due to the [RSpec internals](https://github.com/rspec/rspec-core/issues/2522), `--tag` might be ignored when used together with `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`. But you can use the `KNAPSACK_PRO_TEST_FILE_*` [environment variables](reference.md) to filter the test files to run.
+Due to the [RSpec internals](https://github.com/rspec/rspec-core/issues/2522), `--tag` might be ignored when used together with Split by test examples. But you can use the `KNAPSACK_PRO_TEST_FILE_*` [environment variables](reference.md) to filter the test files to run.
 
 :::caution
 
