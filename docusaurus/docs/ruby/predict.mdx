@@ -28,23 +28,10 @@ PREDICT runs only the tests that are likely to fail. The subset of tests is calc
 To enable PREDICT, set any of the following ENV variables:
 
 * `KNAPSACK_PRO_PREDICT_DISABLED_ON_BRANCHES` (comma-separated list): on what branches to run all the tests
-* `KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES` (glob): what files, if modified, cause all the tests to run
-* `KNAPSACK_PRO_PREDICT_ALWAYS_RUN_TESTS` (glob): what tests to always run
+* `KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES` ([Ruby glob](#ruby-glob)): what files, if modified, cause all the tests to run
+* `KNAPSACK_PRO_PREDICT_ALWAYS_RUN_TESTS` ([Ruby glob](#ruby-glob)): what tests to always run
 
 If PREDICT finds the string `[skip predict]` / `[predict skip]` in the commit message, it will run all the tests.
-
-:::tip
-
-You can expand a glob with:
-
-```bash
-ruby -e "puts (Dir.glob 'Gemfile.*')"
-
-# Gemfile
-# Gemfile.lock
-```
-
-:::
 
 Given the dynamic nature of Ruby, PREDICT will likely not be correct 100% of the time. So we recommend you run all the tests before deploying to production. You can do that in multiple ways:
 
@@ -68,24 +55,37 @@ You can expect the following behaviour:
 * On the other branches, the tests subset is run (including `spec/features/**/*_spec.rb`) unless:
   * `Gemfile` or `Gemfile.lock` were modified
   * The current commit message contains `[skip predict]` / `[predict skip]`
-  * The per-test coverage does not exist on the Knapsack Pro API (e.g., just enabled the feature)
+  * The per-test coverage does not exist on the Knapsack Pro API (e.g., you just enabled PREDICT)
+
+## Ruby glob
+
+Both `KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES` and `KNAPSACK_PRO_PREDICT_ALWAYS_RUN_TESTS` accept a Ruby glob as a value.
+
+Ensure the glob matches the correct files by running the following command in the root of your project:
+
+```bash
+ruby -e "puts (Dir.glob 'Gemfile.*')"
+
+# Gemfile
+# Gemfile.lock
+```
 
 ## Troubleshooting
 
 ### Sidekiq throws a segmentation fault
 
-The latest patch versions of Sidekiq are affected by an [issue](https://github.com/sidekiq/sidekiq/issues/6502) that causes segmentation faults.
+If you are using Sidekiq in your project, be aware that the latest patch versions of Sidekiq are affected by an [issue](https://github.com/sidekiq/sidekiq/issues/6502) that causes segmentation faults.
 
-On CI, before running your tests you can downgrade to the latest patch that works correctly:
+On CI, before running your tests you can downgrade to the latest patch that works correctly with:
 
 ```ruby
 bundle config --local deployment false # "Unfreezes" the lock file. May not be necessary.
 bundle remove sidekiq && bundle add sidekiq --version=7.3.2
 ```
 
-### Using with Coverage or SimpleCov
+### Using with SimpleCov or Coverage
 
-If you are executing `Coverage` or [`SimpleCov`](https://github.com/simplecov-ruby/simplecov) before Knapsack Pro, enable both line and eval coverage:
+If you are using [`SimpleCov`](https://github.com/simplecov-ruby/simplecov) or `Coverage`, start them *before* Knapsack Pro and enable both line and eval coverage:
 
 <Tabs>
 <TabItem value="simplecov" label="SimpleCov">
