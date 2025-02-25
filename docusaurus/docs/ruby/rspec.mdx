@@ -285,8 +285,6 @@ RSpec.configure do |c|
 end
 ```
 
-If you are using RSpec in Queue Mode and [Split by test example](split-by-test-examples.mdx), `--tag` is not supported.
-
 ### Some tests are failing in Queue Mode
 
 Since Knapsack Pro [ignores `.rspec`](rspec.mdx#rspec-is-ignored-in-queue-mode) and many projects use it to require `spec_helper.rb` or `rails_helper.rb`, some tests may be falling. Make sure you either require the correct helper at the top of each test file or pass it as an argument:
