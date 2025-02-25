@@ -304,7 +304,6 @@ Parallelize test examples (instead of files) across CI nodes.
 
 :::caution
 
-- Requires RSpec >= 3.3.0
 - Does not support `run_all_when_everything_filtered`
 
 :::
