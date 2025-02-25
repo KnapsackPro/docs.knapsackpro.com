@@ -21,7 +21,6 @@ import { IconExternalLink } from '@site/src/components/IconExternalLink'
 Only RSpec >= 3.3.0 is supported. [Let us know](https://knapsackpro.com/contact) if you use a different test runner. As an alternative, consider:
 
 - spreading test examples into multiple files
-- tagging test examples (e.g., RSpec's [`--tag`](rspec.mdx#run-a-subset-of-tests))
 
 :::
 
@@ -109,14 +108,6 @@ Knapsack Pro knows the optimal time per parallel CI node is 4.5 minutes, so it l
 In other words, files are split by test examples just enough to guarantee all the parallel CI nodes finish at a similar time to maximize performance and minimize memory consumption.
 
 We recommend running at least 2 CI builds after you enable this feature or change the number of CI nodes to allow the Knapsack Pro API to learn about your test suite.
-
-:::caution
-
-Does not support `--tag`
-
-:::
-
-Due to the [RSpec internals](https://github.com/rspec/rspec-core/issues/2522), `--tag` might be ignored when used together with Split by test examples. But you can use the `KNAPSACK_PRO_TEST_FILE_*` [environment variables](reference.md) to filter the test files to run.
 
 :::caution
 

@@ -306,14 +306,13 @@ Parallelize test examples (instead of files) across CI nodes.
 
 - Requires RSpec >= 3.3.0
 - Does not support `run_all_when_everything_filtered`
-- Does not support `--tag`
 
 :::
 
 Default: `true`
 
 Available:
-- `true`: distribute test examples across CI nodes (more balanced builds)
+- `true`: distribute test examples for slow test files across CI nodes (more balanced builds)
 - `false`: distribute whole test files across CI nodes
 
 Make sure to read the details in [Split by test examples](split-by-test-examples.mdx).
