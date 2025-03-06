@@ -27,7 +27,7 @@ PREDICT runs only the tests that are likely to fail. The subset of tests is calc
 
 To enable PREDICT, set any of the following ENV variables:
 
-* `KNAPSACK_PRO_PREDICT_DISABLED_ON_BRANCHES` (comma-separated list): on what branches to run all the tests
+* `KNAPSACK_PRO_PREDICT_DISABLED_ON_BRANCHES` (comma-separated strings or regular expressions): on what branches to run all the tests
 * `KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES` ([Ruby glob](#ruby-glob)): what files, if modified, cause all the tests to run
 * `KNAPSACK_PRO_PREDICT_ALWAYS_RUN_TESTS` ([Ruby glob](#ruby-glob)): what tests to always run
 
@@ -43,7 +43,7 @@ Given the dynamic nature of Ruby, PREDICT will likely not be correct 100% of the
 Given the following configuration on CI:
 
 ```bash
-KNAPSACK_PRO_PREDICT_DISABLED_ON_BRANCHES='main,staging' \
+KNAPSACK_PRO_PREDICT_DISABLED_ON_BRANCHES='main,staging,/release-.*/i' \
 KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES='{Gemfile,Gemfile.lock}' \
 KNAPSACK_PRO_PREDICT_ALWAYS_RUN_TESTS='spec/features/**/*_spec.rb' \
 bundle exec rake "knapsack_pro:queue:rspec"
