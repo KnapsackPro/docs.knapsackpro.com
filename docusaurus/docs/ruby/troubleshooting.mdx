@@ -5,10 +5,6 @@ pagination_prev: null
 
 # Ruby Troubleshooting
 
-## `NameError: uninitialized constant MyModule::MyModelName`
-
-Try with full namespacing `::SomeModule::MyModule::MyModelName`.
-
 ## Debug Knapsack Pro on your development environment/machine
 
 ### Regular Mode
@@ -516,3 +512,25 @@ Please consider:
 
 - [Splitting by test examples](split-by-test-examples.mdx) if you have a bottleneck file that is packed with test examples
 - If it's a retry, remember that [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](reference.md#knapsack_pro_fixed_queue_split-queue-mode) uses a cached split
+
+## Execution times are all 0 seconds in Minitest
+
+When using `minitest-spec-rails`, avoid the [unsupported *outer describe*](https://github.com/metaskills/minitest-spec-rails?tab=readme-ov-file#test-styles). Otherwise, Knapsack Pro won't be able to track the execution time of each test.
+
+```ruby
+# ⛔️ Bad
+require 'test_helper'
+describe User do
+end
+```
+
+```ruby
+# ✅ Good
+require 'test_helper'
+class UserTest < ActiveSupport::TestCase
+  let(:user_ken)   { User.create!(email: 'ken@example.com') }
+
+  it 'works' do
+    expect(user_ken).must_be_instance_of User
+  end
+end
