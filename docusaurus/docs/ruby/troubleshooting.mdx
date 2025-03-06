@@ -516,3 +516,27 @@ Please consider:
 
 - [Splitting by test examples](split-by-test-examples.mdx) if you have a bottleneck file that is packed with test examples
 - If it's a retry, remember that [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](reference.md#knapsack_pro_fixed_queue_split-queue-mode) uses a cached split
+
+## Missing test execution times in Minitest
+
+Test execution times are not measured if you use the `minitest-spec-rails` gem with the not-recommended test style:
+
+```ruby
+require 'test_helper'
+describe User do
+  # THIS IS NOT RECOMMENDED!
+end
+```
+
+Please use [the recommended style as suggested in the minitest-spec-rails documentation](https://github.com/metaskills/minitest-spec-rails?tab=readme-ov-file#test-styles).
+Only then Knapsack Pro can measure test execution times.
+
+```ruby
+require 'test_helper'
+class UserTest < ActiveSupport::TestCase
+  let(:user_ken)   { User.create! :email => 'ken@metaskills.net' }
+  it 'works' do
+    expect(user_ken).must_be_instance_of User
+  end
+end
+```
