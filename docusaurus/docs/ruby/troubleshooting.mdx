@@ -515,18 +515,21 @@ Please consider:
 
 ## Execution times are all 0 seconds in Minitest
 
-When using `minitest-spec-rails`, avoid the [unsupported *outer describe*](https://github.com/metaskills/minitest-spec-rails). Otherwise, Knapsack Pro won't be able to track the execution time of each test.
+When using `minitest-spec-rails`, avoid the [unsupported *outer describe*](https://github.com/metaskills/minitest-spec-rails?tab=readme-ov-file#test-styles). Otherwise, Knapsack Pro won't be able to track the execution time of each test.
 
 ```ruby
 # ⛔️ Bad
 require 'test_helper'
 describe User do
 end
+```
 
+```ruby
 # ✅ Good
 require 'test_helper'
 class UserTest < ActiveSupport::TestCase
-  let(:user_ken)   { User.create! :email => 'ken@metaskills.net' }
+  let(:user_ken)   { User.create!(email: 'ken@example.com') }
+
   it 'works' do
     expect(user_ken).must_be_instance_of User
   end
