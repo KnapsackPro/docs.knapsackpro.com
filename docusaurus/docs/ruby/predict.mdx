@@ -25,6 +25,39 @@ A substantial percentage of your CI builds is spent running tests that would nev
 
 PREDICT runs only the tests that are likely to fail. The subset of tests is calculated by combining the test code coverage collected over time with the changes you are working on.
 
+## How it works
+
+PREDICT collects test coverage into a report that looks like the following:
+
+```json
+{
+  "spec/models/user_spec.rb[1:1]": [
+    "app/models/user.rb"
+  ],
+  "spec/features/dashboard_spec.rb[1:1:1]": [
+    "app/models/user.rb",
+    "app/models/organization.rb",
+    "app/controllers/application_controller.rb",
+    "app/controllers/dashboard_controller.rb",
+    "app/views/dashboard/index.html.erb"
+  ]
+}
+```
+
+The test prediction is based on the following steps:
+1. Fetch from the API the most recent test coverage report
+1. Calculate what files changed between the current commit and the commit that generated the report
+1. Find in the report which test examples cover the changed files
+
+For example, if `app/models/user.rb` changed, PREDICT would run:
+- `spec/models/user_spec.rb[1:1]`
+- `spec/features/dashboard_spec.rb[1:1:1]`
+
+If `app/views/dashboard/index.html.erb` changed instead, PREDICT would only run:
+- `spec/features/dashboard_spec.rb[1:1:1]`
+
+## Configuration
+
 To enable PREDICT, set any of the following ENV variables:
 
 * `KNAPSACK_PRO_PREDICT_DISABLED_ON_BRANCHES` (comma-separated strings or regular expressions): on what branches to run all the tests
@@ -38,7 +71,7 @@ Given the dynamic nature of Ruby, PREDICT will likely not be correct 100% of the
 * Include `[skip predict]` / `[predict skip]` in the last commit message before you merge a pull request
 * Include your production branch in `KNAPSACK_PRO_PREDICT_DISABLED_ON_BRANCHES`
 
-## **Example**
+### Example
 
 Given the following configuration on CI:
 
@@ -57,7 +90,7 @@ You can expect the following behaviour:
   * The current commit message contains `[skip predict]` / `[predict skip]`
   * The per-test coverage does not exist on the Knapsack Pro API (e.g., you just enabled PREDICT)
 
-## Ruby glob
+### Ruby glob
 
 Both `KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES` and `KNAPSACK_PRO_PREDICT_ALWAYS_RUN_TESTS` accept a Ruby glob as a value.
 
