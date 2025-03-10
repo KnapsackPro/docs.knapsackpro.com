@@ -107,19 +107,15 @@ The XML report is generated for each batch of tests fetched from the Queue API. 
 
 ## Rerun _only_ failed tests
 
-Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tests/) feature with Knapsack Pro to only rerun a subset of tests instead of rerunning the entire test suite when a transient test failure arises.
-
-<YouTube src="https://www.youtube.com/embed/9WEsUosgTGw" />
-
-<br />
-
 :::caution
 
-Remove [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](reference.md#knapsack_pro_fixed_queue_split-queue-mode) if you use it, then the default `false` value is used, which allows rerunning failed tests correctly.
+Requires not setting [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](reference.md#knapsack_pro_fixed_queue_split-queue-mode) (or using the default `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false`).
 
 :::
 
-<br />
+Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tests/) feature with Knapsack Pro to only rerun a subset of tests instead of rerunning the entire test suite when a transient test failure arises.
+
+<YouTube src="https://www.youtube.com/embed/9WEsUosgTGw" />
 
 ### RSpec
 
