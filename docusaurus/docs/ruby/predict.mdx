@@ -107,9 +107,9 @@ ruby -e "puts (Dir.glob 'Gemfile.*')"
 
 ### Sidekiq throws a segmentation fault
 
-If you are using Sidekiq in your project, be aware that the latest patch versions of Sidekiq are affected by an [issue](https://github.com/sidekiq/sidekiq/issues/6502) that causes segmentation faults.
+If you are using Sidekiq in your project, be aware that versions >=7.3.3 are affected by an [issue](https://github.com/sidekiq/sidekiq/issues/6502) that causes segmentation faults.
 
-On CI, before running your tests you can downgrade to the latest patch that works correctly with:
+On CI, before running your tests you can downgrade to the latest version that works correctly with:
 
 ```ruby
 bundle config --local deployment false # "Unfreezes" the lock file. May not be necessary.
