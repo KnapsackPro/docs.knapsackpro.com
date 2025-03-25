@@ -84,7 +84,7 @@ bundle exec rake "knapsack_pro:queue:rspec"
 
 You can expect the following behaviour:
 
-* On main and staging, all tests are run
+* On main, staging, and branches starting with `release-`, all tests are run
 * On the other branches, the tests subset is run (including `spec/features/**/*_spec.rb`) unless:
   * `Gemfile` or `Gemfile.lock` were modified
   * The current commit message contains `[skip predict]` / `[predict skip]`
