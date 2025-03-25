@@ -77,7 +77,7 @@ Given the following configuration on CI:
 
 ```bash
 KNAPSACK_PRO_PREDICT_DISABLED_ON_BRANCHES='main,staging,/release-.*/i' \
-KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES='{Gemfile,Gemfile.lock}' \
+KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES='{Gemfile.lock,package-lock.json}' \
 KNAPSACK_PRO_PREDICT_ALWAYS_RUN_TESTS='spec/features/**/*_spec.rb' \
 bundle exec rake "knapsack_pro:queue:rspec"
 ```
@@ -97,10 +97,12 @@ Both `KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES` and `KNAPSACK_PRO_PREDICT_
 Ensure the glob matches the correct files by running the following command in the root of your project:
 
 ```bash
-ruby -e "puts (Dir.glob 'Gemfile.*')"
+ruby -e "puts (Dir.glob '{Gemfile*,package*.json}')"
 
 # Gemfile
 # Gemfile.lock
+# package-lock.json
+# package.json
 ```
 
 ## Troubleshooting
