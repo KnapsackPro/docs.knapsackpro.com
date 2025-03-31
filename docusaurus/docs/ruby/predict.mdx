@@ -105,22 +105,9 @@ ruby -e "puts (Dir.glob '{Gemfile*,package*.json}')"
 # package.json
 ```
 
-## Troubleshooting
+## Using PREDICT with SimpleCov (or Coverage)
 
-### Sidekiq throws a segmentation fault
-
-If you are using Sidekiq in your project, be aware that versions >=7.3.3 are affected by an [issue](https://github.com/sidekiq/sidekiq/issues/6502) that causes segmentation faults.
-
-On CI, before running your tests you can downgrade to the latest version that works correctly with:
-
-```ruby
-bundle config --local deployment false # "Unfreezes" the lock file. May not be necessary.
-bundle remove sidekiq && bundle add sidekiq --version=7.3.2
-```
-
-### Using with SimpleCov or Coverage
-
-If you are using [`SimpleCov`](https://github.com/simplecov-ruby/simplecov) or `Coverage`, start them *before* Knapsack Pro and enable both line and eval coverage:
+If you are using [`SimpleCov`](https://github.com/simplecov-ruby/simplecov) or `Coverage`, start them *before* Knapsack Pro:
 
 <Tabs>
 <TabItem value="simplecov" label="SimpleCov">
@@ -128,8 +115,7 @@ If you are using [`SimpleCov`](https://github.com/simplecov-ruby/simplecov) or `
 ```ruby
 require 'simplecov'
 SimpleCov.start do
-  # line coverage is the default
-  enable_coverage_for_eval
+  # ...
 end
 
 require 'knapsack_pro'
@@ -140,7 +126,7 @@ require 'knapsack_pro'
 <TabItem value="coverage" label="Coverage">
 
 ```ruby
-Coverage.start(lines: true, eval: true)
+Coverage.start
 
 require 'knapsack_pro'
 # ...
