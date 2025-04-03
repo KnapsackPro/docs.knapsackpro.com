@@ -147,7 +147,7 @@ Examples:
 ```bash
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
 # or
-KNAPSACK_PRO_TEST_FILE_PATTERN=="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}" \
+KNAPSACK_PRO_TEST_FILE_PATTERN="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}" \
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
 ```
 
@@ -199,9 +199,9 @@ console.log(files);
 Examples:
 
 ```bash
-KNAPSACK_PRO_TEST_FILE_PATTERN=="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}"
+KNAPSACK_PRO_TEST_FILE_PATTERN="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}"
 # or
-KNAPSACK_PRO_TEST_FILE_PATTERN=="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}" \
+KNAPSACK_PRO_TEST_FILE_PATTERN="{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}" \
 KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
 ```
 
@@ -215,11 +215,11 @@ Example:
 
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
-KNAPSACK_PRO_TEST_FILE_PATTERN=="src/user/__tests__/**/*.js" \
+KNAPSACK_PRO_TEST_FILE_PATTERN="src/user/__tests__/**/*.js" \
   npx knapsack-pro-vitest
 
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_OTHER_VITEST_API_TOKEN \
-KNAPSACK_PRO_TEST_FILE_PATTERN=="src/admin/__tests__/**/*.js" \
+KNAPSACK_PRO_TEST_FILE_PATTERN="src/admin/__tests__/**/*.js" \
   npx knapsack-pro-vitest
 ```
 
