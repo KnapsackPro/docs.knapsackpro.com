@@ -205,7 +205,7 @@ You might still need to use the `timeout` program to terminate tests and capture
 :::
 
 <details>
-  <summary>For legacy versions of `knapsack_pro` older than 7.7.0, please click here.</summary>
+  <summary>For legacy versions of `knapsack_pro` older than 7.7.0, click here.</summary>
 
   Tests freeze and CI node timeouts (the Ruby process is killed by a CI provider). Add the following script to `spec_helper.rb`. Thanks to that, you will see the backtrace showing what code line causes the hanging problem. Backtrace is visible only if the Ruby process got kill with `USR1` signal. Learn more from this [GitHub issue](https://github.com/rspec/rspec-rails/issues/1353#issuecomment-93173691).
 
@@ -324,10 +324,10 @@ WebMock or VCR may trigger the following errors when Knapsack Pro interacts with
 - `VCR::Errors::UnhandledHTTPRequestError`
 - `OpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=error: tlsv1 alert internal error`
 
-**`knapsack_pro` version 7.2 fixed those issues.**
+**Update the `knapsack_pro` gem to the latest version to fix those issues.**
 
 <details>
-  <summary>For legacy versions of `knapsack_pro` older than 7.2, please click here.</summary>
+  <summary>For legacy versions of `knapsack_pro` older than 7.2, click here.</summary>
 
   Add the Knapsack Pro API's subdomain to the [ignored hosts](https://benoittgt.github.io/vcr/#/configuration/ignore_request) and [`disable_web_connect!`](https://github.com/bblimke/webmock) in `spec/spec_helper.rb` (or wherever your WebMock/VCR configuration is located):
 
@@ -442,69 +442,75 @@ You have a couple of options:
 
 ## Rake tasks under tests are run more than once in Queue Mode
 
-Make sure the Rake task is loaded once for each test example in the spec file:
+**Update the `knapsack_pro` gem to the latest version to fix this issue.**
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs>
-<TabItem value="rake">
+<details>
+  <summary>For legacy versions of `knapsack_pro` older than 8.1.1, click here.</summary>
 
-```ruby
-class DummyOutput
-  class << self
-    attr_accessor :count
-  end
-end
+  Make sure the Rake task is loaded once for each test example in the spec file:
 
-namespace :dummy do
-  task do_something_once: :environment do
-    DummyOutput.count ||= 0
-    DummyOutput.count += 1
-    puts "Count: #{DummyOutput.count}"
-  end
-end
-```
+  <Tabs>
+  <TabItem value="rake">
 
-</TabItem>
-
-<TabItem value="spec">
-
-```ruby
-require 'rake'
-
-describe 'Dummy rake' do
-  describe "dummy:do_something_once" do
-    let(:task_name) { "dummy:do_something_once" }
-    let(:task) { Rake::Task[task_name] }
-
-    before(:each) do # make sure the rake task is defined *once*
-      Rake::Task[task_name].clear if Rake::Task.task_defined?(task_name)
-      Rake.load_rakefile("tasks/dummy.rake")
-      Rake::Task.define_task(:environment)
-    end
-
-    after(:each) do
-      Rake::Task[task_name].reenable
-      # Reset the state
-      DummyOutput.count = 0
-    end
-
-    it "calls the rake task once (increases counter by one)" do
-      expect { task.invoke }.to_not raise_error
-      expect(DummyOutput.count).to eq(1)
-    end
-
-    it "calls the rake task once again (increases counter by one)" do
-      expect { task.invoke }.to_not raise_error
-      expect(DummyOutput.count).to eq(1)
+  ```ruby
+  class DummyOutput
+    class << self
+      attr_accessor :count
     end
   end
-end
-```
 
-</TabItem>
-</Tabs>
+  namespace :dummy do
+    task do_something_once: :environment do
+      DummyOutput.count ||= 0
+      DummyOutput.count += 1
+      puts "Count: #{DummyOutput.count}"
+    end
+  end
+  ```
+
+  </TabItem>
+
+  <TabItem value="spec">
+
+  ```ruby
+  require 'rake'
+
+  describe 'Dummy rake' do
+    describe "dummy:do_something_once" do
+      let(:task_name) { "dummy:do_something_once" }
+      let(:task) { Rake::Task[task_name] }
+
+      before(:each) do # make sure the rake task is defined *once*
+        Rake::Task[task_name].clear if Rake::Task.task_defined?(task_name)
+        Rake.load_rakefile("tasks/dummy.rake")
+        Rake::Task.define_task(:environment)
+      end
+
+      after(:each) do
+        Rake::Task[task_name].reenable
+        # Reset the state
+        DummyOutput.count = 0
+      end
+
+      it "calls the rake task once (increases counter by one)" do
+        expect { task.invoke }.to_not raise_error
+        expect(DummyOutput.count).to eq(1)
+      end
+
+      it "calls the rake task once again (increases counter by one)" do
+        expect { task.invoke }.to_not raise_error
+        expect(DummyOutput.count).to eq(1)
+      end
+    end
+  end
+  ```
+
+  </TabItem>
+  </Tabs>
+</details>
 
 ## Tests distribution is unbalanced in Queue Mode
 
