@@ -137,16 +137,3 @@ Probably, you load `MY_RUBY_GEM` in `Rakefile` so when `knapsack_pro` runs a rak
 ### How do I fix `Don't know how to build task 'knapsack_pro:rspec_test_example_detector'`?
 
 Try to remove the default prefix `bundle exec` used by `knapsack_pro` by setting `KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX=""`.
-
-### How do I fix `Could not generate JSON report for RSpec. Rake task failed when running RACK_ENV=test RAILS_ENV=test bundle exec rake knapsack_pro:rspec_test_example_detector`?
-
-Most likely, RSpec is causing your CI machine to freeze due to a lack of resources: you could try to use fewer parallel nodes, or add more CPU/RAM. There is nothing we can do on our side, sorry!
-
-Check the terminal output for the actionable error message:
-
-```
-E, [2021-03-30T17:33:12.199274 #103] ERROR -- : [knapsack_pro] ---------- START of actionable error message --------------------------------------------------
-E, [2021-03-30T17:33:12.199329 #103] ERROR -- : [knapsack_pro] There was a problem while generating test examples for the slow test files using the RSpec dry-run flag. To reproduce the error triggered by the RSpec, please try to run below command (this way, you can find out what is causing the error):
-E, [2021-03-30T17:33:12.199348 #103] ERROR -- : [knapsack_pro] bundle exec rspec --format json --dry-run --out .knapsack_pro/test_case_detectors/rspec/rspec_dry_run_json_report_node_0.json --default-path spec spec/models/user_spec.rb spec/features/articles_spec.rb
-E, [2021-03-30T17:33:12.199368 #103] ERROR -- : [knapsack_pro] ---------- END of actionable error message --------------------------------------------------
-```
