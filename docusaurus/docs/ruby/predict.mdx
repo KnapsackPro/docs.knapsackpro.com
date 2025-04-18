@@ -105,6 +105,46 @@ ruby -e "puts (Dir.glob '{Gemfile*,package*.json}')"
 # package.json
 ```
 
+## Custom rules
+
+`KNAPSACK_PRO_PREDICT_DISABLED_ON_CHANGED_FILES` and `KNAPSACK_PRO_PREDICT_ALWAYS_RUN_TESTS` allow you to control what tests PREDICT runs. But you may want more precision.
+
+In some situations, you might configure PREDICT to ensure specific tests are run based on some conditions. This is useful in those cases where test coverage would not detect some files (e.g., React components).
+
+PREDICT provides `KnapsackPro::Predictor::AssociatedSpecs` and `KnapsackPro::Predictor::ModifiedSupportSpecs` out of the box, but you can define your rules too.
+
+### Associated specs
+
+Given the following configuration:
+
+```ruby
+predict = KnapsackPro::Predict.new
+predict.use KnapsackPro::Predictor::AssociatedSpecs.new(from: %r{app/react/(.*).js}, to: "spec/features/%s_spec.rb")
+predict.use KnapsackPro::Predictor::AssociatedSpecs.new(from: %r{app/react/(.*).js}, to: "spec/features/a_specific_spec.rb")
+predict.instrument
+```
+
+If `app/react/foo.js` changed, PREDICT would add `spec/features/foo_spec.rb` and `spec/features/a_specific_spec.rb` to the prediction.
+
+### Modified support specs
+
+When using RSpec `shared_contexts` and `shared_examples`, configure them with:
+
+```ruby
+predict = KnapsackPro::Predict.new
+predict.use KnapsackPro::Predictor::ModifiedSupportSpecs.new(%r{spec/.*_examples\.rb\z})
+predict.use KnapsackPro::Predictor::ModifiedSupportSpecs.new(%r{spec/.*_contexts\.rb\z})
+predict.instrument
+```
+
+When tests examples are added to the support files, all the specs including them are added to the prediction.
+
+### Define your custom rules
+
+You can create custom rules based on your specific conditions by giving `predict.use` an object that responds to `#call(git_diff, test_coverage)` and returns an array of paths (e.g., `[spec/models/foo_spec.rb[1:1], spec/featurs/bar_spec.rb]`) to be added to the prediction.
+
+Check the source code for `KnapsackPro::Predictor::AssociatedSpecs` or `KnapsackPro::Predictor::ModifiedSupportSpecs` for a starting point.
+
 ## Using PREDICT with SimpleCov (or Coverage)
 
 If you are using [`SimpleCov`](https://github.com/simplecov-ruby/simplecov) or `Coverage`, start them *before* Knapsack Pro:
