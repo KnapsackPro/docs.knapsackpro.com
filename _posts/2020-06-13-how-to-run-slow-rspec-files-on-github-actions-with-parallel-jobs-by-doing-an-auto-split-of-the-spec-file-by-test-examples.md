@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # If you need DB like PostgreSQL, Redis then define service below.
-    # https://github.com/actions/example-services/tree/master/.github/workflows
+    # https://github.com/actions/example-services/tree/main/.github/workflows
     services:
       postgres:
         image: postgres:10.8

@@ -149,7 +149,7 @@ const sidebars: SidebarsConfig = {
         {
           type: "link",
           label: "Changelog",
-          href: "https://github.com/KnapsackPro/knapsack_pro-ruby/blob/master/CHANGELOG.md#change-log",
+          href: "https://github.com/KnapsackPro/knapsack_pro-ruby/blob/main/CHANGELOG.md#change-log",
         },
       ],
     },

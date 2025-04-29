@@ -73,7 +73,7 @@ Now we can run `knapsack-pro-cypress` as usual:
         run: knapsack-pro-cypress
       - name: Upload E2E test reports
         if: always()
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v4
         with:
           name: test-reports-${{ env.KNAPSACK_PRO_CI_NODE_INDEX }}
           path: mochawesome-report
@@ -105,22 +105,22 @@ Now we need to download all our test artifacts, which were uploaded as `test-rep
       - name: Create reports directory
         run: mkdir reports
       - name: Download test-reports-0
-        uses: actions/download-artifact@master
+        uses: actions/download-artifact@v4
         with:
           name: test-reports-0
           path: reports/0
       - name: Download test-reports-1
-        uses: actions/download-artifact@master
+        uses: actions/download-artifact@v4
         with:
           name: test-reports-1
           path: reports/1
       - name: Download test-reports-2
-        uses: actions/download-artifact@master
+        uses: actions/download-artifact@v4
         with:
           name: test-reports-2
           path: reports/2
       - name: Download test-reports-3
-        uses: actions/download-artifact@master
+        uses: actions/download-artifact@v4
         with:
           name: test-reports-3
           path: reports/3
@@ -221,7 +221,7 @@ Now we upload this report:
 
 {% highlight yml %}
       - name: Upload report
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v4
         with:
           name: E2E Test Reports
           path: report/

@@ -635,7 +635,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # If you need a DB, then define it in the service below.
-    # https://github.com/actions/example-services/tree/master/.github/workflows
+    # https://github.com/actions/example-services/tree/main/.github/workflows
     services:
       postgres:
         image: postgres:10.8
@@ -926,7 +926,7 @@ blocks:
         - name: bundle
           commands:
             - checkout
-            - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-master-
+            - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-main-
             - sem-version ruby 2.6.1
             - bundle install --jobs=4 --retry=3 --path vendor/bundle
             - cache store gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock) vendor/bundle
@@ -950,7 +950,7 @@ blocks:
       prologue:
         commands:
           - checkout
-          - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-master-
+          - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-main-
           - sem-service start postgres
           - sem-version ruby 2.6.1
           - bundle install --jobs=4 --retry=3 --path vendor/bundle
