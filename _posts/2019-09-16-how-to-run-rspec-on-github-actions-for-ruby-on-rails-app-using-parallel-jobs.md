@@ -26,7 +26,7 @@ In our case Rails application has Postgres database so you need to set up servic
 {% highlight yaml %}
 # If you need DB like PostgreSQL then define service below.
 # Example for Redis can be found here:
-# https://github.com/actions/example-services/tree/master/.github/workflows
+# https://github.com/actions/example-services/tree/main/.github/workflows
 services:
   postgres:
     image: postgres:10.8

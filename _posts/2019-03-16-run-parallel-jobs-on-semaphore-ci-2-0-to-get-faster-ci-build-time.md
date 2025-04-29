@@ -77,7 +77,7 @@ blocks:
           - checkout
           # Restore dependencies from cache.
           # Read about caching: https://docs.semaphoreci.com/article/54-toolbox-reference#cache
-          - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-master-
+          - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-main-
           # Set Ruby version:
           - sem-version ruby 2.6.1
           - bundle install --jobs=4 --retry=3 --path vendor/bundle
@@ -102,7 +102,7 @@ blocks:
       prologue:
         commands:
           - checkout
-          - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-master-
+          - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-main-
           # Start Postgres database service.
           # See https://docs.semaphoreci.com/article/54-toolbox-reference#sem-service
           - sem-service start postgres

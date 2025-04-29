@@ -46,7 +46,7 @@ For example, you could decide to run Knapsack Pro on all the CI nodes but the la
 KNAPSACK_PRO_CI_NODE_TOTAL=$((MY_CI_NODE_TOTAL-1)) bundle exec rake knapsack_pro:queue:rspec
 ```
 
-To find out which environment variable to use in place of `MY_CI_NODE_TOTAL`, take a look at what Knapsack Pro uses as `node_total` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci) (e.g., for CircleCI it would be [`CIRCLE_NODE_TOTAL`](https://github.com/KnapsackPro/knapsack_pro-ruby/blob/master/lib/knapsack_pro/config/ci/circle.rb#L6))
+To find out which environment variable to use in place of `MY_CI_NODE_TOTAL`, take a look at what Knapsack Pro uses as `node_total` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci) (e.g., for CircleCI it would be [`CIRCLE_NODE_TOTAL`](https://github.com/KnapsackPro/knapsack_pro-ruby/blob/main/lib/knapsack_pro/config/ci/circle.rb#L6))
 
 ## Fail the CI build if one of the test files exceeds a certain time limit
 

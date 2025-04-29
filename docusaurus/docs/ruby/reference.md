@@ -37,7 +37,7 @@ Git branch under test.
 
 You don't need to set it if either:
 
-- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)
+- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci)
 - You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
 
 In some cases, particularly for pull request merge commits or if the CI provider checks out a specific git commit during the build process, Git might only expose `HEAD` instead of the actual branch name.
@@ -54,7 +54,7 @@ Available: `false` | `true`
 
 Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
 
-Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci))
 
 If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_NODE_BUILD_ID=$(openssl rand -base64 32)` and make it available to all parallel nodes.
 
@@ -62,7 +62,7 @@ If your CI is not supported, you may generate a build ID with `KNAPSACK_PRO_CI_N
 
 Index of current CI node (first should be 0, second should be 1, etc.).
 
-Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci))
 
 If your CI is not supported, you need to set it manually.
 
@@ -90,7 +90,7 @@ Available:
 
 Total number of parallel CI nodes.
 
-Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci))
 
 If your CI is not supported, you need to set it manually.
 
@@ -100,7 +100,7 @@ Hash of the commit under test.
 
 You don't need to set it if either:
 
-- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)
+- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci)
 - You are using `KNAPSACK_PRO_REPOSITORY_ADAPTER=git` and `KNAPSACK_PRO_PROJECT_DIR`
 
 ## `KNAPSACK_PRO_CUCUMBER_QUEUE_PREFIX` (Cucumber, Queue Mode)
@@ -139,11 +139,11 @@ Default: `1`
 
 Dynamic or fixed tests split when retrying a CI build.
 
-Default: automagically set to the correct value for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)
+Default: automagically set to the correct value for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci)
 
 Available:
 
-- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
+- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci))
 - `true`: if the triplet `(branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split
 
 Recommended:
@@ -160,7 +160,7 @@ Default: `true`
 
 Available:
 
-- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
+- `false`: generate a new split when `KNAPSACK_PRO_CI_NODE_BUILD_ID` changes (see what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci))
 - `true`: if the triplet `(branch name, commit hash, number of nodes)` was already split in a previous build use the same split, otherwise generate a new split
 
 Recommended:
@@ -255,7 +255,7 @@ Default: unset
 
 Available:
 
-- unset: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci))
+- unset: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci))
 - `git` (requires `KNAPSACK_PRO_PROJECT_DIR`): Knapsack Pro will set `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` using git on your CI
 
 ## `KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN` (Internal, RSpec)
@@ -495,7 +495,7 @@ A user name that started the CI build. It is usually the same person that made t
 
 You don't need to set it if:
 
-- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci), and we can read the user seat for the given CI provider.
+- Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci), and we can read the user seat for the given CI provider.
 
 Examples:
 

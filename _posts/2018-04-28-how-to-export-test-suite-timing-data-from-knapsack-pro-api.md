@@ -46,7 +46,7 @@ You will get a response from API with the list of CI builds.
         {
           "id": "651efcce-cc5f-4cfc-b8fa-f49b4e5fb4af",
           "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
-          "branch": "master",
+          "branch": "main",
           "node_total": 3,
           "created_at": "2018-04-21T10:57:42.439Z",
           "updated_at": "2018-04-21T10:57:54.989Z"
@@ -54,7 +54,7 @@ You will get a response from API with the list of CI builds.
         {
           "id": "ba2190af-1bb1-4e3a-8ce1-37303549a4c3",
           "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
-          "branch": "master",
+          "branch": "main",
           "node_total": 2,
           "created_at": "2018-04-02T10:00:44.741Z",
           "updated_at": "2018-04-02T10:00:44.763Z"
@@ -75,7 +75,7 @@ You can use optional query params like `commit_hash`, `branch`, `node_total` to 
 
 {% highlight plain %}
 curl -X GET \
-  https://api.knapsackpro.com/v1/builds?page=1&branch=master&node_total=2&commit_hash=d1acb81ac1bead703eb6de64d1af24104d5d4b2c \
+  https://api.knapsackpro.com/v1/builds?page=1&branch=main&node_total=2&commit_hash=d1acb81ac1bead703eb6de64d1af24104d5d4b2c \
   -H 'cache-control: no-cache' \
   -H 'KNAPSACK-PRO-TEST-SUITE-TOKEN: e5311882cbba506223ee8036fa68dc13'
 {% endhighlight %}
@@ -100,7 +100,7 @@ For instance, you can get a response from Knapsack Pro API:
 {
   "id": "651efcce-cc5f-4cfc-b8fa-f49b4e5fb4af",
   "commit_hash": "347f33f598e5c66727e36b6f0c13b034f6a057f0",
-  "branch": "master",
+  "branch": "main",
   "node_total": 2,
   "created_at": "2018-04-02T10:00:44.741Z",
   "updated_at": "2018-04-02T10:00:44.763Z",

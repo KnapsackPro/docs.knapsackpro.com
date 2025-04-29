@@ -21,7 +21,7 @@ KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 bundle exec rake "knapsack_pro:rspec[--seed MY_SEED]"
 ```
 
-`KNAPSACK_PRO_CI_NODE_BUILD_ID` must be the same as the CI build you are trying to reproduce (if it helps, take a look at what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)).
+`KNAPSACK_PRO_CI_NODE_BUILD_ID` must be the same as the CI build you are trying to reproduce (if it helps, take a look at what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci)).
 
 You can also run the same subset of tests without Knapsack Pro: in the logs, find the command that Knapsack Pro used to invoke the test runner:
 
@@ -44,7 +44,7 @@ KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true \
 bundle exec rake "knapsack_pro:queue:rspec[--seed MY_SEED]"
 ```
 
-`KNAPSACK_PRO_CI_NODE_BUILD_ID` must be the same as the CI build you are trying to reproduce (if it helps, take a look at what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)).
+`KNAPSACK_PRO_CI_NODE_BUILD_ID` must be the same as the CI build you are trying to reproduce (if it helps, take a look at what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci)).
 
 You can also run the same subset of tests without Knapsack Pro: in the logs, find the command that Knapsack Pro used to invoke the test runner.
 
@@ -278,7 +278,7 @@ fi
 
 ## Error `commit_hash` parameter is required
 
-Knapsack Pro takes `KNAPSACK_PRO_COMMIT_HASH` and `KNAPSACK_PRO_BRANCH` from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/master/lib/knapsack_pro/config/ci)). If your CI is not supported you may see the following error:
+Knapsack Pro takes `KNAPSACK_PRO_COMMIT_HASH` and `KNAPSACK_PRO_BRANCH` from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci)). If your CI is not supported you may see the following error:
 
 ```bash
 ERROR -- : [knapsack_pro] {"errors"=>[{"commit_hash"=>["parameter is required"]}]}
