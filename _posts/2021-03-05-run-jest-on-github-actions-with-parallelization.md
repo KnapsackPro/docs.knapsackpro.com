@@ -61,7 +61,7 @@ Notice how we use the previously defined values of `matrix.ci_node_total` and `m
 
 Apart from these two, there are two additional variables defined: `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` and `KNAPSACK_PRO_FIXED_QUEUE_SPLIT`.
 
-`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` is a token needed for Knapsack API authorization. It's pulled from GitHub secrets set in your project's repository. You can access your secrets in the Settings -> Secrets on your repo's GH page.
+`KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST` is a token needed for Knapsack API authorization. Configure it using secrets (*Actions* & *Dependabot*) as described in [GitHub Actions' docs](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
 
 To view or generate Knapsack API token for your project, head over to [Knapsack User's Dashboard](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-jest-on-github-actions-with-parallelization) (you may need to sign up for an account if you don't have one). Save your API token in your GitHub Secrets as `KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST`.
 
