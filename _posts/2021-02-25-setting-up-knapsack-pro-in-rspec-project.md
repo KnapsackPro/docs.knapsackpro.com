@@ -20,7 +20,7 @@ We don't know which tests will end up distributed to which node beforehand - tha
 
 The way the Queue Mode works helps mitigate unstable test run times and parallel node performance. When the metrics can vary, the queue mode is the answer.
 
-The Regular vs Queue Mode distinction is covered more in-depth [here](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation).
+The Regular vs Queue Mode distinction is covered more in-depth in a [separate post](/2020/how-to-speed-up-ruby-and-javascript-tests-with-ci-parallelisation).
 
 After helping many different projects over the years, we can say, that the Queue Mode is usually the best solution. In the real world, the performance of individual machines and tests is subject to all sorts of unpredictability. Using Queue Mode results in the most robust optimization despite these constraints.
 

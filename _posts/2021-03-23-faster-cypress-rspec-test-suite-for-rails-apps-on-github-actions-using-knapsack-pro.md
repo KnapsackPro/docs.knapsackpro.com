@@ -235,7 +235,7 @@ Once you've completed the above steps, trigger a test run on your repo. You shou
 
 Now check your [Knapsack Dashboard](https://knapsackpro.com/sessions?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=faster-cypress-rspec-test-suite-for-rails-apps-on-github-actions-using-knapsack-pro) for the results 🚀
 
-The complete example Rails app can be found [here](https://github.com/goodproblems/knapsack-example-rails-app). Happy testing!
+The complete example Rails app can be found in [this repository](https://github.com/goodproblems/knapsack-example-rails-app). Happy testing!
 
 ## Related resources
 
