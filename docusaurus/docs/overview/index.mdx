@@ -95,7 +95,7 @@ In case of network issues, Knapsack Pro logs a warning and automatically switche
 Knapsack Pro will retry to connect with the API multiple times before switching to Fallback Mode.
 
 In the unlikely scenario where some CI nodes switch to Fallback Mode, but others don't, you can expect the following behavior:
-- Queue Mode: some tests might be run on multiple CI nodes (you have the guarantee of at-least-once tests execution).
+- Queue Mode (default): some tests might be run on multiple CI nodes (you have the guarantee of at-least-once tests execution).
 - Regular Mode: some tests might be skipped; if this is not acceptable, you can [disable Fallback Mode](../ruby/reference.md#knapsack_pro_fallback_mode_enabled).
 
 ## Split by test examples
