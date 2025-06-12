@@ -92,6 +92,12 @@ However, as explained in the [Queue Mode](#queue-mode-dynamic-split) section, th
 
 In case of network issues, Knapsack Pro logs a warning and automatically switches to Fallback Mode to run your tests with a split based on test file names.
 
+Knapsack Pro will retry to connect with the API multiple times before switching to Fallback Mode.
+
+In the unlikely scenario where some CI nodes switch to Fallback Mode, but others don't, you can expect the following behavior:
+- Queue Mode: some tests might be run on multiple CI nodes (you have the guarantee of at-least-once tests execution).
+- Regular Mode: some tests might be skipped; if this is not acceptable, you can [disable Fallback Mode](../ruby/reference.md#knapsack_pro_fallback_mode_enabled).
+
 ## Split by test examples
 
 Knapsack Pro can [parallelize tests across CI nodes by example](../ruby/split-by-test-examples.mdx). This is useful when you have slow test files but don't want to manually split test examples into smaller test files.
