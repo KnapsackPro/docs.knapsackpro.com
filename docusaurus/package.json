@@ -19,10 +19,10 @@
     "remark:watch": "npm run remark -- --quiet --frail --use remark-validate-links --use remark-lint-relative-markdown-file-path-links --use remark-lint-docusaurus-empty-lines-around-admonition-content --watch \"docs/**/*.{md,mdx}\""
   },
   "dependencies": {
-    "@docusaurus/core": "^3.7.0",
-    "@docusaurus/plugin-client-redirects": "^3.7.0",
-    "@docusaurus/preset-classic": "^3.7.0",
-    "@docusaurus/tsconfig": "^3.7.0",
+    "@docusaurus/core": "^3.8.1",
+    "@docusaurus/plugin-client-redirects": "^3.8.1",
+    "@docusaurus/preset-classic": "^3.8.1",
+    "@docusaurus/tsconfig": "^3.8.1",
     "@mdx-js/react": "^3.1.0",
     "@types/react": "^18.3.20",
     "prism-react-renderer": "^2.4.1",
@@ -31,7 +31,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.7.0",
+    "@docusaurus/module-type-aliases": "^3.8.1",
     "@types/react-dom": "^18.3.6",
     "concurrently": "^9.1.2",
     "remark-cli": "^12.0.1",
