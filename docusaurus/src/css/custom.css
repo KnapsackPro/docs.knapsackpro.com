@@ -99,7 +99,7 @@ li {
   cursor: unset;
 }
 
-div[class^='announcementBar_'] {
+.theme-announcement-bar {
   font-size: 20px;
   background: repeating-linear-gradient(
     35deg,
