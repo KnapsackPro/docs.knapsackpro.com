@@ -121,7 +121,7 @@ when (8..10) then 'high value'
 end
 {% endhighlight %}
 
-One last tip. You can provide multiple patterns for each `when`. This would effectively mimic the logical `||` operator, with each pattern beig compared against.
+One last tip. You can provide multiple patterns for each `when`. This would effectively mimic the logical `||` operator, with each pattern being compared against.
 To illustrate this, let's expand on a previous example:
 
 {% highlight ruby %}

@@ -59,7 +59,7 @@ There is one more useful thing which is retry failed CI node feature. You can ju
 We are going to use [knapsack_pro gem with Queue Mode for RSpec](https://docs.knapsackpro.com/overview/#queue-mode-dynamic-split).
 You can find here info how to add it to your Gemfile and [install knapsack_pro for your project](https://docs.knapsackpro.com/knapsack_pro-ruby/guide/).
 
-Knapsack Pro supports buildkite environment variables to determine git commit, branch name and number of parallel jobs. The only thing you need to do is to configure the parallelism parameter in your pipeline step and run the appropiate knapsack_pro command.
+Knapsack Pro supports buildkite environment variables to determine git commit, branch name and number of parallel jobs. The only thing you need to do is to configure the parallelism parameter in your pipeline step and run the appropriate knapsack_pro command.
 
 **Create pipeline:**
 

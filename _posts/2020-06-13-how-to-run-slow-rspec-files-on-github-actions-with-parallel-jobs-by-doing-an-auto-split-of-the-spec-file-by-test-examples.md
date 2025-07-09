@@ -23,7 +23,7 @@ To solve the problem of a slow test file, we need to split what's inside it. We 
 
 First, it needs work. Although admittedly quite plausible in a described scenario, in real life it's usually not just the one file that's causing problems. Oftentimes there is a number of slow and convoluted test files, with their own complex setups, like nested `before` blocks, `let`s, etc. We've all seen them (and probably contributed to them ending-up this way), haven't we? ;-) Refactoring files like that is no fun, and there seem to always be more higher priority work to be done, at least from our experience.
 
-Second, we belive that the code organization should be based on other considerations. How you create your files and classes is most likely a result of following some approach agreed upon in your project. Dividing classes into smaller ones so that the CI build can run faster encroaches on your conventions. It might be more disturbing to some than the others, but we feel it's fair to say it'd be best to avoid - if there was a better way to achieve the same...
+Second, we believe that the code organization should be based on other considerations. How you create your files and classes is most likely a result of following some approach agreed upon in your project. Dividing classes into smaller ones so that the CI build can run faster encroaches on your conventions. It might be more disturbing to some than the others, but we feel it's fair to say it'd be best to avoid - if there was a better way to achieve the same...
 
 ## Enter split by test examples
 
