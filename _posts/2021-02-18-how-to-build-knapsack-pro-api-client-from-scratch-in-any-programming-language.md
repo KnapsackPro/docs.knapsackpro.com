@@ -96,7 +96,7 @@ Users can define those environment variables in their CI server settings to cont
 
   - CI build has many parallel CI nodes. Each parallel CI node should have the same `KNAPSACK_PRO_CI_NODE_BUILD_ID` value. This means the parallel CI nodes belong to the same CI build.
   - Knapsack Pro client by default should try to detect CI build ID for popular CI providers by looking for it in the environment variables.
-  - If `KNAPSACK_PRO_CI_NODE_BUILD_ID` value was defined by the user then it should be used during a request to the Knapsak Pro API. It has [higher priority](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L79,L81) than [detected CI build ID from a CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L83,L86) environment variables.
+  - If `KNAPSACK_PRO_CI_NODE_BUILD_ID` value was defined by the user then it should be used during a request to the Knapsack Pro API. It has [higher priority](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L79,L81) than [detected CI build ID from a CI provider](https://github.com/KnapsackPro/knapsack-pro-core-js/blob/0f44c6a3daa369cd4353e315abbf5539295289ea/src/config/knapsack-pro-env.config.ts#L83,L86) environment variables.
   - If the user did not define `KNAPSACK_PRO_CI_NODE_BUILD_ID` then a default value `missing-build-id` should be used.
     - Knapsack Pro API understands `missing-build-id` string and knows the CI build has an undefined CI build ID then. In such a case only one parallel CI build can be run at a time for a given set of values (`git commit hash` AND `branch name` AND `number of parallel CI nodes`) - otherwise, tests could be accidentally split between 2 CI builds.
       - Why this set of values matter? From the Knapsack Pro API perspective, a unique CI build is a set of test files that belongs to a git commit hash, branch name and it is split across a certain number of parallel CI nodes. When the user will run a few CI builds at the same time for the same git commit, branch name and on the same number of parallel CI nodes then we need a way to distinguish CI builds from each other. That's why CI build ID is useful and recommended to be pass in request to Knapsack Pro API.
@@ -347,7 +347,7 @@ For instance use:
 
 ## README
 
-It's good to create a well-documentented README for your packages. You can get inspired by checking documentation for:
+It's good to create a well-documented README for your packages. You can get inspired by checking documentation for:
 
 - [`@knapsack-pro/core` readme](https://github.com/KnapsackPro/knapsack-pro-core-js#knapsack-procore)
 - [`@knapsack-pro/jest` readme](https://github.com/KnapsackPro/knapsack-pro-jest#knapsack-projest)
