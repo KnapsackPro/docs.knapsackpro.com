@@ -94,7 +94,7 @@ const config: Config = {
   themeConfig: {
     announcementBar: {
       content:
-        'Please answer <a target="_blank" rel="nofollow noopener noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSdhqElxupHqFANRQlv-O55ilx-NoJrNP1F5KzRDcxd7ldLMEg/viewform?usp=sf_link">one question</a> about Test Prediction 🙏',
+        'Please answer <a target="_blank" rel="nofollow noopener noreferrer" href="https://forms.gle/ui3VkmgK8efkGucU8">one question</a> about Retry only Failed Tests 🙏',
     },
     navbar: {
       logo: {
