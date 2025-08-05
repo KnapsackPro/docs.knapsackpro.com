@@ -87,13 +87,13 @@ Create `bin/parallel_tests` and make it executable `chmod u+x`:
     #!/bin/bash
 
     handle_signal() {
-        local signal=$1
-        if [[ -n $knapsack_pro_pid ]]; then
-          echo "KNAPSACK_PRO_CI_NODE_INDEX=$KNAPSACK_PRO_CI_NODE_INDEX Received signal $signal in bin/parallel_tests, terminating the Knapsack Pro process with TERM"
-          kill -TERM $knapsack_pro_pid
-          echo "KNAPSACK_PRO_CI_NODE_INDEX=$KNAPSACK_PRO_CI_NODE_INDEX Waiting for the Knapsack Pro process with PID $knapsack_pro_pid to terminate"
-          wait $knapsack_pro_pid
-        fi
+      local signal=$1
+      if [[ -n $knapsack_pro_pid ]]; then
+        echo "KNAPSACK_PRO_CI_NODE_INDEX=$KNAPSACK_PRO_CI_NODE_INDEX Received signal $signal in bin/parallel_tests, terminating the Knapsack Pro process with TERM"
+        kill -TERM $knapsack_pro_pid
+        echo "KNAPSACK_PRO_CI_NODE_INDEX=$KNAPSACK_PRO_CI_NODE_INDEX Waiting for the Knapsack Pro process with PID $knapsack_pro_pid to terminate"
+        wait $knapsack_pro_pid
+      fi
     }
 
     trap 'handle_signal TERM' TERM
