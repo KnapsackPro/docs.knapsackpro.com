@@ -90,6 +90,8 @@ Some users reported frozen CI nodes with:
 
 - Recursive loop in the code base. Check if you have hidden loops that could happen when an exception happens. For example, investigate nested `rescue` blocks. You can use the following [backtrace debugging suggestions](troubleshooting.mdx#why-does-the-ci-node-hang-backtrace-debugging) to find it.
 
+- Cloudflare JS challenge blocking external requests during tests if your CI runs from outside the allowed regions.
+
 ### Why does the CI node hang? (backtrace debugging)
 
 Knapsack Pro would print Ruby threads to the output when tests freeze and CI node timeouts (the Ruby process is killed by a CI provider).
