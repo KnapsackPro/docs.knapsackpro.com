@@ -79,7 +79,7 @@ You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_
     bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec_$MY_CI_NODE_INDEX.xml]"
     ```
 
-    This also applies if you are running parallel test processes on each CI node (see how to [integrate Knapsack Pro with `parallel_tests` here](parallel_tests.md)).
+    This also applies if you are running parallel test processes on each CI node (see how to [integrate Knapsack Pro with `parallel_tests` here](parallel_tests.mdx)).
 
     <details>
       <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
@@ -111,7 +111,7 @@ You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_
       FINAL_REPORT = "tmp/final_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.xml"
       ```
 
-      This applies also if you are running parallel test processes on each CI node (see our page on to integrate Knapsack Pro with [`parallel_tests`](parallel_tests.md) for an example).
+      This applies also if you are running parallel test processes on each CI node (see our page on to integrate Knapsack Pro with [`parallel_tests`](parallel_tests.mdx) for an example).
     </details>
   </TabItem>
   <TabItem value="json-formatter" label="Regular Mode">
@@ -136,7 +136,7 @@ You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_
     bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format json --out tmp/rspec_$MY_CI_NODE_INDEX.json]"
     ```
 
-    This also applies if you are running parallel test processes on each CI node (see how to [integrate Knapsack Pro with `parallel_tests` here](parallel_tests.md)).
+    This also applies if you are running parallel test processes on each CI node (see how to [integrate Knapsack Pro with `parallel_tests` here](parallel_tests.mdx)).
 
     <details>
       <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
@@ -168,7 +168,7 @@ You need to install the [`rspec_junit_formatter`](https://github.com/sj26/rspec_
       FINAL_REPORT = "tmp/final_rspec_#{ENV['KNAPSACK_PRO_CI_NODE_INDEX']}.json"
       ```
 
-      This applies also if you are running parallel test processes on each CI node (see our page on to integrate Knapsack Pro with [`parallel_tests`](parallel_tests.md) for an example).
+      This applies also if you are running parallel test processes on each CI node (see our page on to integrate Knapsack Pro with [`parallel_tests`](parallel_tests.mdx) for an example).
     </details>
   </TabItem>
   <TabItem value="json-formatter" label="Regular Mode">
