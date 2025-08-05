@@ -3,6 +3,9 @@ pagination_next: null
 pagination_prev: null
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Using Knapsack Pro with `parallel_tests`
 
 :::caution
@@ -54,26 +57,52 @@ bundle exec parallel_test -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_test
 
 Create `bin/parallel_tests` and make it executable `chmod u+x`:
 
-```bash
-#!/bin/bash
+<Tabs>
+  <TabItem value="parallel_tests-on-parallel-nodes-default" label="Default" default>
+    ```bash
+    #!/bin/bash
 
-# The Knapsack Pro API sees 3 * 2 = 6 parallel nodes
-export KNAPSACK_PRO_CI_NODE_TOTAL=$(( $PARALLEL_TESTS_CONCURRENCY * $KNAPSACK_PRO_CI_NODE_TOTAL ))
+    # The Knapsack Pro API sees 3 * 2 = 6 parallel nodes
+    export KNAPSACK_PRO_CI_NODE_TOTAL=$(( $PARALLEL_TESTS_CONCURRENCY * $KNAPSACK_PRO_CI_NODE_TOTAL ))
 
-if [ "$TEST_ENV_NUMBER" == "" ]; then
-  export PARALLEL_TESTS_CONCURRENCY_INDEX=0
-else
-  export PARALLEL_TESTS_CONCURRENCY_INDEX=$(( $TEST_ENV_NUMBER - 1 ))
-fi
+    if [ "$TEST_ENV_NUMBER" == "" ]; then
+      export PARALLEL_TESTS_CONCURRENCY_INDEX=0
+    else
+      export PARALLEL_TESTS_CONCURRENCY_INDEX=$(( $TEST_ENV_NUMBER - 1 ))
+    fi
 
-# The current index for the Knapsack Pro API is {0,1,2} + (3 * {0,1}) in other words either {0,1,2,3,4,5}
-KNAPSACK_PRO_CI_NODE_INDEX=$(( $PARALLEL_TESTS_CONCURRENCY_INDEX + ($PARALLEL_TESTS_CONCURRENCY * $KNAPSACK_PRO_CI_NODE_INDEX) ))
+    # The current index for the Knapsack Pro API is {0,1,2} + (3 * {0,1}) in other words either {0,1,2,3,4,5}
+    KNAPSACK_PRO_CI_NODE_INDEX=$(( $PARALLEL_TESTS_CONCURRENCY_INDEX + ($PARALLEL_TESTS_CONCURRENCY * $KNAPSACK_PRO_CI_NODE_INDEX) ))
 
-# Debug log
-echo KNAPSACK_PRO_CI_NODE_TOTAL=$KNAPSACK_PRO_CI_NODE_TOTAL KNAPSACK_PRO_CI_NODE_INDEX=$KNAPSACK_PRO_CI_NODE_INDEX PARALLEL_TESTS_CONCURRENCY=$PARALLEL_TESTS_CONCURRENCY
+    # Debug log
+    echo KNAPSACK_PRO_CI_NODE_TOTAL=$KNAPSACK_PRO_CI_NODE_TOTAL KNAPSACK_PRO_CI_NODE_INDEX=$KNAPSACK_PRO_CI_NODE_INDEX PARALLEL_TESTS_CONCURRENCY=$PARALLEL_TESTS_CONCURRENCY
 
-bundle exec rake knapsack_pro:queue:rspec
-```
+    bundle exec rake knapsack_pro:queue:rspec
+    ```
+  </TabItem>
+  <TabItem value="parallel_tests-on-parallel-nodes-spot-instances" label="with Spot Instances">
+    ```bash
+    #!/bin/bash
+
+    # The Knapsack Pro API sees 3 * 2 = 6 parallel nodes
+    export KNAPSACK_PRO_CI_NODE_TOTAL=$(( $PARALLEL_TESTS_CONCURRENCY * $KNAPSACK_PRO_CI_NODE_TOTAL ))
+
+    if [ "$TEST_ENV_NUMBER" == "" ]; then
+      export PARALLEL_TESTS_CONCURRENCY_INDEX=0
+    else
+      export PARALLEL_TESTS_CONCURRENCY_INDEX=$(( $TEST_ENV_NUMBER - 1 ))
+    fi
+
+    # The current index for the Knapsack Pro API is {0,1,2} + (3 * {0,1}) in other words either {0,1,2,3,4,5}
+    KNAPSACK_PRO_CI_NODE_INDEX=$(( $PARALLEL_TESTS_CONCURRENCY_INDEX + ($PARALLEL_TESTS_CONCURRENCY * $KNAPSACK_PRO_CI_NODE_INDEX) ))
+
+    # Debug log
+    echo KNAPSACK_PRO_CI_NODE_TOTAL=$KNAPSACK_PRO_CI_NODE_TOTAL KNAPSACK_PRO_CI_NODE_INDEX=$KNAPSACK_PRO_CI_NODE_INDEX PARALLEL_TESTS_CONCURRENCY=$PARALLEL_TESTS_CONCURRENCY
+
+    bundle exec rake knapsack_pro:queue:rspec
+    ```
+  </TabItem>
+</Tabs>
 
 Running the above on CI should result in:
 
