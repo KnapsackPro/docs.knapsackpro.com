@@ -81,8 +81,23 @@ Create `bin/parallel_tests` and make it executable `chmod u+x`:
     ```
   </TabItem>
   <TabItem value="parallel_tests-on-parallel-nodes-spot-instances" label="with Spot Instances">
+    If you use AWS Spot Instances as CI nodes, ensure that the termination signal is properly propagated down the script hierarchy.
+
     ```bash
     #!/bin/bash
+
+    handle_signal() {
+        local signal=$1
+        if [[ -n $knapsack_pro_pid ]]; then
+          echo "KNAPSACK_PRO_CI_NODE_INDEX=$KNAPSACK_PRO_CI_NODE_INDEX Received signal $signal in bin/parallel_tests, terminating the Knapsack Pro process with TERM"
+          kill -TERM $knapsack_pro_pid
+          echo "KNAPSACK_PRO_CI_NODE_INDEX=$KNAPSACK_PRO_CI_NODE_INDEX Waiting for the Knapsack Pro process with PID $knapsack_pro_pid to terminate"
+          wait $knapsack_pro_pid
+        fi
+    }
+
+    trap 'handle_signal TERM' TERM
+    trap 'handle_signal INT' INT
 
     # The Knapsack Pro API sees 3 * 2 = 6 parallel nodes
     export KNAPSACK_PRO_CI_NODE_TOTAL=$(( $PARALLEL_TESTS_CONCURRENCY * $KNAPSACK_PRO_CI_NODE_TOTAL ))
@@ -99,7 +114,9 @@ Create `bin/parallel_tests` and make it executable `chmod u+x`:
     # Debug log
     echo KNAPSACK_PRO_CI_NODE_TOTAL=$KNAPSACK_PRO_CI_NODE_TOTAL KNAPSACK_PRO_CI_NODE_INDEX=$KNAPSACK_PRO_CI_NODE_INDEX PARALLEL_TESTS_CONCURRENCY=$PARALLEL_TESTS_CONCURRENCY
 
-    bundle exec rake knapsack_pro:queue:rspec
+    bundle exec rake knapsack_pro:queue:rspec &
+    knapsack_pro_pid=$!
+    wait $knapsack_pro_pid
     ```
   </TabItem>
 </Tabs>
