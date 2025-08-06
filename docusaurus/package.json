@@ -33,12 +33,12 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.8.1",
     "@types/react-dom": "^18.3.6",
-    "concurrently": "^9.1.2",
+    "concurrently": "^9.2.0",
     "remark-cli": "^12.0.1",
     "remark-lint-docusaurus-empty-lines-around-admonition-content": "^0.2.0",
     "remark-lint-relative-markdown-file-path-links": "^0.1.1",
     "remark-validate-links": "^13.1.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   },
   "browserslist": {
     "production": [
