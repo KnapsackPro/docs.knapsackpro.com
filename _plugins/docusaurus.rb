@@ -78,6 +78,7 @@ Jekyll::Hooks.register :site, :post_write do |page|
     "predict",
     "queue-mode",
     "reference",
+    "retry-only-failures",
     "rspec",
     "simplecov",
     "split-by-test-examples",
