@@ -40,6 +40,16 @@ gem "knapsack_pro", github: "knapsackpro/knapsack_pro-ruby", branch: "rof"
 
 Also, it's recommended to enable debug logs during the beta testing: [`KNAPSACK_PRO_LOG_LEVEL=debug`](reference.md#knapsack_pro_log_level)
 
+## Additional configuration for CircleCI
+
+On CircleCI, you need to expose the pipeline number as follows:
+
+```yml
+# ...
+environment:
+  CIRCLE_PIPELINE_NUMBER: << pipeline.number >>
+```
+
 ## Example
 
 Let's say your test suite contains 3 specs:
