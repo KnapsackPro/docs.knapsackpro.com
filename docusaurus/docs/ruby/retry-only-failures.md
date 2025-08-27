@@ -62,3 +62,14 @@ If you run your tests on 2 nodes, you could expect the following split:
 - Node 1: executes `c_spec.rb` successfully
 
 If you retry Node 0, Retry only Failures will execute only `a_spec.rb[1:1:2]`. If you retry Node 1, Retry only Failures will execute no tests.
+
+## Retry locally
+
+After a build finished on CI, you can retry the failed tests locally with:
+
+```bash
+export KNAPSACK_PRO_TEST_SUITE_TOKEN=MY_TOKEN
+bundle exec knapsack_pro retry
+```
+
+Check `bundle exec knapsack_pro help retry` for all the options.
