@@ -16,7 +16,7 @@ import { IconExternalLink } from '@site/src/components/IconExternalLink'
 
 :::caution
 
-This feature is limited to beta-testers.
+This feature is limited to beta-testers: write to support@knapsackpro.com to request early-access.
 
 :::
 
