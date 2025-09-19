@@ -180,7 +180,7 @@ full-page:
   before_script:
     - yarn install--frozen-lockfile --production=false
   script:
-    - $(yarn bin)/knapsack-pro-cypress --record false --reporter junit --reporter-options "mochaFile=cypress/results/junit-[hash].xml"
+    - yarn @knapsack-pro/cypress --record false --reporter junit --reporter-options "mochaFile=cypress/results/junit-[hash].xml"
   after_script: # collect all artifacts
     - mkdir -p cypress/screenshots/full-page && cp -r cypress/screenshots/full-page $CI_PROJECT_DIR
     - mkdir -p cypress/videos/full-page && cp -r cypress/videos/full-page $CI_PROJECT_DIR

@@ -12,7 +12,7 @@ Since Knapsack Pro runs Cypress multiple times, you need to set [`trashAssetsBef
 You can do so by either invoking Knapsack Pro with:
 
 ```bash
-npx knapsack-pro-cypress --config trashAssetsBeforeRuns=false
+npx @knapsack-pro/cypress --config trashAssetsBeforeRuns=false
 ```
 
 Or in `cypress.config.js`:
@@ -28,7 +28,7 @@ Or in `cypress.config.js`:
 You can pass the `testingType` option to run [component tests](https://docs.cypress.io/app/component-testing/get-started):
 
 ```bash
-npx knapsack-pro-cypress --testingType=component
+npx @knapsack-pro/cypress --testingType=component
 ```
 
 ## Record CI builds in Cypress Dashboard
@@ -36,13 +36,13 @@ npx knapsack-pro-cypress --testingType=component
 ```bash
 export CYPRESS_RECORD_KEY=MY_RECORD_KEY
 
-npx knapsack-pro-cypress --record
+npx @knapsack-pro/cypress --record
 ```
 
 If Cypress supports your CI, it will merge the tests executed on parallel nodes into a single run in the Cypress Dashboard using the CI build ID. Otherwise, you will need to specify it:
 
 ```bash
-npx knapsack-pro-cypress --record --ci-build-id $MY_CI_BUILD_ID
+npx @knapsack-pro/cypress --record --ci-build-id $MY_CI_BUILD_ID
 ```
 
 You should replace `$MY_CI_BUILD_ID` with the correct environment variable provided by your CI:

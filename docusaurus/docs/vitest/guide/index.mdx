@@ -79,7 +79,7 @@ Remember to configure the number of parallel CI nodes in AppVeyor.
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 </TabItem>
@@ -89,7 +89,7 @@ npx knapsack-pro-vitest
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 </TabItem>
@@ -99,7 +99,7 @@ npx knapsack-pro-vitest
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 </TabItem>
@@ -119,21 +119,21 @@ Remember to configure the `parallelism` parameter in your build step.
 <TabItem value="node-1" label="Node 1">
 
 ```bash
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 </TabItem>
 <TabItem value="node-2" label="Node 2">
 
 ```bash
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 </TabItem>
 <TabItem value="node-n" label="Node N">
 
 ```bash
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 </TabItem>
@@ -149,7 +149,7 @@ steps:
       - docker-compose#3.0.3:
         run: app
         # highlight-next-line
-        command: npx knapsack-pro-vitest
+        command: npx @knapsack-pro/vitest
         config: docker-compose.test.yml
         # highlight-start
         env:
@@ -195,7 +195,7 @@ jobs:
       # highlight-start
       - run:
         name: vitest with @knapsack-pro/vitest
-        command: npx knapsack-pro-vitest
+        command: npx @knapsack-pro/vitest
       # highlight-end
 ```
 
@@ -220,7 +220,7 @@ task:
     name: CI Node 1
     name: CI Node 2
   test_script:
-    - npx knapsack-pro-vitest
+    - npx @knapsack-pro/vitest
 ```
 
 Remember to set up the `KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST` as an [encrypted variable](https://cirrus-ci.org/guide/writing-tasks/#encrypted-variables).
@@ -248,7 +248,7 @@ For each [parallel pipeline](https://docs.cloudbees.com/docs/cloudbees-codeship/
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 </TabItem>
@@ -258,7 +258,7 @@ npx knapsack-pro-vitest
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 </TabItem>
@@ -268,7 +268,7 @@ npx knapsack-pro-vitest
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 </TabItem>
@@ -338,7 +338,7 @@ steps:
     # highlight-end
     commands:
       # highlight-start
-      - npx knapsack-pro-vitest
+      - npx @knapsack-pro/vitest
       # highlight-end
 ```
 
@@ -427,7 +427,7 @@ jobs:
           KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
         run: |
-          npx knapsack-pro-vitest
+          npx @knapsack-pro/vitest
       # highlight-end
 ```
 
@@ -446,7 +446,7 @@ test:
   parallel: 2
 
   script:
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN npx knapsack-pro-vitest
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN npx @knapsack-pro/vitest
 ```
 
 See also [how to configure running parallel CI nodes in GitLab](https://docs.gitlab.com/ee/ci/yaml/#parallel).
@@ -475,7 +475,7 @@ test_ci_first_node:
   script:
     # highlight-start
     - export KNAPSACK_PRO_CI_NODE_INDEX=0
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN npx knapsack-pro-vitest
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN npx @knapsack-pro/vitest
     # highlight-end
 
 test_ci_second_node:
@@ -483,7 +483,7 @@ test_ci_second_node:
   script:
     # highlight-start
     - export KNAPSACK_PRO_CI_NODE_INDEX=1
-    - KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN npx knapsack-pro-vitest
+    - KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN npx @knapsack-pro/vitest
     # highlight-end
 ```
 
@@ -519,7 +519,7 @@ Define in `app.json`:
       ],
       // highlight-start
       "scripts": {
-        "test": "npx knapsack-pro-vitest"
+        "test": "npx @knapsack-pro/vitest"
       },
       "env": {
         "KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST": "MY_VITEST_API_TOKEN"
@@ -581,7 +581,7 @@ timeout(time: 60, unit: 'MINUTES') {
         """
 
         stage('Run tests') {
-          sh """${knapsack_options} npx knapsack-pro-vitest"""
+          sh """${knapsack_options} npx @knapsack-pro/vitest"""
         }
         // highlight-end
       }
@@ -638,7 +638,7 @@ blocks:
         - name: Run tests with Knapsack Pro
           parallelism: 2
           commands:
-            - npx knapsack-pro-vitest
+            - npx @knapsack-pro/vitest
       # highlight-end
 ```
 
@@ -660,7 +660,7 @@ Define in `.travis.yml`:
 
 ```yaml
 script:
-  - "npx knapsack-pro-vitest"
+  - "npx @knapsack-pro/vitest"
 
 env:
   global:
@@ -699,7 +699,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
 KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 </TabItem>
@@ -710,7 +710,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
 KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 </TabItem>
@@ -721,7 +721,7 @@ KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
 KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 </TabItem>

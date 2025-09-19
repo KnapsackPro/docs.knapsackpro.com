@@ -157,7 +157,7 @@ blocks:
         - name: Run tests with Knapsack Pro
           parallelism: 2
           commands:
-            - $(npm bin)/knapsack-pro-cypress
+            - npx @knapsack-pro/cypress
 {% endhighlight %}
 
 ### Jest config for Semaphore 2.0
@@ -186,7 +186,7 @@ blocks:
         - name: Run tests with Knapsack Pro
           parallelism: 2
           commands:
-            - $(npm bin)/knapsack-pro-jest
+            - npx @knapsack-pro/jest
 {% endhighlight %}
 
 ## The Queue Mode and summary

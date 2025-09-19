@@ -95,7 +95,7 @@ Here is a config for your <i>app.json</i>
         "heroku-redis:in-dyno"
       ],
       "scripts": {
-        "test": "$(npm bin)/knapsack-pro-cypress"
+        "test": "npx @knapsack-pro/cypress"
       },
       "env": {
         "KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS": "example"
@@ -127,7 +127,7 @@ Here is a config for your <i>app.json</i>
         "heroku-redis:in-dyno"
       ],
       "scripts": {
-        "test": "$(npm bin)/knapsack-pro-jest"
+        "test": "npx @knapsack-pro/jest"
       },
       "env": {
         "KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST": "example"

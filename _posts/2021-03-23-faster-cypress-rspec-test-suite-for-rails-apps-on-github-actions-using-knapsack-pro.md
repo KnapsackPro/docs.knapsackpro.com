@@ -68,7 +68,7 @@ Change your cypress run command to use Knapsack as well:
 +          KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
 +          KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
 +          KNAPSACK_PRO_TEST_FILE_PATTERN: '{cypress/**/*,app/javascript/**/*.component}.spec.{js,ts,tsx}'
-+        run: yarn knapsack-pro-cypress
++        run: yarn @knapsack-pro/cypress
 -        run: yarn cypress run
 {% endraw %}
 {% endhighlight %}
@@ -194,7 +194,7 @@ jobs:
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
           KNAPSACK_PRO_TEST_FILE_PATTERN: "{cypress/**/*,app/javascript/**/*.component}.spec.{js,ts,tsx}"
-        run: yarn knapsack-pro-cypress # Run Cypress using Knapsack Pro Queue Mode
+        run: yarn @knapsack-pro/cypress # Run Cypress using Knapsack Pro Queue Mode
       # Save screenshots and videos of failed tests and make them available as Github build artifacts
       - uses: actions/upload-artifact@v2
         if: failure()

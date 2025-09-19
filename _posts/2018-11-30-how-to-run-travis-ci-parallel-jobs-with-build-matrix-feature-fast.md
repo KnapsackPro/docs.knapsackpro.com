@@ -59,7 +59,7 @@ How to run Cypress tests in JavaScript on concurrent jobs with [@knapsack-pro/cy
 {% highlight yaml %}
 # .travis.yml
 script:
-  - "$(npm bin)/knapsack-pro-cypress"
+  - "npx @knapsack-pro/cypress"
 
 env:
   global:

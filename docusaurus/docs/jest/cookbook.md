@@ -25,7 +25,7 @@ Since Knapsack Pro runs Jest multiple times, you can speed up tests execution by
 Since Knapsack Pro runs Jest multiple times, you can speed up tests execution with `--runInBand`. This way tests run serially in the current process, rather than creating a worker pool of child processes that run tests:
 
 ```bash
-npx knapsack-pro-jest --runInBand
+npx @knapsack-pro/jest --runInBand
 ```
 
 ## Use a Jest config file
@@ -39,7 +39,7 @@ To filter tests use [`KNAPSACK_PRO_TEST_FILE_PATTERN`](reference.md#knapsack_pro
 You can pass it with a [command-line argument](reference.md#command-line-arguments):
 
 ```bash
-npx knapsack-pro-jest --config=jest.config.e2e.js
+npx @knapsack-pro/jest --config=jest.config.e2e.js
 ```
 
 ## Generate code coverage reports
@@ -51,7 +51,7 @@ To avoid this, you can configure Knapsack Pro to generate a separate coverage re
 ```bash
 export KNAPSACK_PRO_COVERAGE_DIRECTORY=coverage
 
-npx knapsack-pro-jest --coverage
+npx @knapsack-pro/jest --coverage
 ```
 
 This ensures each batch creates a unique subfolder for its coverage report, preventing overwrites:
@@ -95,7 +95,7 @@ You can generate [jest-junit](https://github.com/jest-community/jest-junit) repo
 ```bash
 export JEST_JUNIT_UNIQUE_OUTPUT_NAME=true
 
-npx knapsack-pro-jest --ci --reporters=jest-junit
+npx @knapsack-pro/jest --ci --reporters=jest-junit
 ```
 
 Knapsack Pro will generate one XML reports for each batch of tests executed on the CI node. Some CI providers (e.g., GitLab CI) can merge multiple XML files from parallel CI nodes.

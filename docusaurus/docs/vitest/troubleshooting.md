@@ -12,7 +12,7 @@ You can increase the memory available to Node with [`--max_old_space_size`](http
 ```bash
 export NODE_OPTIONS=--max_old_space_size=4096
 
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 ## Debug Knapsack Pro on your development environment/machine
@@ -28,7 +28,7 @@ KNAPSACK_PRO_COMMIT_HASH=MY_COMMIT \
 KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
 KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true \
 KNAPSACK_PRO_TEST_FILE_PATTERN="**/*.{test,spec}.?(c|m)[jt]s?(x)" \
-npx knapsack-pro-vitest
+npx @knapsack-pro/vitest
 ```
 
 `KNAPSACK_PRO_CI_NODE_BUILD_ID` must be the same as the CI build you are trying to reproduce (if it helps, take a look at what Knapsack Pro uses as `ciNodeBuildId` for your [CI provider](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers)).

@@ -18,7 +18,7 @@ Unless specified otherwise, everything on this page is environment variables.
 You can pass all the [supported Vitest CLI options](https://vitest.dev/guide/cli.html) as command-line arguments:
 
 ```bash
-npx knapsack-pro-vitest --coverage
+npx @knapsack-pro/vitest --coverage
 ```
 
 ## `KNAPSACK_PRO_BRANCH`
@@ -216,11 +216,11 @@ Example:
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN="src/user/__tests__/**/*.js" \
-  npx knapsack-pro-vitest
+  npx @knapsack-pro/vitest
 
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_OTHER_VITEST_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_PATTERN="src/admin/__tests__/**/*.js" \
-  npx knapsack-pro-vitest
+  npx @knapsack-pro/vitest
 ```
 
 ## `KNAPSACK_PRO_USER_SEAT`

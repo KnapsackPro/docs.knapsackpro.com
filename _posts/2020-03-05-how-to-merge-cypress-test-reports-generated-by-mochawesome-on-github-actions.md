@@ -65,12 +65,12 @@ Now we can configure our Github Actions workflow. The first job will run our Cyp
 
 In this case, I am using 4 parallel CI nodes, but you should modify this accordingly if you're using more or less. We will use the `$KNAPSACK_PRO_CI_NODE_INDEX` environment variable later, as this tells us the index of the currently running parallel node. Since I'm using 4 machines, this will be a number from 0 - 3.
 
-Now we can run `knapsack-pro-cypress` as usual:
+Now we can run `@knapsack-pro/cypress` as usual:
 
 {% highlight yml %}
 {% raw %}
       - name: Run E2E tests
-        run: knapsack-pro-cypress
+        run: npx @knapsack-pro/cypress
       - name: Upload E2E test reports
         if: always()
         uses: actions/upload-artifact@v4

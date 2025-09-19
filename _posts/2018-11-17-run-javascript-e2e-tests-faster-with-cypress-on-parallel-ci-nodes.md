@@ -40,7 +40,7 @@ To start running your tests faster you can add to your project the <i>@knapsack-
 Basically, we will run a single command on all parallel CI nodes and [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes) will take care of running your tests fast.
 
 {% highlight shell %}
-$(npm bin)/knapsack-pro-cypress
+npx @knapsack-pro/cypress
 {% endhighlight %}
 
 In below video, I show you an example Cypress project and how to run it on parallel CI nodes.

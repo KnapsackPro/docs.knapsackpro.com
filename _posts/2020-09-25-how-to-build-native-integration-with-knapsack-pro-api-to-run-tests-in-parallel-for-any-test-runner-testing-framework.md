@@ -30,7 +30,7 @@ Here is the general idea behind Queue Mode in Knapsack Pro.
 
 There are parallel CI nodes on your CI server. Each CI node is running the Knapsack Pro client command to run tests.
 
-- The very first request from the Knapsack Pro client command (example `$(npm bin)/knapsack-pro-cypress`) sends a list of all test files existing on the disk to [Knapsack Pro API Queue](/api/v1/#queues_queue_post). Then API returns the proper set of tests for the CI node.
+- The very first request from the Knapsack Pro client command (example `npx @knapsack-pro/cypress`) sends a list of all test files existing on the disk to [Knapsack Pro API Queue](/api/v1/#queues_queue_post). Then API returns the proper set of tests for the CI node.
 - There is a Queue with a list of test files on the Knapsack Pro API side. The Queue is build based on a list of tests sent to the API and based on historically recorded data about your tests execution time in order to sort tests in the Queue from slowest to fastest.
 - Each Knapsack Pro client command connects with the Knapsack Pro API Queue and consumes a set of tests fetched from the Queue. API returns a set of tests from the top of the Queue (slowest first).
 - Once the set of tests is executed on the CI node then the Knapsack Pro client command asks for another set of tests from the Queue. This is repeated until the Queue is empty.

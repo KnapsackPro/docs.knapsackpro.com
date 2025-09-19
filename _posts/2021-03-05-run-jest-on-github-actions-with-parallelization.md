@@ -53,7 +53,7 @@ This is exactly what we need to pass to the Knapsack Pro API to run the Queue co
     KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
     KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
   run: |
-    $(npm bin)/knapsack-pro-jest
+    npx @knapsack-pro/jest
 {% endraw %}
 {% endhighlight %}
 
@@ -113,7 +113,7 @@ jobs:
           # necessary for rerunning the same build to work correctly
           KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
         run: |
-          $(npm bin)/knapsack-pro-jest --runInBand
+          npx @knapsack-pro/jest --runInBand
 {% endraw %}
 {% endhighlight %}
 

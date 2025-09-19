@@ -59,7 +59,7 @@ timeout(time: 60, unit: 'MINUTES') {
         // Queue Mode should be a last stage if you have other stages in your pipeline
         // thanks to that it can autobalance CI build time if other tests were not perfectly distributed
         stage('Run Cypress in parallel') {
-          sh """KNAPSACK_PRO_CI_NODE_BUILD_ID=${env.BUILD_TAG} ${knapsack_options} $(npm bin)/knapsack-pro-cypress"""
+          sh """KNAPSACK_PRO_CI_NODE_BUILD_ID=${env.BUILD_TAG} ${knapsack_options} npx @knapsack-pro/cypress"""
         }
       }
     }

@@ -116,7 +116,7 @@ timeout(time: 60, unit: 'MINUTES') {
 
         // example how to run tests with Knapsack Pro
         stage('Run tests') {
-          sh """${knapsack_options} $(npm bin)/knapsack-pro-cypress"""
+          sh """${knapsack_options} npx @knapsack-pro/cypress"""
         }
       }
     }

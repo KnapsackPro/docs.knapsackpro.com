@@ -45,14 +45,14 @@ Configure test pipelines (1/2 used)
 
 {% highlight yaml %}
 # first CI node running in parallel
-KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 $(npm bin)/knapsack-pro-cypress
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=0 npx @knapsack-pro/cypress
 {% endhighlight %}
 
 Configure test pipelines (2/2 used)
 
 {% highlight yaml %}
 # second CI node running in parallel
-KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 $(npm bin)/knapsack-pro-cypress
+KNAPSACK_PRO_CI_NODE_TOTAL=2 KNAPSACK_PRO_CI_NODE_INDEX=1 npx @knapsack-pro/cypress
 {% endhighlight %}
 
 You can learn more about [Cypress test runner for E2E tests in JavaScript](/2018/run-javascript-e2e-tests-faster-with-cypress-on-parallel-ci-nodes) in this article.

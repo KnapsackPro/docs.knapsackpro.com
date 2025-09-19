@@ -58,7 +58,7 @@ e2e: &e2e
     - export KNAPSACK_PRO_CI_NODE_INDEX=$BITBUCKET_PARALLEL_STEP_COUNT
     # https://docs.knapsackpro.com/cypress/guide/#configuration-steps
     - export KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true
-    - $(npm bin)/knapsack-pro-cypress
+    - npx @knapsack-pro/cypress
   artifacts:
     # store any generated images and videos as artifacts
     - cypress/screenshots/**
