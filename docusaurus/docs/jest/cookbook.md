@@ -20,14 +20,6 @@ Since Knapsack Pro runs Jest multiple times, you can speed up tests execution by
 }
 ```
 
-## Speed up tests with `--runInBand`
-
-Since Knapsack Pro runs Jest multiple times, you can speed up tests execution with `--runInBand`. This way tests run serially in the current process, rather than creating a worker pool of child processes that run tests:
-
-```bash
-npx @knapsack-pro/jest --runInBand
-```
-
 ## Use a Jest config file
 
 :::caution

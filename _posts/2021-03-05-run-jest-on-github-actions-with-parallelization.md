@@ -113,7 +113,7 @@ jobs:
           # necessary for rerunning the same build to work correctly
           KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
         run: |
-          npx @knapsack-pro/jest --runInBand
+          npx @knapsack-pro/jest
 {% endraw %}
 {% endhighlight %}
 
