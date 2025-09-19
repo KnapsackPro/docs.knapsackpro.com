@@ -12,3 +12,14 @@ To run a subset of your test suite you can use the `KNAPSACK_PRO_TEST_FILE_*` en
 - [`KNAPSACK_PRO_TEST_FILE_PATTERN`](reference.md#knapsack_pro_test_file_pattern)
 - [`KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`](reference.md#knapsack_pro_test_file_exclude_pattern)
 - [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file)
+
+## Test coverage
+
+Use the [blob reporter](https://vitest.dev/guide/reporters.html#blob-reporter) without specifying an `outputFile`. Later, execute `vitest --merge-reports` to output coverage or any aggregated reports you need (e.g., `json`):
+
+```bash
+npx @knapsack-pro/vitest --reporter=blob
+npx vitest --merge-reports --coverage
+```
+
+Knapsack Pro generates one blob file per batch of tests executed named as follows: `.vitest-reports/blob-[NODE_INDEX]-[NODE_TOTAL]-[UUID].json` (e.g., `.vitest-reports/blob-0-1-UUID.json`).

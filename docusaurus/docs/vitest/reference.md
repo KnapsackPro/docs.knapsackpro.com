@@ -85,12 +85,6 @@ You don't need to set it if either:
 - Your CI is one of the [supported CIs](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers)
 - Your CI has git installed so that Knapsack Pro can retrieve it
 
-## `KNAPSACK_PRO_COVERAGE_DIRECTORY`
-
-The directory where Vitest writes coverage reports.
-
-Default: if not specified, it falls back to [Vitest `coverage.reportsDirectory`](https://vitest.dev/config/#coverage-reportsdirectory)
-
 ## `KNAPSACK_PRO_ENDPOINT` (Internal)
 
 Default: `https://api.knapsackpro.com`
