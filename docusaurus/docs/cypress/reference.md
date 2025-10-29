@@ -123,7 +123,7 @@ Available:
 
 ## `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`
 
-Exclude tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
+Exclude tests matching a pattern (relative paths from the root directory). It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
 
 Default: `undefined`
 
@@ -149,7 +149,7 @@ KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="cypress/e2e/admin/**/*.{js,jsx}"
 
 ## `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`
 
-File containing the list of **relative paths** of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
+File containing the list of relative paths from the root directory of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
 
 Default: `undefined`
 
@@ -189,7 +189,7 @@ If you are using Cypress < v10 use `"cypress/integration/**/*.{js,jsx,coffee,cjs
 
 :::
 
-Run tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.
+Run tests matching a pattern (relative paths from the root directory). It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.
 
 Default: `"cypress/e2e/**/*.{js,jsx,coffee,cjsx}"`
 

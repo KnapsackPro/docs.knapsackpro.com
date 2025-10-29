@@ -121,7 +121,7 @@ Available:
 
 ## `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`
 
-Exclude tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
+Exclude tests matching a pattern (relative paths from the `root` directory). It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
 
 Default: if not specified, it falls back to [Vitest `exclude`](https://vitest.dev/config/#exclude)
 
@@ -147,7 +147,7 @@ KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
 
 ## `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`
 
-File containing the list of **relative paths** of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
+File containing the list of relative paths from the `root` directory of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
 
 Default: `undefined`
 
@@ -175,7 +175,7 @@ Make sure to match individual files by adding the suffix (e.g., `.js`) so that K
 
 :::
 
-Run tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.
+Run tests matching a pattern (relative paths from the `root` directory). It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.
 
 Default: if not specified, it falls back to [Vitest `include`](https://vitest.dev/config/#include)
 

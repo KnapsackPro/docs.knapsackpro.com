@@ -137,7 +137,7 @@ Available:
 
 ## `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`
 
-Exclude tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
+Exclude tests matching a pattern (relative paths from the `rootDir`). It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
 
 Default: `undefined`
 
@@ -163,7 +163,7 @@ KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="**/__tests__/admin/**/*.js"
 
 ## `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`
 
-File containing the list of **relative paths** of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
+File containing the relative paths from the `rootDir` of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
 
 Default: `undefined`
 
@@ -197,7 +197,7 @@ Knapsack Pro ignores patterns specified as Jest CLI arguments or Jest config fil
 
 :::
 
-Run tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.
+Run tests matching a pattern (relative paths from the `rootDir`). It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.
 
 Default: `"{**/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x)}"`
 

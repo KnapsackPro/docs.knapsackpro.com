@@ -374,7 +374,7 @@ require 'spec_helper' # ⛔️ Bad
 
 ## `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`
 
-Exclude tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
+Exclude tests matching a pattern (relative paths). It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.
 
 Default: unset
 
@@ -393,7 +393,7 @@ KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN="spec/controllers/admin/**{,/*/**}/*_spec
 
 ## `KNAPSACK_PRO_TEST_FILE_LIST`
 
-Comma-separated list of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
+Comma-separated list of tests to run (relative paths). When `KNAPSACK_PRO_TEST_FILE_LIST` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
 
 Default: unset
 
@@ -405,7 +405,7 @@ KNAPSACK_PRO_TEST_FILE_LIST=spec/features/dashboard_spec.rb,spec/models/user.rb:
 
 ## `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`
 
-File containing the list of **relative paths** of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
+File containing the list of relative paths of tests to run. When `KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE` is set, both `KNAPSACK_PRO_TEST_FILE_PATTERN` and `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN` are ignored.
 
 Default: unset
 
@@ -437,7 +437,7 @@ Make sure to match individual files by adding the suffix (e.g., `_spec.rb`, `_te
 
 :::
 
-Run tests matching a pattern. It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.
+Run tests matching a pattern (relative paths). It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`.
 
 Default: all tests for the given test runner
 
