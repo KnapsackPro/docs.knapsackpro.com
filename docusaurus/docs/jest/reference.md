@@ -21,7 +21,7 @@ Use long options instead of short (e.g., `--updateSnapshot` instead of `-u`).
 
 :::
 
-You can pass all the [supported Jest CLI options](https://jestjs.io/docs/cli#options) as command-line arguments:
+You can pass the [supported Jest CLI options](https://jestjs.io/docs/cli#options) as command-line arguments (some options like `--reporters` may not work on some versions of Jest, but you can specify them in the [Jest config file](https://jestjs.io/docs/configuration)):
 
 ```bash
 npx @knapsack-pro/jest --debug

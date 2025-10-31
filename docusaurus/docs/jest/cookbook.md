@@ -82,12 +82,12 @@ You can merge the reports with [this script](https://github.com/jestjs/jest/issu
 
 ## Generate XML reports
 
-You can generate [jest-junit](https://github.com/jest-community/jest-junit) reports with:
+You can generate [`jest-junit`](https://github.com/jest-community/jest-junit) reports with:
 
 ```bash
 export JEST_JUNIT_UNIQUE_OUTPUT_NAME=true
 
-npx @knapsack-pro/jest --ci --reporters=jest-junit
+npx @knapsack-pro/jest --ci --reporters=default --reporters=jest-junit
 ```
 
 Knapsack Pro will generate one XML reports for each batch of tests executed on the CI node. Some CI providers (e.g., GitLab CI) can merge multiple XML files from parallel CI nodes.
