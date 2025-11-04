@@ -18,9 +18,13 @@ import { IconExternalLink } from '@site/src/components/IconExternalLink'
 
 :::caution
 
-Only RSpec is supported, [let us know](https://knapsackpro.com/contact) if you use a different test runner.
+Only RSpec is supported, [let us know](https://knapsackpro.com/contact) if you use a different test runner. As an alternative, consider spreading test examples into multiple files.
 
-As an alternative, consider spreading test examples into multiple files.
+:::
+
+:::caution
+
+Split by test examples ignores `SPEC_OPTS`, so either use [command-line arguments](reference.md#command-line-arguments) or `.rspec`.
 
 :::
 
