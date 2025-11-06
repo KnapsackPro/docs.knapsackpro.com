@@ -19,7 +19,7 @@ Use the [blob reporter](https://vitest.dev/guide/reporters.html#blob-reporter) w
 
 ```bash
 npx @knapsack-pro/vitest --coverage --reporter=blob
-npx vitest --merge-reports --coverage
+npx vitest --merge-reports --coverage --watch=false
 ```
 
 Knapsack Pro generates one blob file per batch of tests executed named as follows: `.vitest-reports/blob-[NODE_INDEX]-[NODE_TOTAL]-[UUID].json` (e.g., `.vitest-reports/blob-0-1-c841c55d-4fb9-449d-a701-09f3549ad8e3.json`).
