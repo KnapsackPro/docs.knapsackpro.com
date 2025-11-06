@@ -18,7 +18,7 @@ To run a subset of your test suite you can use the `KNAPSACK_PRO_TEST_FILE_*` en
 Use the [blob reporter](https://vitest.dev/guide/reporters.html#blob-reporter) without specifying an `outputFile`. Later, execute `vitest --merge-reports` to output coverage or any aggregated reports you need (e.g., `json`):
 
 ```bash
-npx @knapsack-pro/vitest --reporter=blob
+npx @knapsack-pro/vitest --coverage --reporter=blob
 npx vitest --merge-reports --coverage
 ```
 
