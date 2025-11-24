@@ -22,7 +22,7 @@ This feature is limited to beta-testers: write to support@knapsackpro.com to req
 
 :::caution
 
-Only RSpec on GitHub Actions, CircleCI, GitLab CI, and Buildkite are supported for now.
+Only RSpec ([Queue Mode](queue-mode.mdx)) on GitHub Actions, CircleCI, GitLab CI, and Buildkite are supported for now.
 
 :::
 
