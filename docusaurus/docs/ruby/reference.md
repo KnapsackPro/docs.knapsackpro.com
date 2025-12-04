@@ -316,18 +316,6 @@ Available:
 
 Make sure to read the details in [Split by test examples](split-by-test-examples.mdx).
 
-## `KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX` (RSpec)
-
-Customize the prefix used for generating test examples report when using `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`.
-
-Default: `"bundle exec"`
-
-Available:
-
-- `"bundle exec"`
-- `"MY_CUSTOM_VARIABLE='value' bundle exec"` in case you need to pass a custom environment variable to the `rake knasack_pro:rspec_test_example_detector` task that generates a test examples report of slow test files
-- try `""` to remove the `bundle exec` prefix in case of [issues](split-by-test-examples.mdx#how-do-i-fix-dont-know-how-to-build-task-knapsack_prorspec_test_example_detector)
-
 ## `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES_FILE` (RSpec)
 
 By default, Knapsack Pro calculates the [Split by Test Examples](split-by-test-examples.mdx) as part of the test run.
@@ -348,6 +336,18 @@ bundle exec rake knapsack_pro:rspec:precalculate_split_by_test_examples
 # On each parallel CI node:
 bundle exec rake knapsack_pro:queue:rspec
 ```
+
+## `KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX` (RSpec)
+
+Customize the prefix used for generating test examples report when using `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`.
+
+Default: `"bundle exec"`
+
+Available:
+
+- `"bundle exec"`
+- `"MY_CUSTOM_VARIABLE='value' bundle exec"` in case you need to pass a custom environment variable to the `rake knasack_pro:rspec_test_example_detector` task that generates a test examples report of slow test files
+- try `""` to remove the `bundle exec` prefix in case of [issues](split-by-test-examples.mdx#how-do-i-fix-dont-know-how-to-build-task-knapsack_prorspec_test_example_detector)
 
 ## `KNAPSACK_PRO_SALT`
 
