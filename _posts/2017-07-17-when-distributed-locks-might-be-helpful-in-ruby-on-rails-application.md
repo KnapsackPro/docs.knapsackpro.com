@@ -85,7 +85,7 @@ require 'rspec'
 node_total = 5
 
 # use development API
-ENV['KNAPSACK_PRO_MODE'] = 'development'
+ENV['KNAPSACK_PRO_ENDPOINT'] = 'http://api.knapsackpro.localhost:3000'
 ENV['KNAPSACK_PRO_TEST_SUITE_TOKEN'] = '333e7b8d1b64fd6447df34a77e3662eb'
 ENV['KNAPSACK_PRO_LOG_LEVEL'] = 'warn'
 

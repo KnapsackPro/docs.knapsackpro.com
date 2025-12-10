@@ -206,16 +206,6 @@ Default:
 
 Available: number
 
-## `KNAPSACK_PRO_MODE` (Internal)
-
-Default: `production`
-
-Available:
-
-- `production` sets `KNAPSACK_PRO_ENDPOINT` to `https://api.knapsackpro.com`
-- `development` sets `KNAPSACK_PRO_ENDPOINT` to `http://api.knapsackpro.test:3000`
-- `test` sets `KNAPSACK_PRO_ENDPOINT` to `https://api-staging.knapsackpro.com`
-
 ## `KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS` (Removed, RSpec)
 
 :::caution
