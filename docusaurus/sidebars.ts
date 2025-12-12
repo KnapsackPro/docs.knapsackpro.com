@@ -275,6 +275,44 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Playwright",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          label: "Installation",
+          id: "playwright/guide/index",
+        },
+        {
+          type: "doc",
+          label: "Reference",
+          id: "playwright/reference",
+        },
+        {
+          type: "doc",
+          label: "Troubleshooting",
+          id: "playwright/troubleshooting",
+        },
+        {
+          type: "doc",
+          label: "Cookbook",
+          id: "playwright/cookbook",
+        },
+        {
+          type: "link",
+          label: "GitHub",
+          href: "https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/playwright",
+        },
+        {
+          type: "link",
+          label: "Changelog",
+          href: "https://github.com/KnapsackPro/knapsack-pro-js/blob/main/packages/playwright/CHANGELOG.md",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Write your integration",
       collapsible: true,
       collapsed: true,
