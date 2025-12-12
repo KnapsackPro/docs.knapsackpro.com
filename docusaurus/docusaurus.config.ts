@@ -15,9 +15,14 @@ const config: Config = {
   url: DOCS_URL,
   baseUrl: "/",
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   trailingSlash: true,
+
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "warn"
+    }
+  },
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
