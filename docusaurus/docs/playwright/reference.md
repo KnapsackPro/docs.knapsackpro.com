@@ -18,7 +18,7 @@ Unless specified otherwise, everything on this page is environment variables.
 You can pass all the [supported Playwright CLI options](https://playwright.dev/docs/test-cli) as command-line arguments:
 
 ```bash
-npx @knapsack-pro/playwright --coverage
+npx @knapsack-pro/playwright --reporter=blob,@knapsack-pro/playwright/reporters/batch --retries 2
 ```
 
 ## `KNAPSACK_PRO_BRANCH`
@@ -152,11 +152,11 @@ Example:
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_PLAYWRIGHT=MY_PLAYWRIGHT_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE="user_tests.txt" \
-  npx @knapsack-pro/playwright
+  npx @knapsack-pro/playwright --reporter=blob,@knapsack-pro/playwright/reporters/batch
 
 KNAPSACK_PRO_TEST_SUITE_TOKEN_PLAYWRIGHT=MY_OTHER_PLAYWRIGHT_API_TOKEN \
 KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE="admin_tests.txt" \
-  npx @knapsack-pro/playwright
+  npx @knapsack-pro/playwright --reporter=blob,@knapsack-pro/playwright/reporters/batch
 ```
 
 ## `KNAPSACK_PRO_USER_SEAT`
