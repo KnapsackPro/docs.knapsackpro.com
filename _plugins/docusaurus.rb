@@ -53,6 +53,18 @@ Jekyll::Hooks.register :site, :post_write do |page|
   system!("mkdir -p _site/vitest/troubleshooting")
   system!("cp docusaurus/build/vitest/troubleshooting/index.html _site/vitest/troubleshooting")
 
+  system!("mkdir -p _site/playwright/guide")
+  system!("cp docusaurus/build/playwright/guide/index.html _site/playwright/guide")
+
+  system!("mkdir -p _site/playwright/reference")
+  system!("cp docusaurus/build/playwright/reference/index.html _site/playwright/reference")
+
+  system!("mkdir -p _site/playwright/cookbook")
+  system!("cp docusaurus/build/playwright/cookbook/index.html _site/playwright/cookbook")
+
+  system!("mkdir -p _site/playwright/troubleshooting")
+  system!("cp docusaurus/build/playwright/troubleshooting/index.html _site/playwright/troubleshooting")
+
   system!("mkdir -p _site/integration")
   system!("cp docusaurus/build/integration/index.html _site/integration") # redirect to /
   system!("cp docusaurus/build/index.html _site")
