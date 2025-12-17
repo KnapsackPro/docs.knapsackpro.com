@@ -119,13 +119,6 @@ li {
 
 /* Welcome */
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: var(--ifm-paragraph-margin-bottom);
-}
-
 .grid-4 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -143,10 +136,6 @@ li {
   flex-shrink: 0;
   gap: 20px;
   padding: 10px 20px;
-}
-
-.cell--fixed {
-  width: 265px;
 }
 
 .cell:hover {
@@ -174,8 +163,9 @@ li {
 }
 
 .cell__title {
-  display: inline-block;
+  font-size: 1.4rem;
   margin: 0;
+  min-width: 0;
 }
 
 /* Overview */
