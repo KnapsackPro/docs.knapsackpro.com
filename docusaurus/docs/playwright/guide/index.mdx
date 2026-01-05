@@ -209,8 +209,10 @@ jobs:
 
       # highlight-start
       - run:
-        name: playwright with @knapsack-pro/playwright
-        command: npx @knapsack-pro/playwright --reporter=blob,@knapsack-pro/playwright/reporters/batch
+        name: Playwright with @knapsack-pro/playwright
+        command: |
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_PLAYWRIGHT=MY_PLAYWRIGHT_API_TOKEN \
+            npx @knapsack-pro/playwright --reporter=blob,@knapsack-pro/playwright/reporters/batch
       # highlight-end
 ```
 

@@ -194,8 +194,10 @@ jobs:
 
       # highlight-start
       - run:
-        name: vitest with @knapsack-pro/vitest
-        command: npx @knapsack-pro/vitest
+        name: Vitest with @knapsack-pro/vitest
+        command: |
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
+            npx @knapsack-pro/vitest
       # highlight-end
 ```
 

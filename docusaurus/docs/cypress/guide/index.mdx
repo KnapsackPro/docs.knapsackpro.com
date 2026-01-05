@@ -202,8 +202,10 @@ jobs:
 
       # highlight-start
       - run:
-        name: cypress with @knapsack-pro/cypress
-        command: npx @knapsack-pro/cypress --config trashAssetsBeforeRuns=false
+        name: Cypress with @knapsack-pro/cypress
+        command: |
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_CYPRESS=MY_CYPRESS_API_TOKEN \
+            npx @knapsack-pro/cypress --config trashAssetsBeforeRuns=false
       # highlight-end
 ```
 

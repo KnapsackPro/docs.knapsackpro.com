@@ -200,8 +200,10 @@ jobs:
 
       # highlight-start
       - run:
-        name: jest with @knapsack-pro/jest
-        command: npx @knapsack-pro/jest
+        name: Jest with @knapsack-pro/jest
+        command: |
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_JEST=MY_JEST_API_TOKEN \
+            npx @knapsack-pro/jest
       # highlight-end
 ```
 
