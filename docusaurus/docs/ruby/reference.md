@@ -306,27 +306,6 @@ Available:
 
 Make sure to read the details in [Split by test examples](split-by-test-examples.mdx).
 
-## `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES_FILE` (RSpec)
-
-By default, Knapsack Pro calculates the [Split by Test Examples](split-by-test-examples.mdx) as part of the test run.
-
-You may want to precalculate the split *once* to avoid doing it later in each node running Knapsack Pro. 
-
-To enable the precalculation set `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES_FILE` for both the `bundle exec rake knapsack_pro:rspec:precalculate_split_by_test_examples` and `bundle exec rake knapsack_pro:queue:rspec`.
-
-Default: unset
-
-Example:
-
-```bash
-export KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES_FILE=report.json
-
-bundle exec rake knapsack_pro:rspec:precalculate_split_by_test_examples
-
-# On each parallel CI node:
-bundle exec rake knapsack_pro:queue:rspec
-```
-
 ## `KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX` (RSpec)
 
 Customize the prefix used for generating test examples report when using `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`.
