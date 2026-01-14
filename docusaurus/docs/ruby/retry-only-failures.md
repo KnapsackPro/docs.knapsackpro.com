@@ -28,7 +28,7 @@ Only RSpec ([Queue Mode](queue-mode.mdx)) on GitHub Actions, CircleCI, GitLab CI
 
 A substantial percentage of your CI retries are spent running tests that already passed on the previous run. Not only is it a waste of time & resources, it's also an opportunity for flakes to cause troubles.
 
-When executing a rerun, Retry only Failures executes only the tests that failed on the previous build.
+With Retry only Failures, when you retry one (or all the) nodes, Knapsack Pro only executes *only* the tests that failed last time on that node.
 
 ## Configuration
 
@@ -63,7 +63,7 @@ If you run your tests on 2 nodes, you could expect the following split:
 
 If you retry Node 0, Retry only Failures will execute only `a_spec.rb[1:1:2]`. If you retry Node 1, Retry only Failures will execute no tests.
 
-## Retry locally
+## You can also retry locally
 
 After a build finished on CI, you can retry the failed tests locally with:
 
