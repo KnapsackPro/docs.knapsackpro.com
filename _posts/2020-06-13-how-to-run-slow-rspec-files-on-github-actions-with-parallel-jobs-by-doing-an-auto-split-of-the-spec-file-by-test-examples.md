@@ -29,7 +29,7 @@ Second, we believe that the code organization should be based on other considera
 
 As you certainly know, RSpec allows us to run individual examples instead of whole files. We decided to take advantage of that, and solve the problem of bottleneck test files by gathering information about individual examples from such slower files. Such examples are then dynamically distributed between your parallel nodes and run individually, so no individual file can be a bottleneck for the whole build. What's important, no additional work is needed - this is done automatically by the `knapsack_pro` gem. Each example is run in its correct context that's set-up exactly the same as if you had run the whole file.
 
-If you are already using [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-slow-rspec-files-on-github-actions-with-parallel-jobs-by-doing-an-auto-split-of-the-spec-file-by-test-examples) in queue mode, you can enable this feature just by adding one ENV variable to your GitHub Actions workflow config: `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES: true` (please make sure you're running the newest version of `knapsack_pro` gem). After a few runs, Knapsack Pro will start automatically splitting your slowest test files by individual examples.
+If you are already using [Knapsack Pro](https://knapsackpro.com?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-slow-rspec-files-on-github-actions-with-parallel-jobs-by-doing-an-auto-split-of-the-spec-file-by-test-examples) in queue mode, this feature is enabled by default. After a few runs, Knapsack Pro will start automatically splitting your slowest test files by individual examples.
 
 Here's a full example GitHub Actions workflow config for a Rails project using RSpec:
 
@@ -119,7 +119,6 @@ jobs:
           KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
           KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-          KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES: true
           KNAPSACK_PRO_LOG_LEVEL: info
         run: |
           bundle exec rake knapsack_pro:queue:rspec

@@ -92,14 +92,13 @@ You will need to split test files between these parallel jobs. For that, you can
     KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
     KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
     KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-    KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES: true
     KNAPSACK_PRO_LOG_LEVEL: info
   run: |
     bundle exec rake knapsack_pro:queue:rspec
 {% endraw %}
 {% endhighlight %}
 
-You can see that for RSpec we also use a `knapsack_pro` Ruby gem flag `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES`. It allows to automatically [detect slow test files and split them between parallel jobs](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-ruby-on-rails-tests-on-github-actions-using-rspec).
+By default, Knapsack Pro [detects slow test files and splits them between parallel jobs](https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it?utm_source=docs_knapsackpro&utm_medium=blog_post&utm_campaign=how-to-run-ruby-on-rails-tests-on-github-actions-using-rspec).
 
 You can learn more about it in a separate article explaining [how to run slow RSpec files on Github Actions with parallel jobs by doing an auto split of the spec file by test examples](/2020/how-to-run-slow-rspec-files-on-github-actions-with-parallel-jobs-by-doing-an-auto-split-of-the-spec-file-by-test-examples).
 
@@ -182,9 +181,6 @@ jobs:
           KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_PRO_LOG_LEVEL: info
-          # RSpec split test files by test examples feature - it's optional
-          # https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it
-          KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES: true
         run: |
           bundle exec rake knapsack_pro:queue:rspec
 

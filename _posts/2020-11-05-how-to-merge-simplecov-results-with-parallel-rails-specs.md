@@ -111,7 +111,6 @@ Below is the bash file which executes the Rails tests on each parallel machine. 
 set -euo pipefail
 
 docker-compose -f docker-compose.semaphore.yml --no-ansi run \
-  -e KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true \
   -e KNAPSACK_PRO_TEST_FILE_PATTERN="spec/**/*_spec.rb" \
   ci bash -c "bin/rake ci:setup db:create db:structure:load knapsack_pro:queue:rspec['--no-color --format progress --format RspecJunitFormatter --out tmp/rspec-junit/rspec.xml']"
 {% endhighlight %}

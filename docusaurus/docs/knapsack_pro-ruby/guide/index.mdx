@@ -341,8 +341,11 @@ Remember to add additional parallel containers in the CircleCI settings.
 ```yaml title=".circleci/config.yml"
 jobs:
   build:
-    # highlight-next-line
+    # highlight-start
     parallelism: 2
+    environment:
+      CIRCLE_PIPELINE_NUMBER: << pipeline.number >>
+    # highlight-end
 
     steps:
       - checkout

@@ -65,9 +65,6 @@ jobs:
           PGHOST: 127.0.0.1
           PGUSER: my_db_user
           RAILS_ENV: test
-          # Split slow RSpec test files by test examples
-          # https://knapsackpro.com/faq/question/how-to-split-slow-rspec-test-files-by-test-examples-by-individual-it
-          KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES: true
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
