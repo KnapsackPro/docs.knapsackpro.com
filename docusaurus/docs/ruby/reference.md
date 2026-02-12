@@ -52,6 +52,8 @@ Available: `false` | `true`
 
 ## `KNAPSACK_PRO_CI_NODE_BUILD_ID`
 
+Since v10, [`KNAPSACK_PRO_TEST_QUEUE_ID`](#knapsack_pro_test_queue_id-queue-mode-rspec) is used for RSpec in Queue Mode instead.
+
 Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
 
 Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci))
@@ -136,6 +138,8 @@ Set the exit code to use in case Knapsack Pro fails because it cannot switch to 
 Default: `1`
 
 ## `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` (Queue Mode)
+
+Since v10, this ENV is ignored when using RSpec. See [Retry only Failures](retry-only-failures.md) for details.
 
 Dynamic or fixed tests split when retrying a CI build.
 
@@ -478,6 +482,16 @@ KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_OTHER_RSPEC_API_TOKEN \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
   bundle exec rake knapsack_pro:queue:cucumber
 ```
+
+## `KNAPSACK_PRO_TEST_QUEUE_ID` (Queue Mode, RSpec)
+
+Since v10, this replaces [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](#knapsack_pro_ci_node_build_id).
+
+Unique ID that identifies a test queue. It must be the same for all the parallel CI nodes and their retries.
+
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci))
+
+If your CI is not supported, you may generate a test queue ID with `KNAPSACK_PRO_TEST_QUEUE_ID=$(openssl rand -base64 32)` and make it available to all parallel nodes and their retries.
 
 ## `KNAPSACK_PRO_USER_SEAT`
 

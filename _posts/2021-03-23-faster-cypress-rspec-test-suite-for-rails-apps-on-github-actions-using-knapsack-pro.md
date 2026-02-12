@@ -44,7 +44,6 @@ Change your RSpec run command to use Knapsack:
 +        KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
 +        KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
 +        KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
-+        KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
 +    run: bin/rake knapsack_pro:queue:rspec  # Run RSpec using Knapsack Pro Queue Mode
 -    run: bin/rspec spec
 {% endraw %}
@@ -144,7 +143,6 @@ jobs:
           KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
-          KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
         run: bin/rake knapsack_pro:queue:rspec # Run RSpec using Knapsack Pro Queue Mode
   cypress:
     timeout-minutes: 20 # Adjust as needed, just here to prevent accidentally using up all your minutes from a silly infinite loop of some kind

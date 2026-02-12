@@ -8,7 +8,7 @@ import { IconExternalLink } from '@site/src/components/IconExternalLink'
 
 <TOCBottom heading="Reference" Icon={<IconExternalLink />}>
 
-- [`KNAPSACK_PRO_LOG_LEVEL`](reference.md#knapsack_pro_log_level)
+- [`KNAPSACK_PRO_TEST_QUEUE_ID`](reference.md#knapsack_pro_test_queue_id-queue-mode-rspec)
 
 </TOCBottom>
 
@@ -16,13 +16,7 @@ import { IconExternalLink } from '@site/src/components/IconExternalLink'
 
 :::caution
 
-This feature is limited to beta-testers: write to support@knapsackpro.com to request early-access.
-
-:::
-
-:::caution
-
-Only RSpec ([Queue Mode](queue-mode.mdx)) on GitHub Actions, CircleCI, GitLab CI, and Buildkite are supported for now.
+Only RSpec ([Queue Mode](queue-mode.mdx)) is supported for now.
 
 :::
 
@@ -32,13 +26,9 @@ With Retry only Failures, when you retry one (or all the) nodes, Knapsack Pro on
 
 ## Configuration
 
-To enable Retry only Failures, update your Gemfile as follows:
+To enable Retry only Failures, `bundle update knapsack_pro` to v10 or later.
 
-```ruby
-gem "knapsack_pro", github: "knapsackpro/knapsack_pro-ruby", branch: "rof-rc3"
-```
-
-Also, it's recommended to enable debug logs during the beta testing: [`KNAPSACK_PRO_LOG_LEVEL=debug`](reference.md#knapsack_pro_log_level)
+Knapsack Pro uses [`KNAPSACK_PRO_TEST_QUEUE_ID`](reference.md#knapsack_pro_test_queue_id-queue-mode-rspec) to uniquely identify a queue on the first run and all its retries.
 
 ## Additional configuration for CircleCI
 

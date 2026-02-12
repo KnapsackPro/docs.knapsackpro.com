@@ -67,16 +67,6 @@ If you have an account in Buildkite then you need to create a new pipeline for y
 
 You will have to provide a project name and git repository for the code checkout.
 
-In environment variables section you should set:
-
-```
-RACK_ENV=test
-RAILS_ENV=test
-KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true
-```
-
-[`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://docs.knapsackpro.com/ruby/queue-mode/#dynamic-split-vs-fixed-split) flag allows us to use retry failed CI node feature on Buildkite.com. When we retry the CI node then we want to run what was run there previously instead of dynamically allocate tests again hence the fixed queue split flag is true.
-
 **Set step command:**
 
 - Commands to run: `bundle install && bundle exec rake db:reset && bundle exec rake knapsack_pro:queue:rspec`

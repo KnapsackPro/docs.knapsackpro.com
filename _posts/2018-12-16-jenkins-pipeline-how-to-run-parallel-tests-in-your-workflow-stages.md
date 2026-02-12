@@ -69,7 +69,7 @@ timeout(time: 60, unit: 'MINUTES') {
         // example how to run rspec tests in Knapsack Pro Queue Mode
         // Queue Mode should be as a last stage so it can autobalance build if tests in regular mode were not perfectly distributed
         stage('Run rspec') {
-          sh """KNAPSACK_PRO_CI_NODE_BUILD_ID=${env.BUILD_TAG} ${knapsack_options} bundle exec rake knapsack_pro:queue:rspec"""
+          sh """${knapsack_options} bundle exec rake knapsack_pro:queue:rspec"""
         }
       }
     }
