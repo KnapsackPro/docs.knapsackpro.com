@@ -248,6 +248,40 @@ Available:
 - unset: Knapsack Pro will take `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci))
 - `git` (requires `KNAPSACK_PRO_PROJECT_DIR`): Knapsack Pro will set `KNAPSACK_PRO_BRANCH` and `KNAPSACK_PRO_COMMIT_HASH` using git on your CI
 
+## `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES` (RSpec)
+
+Parallelize test examples (instead of files) across CI nodes.
+
+:::caution
+
+- Does not support `run_all_when_everything_filtered`
+
+:::
+
+Default: `true`
+
+Available:
+- `true`: distribute test examples for slow test files across CI nodes (more balanced builds)
+- `false`: distribute whole test files across CI nodes
+
+Make sure to read the details in [Split by test examples](split-by-test-examples.mdx).
+
+## `KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX` (RSpec)
+
+Customize the prefix used for generating test examples report when using `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`.
+
+Default: `"bundle exec"`
+
+Available:
+
+- `"bundle exec"`
+- `"MY_CUSTOM_VARIABLE='value' bundle exec"` in case you need to pass a custom environment variable to the `rake knasack_pro:rspec_test_example_detector` task that generates a test examples report of slow test files
+- try `""` to remove the `bundle exec` prefix in case of [issues](split-by-test-examples.mdx#how-do-i-fix-dont-know-how-to-build-task-knapsack_prorspec_test_example_detector)
+
+## `KNAPSACK_PRO_SALT`
+
+Salt to use to [Encrypt Test File Names or Branch Names](encryption.mdx).
+
 ## `KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN` (Internal, RSpec)
 
 Split by test examples only files matching the pattern (instead of letting Knapsack Pro decide for you).
@@ -287,40 +321,6 @@ Example:
 # 180 seconds (3 minutes)
 KNAPSACK_PRO_SLOW_TEST_FILE_THRESHOLD=180
 ```
-
-## `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES` (RSpec)
-
-Parallelize test examples (instead of files) across CI nodes.
-
-:::caution
-
-- Does not support `run_all_when_everything_filtered`
-
-:::
-
-Default: `true`
-
-Available:
-- `true`: distribute test examples for slow test files across CI nodes (more balanced builds)
-- `false`: distribute whole test files across CI nodes
-
-Make sure to read the details in [Split by test examples](split-by-test-examples.mdx).
-
-## `KNAPSACK_PRO_RSPEC_TEST_EXAMPLE_DETECTOR_PREFIX` (RSpec)
-
-Customize the prefix used for generating test examples report when using `KNAPSACK_PRO_RSPEC_SPLIT_BY_TEST_EXAMPLES=true`.
-
-Default: `"bundle exec"`
-
-Available:
-
-- `"bundle exec"`
-- `"MY_CUSTOM_VARIABLE='value' bundle exec"` in case you need to pass a custom environment variable to the `rake knasack_pro:rspec_test_example_detector` task that generates a test examples report of slow test files
-- try `""` to remove the `bundle exec` prefix in case of [issues](split-by-test-examples.mdx#how-do-i-fix-dont-know-how-to-build-task-knapsack_prorspec_test_example_detector)
-
-## `KNAPSACK_PRO_SALT`
-
-Salt to use to [Encrypt Test File Names or Branch Names](encryption.mdx).
 
 ## `KNAPSACK_PRO_TEST_DIR` (Cucumber)
 
