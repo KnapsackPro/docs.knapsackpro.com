@@ -35,7 +35,7 @@ With Retry only Failures, when you retry one (or all the) nodes, Knapsack Pro on
 To enable Retry only Failures, update your Gemfile as follows:
 
 ```ruby
-gem "knapsack_pro", github: "knapsackpro/knapsack_pro-ruby", branch: "rof5"
+gem "knapsack_pro", github: "knapsackpro/knapsack_pro-ruby", branch: "rof6"
 ```
 
 Also, it's recommended to enable debug logs during the beta testing: [`KNAPSACK_PRO_LOG_LEVEL=debug`](reference.md#knapsack_pro_log_level)
