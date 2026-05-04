@@ -77,14 +77,13 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "doc",
-              label: "PREDICT",
-              id: "ruby/predict",
-              className: "hidden",
+              label: "Retry only Failures",
+              id: "ruby/retry-only-failures",
             },
             {
               type: "doc",
-              label: "Retry only Failures",
-              id: "ruby/retry-only-failures",
+              label: "PREDICT",
+              id: "ruby/predict",
               className: "hidden",
             },
           ],
