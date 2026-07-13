@@ -34,6 +34,8 @@ In some cases, particularly for pull request merge commits or if the CI provider
 
 ## `KNAPSACK_PRO_CI_NODE_BUILD_ID`
 
+Since v0.3, [`KNAPSACK_PRO_TEST_QUEUE_ID`](#knapsack_pro_test_queue_id) is used instead.
+
 Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
 
 Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers))
@@ -91,6 +93,8 @@ Default: `https://api.knapsackpro.com`
 
 ## `KNAPSACK_PRO_FIXED_QUEUE_SPLIT`
 
+Since v0.3, this ENV is ignored. See [Retry only Failures](retry-only-failures.md) for details.
+
 Dynamic or fixed tests split when retrying a CI build.
 
 Default: automagically set to the correct value for your [CI provider](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers)
@@ -140,6 +144,16 @@ __tests__/c.test.js
 /home/user123/project/__tests__/b.test.js
 /home/user123/project/__tests__/c.test.js
 ```
+
+## `KNAPSACK_PRO_TEST_QUEUE_ID`
+
+Since v0.3, this replaces [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](#knapsack_pro_ci_node_build_id).
+
+Unique ID that identifies a test queue. It must be the same for all the parallel CI nodes and their retries.
+
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci))
+
+If your CI is not supported, you may generate a test queue ID with `KNAPSACK_PRO_TEST_QUEUE_ID=$(openssl rand -base64 32)` and make it available to all parallel nodes and their retries.
 
 ## `KNAPSACK_PRO_TEST_SUITE_TOKEN_PLAYWRIGHT`
 

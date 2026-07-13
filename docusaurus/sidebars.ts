@@ -314,6 +314,11 @@ const sidebars: SidebarsConfig = {
           id: "playwright/cookbook",
         },
         {
+          type: "doc",
+          label: "Retry only Failures",
+          id: "playwright/retry-only-failures",
+        },
+        {
           type: "link",
           label: "GitHub",
           href: "https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/playwright",

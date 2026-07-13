@@ -593,7 +593,7 @@ timeout(time: 60, unit: 'MINUTES') {
             KNAPSACK_PRO_CI_NODE_INDEX=${index}\
             KNAPSACK_PRO_COMMIT_HASH=${COMMIT_HASH}\
             KNAPSACK_PRO_BRANCH=${env.BRANCH_NAME}\
-            KNAPSACK_PRO_CI_NODE_BUILD_ID=${env.BUILD_TAG}\
+            KNAPSACK_PRO_TEST_QUEUE_ID=${env.BUILD_TAG}\
             KNAPSACK_PRO_TEST_SUITE_TOKEN_PLAYWRIGHT=MY_PLAYWRIGHT_API_TOKEN
         """
 
@@ -706,7 +706,7 @@ Define the following global environment variables on your CI server:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_PLAYWRIGHT`](../reference.md#knapsack_pro_test_suite_token_playwright)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](../reference.md#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](../reference.md#knapsack_pro_ci_node_index)
-- [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](../reference.md#knapsack_pro_ci_node_build_id)
+- [`KNAPSACK_PRO_TEST_QUEUE_ID`](../reference.md#knapsack_pro_test_queue_id)
 
 <Tabs>
 <TabItem value="node-1" label="Node 1">
@@ -714,7 +714,7 @@ Define the following global environment variables on your CI server:
 ```bash
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
-KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
+KNAPSACK_PRO_TEST_QUEUE_ID=MY_TEST_QUEUE_ID \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_PLAYWRIGHT=MY_PLAYWRIGHT_API_TOKEN \
 npx @knapsack-pro/playwright --reporter=blob,@knapsack-pro/playwright/reporters/batch
 ```
@@ -725,7 +725,7 @@ npx @knapsack-pro/playwright --reporter=blob,@knapsack-pro/playwright/reporters/
 ```bash
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
-KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
+KNAPSACK_PRO_TEST_QUEUE_ID=MY_TEST_QUEUE_ID \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_PLAYWRIGHT=MY_PLAYWRIGHT_API_TOKEN \
 npx @knapsack-pro/playwright --reporter=blob,@knapsack-pro/playwright/reporters/batch
 ```
@@ -736,7 +736,7 @@ npx @knapsack-pro/playwright --reporter=blob,@knapsack-pro/playwright/reporters/
 ```bash
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
-KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
+KNAPSACK_PRO_TEST_QUEUE_ID=MY_TEST_QUEUE_ID \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_PLAYWRIGHT=MY_PLAYWRIGHT_API_TOKEN \
 npx @knapsack-pro/playwright --reporter=blob,@knapsack-pro/playwright/reporters/batch
 ```
