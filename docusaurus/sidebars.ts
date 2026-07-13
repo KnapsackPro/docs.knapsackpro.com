@@ -228,6 +228,11 @@ const sidebars: SidebarsConfig = {
           id: "jest/cookbook",
         },
         {
+          type: "doc",
+          label: "Retry only Failures",
+          id: "jest/retry-only-failures",
+        },
+        {
           type: "link",
           label: "GitHub",
           href: "https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/jest",
