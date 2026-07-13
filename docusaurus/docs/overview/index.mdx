@@ -106,9 +106,9 @@ Knapsack Pro can [parallelize tests across CI nodes by example](../ruby/split-by
 
 When you use spot CI nodes like Google Cloud Preemptible VMs or Amazon EC2 Spot Instances, Knapsack Pro gracefully [handles preemptions](../ruby/queue-mode.mdx#dynamic-split-vs-fixed-split): when you retry a node that was shut down the same tests are executed.
 
-## Retry only failed CI nodes
+## Retry-only-Failures
 
-Knapsack Pro remembers what tests each CI node runs, so you can safely retry single nodes instead of re-running the entire suite. In some cases, you can [retry only the tests that failed](../ruby/circleci.mdx#rerun-only-failed-tests)!
+When you retry one (or all the) nodes, Knapsack Pro executes *only* the tests that failed last time on that node (see the docs for [Ruby](../ruby/retry-only-failures.md), [Jest](../jest/retry-only-failures.md), [Cypress](../cypress/retry-only-failures.md), [Vitest](../vitest/retry-only-failures.md), [Playwright](../playwright/retry-only-failures.md)).
 
 ## SAML-based single sign-on (SSO)
 
