@@ -578,7 +578,7 @@ timeout(time: 60, unit: 'MINUTES') {
             KNAPSACK_PRO_CI_NODE_INDEX=${index}\
             KNAPSACK_PRO_COMMIT_HASH=${COMMIT_HASH}\
             KNAPSACK_PRO_BRANCH=${env.BRANCH_NAME}\
-            KNAPSACK_PRO_CI_NODE_BUILD_ID=${env.BUILD_TAG}\
+            KNAPSACK_PRO_TEST_QUEUE_ID=${env.BUILD_TAG}\
             KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN
         """
 
@@ -691,7 +691,7 @@ Define the following global environment variables on your CI server:
 - [`KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST`](../reference.md#knapsack_pro_test_suite_token_vitest)
 - [`KNAPSACK_PRO_CI_NODE_TOTAL`](../reference.md#knapsack_pro_ci_node_total)
 - [`KNAPSACK_PRO_CI_NODE_INDEX`](../reference.md#knapsack_pro_ci_node_index)
-- [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](../reference.md#knapsack_pro_ci_node_build_id)
+- [`KNAPSACK_PRO_TEST_QUEUE_ID`](../reference.md#knapsack_pro_test_queue_id)
 
 <Tabs>
 <TabItem value="node-1" label="Node 1">
@@ -699,7 +699,7 @@ Define the following global environment variables on your CI server:
 ```bash
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=0 \
-KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
+KNAPSACK_PRO_TEST_QUEUE_ID=MY_TEST_QUEUE_ID \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
 npx @knapsack-pro/vitest
 ```
@@ -710,7 +710,7 @@ npx @knapsack-pro/vitest
 ```bash
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=1 \
-KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
+KNAPSACK_PRO_TEST_QUEUE_ID=MY_TEST_QUEUE_ID \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
 npx @knapsack-pro/vitest
 ```
@@ -721,7 +721,7 @@ npx @knapsack-pro/vitest
 ```bash
 KNAPSACK_PRO_CI_NODE_TOTAL=N \
 KNAPSACK_PRO_CI_NODE_INDEX=N-1 \
-KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
+KNAPSACK_PRO_TEST_QUEUE_ID=MY_TEST_QUEUE_ID \
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_VITEST_API_TOKEN \
 npx @knapsack-pro/vitest
 ```

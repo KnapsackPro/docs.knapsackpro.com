@@ -17,7 +17,7 @@ npx @knapsack-pro/vitest
 
 ## Debug Knapsack Pro on your development environment/machine
 
-To reproduce what Knapsack Pro executed on a specific CI node, check out the same branch and run:
+To reproduce what Knapsack Pro executed on a specific CI node, check out the same branch and run (if you are using [Retry only Failures](retry-only-failures.md), you need to replace `KNAPSACK_PRO_CI_NODE_BUILD_ID` with `KNAPSACK_PRO_TEST_QUEUE_ID` and you don't need to set `KNAPSACK_PRO_FIXED_QUEUE_SPLIT`):
 
 ```bash
 KNAPSACK_PRO_TEST_SUITE_TOKEN_VITEST=MY_TOKEN \
