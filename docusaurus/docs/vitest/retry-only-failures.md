@@ -3,6 +3,8 @@ pagination_next: null
 pagination_prev: null
 ---
 
+# Retry only Failures
+
 import { TOCBottom } from '@site/src/components/TOCBottom'
 import { IconExternalLink } from '@site/src/components/IconExternalLink'
 
@@ -11,8 +13,6 @@ import { IconExternalLink } from '@site/src/components/IconExternalLink'
 - [`KNAPSACK_PRO_TEST_QUEUE_ID`](reference.md#knapsack_pro_test_queue_id)
 
 </TOCBottom>
-
-# Retry only Failures
 
 A substantial percentage of your CI retries are spent running tests that already passed on the previous run. Not only is it a waste of time & resources, it's also an opportunity for flakes to cause troubles.
 
