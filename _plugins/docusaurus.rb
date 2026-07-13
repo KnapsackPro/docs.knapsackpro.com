@@ -26,6 +26,9 @@ Jekyll::Hooks.register :site, :post_write do |page|
   system!("mkdir -p _site/cypress/cookbook")
   system!("cp docusaurus/build/cypress/cookbook/index.html _site/cypress/cookbook")
 
+  system!("mkdir -p _site/cypress/retry-only-failures")
+  system!("cp docusaurus/build/cypress/retry-only-failures/index.html _site/cypress/retry-only-failures")
+
   system!("mkdir -p _site/cypress/troubleshooting")
   system!("cp docusaurus/build/cypress/troubleshooting/index.html _site/cypress/troubleshooting")
 
@@ -37,6 +40,9 @@ Jekyll::Hooks.register :site, :post_write do |page|
 
   system!("mkdir -p _site/jest/cookbook")
   system!("cp docusaurus/build/jest/cookbook/index.html _site/jest/cookbook")
+
+  system!("mkdir -p _site/jest/retry-only-failures")
+  system!("cp docusaurus/build/jest/retry-only-failures/index.html _site/jest/retry-only-failures")
 
   system!("mkdir -p _site/jest/troubleshooting")
   system!("cp docusaurus/build/jest/troubleshooting/index.html _site/jest/troubleshooting")
@@ -50,6 +56,9 @@ Jekyll::Hooks.register :site, :post_write do |page|
   system!("mkdir -p _site/vitest/cookbook")
   system!("cp docusaurus/build/vitest/cookbook/index.html _site/vitest/cookbook")
 
+  system!("mkdir -p _site/vitest/retry-only-failures")
+  system!("cp docusaurus/build/vitest/retry-only-failures/index.html _site/vitest/retry-only-failures")
+
   system!("mkdir -p _site/vitest/troubleshooting")
   system!("cp docusaurus/build/vitest/troubleshooting/index.html _site/vitest/troubleshooting")
 
@@ -61,6 +70,9 @@ Jekyll::Hooks.register :site, :post_write do |page|
 
   system!("mkdir -p _site/playwright/cookbook")
   system!("cp docusaurus/build/playwright/cookbook/index.html _site/playwright/cookbook")
+
+  system!("mkdir -p _site/playwright/retry-only-failures")
+  system!("cp docusaurus/build/playwright/retry-only-failures/index.html _site/playwright/retry-only-failures")
 
   system!("mkdir -p _site/playwright/troubleshooting")
   system!("cp docusaurus/build/playwright/troubleshooting/index.html _site/playwright/troubleshooting")
