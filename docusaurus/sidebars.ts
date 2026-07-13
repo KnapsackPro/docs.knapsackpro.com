@@ -185,6 +185,11 @@ const sidebars: SidebarsConfig = {
           id: "cypress/cookbook",
         },
         {
+          type: "doc",
+          label: "Retry only Failures",
+          id: "cypress/retry-only-failures",
+        },
+        {
           type: "link",
           label: "GitHub",
           href: "https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/cypress",
