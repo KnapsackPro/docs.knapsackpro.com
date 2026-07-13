@@ -151,7 +151,7 @@ Since v0.3, this replaces [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](#knapsack_pro_ci_nod
 
 Unique ID that identifies a test queue. It must be the same for all the parallel CI nodes and their retries.
 
-Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci))
+Default: Knapsack Pro will take it from the CI environment (see [supported CIs](https://github.com/KnapsackPro/knapsack-pro-js/tree/main/packages/core/src/ci-providers))
 
 If your CI is not supported, you may generate a test queue ID with `KNAPSACK_PRO_TEST_QUEUE_ID=$(openssl rand -base64 32)` and make it available to all parallel nodes and their retries.
 
