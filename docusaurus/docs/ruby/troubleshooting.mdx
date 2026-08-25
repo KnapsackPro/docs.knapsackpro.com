@@ -94,8 +94,7 @@ Some users reported frozen CI nodes with:
 
 ### Why does the CI node hang? (backtrace debugging)
 
-Knapsack Pro would print Ruby threads to the output when tests freeze and CI node timeouts (the Ruby process is killed by a CI provider).
-See the backtrace(s) showing what code line causes the hanging problem. The backtrace is visible only if the Ruby process got killed with one of the OS signals like `HUP`, `INT`, `TERM`, `ABRT`, `QUIT`, `USR1`, or `USR2`.
+Knapsack Pro prints the Ruby threads' backtraces when killed with `TERM`:
 
 ```text title="Tests output"
 ================================================================================
@@ -183,13 +182,14 @@ Use the above approach to discover the root issue of hanging tests in your test 
 
 :::tip
 
-You can use [the `timeout` program](https://man7.org/linux/man-pages/man1/timeout.1.html) to send the `USR1` signal after Knapsack runs too long if the CI provider does not kill the frozen process.
+You can use [the `timeout` program](https://man7.org/linux/man-pages/man1/timeout.1.html) to send the `TERM` signal if the CI provider does not kill the frozen process.
 
 ```bash
-timeout --signal=USR1 600 bundle exec rake "knapsack_pro:queue:rspec[--format d]"
+timeout --signal=TERM 600 bundle exec rake "knapsack_pro:queue:rspec[--format d]"
 ```
 
-Notice that `600` is in seconds. It sends the signal after 10 minutes of running the command. You may want to adjust that number to ensure the `USR1` signal is sent after the process is stuck and not before.
+Notice that `600` is in seconds. It sends the signal after 10 minutes of running the command. You may want to adjust that number to ensure the `TERM` signal is sent after the process is stuck and not before.
+
 For example, you could use 600 seconds (10 minutes) if you know that your tests take no more than 7 minutes to run.
 
 :::
