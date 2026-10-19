@@ -750,6 +750,12 @@ npx @knapsack-pro/cypress --config trashAssetsBeforeRuns=false
 
 Push a new commit to your repository and visit your [dashboard](https://knapsackpro.com/sessions) to make sure all your CI nodes were recorded successfully in _Show build metrics > Show (build)_.
 
+:::caution
+
+If you notice each batch of tests introduces too much overhead (e.g., test coverage), consider [`KNAPSACK_PRO_SINGLE_BATCH=true`](../reference.md#knapsack_pro_single_batch).
+
+:::
+
 **Congratulations!** Now that Knapsack Pro knows the statistics of your test suite, your CI builds will be parallelized optimally.
 
 ### Next up

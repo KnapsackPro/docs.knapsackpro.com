@@ -7,8 +7,6 @@ pagination_prev: null
 
 ## Debug Knapsack Pro on your development environment/machine
 
-### Regular Mode
-
 To reproduce what Knapsack Pro executed on a specific CI node, check out the same branch and run:
 
 ```bash
@@ -17,30 +15,7 @@ KNAPSACK_PRO_CI_NODE_INDEX=MY_INDEX \
 KNAPSACK_PRO_CI_NODE_TOTAL=MY_TOTAL \
 KNAPSACK_PRO_BRANCH=MY_BRANCH \
 KNAPSACK_PRO_COMMIT_HASH=MY_COMMIT \
-KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
-bundle exec rake "knapsack_pro:rspec[--seed MY_SEED]"
-```
-
-`KNAPSACK_PRO_CI_NODE_BUILD_ID` must be the same as the CI build you are trying to reproduce (if it helps, take a look at what Knapsack Pro uses as `node_build_id` for your [CI provider](https://github.com/KnapsackPro/knapsack_pro-ruby/tree/main/lib/knapsack_pro/config/ci)).
-
-You can also run the same subset of tests without Knapsack Pro: in the logs, find the command that Knapsack Pro used to invoke the test runner:
-
-```bash
-rspec --default-path spec "spec/models/user_spec.rb" "spec/models/comment_spec.rb"
-```
-
-### Queue Mode
-
-To reproduce what Knapsack Pro executed on a specific CI node, check out the same branch and run (if you are using [Retry only Failures](retry-only-failures.md), you need to replace `KNAPSACK_PRO_CI_NODE_BUILD_ID` with `KNAPSACK_PRO_TEST_QUEUE_ID` and you don't need to set `KNAPSACK_PRO_FIXED_QUEUE_SPLIT`):
-
-```bash
-KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC=MY_TOKEN \
-KNAPSACK_PRO_CI_NODE_INDEX=MY_INDEX \
-KNAPSACK_PRO_CI_NODE_TOTAL=MY_TOTAL \
-KNAPSACK_PRO_BRANCH=MY_BRANCH \
-KNAPSACK_PRO_COMMIT_HASH=MY_COMMIT \
-KNAPSACK_PRO_CI_NODE_BUILD_ID=MY_BUILD_ID \
-KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true \
+KNAPSACK_PRO_TEST_QUEUE_ID=MY_TEST_QUEUE_ID \
 bundle exec rake "knapsack_pro:queue:rspec[--seed MY_SEED]"
 ```
 
@@ -66,7 +41,7 @@ Or a single command at the end to execute all the batches the CI node executed:
 
 Some users reported frozen CI nodes with:
 
-- Test runners producing too much output (e.g., Codeship and Queue Mode): reduce it with [`KNAPSACK_PRO_LOG_LEVEL=warn`](reference.md#knapsack_pro_log_level)
+- Test runners producing too much output: reduce it with [`KNAPSACK_PRO_LOG_LEVEL=warn`](reference.md#knapsack_pro_log_level)
 - Test runners producing no output: make sure to use a formatter (like RSpec's [`--format progress`](reference.md#command-line-arguments))
 - Timecop (e.g., [Travis](https://docs.travis-ci.com/user/common-build-problems/#ruby-tests-frozen-and-cancelled-after-10-minute-log-silence)): ensure `Timecop.return` is executed after all examples
 
@@ -205,49 +180,6 @@ You might still need to use the `timeout` program to terminate tests and capture
 
 :::
 
-<details>
-  <summary>For legacy versions of `knapsack_pro` older than 7.7.0, click here.</summary>
-
-  Tests freeze and CI node timeouts (the Ruby process is killed by a CI provider). Add the following script to `spec_helper.rb`. Thanks to that, you will see the backtrace showing what code line causes the hanging problem. Backtrace is visible only if the Ruby process got kill with `USR1` signal. Learn more from this [GitHub issue](https://github.com/rspec/rspec-rails/issues/1353#issuecomment-93173691).
-
-  ```ruby
-  # source https://github.com/rspec/rspec-rails/issues/1353#issuecomment-93173691
-  puts "Process pid: #{Process.pid}"
-
-  trap 'USR1' do
-    threads = Thread.list
-
-    puts
-    puts "=" * 80
-    puts "Received USR1 signal; printing all #{threads.count} thread backtraces."
-
-    threads.each do |thr|
-      description = thr == Thread.main ? "Main thread" : thr.inspect
-      puts
-      puts "#{description} backtrace: "
-      puts thr.backtrace.join("\n")
-    end
-
-    puts "=" * 80
-  end
-  ```
-
-  If the CI provider does not kill the frozen process, you can do it by running the below command in the terminal (when you are ssh-ed into the CI node):
-
-  ```bash
-  kill -USR1 <process pid>
-  ```
-
-  Alternatively, you can use the `timeout` program to send the USR1 signal after Knapsack runs too long.
-
-  ```bash
-  timeout --signal=USR1 600 bundle exec rake "knapsack_pro:queue:rspec[--format d]"
-  ```
-
-  Notice that `600` is in seconds. It sends the signal after 10 minutes of running the command. You may want to adjust that number to ensure the USR1 signal is sent after the process is stuck and not before.
-
-</details>
-
 ## Knapsack Pro does not work on a forked repository
 
 :::caution
@@ -259,7 +191,7 @@ Make sure your Knapsack Pro API token is set up as a secret in your CI (not hard
 Since the token won't be available on forked CI builds, you can use a script to run:
 
 - Knapsack Pro in [Fallback Mode](../overview/index.mdx#fallback-mode)(static split by file names) on forked builds
-- Knapsack Pro in [Queue Mode](../overview/index.mdx#queue-mode-dynamic-split) or [Regular Mode](../overview/index.mdx#regular-mode-static-split) on internal builds
+- Knapsack Pro in [Normal Mode](../overview/index.mdx#normal-mode) on internal builds
 
 Create `bin/knapsack_pro_tests`, make it executable `chmod u+x`, and use it on CI to run your tests:
 
@@ -327,49 +259,6 @@ WebMock or VCR may trigger the following errors when Knapsack Pro interacts with
 
 **Update the `knapsack_pro` gem to the latest version to fix those issues.**
 
-<details>
-  <summary>For legacy versions of `knapsack_pro` older than 7.2, click here.</summary>
-
-  Add the Knapsack Pro API's subdomain to the [ignored hosts](https://benoittgt.github.io/vcr/#/configuration/ignore_request) and [`disable_web_connect!`](https://github.com/bblimke/webmock) in `spec/spec_helper.rb` (or wherever your WebMock/VCR configuration is located):
-
-  ```ruby
-  require 'vcr'
-
-  VCR.configure do |config|
-    config.hook_into :webmock
-    config.ignore_hosts('localhost', '127.0.0.1', '0.0.0.0', 'api.knapsackpro.com')
-  end
-
-  require 'webmock/rspec'
-  WebMock.disable_net_connect!(allow_localhost: true, allow: ['api.knapsackpro.com'])
-  ```
-
-  You may need to add `require: false` in your Gemfile:
-
-  ```ruby
-  group :test do
-    gem 'vcr'
-    gem 'webmock', require: false
-  end
-  ```
-
-  If some tests are failing due to requests to the Knapsack Pro API, you may have some code that reconfigures WebMock. The usual suspects are calls to `WebMock.reset!` or an [issue](https://github.com/bblimke/webmock/issues/484#issuecomment-116193449) with `webmock/rspec`. In the latter case, you can solve the problem with:
-
-  ```ruby
-  RSpec.configure do |config|
-    config.after(:suite) do
-      WebMock.disable_net_connect!(
-        allow_localhost: true,
-        allow: [
-          'api.knapsackpro.com',
-        ],
-      )
-    end
-  end
-  ```
-
-</details>
-
 ## `ActiveRecord::SubclassNotFound`
 
 If files are changing during a tests run, you may get the following error:
@@ -400,15 +289,7 @@ Here are the most common reasons:
 - Tests are accessing the same resource (e.g., Stripe sandbox, database)
 - Your CI gives you a limited pool of parallel CI nodes (and runs the rest serially)
 
-## Some tests were skipped in Regular Mode
-
-There is an unlikely scenario where some CI nodes may start in Fallback Mode but others in Regular Mode resulting in some tests being skipped. Our recommendations are either
-
-- Switch to [Queue Mode](../overview/index.mdx#queue-mode-dynamic-split) and enjoy faster CI builds too
-- Disable Fallback mode with [`KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`](reference.md#knapsack_pro_fallback_mode_enabled)
-- Increase the request attempts with [`KNAPSACK_PRO_MAX_REQUEST_RETRIES`](reference.md#knapsack_pro_max_request_retries)
-
-## FactoryBot/FactoryGirl raises in Queue Mode
+## FactoryBot/FactoryGirl raises
 
 - Use the [`knapsack_pro` binary](cookbook.md#use-the-knapsack-pro-binary):
   ```bash
@@ -432,93 +313,9 @@ There is an unlikely scenario where some CI nodes may start in Fallback Mode but
   end
   ```
 
-## One CI node run the test suite again in Queue Mode
-
-Most likely, that CI node started when all the others finished running and initialized a new queue.
-
-You have a couple of options:
-
-- Make sure [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](reference.md#knapsack_pro_ci_node_build_id) is set (recommended)
-- Set [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](reference.md#knapsack_pro_fixed_queue_split-queue-mode)
-
-## Rake tasks under tests are run more than once in Queue Mode
+## Rake tasks under tests are run more than once
 
 **Update the `knapsack_pro` gem to the latest version to fix this issue.**
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<details>
-  <summary>For legacy versions of `knapsack_pro` older than 8.1.1, click here.</summary>
-
-  Make sure the Rake task is loaded once for each test example in the spec file:
-
-  <Tabs>
-  <TabItem value="rake">
-
-  ```ruby
-  class DummyOutput
-    class << self
-      attr_accessor :count
-    end
-  end
-
-  namespace :dummy do
-    task do_something_once: :environment do
-      DummyOutput.count ||= 0
-      DummyOutput.count += 1
-      puts "Count: #{DummyOutput.count}"
-    end
-  end
-  ```
-
-  </TabItem>
-
-  <TabItem value="spec">
-
-  ```ruby
-  require 'rake'
-
-  describe 'Dummy rake' do
-    describe "dummy:do_something_once" do
-      let(:task_name) { "dummy:do_something_once" }
-      let(:task) { Rake::Task[task_name] }
-
-      before(:each) do # make sure the rake task is defined *once*
-        Rake::Task[task_name].clear if Rake::Task.task_defined?(task_name)
-        Rake.load_rakefile("tasks/dummy.rake")
-        Rake::Task.define_task(:environment)
-      end
-
-      after(:each) do
-        Rake::Task[task_name].reenable
-        # Reset the state
-        DummyOutput.count = 0
-      end
-
-      it "calls the rake task once (increases counter by one)" do
-        expect { task.invoke }.to_not raise_error
-        expect(DummyOutput.count).to eq(1)
-      end
-
-      it "calls the rake task once again (increases counter by one)" do
-        expect { task.invoke }.to_not raise_error
-        expect(DummyOutput.count).to eq(1)
-      end
-    end
-  end
-  ```
-
-  </TabItem>
-  </Tabs>
-</details>
-
-## Tests distribution is unbalanced in Queue Mode
-
-Please consider:
-
-- [Splitting by test examples](split-by-test-examples.mdx) if you have a bottleneck file that is packed with test examples
-- If it's a retry, remember that [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](reference.md#knapsack_pro_fixed_queue_split-queue-mode) uses a cached split
 
 ## Execution times are all 0 seconds in Minitest
 

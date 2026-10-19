@@ -10,13 +10,13 @@ import { IconExternalLink } from '@site/src/components/IconExternalLink'
 
 <TOCBottom heading="Reference" Icon={<IconExternalLink />}>
 
-- [`KNAPSACK_PRO_TEST_QUEUE_ID`](reference.md#knapsack_pro_test_queue_id-queue-mode-rspec)
+- [`KNAPSACK_PRO_TEST_QUEUE_ID`](reference.md#knapsack_pro_test_queue_id)
 
 </TOCBottom>
 
 :::caution
 
-Only RSpec ([Queue Mode](queue-mode.mdx)) is supported for now.
+Only RSpec is supported for now.
 
 :::
 
@@ -28,7 +28,7 @@ With Retry only Failures, when you retry one (or all the) nodes, Knapsack Pro ex
 
 To enable Retry only Failures, `bundle update knapsack_pro` to v10 or later.
 
-Knapsack Pro uses [`KNAPSACK_PRO_TEST_QUEUE_ID`](reference.md#knapsack_pro_test_queue_id-queue-mode-rspec) to uniquely identify a queue on the first run and all its retries.
+Knapsack Pro uses [`KNAPSACK_PRO_TEST_QUEUE_ID`](reference.md#knapsack_pro_test_queue_id) to uniquely identify a queue on the first run and all its retries.
 
 ## Additional configuration for CircleCI
 

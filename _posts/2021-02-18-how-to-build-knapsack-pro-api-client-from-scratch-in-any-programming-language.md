@@ -78,7 +78,7 @@ Users can define those environment variables in their CI server settings to cont
 
   - The default is `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false` which means that when you want to retry the whole failed CI build then a new dynamic test suite split will happen across all retried parallel CI nodes. Some people may prefer to retry the whole failed CI build with test files allocated across parallel CI nodes in the same order as it happened for the failed CI build - in such a case you should set `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`.
 
-  - To learn more about this flag you can also see [examples in knapsack_pro ruby gem related to the `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=true`](https://docs.knapsackpro.com/ruby/queue-mode/#dynamic-split-vs-fixed-split).
+  - To learn more about this flag see the [reference](https://docs.knapsackpro.com/ruby/reference/#knapsack_pro_fixed_queue_split-queue-mode).
 
 - `KNAPSACK_PRO_CI_NODE_TOTAL` - the default value conveying the number of parallel CI nodes used.
 

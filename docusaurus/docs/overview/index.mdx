@@ -56,20 +56,20 @@ Knapsack Pro comes with a web UI that displays graphs and stats about your test 
 
 ## Tests Orchestration Modes
 
-### Queue Mode (Dynamic Split)
+### Normal Mode
 
-Knapsack Pro splits your tests dynamically (Queue Mode) between parallel CI nodes.
+Knapsack Pro splits your tests dynamically between parallel CI nodes.
 
 Each Knapsack Pro Client (parallel CI node):
 
-1. Retrieves from the Knapsack Pro API a subset of tests to execute
+1. Retrieves from the Knapsack Pro API a batch of tests to execute
 2. Runs those tests
 3. Repeats 1. and 2. as long as there are more tests in the API queue
 4. Sends the test execution times to the API for the subsequent CI runs
 
-With Queue Mode, Knapsack Pro distributes tests so that each CI node finishes at the same time. Thanks to that, your CI build time is as fast as possible.
+Knapsack Pro distributes tests so that each CI node finishes at the same time. Thanks to that, your CI build time is as fast as possible.
 
-Knapsack Pro allows distributing the tests in a static way (Regular Mode) too, but it’s rarely a good solution:
+Knapsack Pro allows distributing the tests in a single batch per node too, but it’s rarely a good solution:
 
 - Tests themselves, especially end to end, have varying execution times
 - Failing tests execute faster than green ones
@@ -80,23 +80,11 @@ Knapsack Pro allows distributing the tests in a static way (Regular Mode) too, b
 - Test execution starts at different times on different CI nodes
 - Flaky tests are.. Well, flaky!
 
-### Regular Mode (Static Split)
-
-Even if Queue Mode is recommended, Knapsack Pro supports a static split of tests between parallel CI nodes (Regular Mode).
-
-In this mode, the Knapsack Pro API returns to each Knapsack Pro client the subset of tests to execute in one batch.
-
-However, as explained in the [Queue Mode](#queue-mode-dynamic-split) section, this will result in a suboptimal split.
-
 ### Fallback Mode
 
 In case of network issues, Knapsack Pro logs a warning and automatically switches to Fallback Mode to run your tests with a split based on test file names.
 
 Knapsack Pro will retry to connect with the API multiple times before switching to Fallback Mode.
-
-In the unlikely scenario where some CI nodes switch to Fallback Mode, but others don't, you can expect the following behavior:
-- Queue Mode (default): some tests might be run on multiple CI nodes (you have the guarantee of at-least-once tests execution).
-- Regular Mode: some tests might be skipped; if this is not acceptable, you can [disable Fallback Mode](../ruby/reference.md#knapsack_pro_fallback_mode_enabled).
 
 ## Split by test examples
 
@@ -104,7 +92,7 @@ Knapsack Pro can [parallelize tests across CI nodes by example](../ruby/split-by
 
 ## Spot CI nodes
 
-When you use spot CI nodes like Google Cloud Preemptible VMs or Amazon EC2 Spot Instances, Knapsack Pro gracefully [handles preemptions](../ruby/queue-mode.mdx#dynamic-split-vs-fixed-split): when you retry a node that was shut down the same tests are executed.
+When you use spot CI nodes like Google Cloud Preemptible VMs or Amazon EC2 Spot Instances, Knapsack Pro gracefully handles preemptions: when you retry a node that was shut down the same tests are executed before continuing consuming the queue.
 
 ## Retry-only-Failures
 

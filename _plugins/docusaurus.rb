@@ -100,7 +100,7 @@ Jekyll::Hooks.register :site, :post_write do |page|
     "parallel_tests",
     "puffing-billy",
     "predict",
-    "queue-mode",
+    "normal-mode",
     "reference",
     "retry-only-failures",
     "rspec",

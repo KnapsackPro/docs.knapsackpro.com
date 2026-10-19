@@ -52,7 +52,7 @@ Available: `false` | `true`
 
 ## `KNAPSACK_PRO_CI_NODE_BUILD_ID`
 
-Since v10, [`KNAPSACK_PRO_TEST_QUEUE_ID`](#knapsack_pro_test_queue_id-queue-mode-rspec) is used for RSpec in Queue Mode instead.
+Since v10, [`KNAPSACK_PRO_TEST_QUEUE_ID`](#knapsack_pro_test_queue_id) is used for RSpec in Queue Mode instead.
 
 Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
 
@@ -114,7 +114,7 @@ Default: `"bundle exec"`
 Available:
 
 - `"bundle exec"`
-- `"bundle exec spring"` or `"bin/spring"` to run [Cucumber faster with Spring](spring.md#using-knapsack-pro-in-queue-mode-with-spring-and-cucumber)
+- `"bundle exec spring"` or `"bin/spring"` to run [Cucumber faster with Spring](spring.md#using-knapsack-pro-with-spring-and-cucumber)
 
 ## `KNAPSACK_PRO_ENDPOINT` (Internal)
 
@@ -139,7 +139,7 @@ Default: `1`
 
 ## `KNAPSACK_PRO_FIXED_QUEUE_SPLIT` (Queue Mode)
 
-Since v10, this ENV is ignored when using RSpec. See [Retry only Failures](retry-only-failures.md) for details.
+Since v10, this ENV is ignored. See [Retry only Failures](retry-only-failures.md) for details.
 
 Dynamic or fixed tests split when retrying a CI build.
 
@@ -157,6 +157,8 @@ Recommended:
 - `false` otherwise
 
 ## `KNAPSACK_PRO_FIXED_TEST_SUITE_SPLIT` (Regular Mode)
+
+Since v11 this ENV is ignored.
 
 Dynamic or fixed tests split when retrying a CI build.
 
@@ -192,12 +194,6 @@ Available: `debug` | `info` | `warn` | `error` | `fatal`
 
 Recommended: `debug` when debugging issues, `info` to know what Knapsack Pro is doing
 
-<details>
-  <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
-
-  Default: `debug`
-</details>
-
 ## `KNAPSACK_PRO_MAX_REQUEST_RETRIES`
 
 Max amount of request attempts to try before switching to [Fallback Mode](../overview/index.mdx#fallback-mode). Retries respect a linear back-off.
@@ -205,31 +201,10 @@ Max amount of request attempts to try before switching to [Fallback Mode](../ove
 Default:
 
 - `6` when `KNAPSACK_PRO_FALLBACK_MODE_ENABLED=false`
-- `6` in Regular Mode
+- `6` when `KNAPSACK_PRO_SINGLE_BATCH=true`
 - `3` otherwise
 
 Available: number
-
-## `KNAPSACK_PRO_MODIFY_DEFAULT_RSPEC_FORMATTERS` (Removed, RSpec)
-
-:::caution
-
-This feature was removed in `knapsack_pro` version 7.0, as it is no longer needed.
-
-:::
-
-<details>
-  <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
-
-  Enable/disable monkey patching of the RSpec Formatters. You may want to set it to `false` if it interferes with your custom formatter.
-
-  Default: `true`
-
-  Available:
-
-  - `true`: Show the summary of pending and failed tests only at the end of the test run.
-  - `false`: Show the summary of pending and failed tests after each intermediate batch of tests fetched from the Queue API. The summary is cumulative so you will the same tests mentioned multiple times, though they are executed only once.
-</details>
 
 ## `KNAPSACK_PRO_PROJECT_DIR`
 
@@ -285,6 +260,16 @@ Available:
 ## `KNAPSACK_PRO_SALT`
 
 Salt to use to [Encrypt Test File Names or Branch Names](encryption.mdx).
+
+## `KNAPSACK_PRO_SINGLE_BATCH`
+
+Default: `false`
+
+Available:
+- `true`: distribute a single batch of tests per node
+- `false`: distribute multiple batches of tests per node
+
+* Set `KNAPSACK_PRO_SINGLE_BATCH=true` to get only one batch of tests per node.
 
 ## `KNAPSACK_PRO_SLOW_TEST_FILE_PATTERN` (Internal, RSpec)
 
@@ -483,7 +468,7 @@ KNAPSACK_PRO_TEST_SUITE_TOKEN_CUCUMBER=MY_CUCUMBER_API_TOKEN \
   bundle exec rake knapsack_pro:queue:cucumber
 ```
 
-## `KNAPSACK_PRO_TEST_QUEUE_ID` (Queue Mode, RSpec)
+## `KNAPSACK_PRO_TEST_QUEUE_ID`
 
 Since v10, this replaces [`KNAPSACK_PRO_CI_NODE_BUILD_ID`](#knapsack_pro_ci_node_build_id).
 

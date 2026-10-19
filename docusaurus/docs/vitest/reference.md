@@ -123,6 +123,14 @@ Available:
 - `debug`: Knapsack Pro API request headers and body
 - `silly`
 
+## `KNAPSACK_PRO_SINGLE_BATCH`
+
+Default: `false`
+
+Available:
+- `true`: distribute a single batch of tests per node
+- `false`: distribute multiple batches of tests per node
+
 ## `KNAPSACK_PRO_TEST_FILE_EXCLUDE_PATTERN`
 
 Exclude tests matching a pattern (relative paths from the `root` directory). It can be used in tandem with `KNAPSACK_PRO_TEST_FILE_PATTERN`.

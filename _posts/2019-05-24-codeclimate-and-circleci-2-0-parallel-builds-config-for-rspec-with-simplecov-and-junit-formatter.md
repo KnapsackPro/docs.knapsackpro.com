@@ -91,7 +91,7 @@ jobs:
       # Run RSpec tests with knapsack_pro Queue Mode and use junit formatter
       # junit formatter must be configured as described in FAQ for knapsack_pro Queue Mode
       # this is also described in this article later
-      # https://docs.knapsackpro.com/ruby/circleci/#collect-metadata-in-queue-mode
+      # https://docs.knapsackpro.com/ruby/circleci/#collect-metadata
       - run:
           name: run tests
           command: |
@@ -188,7 +188,7 @@ You can use junit formatter for RSpec thanks to gem [rspec_junit_formatter](http
 bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out /tmp/test-reports/rspec.xml]"
 {% endhighlight %}
 
-Learn more about [collecting metadata in CircleCI](https://docs.knapsackpro.com/ruby/circleci/#collect-metadata-in-queue-mode) in the docs.
+Learn more about [collecting metadata in CircleCI](https://docs.knapsackpro.com/ruby/circleci/#collect-metadata) in the docs.
 
 ## Summary and Queue Mode to do dynamic test suite split
 

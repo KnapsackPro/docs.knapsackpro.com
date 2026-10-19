@@ -67,8 +67,8 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "doc",
-              label: "Queue Mode",
-              id: "ruby/queue-mode",
+              label: "Normal Mode",
+              id: "ruby/normal-mode",
             },
             {
               type: "doc",

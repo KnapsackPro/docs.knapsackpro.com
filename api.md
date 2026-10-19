@@ -25,7 +25,7 @@ You can learn how Knapsack Pro API works from the below videos or reading the ar
   <li>
   <a href="https://youtu.be/hUEB1XDKEFY"><i class="fab fa-youtube"></i> Queue Mode - dynamic tests split across parallel CI nodes</a>.
   <br>
-  Docs: <a href="https://docs.knapsackpro.com/overview/#queue-mode-dynamic-split">How knapsack_pro gem works in Queue Mode</a>.
+  Docs: <a href="https://docs.knapsackpro.com/overview/#normal-mode">How knapsack_pro gem works in Queue Mode</a>.
   </li>
 </ul>
 

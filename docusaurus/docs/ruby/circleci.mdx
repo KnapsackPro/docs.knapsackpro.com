@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Using Knapsack Pro with CircleCI
 
-## Collect metadata in Queue Mode
+## Collect metadata
 
 You may want to [collect metadata](https://circleci.com/docs/collect-test-data/#metadata-collection-in-custom-test-steps) in CircleCI.
 
@@ -21,7 +21,7 @@ To collect JUnit reports of your RSpec runs, you would:
 
 ```yaml title=".circleci/config.yml"
 - run:
-    name: RSpec with Knapsack Pro in Queue Mode
+    name: RSpec with Knapsack Pro
     command: |
       mkdir -p /tmp/test-results
       bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out /tmp/test-results/rspec.xml]"
@@ -36,60 +36,13 @@ To collect JUnit reports of your RSpec runs, you would:
 
 You can find a complete CircleCI configuration in [RSpec testing parallel jobs with CircleCI and JUnit XML report](https://docs.knapsackpro.com/2021/rspec-testing-parallel-jobs-with-circleci-and-junit-xml-report).
 
-<details>
-  <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
-
-  - Configure the [junit formatter for RSpec](rspec.mdx#junit-formatter)
-  - Copy the report to the `$CIRCLE_TEST_REPORTS` directory as shown below
-
-  <Tabs>
-    <TabItem value="RSpec">
-    ```ruby title="spec_helper.rb or rails_helper.rb"
-    # `TMP_REPORT` must be the same path as `--out`
-    # `TMP_REPORT` must be a full path (no `~`)
-    TMP_REPORT = "tmp/rspec.xml"
-    FINAL_REPORT = "tmp/final_rspec.xml"
-
-    KnapsackPro::Hooks::Queue.after_subset_queue do |queue_id, subset_queue_id|
-      if File.exist?(TMP_REPORT)
-        FileUtils.mv(TMP_REPORT, FINAL_REPORT)
-      end
-    end
-
-    # highlight-start
-    KnapsackPro::Hooks::Queue.after_queue do |queue_id|
-      if File.exist?(FINAL_REPORT) && ENV['CIRCLE_TEST_REPORTS']
-        FileUtils.cp(FINAL_REPORT, "#{ENV['CIRCLE_TEST_REPORTS']}/rspec.xml")
-      end
-    end
-    # highlight-end
-    ```
-    </TabItem>
-    <TabItem value="CircleCI">
-    ```yaml title=".circleci/config.yml"
-    - run:
-        name: RSpec with Knapsack Pro in Queue Mode
-        command: |
-          export CIRCLE_TEST_REPORTS=/tmp/test-results
-          mkdir -p $CIRCLE_TEST_REPORTS
-          bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
-    - store_test_results:
-        path: /tmp/test-results
-    - store_artifacts:
-        path: /tmp/test-results
-        destination: test-results
-    ```
-    </TabItem>
-  </Tabs>
-</details>
-
 ### Cucumber
 
 Please provide a directory path in the `--out` option, where JUnit XML reports are generated. The directory path `tmp/test-reports/` must end with `/` as shown in the following example:
 
 ```yaml title=".circleci/config.yml"
 - run:
-    name: Cucumber with Knapsack Pro in Queue Mode
+    name: Cucumber with Knapsack Pro
     command: |
       mkdir -p /tmp/test-results
       bundle exec rake "knapsack_pro:queue:cucumber[--format junit --out tmp/test-reports/]"
@@ -102,92 +55,8 @@ Please provide a directory path in the `--out` option, where JUnit XML reports a
     destination: test-results
 ```
 
-The XML report is generated for each batch of tests fetched from the Queue API. Multiple reports are created on each CI node in Queue Mode.
+The XML report is generated for each batch of tests fetched from the Queue API, so multiple reports are created on each CI node.
 
 ## Rerun _only_ failed tests
 
-If you are using v10 and RSpec, [Retry only Failures is one small change away](retry-only-failures.md)! Otherwise, keep reading.
-
-:::caution
-
-Requires not setting [`KNAPSACK_PRO_FIXED_QUEUE_SPLIT`](reference.md#knapsack_pro_fixed_queue_split-queue-mode) (or using the default `KNAPSACK_PRO_FIXED_QUEUE_SPLIT=false`).
-
-:::
-
-Use the [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tests/) feature with Knapsack Pro to only rerun a subset of tests instead of rerunning the entire test suite when a transient test failure arises.
-
-### RSpec
-
-```yaml title=".circleci/config.yml"
-- run:
-    name: RSpec with Knapsack Pro in Queue Mode
-    command: |
-      mkdir -p /tmp/test-results
-
-      # highlight-start
-      export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt
-      # Retrieve the tests to run (all or just the failed ones), and let Knapsack Pro split them optimally.
-      circleci tests glob "spec/**/*_spec.rb" | circleci tests run --index 0 --total 1 --command ">$KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE xargs -n1 echo" --verbose
-      bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out /tmp/test-results/rspec.xml]"
-      # highlight-end
-
-- store_test_results:
-    path: /tmp/test-results
-
-- store_artifacts:
-    path: /tmp/test-results
-    destination: test-results
-```
-
-The snippet above:
-
-- [Collects metadata with the JUnit XML formatter](#collect-metadata-in-queue-mode)
-- uses [`KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE`](reference.md#knapsack_pro_test_file_list_source_file) to specify what tests to run
-
-<details>
-  <summary>For legacy versions of `knapsack_pro` older than 7.0, please click here.</summary>
-
-  ```yaml title=".circleci/config.yml"
-  - run:
-      name: RSpec with Knapsack Pro in Queue Mode
-      command: |
-        export CIRCLE_TEST_REPORTS=/tmp/test-results
-        mkdir -p $CIRCLE_TEST_REPORTS
-
-        # highlight-start
-        export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt
-        # Retrieve the tests to run (all or just the failed ones), and let Knapsack Pro split them optimally.
-        circleci tests glob "spec/**/*_spec.rb" | circleci tests run --index 0 --total 1 --command ">$KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE xargs -n1 echo" --verbose
-        bundle exec rake "knapsack_pro:queue:rspec[--format documentation --format RspecJunitFormatter --out tmp/rspec.xml]"
-        # highlight-end
-  - store_test_results:
-      path: /tmp/test-results
-  - store_artifacts:
-      path: /tmp/test-results
-      destination: test-results
-  ```
-</details>
-
-### Minitest
-
-Install the `minitest-ci` gem:
-
-```bash
-bundle add minitest-ci
-```
-
-Configure CircleCI:
-
-```yaml title=".circleci/config.yml"
-- run:
-    name: Minitest with Knapsack Pro in Queue Mode
-    command: |
-      export KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE=/tmp/tests_to_run.txt
-
-      # Retrieve the tests to run (all or just the failed ones), and let Knapsack Pro split them optimally.
-      circleci tests glob "test/**/*_test.rb" | circleci tests run --index 0 --total 1 --command ">$KNAPSACK_PRO_TEST_FILE_LIST_SOURCE_FILE xargs -n1 echo" --verbose
-      bundle exec rake "knapsack_pro:queue:minitest[--verbose --ci-report --no-ci-clean]"
-
-- store_test_results:
-    path: test/reports
-```
+Use [Retry only Failures](retry-only-failures.md) instead of [CircleCI rerun failed tests](https://circleci.com/docs/rerun-failed-tests/).

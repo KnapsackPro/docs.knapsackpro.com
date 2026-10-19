@@ -8,7 +8,7 @@ import { IconExternalLink } from '@site/src/components/IconExternalLink'
 
 <TOCBottom heading="Reference" Icon={<IconExternalLink />}>
 
-- [Using Knapsack Pro in Queue Mode with SimpleCov](simplecov.md)
+- [Using Knapsack Pro with SimpleCov](simplecov.md)
 
 </TOCBottom>
 
@@ -21,7 +21,7 @@ Check how to configure CodeClimate with `knapsack_pro` on our blog:
 
 ## Troubleshooting
 
-### Using Knapsack Pro in Queue Mode with CodeClimate and SimpleCov
+### Using Knapsack Pro with CodeClimate and SimpleCov
 
 You need to generate a simplecov report in JSON format on CI in order to avoid [the following error](https://github.com/codeclimate/test-reporter/issues/418) from CodeClimate:
 

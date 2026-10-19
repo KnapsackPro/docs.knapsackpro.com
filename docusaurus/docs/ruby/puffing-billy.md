@@ -3,13 +3,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Using Knapsack Pro in Queue Mode with `puffing-billy`
-
-:::caution
-
-This is needed only if you are using Knapsack Pro in [Queue Mode](../overview/index.mdx#queue-mode-dynamic-split) and legacy versions of `knapsack_pro` older than 7.0.
-
-:::
+# Using Knapsack Pro with `puffing-billy`
 
 If you use the [puffing-billy](https://github.com/oesmith/puffing-billy) gem and encounter the crash described in this [GitHub issue](https://github.com/oesmith/puffing-billy/issues/253), apply the following patch:
 
@@ -48,5 +42,3 @@ if ENV["KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC"]
   end
 end
 ```
-
-This problem is caused by how [`knapsack_pro` in Queue Mode uses](https://knapsackpro.com/faq/question/why-when-i-use-queue-mode-for-rspec-then-my-tests-fail) `RSpec::Core::Runner`.
