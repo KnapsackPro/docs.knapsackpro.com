@@ -1117,7 +1117,15 @@ Push a new commit to your repository and visit your [dashboard](https://knapsack
 
 :::caution
 
-If you encounter any problems, take a look at [troubleshooting](../../ruby/normal-mode.mdx#configuration-and-troubleshooting). Or try using [`KNAPSACK_PRO_SINGLE_BATCH=true`](../../ruby/reference.md#knapsack_pro_single_batch), which instruments the RSpec runner less.
+If you encounter any problems, take a look at [troubleshooting](../../ruby/normal-mode.mdx#configuration-and-troubleshooting).
+
+<ShowIfSearchParamAndValue searchParam="test-runner" value="rspec">
+You may consider using [`KNAPSACK_PRO_SINGLE_BATCH=true`](../../ruby/reference.md#knapsack_pro_single_batch), which instruments the RSpec runner less.
+</ShowIfSearchParamAndValue>
+
+<ShowIfSearchParamAndValue searchParam="test-runner" value="!rspec">
+If you notice each batch of tests introduces too much overhead (e.g., test coverage), consider [`KNAPSACK_PRO_SINGLE_BATCH=true`](../../ruby/reference.md#knapsack_pro_single_batch).
+</ShowIfSearchParamAndValue>
 
 :::
 

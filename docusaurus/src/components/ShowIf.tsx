@@ -32,8 +32,15 @@ export const ShowIfSearchParamAndValue = ({
   if (!isBrowser) return <>{children}</>;
 
   const [values] = useSearchParam(searchParam);
-  if (!values.has(value)) {
-    return null;
+
+  if (value[0] === "!") {
+    if (values.size === 1 && values.has(value.substring(1))) {
+      return null;
+    }
+  } else {
+    if (!values.has(value)) {
+      return null;
+    }
   }
   return <>{children}</>;
 };
