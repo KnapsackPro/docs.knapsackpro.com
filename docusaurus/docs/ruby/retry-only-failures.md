@@ -14,12 +14,6 @@ import { IconExternalLink } from '@site/src/components/IconExternalLink'
 
 </TOCBottom>
 
-:::caution
-
-Only RSpec is supported for now.
-
-:::
-
 A substantial percentage of your CI retries are spent running tests that already passed on the previous run. Not only is it a waste of time & resources, it's also an opportunity for flakes to cause troubles.
 
 With Retry only Failures, when you retry one (or all the) nodes, Knapsack Pro executes *only* the tests that failed last time on that node.
