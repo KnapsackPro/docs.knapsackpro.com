@@ -52,7 +52,7 @@ Available: `false` | `true`
 
 ## `KNAPSACK_PRO_CI_NODE_BUILD_ID`
 
-Since v10, [`KNAPSACK_PRO_TEST_QUEUE_ID`](#knapsack_pro_test_queue_id) is used for RSpec in Queue Mode instead.
+Since v10 (RSpec) and v11 (others), [`KNAPSACK_PRO_TEST_QUEUE_ID`](#knapsack_pro_test_queue_id) is used instead.
 
 Unique ID that identifies a CI build. It must be the same for all the parallel CI nodes.
 
